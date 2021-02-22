@@ -1,12 +1,10 @@
 import { createMuiTheme, makeStyles } from '@material-ui/core'
-import { Theme, themeContext } from '@smartb/archetypes-ui-components'
+import { Theme } from '@smartb/archetypes-ui-components'
 import { Theme as MuiTheme } from '@material-ui/core/styles/createMuiTheme'
 import { Styles } from '@material-ui/core/styles/withStyles'
 
-export const X2ThemeContext = themeContext
-
 export const appLayoutStyleProps = {
-  appBarHeight: 60,
+  appBarHeight: 55,
   detailDrawerWidth: 150,
   menuWidth: 150
 }

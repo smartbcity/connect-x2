@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", Arial;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+button {
+  font-family: "Montserrat", Arial;
+  color: #303030;
+}
+.MuiTypography-root {
+  font-family: "Montserrat", Arial !important;
+  color: #303030;
+}
+.MuiSelect-root {
+  font-family: "Montserrat", Arial;
+  color: #82748b;
+}
+.MuiFormLabel-root {
+  font-family: "Montserrat", Arial !important;
+}
+
+@media (max-width: 767.98px) {
+  #root main {
+    margin-left: 0;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+} /*It's hidding the spin-button on the input type number*/
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-box-shadow: 0 0 0px 1000px 0000 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
