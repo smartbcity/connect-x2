@@ -1,10 +1,8 @@
-import React from 'react';
-import {test} from "components"
 
-function App() {
+
+const App = () => {
   return (
     <div>
-      {test}
     </div>
   );
 }

@@ -1,4 +1,4 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../x2-app/tsconfig.json",
   "include": ["src"]
 }

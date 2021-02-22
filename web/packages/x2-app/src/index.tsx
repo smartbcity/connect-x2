@@ -2,10 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {LoadingPage, X2I18NThemeContextProvider} from "components"
+import i18next from 'i18next';
 
 ReactDOM.render(
   <React.StrictMode>
+    <X2I18NThemeContextProvider i18n={i18next} loading={<LoadingPage />}>
     <App />
+    </X2I18NThemeContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
