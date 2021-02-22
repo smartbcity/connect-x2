@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {LoadingPage, X2I18NThemeContextProvider} from "components"
-import i18next from 'i18next';
+import i18next from 'i18n';
 
 ReactDOM.render(
   <React.StrictMode>

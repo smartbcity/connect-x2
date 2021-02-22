@@ -1,28 +1,29 @@
 import { MenuItem } from "@smartb/archetypes-ui-layout";
 import { AppLayout } from "components";
+import { useTranslation } from "react-i18next";
 
 
 const App = () => {
-
+    const {t} = useTranslation()
     const menu: MenuItem[] = [{
         key: "appLayout-dashboard",
-        label: "Dashboard",
+        label: t("Dashboard"),
         href: "/",
     },
     {
         key: "appLayout-sessions",
-        label: "Dashboard",
+        label: t("Sessions"),
         href: "/sessions",
     },
     {
         key: "appLayout-details",
-        label: "Details",
+        label: t("Details"),
         href: "/details",
     }]
 
   return (
     <AppLayout title="Dashboard" menu={menu}>
-        
+
     </AppLayout>
   );
 }

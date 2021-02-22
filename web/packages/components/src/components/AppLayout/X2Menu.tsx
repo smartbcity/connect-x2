@@ -6,7 +6,7 @@ import { MenuItem } from '@smartb/archetypes-ui-layout'
 
 const useStyles = midLevelStyles({
     icon: {
-        width: "100px",
+        width: "140px",
         marginBottom: "20px"
     },
     listItem: {
