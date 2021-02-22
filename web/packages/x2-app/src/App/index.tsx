@@ -1,6 +1,7 @@
 import { MenuItem } from "@smartb/archetypes-ui-layout";
 import { AppLayout } from "components";
 import { useTranslation } from "react-i18next";
+import { AppRouter } from "./routes";
 
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
 
   return (
     <AppLayout title="Dashboard" menu={menu}>
-
+        <AppRouter/>
     </AppLayout>
   );
 }

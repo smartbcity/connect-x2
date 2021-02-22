@@ -6,7 +6,7 @@ import { Styles } from '@material-ui/core/styles/withStyles'
 export const appLayoutStyleProps = {
   appBarHeight: 55,
   detailDrawerWidth: 180,
-  menuWidth: 150
+  menuWidth: 180
 }
 
 export const theme: Theme = {

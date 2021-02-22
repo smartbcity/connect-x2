@@ -13,7 +13,8 @@ const useStyles = (theme: Theme) => midLevelStyles({
     },
     main: {
         background: theme.hex.tertiaryColor,
-        height: "100vh"
+        height: "100vh",
+        boxSizing: "border-box"
     }
 })
 
