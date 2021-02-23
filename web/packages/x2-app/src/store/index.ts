@@ -11,7 +11,7 @@ const createRootReducer = (history: History) =>
 
 export const history = createBrowserHistory();
 
-const reducer = createRootReducer(createBrowserHistory());
+const reducer = createRootReducer(history);
 
 export type State = ReturnType<typeof reducer>;
 
