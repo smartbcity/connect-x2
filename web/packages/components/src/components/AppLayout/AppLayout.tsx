@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from 'react'
-import { App, MenuItem } from '@smartb/archetypes-ui-layout'
+import { AppLayout as AruiAppLayout, MenuItem } from '@smartb/archetypes-ui-layout'
 import { Theme, useTheme } from '@smartb/archetypes-ui-components'
 import { appLayoutStyleProps, midLevelStyles } from '../../theme'
 import {X2Menu} from './X2Menu'
+import { AppBarContent } from './AppBarContent'
 
 const useStyles = (theme: Theme) => midLevelStyles({
     drawer: {
@@ -12,8 +13,8 @@ const useStyles = (theme: Theme) => midLevelStyles({
         }
     },
     main: {
-        background: theme.hex.tertiaryColor,
-        height: "100vh",
+        background: theme.tertiaryColor,
+        minHeight: "100vh",
         boxSizing: "border-box"
     }
 })
@@ -33,23 +34,21 @@ export const AppLayout = (props: AppLayoutProps) => {
         () => setOpen(prevOpen => !prevOpen),
         [],
     )
-
     return (
-        <App
+        <AruiAppLayout
             open={open}
             onToggle={onToggle}
-            logo=""
             styleProps={appLayoutStyleProps}
-            drawerMenuProps={{
-                classes: {drawer: classes.drawer}
+            drawerProps={{
+                className: classes.drawer
             }}
             classes={{main: classes.main}}
             showAppBar={false}
             drawerContent={<X2Menu menu={menu}/>}
-            title={title}
+            appBarContent={<AppBarContent title={title} />}
         >
             {children}
-        </App>
+        </AruiAppLayout>
     )
 }
 

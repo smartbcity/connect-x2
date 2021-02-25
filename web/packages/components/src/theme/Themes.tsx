@@ -1,5 +1,5 @@
 import { createMuiTheme, makeStyles } from '@material-ui/core'
-import { Theme } from '@smartb/archetypes-ui-components'
+import { Theme as AruiTheme } from '@smartb/archetypes-ui-components'
 import { Theme as MuiTheme } from '@material-ui/core/styles/createMuiTheme'
 import { Styles } from '@material-ui/core/styles/withStyles'
 
@@ -9,18 +9,11 @@ export const appLayoutStyleProps = {
   menuWidth: 180
 }
 
-export const theme: Theme = {
+export const theme: AruiTheme = {
   name: "X2",
-  hex: {
-    primaryColor: '#E3AC41',
-    secondaryColor: '#f1daa8',
-    tertiaryColor: '#F2F4F5',
-  },
-  rgb: {
-    primaryColor: '227, 172, 65',
-    secondaryColor: '241, 218, 168',
-    tertiaryColor: '242, 244, 245',
-  },
+  primaryColor: '#E3AC41',
+  secondaryColor: '#f1daa8',
+  tertiaryColor: '#F2F4F5',
   shadows: [
     '0 0px 0px 0 rgba(0,0,0,0)',
     '0px 9px 18px 0px rgba(0,0,0,0.05)',
@@ -41,11 +34,18 @@ export const theme: Theme = {
 export const Muitheme = createMuiTheme({
   palette: {
     primary: {
-      main: theme.hex.primaryColor
+      main: theme.primaryColor
     },
     secondary: {
-      main: theme.hex.secondaryColor
+      main: theme.secondaryColor
+    },
+    text: {
+      primary: "#353945",
+      secondary: "rgba(53, 57, 69, 0.7)"
     }
+  },
+  typography: {
+    fontFamily: "'Montserrat', Arial",
   }
 })
 
@@ -64,4 +64,6 @@ export function highLevelStyles<
 >(styles: Styles<Theme, Props, ClassKey>) {
   return makeStyles(styles, { index: 2 })
 }
+
+
 
