@@ -1,5 +1,7 @@
-import React from "react";
-import {Link, Route, Switch} from "react-router-dom";
+import Dashboard from "App/pages/Dashboard";
+import Details from "App/pages/Details";
+import Sessions from "App/pages/Sessions";
+import {Route, Switch} from "react-router-dom";
 
 const NoMatchPage = (/* props: NoMatchPageProps */) => {
   return <h3>Cette page n'existe pas</h3>;
@@ -9,14 +11,13 @@ export const AppRouter = () => {
   return (
     <Switch>
       <Route exact path="/" >
-        <div>dashboard</div>
-          <Link to="sessions">About</Link>
+        <Dashboard />
       </Route>
       <Route exact path="/sessions" >
-        <div>sessions</div>
+        <Sessions />
       </Route>
       <Route exact path="/details" >
-        <div>details</div>
+        <Details />
       </Route>
       <Route path="*">
         <NoMatchPage />

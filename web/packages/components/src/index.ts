@@ -3,3 +3,4 @@ export type {X2I18NThemeContextProviderProps, X2ThemeContextProviderProps} from 
 export * from './icons'
 export {LoadingPage, LoadingComponent} from './components/Loading'
 export {AppLayout} from "./components/AppLayout"
+export {Page} from "./components/Page"

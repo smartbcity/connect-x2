@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from 'App';
+import reportWebVitals from 'reportWebVitals';
 import { LoadingPage, X2I18NThemeContextProvider } from "components"
 import { ConnectedRouter } from "connected-react-router";
 import i18next from 'i18n';
 import { Provider } from "react-redux";
-import store, { history } from "./store";
+import store, { history } from "store";
 
 ReactDOM.render(
   <React.StrictMode>
