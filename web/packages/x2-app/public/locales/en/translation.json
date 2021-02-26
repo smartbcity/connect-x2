@@ -1,12 +1,12 @@
 {
-  "Dashboard": "Dashboard",
-  "Sessions": "Sessions",
-  "Details": "Details",
-  "Back": "Retour",
-  "Details Page": {
-    "Protocol_diagram": "Protocol diagram",
-    "Item_informations": "Item informations",
-    "Item_details": "Item details",
-    "Item_history": "Item history"
+  "dashboard": "Dashboard",
+  "sessions": "Sessions",
+  "details": "Details",
+  "back": "Retour",
+  "detailsPage": {
+    "protocolDiagram": "Protocol diagram",
+    "itemInformations": "Item informations",
+    "itemDetails": "Item details",
+    "itemHistory": "Item history"
   }
 }

@@ -28,7 +28,7 @@ export const HistoryCard = () => {
         startTime: "12/01/2021"
     }]
     return (
-        <Panel header={t("Details Page.Item_history")}>
+        <Panel header={t("detailsPage.itemHistory")}>
             <Timeline 
             lines={lines}
             passedTimeLine

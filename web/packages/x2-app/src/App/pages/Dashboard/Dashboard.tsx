@@ -12,7 +12,7 @@ export const Dashboard = (props: DashboardProps) => {
   return (
   <Page
     setTitle={setTitle}
-    title={t("Dashboard")}
+    title={t("dashboard")}
   >
       <Typography>Je suis le dashboard</Typography>
   </Page>

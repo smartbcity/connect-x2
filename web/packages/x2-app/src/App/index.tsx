@@ -15,7 +15,7 @@ const App = (props: AppProps) => {
     const {t} = useTranslation()
     const menu: MenuItem<LinkProps>[] = [{
         key: "appLayout-dashboard",
-        label: t("Dashboard"),
+        label: t("dashboard"),
         component: Link,
         componentProps: {
             to: '/'
@@ -23,7 +23,7 @@ const App = (props: AppProps) => {
     },
     {
         key: "appLayout-sessions",
-        label: t("Sessions"),
+        label: t("sessions"),
         component: Link,
         componentProps: {
             to: '/sessions'
@@ -31,7 +31,7 @@ const App = (props: AppProps) => {
     },
     {
         key: "appLayout-details",
-        label: t("Details"),
+        label: t("details"),
         component: Link,
         componentProps: {
             to: '/details'

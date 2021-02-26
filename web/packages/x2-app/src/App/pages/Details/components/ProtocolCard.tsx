@@ -13,7 +13,7 @@ export const ProtocolCard = () => {
     const {t} = useTranslation()
     const classes = useStyles()
     return (
-        <Panel header={t("Details Page.Protocol_diagram")}>
+        <Panel header={t("detailsPage.protocolDiagram")}>
             <AutomateViewer automate={getDidS2()} className={classes.viewer}>
 
             </AutomateViewer>

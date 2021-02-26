@@ -1,12 +1,12 @@
 {
-  "Dashboard": "Tableau de bord",
-  "Sessions": "Sessions",
-  "Details": "Détails",
-  "Back": "Retour",
-  "Details Page": {
-    "Protocol_diagram": "Diagramme du protocole",
-    "Item_informations": "Informations sur l'item",
-    "Item_details": "Détails de l'item",
-    "Item_history": "Historique de l'item"
+  "dashboard": "Tableau de bord",
+  "sessions": "Sessions",
+  "details": "Détails",
+  "back": "Retour",
+  "detailsPage": {
+    "protocolDiagram": "Diagramme du protocole",
+    "itemInformations": "Informations sur l'item",
+    "itemDetails": "Détails de l'item",
+    "itemHistory": "Historique de l'item"
   }
 }

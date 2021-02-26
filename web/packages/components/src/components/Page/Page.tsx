@@ -37,7 +37,7 @@ export const Page = (props: PageProps) => {
     
     return (
         <AruiPage
-            goBackLabel={t("Back")}
+            goBackLabel={t("back")}
             onGoBackClick={onGoBackClick}
             fixedHeader
             className={classes.page}

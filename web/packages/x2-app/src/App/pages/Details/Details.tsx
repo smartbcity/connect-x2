@@ -1,5 +1,6 @@
 import { Box } from "@material-ui/core";
 import { Page } from "components";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { DetailsCard } from "./components/DetailsCard";
 import { HistoryCard } from "./components/HistoryCard";
@@ -16,16 +17,30 @@ export const Details = (props: DetailsProps) => {
   return (
     <Page
       setTitle={setTitle}
-      title={t("Details")}
+      title={t("details")}
     >
-      <Box display="flex" justifyContent="space-around" flexWrap="wrap">
+      <CardContainer>
         <ProtocolCard />
         <InformationCard />
-      </Box>
-      <Box display="flex" justifyContent="space-around" flexWrap="wrap">
+      </CardContainer>
+      <CardContainer>
         <HistoryCard />
         <DetailsCard />
-      </Box>
+      </CardContainer>
     </Page>
   );
 };
+
+interface CardContainerProps {
+  children?: React.ReactNode
+}
+
+const CardContainer = (props: CardContainerProps) => {
+  const { children } = props
+
+  return (
+    <Box display="flex" justifyContent="space-around" flexWrap="wrap">
+      {children}
+    </Box>
+  )
+}
