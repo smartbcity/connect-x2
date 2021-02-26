@@ -5,8 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
-    "@smartb/archetypes-ui-components": "^0.1.8",
-    "@smartb/archetypes-ui-layout": "^0.1.8",
+    "@smartb/archetypes-ui-components": "^0.1.10",
+    "@smartb/archetypes-ui-layout": "^0.1.10",
     "@smartb/did-domain": "^0.1.0-1611736635264",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -20,6 +20,7 @@
     "@types/react-router-dom": "^5.1.7",
     "clsx": "^1.1.1",
     "components": "^1.0.0",
+    "utils": "^1.0.0",
     "connected-react-router": "^6.9.1",
     "deox": "^3.3.1",
     "history": "^4.10.1",
