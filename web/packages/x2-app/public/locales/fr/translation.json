@@ -2,5 +2,11 @@
   "Dashboard": "Tableau de bord",
   "Sessions": "Sessions",
   "Details": "Détails",
-  "Back": "Retour"
+  "Back": "Retour",
+  "Details Page": {
+    "Protocol_diagram": "Diagramme du protocole",
+    "Item_informations": "Informations sur l'item",
+    "Item_details": "Détails de l'item",
+    "Item_history": "Historique de l'item"
+  }
 }

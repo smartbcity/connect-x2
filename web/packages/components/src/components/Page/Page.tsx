@@ -7,10 +7,11 @@ import { midLevelStyles } from "../../theme"
 const useStyles = midLevelStyles({
     header: {
         position: "fixed",
-        top: "60px"
+        top: "60px",
+        zIndex: 2
     },
     page: {
-        padding:"60px 15px 0px 15px",
+        paddingTop:"40px",
     }
 })
 

@@ -19,8 +19,8 @@
     "@material-ui/icons": "^4.11.2",
     "i18next": "^19.8.9",
     "react-i18next": "^11.8.7",
-    "@smartb/archetypes-ui-components": "^0.1.5",
-    "@smartb/archetypes-ui-layout": "^0.1.5",
+    "@smartb/archetypes-ui-components": "^0.1.8",
+    "@smartb/archetypes-ui-layout": "^0.1.8",
     "clsx": "^1.1.1",
     "react-router-dom": "^5.2.0"
   },

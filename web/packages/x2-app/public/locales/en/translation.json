@@ -2,5 +2,11 @@
   "Dashboard": "Dashboard",
   "Sessions": "Sessions",
   "Details": "Details",
-  "Back": "Retour"
+  "Back": "Retour",
+  "Details Page": {
+    "Protocol_diagram": "Protocol diagram",
+    "Item_informations": "Item informations",
+    "Item_details": "Item details",
+    "Item_history": "Item history"
+  }
 }
