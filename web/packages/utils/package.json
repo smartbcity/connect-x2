@@ -1,10 +1,10 @@
 {
-  "name": "components",
+  "name": "utils",
   "version": "1.0.0",
-  "description": "Plateform components",
+  "description": "Plateform utils",
   "author": "SmartB",
   "license": "",
-  "repository": "SmartB/components",
+  "repository": "SmartB/utils",
   "main": "src/index.ts",
   "source": "src/index.ts",
   "types": "src/index.ts",
@@ -15,16 +15,13 @@
   },
   "peerDependencies": {
     "react": "^17.0.1",
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "i18next": "^19.8.9",
     "react-i18next": "^11.8.7",
     "@smartb/archetypes-ui-components": "^0.1.10",
     "@smartb/archetypes-ui-layout": "^0.1.10",
-    "clsx": "^1.1.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2"
   },
   "dependencies": {
-    "utils": "^1.0.0"
   }
 }

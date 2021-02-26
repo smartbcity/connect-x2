@@ -1,8 +1,7 @@
-import { MenuItem } from "@smartb/archetypes-ui-layout";
 import { AppLayout } from "components";
-import { useEffect, useMemo } from "react";
-import { TFunction, useTranslation } from "react-i18next";
-import { Link, LinkProps } from "react-router-dom";
+import { useEffect } from "react";
+import {useTranslation } from "react-i18next";
+import { useMenu } from "utils";
 import { AppRouter } from "./routes";
 import withConnect from "./withConnect";
 
@@ -13,7 +12,7 @@ interface AppProps {
 const App = (props: AppProps) => {
     const { title } = props
     const {t} = useTranslation()
-    const menu: MenuItem<LinkProps>[] = useMemo(() => getMenu(t), [])
+    const menu = useMenu(t)
 
     useEffect(() => {
         if (title !== "X2") {
@@ -29,28 +28,3 @@ const App = (props: AppProps) => {
 }
 
 export default withConnect(App);
-
-const getMenu = (t: TFunction<string>): MenuItem<LinkProps>[] => ([{
-    key: "appLayout-dashboard",
-    label: t("dashboard"),
-    component: Link,
-    componentProps: {
-        to: '/'
-    }
-},
-{
-    key: "appLayout-sessions",
-    label: t("sessions"),
-    component: Link,
-    componentProps: {
-        to: '/sessions'
-    }
-},
-{
-    key: "appLayout-details",
-    label: t("details"),
-    component: Link,
-    componentProps: {
-        to: '/details'
-    }
-}])

@@ -1,0 +1,69 @@
+# React app developpement rules
+You must make sure that each one of the following rules is respected before going through any merge.
+
+## Organization
+- A component should be placed either:
+    - In the `component` package
+    - Or in `X2-app/src/App/pages/{the name of the page were the component will be placed}/components` if the component is directly linked to specific data of the app
+- An utility function, hook or object should be placed in the package `utils`
+- A new page should be created according to the templates: `X2-app/templates/PageExample`
+- A new store should be created according to the templates: `X2-app/templates/StoreReduxExample`
+- A string shouldn't be given directly to a component. You should use I18n and store the string in the translation.json files
+
+## Translation files organization
+A simple word or sentence that you think will be re-use elsewhere in the app should be stored in the root of the json file and its key should be the word or the sentence in camel case.
+
+Otherwise you should respect this structure:
+```JSON
+{
+    "the name of the page in camel case": {
+        (optionally)"the name of the part of the page in camel case": {
+             "the word or the sentence or the summary(if the sentence is to long) in camel case": "the string"
+        },
+        "the word or the sentence or the summary(if the sentence is to long) in camel case": "the string"
+    }
+}
+```
+
+## Performance
+In order to maintain the performances of the app you should respect the following rules:
+- Each function passed as a prop to a children should be created in a `useCallback`
+- Each complex static object created in a component should be placed in a getter outside the component and assigned in a `useMemo`
+
+```TYPESCRIPT
+export const MyComponent = () => {
+  const myObject = useMemo(() => getObject(), [dependencies])
+  const myFunction = useCallback(
+        () => {},
+        [dependencies],
+    )
+  return (...)
+}
+
+const getObject = (): MyComplexObject[] => ([{
+    name: "example"
+},
+{
+    name: "example"
+}])
+```
+
+## Styles
+In order to maintain the overridability of the style through the component three you should make your useStyles as following:
+
+in the package `component` you should use `midLevelStyles`:
+```TYPESCRIPT
+const useStyles = midLevelStyles({
+    myClasse: {
+        width: "100%"
+    }
+})
+```
+in the package `x2-app` you should use `highLevelStyles`:
+```TYPESCRIPT
+const useStyles = highLevelStyles({
+    myClasse: {
+        width: "100%"
+    }
+})
+```
