@@ -1,6 +1,12 @@
 {
-  "Dashboard": "Dashboard",
-  "Sessions": "Sessions",
-  "Details": "Details",
-  "Back": "Retour"
+  "dashboard": "Dashboard",
+  "sessions": "Sessions",
+  "details": "Details",
+  "back": "Retour",
+  "detailsPage": {
+    "protocolDiagram": "Protocol diagram",
+    "itemInformations": "Item informations",
+    "itemDetails": "Item details",
+    "itemHistory": "Item history"
+  }
 }

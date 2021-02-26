@@ -4,3 +4,4 @@ export * from './icons'
 export {LoadingPage, LoadingComponent} from './components/Loading'
 export {AppLayout} from "./components/AppLayout"
 export {Page} from "./components/Page"
+export {Panel} from "./components/Panel"

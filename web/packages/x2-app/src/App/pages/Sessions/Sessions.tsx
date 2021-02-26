@@ -12,7 +12,7 @@ export const Sessions = (props: SessionsProps) => {
   return (
   <Page
     setTitle={setTitle}
-    title={t("Sessions")}
+    title={t("sessions")}
   >
       <Typography>Je suis la session</Typography>
   </Page>
