@@ -67,3 +67,6 @@ const useStyles = highLevelStyles({
     }
 })
 ```
+
+### Additionnal Comments
+Ignore the warmings about the module `@smartb/did-domain` it is used to provide a temporary automate to the `AutomateViewer`. If it isn't use anymore remove the module `@smartb/did-domain`.
