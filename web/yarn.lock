@@ -1663,10 +1663,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smartb/archetypes-ui-components@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-components/-/archetypes-ui-components-0.1.8.tgz#0beff3c83b39f7fe4a07b86039d93f82e338c080"
-  integrity sha512-xwIb/slKp3AsJP1GpnO9nEb4juGkbhnq0zMMwKPWZmlbBwv3qTbceDA4qheVVPxZeCwBVi8ieKG+HeV0thsyRA==
+"@smartb/archetypes-ui-components@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-components/-/archetypes-ui-components-0.1.10.tgz#da9adc278178251e3e42578e68307ff9f7200e5f"
+  integrity sha512-8CsNyX46hH+u5FEt3wnND+7aJJ7eNbM/TcUKq6kwyu62jpfckXnntD6O7UTOfuwFvoqS2XgZWCfAaN2tmMXz3A==
   dependencies:
     "@lifeomic/react-vis-network" "^1.1.0"
     "@material-ui/core" "^4.11.3"
@@ -1686,14 +1686,14 @@
     vis-data "^7.1.2"
     vis-network "^9.0.0"
 
-"@smartb/archetypes-ui-layout@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-layout/-/archetypes-ui-layout-0.1.8.tgz#e3b6b149a1d1a447561eb01434e67a5bb97c96bd"
-  integrity sha512-3fqSKZZeNneGaNSEBoFovriW80cJVb4nVZJlGMplhMijDO54B/27OD3vN/0g+JiUIACICrOGSOjfNMFBe17wvQ==
+"@smartb/archetypes-ui-layout@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-layout/-/archetypes-ui-layout-0.1.10.tgz#c5c94e42a21a86bf80e8d94339e574cd9bcb926a"
+  integrity sha512-NuxLNu6vzXx7QHEonfFyxMKVjvrQgqMeV5ZHZPd+oWEh/IzF93ZoI2AgetjbhOpkhylsvDlubMgH9GydLQjJrA==
   dependencies:
     "@material-ui/core" "^4.11.3"
     "@material-ui/icons" "^4.11.2"
-    "@smartb/archetypes-ui-components" "^0.1.8"
+    "@smartb/archetypes-ui-components" "^0.1.10"
     use-debounce "^3.4.2"
 
 "@smartb/did-domain@^0.1.0-1611736635264":

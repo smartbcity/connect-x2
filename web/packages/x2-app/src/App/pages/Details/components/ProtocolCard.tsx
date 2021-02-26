@@ -14,9 +14,7 @@ export const ProtocolCard = () => {
     const classes = useStyles()
     return (
         <Panel header={t("detailsPage.protocolDiagram")}>
-            <AutomateViewer automate={getDidS2()} className={classes.viewer}>
-
-            </AutomateViewer>
+            <AutomateViewer automate={getDidS2()} className={classes.viewer}/>
         </Panel>
     )
 }

@@ -5,8 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
-    "@smartb/archetypes-ui-components": "^0.1.8",
-    "@smartb/archetypes-ui-layout": "^0.1.8",
+    "@smartb/archetypes-ui-components": "^0.1.10",
+    "@smartb/archetypes-ui-layout": "^0.1.10",
     "@smartb/did-domain": "^0.1.0-1611736635264",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

@@ -3,10 +3,22 @@
   "sessions": "Sessions",
   "details": "Détails",
   "back": "Retour",
+  "date": "Date",
+  "status": "Status",
+  "user": "Utilisateur",
   "detailsPage": {
     "protocolDiagram": "Diagramme du protocole",
     "itemInformations": "Informations sur l'item",
     "itemDetails": "Détails de l'item",
     "itemHistory": "Historique de l'item"
+  },
+  "sessionsPage": {
+    "sessionId": "ID de session",
+    "creationDate": "Date de création",
+    "channel": "Channel",
+    "protocolEngine": "Protocole de l'engine",
+    "validationProtocol": "Protocole de validation",
+    "transactionId": "Id de la transaction",
+    "completedStep": "Etape complétée"
   }
 }

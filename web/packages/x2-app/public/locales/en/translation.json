@@ -3,10 +3,22 @@
   "sessions": "Sessions",
   "details": "Details",
   "back": "Retour",
+  "date": "Date",
+  "status": "Status",
+  "user": "User",
   "detailsPage": {
     "protocolDiagram": "Protocol diagram",
     "itemInformations": "Item informations",
     "itemDetails": "Item details",
     "itemHistory": "Item history"
+  },
+  "sessionsPage": {
+    "sessionId": "Session ID",
+    "creationDate": "Creation date",
+    "channel": "Channel",
+    "protocolEngine": "Protocol Engine",
+    "validationProtocol": "Validation protocol",
+    "transactionId": "Transaction ID",
+    "completedStep": "Completed Step"
   }
 }
