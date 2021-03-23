@@ -29,18 +29,52 @@ Otherwise you should respect this structure:
 In order to maintain the performances of the app you should respect the following rules:
 - Each function passed as a prop to a children should be created in a `useCallback`
 - Each complex static object created in a component should be placed in a getter outside the component and assigned in a `useMemo`
+- You should never create a complexe object or a function in the jsx code. A jsx element resulting of a map function should be placed in a `useMemo`
 
-```TYPESCRIPT
-export const MyComponent = () => {
-  const myObject = useMemo(() => getObject(), [dependencies])
-  const myFunction = useCallback(
-        () => {},
+❌ What you should not do:
+```JSX
+export const MyComponent = (props) => {
+    const {anArray} = props
+    const myObject = [{
+        name: "example"
+    },
+    {
+        name: "example"
+    }]
+    return (
+      <div onClick={() => {some behavior}}>
+        {anArray.map((item) => (
+            <p>
+                {myObject[0].name}
+            </p>
+        ))}
+      </div>
+    )
+}
+```
+✅ What you should do:
+```JSX
+export const MyComponent = (props) => {
+    const {anArray} = props
+    const myObject = useMemo(getObject, [dependencies])
+    const onClick = useCallback(
+        () => {some behavior},
         [dependencies],
     )
-  return (...)
+    const myElement = useMemo(() => anArray.map((item) => (
+            <p>
+                {myObject[0].name}
+            </p>
+        )), [myObject]
+    )
+    return (
+      <div onClick={onClick}>
+        {myElement}
+      </div>
+    )
 }
 
-const getObject = (): MyComplexObject[] => ([{
+const getObject = () => ([{
     name: "example"
 },
 {
