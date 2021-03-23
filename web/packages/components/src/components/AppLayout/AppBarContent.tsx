@@ -1,6 +1,6 @@
 import { Box, Typography } from "@material-ui/core"
 import { Theme, useTheme } from "@smartb/archetypes-ui-components"
-import { midLevelStyles } from "../../theme"
+import { midLevelStyles } from "utils"
 
 const useStyles = (theme: Theme) => midLevelStyles({
     underline: {

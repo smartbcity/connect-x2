@@ -2,7 +2,7 @@ import {Page as AruiPage} from "@smartb/archetypes-ui-layout"
 import React, { useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useHistory } from "react-router-dom"
-import { midLevelStyles } from "../../theme"
+import { midLevelStyles } from "utils"
 
 const useStyles = midLevelStyles({
     header: {

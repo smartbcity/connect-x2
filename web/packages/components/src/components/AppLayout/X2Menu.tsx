@@ -1,6 +1,6 @@
 import {  ListItem, ListItemIcon } from '@material-ui/core'
 import { X2Icon } from '../../icons'
-import { midLevelStyles } from '../../theme'
+import { midLevelStyles } from 'utils'
 import { MenuItem, MenuContainer } from '@smartb/archetypes-ui-layout'
 import { Link } from "react-router-dom";
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReactComponent } from './X2.svg'
 import { MergeReactElementProps } from '../types'
-import { midLevelStyles } from '../../theme'
+import { midLevelStyles } from 'utils'
 import { useTheme } from '@smartb/archetypes-ui-components'
 import clsx from 'clsx'
 

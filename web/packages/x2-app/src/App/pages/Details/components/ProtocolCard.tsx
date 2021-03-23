@@ -1,7 +1,8 @@
 import { AutomateViewer } from "@smartb/archetypes-ui-components"
-import {highLevelStyles, Panel} from "components"
+import {Panel} from "components"
 import { useTranslation } from "react-i18next"
 import {getDidS2} from "@smartb/did-domain"
+import { highLevelStyles } from "utils"
 
 const useStyles = highLevelStyles({
     viewer: {

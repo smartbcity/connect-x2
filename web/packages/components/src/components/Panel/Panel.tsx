@@ -1,7 +1,7 @@
 
 import { Card, Theme, useTheme } from '@smartb/archetypes-ui-components'
 import React from 'react'
-import { midLevelStyles } from '../../theme'
+import { midLevelStyles } from 'utils'
 
 const useStyles = (theme: Theme) => midLevelStyles({
     root: {

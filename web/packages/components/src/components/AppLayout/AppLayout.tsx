@@ -1,9 +1,10 @@
 import React, { useCallback, useState } from 'react'
 import { AppLayout as AruiAppLayout, MenuItem } from '@smartb/archetypes-ui-layout'
 import { Theme, useTheme } from '@smartb/archetypes-ui-components'
-import { appLayoutStyleProps, midLevelStyles } from '../../theme'
+import { appLayoutStyleProps } from '../../theme'
 import {X2Menu} from './X2Menu'
 import { AppBarContent } from './AppBarContent'
+import { midLevelStyles } from 'utils'
 
 const useStyles = (theme: Theme) => midLevelStyles({
     drawer: {

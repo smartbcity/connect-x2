@@ -2,7 +2,7 @@ import { Table, Column } from '@smartb/archetypes-ui-components'
 import { Box, Typography } from '@material-ui/core'
 import { useTranslation, TFunction } from 'react-i18next'
 import { useCallback, useMemo, useState } from 'react'
-import { highLevelStyles } from 'components'
+import { highLevelStyles } from 'utils'
 
 const useStyles = highLevelStyles({
     container: {
