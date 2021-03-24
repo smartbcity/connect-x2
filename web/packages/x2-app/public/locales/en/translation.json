@@ -1,13 +1,13 @@
 {
   "dashboard": "Dashboard",
-  "sessions": "Sessions",
+  "protocols": "Protocols",
   "details": "Details",
   "back": "Retour",
   "date": "Date",
   "status": "Status",
   "user": "User",
+  "protocolDiagram": "Protocol diagram",
   "detailsPage": {
-    "protocolDiagram": "Protocol diagram",
     "itemInformations": "Item informations",
     "itemDetails": "Item details",
     "itemHistory": "Item history"
@@ -19,6 +19,8 @@
     "protocolEngine": "Protocol Engine",
     "validationProtocol": "Validation protocol",
     "transactionId": "Transaction ID",
-    "completedStep": "Completed Step"
+    "completedStep": "Completed Step",
+    "sessionNumber": "Number of session by step",
+    "completedStepsDuringPeriod": "Steps Completed during the period"
   }
 }

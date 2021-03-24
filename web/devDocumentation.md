@@ -5,7 +5,7 @@ You must make sure that each one of the following rules is respected before goin
 - A component should be placed either:
     - In the `component` package
     - Or in `X2-app/src/App/pages/{the name of the page were the component will be placed}/components` if the component is directly linked to specific data of the app
-- An utility function, hook or object should be placed in the package `utils`
+- An utility function, hook or object should be placed in the package `utils`. Note that you shouldn't place something directly linked to some data the package `utils`.
 - A new page should be created according to the templates: `X2-app/templates/PageExample`
 - A new store should be created according to the templates: `X2-app/templates/StoreReduxExample`
 - A string shouldn't be given directly to a component. You should use I18n and store the string in the translation.json files

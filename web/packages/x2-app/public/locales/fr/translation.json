@@ -1,13 +1,13 @@
 {
   "dashboard": "Tableau de bord",
-  "sessions": "Sessions",
+  "protocols": "Protocoles",
   "details": "Détails",
   "back": "Retour",
   "date": "Date",
   "status": "Status",
   "user": "Utilisateur",
+  "protocolDiagram": "Diagramme du protocole",
   "detailsPage": {
-    "protocolDiagram": "Diagramme du protocole",
     "itemInformations": "Informations sur l'item",
     "itemDetails": "Détails de l'item",
     "itemHistory": "Historique de l'item"
@@ -19,6 +19,8 @@
     "protocolEngine": "Protocole de l'engine",
     "validationProtocol": "Protocole de validation",
     "transactionId": "Id de la transaction",
-    "completedStep": "Etape complétée"
+    "completedStep": "Etape complétée",
+    "sessionNumber": "Nombre de sessions par étapes",
+    "completedStepsDuringPeriod": "Etapes complétés pendant la période"
   }
 }
