@@ -2,11 +2,13 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import { createBrowserHistory, History } from "history";
 import { titleReducer } from "./title/title.reducer";
+import { ssmReducer } from "./ssm/ssm.reducer";
 
 const createRootReducer = (history: History) =>
   combineReducers({
     router: connectRouter(history),
     title: titleReducer,
+    ssm: ssmReducer
   });
 
 export const history = createBrowserHistory();
