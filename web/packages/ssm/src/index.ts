@@ -1,1 +1,2 @@
-export * from "./ssm-requester"
+export * from "./ssmRequester"
+export * from "./models"
