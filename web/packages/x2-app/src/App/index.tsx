@@ -1,18 +1,21 @@
+import { Menu, MenuItem } from "@smartb/archetypes-ui-layout";
 import { AppLayout } from "components";
-import { useEffect } from "react";
-import {useTranslation } from "react-i18next";
-import { useMenu } from "utils";
+import { useEffect, useMemo } from "react";
+import {useTranslation, TFunction } from "react-i18next";
+import { LinkProps, Link } from "react-router-dom";
+import { SSM } from "ssm";
 import { AppRouter } from "./routes";
 import withConnect from "./withConnect";
 
 interface AppProps {
     title: string
+    ssmList: Map<string, SSM>
 }
 
 const App = (props: AppProps) => {
-    const { title } = props
+    const { title, ssmList } = props
     const {t} = useTranslation()
-    const menu = useMenu(t)
+    const menu = useMenu(t, ssmList)
 
     useEffect(() => {
         if (title !== "X2") {
@@ -28,3 +31,33 @@ const App = (props: AppProps) => {
 }
 
 export default withConnect(App);
+
+
+const useMenu = (t: TFunction, ssmList: Map<string, SSM>) => {
+    return useMemo(() => getMenu(t, ssmList), [ssmList])
+  }
+  
+  const getMenu = (t: TFunction, ssmList: Map<string, SSM>): Menu<LinkProps>[] => {
+    const protocolsList: MenuItem<LinkProps>[] = Array.from(ssmList.values()).map((ssm) => ({
+      key: `appLayout-protocols-${ssm.name}`,
+      label: ssm.name,
+      component: Link,
+      componentProps: {
+        to: `/${ssm.name}/sessions`
+      }
+    }))
+    const menu: Menu<LinkProps>[] = [{
+      key: "appLayout-dashboard",
+      label: t("dashboard"),
+      component: Link,
+      componentProps: {
+        to: '/'
+      }
+    },
+    {
+      key: "appLayout-protocols",
+      label: t("protocols"),
+      items: protocolsList
+    }]
+    return menu
+  }

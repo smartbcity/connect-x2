@@ -11,8 +11,8 @@ export interface httpOptions {
 
 export const request = <T>(
     options: httpOptions
-): Promise<T> => {
-    const { method, url, body, contentType = "application/json", jwt, errorHandler, returnType = "json" } = options
+): Promise<T> | undefined => {
+    const { method, url, body, contentType = "application/json", jwt, errorHandler = () => {}, returnType = "json" } = options
     return fetch(url, {
         method: method,
         headers: {
@@ -33,12 +33,13 @@ export const request = <T>(
             if (!response.ok) {
                 response.text().then((error) => {
                     throw new Error(error);
-                })
+                }).catch(errorHandler)
+            } else {
+                if (returnType === "json") {
+                    return response.json()
+                }
+                return response.text()
             }
-            if (returnType === "json") {
-                return response.json()
-            } 
-            return response.text()
         })
-        .catch(errorHandler);
+        .catch(errorHandler)
 };
