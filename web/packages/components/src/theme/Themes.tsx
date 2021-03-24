@@ -1,8 +1,9 @@
 import { createMuiTheme } from '@material-ui/core'
 import { Theme as AruiTheme } from '@smartb/archetypes-ui-components'
+import { StyleProps } from '@smartb/archetypes-ui-layout'
 
 
-export const appLayoutStyleProps = {
+export const appLayoutStyleProps: StyleProps = {
   appBarHeight: 55,
   detailDrawerWidth: 180,
   menuWidth: 180
@@ -10,8 +11,8 @@ export const appLayoutStyleProps = {
 
 export const theme: AruiTheme = {
   name: "X2",
-  primaryColor: '#E3AC41',
-  secondaryColor: '#f1daa8',
+  primaryColor: '#FEC519',
+  secondaryColor: '#353945',
   tertiaryColor: '#F2F4F5',
   shadows: [
     '0 0px 0px 0 rgba(0,0,0,0)',

@@ -9,7 +9,7 @@ import { midLevelStyles } from 'utils'
 const useStyles = (theme: Theme) => midLevelStyles({
     drawer: {
         "& .MuiDrawer-paper": {
-            background:'#353945',
+            background:theme.secondaryColor,
             border: "none"
         }
     },
