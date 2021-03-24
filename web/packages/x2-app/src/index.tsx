@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from 'App';
 import reportWebVitals from 'reportWebVitals';
 import { LoadingPage, X2I18NThemeContextProvider } from "components"
 import { ConnectedRouter } from "connected-react-router";
 import i18next from 'i18n';
 import { Provider } from "react-redux";
 import store, { history } from "store";
+import InitStore from 'InitStore';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <X2I18NThemeContextProvider i18n={i18next} loading={<LoadingPage />}>
         <ConnectedRouter history={history}>
-          <App />
+          <InitStore />
         </ConnectedRouter>
       </X2I18NThemeContextProvider>
     </Provider>
