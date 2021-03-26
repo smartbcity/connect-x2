@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { AppLayout as AruiAppLayout, MenuItem } from '@smartb/archetypes-ui-layout'
-import { Theme, useTheme } from '@smartb/archetypes-ui-components'
+import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
 import { appLayoutStyleProps } from '../../theme'
 import {X2Menu} from './X2Menu'
 import { AppBarContent } from './AppBarContent'

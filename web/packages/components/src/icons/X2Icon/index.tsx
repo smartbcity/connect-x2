@@ -2,7 +2,7 @@ import React from 'react'
 import { ReactComponent } from './X2.svg'
 import { MergeReactElementProps } from '../types'
 import { midLevelStyles } from 'utils'
-import { useTheme } from '@smartb/archetypes-ui-components'
+import { useTheme } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
 const useStyles = (firstColor: string, secondColor: string) => midLevelStyles({

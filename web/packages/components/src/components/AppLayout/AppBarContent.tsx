@@ -1,5 +1,5 @@
 import { Box, Typography } from "@material-ui/core"
-import { Theme, useTheme } from "@smartb/archetypes-ui-components"
+import { Theme, useTheme } from "@smartb/archetypes-ui-themes"
 import { midLevelStyles } from "utils"
 
 const useStyles = (theme: Theme) => midLevelStyles({

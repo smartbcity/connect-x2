@@ -12,6 +12,7 @@ const useStyles = midLevelStyles({
     },
     page: {
         paddingTop:"40px",
+        paddingBottom: "40px"
     }
 })
 

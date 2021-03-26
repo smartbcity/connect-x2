@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core'
-import { Theme as AruiTheme } from '@smartb/archetypes-ui-components'
+import { Theme as AruiTheme } from '@smartb/archetypes-ui-themes'
 import { StyleProps } from '@smartb/archetypes-ui-layout'
 
 
