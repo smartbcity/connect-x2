@@ -17,7 +17,7 @@ export const AppRouter = () => {
       <Route exact path="/:ssmName/sessions" >
         <Sessions />
       </Route>
-      <Route exact path="/:sessionName/details" >
+      <Route exact path="/:ssmName/:sessionName/details" >
         <Details />
       </Route>
       <Route path="*">
