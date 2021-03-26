@@ -18,7 +18,7 @@ export interface Session {
     current: number
     roles: Map<string, string>
     origin: Origin
-    public: string
+    public: Map<string, string>
 }
 
 export interface Origin {

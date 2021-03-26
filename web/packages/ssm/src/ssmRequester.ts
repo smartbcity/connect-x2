@@ -43,7 +43,7 @@ const ifFromSSM = (session: Session, ssm: SSM) => {
 
 const fetchSessions = async () => {
     const json = await fetchCoop<string[]>("query", "list", "session");
-    return json ? Promise.all(json.splice(0, 30).map(fetchSession)).then((it): Session[] => it.filter((session) => session !== undefined) as Session[]) : []
+    return json ? Promise.all(json.map(fetchSession)).then((it): Session[] => it.filter((session) => session !== undefined) as Session[]) : []
 };
 
 const fetchSession = (session: string) => {
@@ -91,6 +91,7 @@ export const SSMRequester = {
     fetchAdmins: fetchAdmins,
     fetchAdmin: fetchAdmin,
     fetchSSMs: fetchSSMs,
+    fetchSSM: fetchSSM,
     fetchSessions: fetchSessions,
     fetchSessionLogs: fetchSessionLogs
 };
