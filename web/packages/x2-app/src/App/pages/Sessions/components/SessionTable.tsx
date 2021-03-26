@@ -29,7 +29,6 @@ interface SessionColumn {
     creationDate: string
     channel: string
     protocolEngine: string
-    validationProtocol: string
     transactionId: string
     completedStep: {
         date: string,
@@ -40,10 +39,11 @@ interface SessionColumn {
 
 interface SessionTableProps {
     currentSSM?: SSM
+    gotoSessionDetails: (ssmName: string, sessionName: any) => void
 }
 
 export const SessionTable = (props: SessionTableProps) => {
-    const { currentSSM } = props
+    const { currentSSM, gotoSessionDetails } = props
     const { t } = useTranslation()
     const [page, setPage] = useState(1)
     const classes = useStyles()
@@ -53,28 +53,32 @@ export const SessionTable = (props: SessionTableProps) => {
             id: session.session,
             creationDate: "01/02/2020",
             channel: "Angers territory",
-            protocolEngine: "SSM Yper",
-            validationProtocol: "Delivery 2.0",
+            protocolEngine: session.ssm,
             transactionId: "T23425",
             completedStep: {
                 date: "25/02/2020",
-                status: "finished",
+                status: session.current.toLocaleString(),
                 user: "lorum Blum",
             }
         }))
     }, [currentSSM])
 
-    const pagination: {totalPage: number, pageData: SessionColumn[]} = useMemo(() => {
-        const pageData = data.splice((page - 1) * 10, ((page - 1) * 10) + 10)
+    const pagination: { totalPage: number, pageData: SessionColumn[] } = useMemo(() => {
+        const pageData = data.slice((page - 1) * 10, ((page - 1) * 10) + 10)
         return {
             pageData: pageData,
-            totalPage: data.length/10
+            totalPage: Math.floor(data.length / 10)
         }
     }, [page, data])
-
+    
     const handlePageChange = useCallback(
         (page: number) => setPage(page),
-        [setPage],
+        [],
+    )
+
+    const onRowClicked = useCallback(
+        (row: SessionColumn) => gotoSessionDetails(row.protocolEngine, row.id),
+        [gotoSessionDetails],
     )
 
     const columns: Column<SessionColumn>[] = useMemo(() => getColumns(t), [])
@@ -87,6 +91,7 @@ export const SessionTable = (props: SessionTableProps) => {
             totalPages={pagination.totalPage}
             handlePageChange={handlePageChange}
             className={classes.container}
+            onRowClicked={onRowClicked}
         />
     )
 }
@@ -94,49 +99,44 @@ export const SessionTable = (props: SessionTableProps) => {
 const getColumns = (t: TFunction): Column<SessionColumn>[] => ([{
     name: <Typography variant="body1">{t("sessionsPage.sessionId")}</Typography>,
     cell: (row: SessionColumn) => (
-        <Typography variant="body2">{row.id}</Typography>
+        <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.id}</Typography>
     )
 }, {
     name: <Typography variant="body1">{t("sessionsPage.creationDate")}</Typography>,
     cell: (row: SessionColumn) => (
-        <Typography variant="body2">{row.creationDate}</Typography>
+        <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.creationDate}</Typography>
     )
 }, {
     name: <Typography variant="body1">{t("sessionsPage.channel")}</Typography>,
     cell: (row: SessionColumn) => (
-        <Typography variant="body2">{row.channel}</Typography>
+        <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.channel}</Typography>
     )
 }, {
     name: <Typography variant="body1">{t("sessionsPage.protocolEngine")}</Typography>,
     cell: (row: SessionColumn) => (
-        <Typography variant="body2">{row.protocolEngine}</Typography>
+        <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.protocolEngine}</Typography>
     )
 }, {
-    name: <Typography variant="body1">{t("sessionsPage.validationProtocol")}</Typography>,
+    name: <Typography variant="body1" >{t("sessionsPage.transactionId")}</Typography>,
     cell: (row: SessionColumn) => (
-        <Typography variant="body2">{row.validationProtocol}</Typography>
-    )
-}, {
-    name: <Typography variant="body1">{t("sessionsPage.transactionId")}</Typography>,
-    cell: (row: SessionColumn) => (
-        <Typography variant="body2">{row.transactionId}</Typography>
+        <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.transactionId}</Typography>
     )
 }, {
     name: (
         <Box display="flex" flexDirection="column" width="100%">
             <Typography variant="body1" align="center">{t("sessionsPage.completedStep")}</Typography>
-            <Box display="flex" justifyContent="space-between" width="100%">
-                <Typography variant="body2">{t("date")}</Typography>
+            <Box display="flex" justifyContent="space-between" width="100%" >
+                <Typography variant="body2" >{t("date")}</Typography>
                 <Typography variant="body2">{t("status")}</Typography>
                 <Typography variant="body2">{t("user")}</Typography>
             </Box>
         </Box>
     ),
     cell: (row: SessionColumn) => (
-        <Box display="flex" justifyContent="space-between" width="100%">
-            <Typography variant="body2">{row.completedStep.date}</Typography>
-            <Typography variant="body2">{row.completedStep.status}</Typography>
-            <Typography variant="body2">{row.completedStep.user}</Typography>
+        <Box display="flex" justifyContent="space-between" width="100%" data-tag='___react-data-table-allow-propagation___'>
+            <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.completedStep.date}</Typography>
+            <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.completedStep.status}</Typography>
+            <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.completedStep.user}</Typography>
         </Box>
     )
 }])

@@ -11,15 +11,17 @@ import { StepsCompletedCard } from "./components/StepsCompletedCard";
 
 interface SessionsProps {
   setTitle: (title: string) => void
+  gotoSessionDetails: (ssmName: string, sessionName: any) => void
   ssmList: Map<string, SSM>
 }
 
 export const Sessions = (props: SessionsProps) => {
-  const { setTitle, ssmList } = props;
+  const { setTitle, ssmList, gotoSessionDetails } = props;
   const { t } = useTranslation()
   const { ssmName } = useParams<{ ssmName: string }>();
 
   const currentSSM = useMemo(() => ssmList.get(ssmName), [ssmList, ssmName])
+
 
   return (
     <Page
@@ -29,9 +31,9 @@ export const Sessions = (props: SessionsProps) => {
       <Box display="flex" justifyContent="space-around">
         <StepsCompletedCard />
         <SessionNumberCard />
-        <ProtocolCard />
+        <ProtocolCard currentSSM={currentSSM} />
       </Box>
-      <SessionTable currentSSM={currentSSM} />
+      <SessionTable gotoSessionDetails={gotoSessionDetails} currentSSM={currentSSM} />
     </Page>
   );
 };
