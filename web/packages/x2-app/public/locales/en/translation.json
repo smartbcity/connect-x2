@@ -8,16 +8,16 @@
   "user": "User",
   "protocolDiagram": "Protocol diagram",
   "detailsPage": {
-    "itemInformations": "Item informations",
-    "itemDetails": "Item details",
-    "itemHistory": "Item history"
+    "sessionInformations": "Session informations",
+    "transactionDetails": "Transaction details",
+    "transactionsHistory": "Transactions history",
+    "transactionId": "Transaction ID: {{transactionId}}"
   },
   "sessionsPage": {
     "sessionId": "Session ID",
     "creationDate": "Creation date",
     "channel": "Channel",
     "protocolEngine": "Protocol Engine",
-    "validationProtocol": "Validation protocol",
     "transactionId": "Transaction ID",
     "completedStep": "Completed Step",
     "sessionNumber": "Number of session by step",

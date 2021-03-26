@@ -8,17 +8,17 @@
   "user": "Utilisateur",
   "protocolDiagram": "Diagramme du protocole",
   "detailsPage": {
-    "itemInformations": "Informations sur l'item",
-    "itemDetails": "Détails de l'item",
-    "itemHistory": "Historique de l'item"
+    "sessionInformations": "Informations sur la session",
+    "transactionDetails": "Détails de la transaction",
+    "transactionsHistory": "Historique des transactions",
+    "transactionId": "ID de la transaction: {{transactionId}}"
   },
   "sessionsPage": {
     "sessionId": "ID de session",
     "creationDate": "Date de création",
     "channel": "Channel",
-    "protocolEngine": "Protocole de l'engine",
-    "validationProtocol": "Protocole de validation",
-    "transactionId": "Id de la transaction",
+    "protocolEngine": "Moteur de protocole",
+    "transactionId": "ID de la transaction",
     "completedStep": "Etape complétée",
     "sessionNumber": "Nombre de sessions par étapes",
     "completedStepsDuringPeriod": "Etapes complétés pendant la période"
