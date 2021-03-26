@@ -1,8 +1,9 @@
-import { AutomateViewer } from "@smartb/archetypes-ui-components"
+import { AutomateViewer } from "@smartb/archetypes-ui-s2"
 import {Panel} from "components"
 import { useTranslation } from "react-i18next"
-import {getDidS2} from "@smartb/did-domain"
 import { highLevelStyles } from "utils"
+import { SSM } from "ssm"
+import { useMemo } from "react"
 
 const useStyles = highLevelStyles({
     viewer: {
@@ -10,12 +11,18 @@ const useStyles = highLevelStyles({
     }
 })
 
-export const ProtocolCard = () => {
+interface ProtocolCardProps {
+    currentSSM?: SSM
+}
+
+export const ProtocolCard = (props: ProtocolCardProps) => {
+    const {currentSSM} = props
     const {t} = useTranslation()
     const classes = useStyles()
+    const transitions = useMemo(() => currentSSM ? currentSSM.transitions.map((transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
     return (
-        <Panel header={t("protocolDiagram")}>
-            <AutomateViewer automate={getDidS2()} className={classes.viewer}/>
+        <Panel noPadding header={t("protocolDiagram")}>
+            <AutomateViewer transitions={transitions} className={classes.viewer}/>
         </Panel>
     )
 }
