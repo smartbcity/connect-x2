@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "@smartb/archetypes-ui-components";
-import { highLevelStyles } from "components";
+import { highLevelStyles } from "utils";
 import { useTranslation } from "react-i18next";
 
 const useStyles = highLevelStyles({});

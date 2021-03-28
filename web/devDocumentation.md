@@ -5,7 +5,7 @@ You must make sure that each one of the following rules is respected before goin
 - A component should be placed either:
     - In the `component` package
     - Or in `X2-app/src/App/pages/{the name of the page were the component will be placed}/components` if the component is directly linked to specific data of the app
-- An utility function, hook or object should be placed in the package `utils`
+- An utility function, hook or object should be placed in the package `utils`. Note that you shouldn't place something directly linked to some data the package `utils`.
 - A new page should be created according to the templates: `X2-app/templates/PageExample`
 - A new store should be created according to the templates: `X2-app/templates/StoreReduxExample`
 - A string shouldn't be given directly to a component. You should use I18n and store the string in the translation.json files
@@ -29,18 +29,52 @@ Otherwise you should respect this structure:
 In order to maintain the performances of the app you should respect the following rules:
 - Each function passed as a prop to a children should be created in a `useCallback`
 - Each complex static object created in a component should be placed in a getter outside the component and assigned in a `useMemo`
+- You should never create a complexe object or a function in the jsx code. A jsx element resulting of a map function should be placed in a `useMemo`
 
-```TYPESCRIPT
-export const MyComponent = () => {
-  const myObject = useMemo(() => getObject(), [dependencies])
-  const myFunction = useCallback(
-        () => {},
+❌ What you should not do:
+```JSX
+export const MyComponent = (props) => {
+    const {anArray} = props
+    const myObject = [{
+        name: "example"
+    },
+    {
+        name: "example"
+    }]
+    return (
+      <div onClick={() => {some behavior}}>
+        {anArray.map((item) => (
+            <p>
+                {myObject[0].name}
+            </p>
+        ))}
+      </div>
+    )
+}
+```
+✅ What you should do:
+```JSX
+export const MyComponent = (props) => {
+    const {anArray} = props
+    const myObject = useMemo(getObject, [dependencies])
+    const onClick = useCallback(
+        () => {some behavior},
         [dependencies],
     )
-  return (...)
+    const myElement = useMemo(() => anArray.map((item) => (
+            <p>
+                {myObject[0].name}
+            </p>
+        )), [myObject]
+    )
+    return (
+      <div onClick={onClick}>
+        {myElement}
+      </div>
+    )
 }
 
-const getObject = (): MyComplexObject[] => ([{
+const getObject = () => ([{
     name: "example"
 },
 {

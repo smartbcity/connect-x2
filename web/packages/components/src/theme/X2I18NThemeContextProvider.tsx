@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { I18nextProvider } from 'react-i18next'
-import { ThemeContextProvider } from '@smartb/archetypes-ui-components'
+import { ThemeContextProvider } from '@smartb/archetypes-ui-themes'
 import { Muitheme, theme } from './Themes'
 import { i18n } from 'i18next'
 

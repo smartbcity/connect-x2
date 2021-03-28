@@ -1,7 +1,7 @@
 import {  ListItem, ListItemIcon } from '@material-ui/core'
 import { X2Icon } from '../../icons'
-import { midLevelStyles } from '../../theme'
-import { MenuItem, MenuContainer } from '@smartb/archetypes-ui-layout'
+import { midLevelStyles } from 'utils'
+import { Menu, MenuContainer } from '@smartb/archetypes-ui-layout'
 import { Link } from "react-router-dom";
 
 const useStyles = midLevelStyles({
@@ -20,7 +20,7 @@ const useStyles = midLevelStyles({
 })
 
 interface X2MenuProps {
-    menu: MenuItem[]
+    menu: Menu[]
 }
 
 export const X2Menu = (props: X2MenuProps) => {

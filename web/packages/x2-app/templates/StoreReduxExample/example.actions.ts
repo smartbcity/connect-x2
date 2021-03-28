@@ -1,7 +1,7 @@
 import { createActionCreator } from "deox";
 
 const setExample = createActionCreator(
-  "TITLE_SET",
+  "EXAMPLE_SET",
   (resolve) => (example: Example) => resolve({ example: example })
 );
 

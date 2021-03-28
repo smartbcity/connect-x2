@@ -1,9 +1,9 @@
-import { createMuiTheme, makeStyles } from '@material-ui/core'
-import { Theme as AruiTheme } from '@smartb/archetypes-ui-components'
-import { Theme as MuiTheme } from '@material-ui/core/styles/createMuiTheme'
-import { Styles } from '@material-ui/core/styles/withStyles'
+import { createMuiTheme } from '@material-ui/core'
+import { Theme as AruiTheme } from '@smartb/archetypes-ui-themes'
+import { StyleProps } from '@smartb/archetypes-ui-layout'
 
-export const appLayoutStyleProps = {
+
+export const appLayoutStyleProps: StyleProps = {
   appBarHeight: 55,
   detailDrawerWidth: 180,
   menuWidth: 180
@@ -11,8 +11,8 @@ export const appLayoutStyleProps = {
 
 export const theme: AruiTheme = {
   name: "X2",
-  primaryColor: '#E3AC41',
-  secondaryColor: '#f1daa8',
+  primaryColor: '#FEC519',
+  secondaryColor: '#353945',
   tertiaryColor: '#F2F4F5',
   shadows: [
     '0 0px 0px 0 rgba(0,0,0,0)',
@@ -48,22 +48,5 @@ export const Muitheme = createMuiTheme({
     fontFamily: "'Montserrat', Arial",
   }
 })
-
-export function midLevelStyles<
-  Theme = MuiTheme,
-  Props extends object = {},
-  ClassKey extends string = string
->(styles: Styles<Theme, Props, ClassKey>) {
-  return makeStyles(styles, { index: 1 })
-}
-
-export function highLevelStyles<
-  Theme = MuiTheme,
-  Props extends object = {},
-  ClassKey extends string = string
->(styles: Styles<Theme, Props, ClassKey>) {
-  return makeStyles(styles, { index: 2 })
-}
-
 
 

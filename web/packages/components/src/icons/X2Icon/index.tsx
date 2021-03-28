@@ -1,8 +1,8 @@
 import React from 'react'
 import { ReactComponent } from './X2.svg'
 import { MergeReactElementProps } from '../types'
-import { midLevelStyles } from '../../theme'
-import { useTheme } from '@smartb/archetypes-ui-components'
+import { midLevelStyles } from 'utils'
+import { useTheme } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 
 const useStyles = (firstColor: string, secondColor: string) => midLevelStyles({
@@ -27,7 +27,7 @@ type X2IconProps = MergeReactElementProps<'svg', X2IconBasicProps>
 export const X2Icon = React.forwardRef(
   (props: X2IconProps, ref: React.Ref<SVGSVGElement>) => {
     const theme = useTheme()
-    const { firstColor = '#353945', secondColor = theme.primaryColor, className, ...other } = props
+    const { firstColor = theme.secondaryColor, secondColor = theme.primaryColor, className, ...other } = props
     const classes = useStyles(firstColor, secondColor)()
     return <ReactComponent className={clsx(classes.root, className)} ref={ref} {...other} />
   }

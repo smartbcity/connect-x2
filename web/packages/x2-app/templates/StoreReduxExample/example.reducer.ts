@@ -1,4 +1,3 @@
-import * as R from "ramda";
 import { createReducer } from "deox";
 import { actions } from "./example.actions";
 
@@ -10,14 +9,12 @@ export const initialState: ExampleState = {
   example: "ColisActiv'",
 };
 
-export type ExampleStateTransformer = (state: ExampleState) => ExampleState;
-
-const setexample = (example: Example): ExampleStateTransformer => {
-  return R.assoc("example", example);
+const setexample = (example: Example, state: ExampleState): ExampleState => {
+  return {...state, example: example}
 };
 
 export const exampleReducer = createReducer(initialState, (handleAction) => [
   handleAction(actions.set, (state: ExampleState, action) =>
-    setexample(action.payload.example)(state)
+    setexample(action.payload.example, state)
   ),
 ]);
