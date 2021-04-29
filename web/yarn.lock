@@ -1701,15 +1701,15 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smartb/archetypes-ui-components@^0.1.30":
-  version "0.1.30"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-components/-/archetypes-ui-components-0.1.30.tgz#369211320b84cf038830e263200fa8d7ec577d67"
-  integrity sha512-wTyMUPVTHZEX5RYidxBxCTzY94UI2kqWeZsJNjVFqIsIKLwqbcbbDzLiEHMGThBJJvnt2iQs9U3UiSm244WVRw==
+"@smartb/archetypes-ui-components@^0.1.31":
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-components/-/archetypes-ui-components-0.1.31.tgz#91011559a75f9f8fbf458da6cd80a81388a54018"
+  integrity sha512-lGtYICeoxF/h1B7zcS7qdbApnzswoDec77xOPFs8MaqOcClGW6hn6Mg4alrsHxTJHTT1mel4hz0ep6C3n/7INQ==
   dependencies:
     "@material-ui/core" "^4.11.3"
     "@material-ui/icons" "^4.11.2"
     "@material-ui/lab" "^4.0.0-alpha.57"
-    "@smartb/archetypes-ui-themes" "^0.1.30"
+    "@smartb/archetypes-ui-themes" "^0.1.31"
     clsx "^1.1.1"
     dedent "^0.7.0"
     react-data-table-component "^6.9.7"
@@ -1719,28 +1719,28 @@
     stringify-object "^3.3.0"
     styled-components "^5.2.1"
 
-"@smartb/archetypes-ui-layout@^0.1.30":
-  version "0.1.30"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-layout/-/archetypes-ui-layout-0.1.30.tgz#45871222da07ffb028b3c67df3d3234c794bf76c"
-  integrity sha512-c6QIvEztcnSWFeY+tZU+IhrRWfF5ydB+X1Yf2aTnWeOG7BMVhO7VNkBQ1JNJHqNQDMTGASt9Y19Tqh0t1dJCuw==
+"@smartb/archetypes-ui-layout@^0.1.31":
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-layout/-/archetypes-ui-layout-0.1.31.tgz#ad2fdc8c92dcb3716d28d53e92ee3e01b987592b"
+  integrity sha512-XUfJzapYGp8qIMerZzBj+FeZ/m0kH+UIwwhu4rE0Iqb/UDS/3XbOW4/Sb3V1b+z7LVYkEMBDJgFl/4/9VPzaxA==
   dependencies:
     "@material-ui/core" "^4.11.3"
     "@material-ui/icons" "^4.11.2"
     "@material-ui/lab" "^4.0.0-alpha.57"
-    "@smartb/archetypes-ui-components" "^0.1.30"
-    "@smartb/archetypes-ui-themes" "^0.1.30"
+    "@smartb/archetypes-ui-components" "^0.1.31"
+    "@smartb/archetypes-ui-themes" "^0.1.31"
     clsx "^1.1.1"
     use-debounce "^3.4.2"
 
-"@smartb/archetypes-ui-providers@^0.1.30":
-  version "0.1.30"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-providers/-/archetypes-ui-providers-0.1.30.tgz#acda9b3f23a2c203ed27789cd3ac4fa88d016e04"
-  integrity sha512-vjbSf8MoWcuUsQNMBPGQCo1yBg4h3f+Gsh4/tIRI44AtOqmFl3gZgRY7niGPM80lEWOMJFMpm5dFloPhHMPdew==
+"@smartb/archetypes-ui-providers@^0.1.31":
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-providers/-/archetypes-ui-providers-0.1.31.tgz#efc256b01af27301a6b4a1a9506edacff7f24a74"
+  integrity sha512-hAu8sBAdBO6PGWYyckpVb/L3SL5a7yg/q/RpfZ+JuiDdrDo68A5rnrzYDxTXLFB/3OX8iMb5EvqQmthUPM6nnQ==
   dependencies:
     "@material-ui/core" "^4.11.3"
     "@react-keycloak/web" "^3.4.0"
-    "@smartb/archetypes-ui-components" "^0.1.30"
-    "@smartb/archetypes-ui-themes" "^0.1.30"
+    "@smartb/archetypes-ui-components" "^0.1.31"
+    "@smartb/archetypes-ui-themes" "^0.1.31"
     clsx "^1.1.1"
     connected-react-router "^6.9.1"
     history "^4.10.1"
@@ -1754,22 +1754,22 @@
     react-router-dom "^5.2.0"
     redux "^4.1.0"
 
-"@smartb/archetypes-ui-s2@^0.1.30":
-  version "0.1.30"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-s2/-/archetypes-ui-s2-0.1.30.tgz#340ca8acac8851029cf793dc2690183aef9c5936"
-  integrity sha512-khyxHyRHL2FaqUbHdGXL897Qs36+XOzfy2Zt48IddIcu3itAId29bTtmChlS2SKtRmwahcjQwbcoSe63lUeeZA==
+"@smartb/archetypes-ui-s2@^0.1.31":
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-s2/-/archetypes-ui-s2-0.1.31.tgz#5d1c9e9893a4b2caa25b7930275d39f5db7c3668"
+  integrity sha512-9Wbg0kMCLqalkC+G39duXVfY7emLae0/9IV0WBZWjIXddJdzlWW3yiIMJ6p7alc4or6ljIFW68tvEOS+f4VhKQ==
   dependencies:
     "@material-ui/core" "^4.11.3"
-    "@smartb/archetypes-ui-themes" "^0.1.30"
+    "@smartb/archetypes-ui-themes" "^0.1.31"
     clsx "^1.1.1"
     mermaid "^8.9.2"
     vis-data "^7.1.2"
     vis-network "^9.0.0"
 
-"@smartb/archetypes-ui-themes@^0.1.30":
-  version "0.1.30"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-themes/-/archetypes-ui-themes-0.1.30.tgz#f8a1fbb4a9603a46b29674f9213b9c4a8c92073a"
-  integrity sha512-yz5NlrzZuimrjUa7EKAH7P8uYS+tA6sGTAam9pBc6J7RYPS0Q4cW3Z6Q2X1AscilvDSgPsHQs6HM9RctvzuuAQ==
+"@smartb/archetypes-ui-themes@^0.1.31":
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-themes/-/archetypes-ui-themes-0.1.31.tgz#16372dd0bd898bd2a8c515882e86d9b79a183c02"
+  integrity sha512-yFiEqjSC5YHHz6pZD976aXOtbkiwSqaLyKnllPr904Llh+TLJQl4qh3OUyb/UfpjsosWuzf5Cx9PcdbpC2D/bw==
   dependencies:
     "@lifeomic/react-vis-network" "^1.1.0"
     "@material-ui/core" "^4.11.3"
