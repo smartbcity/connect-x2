@@ -1,22 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from 'reportWebVitals';
-import { LoadingPage, X2I18NThemeContextProvider } from "components"
-import { ConnectedRouter } from "connected-react-router";
-import i18next from 'i18n';
-import { Provider } from "react-redux";
-import store, { history } from "store";
+import { X2ThemeContextProvider } from "components"
+import { AppProvider } from "@smartb/archetypes-ui-providers"
 import InitStore from 'InitStore';
+import { languages } from 'i18n';
+import { history, store } from 'store';
+import { LoadingPage } from "components"
+import { OptionnalKeycloakProvider } from './OptionnalKeycloakProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <X2I18NThemeContextProvider i18n={i18next} loading={<LoadingPage />}>
-        <ConnectedRouter history={history}>
+    <X2ThemeContextProvider>
+      <OptionnalKeycloakProvider>
+        <AppProvider
+          languages={languages}
+          reduxStore={store}
+          history={history}
+          loadingComponent={<LoadingPage />}
+        >
           <InitStore />
-        </ConnectedRouter>
-      </X2I18NThemeContextProvider>
-    </Provider>
+        </AppProvider>
+      </OptionnalKeycloakProvider>
+    </X2ThemeContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
