@@ -6,19 +6,22 @@ import { AppProvider } from "@smartb/archetypes-ui-providers"
 import InitStore from 'InitStore';
 import { languages } from 'i18n';
 import { history, store } from 'store';
-import {LoadingPage} from "components"
+import { LoadingPage } from "components"
+import { OptionnalKeycloakProvider } from './OptionnalKeycloakProvider';
 
 ReactDOM.render(
   <React.StrictMode>
     <X2ThemeContextProvider>
-      <AppProvider
-      languages={languages}
-      reduxStore={store}
-      history={history}
-      loadingComponent={<LoadingPage />}
-      >
-        <InitStore />
-      </AppProvider>
+      <OptionnalKeycloakProvider>
+        <AppProvider
+          languages={languages}
+          reduxStore={store}
+          history={history}
+          loadingComponent={<LoadingPage />}
+        >
+          <InitStore />
+        </AppProvider>
+      </OptionnalKeycloakProvider>
     </X2ThemeContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
