@@ -22,6 +22,7 @@ export const OptionnalKeycloakProvider = (props: KeycloakProps) => {
                 initOptions={{ onLoad: "login-required"}}
                 loadingComponent={<LoadingPage />}
             >
+                {children}
             </KeycloakProvider>
         )
     }
