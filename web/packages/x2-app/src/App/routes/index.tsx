@@ -1,16 +1,12 @@
-import { Typography } from "@material-ui/core";
+import { Router } from "@smartb/archetypes-ui-providers";
 import Dashboard from "App/pages/Dashboard";
 import Details from "App/pages/Details";
 import Sessions from "App/pages/Sessions";
-import {Route, Switch} from "react-router-dom";
-
-const NoMatchPage = (/* props: NoMatchPageProps */) => {
-  return <Typography variant="h5">Cette page n'existe pas</Typography>;
-};
+import {Route} from "react-router-dom";
 
 export const AppRouter = () => {
   return (
-    <Switch>
+    <Router>
       <Route exact path="/" >
         <Dashboard />
       </Route>
@@ -20,9 +16,6 @@ export const AppRouter = () => {
       <Route exact path="/:ssmName/:sessionName/details" >
         <Details />
       </Route>
-      <Route path="*">
-        <NoMatchPage />
-      </Route>
-    </Switch>
+    </Router>
   );
 };

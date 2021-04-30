@@ -50,6 +50,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
                 :
                 <Timeline
                     lines={result.lines}
+                    align="left"
                     passedTimeLine
                     selectedCellId={selectedCellId}
                     onSelectCell={onSelectCell}

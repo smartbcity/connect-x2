@@ -14,7 +14,6 @@ export const InitStore = (props: InitStoreProps) => {
 
   useEffect(() => {
     SSMRequester.fetchSessions().then(async (sessions) => {
-      console.log(sessions)
       const ssmMap = new Map<string, SSM>()
 
       for (let index = 0; index < sessions.length; index++) {
