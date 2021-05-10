@@ -11,7 +11,6 @@ interface InitStoreProps {
 
 export const InitStore = (props: InitStoreProps) => {
   const { ssmList, setSsmList } = props;
-
   useEffect(() => {
     SSMRequester.fetchSessions().then(async (sessions) => {
       const ssmMap = new Map<string, SSM>()

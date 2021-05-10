@@ -1,10 +1,10 @@
 import { Panel } from "components"
 import { useTranslation } from "react-i18next"
-import { highLevelStyles } from "utils"
+import { highLevelStyles } from "@smartb/archetypes-ui-themes"
 import { Session } from "ssm";
 import { CodeHighlighter } from "@smartb/archetypes-ui-components";
 
-const useStyles = highLevelStyles({
+const useStyles = highLevelStyles()({
     panel: {
         width: "40%",
         "& pre": {

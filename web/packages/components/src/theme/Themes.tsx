@@ -11,9 +11,15 @@ export const appLayoutStyleProps: StyleProps = {
 
 export const theme: AruiTheme = {
   name: "X2",
-  primaryColor: '#FEC519',
-  secondaryColor: '#353945',
-  tertiaryColor: '#F2F4F5',
+  colors: {
+    primary: '#FEC519',
+    secondary: '#353945',
+    tertiary: '#F2F4F5',
+    error: "#E44258",
+    success: "#00CA72",
+    warning: "#FF9900",
+    info: "#3C78D8"
+  },
   shadows: [
     '0 0px 0px 0 rgba(0,0,0,0)',
     '0px 9px 18px 0px rgba(0,0,0,0.05)',
@@ -34,10 +40,10 @@ export const theme: AruiTheme = {
 export const Muitheme = createMuiTheme({
   palette: {
     primary: {
-      main: theme.primaryColor
+      main: theme.colors.primary
     },
     secondary: {
-      main: theme.secondaryColor
+      main: theme.colors.secondary
     },
     text: {
       primary: "#353945",

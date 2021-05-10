@@ -3,9 +3,9 @@ import {Panel} from "components"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { SSM } from "ssm"
-import { highLevelStyles } from "utils"
+import { highLevelStyles } from "@smartb/archetypes-ui-themes"
 
-const useStyles = highLevelStyles({
+const useStyles = highLevelStyles()({
     panel: {
         width: "40%"
     },

@@ -3,10 +3,10 @@ import { LoadingComponent, Panel } from "components"
 import { useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Session, SessionLog } from "ssm"
-import { highLevelStyles } from "utils"
+import { highLevelStyles } from "@smartb/archetypes-ui-themes"
 import { useFetchSessionLogs } from "./useFetchSessionLogs"
 
-const useStyles = highLevelStyles({
+const useStyles = highLevelStyles()({
     panel: {
         width: "40%"
     },

@@ -1,10 +1,9 @@
 
-import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import { Theme, useTheme, midLevelStyles} from '@smartb/archetypes-ui-themes'
 import {Card} from "@smartb/archetypes-ui-components"
 import React from 'react'
-import { midLevelStyles } from 'utils'
 
-const useStyles = (theme: Theme) => midLevelStyles({
+const useStyles = midLevelStyles<Theme>()({
     root: {
         margin: "20px",
         flexGrow: 1,
@@ -15,7 +14,7 @@ const useStyles = (theme: Theme) => midLevelStyles({
     divider: {
         height: "1px",
         width: "100%",
-        background: theme.tertiaryColor,
+        background: theme => theme.colors.tertiary,
         left: "0%"
     },
     header: {
@@ -45,7 +44,7 @@ interface PanelProps {
 export const Panel = (props: PanelProps) => {
     const { children, header, noPadding = true, bodyClassName, className } = props
     const theme = useTheme()
-    const classes = useStyles(theme)()
+    const classes = useStyles(theme)
     return (
         <Card className={`${classes.root} ${className ?? ""}`} classes={{dividerBar: classes.divider, header: classes.header, body: noPadding ? `${classes.bodyWithNoPadding} ${bodyClassName ?? ""}` : bodyClassName}} header={header} logo="none">
             {children}

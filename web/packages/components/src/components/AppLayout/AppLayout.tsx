@@ -1,20 +1,19 @@
 import React, { useCallback, useState } from 'react'
 import { AppLayout as AruiAppLayout, MenuItem } from '@smartb/archetypes-ui-layout'
-import { Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import { Theme, useTheme, midLevelStyles } from '@smartb/archetypes-ui-themes'
 import { appLayoutStyleProps } from '../../theme'
 import {X2Menu} from './X2Menu'
 import { AppBarContent } from './AppBarContent'
-import { midLevelStyles } from 'utils'
 
-const useStyles = (theme: Theme) => midLevelStyles({
+const useStyles = midLevelStyles<Theme>()({
     drawer: {
         "& .MuiDrawer-paper": {
-            background:theme.secondaryColor,
+            background: theme => theme.colors.secondary,
             border: "none"
         }
     },
     main: {
-        background: theme.tertiaryColor,
+        background: theme => theme.colors.tertiary,
         minHeight: "100vh",
         boxSizing: "border-box"
     }
@@ -30,7 +29,7 @@ export const AppLayout = (props: AppLayoutProps) => {
     const { children, title, menu } = props
     const [open, setOpen] = useState(window.innerWidth > 750)
     const theme = useTheme()
-    const classes = useStyles(theme)()
+    const classes = useStyles(theme)
     const onToggle = useCallback(
         () => setOpen(prevOpen => !prevOpen),
         [],

@@ -1,10 +1,10 @@
 import {  ListItem, ListItemIcon } from '@material-ui/core'
 import { X2Icon } from '../../icons'
-import { midLevelStyles } from 'utils'
 import { Menu, MenuContainer } from '@smartb/archetypes-ui-layout'
+import { midLevelStyles } from "@smartb/archetypes-ui-themes"
 import { Link } from "react-router-dom";
 
-const useStyles = midLevelStyles({
+const useStyles = midLevelStyles()({
     icon: {
         width: "140px"
     },
