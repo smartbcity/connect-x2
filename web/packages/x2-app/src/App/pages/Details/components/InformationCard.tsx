@@ -6,23 +6,18 @@ import { Box, InputLabel, Typography } from "@material-ui/core";
 
 const useStyles = highLevelStyles()({
     panel: {
-        width: "40%",
-        "& pre": {
-            height: "100%",
-            margin: "0 !important"
-        }
+        width: "40%"
     },
     box: {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between", 
+        flexShrink: 0,
         height: "300px",
-        margin: "15px"
+        padding: "15px"
     },
     descriptionContainer: {
         display:"inline-flex",
-        justifyContent:"center",
-        alignItems:"center",
     },
     rightTypo: {
         lineHeight: 1,
@@ -49,14 +44,14 @@ export const InformationCard = (props: InformationCardProps) => {
     return (
         <Panel className={classes.panel} noPadding bodyClassName={classes.body} header={t("detailsPage.sessionInformations")}>
             <Box className={classes.descriptionContainer}>
-                <Box className={classes.box} width="200px" minWidth="200px">
-                    <InputLabel>Session name:</InputLabel>
-                    <InputLabel>Creation date:</InputLabel>
-                    <InputLabel>Current step:</InputLabel>
-                    <InputLabel>Last action performed:</InputLabel>
-                    <InputLabel>Channel:</InputLabel>
-                    <InputLabel>Protocol engine version:</InputLabel>
-                    <InputLabel>Protocol engine:</InputLabel>
+                <Box className={classes.box}>
+                    <InputLabel>{t("sessionId")}:</InputLabel>
+                    <InputLabel>{t("creationDate")}:</InputLabel>
+                    <InputLabel>{t("detailsPage.currentStep")}:</InputLabel>
+                    <InputLabel>{t("detailsPage.LastActionPerformed")}:</InputLabel>
+                    <InputLabel>{t("channel")}:</InputLabel>
+                    <InputLabel>{t("protocolEngineVersion")}:</InputLabel>
+                    <InputLabel>{t("protocolEngine")}:</InputLabel>
                 </Box>
                 <Box className={classes.box}>
                     <Typography className={classes.rightTypo}>{currentSession.session}</Typography>

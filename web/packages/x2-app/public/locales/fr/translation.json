@@ -6,18 +6,27 @@
   "date": "Date",
   "status": "Status",
   "user": "Utilisateur",
+  "sessionId": "ID de session",
+  "creationDate": "Date de création",
+  "channel": "Channel",
+  "protocolEngine": "Moteur de protocole",
+  "protocolEngineVersion": "Version du moteur de protocole",
+  "transactionId": "ID de la transaction",
   "protocolDiagram": "Diagramme du protocole",
+  "publicKey": "Clé publique",
+  "from": "De",
+  "to": "à",
   "detailsPage": {
     "sessionInformations": "Informations sur la session",
     "transactionDetails": "Détails de la transaction",
-    "transactionsHistory": "Historique des transactions"
+    "transactionsHistory": "Historique des transactions",
+    "transactionDate": "Date de la transaction",
+    "transactionPayload": "Contenu de la transaction",
+    "currentStep": "Etape courante",
+    "LastActionPerformed": "Dernière action effectuée",
+    "selectATransaction": "Sélectionnez une transaction dans la timeline pour pouvoir visualiser son contenu"
   },
   "sessionsPage": {
-    "sessionId": "ID de session",
-    "creationDate": "Date de création",
-    "channel": "Channel",
-    "protocolEngine": "Moteur de protocole",
-    "transactionId": "ID de la transaction",
     "completedStep": "Etape complétée",
     "sessionNumber": "Nombre de sessions par étapes",
     "completedStepsDuringPeriod": "Etapes complétés pendant la période"

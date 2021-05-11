@@ -12,13 +12,14 @@ const useStyles = highLevelStyles()({
         "& pre": {
             width: "500px",
             margin: "20px",
+            marginTop: "0px",
             border: "1px solid #BFC0C3",
             borderRadius: "4px"
         }
     },
     body: {
         height: "450px",
-        overflow: "auto"
+        overflow: "auto",
     },
     rightTypo: {
         lineHeight: 1,
@@ -32,12 +33,10 @@ const useStyles = highLevelStyles()({
         flexDirection: "column",
         justifyContent: "space-between",
         height: "200px",
-        margin: "15px"
+        padding: "15px"
     },
     descriptionContainer: {
         display: "inline-flex",
-        justifyContent: "center",
-        alignItems: "center",
     },
     typo: {
         margin: "15px"
@@ -72,19 +71,19 @@ export const DetailsCard = (props: DetailsCardProps) => {
             {currentLog === undefined ? (
                 <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
                     <Typography align="center">
-                        Sélectionnez une transaction dans la timeline pour pouvoir visualiser son contenu
+                        {t("detailsPage.selectATransaction")}
                     </Typography>
                 </Box>
             ) : (
                 <>
                     <Box className={classes.descriptionContainer}>
                         <Box className={classes.box} width="150px" minWidth="150px">
-                            <InputLabel>Transaction ID:</InputLabel>
-                            <InputLabel>Transaction date:</InputLabel>
-                            <InputLabel>User:</InputLabel>
-                            <InputLabel>From:</InputLabel>
-                            <InputLabel>To:</InputLabel>
-                            <InputLabel>Public Key:</InputLabel>
+                            <InputLabel>{t("transactionId")}:</InputLabel>
+                            <InputLabel>{t("detailsPage.transactionDate")}:</InputLabel>
+                            <InputLabel>{t("user")}:</InputLabel>
+                            <InputLabel>{t("from")}:</InputLabel>
+                            <InputLabel>{t("to")}:</InputLabel>
+                            <InputLabel>{t("publicKey")}:</InputLabel>
                         </Box>
                         <Box className={classes.box}>
                             <Box position="relative">
@@ -102,7 +101,7 @@ export const DetailsCard = (props: DetailsCardProps) => {
                             <Typography className={classes.rightTypo}>Not yet implemented</Typography>
                         </Box>
                     </Box>
-                    <Typography className={classes.typo}>Transaction payload:</Typography>
+                    <Typography className={classes.typo}>{t("detailsPage.transactionPayload")}:</Typography>
                     <CodeHighlighter object={{
                         origin: currentLog.state.origin,
                         public: currentLog.state.public,
