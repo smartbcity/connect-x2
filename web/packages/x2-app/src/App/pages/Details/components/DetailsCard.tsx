@@ -7,6 +7,7 @@ import { highLevelStyles } from "@smartb/archetypes-ui-themes";
 const useStyles = highLevelStyles()({
     panel: {
         width: "40%",
+        height: "500px",
         "& pre": {
             height: "100%",
             margin: "0 !important"
@@ -25,7 +26,6 @@ export const DetailsCard = (props: DetailsCardProps) => {
     const { currentLog } = props
     const { t } = useTranslation()
     const classes = useStyles()
-
     return (
         <Panel className={classes.panel} noPadding bodyClassName={classes.body} header={t("detailsPage.transactionDetails")}>
             {currentLog && <CodeHighlighter object={{

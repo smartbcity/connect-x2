@@ -10,8 +10,7 @@
   "detailsPage": {
     "sessionInformations": "Informations sur la session",
     "transactionDetails": "Détails de la transaction",
-    "transactionsHistory": "Historique des transactions",
-    "transactionId": "ID de la transaction: {{transactionId}}"
+    "transactionsHistory": "Historique des transactions"
   },
   "sessionsPage": {
     "sessionId": "ID de session",

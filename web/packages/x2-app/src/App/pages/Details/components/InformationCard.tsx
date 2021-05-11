@@ -7,6 +7,7 @@ import { CodeHighlighter } from "@smartb/archetypes-ui-components";
 const useStyles = highLevelStyles()({
     panel: {
         width: "40%",
+        height: "500px",
         "& pre": {
             height: "100%",
             margin: "0 !important"

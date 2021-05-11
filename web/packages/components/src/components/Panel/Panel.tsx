@@ -5,11 +5,12 @@ import React from 'react'
 
 const useStyles = midLevelStyles<Theme>()({
     root: {
-        margin: "20px",
+        margin: "20px 10px",
         flexGrow: 1,
-        maxWidth: "700px",
-        minWidth: "300px",
-        overflow: "hidden"
+        maxWidth: "1200px",
+        minWidth: "400px",
+        overflow: "hidden",
+        boxShadow: theme => theme.shadows[3]
     },
     divider: {
         height: "1px",

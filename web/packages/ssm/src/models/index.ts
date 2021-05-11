@@ -16,9 +16,9 @@ export interface Session {
     session: string
     iteration: number
     current: number
-    roles: Map<string, string>
+    roles: Object
     origin: Origin
-    public: Map<string, string>
+    public: Object
 }
 
 export interface Origin {

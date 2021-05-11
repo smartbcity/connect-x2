@@ -8,11 +8,18 @@ import { useFetchSessionLogs } from "./useFetchSessionLogs"
 
 const useStyles = highLevelStyles()({
     panel: {
-        width: "40%"
+        width: "40%",
+        height: "500px",
     },
     panelBody: {
-        height: "400px",
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
         overflow: "auto"
+    },
+    timeline: {
+        display: "block",
+        flexGrow: 0
     }
 })
 
@@ -49,6 +56,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
                 <LoadingComponent />
                 :
                 <Timeline
+                    className={classes.timeline}
                     lines={result.lines}
                     align="left"
                     passedTimeLine

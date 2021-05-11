@@ -21,19 +21,19 @@ export const theme: AruiTheme = {
     info: "#3C78D8"
   },
   shadows: [
-    '0 0px 0px 0 rgba(0,0,0,0)',
-    '0px 9px 18px 0px rgba(0,0,0,0.05)',
-    '0px 11.25px 22.5px 0px rgba(0,0,0,0.07)',
-    '0px 13.5px 27px 0px rgba(0,0,0,0.09)',
-    '0px 15.75px 31.5px 0px rgba(0,0,0,0.11)',
-    '0px 18px 36px 0px rgba(0,0,0,0.13)',
-    '0px 20.25px 40.5px 0px rgba(0,0,0,0.15)',
-    '0px 22.5px 45px 0px rgba(0,0,0,0.17)',
-    '0px 24.75px 49.5px 0px rgba(0,0,0,0.19)',
-    '0px 27px 54px 0px rgba(0,0,0,0.21)',
-    '0px 29.25px 58.5px 0px rgba(0,0,0,0.23)',
-    '0px 31.5px 63px 0px rgba(0,0,0,0.25)',
-    '0px 33.75px 67.5px 0px rgba(0,0,0,0.27)'
+    '0px 0px 0px 0px rgba(0,0,0,0)',
+    '0px 3px 10px 0 rgba(0,0,0,0.1)',
+    '0px 3.75px 12.5px 0px rgba(0,0,0,0.12)',
+    '0px 4.5px 15px 0px rgba(0,0,0,0.14)',
+    '0px 5.25px 17.5px 0px rgba(0,0,0,0.16)',
+    '0px 6px 20px 0px rgba(0,0,0,0.18)',
+    '0px 6.75px 22.5px 0px rgba(0,0,0,0.2)',
+    '0px 7.5px 25px 0px rgba(0,0,0,0.22)',
+    '0px 8.25px 27.5px 0px rgba(0,0,0,0.24)',
+    '0px 9px 30px 0px rgba(0,0,0,0.26)',
+    '0px 9.75px 32.5px 0px rgba(0,0,0,0.28)',
+    '0px 10.5px 35px 0px rgba(0,0,0,0.3)',
+    '0px 11.25px 37.5px 0px rgba(0,0,0,0.32)'
   ]
 }
 
