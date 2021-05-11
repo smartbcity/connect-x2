@@ -23,7 +23,7 @@ const useStyles = midLevelStyles<Theme>()({
         width: "100%",
         paddingLeft: "30px",
         "& h6" : {
-            fontSize: "16px",
+            fontSize: "17px",
             lineHeight: "1.3"
         }
     },

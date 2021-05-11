@@ -8,13 +8,12 @@ import { highLevelStyles } from "@smartb/archetypes-ui-themes"
 const useStyles = highLevelStyles()({
     panel: {
         width: "40%",
-        height: "500px",
     },
     viewer: {
         height: "100%"
     },
     body: {
-        height: "100%"
+        height: "450px"
     }
 })
 

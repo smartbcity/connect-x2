@@ -9,17 +9,17 @@ import { useFetchSessionLogs } from "./useFetchSessionLogs"
 const useStyles = highLevelStyles()({
     panel: {
         width: "40%",
-        height: "500px",
     },
     panelBody: {
-        height: "100%",
+        height: "450px",
         display: "flex",
         justifyContent: "center",
         overflow: "auto"
     },
     timeline: {
         display: "block",
-        flexGrow: 0
+        flexGrow: 0,
+        height:"max-content"
     }
 })
 
@@ -37,12 +37,14 @@ export const HistoryCard = (props: HistoryCardProps) => {
     const result: { lines: TimeLineCell[], logs: SessionLog[] } | undefined = useFetchSessionLogs(currentSession)
 
     const onSelectCell = useCallback(
-        (cell: TimeLineCell) =>  {
+        (cell: TimeLineCell) => {
             setSelectedCellId(prevCellId => {
                 const cellId = cell.id === prevCellId ? undefined : cell.id
                 if (cellId) {
-                   const log = result?.logs.find((log) => cellId === log.txId)
-                   log && onChangeCurrentLog(log)
+                    const log = result?.logs.find((log) => cellId === log.txId)
+                    log && onChangeCurrentLog(log)
+                } else {
+                    onChangeCurrentLog(undefined)
                 }
                 return cellId
             })
