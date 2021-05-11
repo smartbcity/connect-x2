@@ -32,6 +32,7 @@ const useStyles = highLevelStyles()({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        flexShrink: 0,
         height: "200px",
         padding: "15px"
     },
@@ -77,7 +78,7 @@ export const DetailsCard = (props: DetailsCardProps) => {
             ) : (
                 <>
                     <Box className={classes.descriptionContainer}>
-                        <Box className={classes.box} width="150px" minWidth="150px">
+                        <Box className={classes.box} >
                             <InputLabel>{t("transactionId")}:</InputLabel>
                             <InputLabel>{t("detailsPage.transactionDate")}:</InputLabel>
                             <InputLabel>{t("user")}:</InputLabel>
