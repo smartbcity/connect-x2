@@ -16,6 +16,7 @@
   "publicKey": "Clé publique",
   "from": "De",
   "to": "à",
+  "copyToClipboard": "Copier dans le presse-papier",
   "detailsPage": {
     "sessionInformations": "Informations sur la session",
     "transactionDetails": "Détails de la transaction",

@@ -16,6 +16,7 @@
   "publicKey": "Public key",
   "from": "From",
   "to": "To",
+  "copyToClipboard": "Copy to clipboard",
   "detailsPage": {
     "sessionInformations": "Session informations",
     "transactionDetails": "Transaction details",

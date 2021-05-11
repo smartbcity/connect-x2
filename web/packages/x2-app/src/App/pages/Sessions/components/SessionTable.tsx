@@ -29,7 +29,6 @@ interface SessionColumn {
     creationDate: string
     channel: string
     protocolEngine: string
-    transactionId: string
     completedStep: {
         date: string,
         status: string,
@@ -51,14 +50,13 @@ export const SessionTable = (props: SessionTableProps) => {
         if (!currentSSM || currentSSM.sessions.length === 0) return []
         return currentSSM.sessions.map((session): SessionColumn => ({
             id: session.session,
-            creationDate: "01/02/2020",
-            channel: "Angers territory",
+            creationDate: "Not yet implemented",
+            channel: "Not yet implemented",
             protocolEngine: session.ssm,
-            transactionId: "T23425",
             completedStep: {
-                date: "25/02/2020",
+                date: "Not yet implemented",
                 status: session.current.toLocaleString(),
-                user: "lorum Blum",
+                user: "Not yet implemented",
             }
         }))
     }, [currentSSM])
@@ -97,29 +95,24 @@ export const SessionTable = (props: SessionTableProps) => {
 }
 
 const getColumns = (t: TFunction): Column<SessionColumn>[] => ([{
-    name: <Typography variant="body1">{t("sessionsPage.sessionId")}</Typography>,
+    name: <Typography variant="body1">{t("sessionId")}</Typography>,
     cell: (row: SessionColumn) => (
         <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.id}</Typography>
     )
 }, {
-    name: <Typography variant="body1">{t("sessionsPage.creationDate")}</Typography>,
+    name: <Typography variant="body1">{t("creationDate")}</Typography>,
     cell: (row: SessionColumn) => (
         <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.creationDate}</Typography>
     )
 }, {
-    name: <Typography variant="body1">{t("sessionsPage.channel")}</Typography>,
+    name: <Typography variant="body1">{t("channel")}</Typography>,
     cell: (row: SessionColumn) => (
         <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.channel}</Typography>
     )
 }, {
-    name: <Typography variant="body1">{t("sessionsPage.protocolEngine")}</Typography>,
+    name: <Typography variant="body1">{t("protocolEngine")}</Typography>,
     cell: (row: SessionColumn) => (
         <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.protocolEngine}</Typography>
-    )
-}, {
-    name: <Typography variant="body1" >{t("sessionsPage.transactionId")}</Typography>,
-    cell: (row: SessionColumn) => (
-        <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.transactionId}</Typography>
     )
 }, {
     name: (
