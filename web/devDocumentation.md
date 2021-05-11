@@ -87,7 +87,7 @@ In order to maintain the overridability of the style through the component three
 
 in the package `component` you should use `midLevelStyles`:
 ```TYPESCRIPT
-const useStyles = midLevelStyles({
+const useStyles = midLevelStyles()({
     myClasse: {
         width: "100%"
     }
@@ -95,7 +95,7 @@ const useStyles = midLevelStyles({
 ```
 in the package `x2-app` you should use `highLevelStyles`:
 ```TYPESCRIPT
-const useStyles = highLevelStyles({
+const useStyles = highLevelStyles()({
     myClasse: {
         width: "100%"
     }

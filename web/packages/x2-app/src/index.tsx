@@ -4,7 +4,7 @@ import reportWebVitals from 'reportWebVitals';
 import { X2ThemeContextProvider } from "components"
 import { AppProvider } from "@smartb/archetypes-ui-providers"
 import InitStore from 'InitStore';
-import { languages } from 'i18n';
+import { languages } from 'components';
 import { history, store } from 'store';
 import { LoadingPage } from "components"
 import { OptionnalKeycloakProvider } from './OptionnalKeycloakProvider';

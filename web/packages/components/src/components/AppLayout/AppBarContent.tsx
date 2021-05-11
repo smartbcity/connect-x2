@@ -1,15 +1,20 @@
 import { Box, Typography } from "@material-ui/core"
-import { Theme, useTheme } from "@smartb/archetypes-ui-themes"
-import { midLevelStyles } from "utils"
+import { Theme, useTheme, midLevelStyles } from "@smartb/archetypes-ui-themes"
+import { LanguageSelector } from "./LanguageSelector"
 
-const useStyles = (theme: Theme) => midLevelStyles({
+const useStyles = midLevelStyles<Theme>()({
     underline: {
         width: "80%",
-        background: theme.primaryColor,
+        background: theme => theme.colors.primary,
         height: "2px"
     },
     title: {
         fontWeight: 600
+    },
+    rightContainer: {
+        position: "fixed",
+        top: "15px",
+        right: "15px"
     }
 })
 
@@ -20,11 +25,14 @@ interface AppBarContentProps {
 export const AppBarContent = (props: AppBarContentProps) => {
     const {title} = props 
     const theme = useTheme()
-    const classes = useStyles(theme)()
+    const classes = useStyles(theme)
     return (
         <Box display="flex" flexDirection="column">
             <Typography color="textPrimary" variant="h5" className={classes.title}>{title}</Typography>
             <div className={classes.underline}/>
+            <Box className={classes.rightContainer}>
+                <LanguageSelector/>
+            </Box>
         </Box>
     )
 }

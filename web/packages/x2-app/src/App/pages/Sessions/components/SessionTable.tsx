@@ -2,10 +2,10 @@ import { Table, Column } from '@smartb/archetypes-ui-components'
 import { Box, Typography } from '@material-ui/core'
 import { useTranslation, TFunction } from 'react-i18next'
 import { useCallback, useMemo, useState } from 'react'
-import { highLevelStyles } from 'utils'
+import { highLevelStyles } from '@smartb/archetypes-ui-themes'
 import { SSM } from 'ssm'
 
-const useStyles = highLevelStyles({
+const useStyles = highLevelStyles()({
     container: {
         '& .rdt_TableRow .rdt_TableCell:last-child': {
             minWidth: '300px',

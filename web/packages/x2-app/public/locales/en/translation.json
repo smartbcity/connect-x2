@@ -6,19 +6,27 @@
   "date": "Date",
   "status": "Status",
   "user": "User",
+  "sessionId": "Session ID",
+  "creationDate": "Creation date",
+  "channel": "Channel",
+  "protocolEngine": "Protocol Engine",
+  "protocolEngineVersion": "Protocol Engine version",
+  "transactionId": "Transaction ID",
   "protocolDiagram": "Protocol diagram",
+  "publicKey": "Public key",
+  "from": "From",
+  "to": "To",
   "detailsPage": {
     "sessionInformations": "Session informations",
     "transactionDetails": "Transaction details",
     "transactionsHistory": "Transactions history",
-    "transactionId": "Transaction ID: {{transactionId}}"
+    "transactionDate": "Transaction date",
+    "transactionPayload": "Transaction payload",
+    "currentStep": "Current step",
+    "LastActionPerformed": "Last action performed",
+    "selectATransaction": "Select a transaction from the timeline to visualize its content"
   },
   "sessionsPage": {
-    "sessionId": "Session ID",
-    "creationDate": "Creation date",
-    "channel": "Channel",
-    "protocolEngine": "Protocol Engine",
-    "transactionId": "Transaction ID",
     "completedStep": "Completed Step",
     "sessionNumber": "Number of session by step",
     "completedStepsDuringPeriod": "Steps Completed during the period"

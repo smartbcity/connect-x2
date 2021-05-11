@@ -1,11 +1,11 @@
 import { AutomateViewer } from "@smartb/archetypes-ui-s2"
 import {Panel} from "components"
 import { useTranslation } from "react-i18next"
-import { highLevelStyles } from "utils"
+import { highLevelStyles } from "@smartb/archetypes-ui-themes"
 import { SSM } from "ssm"
 import { useMemo } from "react"
 
-const useStyles = highLevelStyles({
+const useStyles = highLevelStyles()({
     viewer: {
         height: "300px"
     }

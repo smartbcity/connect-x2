@@ -1694,10 +1694,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smartb/archetypes-ui-components@^0.1.36":
-  version "0.1.36"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-components/-/archetypes-ui-components-0.1.36.tgz#4acfb9ba09d2d2c21db9683b80806451fb144f31"
-  integrity sha512-+okEucn5Us+xXrmR2yKkCiZh6Nz65xxh9gfg1WFMrtQEKfPVONt3AiRxcdfZLtvYQRcRg2vY9FgQxT2RZoWDqQ==
+"@smartb/archetypes-ui-components@^0.1.38":
+  version "0.1.38"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-components/-/archetypes-ui-components-0.1.38.tgz#5c95465a908054e686a872c4c65538039a232ff5"
+  integrity sha512-sr/LkbwNjNAj3MfgUUXR4Fiw9dGoFXUhyP4TlNscvuxGk7a9+VfLzuAaF+cVyqLb1q44EjpWY/m6g+b7fDDlrw==
   dependencies:
     "@material-ui/icons" "^4.11.2"
     "@material-ui/lab" "^4.0.0-alpha.57"
@@ -1710,24 +1710,40 @@
     stringify-object "^3.3.0"
     styled-components "^5.2.1"
 
-"@smartb/archetypes-ui-layout@^0.1.36":
-  version "0.1.36"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-layout/-/archetypes-ui-layout-0.1.36.tgz#e6180ac885660c21fa7e4bae122ae5b3f08e907e"
-  integrity sha512-LqP0/4CelOr3dg9/yNAPoYKU6c/0rQVRZHF4bt6kVNQ5/OsWEZOMrbZYuoBBzHw8iwuIULrcQz2kEBecEOeauA==
+"@smartb/archetypes-ui-components@^0.1.39":
+  version "0.1.39"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-components/-/archetypes-ui-components-0.1.39.tgz#e999ef8d26482fd6d8b1b09c308fd44afeb1b6c7"
+  integrity sha512-cxoRd3OG+daQlZ4CvXerd6tKPcW+FsLr/PUFfLDlDVX1mBOnppgtCzD+76ImfwCIZ8h4J0izZS1aCNgS1MU9Uw==
   dependencies:
     "@material-ui/icons" "^4.11.2"
     "@material-ui/lab" "^4.0.0-alpha.57"
-    "@smartb/archetypes-ui-components" "^0.1.36"
+    clsx "^1.1.1"
+    dedent "^0.7.0"
+    react-data-table-component "^6.9.7"
+    react-dropzone "^11.3.2"
+    react-spinners "^0.9.0"
+    react-syntax-highlighter "^15.4.3"
+    stringify-object "^3.3.0"
+    styled-components "^5.2.1"
+
+"@smartb/archetypes-ui-layout@^0.1.39":
+  version "0.1.39"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-layout/-/archetypes-ui-layout-0.1.39.tgz#3d73a7054422ebc59189306de81463a172b4a849"
+  integrity sha512-vKO0jPdtX1mVD0ATUoRdDAOcSguKdVCWJ4eZGVOglQPKDfB8smh+ztlP7CLwwFbKHJ/K29hpUfmeAGjJNXmtbw==
+  dependencies:
+    "@material-ui/icons" "^4.11.2"
+    "@material-ui/lab" "^4.0.0-alpha.57"
+    "@smartb/archetypes-ui-components" "^0.1.39"
     clsx "^1.1.1"
     use-debounce "^3.4.2"
 
-"@smartb/archetypes-ui-providers@^0.1.36":
-  version "0.1.36"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-providers/-/archetypes-ui-providers-0.1.36.tgz#511e12d7f9c57e24efd32f8d138e63119c5b7f7b"
-  integrity sha512-Tr5GgYjU54gMrYdWTMSedcsyjEFEvrio0sA26WrZQ6YjPn5lu9ZK43n5pZE8gOnLF8q/F+qyYw+//Gcdp4vuRA==
+"@smartb/archetypes-ui-providers@^0.1.38":
+  version "0.1.38"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-providers/-/archetypes-ui-providers-0.1.38.tgz#2c000641f883d3783d11ccb3450c76ceddcdb979"
+  integrity sha512-F7QvLBX1cLRK/C1PT6zbpuSZe63WZBgsztcwVBYsIfhhxW0f/FaBL9oK5ufB6VngFjgJHD8UWt1pXQ9VFrMc4A==
   dependencies:
     "@react-keycloak/web" "^3.4.0"
-    "@smartb/archetypes-ui-components" "^0.1.36"
+    "@smartb/archetypes-ui-components" "^0.1.38"
     clsx "^1.1.1"
     connected-react-router "^6.9.1"
     history "^4.10.1"
@@ -1741,20 +1757,20 @@
     react-router-dom "^5.2.0"
     redux "^4.1.0"
 
-"@smartb/archetypes-ui-s2@^0.1.36":
-  version "0.1.36"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-s2/-/archetypes-ui-s2-0.1.36.tgz#5e7b0986f4fb049e49f8e1dae9ae461f07a5fdc7"
-  integrity sha512-3Fy1NIQjP+LOR+WMBCmJPrtokBS+IA8GV6Sv57c0MV+Il0uScxo4/Cy3OqHFoMV9+VGj8Nyy77VvBkzbmcdBlw==
+"@smartb/archetypes-ui-s2@^0.1.39":
+  version "0.1.39"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-s2/-/archetypes-ui-s2-0.1.39.tgz#8b0087dcbcdaf3b9b10cc2e97149be6a8a24253a"
+  integrity sha512-b2Ir6g7jWJHroyC2kUh/6U3/aqkT/mv1WmSIsnzh3GuyPrTC7JInBCvD4Hc+6BIFuRuj0TIKyph3j9QB9UNj4w==
   dependencies:
     clsx "^1.1.1"
     mermaid "^8.9.2"
     vis-data "^7.1.2"
     vis-network "^9.0.0"
 
-"@smartb/archetypes-ui-themes@^0.1.36":
-  version "0.1.36"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-themes/-/archetypes-ui-themes-0.1.36.tgz#4c40ee4a998cf64101cc3e150767a5a7ce1dfa88"
-  integrity sha512-j/iWRln70h9o7FEkh2t3y7//Ty4rDCMyz8PkTiU4jKlsbGIgaKgBqFC8RRx+c7d5RPJarFswZ+dbhIrvnapr8w==
+"@smartb/archetypes-ui-themes@^0.1.39":
+  version "0.1.39"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-themes/-/archetypes-ui-themes-0.1.39.tgz#dc2c1a689a853a3d2e120665b701eb0fc52e18d8"
+  integrity sha512-OzjFl1m4mhpI426Jc2Pt5s4MO8PgyjKeNE91b322owFGcr5ZZM0ga0NZpLvT5Un/2Rnk1+c40PChR9Q9C+Y5eA==
 
 "@surma/rollup-plugin-off-main-thread@^1.1.1":
   version "1.4.2"
@@ -2011,13 +2027,6 @@
   resolved "https://registry.yarnpkg.com/@types/html-minifier-terser/-/html-minifier-terser-5.1.1.tgz#3c9ee980f1a10d6021ae6632ca3e79ca2ec4fb50"
   integrity sha512-giAlZwstKbmvMk1OO7WXSj4OZ0keXAcl2TQq4LWHiiPH2ByaH7WeUzng+Qej8UPxxv+8lRTuouo0iaNDBuzIBA==
 
-"@types/i18next-xhr-backend@^1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@types/i18next-xhr-backend/-/i18next-xhr-backend-1.4.2.tgz#e3849b77e77daa1504f02269b1c192dc0e86e507"
-  integrity sha512-uykS5BvdSoN+G7j7D19xzR12pEVkWmUrIEIxMsj2brVVzjc3gIthWCQKYqbe/b1q87SLbWb/ZHN9bR4qxi1H6A==
-  dependencies:
-    i18next-xhr-backend "*"
-
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.3.tgz#4ba8ddb720221f432e443bd5f9117fd22cfd4762"
@@ -2166,11 +2175,6 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.0.tgz#7036640b4e21cc2f259ae826ce843d277dad8cff"
   integrity sha512-RJJrrySY7A8havqpGObOB4W92QXKJo63/jFLLgpvOtsGUqbQZ9Sbgl35KMm1DjC6j7AvmmU2bIno+3IyEaemaw==
-
-"@types/stringify-object@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@types/stringify-object/-/stringify-object-3.3.0.tgz#7ea04ff326e7c549fe311eae8f26e6211c880498"
-  integrity sha512-ryxTolaNg1l809rknW9q9T7wG8QHcjtZX6syJx7kpOLY2qev75VzC9HMVimUxlA1YzjpGsDI29yLjHBotqhUhA==
 
 "@types/tapable@*", "@types/tapable@^1.0.5":
   version "1.0.6"
@@ -6529,7 +6533,7 @@ i18next-browser-languagedetector@^6.1.0:
   dependencies:
     "@babel/runtime" "^7.5.5"
 
-i18next-xhr-backend@*, i18next-xhr-backend@^3.2.2:
+i18next-xhr-backend@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/i18next-xhr-backend/-/i18next-xhr-backend-3.2.2.tgz#769124441461b085291f539d91864e3691199178"
   integrity sha512-OtRf2Vo3IqAxsttQbpjYnmMML12IMB5e0fc5B7qKJFLScitYaXa1OhMX0n0X/3vrfFlpHL9Ro/H+ps4Ej2j7QQ==
@@ -10397,7 +10401,7 @@ react-spinners@^0.9.0:
   dependencies:
     "@emotion/core" "^10.0.15"
 
-react-syntax-highlighter@^15.4.0, react-syntax-highlighter@^15.4.3:
+react-syntax-highlighter@^15.4.3:
   version "15.4.3"
   resolved "https://registry.yarnpkg.com/react-syntax-highlighter/-/react-syntax-highlighter-15.4.3.tgz#fffe3286677ac470b963b364916d16374996f3a6"
   integrity sha512-TnhGgZKXr5o8a63uYdRTzeb8ijJOgRGe0qjrE0eK/gajtdyqnSO6LqB3vW16hHB0cFierYSoy/AOJw8z1Dui8g==

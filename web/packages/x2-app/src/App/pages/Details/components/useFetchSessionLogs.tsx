@@ -1,12 +1,10 @@
 import { Box, Typography } from "@material-ui/core"
 import { TimeLineCell } from "@smartb/archetypes-ui-components"
 import { useCallback } from "react"
-import { useTranslation } from "react-i18next"
 import { Session, SessionLog, SSMRequester } from "ssm"
 import { useAsync } from "utils"
 
 export const useFetchSessionLogs = (currentSession?: Session) => {
-    const { t } = useTranslation()
     const getLines = useCallback(
         async (): Promise<{ lines: TimeLineCell[], logs: SessionLog[] }> => {
             if (!currentSession) return { lines: [], logs: [] }
@@ -19,9 +17,6 @@ export const useFetchSessionLogs = (currentSession?: Session) => {
                         <Box display="flex" flexDirection="column">
                             <Typography>
                                 {`${log.state?.origin?.role}: ${log.state?.origin?.action}`}
-                            </Typography>
-                            <Typography>
-                                {t("detailsPage.transactionId", { transactionId: log.txId })}
                             </Typography>
                         </Box>
                     ),

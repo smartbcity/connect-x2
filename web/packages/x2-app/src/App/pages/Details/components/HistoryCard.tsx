@@ -3,16 +3,23 @@ import { LoadingComponent, Panel } from "components"
 import { useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Session, SessionLog } from "ssm"
-import { highLevelStyles } from "utils"
+import { highLevelStyles } from "@smartb/archetypes-ui-themes"
 import { useFetchSessionLogs } from "./useFetchSessionLogs"
 
-const useStyles = highLevelStyles({
+const useStyles = highLevelStyles()({
     panel: {
-        width: "40%"
+        width: "40%",
     },
     panelBody: {
-        height: "400px",
+        height: "450px",
+        display: "flex",
+        justifyContent: "center",
         overflow: "auto"
+    },
+    timeline: {
+        display: "block",
+        flexGrow: 0,
+        height:"max-content"
     }
 })
 
@@ -30,12 +37,14 @@ export const HistoryCard = (props: HistoryCardProps) => {
     const result: { lines: TimeLineCell[], logs: SessionLog[] } | undefined = useFetchSessionLogs(currentSession)
 
     const onSelectCell = useCallback(
-        (cell: TimeLineCell) =>  {
+        (cell: TimeLineCell) => {
             setSelectedCellId(prevCellId => {
                 const cellId = cell.id === prevCellId ? undefined : cell.id
                 if (cellId) {
-                   const log = result?.logs.find((log) => cellId === log.txId)
-                   log && onChangeCurrentLog(log)
+                    const log = result?.logs.find((log) => cellId === log.txId)
+                    log && onChangeCurrentLog(log)
+                } else {
+                    onChangeCurrentLog(undefined)
                 }
                 return cellId
             })
@@ -49,6 +58,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
                 <LoadingComponent />
                 :
                 <Timeline
+                    className={classes.timeline}
                     lines={result.lines}
                     align="left"
                     passedTimeLine
