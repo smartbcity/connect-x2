@@ -15,7 +15,7 @@ const useStyles = highLevelStyles()({
     },
     root: {
         width: "calc(33.3333333% - 30px)", 
-        maxWidth: "700px",
+        maxWidth: "700px", 
         '@media (max-width:1000px)': {
             width: "calc(100% - 20px)",
             maxWidth: "1200px",
