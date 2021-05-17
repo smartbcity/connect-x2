@@ -89,7 +89,7 @@ export const DetailsCard = (props: DetailsCardProps) => {
                         <Box className={classes.box}>
                             <Box position="relative">
                                 <Typography className={classes.rightTypo}>{currentLog.txId}</Typography>
-                                <Tooltip helperText="copy to clipboard">
+                                <Tooltip helperText={t("copyToClipboard")}>
                                     <IconButton className={classes.iconButton} onClick={onCopyTransctionId}>
                                         <Clipboard className={classes.clipboardIcon} />
                                     </IconButton>
