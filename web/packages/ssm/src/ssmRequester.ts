@@ -1,4 +1,4 @@
-import { SSM, Session, SessionLog, Admin, AdminWithPublicKey, User, UserWithPublicKey, coopUrl } from "./models";
+import { SSM, Session, SessionLog, Admin, AdminWithPublicKey, User, UserWithPublicKey } from "./models";
 import { request, httpOptions } from "utils";
 
 const fetchCoop = function <T>(
@@ -6,9 +6,14 @@ const fetchCoop = function <T>(
     fcn: String,
     args: String
 ) {
+    //@ts-ignore
+    const url = window._env_.COOP_URL
+    //@ts-ignore
+    const token = window.token
     const options: httpOptions = {
-        url: `${coopUrl}?args=${args}&cmd=${cmd}&fcn=${fcn}`,
-        method: "GET"
+        url: `${url}?args=${args}&cmd=${cmd}&fcn=${fcn}`,
+        method: "GET",
+        jwt: token
     }
     return request<T>(options)
 };
@@ -17,7 +22,7 @@ const fetchSSMs = async () => {
     const sessions = await fetchSessions();
     const json = await fetchCoop<string[]>("query", "list", "ssm");
     if (json) {
-        const ssms = await Promise.all(json.splice(0, 10).map(name =>  fetchSSM(name, sessions)))
+        const ssms = await Promise.all(json.splice(0, 10).map(name => fetchSSM(name, sessions)))
         return ssms.filter(ssm => ssm !== undefined) as SSM[];
     }
     return []

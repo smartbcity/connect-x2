@@ -58,8 +58,5 @@ export interface UserWithPublicKey extends User, AgentWithPublicKey {
 }
 
 //@ts-ignore
-export const coopUrl: string = window._env_.COOP_URL
-
-//@ts-ignore
-export const protocols: string[] = window._env_.PROTOCOLS
+export const defaultProtocols: string[] = window._env_.PROTOCOLS
 
