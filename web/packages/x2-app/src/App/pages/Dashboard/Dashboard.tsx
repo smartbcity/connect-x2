@@ -43,7 +43,7 @@ export const Dashboard = (props: DashboardProps) => {
     title={t("dashboard")}
   >
       <CardsHeader />
-      <Box display="flex" justifyContent="flex-end">
+      <Box display="flex" justifyContent="flex-end" paddingRight="20px">
         <LabelSwitch selectedLabelValue={labelValue} onLabelChange={onLabelChange} labels={labels} />
       </Box>
   </Page>
