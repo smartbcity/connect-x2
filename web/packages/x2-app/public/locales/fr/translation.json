@@ -1,14 +1,17 @@
 {
   "dashboard": "Tableau de bord",
   "protocols": "Protocoles",
+  "transactions": "Transactions",
   "details": "Détails",
   "back": "Retour",
   "date": "Date",
   "status": "Status",
   "user": "Utilisateur",
+  "users": "Utilisateurs",
   "sessionId": "ID de session",
   "creationDate": "Date de création",
   "channel": "Channel",
+  "channels": "Channels",
   "protocolEngine": "Moteur de protocole",
   "protocolEngineVersion": "Version du moteur de protocole",
   "transactionId": "ID de la transaction",
@@ -16,6 +19,10 @@
   "publicKey": "Clé publique",
   "from": "De",
   "to": "à",
+  "month": "Mois",
+  "months": "mois",
+  "year": "Année",
+  "all": "Tout",
   "copyToClipboard": "Copier dans le presse-papier",
   "detailsPage": {
     "sessionInformations": "Informations sur la session",
@@ -31,5 +38,8 @@
     "completedStep": "Etape complétée",
     "sessionNumber": "Nombre de sessions par étapes",
     "completedStepsDuringPeriod": "Etapes complétés pendant la période"
+  },
+  "dashboardPage": {
+    "assetsValidated": "Actifs validés"
   }
 }

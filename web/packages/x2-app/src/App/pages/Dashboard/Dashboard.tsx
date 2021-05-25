@@ -15,22 +15,22 @@ export const Dashboard = (props: DashboardProps) => {
   const [labelValue, setLabelValue] = useState("3Month")
 
   const labels = useMemo((): Label[] => [{
-    name: "Month",
+    name: t("month"),
     value: "Month",
     key: "LabelSwitch_month"
   },{
-    name: "3 months",
+    name: `3 ${t("months")}`,
     value: "3Month",
     key: "LabelSwitch_3month"
   },{
-    name: "Year",
+    name: t("year"),
     value: "Year",
     key: "LabelSwitch_year"
   },{
-    name: "All",
+    name: t("all"),
     value: "All",
     key: "LabelSwitch_all"
-  }], [])
+  }], [t])
 
   const onLabelChange = useCallback(
     (value: string) => setLabelValue(value),

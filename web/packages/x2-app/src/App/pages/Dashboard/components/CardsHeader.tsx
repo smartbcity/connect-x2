@@ -4,6 +4,7 @@ import { Ticket } from "@smartb/archetypes-ui-components"
 import { highLevelStyles, Theme, useTheme } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 import { Channel, SSMIcon, User, TransactionIcon } from 'components'
+import { useTranslation } from "react-i18next"
 
 const useStyles = highLevelStyles<Theme>()({
     ticket: {
@@ -22,6 +23,7 @@ const useStyles = highLevelStyles<Theme>()({
 
 export const CardsHeader = () => {
     const theme = useTheme()
+    const {t} = useTranslation()
     const classes = useStyles(theme)
     return (
         <Box display="flex" flexWrap="wrap" justifyContent="space-around" >
@@ -29,35 +31,35 @@ export const CardsHeader = () => {
                 className={classes.ticket}
                 icon={<Channel color={theme.colors.primary} className={classes.icon} />}
                 variant="composed"
-                title="Channels"
+                title={t("channels")}
                 content="3"
             />
             <Ticket
                 className={classes.ticket}
                 icon={<SSMIcon color={theme.colors.primary} className={classes.icon} />}
                 variant="composed"
-                title="Protocols"
+                title={t("protocols")}
                 content="2"
             />
             <Ticket
                 className={classes.ticket}
                 icon={<CheckCircleRounded className={clsx(classes.icon, classes.checkIcon)} />}
                 variant="composed"
-                title="Assets Validated"
+                title={t("dashboardPage.assetsValidated")}
                 content="1245"
             />
             <Ticket
                 className={classes.ticket}
                 icon={<User color={theme.colors.primary} className={classes.icon} />}
                 variant="composed"
-                title="Users"
+                title={t("users")}
                 content="89"
             />
             <Ticket
                 className={classes.ticket}
                 icon={<TransactionIcon color={theme.colors.primary} className={classes.icon} />}
                 variant="composed"
-                title="Transactions"
+                title={t("transactions")}
                 content="12435"
             />
         </Box>
