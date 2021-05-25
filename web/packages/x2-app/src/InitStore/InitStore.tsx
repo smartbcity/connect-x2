@@ -13,17 +13,17 @@ interface InitStoreProps {
 export const InitStore = (props: InitStoreProps) => {
   const { ssmList, setSsmList } = props;
 
-  const { keycloak, service } = useExtendedAuth()
+  const auth = useExtendedAuth()
 
   useEffect(() => {
-    if (keycloak.authenticated) {
+    if (auth?.keycloak.authenticated) {
       //@ts-ignore
       window.token = keycloak.token
       //@ts-ignore
       window._env_.COOP_URL = service.getSSMInfo().url
     }
-    fetchSSMs(keycloak, setSsmList)
-  }, [keycloak.authenticated, service.getSSMInfo, setSsmList])
+    fetchSSMs(auth?.keycloak, setSsmList)
+  }, [auth?.keycloak.authenticated, auth?.service.getSSMInfo, setSsmList])
 
 
   const isLoading = () => {
@@ -43,7 +43,15 @@ export const InitStore = (props: InitStoreProps) => {
 const fetchSSMs = (keycloak: any, setSsmList: (ssmList: Map<string, SSM>) => void) => {
   SSMRequester.fetchSessions().then(async (sessions) => {
     const ssmMap = new Map<string, SSM>()
-    if (!keycloak.authenticated) {
+    if (keycloak && keycloak.authenticated) {
+      const ssms = await SSMRequester.fetchSSMs()
+      ssms.forEach(async (ssm) => {
+        const fetched = await SSMRequester.fetchSSM(ssm.name, sessions)
+        if (fetched) {
+          ssmMap.set(fetched.name, fetched)
+        }
+      })
+    } else {
       for (let index = 0; index < sessions.length; index++) {
         const session = sessions[index];
         if (defaultProtocols.length == 0 || defaultProtocols.find(it => it == session.ssm) != null) {
@@ -53,14 +61,6 @@ const fetchSSMs = (keycloak: any, setSsmList: (ssmList: Map<string, SSM>) => voi
           }
         }
       }
-    } else {
-      const ssms = await SSMRequester.fetchSSMs()
-      ssms.forEach(async (ssm) => {
-        const fetched = await SSMRequester.fetchSSM(ssm.name, sessions)
-        if (fetched) {
-          ssmMap.set(fetched.name, fetched)
-        }
-      })
     }
     setSsmList(ssmMap)
   })

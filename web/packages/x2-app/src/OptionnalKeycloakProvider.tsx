@@ -26,7 +26,15 @@ export const OptionnalKeycloakProvider = (props: KeycloakProps) => {
             </KeycloakProvider>
         )
     }
-    return children
+    return (
+        <KeycloakProvider
+            config={{ clientId: "unknown", realm: "unknown", url: "unknown" }}
+            initOptions={{ onLoad: undefined }}
+            loadingComponent={<LoadingPage />}
+        >
+            {children}
+        </KeycloakProvider>
+    )
 }
 
 type ssmInfo = {
