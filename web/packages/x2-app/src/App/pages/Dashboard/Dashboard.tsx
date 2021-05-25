@@ -9,10 +9,12 @@ interface DashboardProps {
     setTitle: (title: string) => void
 }
 
+export type LabelSwitchFilter = "Month" | "3Month" | "Year" | "All"
+
 export const Dashboard = (props: DashboardProps) => {
   const {setTitle} = props;
   const {t} = useTranslation()
-  const [labelValue, setLabelValue] = useState("3Month")
+  const [labelValue, setLabelValue] = useState<LabelSwitchFilter>("3Month")
 
   const labels = useMemo((): Label[] => [{
     name: t("month"),
@@ -33,7 +35,7 @@ export const Dashboard = (props: DashboardProps) => {
   }], [t])
 
   const onLabelChange = useCallback(
-    (value: string) => setLabelValue(value),
+    (value: string) => setLabelValue(value as LabelSwitchFilter),
     [],
   )
 
