@@ -1,10 +1,9 @@
-import { CodeHighlighter, Tooltip } from "@smartb/archetypes-ui-components";
-import { Clipboard, Panel } from "components"
+import { CodeHighlighter, CopyToClipboard } from "@smartb/archetypes-ui-components";
+import { Panel } from "components"
 import { useTranslation } from "react-i18next"
 import { SessionLog } from "ssm";
 import { highLevelStyles } from "@smartb/archetypes-ui-themes";
-import { Box, IconButton, InputLabel, Typography } from "@material-ui/core";
-import { useCallback } from "react";
+import { Box, InputLabel, Typography } from "@material-ui/core";
 
 const useStyles = highLevelStyles()({
     panel: {
@@ -42,10 +41,6 @@ const useStyles = highLevelStyles()({
     typo: {
         margin: "15px"
     },
-    clipboardIcon: {
-        width: "20px",
-        height: "20px"
-    },
     iconButton: {
         position: "absolute",
         right: "-44px",
@@ -61,12 +56,6 @@ export const DetailsCard = (props: DetailsCardProps) => {
     const { currentLog } = props
     const { t } = useTranslation()
     const classes = useStyles()
-
-    const onCopyTransctionId = useCallback(
-        () => currentLog && navigator.clipboard.writeText(currentLog.txId),
-        [currentLog],
-    )
-
     return (
         <Panel className={classes.panel} noPadding bodyClassName={classes.body} header={t("detailsPage.transactionDetails")}>
             {currentLog === undefined ? (
@@ -89,11 +78,7 @@ export const DetailsCard = (props: DetailsCardProps) => {
                         <Box className={classes.box}>
                             <Box position="relative">
                                 <Typography className={classes.rightTypo}>{currentLog.txId}</Typography>
-                                <Tooltip helperText={t("copyToClipboard")}>
-                                    <IconButton className={classes.iconButton} onClick={onCopyTransctionId}>
-                                        <Clipboard className={classes.clipboardIcon} />
-                                    </IconButton>
-                                </Tooltip>
+                                <CopyToClipboard className={classes.iconButton} value={currentLog.txId} helperText={t("copyToClipboard")}/>
                             </Box>
                             <Typography className={classes.rightTypo}>Not yet implemented</Typography>
                             <Typography className={classes.rightTypo}>Not yet implemented</Typography>
