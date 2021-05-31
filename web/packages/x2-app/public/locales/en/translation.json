@@ -1,14 +1,17 @@
 {
   "dashboard": "Dashboard",
   "protocols": "Protocols",
+  "transactions": "Transactions",
   "details": "Details",
   "back": "Retour",
   "date": "Date",
   "status": "Status",
   "user": "User",
+  "users": "Users",
   "sessionId": "Session ID",
   "creationDate": "Creation date",
   "channel": "Channel",
+  "channels": "Channels",
   "protocolEngine": "Protocol Engine",
   "protocolEngineVersion": "Protocol Engine version",
   "transactionId": "Transaction ID",
@@ -16,6 +19,10 @@
   "publicKey": "Public key",
   "from": "From",
   "to": "To",
+  "month": "Month",
+  "months": "months",
+  "year": "Year",
+  "all": "All",
   "copyToClipboard": "Copy to clipboard",
   "detailsPage": {
     "sessionInformations": "Session informations",
@@ -31,5 +38,8 @@
     "completedStep": "Completed Step",
     "sessionNumber": "Number of session by step",
     "completedStepsDuringPeriod": "Steps Completed during the period"
+  },
+  "dashboardPage": {
+    "assetsValidated": "Assets Validated"
   }
 }
