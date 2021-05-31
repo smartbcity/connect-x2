@@ -16,6 +16,7 @@
   "protocolEngineVersion": "Protocol Engine version",
   "transactionId": "Transaction ID",
   "protocolDiagram": "Protocol diagram",
+  "protocolDiagramOf": "{{ssmName}} protocol diagram",
   "publicKey": "Public key",
   "from": "From",
   "to": "To",
