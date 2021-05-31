@@ -60,7 +60,7 @@ export const InformationCard = (props: InformationCardProps) => {
                     <Typography className={classes.rightTypo}>{`${currentSession.origin.role}: ${currentSession.origin.action}`}</Typography>
                     <Typography className={classes.rightTypo}>Not yet implemented</Typography>
                     <Typography className={classes.rightTypo}>Not yet implemented</Typography>
-                    <Typography className={classes.rightTypo}>Not yet implemented</Typography>
+                    <Typography className={classes.rightTypo}>{currentSession.ssm}</Typography>
                 </Box>
             </Box>
 
