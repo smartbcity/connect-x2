@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { defaultProtocols, SSM } from "ssm";
-import App from "App";
 import { LoadingPage } from "components";
 import { SSMRequester } from "ssm";
 import { useExtendedAuth } from "OptionnalKeycloakProvider";
+import { BaseRouter } from "BaseRouter";
 
 interface InitStoreProps {
   ssmList: Map<string, SSM>
@@ -36,7 +36,7 @@ export const InitStore = (props: InitStoreProps) => {
   )
 
   return (
-    <App />
+    <BaseRouter />
   );
 };
 
