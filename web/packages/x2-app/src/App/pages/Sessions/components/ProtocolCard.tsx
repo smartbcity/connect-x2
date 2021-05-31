@@ -33,7 +33,7 @@ export const ProtocolCard = (props: ProtocolCardProps) => {
     const classes = useStyles()
     const transitions = useMemo(() => currentSSM ? currentSSM.transitions.map((transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
     return (
-        <Panel className={classes.root} bodyClassName={classes.body} noPadding header={t("protocolDiagram")}>
+        <Panel className={classes.root} bodyClassName={classes.body} noPadding header={t("protocolDiagram")} embedUrl={`${window.location.origin}/embed/${currentSSM?.name}/diagram`}>
             <AutomateViewer transitions={transitions} className={classes.viewer}/>
         </Panel>
     )

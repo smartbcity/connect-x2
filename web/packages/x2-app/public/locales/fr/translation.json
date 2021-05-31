@@ -16,6 +16,7 @@
   "protocolEngineVersion": "Version du moteur de protocole",
   "transactionId": "ID de la transaction",
   "protocolDiagram": "Diagramme du protocole",
+  "protocolDiagramOf": "Diagramme du protocole {{ssmName}}",
   "publicKey": "Clé publique",
   "from": "De",
   "to": "à",
