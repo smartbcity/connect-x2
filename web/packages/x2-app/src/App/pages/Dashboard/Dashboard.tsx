@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { CardsHeader } from "./components/CardsHeader";
 import { Label, LabelSwitch } from "@smartb/archetypes-ui-components";
 import { useCallback, useMemo, useState } from "react";
-import { Box } from "@material-ui/core";
+import { Box, Paper } from "@material-ui/core";
 
 interface DashboardProps {
     setTitle: (title: string) => void
@@ -48,6 +48,7 @@ export const Dashboard = (props: DashboardProps) => {
       <Box display="flex" justifyContent="flex-end" paddingRight="20px">
         <LabelSwitch selectedLabelValue={labelValue} onLabelChange={onLabelChange} labels={labels} />
       </Box>
+      <Paper style={{width: "calc(100% - 40px)", height: "500px", margin: "20px"}} />
   </Page>
   );
 };
