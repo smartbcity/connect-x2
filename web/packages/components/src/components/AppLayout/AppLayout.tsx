@@ -16,6 +16,12 @@ const useStyles = midLevelStyles<Theme>()({
         background: theme => theme.colors.tertiary,
         minHeight: "100vh",
         boxSizing: "border-box"
+    },
+    appBar: {
+        background: "white",
+    },
+    toolBar: {
+        minHeight: "100%"
     }
 })
 
@@ -43,8 +49,11 @@ export const AppLayout = (props: AppLayoutProps) => {
                 className: classes.drawer
             }}
             classes={{main: classes.main}}
-            showAppBar={false}
+            showAppBar
             drawerContent={<X2Menu menu={menu}/>}
+            appBarLayoutProps={{className: classes.appBar, classes: {
+                toolBar: classes.toolBar
+            }}}
             appBarContent={<AppBarContent title={title} />}
         >
             {children}

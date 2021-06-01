@@ -11,17 +11,20 @@ export const useFetchSessionLogs = (currentSession?: Session) => {
             const logs = await SSMRequester.fetchSessionLogs(currentSession.session)
             if (!logs) return { lines: [], logs: [] }
             return {
-                lines: logs.slice(0, 10).map((log) => ({
-                    id: log.txId,
-                    content: (
-                        <Box display="flex" flexDirection="column">
-                            <Typography>
-                                {`${log.state?.origin?.role}: ${log.state?.origin?.action}`}
-                            </Typography>
-                        </Box>
-                    ),
-                    startTime: "12/02/2021",
-                })),
+                lines: logs.slice(0, 10).map((log) => {
+                    const init = log.state?.origin?.role === undefined && log.state?.origin?.action === undefined
+                    return {
+                        id: log.txId,
+                        content: (
+                            <Box display="flex" flexDirection="column">
+                                <Typography>
+                                    {init ? "Initialization" : `${log.state?.origin?.role}: ${log.state?.origin?.action}`}
+                                </Typography>
+                            </Box>
+                        ),
+                        startTime: "12/02/2021",
+                    }
+                }),
                 logs: logs
             }
         },

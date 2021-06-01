@@ -8,7 +8,7 @@ const useStyles = midLevelStyles()({
     header: {
         position: "fixed",
         top: "60px",
-        zIndex: 2
+        zIndex: 0
     },
     page: {
         paddingTop:"40px",
