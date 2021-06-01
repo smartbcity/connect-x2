@@ -16,6 +16,7 @@
   "protocolEngineVersion": "Version du moteur de protocole",
   "transactionId": "ID de la transaction",
   "protocolDiagram": "Diagramme du protocole",
+  "protocolDiagramOf": "Diagramme du protocole {{ssmName}}",
   "publicKey": "Clé publique",
   "from": "De",
   "to": "à",
@@ -24,8 +25,10 @@
   "year": "Année",
   "all": "Tout",
   "copyToClipboard": "Copier dans le presse-papier",
+  "preview": "Apperçu",
   "detailsPage": {
     "sessionInformations": "Informations sur la session",
+    "sessionInformationsOf": "Informations sur la session {{sessionName}}",
     "transactionDetails": "Détails de la transaction",
     "transactionsHistory": "Historique des transactions",
     "transactionDate": "Date de la transaction",
@@ -41,5 +44,8 @@
   },
   "dashboardPage": {
     "assetsValidated": "Actifs validés"
+  },
+  "panelComponent": {
+    "viewEmbedCode": "Voir le code d'intégration"
   }
 }

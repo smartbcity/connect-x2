@@ -6,3 +6,5 @@ export * from "./components/Page"
 export * from "./components/Panel"
 export * from "./components/Charts"
 export * from './i18n'
+export * from "./ssmComponents/SessionInformations"
+export * from "./ssmComponents/TransactionDetails"

@@ -5,7 +5,9 @@ import { midLevelStyles } from "@smartb/archetypes-ui-themes"
 
 const useStyles = midLevelStyles()({
     icon: {
-        width: "250px",
+        width: "80vw",
+        maxWidth: "250px",
+        maxHeight: "80vh",
         marginBottom: "20px"
     }
 })

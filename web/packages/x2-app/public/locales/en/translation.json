@@ -16,6 +16,7 @@
   "protocolEngineVersion": "Protocol Engine version",
   "transactionId": "Transaction ID",
   "protocolDiagram": "Protocol diagram",
+  "protocolDiagramOf": "{{ssmName}} protocol diagram",
   "publicKey": "Public key",
   "from": "From",
   "to": "To",
@@ -24,8 +25,10 @@
   "year": "Year",
   "all": "All",
   "copyToClipboard": "Copy to clipboard",
+  "preview": "Preview",
   "detailsPage": {
     "sessionInformations": "Session informations",
+    "sessionInformationsOf": "{{sessionName}} session informations",
     "transactionDetails": "Transaction details",
     "transactionsHistory": "Transactions history",
     "transactionDate": "Transaction date",
@@ -41,5 +44,8 @@
   },
   "dashboardPage": {
     "assetsValidated": "Assets Validated"
+  },
+  "panelComponent": {
+    "viewEmbedCode": "View the embed code"
   }
 }

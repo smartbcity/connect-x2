@@ -1,51 +1,17 @@
-import { CodeHighlighter, CopyToClipboard } from "@smartb/archetypes-ui-components";
-import { Panel } from "components"
+import { Panel, TransactionDetails } from "components"
 import { useTranslation } from "react-i18next"
 import { SessionLog } from "ssm";
 import { highLevelStyles } from "@smartb/archetypes-ui-themes";
-import { Box, InputLabel, Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 
 const useStyles = highLevelStyles()({
     panel: {
-        width: "40%",
-        "& pre": {
-            width: "500px",
-            margin: "20px",
-            marginTop: "0px",
-            border: "1px solid #BFC0C3",
-            borderRadius: "4px"
-        }
+        width: "40%"
     },
     body: {
         height: "450px",
         overflow: "auto",
-    },
-    rightTypo: {
-        lineHeight: 1,
-        whiteSpace: "nowrap",
-        maxWidth: "250px",
-        overflow: "hidden",
-        textOverflow: "ellipsis"
-    },
-    box: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        flexShrink: 0,
-        height: "200px",
-        padding: "15px"
-    },
-    descriptionContainer: {
-        display: "inline-flex",
-    },
-    typo: {
-        margin: "15px"
-    },
-    iconButton: {
-        position: "absolute",
-        right: "-44px",
-        top: "-14px"
-    },
+    }
 })
 
 interface DetailsCardProps {
@@ -56,8 +22,15 @@ export const DetailsCard = (props: DetailsCardProps) => {
     const { currentLog } = props
     const { t } = useTranslation()
     const classes = useStyles()
+    const embed = currentLog ? `${window.location.origin}/embed/${currentLog?.state.ssm}/${currentLog?.state.session}/${currentLog?.txId}/details` : undefined
     return (
-        <Panel className={classes.panel} noPadding bodyClassName={classes.body} header={t("detailsPage.transactionDetails")}>
+        <Panel 
+        className={classes.panel} 
+        noPadding 
+        bodyClassName={classes.body} 
+        header={t("detailsPage.transactionDetails")}
+        embedUrl={embed}
+        >
             {currentLog === undefined ? (
                 <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
                     <Typography align="center">
@@ -65,34 +38,7 @@ export const DetailsCard = (props: DetailsCardProps) => {
                     </Typography>
                 </Box>
             ) : (
-                <>
-                    <Box className={classes.descriptionContainer}>
-                        <Box className={classes.box} >
-                            <InputLabel>{t("transactionId")}:</InputLabel>
-                            <InputLabel>{t("detailsPage.transactionDate")}:</InputLabel>
-                            <InputLabel>{t("user")}:</InputLabel>
-                            <InputLabel>{t("from")}:</InputLabel>
-                            <InputLabel>{t("to")}:</InputLabel>
-                            <InputLabel>{t("publicKey")}:</InputLabel>
-                        </Box>
-                        <Box className={classes.box}>
-                            <Box position="relative">
-                                <Typography className={classes.rightTypo}>{currentLog.txId}</Typography>
-                                <CopyToClipboard className={classes.iconButton} value={currentLog.txId} helperText={t("copyToClipboard")}/>
-                            </Box>
-                            <Typography className={classes.rightTypo}>Not yet implemented</Typography>
-                            <Typography className={classes.rightTypo}>Not yet implemented</Typography>
-                            <Typography className={classes.rightTypo}>{currentLog.state.origin.from}</Typography>
-                            <Typography className={classes.rightTypo}>{currentLog.state.origin.to}</Typography>
-                            <Typography className={classes.rightTypo}>Not yet implemented</Typography>
-                        </Box>
-                    </Box>
-                    <Typography className={classes.typo}>{t("detailsPage.transactionPayload")}:</Typography>
-                    <CodeHighlighter object={{
-                        origin: currentLog.state.origin,
-                        public: currentLog.state.public,
-                    }} language="json" />
-                </>
+                <TransactionDetails currentLog={currentLog} />
             )}
         </Panel>
     )

@@ -23,14 +23,16 @@
     "millify": "^3.5.2",
     "i18next": "^19.8.9",
     "react-i18next": "^11.8.7",
-    "@smartb/archetypes-ui-components": "^0.1.41",
-    "@smartb/archetypes-ui-layout": "^0.1.41",
-    "@smartb/archetypes-ui-providers": "^0.1.41",
-    "@smartb/archetypes-ui-s2": "^0.1.41",
+    "@smartb/archetypes-ui-components": "^0.1.42",
+    "@smartb/archetypes-ui-layout": "^0.1.42",
+    "@smartb/archetypes-ui-providers": "^0.1.42",
+    "@smartb/archetypes-ui-s2": "^0.1.42",
+    "@smartb/archetypes-ui-themes": "^0.1.42",
     "clsx": "^1.1.1",
     "react-router-dom": "^5.2.0"
   },
   "dependencies": {
-    "utils": "^1.0.0"
+    "utils": "^1.0.0",
+    "ssm": "^1.0.0"
   }
 }

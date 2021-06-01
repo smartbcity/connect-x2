@@ -2,6 +2,7 @@
 import { Theme, useTheme, midLevelStyles} from '@smartb/archetypes-ui-themes'
 import {Card} from "@smartb/archetypes-ui-components"
 import React from 'react'
+import { EmbedCodeViewer } from '../EmbedCodeViewer'
 
 const useStyles = midLevelStyles<Theme>()({
     root: {
@@ -31,6 +32,16 @@ const useStyles = midLevelStyles<Theme>()({
         padding: 0,
         boxSizing: "border-box",
         width: "100%",
+    },
+    body: {
+        postion: "relative"
+    },
+    embedViewer: {
+        position: "absolute",
+        color:"white",
+        top: "3px",
+        zIndex: 5,
+        right: "10px"
     }
 })
 
@@ -40,14 +51,16 @@ interface PanelProps {
     noPadding?: boolean
     className?: string
     bodyClassName?: string
+    embedUrl?: string
 }
 
 export const Panel = (props: PanelProps) => {
-    const { children, header, noPadding = true, bodyClassName, className } = props
+    const { children, header, noPadding = true, bodyClassName, className, embedUrl } = props
     const theme = useTheme()
     const classes = useStyles(theme)
     return (
-        <Card className={`${classes.root} ${className ?? ""}`} classes={{dividerBar: classes.divider, header: classes.header, body: noPadding ? `${classes.bodyWithNoPadding} ${bodyClassName ?? ""}` : bodyClassName}} header={header} logo="none">
+        <Card className={`${classes.root} ${className ?? ""}`} classes={{dividerBar: classes.divider, header: classes.header, body: noPadding ? `${classes.bodyWithNoPadding} ${bodyClassName ?? ""}` : `${classes.body} ${bodyClassName ?? ""}`}} header={header} logo="none">
+            {embedUrl && <EmbedCodeViewer className={classes.embedViewer} embedUrl={embedUrl}/>}
             {children}
         </Card>
     )
