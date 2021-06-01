@@ -36,7 +36,7 @@ export const SessionInformation = (props: SessionInformationProps) => {
   if (!currentSession) return <NoMatchPage />
 
   return (
-    <Box position="relative" width="100vw" height="100vh">
+    <Box display="flex" flexDirection="column" alignItems="center" position="relative" width="100vw" height="100vh">
       <Typography align="center" className={classes.title} variant="body1">{t("detailsPage.sessionInformationsOf", {sessionName: currentSession.session})}</Typography>
       <SessionInformations currentSession={currentSession} minified  />
     </Box>

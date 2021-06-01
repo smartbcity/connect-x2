@@ -13,7 +13,8 @@ const useStyles = midLevelStyles()({
         width: "max-content",
         "& pre": {
             maxWidth: "500px",
-            width: "80vw",
+            margin: 0,
+            width: "calc(100vw - 60px)",
             border: "1px solid #BFC0C3",
             borderRadius: "4px"
         }
