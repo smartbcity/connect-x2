@@ -28,6 +28,7 @@
   "preview": "Apperçu",
   "detailsPage": {
     "sessionInformations": "Informations sur la session",
+    "sessionInformationsOf": "Informations sur la session {{sessionName}}",
     "transactionDetails": "Détails de la transaction",
     "transactionsHistory": "Historique des transactions",
     "transactionDate": "Date de la transaction",

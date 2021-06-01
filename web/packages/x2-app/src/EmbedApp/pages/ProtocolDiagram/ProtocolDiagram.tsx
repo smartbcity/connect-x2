@@ -14,7 +14,7 @@ const useStyles = highLevelStyles()({
   },
   title: {
     position: "absolute",
-    color: "#676879",
+    color: "#808A9D",
     zIndex: 1,
     top: 10,
     left: 10

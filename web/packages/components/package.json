@@ -32,6 +32,7 @@
     "react-router-dom": "^5.2.0"
   },
   "dependencies": {
-    "utils": "^1.0.0"
+    "utils": "^1.0.0",
+    "ssm": "^1.0.0"
   }
 }

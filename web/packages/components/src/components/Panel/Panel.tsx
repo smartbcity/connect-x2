@@ -40,7 +40,7 @@ const useStyles = midLevelStyles<Theme>()({
         position: "absolute",
         color:"white",
         top: "3px",
-        zIndex: 1,
+        zIndex: 5,
         right: "10px"
     }
 })
