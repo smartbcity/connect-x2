@@ -1,0 +1,19 @@
+{
+  "name": "x2-ssm-domain",
+  "version": "0.0.0-latest",
+  "main": "kotlin/x2-ssm-domain.js",
+  "devDependencies": {
+    "dukat": "0.5.8-rc.3",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12",
+    "source-map-loader": "1.1.0"
+  },
+  "dependencies": {
+    "kotlin": "file:/Users/luc/Bazar/fixers/x2/build/js/packages_imported/kotlin/1.4.31",
+    "kotlin-test-js-runner": "file:/Users/luc/Bazar/fixers/x2/build/js/packages_imported/kotlin-test-js-runner/1.4.31",
+    "kotlin-test": "file:/Users/luc/Bazar/fixers/x2/build/js/packages_imported/kotlin-test/1.4.31"
+  },
+  "peerDependencies": {},
+  "optionalDependencies": {},
+  "bundledDependencies": []
+}

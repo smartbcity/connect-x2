@@ -149,4 +149,16 @@ tasks {
 		args = listOf("storybook")
 	}
 
+	register("cleanTsGen", Delete::class) {
+		delete("tmp")
+	}
+
+	register("tsGen",  Copy::class) {
+		dependsOn("cleanTsGen")
+		from("${this.project.buildDir.absolutePath}/js/packages/") {
+			exclude("*-test")
+		}
+		into("web/kotlin")
+		includeEmptyDirs = false
+	}
 }
