@@ -4,6 +4,7 @@ import { Tooltip, Popover, CodeHighlighter } from '@smartb/archetypes-ui-compone
 import { midLevelStyles, Theme, useTheme } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 import React, { useCallback, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 
 const getEmbedString = (embedUrl: string) => `<iframe 
@@ -44,6 +45,7 @@ interface EmbedCodeViewerProps {
 
 export const EmbedCodeViewer = (props: EmbedCodeViewerProps) => {
     const { embedUrl, className } = props
+    const {t} = useTranslation()
     const [anchor, setanchor] = useState<HTMLElement | undefined>(undefined)
     const theme = useTheme()
     const classes = useStyles(theme)
@@ -64,7 +66,7 @@ export const EmbedCodeViewer = (props: EmbedCodeViewerProps) => {
 
     return (
         <>
-            <Tooltip helperText="View the embed code">
+            <Tooltip helperText={t("panelComponent.viewEmbedCode")}>
                 <IconButton className={clsx(className, classes.button)} onClick={onClick}>
                     <CodeRounded className={classes.icon} />
                 </IconButton>
@@ -72,7 +74,7 @@ export const EmbedCodeViewer = (props: EmbedCodeViewerProps) => {
             <Popover className={classes.popover} open={!!anchor} anchorEl={anchor} closeOnClickAway onClose={onClose}>
                 <Box display="flex" width="100%" height="100%" flexDirection="column">
                     <CodeHighlighter language="html" code={embedString} />
-                    <Typography variant="body2">Result:</Typography>
+                    <Typography variant="body2">{t("preview")}:</Typography>
                     <iframe
                         className={classes.ifram}
                         src={embedUrl}

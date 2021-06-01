@@ -25,6 +25,7 @@
   "year": "Year",
   "all": "All",
   "copyToClipboard": "Copy to clipboard",
+  "preview": "Preview",
   "detailsPage": {
     "sessionInformations": "Session informations",
     "transactionDetails": "Transaction details",
@@ -42,5 +43,8 @@
   },
   "dashboardPage": {
     "assetsValidated": "Assets Validated"
+  },
+  "panelComponent": {
+    "viewEmbedCode": "View the embed code"
   }
 }

@@ -25,6 +25,7 @@
   "year": "Année",
   "all": "Tout",
   "copyToClipboard": "Copier dans le presse-papier",
+  "preview": "Apperçu",
   "detailsPage": {
     "sessionInformations": "Informations sur la session",
     "transactionDetails": "Détails de la transaction",
@@ -42,5 +43,8 @@
   },
   "dashboardPage": {
     "assetsValidated": "Actifs validés"
+  },
+  "panelComponent": {
+    "viewEmbedCode": "Voir le code d'intégration"
   }
 }
