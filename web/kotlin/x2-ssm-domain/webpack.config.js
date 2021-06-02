@@ -13,11 +13,11 @@ let config = {
 
 // entry
 config.entry = {
-    main: ["/Users/luc/Bazar/fixers/x2/build/js/packages/x2-ssm-domain/kotlin/x2-ssm-domain.js"]
+    main: ["C:\\Users\\james\\OneDrive\\Documents\\smartb\\x2\\build\\js\\packages\\x2-ssm-domain\\kotlin\\x2-ssm-domain.js"]
 };
 
 config.output = {
-    path: "/Users/luc/Bazar/fixers/x2/api/ssm/ssm-domain/build/distributions",
+    path: "C:\\Users\\james\\OneDrive\\Documents\\smartb\\x2\\api\\ssm\\ssm-domain\\build\\distributions",
     filename: (chunkData) => {
         return chunkData.chunk.name === 'main'
             ? "ssm-domain.js"
@@ -47,7 +47,7 @@ Object.assign(config.stats, config.stats, {
     const handler = (percentage, message, ...args) => {
         const p = percentage * 100;
         let msg = `${Math.trunc(p / 10)}${Math.trunc(p % 10)}% ${message} ${args.join(' ')}`;
-        msg = msg.replace(new RegExp("/Users/luc/Bazar/fixers/x2/build/js", 'g'), '');;
+        msg = msg.replace(new RegExp("C:\\Users\\james\\OneDrive\\Documents\\smartb\\x2\\build\\js", 'g'), '');;
         console.log(msg);
     };
 
@@ -69,7 +69,7 @@ Object.assign(config.stats, config.stats, {
     const util = require('util');
     const fs = require('fs');
     const evaluatedConfig = util.inspect(config, {showHidden: false, depth: null, compact: false});
-    fs.writeFile("/Users/luc/Bazar/fixers/x2/api/ssm/ssm-domain/build/reports/webpack/x2-ssm-domain/webpack.config.evaluated.js", evaluatedConfig, function (err) {});
+    fs.writeFile("C:\\Users\\james\\OneDrive\\Documents\\smartb\\x2\\api\\ssm\\ssm-domain\\build\\reports\\webpack\\x2-ssm-domain\\webpack.config.evaluated.js", evaluatedConfig, function (err) {});
 })(config);
 
 module.exports = config
