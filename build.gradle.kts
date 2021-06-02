@@ -150,10 +150,10 @@ tasks {
 	}
 
 	register("cleanTsGen", Delete::class) {
-		delete("tmp")
+		delete("web/kotlin")
 	}
 
-	register("tsGen",  Copy::class) {
+	register("tsGen", Copy::class) {
 		dependsOn("cleanTsGen")
 		from("${this.project.buildDir.absolutePath}/js/packages/") {
 			exclude("*-test")
