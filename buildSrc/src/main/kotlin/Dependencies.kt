@@ -31,7 +31,7 @@ object Versions {
 	const val junit = "5.7.0"
 	const val assertj = "3.15.0"
 
-	const val ssm = "0.1.0-SNAPSHOT"
+	const val ssm = "experimental-SNAPSHOT"
 	const val vc = "0.1.0-SNAPSHOT"
 	const val iris = "0.1.0-SNAPSHOT"
 	const val f2 = "0.1.0-SNAPSHOT"
