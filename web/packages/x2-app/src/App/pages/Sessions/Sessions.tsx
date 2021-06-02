@@ -1,10 +1,12 @@
 import { Box } from "@material-ui/core";
+import { NoMatchPage } from "@smartb/archetypes-ui-providers";
 import { highLevelStyles } from "@smartb/archetypes-ui-themes";
 import { Page } from "components";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import { SSM } from "ssm";
+import { SSM, SSMRequester } from "ssm";
+import { useAsync } from "utils";
 import { ProtocolCard } from "./components/ProtocolCard";
 import { SessionNumberCard } from "./components/SessionNumberCard";
 import { SessionTable } from "./components/SessionTable";
@@ -14,7 +16,7 @@ const useStyles = highLevelStyles()({
   container: {
     display: "flex",
     alignItems: "flex-start",
-    overflow:'auto',
+    overflow: 'auto',
     '@media (min-width:1500px)': {
       justifyContent: "space-around",
     },
@@ -37,7 +39,17 @@ export const Sessions = (props: SessionsProps) => {
   const classes = useStyles()
   const currentSSM = useMemo(() => ssmList.get(ssmName), [ssmList, ssmName])
 
+  const fetchSSMSessions = useCallback(
+    async () => {
+      return SSMRequester.fetchSessions(currentSSM?.name)
+    },
+    [currentSSM],
+  )
 
+  const { result } = useAsync(fetchSSMSessions)
+
+
+  if (!currentSSM) return <NoMatchPage />
   return (
     <Page
       setTitle={setTitle}
@@ -48,7 +60,7 @@ export const Sessions = (props: SessionsProps) => {
         <SessionNumberCard />
         <ProtocolCard currentSSM={currentSSM} />
       </Box>
-      <SessionTable gotoSessionDetails={gotoSessionDetails} currentSSM={currentSSM} />
+      <SessionTable sessions={result} gotoSessionDetails={gotoSessionDetails} currentSSM={currentSSM} />
     </Page>
   );
 };

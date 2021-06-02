@@ -1,5 +1,5 @@
 window._env_ = {
-  COOP_URL: "https://axesspoc.smartb.city/bclan",
+  COOP_URL: "http://localhost:8082",
   PROTOCOLS: [/* "account", "Delivery", "MobilityImpactSsm", "Negociation" */],
   // KEYCLOAK_CLIENTID: "plateform-web",
   // KEYCLOAK_REALM: "server",

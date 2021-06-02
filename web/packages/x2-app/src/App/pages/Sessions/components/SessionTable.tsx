@@ -3,7 +3,7 @@ import { Box, Typography } from '@material-ui/core'
 import { useTranslation, TFunction } from 'react-i18next'
 import { useCallback, useMemo, useState } from 'react'
 import { highLevelStyles } from '@smartb/archetypes-ui-themes'
-import { SSM } from 'ssm'
+import { Session, SSM } from 'ssm'
 
 const useStyles = highLevelStyles()({
     container: {
@@ -37,29 +37,30 @@ interface SessionColumn {
 }
 
 interface SessionTableProps {
-    currentSSM?: SSM
+    sessions?: Session[]
+    currentSSM: SSM
     gotoSessionDetails: (ssmName: string, sessionName: any) => void
 }
 
 export const SessionTable = (props: SessionTableProps) => {
-    const { currentSSM, gotoSessionDetails } = props
+    const { sessions, currentSSM, gotoSessionDetails } = props
     const { t } = useTranslation()
     const [page, setPage] = useState(1)
     const classes = useStyles()
     const data: SessionColumn[] = useMemo(() => {
-        if (!currentSSM || currentSSM.sessions.length === 0) return []
-        return currentSSM.sessions.map((session): SessionColumn => ({
-            id: session.session,
-            creationDate: "Not yet implemented",
-            channel: "Not yet implemented",
-            protocolEngine: session.ssm,
+        if (!sessions) return []
+        return sessions.map((session): SessionColumn => ({
+            id: session.id,
+            creationDate: session.creationDate,
+            channel: session.channel,
+            protocolEngine: currentSSM?.name,
             completedStep: {
-                date: "Not yet implemented",
-                status: session.current.toLocaleString(),
-                user: "Not yet implemented",
+                date: session.currentStep.date,
+                status: session.currentStep.id.toLocaleString(),
+                user: session.currentStep.user,
             }
         }))
-    }, [currentSSM])
+    }, [sessions, currentSSM])
 
     const pagination: { totalPage: number, pageData: SessionColumn[] } = useMemo(() => {
         const pageData = data.slice((page - 1) * 10, ((page - 1) * 10) + 10)

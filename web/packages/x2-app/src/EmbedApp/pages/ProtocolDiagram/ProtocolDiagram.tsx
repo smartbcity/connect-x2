@@ -5,7 +5,7 @@ import { highLevelStyles } from "@smartb/archetypes-ui-themes";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import { SSM } from "ssm";
+import { SSM, Transition } from "ssm";
 
 const useStyles = highLevelStyles()({
   viewer: {
@@ -31,7 +31,7 @@ export const ProtocolDiagram = (props: ProtocolDiagramProps) => {
   const classes = useStyles()
   const { ssmName } = useParams<{ ssmName: string }>();
   const currentSSM = useMemo(() => ssmList.get(ssmName), [ssmList, ssmName])
-  const transitions = useMemo(() => currentSSM ? currentSSM.transitions.map((transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
+  const transitions = useMemo(() => currentSSM ? currentSSM.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
 
   if (!currentSSM) return <NoMatchPage />
 
