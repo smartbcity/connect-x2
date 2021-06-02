@@ -17,3 +17,7 @@ include(
 	"api:ssm:ssm-api",
 	"api:ssm:ssm-domain"
 )
+
+include(
+	"api:api-infra:i2"
+)
