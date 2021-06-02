@@ -5,7 +5,8 @@
   "license": "none",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "kotlin/*"
   ],
   "npmClient": "yarn",
   "useWorkspaces": true
