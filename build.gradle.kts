@@ -52,6 +52,11 @@ subprojects {
 						}
 					}
 				}
+				compilations["main"].packageJson {
+					dependencies.remove("kotlin-test-js-runner")
+					dependencies.remove("kotlin-test")
+					dependencies.remove("kotlin")
+				}
 			}
 			sourceSets {
 				val commonMain by getting {
