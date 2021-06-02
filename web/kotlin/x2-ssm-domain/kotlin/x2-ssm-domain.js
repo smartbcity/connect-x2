@@ -2293,7 +2293,7 @@
   ErrorBase_0.prototype._get_description__0 = function () {
     return this._description;
   };
-  ErrorBase_0.prototype._get_date__4 = function () {
+  ErrorBase_0.prototype._get_date__2 = function () {
     return this._date;
   };
   ErrorBase_0.prototype._get_payload__0 = function () {
@@ -2317,7 +2317,7 @@
   });
   Object.defineProperty(ErrorBase_0.prototype, 'date', {
     configurable: true,
-    get: ErrorBase_0.prototype._get_date__4
+    get: ErrorBase_0.prototype._get_date__2
   });
   Object.defineProperty(ErrorBase_0.prototype, 'payload', {
     configurable: true,
@@ -2395,7 +2395,7 @@
     this._error = error;
     captureStack(this, S2Exception);
   }
-  S2Exception.prototype._get_id__5 = function () {
+  S2Exception.prototype._get_id__3 = function () {
     return this._id;
   };
   S2Exception.prototype._get_error_ = function () {
@@ -2408,7 +2408,7 @@
   };
   Object.defineProperty(S2Exception.prototype, 'id', {
     configurable: true,
-    get: S2Exception.prototype._get_id__5
+    get: S2Exception.prototype._get_id__3
   });
   Object.defineProperty(S2Exception.prototype, 'error', {
     configurable: true,
@@ -2682,7 +2682,7 @@
     this._iteration_0 = iteration;
     this._credits = credits;
   }
-  SsmGrant.prototype._get_user__2 = function () {
+  SsmGrant.prototype._get_user__0 = function () {
     return this._user;
   };
   SsmGrant.prototype._get_iteration__1 = function () {
@@ -2744,7 +2744,7 @@
   };
   Object.defineProperty(SsmGrant.prototype, 'user', {
     configurable: true,
-    get: SsmGrant.prototype._get_user__2
+    get: SsmGrant.prototype._get_user__0
   });
   Object.defineProperty(SsmGrant.prototype, 'iteration', {
     configurable: true,
@@ -3198,16 +3198,16 @@
     this._bearerToken = bearerToken;
     this._name_1 = name;
   }
-  SsmGetAdminQuery_0.prototype._get_baseUrl__10 = function () {
+  SsmGetAdminQuery_0.prototype._get_baseUrl__12 = function () {
     return this._baseUrl;
   };
-  SsmGetAdminQuery_0.prototype._get_channelId__10 = function () {
+  SsmGetAdminQuery_0.prototype._get_channelId__12 = function () {
     return this._channelId;
   };
-  SsmGetAdminQuery_0.prototype._get_chaincodeId__10 = function () {
+  SsmGetAdminQuery_0.prototype._get_chaincodeId__12 = function () {
     return this._chaincodeId;
   };
-  SsmGetAdminQuery_0.prototype._get_bearerToken__10 = function () {
+  SsmGetAdminQuery_0.prototype._get_bearerToken__12 = function () {
     return this._bearerToken;
   };
   SsmGetAdminQuery_0.prototype._get_name__8 = function () {
@@ -3220,19 +3220,19 @@
   };
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_baseUrl__10
+    get: SsmGetAdminQuery_0.prototype._get_baseUrl__12
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_channelId__10
+    get: SsmGetAdminQuery_0.prototype._get_channelId__12
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_chaincodeId__10
+    get: SsmGetAdminQuery_0.prototype._get_chaincodeId__12
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_bearerToken__10
+    get: SsmGetAdminQuery_0.prototype._get_bearerToken__12
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'name', {
     configurable: true,
@@ -3270,16 +3270,16 @@
     this._chaincodeId_0 = chaincodeId;
     this._bearerToken_0 = bearerToken;
   }
-  SsmGetBlockQuery_0.prototype._get_baseUrl__10 = function () {
+  SsmGetBlockQuery_0.prototype._get_baseUrl__12 = function () {
     return this._baseUrl_0;
   };
-  SsmGetBlockQuery_0.prototype._get_channelId__10 = function () {
+  SsmGetBlockQuery_0.prototype._get_channelId__12 = function () {
     return this._channelId_0;
   };
-  SsmGetBlockQuery_0.prototype._get_chaincodeId__10 = function () {
+  SsmGetBlockQuery_0.prototype._get_chaincodeId__12 = function () {
     return this._chaincodeId_0;
   };
-  SsmGetBlockQuery_0.prototype._get_bearerToken__10 = function () {
+  SsmGetBlockQuery_0.prototype._get_bearerToken__12 = function () {
     return this._bearerToken_0;
   };
   SsmGetBlockQuery_0.$metadata$ = {
@@ -3289,19 +3289,19 @@
   };
   Object.defineProperty(SsmGetBlockQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_baseUrl__10
+    get: SsmGetBlockQuery_0.prototype._get_baseUrl__12
   });
   Object.defineProperty(SsmGetBlockQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_channelId__10
+    get: SsmGetBlockQuery_0.prototype._get_channelId__12
   });
   Object.defineProperty(SsmGetBlockQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_chaincodeId__10
+    get: SsmGetBlockQuery_0.prototype._get_chaincodeId__12
   });
   Object.defineProperty(SsmGetBlockQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_bearerToken__10
+    get: SsmGetBlockQuery_0.prototype._get_bearerToken__12
   });
   function SsmGetBlockResult_0() {
   }
@@ -3326,16 +3326,16 @@
     this._bearerToken_1 = bearerToken;
     this._name_2 = name;
   }
-  SsmGetQuery_0.prototype._get_baseUrl__10 = function () {
+  SsmGetQuery_0.prototype._get_baseUrl__12 = function () {
     return this._baseUrl_1;
   };
-  SsmGetQuery_0.prototype._get_channelId__10 = function () {
+  SsmGetQuery_0.prototype._get_channelId__12 = function () {
     return this._channelId_1;
   };
-  SsmGetQuery_0.prototype._get_chaincodeId__10 = function () {
+  SsmGetQuery_0.prototype._get_chaincodeId__12 = function () {
     return this._chaincodeId_1;
   };
-  SsmGetQuery_0.prototype._get_bearerToken__10 = function () {
+  SsmGetQuery_0.prototype._get_bearerToken__12 = function () {
     return this._bearerToken_1;
   };
   SsmGetQuery_0.prototype._get_name__8 = function () {
@@ -3348,19 +3348,19 @@
   };
   Object.defineProperty(SsmGetQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_baseUrl__10
+    get: SsmGetQuery_0.prototype._get_baseUrl__12
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_channelId__10
+    get: SsmGetQuery_0.prototype._get_channelId__12
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_chaincodeId__10
+    get: SsmGetQuery_0.prototype._get_chaincodeId__12
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_bearerToken__10
+    get: SsmGetQuery_0.prototype._get_bearerToken__12
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'name', {
     configurable: true,
@@ -3381,67 +3381,75 @@
     configurable: true,
     get: SsmGetResult_0.prototype._get_ssm__3
   });
-  function SsmGetSessionLastTransactionQuery_0(session, baseUrl, channelId, chaincodeId, bearerToken) {
+  function SsmGetSessionFirstAndLastTransactionQuery_0(session, baseUrl, channelId, chaincodeId, bearerToken) {
     this._session_2 = session;
     this._baseUrl_2 = baseUrl;
     this._channelId_2 = channelId;
     this._chaincodeId_2 = chaincodeId;
     this._bearerToken_2 = bearerToken;
   }
-  SsmGetSessionLastTransactionQuery_0.prototype._get_session__4 = function () {
+  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_session__4 = function () {
     return this._session_2;
   };
-  SsmGetSessionLastTransactionQuery_0.prototype._get_baseUrl__10 = function () {
+  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_baseUrl__12 = function () {
     return this._baseUrl_2;
   };
-  SsmGetSessionLastTransactionQuery_0.prototype._get_channelId__10 = function () {
+  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_channelId__12 = function () {
     return this._channelId_2;
   };
-  SsmGetSessionLastTransactionQuery_0.prototype._get_chaincodeId__10 = function () {
+  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_chaincodeId__12 = function () {
     return this._chaincodeId_2;
   };
-  SsmGetSessionLastTransactionQuery_0.prototype._get_bearerToken__10 = function () {
+  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_bearerToken__12 = function () {
     return this._bearerToken_2;
   };
-  SsmGetSessionLastTransactionQuery_0.$metadata$ = {
-    simpleName: 'SsmGetSessionLastTransactionQuery',
+  SsmGetSessionFirstAndLastTransactionQuery_0.$metadata$ = {
+    simpleName: 'SsmGetSessionFirstAndLastTransactionQuery',
     kind: 'class',
     interfaces: [SsmCommand_0]
   };
-  Object.defineProperty(SsmGetSessionLastTransactionQuery_0.prototype, 'session', {
+  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'session', {
     configurable: true,
-    get: SsmGetSessionLastTransactionQuery_0.prototype._get_session__4
+    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_session__4
   });
-  Object.defineProperty(SsmGetSessionLastTransactionQuery_0.prototype, 'baseUrl', {
+  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetSessionLastTransactionQuery_0.prototype._get_baseUrl__10
+    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_baseUrl__12
   });
-  Object.defineProperty(SsmGetSessionLastTransactionQuery_0.prototype, 'channelId', {
+  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetSessionLastTransactionQuery_0.prototype._get_channelId__10
+    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_channelId__12
   });
-  Object.defineProperty(SsmGetSessionLastTransactionQuery_0.prototype, 'chaincodeId', {
+  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetSessionLastTransactionQuery_0.prototype._get_chaincodeId__10
+    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_chaincodeId__12
   });
-  Object.defineProperty(SsmGetSessionLastTransactionQuery_0.prototype, 'bearerToken', {
+  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetSessionLastTransactionQuery_0.prototype._get_bearerToken__10
+    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_bearerToken__12
   });
-  function SsmGetSessionLastTransactionQueryResult_0(transaction) {
-    this._transaction = transaction;
+  function SsmGetSessionFirstAndLastTransactionQueryResult_0(firstTransaction, lastTransaction) {
+    this._firstTransaction = firstTransaction;
+    this._lastTransaction = lastTransaction;
   }
-  SsmGetSessionLastTransactionQueryResult_0.prototype._get_transaction_ = function () {
-    return this._transaction;
+  SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype._get_firstTransaction_ = function () {
+    return this._firstTransaction;
   };
-  SsmGetSessionLastTransactionQueryResult_0.$metadata$ = {
-    simpleName: 'SsmGetSessionLastTransactionQueryResult',
+  SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype._get_lastTransaction__1 = function () {
+    return this._lastTransaction;
+  };
+  SsmGetSessionFirstAndLastTransactionQueryResult_0.$metadata$ = {
+    simpleName: 'SsmGetSessionFirstAndLastTransactionQueryResult',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmGetSessionLastTransactionQueryResult_0.prototype, 'transaction', {
+  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype, 'firstTransaction', {
     configurable: true,
-    get: SsmGetSessionLastTransactionQueryResult_0.prototype._get_transaction_
+    get: SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype._get_firstTransaction_
+  });
+  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype, 'lastTransaction', {
+    configurable: true,
+    get: SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype._get_lastTransaction__1
   });
   function SsmGetSessionLogsQuery_0(session, baseUrl, channelId, chaincodeId, bearerToken) {
     this._session_3 = session;
@@ -3453,16 +3461,16 @@
   SsmGetSessionLogsQuery_0.prototype._get_session__4 = function () {
     return this._session_3;
   };
-  SsmGetSessionLogsQuery_0.prototype._get_baseUrl__10 = function () {
+  SsmGetSessionLogsQuery_0.prototype._get_baseUrl__12 = function () {
     return this._baseUrl_3;
   };
-  SsmGetSessionLogsQuery_0.prototype._get_channelId__10 = function () {
+  SsmGetSessionLogsQuery_0.prototype._get_channelId__12 = function () {
     return this._channelId_3;
   };
-  SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__10 = function () {
+  SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__12 = function () {
     return this._chaincodeId_3;
   };
-  SsmGetSessionLogsQuery_0.prototype._get_bearerToken__10 = function () {
+  SsmGetSessionLogsQuery_0.prototype._get_bearerToken__12 = function () {
     return this._bearerToken_3;
   };
   SsmGetSessionLogsQuery_0.$metadata$ = {
@@ -3476,19 +3484,19 @@
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_baseUrl__10
+    get: SsmGetSessionLogsQuery_0.prototype._get_baseUrl__12
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_channelId__10
+    get: SsmGetSessionLogsQuery_0.prototype._get_channelId__12
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__10
+    get: SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__12
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_bearerToken__10
+    get: SsmGetSessionLogsQuery_0.prototype._get_bearerToken__12
   });
   function SsmGetSessionLogsQueryResult_0(logs) {
     this._logs = logs;
@@ -3550,16 +3558,16 @@
     this._bearerToken_4 = bearerToken;
     this._name_3 = name;
   }
-  SsmGetSessionQuery_0.prototype._get_baseUrl__10 = function () {
+  SsmGetSessionQuery_0.prototype._get_baseUrl__12 = function () {
     return this._baseUrl_4;
   };
-  SsmGetSessionQuery_0.prototype._get_channelId__10 = function () {
+  SsmGetSessionQuery_0.prototype._get_channelId__12 = function () {
     return this._channelId_4;
   };
-  SsmGetSessionQuery_0.prototype._get_chaincodeId__10 = function () {
+  SsmGetSessionQuery_0.prototype._get_chaincodeId__12 = function () {
     return this._chaincodeId_4;
   };
-  SsmGetSessionQuery_0.prototype._get_bearerToken__10 = function () {
+  SsmGetSessionQuery_0.prototype._get_bearerToken__12 = function () {
     return this._bearerToken_4;
   };
   SsmGetSessionQuery_0.prototype._get_name__8 = function () {
@@ -3572,19 +3580,19 @@
   };
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_baseUrl__10
+    get: SsmGetSessionQuery_0.prototype._get_baseUrl__12
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_channelId__10
+    get: SsmGetSessionQuery_0.prototype._get_channelId__12
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_chaincodeId__10
+    get: SsmGetSessionQuery_0.prototype._get_chaincodeId__12
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_bearerToken__10
+    get: SsmGetSessionQuery_0.prototype._get_bearerToken__12
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'name', {
     configurable: true,
@@ -3621,16 +3629,16 @@
     this._bearerToken_5 = bearerToken;
     this._name_4 = name;
   }
-  SsmGetUserQuery_0.prototype._get_baseUrl__10 = function () {
+  SsmGetUserQuery_0.prototype._get_baseUrl__12 = function () {
     return this._baseUrl_5;
   };
-  SsmGetUserQuery_0.prototype._get_channelId__10 = function () {
+  SsmGetUserQuery_0.prototype._get_channelId__12 = function () {
     return this._channelId_5;
   };
-  SsmGetUserQuery_0.prototype._get_chaincodeId__10 = function () {
+  SsmGetUserQuery_0.prototype._get_chaincodeId__12 = function () {
     return this._chaincodeId_5;
   };
-  SsmGetUserQuery_0.prototype._get_bearerToken__10 = function () {
+  SsmGetUserQuery_0.prototype._get_bearerToken__12 = function () {
     return this._bearerToken_5;
   };
   SsmGetUserQuery_0.prototype._get_name__8 = function () {
@@ -3643,19 +3651,19 @@
   };
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_baseUrl__10
+    get: SsmGetUserQuery_0.prototype._get_baseUrl__12
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_channelId__10
+    get: SsmGetUserQuery_0.prototype._get_channelId__12
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_chaincodeId__10
+    get: SsmGetUserQuery_0.prototype._get_chaincodeId__12
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_bearerToken__10
+    get: SsmGetUserQuery_0.prototype._get_bearerToken__12
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'name', {
     configurable: true,
@@ -3664,7 +3672,7 @@
   function SsmGetUserResult_0(user) {
     this._user_0 = user;
   }
-  SsmGetUserResult_0.prototype._get_user__2 = function () {
+  SsmGetUserResult_0.prototype._get_user__0 = function () {
     return this._user_0;
   };
   SsmGetUserResult_0.$metadata$ = {
@@ -3674,7 +3682,7 @@
   };
   Object.defineProperty(SsmGetUserResult_0.prototype, 'user', {
     configurable: true,
-    get: SsmGetUserResult_0.prototype._get_user__2
+    get: SsmGetUserResult_0.prototype._get_user__0
   });
   function SsmListAdminQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, $this) {
     if (!(($mask0 & 8) === 0))
@@ -3691,16 +3699,16 @@
     this._chaincodeId_6 = chaincodeId;
     this._bearerToken_6 = bearerToken;
   }
-  SsmListAdminQuery_0.prototype._get_baseUrl__10 = function () {
+  SsmListAdminQuery_0.prototype._get_baseUrl__12 = function () {
     return this._baseUrl_6;
   };
-  SsmListAdminQuery_0.prototype._get_channelId__10 = function () {
+  SsmListAdminQuery_0.prototype._get_channelId__12 = function () {
     return this._channelId_6;
   };
-  SsmListAdminQuery_0.prototype._get_chaincodeId__10 = function () {
+  SsmListAdminQuery_0.prototype._get_chaincodeId__12 = function () {
     return this._chaincodeId_6;
   };
-  SsmListAdminQuery_0.prototype._get_bearerToken__10 = function () {
+  SsmListAdminQuery_0.prototype._get_bearerToken__12 = function () {
     return this._bearerToken_6;
   };
   SsmListAdminQuery_0.$metadata$ = {
@@ -3710,19 +3718,19 @@
   };
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_baseUrl__10
+    get: SsmListAdminQuery_0.prototype._get_baseUrl__12
   });
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_channelId__10
+    get: SsmListAdminQuery_0.prototype._get_channelId__12
   });
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_chaincodeId__10
+    get: SsmListAdminQuery_0.prototype._get_chaincodeId__12
   });
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_bearerToken__10
+    get: SsmListAdminQuery_0.prototype._get_bearerToken__12
   });
   function SsmListAdminResult_0(values) {
     this._values = values;
@@ -3754,16 +3762,16 @@
     this._chaincodeId_7 = chaincodeId;
     this._bearerToken_7 = bearerToken;
   }
-  SsmListSessionQuery_0.prototype._get_baseUrl__10 = function () {
+  SsmListSessionQuery_0.prototype._get_baseUrl__12 = function () {
     return this._baseUrl_7;
   };
-  SsmListSessionQuery_0.prototype._get_channelId__10 = function () {
+  SsmListSessionQuery_0.prototype._get_channelId__12 = function () {
     return this._channelId_7;
   };
-  SsmListSessionQuery_0.prototype._get_chaincodeId__10 = function () {
+  SsmListSessionQuery_0.prototype._get_chaincodeId__12 = function () {
     return this._chaincodeId_7;
   };
-  SsmListSessionQuery_0.prototype._get_bearerToken__10 = function () {
+  SsmListSessionQuery_0.prototype._get_bearerToken__12 = function () {
     return this._bearerToken_7;
   };
   SsmListSessionQuery_0.$metadata$ = {
@@ -3773,19 +3781,19 @@
   };
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_baseUrl__10
+    get: SsmListSessionQuery_0.prototype._get_baseUrl__12
   });
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_channelId__10
+    get: SsmListSessionQuery_0.prototype._get_channelId__12
   });
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_chaincodeId__10
+    get: SsmListSessionQuery_0.prototype._get_chaincodeId__12
   });
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_bearerToken__10
+    get: SsmListSessionQuery_0.prototype._get_bearerToken__12
   });
   function SsmListSessionResult_0(values) {
     this._values_0 = values;
@@ -3817,16 +3825,16 @@
     this._chaincodeId_8 = chaincodeId;
     this._bearerToken_8 = bearerToken;
   }
-  SsmListSsmQuery_0.prototype._get_baseUrl__10 = function () {
+  SsmListSsmQuery_0.prototype._get_baseUrl__12 = function () {
     return this._baseUrl_8;
   };
-  SsmListSsmQuery_0.prototype._get_channelId__10 = function () {
+  SsmListSsmQuery_0.prototype._get_channelId__12 = function () {
     return this._channelId_8;
   };
-  SsmListSsmQuery_0.prototype._get_chaincodeId__10 = function () {
+  SsmListSsmQuery_0.prototype._get_chaincodeId__12 = function () {
     return this._chaincodeId_8;
   };
-  SsmListSsmQuery_0.prototype._get_bearerToken__10 = function () {
+  SsmListSsmQuery_0.prototype._get_bearerToken__12 = function () {
     return this._bearerToken_8;
   };
   SsmListSsmQuery_0.$metadata$ = {
@@ -3836,19 +3844,19 @@
   };
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_baseUrl__10
+    get: SsmListSsmQuery_0.prototype._get_baseUrl__12
   });
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_channelId__10
+    get: SsmListSsmQuery_0.prototype._get_channelId__12
   });
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_chaincodeId__10
+    get: SsmListSsmQuery_0.prototype._get_chaincodeId__12
   });
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_bearerToken__10
+    get: SsmListSsmQuery_0.prototype._get_bearerToken__12
   });
   function SsmListSsmResult_0(values) {
     this._values_1 = values;
@@ -3880,16 +3888,16 @@
     this._chaincodeId_9 = chaincodeId;
     this._bearerToken_9 = bearerToken;
   }
-  SsmListUserQuery_0.prototype._get_baseUrl__10 = function () {
+  SsmListUserQuery_0.prototype._get_baseUrl__12 = function () {
     return this._baseUrl_9;
   };
-  SsmListUserQuery_0.prototype._get_channelId__10 = function () {
+  SsmListUserQuery_0.prototype._get_channelId__12 = function () {
     return this._channelId_9;
   };
-  SsmListUserQuery_0.prototype._get_chaincodeId__10 = function () {
+  SsmListUserQuery_0.prototype._get_chaincodeId__12 = function () {
     return this._chaincodeId_9;
   };
-  SsmListUserQuery_0.prototype._get_bearerToken__10 = function () {
+  SsmListUserQuery_0.prototype._get_bearerToken__12 = function () {
     return this._bearerToken_9;
   };
   SsmListUserQuery_0.$metadata$ = {
@@ -3899,19 +3907,19 @@
   };
   Object.defineProperty(SsmListUserQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_baseUrl__10
+    get: SsmListUserQuery_0.prototype._get_baseUrl__12
   });
   Object.defineProperty(SsmListUserQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_channelId__10
+    get: SsmListUserQuery_0.prototype._get_channelId__12
   });
   Object.defineProperty(SsmListUserQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_chaincodeId__10
+    get: SsmListUserQuery_0.prototype._get_chaincodeId__12
   });
   Object.defineProperty(SsmListUserQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_bearerToken__10
+    get: SsmListUserQuery_0.prototype._get_bearerToken__12
   });
   function SsmListUserResult_0(values) {
     this._values_2 = values;
@@ -3973,13 +3981,13 @@
     kind: 'interface',
     interfaces: []
   };
-  function SsmSessionBase_0(id, channel, creationDate, currentStep) {
+  function SsmSessionBase_0(id, channel, creationDate, lastTransaction) {
     this._id_0 = id;
     this._channel = channel;
     this._creationDate = creationDate;
-    this._currentStep = currentStep;
+    this._lastTransaction_0 = lastTransaction;
   }
-  SsmSessionBase_0.prototype._get_id__5 = function () {
+  SsmSessionBase_0.prototype._get_id__3 = function () {
     return this._id_0;
   };
   SsmSessionBase_0.prototype._get_channel__0 = function () {
@@ -3988,8 +3996,8 @@
   SsmSessionBase_0.prototype._get_creationDate__0 = function () {
     return this._creationDate;
   };
-  SsmSessionBase_0.prototype._get_currentStep__0 = function () {
-    return this._currentStep;
+  SsmSessionBase_0.prototype._get_lastTransaction__1 = function () {
+    return this._lastTransaction_0;
   };
   SsmSessionBase_0.$metadata$ = {
     simpleName: 'SsmSessionBase',
@@ -3998,7 +4006,7 @@
   };
   Object.defineProperty(SsmSessionBase_0.prototype, 'id', {
     configurable: true,
-    get: SsmSessionBase_0.prototype._get_id__5
+    get: SsmSessionBase_0.prototype._get_id__3
   });
   Object.defineProperty(SsmSessionBase_0.prototype, 'channel', {
     configurable: true,
@@ -4008,47 +4016,9 @@
     configurable: true,
     get: SsmSessionBase_0.prototype._get_creationDate__0
   });
-  Object.defineProperty(SsmSessionBase_0.prototype, 'currentStep', {
+  Object.defineProperty(SsmSessionBase_0.prototype, 'lastTransaction', {
     configurable: true,
-    get: SsmSessionBase_0.prototype._get_currentStep__0
-  });
-  function SsmSessionStep_0() {
-  }
-  SsmSessionStep_0.$metadata$ = {
-    simpleName: 'SsmSessionStep',
-    kind: 'interface',
-    interfaces: []
-  };
-  function SsmSessionStepBase_0(id, date, user) {
-    this._id_1 = id;
-    this._date_0 = date;
-    this._user_1 = user;
-  }
-  SsmSessionStepBase_0.prototype._get_id__5 = function () {
-    return this._id_1;
-  };
-  SsmSessionStepBase_0.prototype._get_date__4 = function () {
-    return this._date_0;
-  };
-  SsmSessionStepBase_0.prototype._get_user__2 = function () {
-    return this._user_1;
-  };
-  SsmSessionStepBase_0.$metadata$ = {
-    simpleName: 'SsmSessionStepBase',
-    kind: 'class',
-    interfaces: [SsmSessionStep_0]
-  };
-  Object.defineProperty(SsmSessionStepBase_0.prototype, 'id', {
-    configurable: true,
-    get: SsmSessionStepBase_0.prototype._get_id__5
-  });
-  Object.defineProperty(SsmSessionStepBase_0.prototype, 'date', {
-    configurable: true,
-    get: SsmSessionStepBase_0.prototype._get_date__4
-  });
-  Object.defineProperty(SsmSessionStepBase_0.prototype, 'user', {
-    configurable: true,
-    get: SsmSessionStepBase_0.prototype._get_user__2
+    get: SsmSessionBase_0.prototype._get_lastTransaction__1
   });
   function SsmTransaction_0() {
   }
@@ -4058,14 +4028,14 @@
     interfaces: []
   };
   function SsmTransactionBase_0(id, from, to, date, signer) {
-    this._id_2 = id;
+    this._id_1 = id;
     this._from_0 = from;
     this._to_0 = to;
-    this._date_1 = date;
+    this._date_0 = date;
     this._signer = signer;
   }
-  SsmTransactionBase_0.prototype._get_id__5 = function () {
-    return this._id_2;
+  SsmTransactionBase_0.prototype._get_id__3 = function () {
+    return this._id_1;
   };
   SsmTransactionBase_0.prototype._get_from__3 = function () {
     return this._from_0;
@@ -4073,8 +4043,8 @@
   SsmTransactionBase_0.prototype._get_to__3 = function () {
     return this._to_0;
   };
-  SsmTransactionBase_0.prototype._get_date__4 = function () {
-    return this._date_1;
+  SsmTransactionBase_0.prototype._get_date__2 = function () {
+    return this._date_0;
   };
   SsmTransactionBase_0.prototype._get_signer__0 = function () {
     return this._signer;
@@ -4086,7 +4056,7 @@
   };
   Object.defineProperty(SsmTransactionBase_0.prototype, 'id', {
     configurable: true,
-    get: SsmTransactionBase_0.prototype._get_id__5
+    get: SsmTransactionBase_0.prototype._get_id__3
   });
   Object.defineProperty(SsmTransactionBase_0.prototype, 'from', {
     configurable: true,
@@ -4098,7 +4068,7 @@
   });
   Object.defineProperty(SsmTransactionBase_0.prototype, 'date', {
     configurable: true,
-    get: SsmTransactionBase_0.prototype._get_date__4
+    get: SsmTransactionBase_0.prototype._get_date__2
   });
   Object.defineProperty(SsmTransactionBase_0.prototype, 'signer', {
     configurable: true,
@@ -4202,35 +4172,67 @@
     configurable: true,
     get: GetSsmListCommandBase.prototype._get_dbName__2
   });
-  function GetSsmSessionListCommand() {
+  function GetSsmSessionListCommand_0() {
   }
-  GetSsmSessionListCommand.$metadata$ = {
+  GetSsmSessionListCommand_0.$metadata$ = {
     simpleName: 'GetSsmSessionListCommand',
     kind: 'interface',
     interfaces: []
   };
-  function GetSsmSessionListCommandBase(dbName, ssm) {
+  function GetSsmSessionListCommandBase_0(baseUrl, dbName, channelId, chaincodeId, bearerToken, ssm) {
+    this._baseUrl_10 = baseUrl;
     this._dbName_0 = dbName;
+    this._channelId_10 = channelId;
+    this._chaincodeId_10 = chaincodeId;
+    this._bearerToken_10 = bearerToken;
     this._ssm_2 = ssm;
   }
-  GetSsmSessionListCommandBase.prototype._get_dbName__2 = function () {
+  GetSsmSessionListCommandBase_0.prototype._get_baseUrl__12 = function () {
+    return this._baseUrl_10;
+  };
+  GetSsmSessionListCommandBase_0.prototype._get_dbName__2 = function () {
     return this._dbName_0;
   };
-  GetSsmSessionListCommandBase.prototype._get_ssm__3 = function () {
+  GetSsmSessionListCommandBase_0.prototype._get_channelId__12 = function () {
+    return this._channelId_10;
+  };
+  GetSsmSessionListCommandBase_0.prototype._get_chaincodeId__12 = function () {
+    return this._chaincodeId_10;
+  };
+  GetSsmSessionListCommandBase_0.prototype._get_bearerToken__12 = function () {
+    return this._bearerToken_10;
+  };
+  GetSsmSessionListCommandBase_0.prototype._get_ssm__3 = function () {
     return this._ssm_2;
   };
-  GetSsmSessionListCommandBase.$metadata$ = {
+  GetSsmSessionListCommandBase_0.$metadata$ = {
     simpleName: 'GetSsmSessionListCommandBase',
     kind: 'class',
-    interfaces: [GetSsmSessionListCommand]
+    interfaces: [GetSsmSessionListCommand_0]
   };
-  Object.defineProperty(GetSsmSessionListCommandBase.prototype, 'dbName', {
+  Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'baseUrl', {
     configurable: true,
-    get: GetSsmSessionListCommandBase.prototype._get_dbName__2
+    get: GetSsmSessionListCommandBase_0.prototype._get_baseUrl__12
   });
-  Object.defineProperty(GetSsmSessionListCommandBase.prototype, 'ssm', {
+  Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'dbName', {
     configurable: true,
-    get: GetSsmSessionListCommandBase.prototype._get_ssm__3
+    get: GetSsmSessionListCommandBase_0.prototype._get_dbName__2
+  });
+  Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'channelId', {
+    configurable: true,
+    get: GetSsmSessionListCommandBase_0.prototype._get_channelId__12
+  });
+  Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'chaincodeId', {
+    configurable: true,
+    get: GetSsmSessionListCommandBase_0.prototype._get_chaincodeId__12
+  });
+  Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'bearerToken', {
+    configurable: true,
+    get: GetSsmSessionListCommandBase_0.prototype._get_bearerToken__12
+  });
+  Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'ssm', {
+    configurable: true,
+    get: GetSsmSessionListCommandBase_0.prototype._get_ssm__3
   });
   AbstractMap.prototype._get_entries__2 = Map_0.prototype._get_entries__2;
   AbstractMutableMap.prototype._get_entries__2 = MutableMap.prototype._get_entries__2;
@@ -4274,8 +4276,8 @@
   $ssm$dsl$query.SsmGetBlockResult = SsmGetBlockResult_0;
   $ssm$dsl$query.SsmGetQuery = SsmGetQuery_0;
   $ssm$dsl$query.SsmGetResult = SsmGetResult_0;
-  $ssm$dsl$query.SsmGetSessionLastTransactionQuery = SsmGetSessionLastTransactionQuery_0;
-  $ssm$dsl$query.SsmGetSessionLastTransactionQueryResult = SsmGetSessionLastTransactionQueryResult_0;
+  $ssm$dsl$query.SsmGetSessionFirstAndLastTransactionQuery = SsmGetSessionFirstAndLastTransactionQuery_0;
+  $ssm$dsl$query.SsmGetSessionFirstAndLastTransactionQueryResult = SsmGetSessionFirstAndLastTransactionQueryResult_0;
   $ssm$dsl$query.SsmGetSessionLogsQuery = SsmGetSessionLogsQuery_0;
   $ssm$dsl$query.SsmGetSessionLogsQueryResult = SsmGetSessionLogsQueryResult_0;
   $ssm$dsl$query.SsmGetSessionQuery = SsmGetSessionQuery_0;
@@ -4296,12 +4298,11 @@
   var $x2$api$ssm$model = $x2$api$ssm.model || ($x2$api$ssm.model = {});
   $x2$api$ssm$model.SsmBase = SsmBase_0;
   $x2$api$ssm$model.SsmSessionBase = SsmSessionBase_0;
-  $x2$api$ssm$model.SsmSessionStepBase = SsmSessionStepBase_0;
   $x2$api$ssm$model.SsmTransactionBase = SsmTransactionBase_0;
   $x2$api$ssm$model.SsmTransitionBase = SsmTransitionBase_0;
   $x2$api$ssm$model.SsmUserBase = SsmUserBase_0;
   var $x2$api$ssm$model$features = $x2$api$ssm$model.features || ($x2$api$ssm$model.features = {});
   $x2$api$ssm$model$features.GetSsmListBase = GetSsmListCommandBase;
-  $x2$api$ssm$model$features.GetSsmSessionListCommmandBase = GetSsmSessionListCommandBase;
+  $x2$api$ssm$model$features.GetSsmSessionListCommandBase = GetSsmSessionListCommandBase_0;
   return _;
 }));

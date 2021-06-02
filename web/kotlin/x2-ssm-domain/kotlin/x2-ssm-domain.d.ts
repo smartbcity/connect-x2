@@ -274,7 +274,7 @@ export namespace ssm.dsl.query {
     }
 }
 export namespace ssm.dsl.query {
-    class SsmGetSessionLastTransactionQuery implements ssm.dsl.SsmCommand {
+    class SsmGetSessionFirstAndLastTransactionQuery implements ssm.dsl.SsmCommand {
         constructor(session: string, baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
         readonly session: string;
         readonly baseUrl: string;
@@ -282,9 +282,10 @@ export namespace ssm.dsl.query {
         readonly chaincodeId: Nullable<string>;
         readonly bearerToken: Nullable<string>;
     }
-    class SsmGetSessionLastTransactionQueryResult {
-        constructor(transaction: ssm.dsl.blockchain.Transaction);
-        readonly transaction: ssm.dsl.blockchain.Transaction;
+    class SsmGetSessionFirstAndLastTransactionQueryResult {
+        constructor(firstTransaction: Nullable<ssm.dsl.blockchain.Transaction>, lastTransaction: Nullable<ssm.dsl.blockchain.Transaction>);
+        readonly firstTransaction: Nullable<ssm.dsl.blockchain.Transaction>;
+        readonly lastTransaction: Nullable<ssm.dsl.blockchain.Transaction>;
     }
 }
 export namespace ssm.dsl.query {
@@ -404,27 +405,14 @@ export namespace x2.api.ssm.model {
         readonly id: string;
         readonly channel: string;
         readonly creationDate: kotlin.Long;
-        readonly currentStep: x2.api.ssm.model.SsmSessionStep;
+        readonly lastTransaction: x2.api.ssm.model.SsmTransaction;
     }
     class SsmSessionBase implements x2.api.ssm.model.SsmSession {
-        constructor(id: string, channel: string, creationDate: kotlin.Long, currentStep: x2.api.ssm.model.SsmSessionStepBase);
+        constructor(id: string, channel: string, creationDate: kotlin.Long, lastTransaction: x2.api.ssm.model.SsmTransactionBase);
         readonly id: string;
         readonly channel: string;
         readonly creationDate: kotlin.Long;
-        readonly currentStep: x2.api.ssm.model.SsmSessionStepBase;
-    }
-}
-export namespace x2.api.ssm.model {
-    interface SsmSessionStep {
-        readonly id: number;
-        readonly date: kotlin.Long;
-        readonly user: string;
-    }
-    class SsmSessionStepBase implements x2.api.ssm.model.SsmSessionStep {
-        constructor(id: number, date: kotlin.Long, user: string);
-        readonly id: number;
-        readonly date: kotlin.Long;
-        readonly user: string;
+        readonly lastTransaction: x2.api.ssm.model.SsmTransactionBase;
     }
 }
 export namespace x2.api.ssm.model {
@@ -480,13 +468,21 @@ export namespace x2.api.ssm.model.features {
     }
 }
 export namespace x2.api.ssm.model.features {
-    interface GetSsmSessionListCommmand {
+    interface GetSsmSessionListCommand {
+        readonly baseUrl: string;
         readonly dbName: string;
+        readonly channelId: Nullable<string>;
+        readonly chaincodeId: Nullable<string>;
+        readonly bearerToken: Nullable<string>;
         readonly ssm: Nullable<string>;
     }
-    class GetSsmSessionListCommmandBase implements x2.api.ssm.model.features.GetSsmSessionListCommand {
-        constructor(dbName: string, ssm: Nullable<string>);
+    class GetSsmSessionListCommandBase implements x2.api.ssm.model.features.GetSsmSessionListCommand {
+        constructor(baseUrl: string, dbName: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>, ssm: Nullable<string>);
+        readonly baseUrl: string;
         readonly dbName: string;
+        readonly channelId: Nullable<string>;
+        readonly chaincodeId: Nullable<string>;
+        readonly bearerToken: Nullable<string>;
         readonly ssm: Nullable<string>;
     }
 }
