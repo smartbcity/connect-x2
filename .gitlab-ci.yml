@@ -91,7 +91,6 @@ version-master:
 package-master:
   <<: *onlyMaster
   extends: .package
-  when: manual
   artifacts:
     paths:
       - version*
