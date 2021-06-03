@@ -15,13 +15,14 @@ class WebSecurityConfig {
         http.authorizeExchange().anyExchange().permitAll()
         http.corsConfig()
         http.csrf().disable()
+        http.corsConfig()
         return http.build()
     }
 
     private fun ServerHttpSecurity.corsConfig() {
         val config = CorsConfiguration()
         config.allowedOrigins = listOf("*")
-        config.allowCredentials = true
+        config.allowCredentials = false
         config.addAllowedMethod("*")
         config.addAllowedHeader("*")
 
