@@ -14,14 +14,14 @@ class WebSecurityConfig {
     fun springSecurityFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain {
         http.authorizeExchange().anyExchange().permitAll()
         http.csrf().disable()
-//        http.corsConfig()
+        http.corsConfig()
         return http.build()
     }
 
     private fun ServerHttpSecurity.corsConfig() {
         val config = CorsConfiguration()
         config.allowedOrigins = listOf("*")
-        config.allowCredentials = true
+        config.allowCredentials = false
         config.addAllowedMethod("*")
         config.addAllowedHeader("*")
 
