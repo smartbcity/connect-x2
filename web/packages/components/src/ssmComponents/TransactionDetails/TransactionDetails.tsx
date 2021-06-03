@@ -4,7 +4,7 @@ import { midLevelStyles } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SessionLog } from 'ssm'
+import { Transaction } from 'ssm'
 
 const useStyles = midLevelStyles()({
     preContainer: {
@@ -55,17 +55,36 @@ const useStyles = midLevelStyles()({
 })
 
 interface TransactionDetailsProps {
-    currentLog: SessionLog
+    transaction: Transaction
     className?: string
     minified?: boolean
+    shortVersion?: boolean
 }
 
 export const TransactionDetails = (props: TransactionDetailsProps) => {
-    const { className, minified = false, currentLog } = props
+    const { className, minified = false, transaction, shortVersion = false } = props
     const classes = useStyles()
     const { t } = useTranslation()
     const typovariant = useMemo(() => minified ? "body2" : "body1", [minified])
-    console.log(currentLog)
+    if (shortVersion) return (
+        <>
+            <Box className={clsx(classes.descriptionContainer, className)}>
+                <Box className={clsx(classes.box, minified && classes.boxMinified)} >
+                    <InputLabel>{t("transactionId")}:</InputLabel>
+                    <InputLabel>{t("user")}:</InputLabel>
+                    <InputLabel>{t("publicKey")}:</InputLabel>
+                </Box>
+                <Box className={clsx(classes.box, minified && classes.boxMinified)}>
+                    <Box position="relative">
+                        <Typography variant={typovariant} className={classes.rightTypo}>{transaction.id}</Typography>
+                        <CopyToClipboard className={classes.iconButton} value={transaction.id} helperText={t("copyToClipboard")} />
+                    </Box>
+                    <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
+                </Box>
+            </Box>
+        </>
+    )
     return (
         <>
             <Box className={clsx(classes.descriptionContainer, className)}>
@@ -79,21 +98,21 @@ export const TransactionDetails = (props: TransactionDetailsProps) => {
                 </Box>
                 <Box className={clsx(classes.box, minified && classes.boxMinified)}>
                     <Box position="relative">
-                        <Typography variant={typovariant} className={classes.rightTypo}>{currentLog.txId}</Typography>
-                        <CopyToClipboard className={classes.iconButton} value={currentLog.txId} helperText={t("copyToClipboard")} />
+                        <Typography variant={typovariant} className={classes.rightTypo}>{transaction.id}</Typography>
+                        <CopyToClipboard className={classes.iconButton} value={transaction.id} helperText={t("copyToClipboard")} />
                     </Box>
                     <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{currentLog.state?.origin?.from ?? ""}</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{currentLog.state?.current ?? ""}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{transaction.state?.origin?.from ?? ""}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{transaction.state?.current ?? ""}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
                 </Box>
             </Box>
             <Typography className={classes.typo}>{t("detailsPage.transactionPayload")}:</Typography>
             <Box className={classes.preContainer}>
                 <CodeHighlighter object={{
-                    origin: currentLog.state.origin,
-                    public: currentLog.state.public,
+                    origin: transaction.state.origin,
+                    public: transaction.state.public,
                 }} language="json" />
             </Box>
         </>

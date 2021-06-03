@@ -31,6 +31,7 @@
     "sessionInformationsOf": "Informations sur la session {{sessionName}}",
     "transactionDetails": "Détails de la transaction",
     "transactionsHistory": "Historique des transactions",
+    "transactionsHistoryOf": "Historique des transactions de la session {{sessionName}}",
     "transactionDate": "Date de la transaction",
     "transactionPayload": "Contenu de la transaction",
     "currentStep": "Etape courante",

@@ -12,7 +12,7 @@ export interface httpOptions {
 export const request = <T>(
     options: httpOptions
 ): Promise<T> | undefined => {
-    const { method, url, body, contentType = "application/json", jwt, errorHandler = () => {}, returnType = "json" } = options
+    const { method, url, body, contentType = "application/json", jwt, errorHandler = () => { }, returnType = "json" } = options
     return fetch(url, {
         method: method,
         headers: {
@@ -26,6 +26,7 @@ export const request = <T>(
                     "Content-Type": contentType,
                 }
                 : {}),
+            "Access-Control-Allow-Origin": "*",
         },
         body: body,
     })

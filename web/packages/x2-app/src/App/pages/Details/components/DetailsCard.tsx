@@ -15,14 +15,14 @@ const useStyles = highLevelStyles()({
 })
 
 interface DetailsCardProps {
-    currentLog?: SessionLog
+    transaction?: Transaction
 }
 
 export const DetailsCard = (props: DetailsCardProps) => {
-    const { currentLog } = props
+    const { transaction } = props
     const { t } = useTranslation()
     const classes = useStyles()
-    const embed = currentLog ? `${window.location.origin}/embed/${currentLog?.state.ssm}/${currentLog?.state.session}/${currentLog?.txId}/details` : undefined
+    const embed = transaction ? `${window.location.origin}/embed/${transaction?.state.ssm}/${transaction?.state.session}/${currentLog?.txId}/details` : undefined
     return (
         <Panel 
         className={classes.panel} 
@@ -31,14 +31,14 @@ export const DetailsCard = (props: DetailsCardProps) => {
         header={t("detailsPage.transactionDetails")}
         embedUrl={embed}
         >
-            {currentLog === undefined ? (
+            {v === undefined ? (
                 <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
                     <Typography align="center">
                         {t("detailsPage.selectATransaction")}
                     </Typography>
                 </Box>
             ) : (
-                <TransactionDetails currentLog={currentLog} />
+                <TransactionDetails transaction={transaction} />
             )}
         </Panel>
     )

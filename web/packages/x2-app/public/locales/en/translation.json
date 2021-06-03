@@ -31,6 +31,7 @@
     "sessionInformationsOf": "{{sessionName}} session informations",
     "transactionDetails": "Transaction details",
     "transactionsHistory": "Transactions history",
+    "transactionsHistoryOf": "Transactions history of the session {{sessionName}}",
     "transactionDate": "Transaction date",
     "transactionPayload": "Transaction payload",
     "currentStep": "Current step",

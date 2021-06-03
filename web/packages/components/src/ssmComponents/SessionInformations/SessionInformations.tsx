@@ -56,9 +56,9 @@ export const SessionInformations = (props: SessionInformationsProps) => {
                     <InputLabel>{t("protocolEngine")}:</InputLabel>
                 </Box>
                 <Box className={clsx(classes.box, minified && classes.boxMinified)}>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.session}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.id}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.current}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.currentStep}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>{`${currentSession.origin.role}: ${currentSession.origin.action}`}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>

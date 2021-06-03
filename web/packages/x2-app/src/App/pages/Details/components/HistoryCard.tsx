@@ -2,9 +2,9 @@ import { Timeline, TimeLineCell } from "@smartb/archetypes-ui-components"
 import { LoadingComponent, Panel } from "components"
 import { useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Session, SessionLog } from "ssm"
+import { Session, Transaction } from "ssm"
 import { highLevelStyles } from "@smartb/archetypes-ui-themes"
-import { useFetchSessionLogs } from "./useFetchSessionLogs"
+import { useFetchTransactions } from "./useFetchTransactions"
 
 const useStyles = highLevelStyles()({
     panel: {
@@ -25,31 +25,31 @@ const useStyles = highLevelStyles()({
 
 interface HistoryCardProps {
     currentSession?: Session
-    onChangeCurrentLog: (log?: SessionLog) => void
+    onChangeTransaction: (log?: Transaction) => void
 }
 
 export const HistoryCard = (props: HistoryCardProps) => {
-    const { currentSession, onChangeCurrentLog } = props
+    const { currentSession, onChangeTransaction } = props
     const { t } = useTranslation()
     const classes = useStyles()
     const [selectedCellId, setSelectedCellId] = useState<string | undefined>(undefined)
 
-    const result: { lines: TimeLineCell[], logs: SessionLog[] } | undefined = useFetchSessionLogs(currentSession)
+    const result: { lines: TimeLineCell[], transactions: Transaction[] } | undefined = useFetchTransactions(currentSession)
 
     const onSelectCell = useCallback(
         (cell: TimeLineCell) => {
             setSelectedCellId(prevCellId => {
                 const cellId = cell.id === prevCellId ? undefined : cell.id
                 if (cellId) {
-                    const log = result?.logs.find((log) => cellId === log.txId)
-                    log && onChangeCurrentLog(log)
+                    const log = result?.transactions.find((transaction) => cellId === transaction.id)
+                    log && onChangeTransaction(log)
                 } else {
-                    onChangeCurrentLog(undefined)
+                    onChangeTransaction(undefined)
                 }
                 return cellId
             })
         },
-        [onChangeCurrentLog, result?.logs],
+        [onChangeTransaction, result?.transactions],
     )
 
     return (

@@ -13,7 +13,10 @@ export const EmbedApp = () => {
       <Route exact path="/embed/:ssmName/:sessionName/informations" >
         <SessionInformation />
       </Route>
-      <Route exact path="/embed/:ssmName/:sessionName/:logId/details" >
+      <Route exact path="/embed/:ssmName/:sessionName/:transactionId/details" >
+        <TransactionDetail />
+      </Route>
+      <Route exact path="/embed/:ssmName/:sessionName/:transactionId/history" >
         <TransactionDetail />
       </Route>
     </Router>

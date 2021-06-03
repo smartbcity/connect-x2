@@ -30,9 +30,9 @@ const fetchSessions = async (ssmName?: string) => {
 };
 
 const fetchTransactions = (
-    session: string
+    sessionId: string
 ) => {
-    return fetchCoop<Transaction[]>("query", "log", session);
+    return fetchCoop<Transaction[]>("", JSON.stringify({...dbName, sessionId: sessionId}));
 };
 
 

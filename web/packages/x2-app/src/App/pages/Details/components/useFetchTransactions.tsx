@@ -1,20 +1,20 @@
 import { Box, Typography } from "@material-ui/core"
 import { TimeLineCell } from "@smartb/archetypes-ui-components"
 import { useCallback } from "react"
-import { Session, SessionLog, SSMRequester } from "ssm"
+import { Session, SSMRequester, Transaction } from "ssm"
 import { useAsync } from "utils"
 
-export const useFetchSessionLogs = (currentSession?: Session) => {
+export const useFetchTransactions = (currentSession?: Session) => {
     const getLines = useCallback(
-        async (): Promise<{ lines: TimeLineCell[], logs: SessionLog[] }> => {
-            if (!currentSession) return { lines: [], logs: [] }
-            const logs = await SSMRequester.fetchSessionLogs(currentSession.session)
-            if (!logs) return { lines: [], logs: [] }
+        async (): Promise<{ lines: TimeLineCell[], transactions: Transaction[] }> => {
+            if (!currentSession) return { lines: [], transactions: [] }
+            const transactions = await SSMRequester.fetchTransactions(currentSession.id)
+            if (!transactions) return { lines: [], transactions: [] }
             return {
-                lines: logs.slice(0, 10).map((log) => {
-                    const init = log.state?.origin?.role === undefined && log.state?.origin?.action === undefined
+                lines: transactions.map((transaction) => {
+                    const init = transaction.state?.origin?.role === undefined && log.state?.origin?.action === undefined
                     return {
-                        id: log.txId,
+                        id: transaction.id,
                         content: (
                             <Box display="flex" flexDirection="column">
                                 <Typography>
@@ -25,7 +25,7 @@ export const useFetchSessionLogs = (currentSession?: Session) => {
                         startTime: "12/02/2021",
                     }
                 }),
-                logs: logs
+                transactions: transactions
             }
         },
         [currentSession]

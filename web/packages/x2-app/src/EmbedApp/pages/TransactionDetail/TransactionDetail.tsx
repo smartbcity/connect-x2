@@ -21,26 +21,26 @@ const useStyles = highLevelStyles()({
 export const TransactionDetail = () => {
   const { t } = useTranslation()
   const classes = useStyles()
-  const { sessionName, logId } = useParams<{ ssmName: string, sessionName: string, logId: string }>();
-  const currentLog = useFetchLog(sessionName, logId)
+  const { sessionName, transactionId } = useParams<{ ssmName: string, sessionName: string, transactionId: string }>();
+  const transaction = useFetchTransaction(sessionName, transactionId)
 
   if (!currentLog) return <LoadingComponent />
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" position="relative" width="100vw" height="100vh">
       <Typography align="center" className={classes.title} variant="body1">{t("transactionDetails")}</Typography>
-      <TransactionDetails currentLog={currentLog} minified  />
+      <TransactionDetails transaction={transaction} minified  />
     </Box>
   );
 };
 
-export const useFetchLog = (sessionName: string, logId: string) => {
+export const useFetchTransaction = (sessionName: string, transactionId: string) => {
   const getLines = useCallback(
       async () => {
-          const logs = await SSMRequester.fetchSessionLogs(sessionName)
-          if (!logs) return undefined
-          const log = logs.find((log) => logId === log.txId)
-          return log
+          const transactions = await SSMRequester.fetchTransactions(sessionName)
+          if (!transactions) return undefined
+          const transaction = transactions.find((transaction) => transactionId === transaction.id)
+          return transaction
       },
       [sessionName]
   )

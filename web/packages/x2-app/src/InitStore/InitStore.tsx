@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { SSM } from "ssm";
+import { SSM, defaultProtocols } from "ssm";
 import { LoadingPage } from "components";
 import { SSMRequester } from "ssm";
 import { useExtendedAuth } from "OptionnalKeycloakProvider";
@@ -43,8 +43,16 @@ export const InitStore = (props: InitStoreProps) => {
 const fetchSSMs = async (setSsmList: (ssmList: Map<string, SSM>) => void) => {
   const ssmMap = new Map<string, SSM>()
   const ssms = await SSMRequester.fetchSSMs()
-  ssms.forEach(async (ssm) => {
-    ssmMap.set(ssm.name, ssm)
-  })
+  if (defaultProtocols && defaultProtocols.length > 0) {
+    ssms.forEach(async (ssm) => {
+      if (defaultProtocols.includes(ssm.name)) {
+        ssmMap.set(ssm.name, ssm)
+      }
+    })
+  } else {
+    ssms.forEach(async (ssm) => {
+      ssmMap.set(ssm.name, ssm)
+    })
+  }
   setSsmList(ssmMap)
 }
