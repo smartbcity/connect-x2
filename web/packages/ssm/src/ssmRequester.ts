@@ -1,7 +1,14 @@
 import { SSM, Session, Transaction} from "./models";
 import { request, httpOptions } from "utils"
+import {x2} from  "x2-ssm-domain"
 
-const dbName = {dbName: "proudhon_ssm"}
+export interface GetSsmListCommand extends x2.api.ssm.model.features.GetSsmListCommand {} 
+export interface GetSsmSessionListCommand extends x2.api.ssm.model.features.GetSsmSessionListCommand {} 
+export interface GetSsmSessionCommand extends x2.api.ssm.model.features.GetSsmSessionCommand {} 
+
+//@ts-ignore
+const requestBase = {baseUrl: window._env_.BASE_URL, dbName: "proudhon_ssm"}
+
 const fetchCoop = function <T>(
     location: string,
     body?: string
@@ -20,25 +27,32 @@ const fetchCoop = function <T>(
 };
 
 const fetchSSMs = async () => {
-    const ssms = await fetchCoop<SSM[]>("getAllSsm", JSON.stringify({...dbName}));
-    return ssms ?? []
+    const ssms = await fetchCoop<SSM[][]>("getAllSsm", JSON.stringify({...requestBase} as GetSsmListCommand)) ?? [[]]
+    return ssms[0] ?? []
 };
 
 const fetchSessions = async (ssmName?: string) => {
-    const sessions = await fetchCoop<Session[]>("getAllSessions", JSON.stringify({...dbName, ssm: ssmName}));
-    return sessions ?? []
+    const sessions = await fetchCoop<Session[][]>("getAllSessions", JSON.stringify({...requestBase, ssm: ssmName} as GetSsmSessionListCommand)) ?? [[]]
+    return sessions[0] ?? []
 };
+
+const fetchSession = async (sessionId?: string) => {
+    const session = await fetchCoop<Session[]>("getAllSessions", JSON.stringify({...requestBase.baseUrl, name: sessionId} as GetSsmSessionCommand)) ?? []
+    return session[0]
+};
+
 
 const fetchTransactions = (
     sessionId: string
 ) => {
-    return fetchCoop<Transaction[]>("", JSON.stringify({...dbName, sessionId: sessionId}));
+    return fetchCoop<Transaction[][]>("", JSON.stringify({...requestBase, sessionId: sessionId})) ?? [[]]
 };
 
 
 export const SSMRequester = {
     fetchSSMs: fetchSSMs,
     fetchSessions: fetchSessions,
+    fetchSession: fetchSession,
     fetchTransactions: fetchTransactions
 };
 
