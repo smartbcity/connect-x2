@@ -2,7 +2,12 @@
   "name": "x2-ssm-domain",
   "version": "0.0.0-latest",
   "main": "kotlin/x2-ssm-domain.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12",
+    "source-map-loader": "1.1.0",
+    "dukat": "0.5.8-rc.3"
+  },
   "dependencies": {},
   "peerDependencies": {},
   "optionalDependencies": {},
