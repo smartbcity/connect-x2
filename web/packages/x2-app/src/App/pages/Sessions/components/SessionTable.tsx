@@ -4,22 +4,29 @@ import { useTranslation, TFunction } from 'react-i18next'
 import { useCallback, useMemo, useState } from 'react'
 import { highLevelStyles } from '@smartb/archetypes-ui-themes'
 import { Session, SSM } from 'ssm'
+import { LoadingComponent } from 'components'
 
 const useStyles = highLevelStyles()({
     container: {
         '& .rdt_TableRow .rdt_TableCell:last-child': {
-            minWidth: '300px',
-            maxWidth: '300px'
+            minWidth: '450px',
+            maxWidth: '450px'
         },
         '& .rdt_TableCol:last-child': {
-            minWidth: '300px',
-            maxWidth: '300px',
+            minWidth: '450px',
+            maxWidth: '450px',
             "& > div": {
                 width: "100%",
                 "& > div": {
                     width: "100%"
                 }
             }
+        },
+        '& .rdt_TableRow .rdt_TableCell:first-child': {
+            minWidth: '200px'
+        },
+        '& .rdt_TableCol:first-child': {
+            minWidth: '200px'
         }
     }
 })
@@ -31,19 +38,20 @@ interface SessionColumn {
     protocolEngine: string
     completedStep: {
         date: string,
-        status: string,
+        status: number,
         user: string
     }
 }
 
 interface SessionTableProps {
     sessions?: Session[]
+    isLoading?: boolean
     currentSSM: SSM
     gotoSessionDetails: (ssmName: string, sessionName: any) => void
 }
 
 export const SessionTable = (props: SessionTableProps) => {
-    const { sessions, currentSSM, gotoSessionDetails } = props
+    const { sessions, currentSSM, gotoSessionDetails, isLoading = false } = props
     const { t } = useTranslation()
     const [page, setPage] = useState(1)
     const classes = useStyles()
@@ -51,13 +59,13 @@ export const SessionTable = (props: SessionTableProps) => {
         if (!sessions) return []
         return sessions.map((session): SessionColumn => ({
             id: session.id,
-            creationDate: session.creationDate,
+            creationDate: new Date(session.creationDate).toLocaleDateString(),
             channel: session.channel,
             protocolEngine: currentSSM?.name,
             completedStep: {
-                date: session.currentStep.date,
-                status: session.currentStep.id.toLocaleString(),
-                user: session.currentStep.user,
+                date: new Date(session.lastTransaction.date).toLocaleDateString(),
+                status: session.lastTransaction.to,
+                user: session.lastTransaction.signer.name,
             }
         }))
     }, [sessions, currentSSM])
@@ -86,9 +94,11 @@ export const SessionTable = (props: SessionTableProps) => {
         <Table<SessionColumn>
             data={pagination.pageData}
             columns={columns}
+            isLoading={isLoading}
             page={page}
             totalPages={pagination.totalPage}
             handlePageChange={handlePageChange}
+            loadingComponent={<Box marginTop="30px"><LoadingComponent /></Box>}
             className={classes.container}
             onRowClicked={onRowClicked}
         />

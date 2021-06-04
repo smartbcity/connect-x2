@@ -8,6 +8,13 @@ export const getSsmList = createSelector(
   (state) => state.ssmList
 );
 
+export const getSessionsList = createSelector(
+  [getSsmState],
+  (state) => state.sessionsList
+);
+
+
 export const selectors = {
   ssmList: getSsmList,
+  sessionsList: getSessionsList
 };
