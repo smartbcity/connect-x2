@@ -3,7 +3,7 @@ import { Page } from "components";
 import React, { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import { SSM, Session, Transaction } from "ssm";
+import { SSM, Session, Transaction, SSMRequester } from "ssm";
 import { DetailsCard } from "./components/DetailsCard";
 import { HistoryCard } from "./components/HistoryCard";
 import { InformationCard } from "./components/InformationCard";
@@ -19,14 +19,19 @@ export const Details = (props: DetailsProps) => {
   const { t } = useTranslation()
   const { ssmName, sessionName } = useParams<{ ssmName: string, sessionName: string }>();
   const [transaction, setTransaction] = useState<Transaction | undefined>(undefined)
-  const current: {ssm?: SSM, session?: Session} = useMemo(() => {
-    const ssm = ssmList.get(ssmName)
-    const session = ssm?.sessions.find((session) => session.session === sessionName)
-    return {
-      ssm: ssm,
-      session: session
-    }
+  const currentSSM: SSM = useMemo(() => {
+    return ssmList.get(ssmName)
   }, [ssmName, sessionName, ssmList])
+
+  const fetchSSMSessions = useCallback(
+    async () => {
+      return SSMRequester.fetchSessions(currentSSM?.name)
+    },
+    [currentSSM],
+  )
+
+  const { result } = useAsync(fetchSSMSessions)
+
 
   const onChangeTransaction = useCallback(
     (transaction?: Transaction) => setTransaction(transaction),
@@ -39,7 +44,7 @@ export const Details = (props: DetailsProps) => {
       title={t("details")}
     >
       <CardContainer>
-        <ProtocolCard currentSSM={current.ssm} />
+        <ProtocolCard currentSSM={currentSSM} />
         <InformationCard currentSession={current.session} />
       </CardContainer>
       <CardContainer>

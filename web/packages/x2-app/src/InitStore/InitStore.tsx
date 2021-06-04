@@ -44,13 +44,13 @@ const fetchSSMs = async (setSsmList: (ssmList: Map<string, SSM>) => void) => {
   const ssmMap = new Map<string, SSM>()
   const ssms = await SSMRequester.fetchSSMs()
   if (defaultProtocols && defaultProtocols.length > 0) {
-    ssms.forEach(async (ssm) => {
+    ssms.forEach((ssm) => {
       if (defaultProtocols.includes(ssm.name)) {
         ssmMap.set(ssm.name, ssm)
       }
     })
   } else {
-    ssms.forEach(async (ssm) => {
+    ssms.forEach((ssm) => {
       ssmMap.set(ssm.name, ssm)
     })
   }

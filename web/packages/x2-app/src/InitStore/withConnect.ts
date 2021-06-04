@@ -7,7 +7,7 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapDispatchToProps = {
-    setSsmList: ssm.actions.set
+    setSsmList: ssm.actions.setSsmList
 };
 
 export default connect(mapStateToProps, mapDispatchToProps);
