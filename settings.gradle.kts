@@ -15,6 +15,7 @@ include(
 
 include(
 	"api:ssm:ssm-api",
+	"api:ssm:ssm-client",
 	"api:ssm:ssm-domain"
 )
 
