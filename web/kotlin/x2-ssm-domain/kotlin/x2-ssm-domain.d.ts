@@ -93,21 +93,29 @@ export namespace f2.dsl.function {
         invoke(value: T): void;
     }
 }
-export namespace ssm.dsl {
-    class Ssm {
-        constructor(name: string, transitions: kotlin.collections.List<ssm.dsl.SsmTransition>);
+export declare namespace ssm.dsl {
+    export interface Ssm {
         readonly name: string;
-        readonly transitions: kotlin.collections.List<ssm.dsl.SsmTransition>;
+        readonly transitions: Array<ssm.dsl.SsmTransitionBase>;
+    }
+    class SsmBase implements ssm.dsl.Ssm {
+        constructor(name: string, transitions: Array<ssm.dsl.SsmTransitionBase>);
+        readonly name: string;
+        readonly transitions: Array<ssm.dsl.SsmTransitionBase>;
         component1(): string;
-        component2(): kotlin.collections.List<ssm.dsl.SsmTransition>;
-        copy(name: string, transitions: kotlin.collections.List<ssm.dsl.SsmTransition>): ssm.dsl.Ssm;
+        component2(): Array<ssm.dsl.SsmTransitionBase>;
+        copy(name: string, transitions: Array<ssm.dsl.SsmTransitionBase>): ssm.dsl.SsmBase;
         toString(): string;
         hashCode(): number;
         equals(other: Nullable<any>): boolean;
     }
 }
 export namespace ssm.dsl {
-    class Agent {
+    interface Agent {
+        readonly name: string;
+        readonly pub: Int8Array;
+    }
+    class AgentBase implements ssm.dsl.SsmAgent {
         constructor(name: string, pub: Int8Array);
         readonly name: string;
         readonly pub: Int8Array;
@@ -115,7 +123,7 @@ export namespace ssm.dsl {
         hashCode(): number;
         component1(): string;
         component2(): Int8Array;
-        copy(name: string, pub: Int8Array): ssm.dsl.SsmAgent;
+        copy(name: string, pub: Int8Array): ssm.dsl.SsmAgentBase;
         toString(): string;
     }
 }
@@ -128,7 +136,13 @@ export namespace ssm.dsl {
     }
 }
 export namespace ssm.dsl {
-    class Context implements ssm.dsl.WithPrivate {
+    interface SsmContext extends ssm.dsl.WithPrivate {
+        readonly session: string;
+        readonly public: string;
+        readonly iteration: number;
+        readonly private: Nullable<kotlin.collections.Map<string, string>>;
+    }
+    class SsmContextBase implements ssm.dsl.SsmContext {
         constructor(session: string, _public: string, iteration: number, _private: Nullable<kotlin.collections.Map<string, string>>);
         readonly session: string;
         readonly public: string;
@@ -138,7 +152,7 @@ export namespace ssm.dsl {
         component2(): string;
         component3(): number;
         component4(): Nullable<kotlin.collections.Map<string, string>>;
-        copy(session: string, _public: string, iteration: number, _private: Nullable<kotlin.collections.Map<string, string>>): ssm.dsl.SsmContext;
+        copy(session: string, _public: string, iteration: number, _private: Nullable<kotlin.collections.Map<string, string>>): ssm.dsl.SsmContextBase;
         toString(): string;
         hashCode(): number;
         equals(other: Nullable<any>): boolean;
@@ -169,24 +183,41 @@ export namespace ssm.dsl {
     }
 }
 export namespace ssm.dsl {
-    class SsmSession implements ssm.dsl.WithPrivate {
-        constructor(ssm: Nullable<string>, session: string, roles: Nullable<kotlin.collections.Map<string, string>>, _public: Nullable<any>, _private: Nullable<kotlin.collections.Map<string, string>>);
+    interface SsmSession extends ssm.dsl.WithPrivate {
         readonly ssm: Nullable<string>;
         readonly session: string;
         readonly roles: Nullable<kotlin.collections.Map<string, string>>;
         readonly public: Nullable<any>;
         readonly private: Nullable<kotlin.collections.Map<string, string>>;
     }
+    class SsmSessionBase implements ssm.dsl.SsmSession {
+        constructor(ssm: string, session: string, roles: kotlin.collections.Map<string, string>, _public: string, _private: Nullable<kotlin.collections.Map<string, string>>);
+        readonly ssm: string;
+        readonly session: string;
+        readonly roles: kotlin.collections.Map<string, string>;
+        readonly public: string;
+        readonly private: Nullable<kotlin.collections.Map<string, string>>;
+    }
 }
 export namespace ssm.dsl {
-    class SsmSessionState extends ssm.dsl.SsmSession implements ssm.dsl.WithPrivate {
-        constructor(ssm: Nullable<string>, session: string, roles: Nullable<kotlin.collections.Map<string, string>>, _public: Nullable<any>, _private: Nullable<kotlin.collections.Map<string, string>>, origin: Nullable<ssm.dsl.SsmTransition>, current: number, iteration: number);
+    interface SsmSessionState extends ssm.dsl.SsmSession, ssm.dsl.WithPrivate {
         readonly ssm: Nullable<string>;
         readonly session: string;
         readonly roles: Nullable<kotlin.collections.Map<string, string>>;
         readonly public: Nullable<any>;
         readonly private: Nullable<kotlin.collections.Map<string, string>>;
-        readonly origin: Nullable<ssm.dsl.SsmTransition>;
+        readonly origin: Nullable<ssm.dsl.SsmTransitionBase>;
+        readonly current: number;
+        readonly iteration: number;
+    }
+    class SsmSessionStateBase implements ssm.dsl.SsmSessionState {
+        constructor(ssm: Nullable<string>, session: string, roles: Nullable<kotlin.collections.Map<string, string>>, _public: Nullable<any>, _private: Nullable<kotlin.collections.Map<string, string>>, origin: Nullable<ssm.dsl.SsmTransitionBase>, current: number, iteration: number);
+        readonly ssm: Nullable<string>;
+        readonly session: string;
+        readonly roles: Nullable<kotlin.collections.Map<string, string>>;
+        readonly public: Nullable<any>;
+        readonly private: Nullable<kotlin.collections.Map<string, string>>;
+        readonly origin: Nullable<ssm.dsl.SsmTransitionBase>;
         readonly current: number;
         readonly iteration: number;
         component1(): Nullable<string>;
@@ -194,10 +225,10 @@ export namespace ssm.dsl {
         component3(): Nullable<kotlin.collections.Map<string, string>>;
         component4(): Nullable<any>;
         component5(): Nullable<kotlin.collections.Map<string, string>>;
-        component6(): Nullable<ssm.dsl.SsmTransition>;
+        component6(): Nullable<ssm.dsl.SsmTransitionBase>;
         component7(): number;
         component8(): number;
-        copy(ssm: Nullable<string>, session: string, roles: Nullable<kotlin.collections.Map<string, string>>, _public: Nullable<any>, _private: Nullable<kotlin.collections.Map<string, string>>, origin: Nullable<ssm.dsl.SsmTransition>, current: number, iteration: number): ssm.dsl.SsmSessionState;
+        copy(ssm: Nullable<string>, session: string, roles: Nullable<kotlin.collections.Map<string, string>>, _public: Nullable<any>, _private: Nullable<kotlin.collections.Map<string, string>>, origin: Nullable<ssm.dsl.SsmTransitionBase>, current: number, iteration: number): ssm.dsl.SsmSessionStateBase;
         toString(): string;
         hashCode(): number;
         equals(other: Nullable<any>): boolean;
@@ -217,7 +248,13 @@ export namespace ssm.dsl {
     }
 }
 export namespace ssm.dsl {
-    class Transition {
+    interface SsmTransition {
+        readonly from: number;
+        readonly to: number;
+        readonly role: string;
+        readonly action: string;
+    }
+    class SsmTransitionBase implements ssm.dsl.SsmTransition {
         constructor(from: number, to: number, role: string, action: string);
         readonly from: number;
         readonly to: number;
@@ -227,7 +264,7 @@ export namespace ssm.dsl {
         component2(): number;
         component3(): string;
         component4(): string;
-        copy(from: number, to: number, role: string, action: string): ssm.dsl.SsmTransition;
+        copy(from: number, to: number, role: string, action: string): ssm.dsl.SsmTransitionBase;
         toString(): string;
         hashCode(): number;
         equals(other: Nullable<any>): boolean;
@@ -243,20 +280,8 @@ export namespace ssm.dsl.query {
         readonly name: string;
     }
     class SsmGetAdminResult implements f2.dsl.cqrs.Event {
-        constructor(admin: Nullable<ssm.dsl.SsmAgent>);
-        readonly admin: Nullable<ssm.dsl.SsmAgent>;
-    }
-}
-export namespace ssm.dsl.query {
-    class SsmGetBlockQuery implements ssm.dsl.SsmCommand {
-        constructor(baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
-        readonly baseUrl: string;
-        readonly channelId: Nullable<string>;
-        readonly chaincodeId: Nullable<string>;
-        readonly bearerToken: Nullable<string>;
-    }
-    class SsmGetBlockResult implements f2.dsl.cqrs.Event {
-        constructor();
+        constructor(admin: Nullable<ssm.dsl.SsmAgentBase>);
+        readonly admin: Nullable<ssm.dsl.SsmAgentBase>;
     }
 }
 export namespace ssm.dsl.query {
@@ -269,8 +294,8 @@ export namespace ssm.dsl.query {
         readonly name: string;
     }
     class SsmGetResult implements f2.dsl.cqrs.Event {
-        constructor(ssm: Nullable<ssm.dsl.Ssm>);
-        readonly ssm: Nullable<ssm.dsl.Ssm>;
+        constructor(ssmBase: Nullable<ssm.dsl.SsmBase>);
+        readonly ssmBase: Nullable<ssm.dsl.SsmBase>;
     }
 }
 export namespace ssm.dsl.query {
@@ -317,8 +342,8 @@ export namespace ssm.dsl.query {
         readonly name: string;
     }
     class SsmGetSessionResult implements f2.dsl.cqrs.Event {
-        constructor(session: Nullable<ssm.dsl.SsmSessionState>);
-        readonly session: Nullable<ssm.dsl.SsmSessionState>;
+        constructor(session: Nullable<ssm.dsl.SsmSessionStateBase>);
+        readonly session: Nullable<ssm.dsl.SsmSessionStateBase>;
     }
 }
 export namespace ssm.dsl.query {
@@ -331,8 +356,8 @@ export namespace ssm.dsl.query {
         readonly name: string;
     }
     class SsmGetUserResult implements f2.dsl.cqrs.Event {
-        constructor(user: Nullable<ssm.dsl.SsmAgent>);
-        readonly user: Nullable<ssm.dsl.SsmAgent>;
+        constructor(user: Nullable<ssm.dsl.SsmAgentBase>);
+        readonly user: Nullable<ssm.dsl.SsmAgentBase>;
     }
 }
 export namespace ssm.dsl.query {
@@ -344,8 +369,8 @@ export namespace ssm.dsl.query {
         readonly bearerToken: Nullable<string>;
     }
     class SsmListAdminResult implements f2.dsl.cqrs.Event {
-        constructor(values: kotlin.collections.List<string>);
-        readonly values: kotlin.collections.List<string>;
+        constructor(values: Array<string>);
+        readonly values: Array<string>;
     }
 }
 export namespace ssm.dsl.query {
@@ -357,8 +382,8 @@ export namespace ssm.dsl.query {
         readonly bearerToken: Nullable<string>;
     }
     class SsmListSessionResult implements f2.dsl.cqrs.Event {
-        constructor(values: kotlin.collections.List<string>);
-        readonly values: kotlin.collections.List<string>;
+        constructor(values: Array<string>);
+        readonly values: Array<string>;
     }
 }
 export namespace ssm.dsl.query {
@@ -370,8 +395,8 @@ export namespace ssm.dsl.query {
         readonly bearerToken: Nullable<string>;
     }
     class SsmListSsmResult implements f2.dsl.cqrs.Event {
-        constructor(values: kotlin.collections.List<string>);
-        readonly values: kotlin.collections.List<string>;
+        constructor(values: Array<string>);
+        readonly values: Array<string>;
     }
 }
 export namespace ssm.dsl.query {
@@ -383,91 +408,29 @@ export namespace ssm.dsl.query {
         readonly bearerToken: Nullable<string>;
     }
     class SsmListUserResult implements f2.dsl.cqrs.Event {
-        constructor(values: kotlin.collections.List<string>);
-        readonly values: kotlin.collections.List<string>;
+        constructor(values: Array<string>);
+        readonly values: Array<string>;
     }
 }
-export namespace x2.api.ssm.model {
-    interface Ssm {
-        readonly name: string;
-        readonly version: string;
-        readonly transitions: kotlin.collections.List<x2.api.ssm.model.SsmTransition>;
-    }
-    class SsmBase implements x2.api.ssm.model.Ssm {
-        constructor(name: string, version: string, transitions: kotlin.collections.List<x2.api.ssm.model.SsmTransitionBase>);
-        readonly name: string;
-        readonly version: string;
-        readonly transitions: kotlin.collections.List<x2.api.ssm.model.SsmTransitionBase>;
+export namespace x2.api.ssm.domain {
+    interface SsmApiFinder {
+        getAllSsm(): f2.dsl.function.F2FunctionRemote<x2.api.ssm.domain.features.GetSsmListCommand, Array<x2.api.ssm.domain.model.TxSsm>>;
+        getSsm(): f2.dsl.function.F2FunctionRemote<ssm.dsl.query.SsmGetQuery, ssm.dsl.query.SsmGetResult>;
+        getAllSessions(): f2.dsl.function.F2FunctionRemote<x2.api.ssm.domain.features.GetSsmSessionListCommand, Array<x2.api.ssm.domain.model.TxSsmSession>>;
+        getSession(): f2.dsl.function.F2FunctionRemote<x2.api.ssm.domain.features.GetSsmSessionCommand, Nullable<x2.api.ssm.domain.model.TxSsmSession>>;
+        getSessionLogs(): f2.dsl.function.F2FunctionRemote<ssm.dsl.query.SsmGetSessionLogsQuery, Array<ssm.dsl.SsmSessionStateLog>>;
     }
 }
-export namespace x2.api.ssm.model {
-    interface SsmSession {
-        readonly id: string;
-        readonly channel: string;
-        readonly creationDate: kotlin.Long;
-        readonly lastTransaction: x2.api.ssm.model.SsmTransaction;
-    }
-    class SsmSessionBase implements x2.api.ssm.model.SsmSession {
-        constructor(id: string, channel: string, creationDate: kotlin.Long, lastTransaction: x2.api.ssm.model.SsmTransactionBase);
-        readonly id: string;
-        readonly channel: string;
-        readonly creationDate: kotlin.Long;
-        readonly lastTransaction: x2.api.ssm.model.SsmTransactionBase;
-    }
-}
-export namespace x2.api.ssm.model {
-    interface SsmTransaction {
-        readonly id: string;
-        readonly from: number;
-        readonly to: number;
-        readonly date: kotlin.Long;
-        readonly signer: x2.api.ssm.model.SsmUser;
-    }
-    class SsmTransactionBase implements x2.api.ssm.model.SsmTransaction {
-        constructor(id: string, from: number, to: number, date: kotlin.Long, signer: x2.api.ssm.model.SsmUserBase);
-        readonly id: string;
-        readonly from: number;
-        readonly to: number;
-        readonly date: kotlin.Long;
-        readonly signer: x2.api.ssm.model.SsmUserBase;
-    }
-}
-export namespace x2.api.ssm.model {
-    interface SsmTransition {
-        readonly from: number;
-        readonly to: number;
-        readonly role: string;
-        readonly action: string;
-    }
-    class SsmTransitionBase implements x2.api.ssm.model.SsmTransition {
-        constructor(from: number, to: number, role: string, action: string);
-        readonly from: number;
-        readonly to: number;
-        readonly role: string;
-        readonly action: string;
-    }
-}
-export namespace x2.api.ssm.model {
-    interface SsmUser {
-        readonly name: string;
-        readonly publicKey: string;
-    }
-    class SsmUserBase implements x2.api.ssm.model.SsmUser {
-        constructor(name: string, publicKey: string);
-        readonly name: string;
-        readonly publicKey: string;
-    }
-}
-export namespace x2.api.ssm.model.features {
+export namespace x2.api.ssm.domain.features {
     interface GetSsmListCommand {
         readonly dbName: string;
     }
-    class GetSsmListCommandBase implements x2.api.ssm.model.features.GetSsmListCommand {
+    class GetSsmListCommandBase implements x2.api.ssm.domain.features.GetSsmListCommand {
         constructor(dbName: string);
         readonly dbName: string;
     }
 }
-export namespace x2.api.ssm.model.features {
+export namespace x2.api.ssm.domain.features {
     interface GetSsmSessionCommand extends ssm.dsl.SsmCommand {
         readonly name: string;
         readonly baseUrl: string;
@@ -475,7 +438,7 @@ export namespace x2.api.ssm.model.features {
         readonly chaincodeId: Nullable<string>;
         readonly bearerToken: Nullable<string>;
     }
-    class GetSsmSessionCommandBase implements x2.api.ssm.model.features.GetSsmSessionCommand {
+    class GetSsmSessionCommandBase implements x2.api.ssm.domain.features.GetSsmSessionCommand {
         constructor(name: string, baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
         readonly name: string;
         readonly baseUrl: string;
@@ -484,7 +447,7 @@ export namespace x2.api.ssm.model.features {
         readonly bearerToken: Nullable<string>;
     }
 }
-export namespace x2.api.ssm.model.features {
+export namespace x2.api.ssm.domain.features {
     interface GetSsmSessionListCommand extends ssm.dsl.SsmCommand {
         readonly baseUrl: string;
         readonly channelId: Nullable<string>;
@@ -493,7 +456,7 @@ export namespace x2.api.ssm.model.features {
         readonly dbName: string;
         readonly ssm: Nullable<string>;
     }
-    class GetSsmSessionListCommandBase implements x2.api.ssm.model.features.GetSsmSessionListCommand {
+    class GetSsmSessionListCommandBase implements x2.api.ssm.domain.features.GetSsmSessionListCommand {
         constructor(baseUrl: string, dbName: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>, ssm: Nullable<string>);
         readonly baseUrl: string;
         readonly dbName: string;
@@ -501,6 +464,71 @@ export namespace x2.api.ssm.model.features {
         readonly chaincodeId: Nullable<string>;
         readonly bearerToken: Nullable<string>;
         readonly ssm: Nullable<string>;
+    }
+}
+export namespace x2.api.ssm.domain.model {
+    interface TxChannel {
+        readonly id: string;
+    }
+    class TxChannelBase implements x2.api.ssm.domain.model.TxChannel {
+        constructor(id: string);
+        readonly id: string;
+    }
+}
+export namespace x2.api.ssm.domain.model {
+    interface TxSsm {
+        readonly ssm: ssm.dsl.Ssm;
+        readonly channel: x2.api.ssm.domain.model.TxChannel;
+        readonly version: string;
+    }
+    class TxSsmBase implements x2.api.ssm.domain.model.TxSsm {
+        constructor(ssm: ssm.dsl.Ssm, channel: x2.api.ssm.domain.model.TxChannelBase, version: string);
+        readonly ssm: ssm.dsl.Ssm;
+        readonly channel: x2.api.ssm.domain.model.TxChannelBase;
+        readonly version: string;
+    }
+}
+export namespace x2.api.ssm.domain.model {
+    interface TxSsmSession {
+        readonly state: ssm.dsl.SsmSessionState;
+        readonly channel: x2.api.ssm.domain.model.TxChannel;
+        readonly creationDate: kotlin.Long;
+        readonly lastTransaction: x2.api.ssm.domain.model.TxSsmTransaction;
+    }
+    class TxSsmSessionBase implements x2.api.ssm.domain.model.TxSsmSession {
+        constructor(state: ssm.dsl.SsmSessionStateBase, channel: x2.api.ssm.domain.model.TxChannelBase, creationDate: kotlin.Long, lastTransaction: x2.api.ssm.domain.model.TxSsmTransactionBase);
+        readonly state: ssm.dsl.SsmSessionStateBase;
+        readonly channel: x2.api.ssm.domain.model.TxChannelBase;
+        readonly creationDate: kotlin.Long;
+        readonly lastTransaction: x2.api.ssm.domain.model.TxSsmTransactionBase;
+    }
+}
+export namespace x2.api.ssm.domain.model {
+    interface TxSsmTransaction {
+        readonly id: string;
+        readonly from: number;
+        readonly to: number;
+        readonly date: kotlin.Long;
+        readonly signer: x2.api.ssm.domain.model.TxSsmUser;
+    }
+    class TxSsmTransactionBase implements x2.api.ssm.domain.model.TxSsmTransaction {
+        constructor(id: string, from: number, to: number, date: kotlin.Long, signer: x2.api.ssm.domain.model.TxSsmUserBase);
+        readonly id: string;
+        readonly from: number;
+        readonly to: number;
+        readonly date: kotlin.Long;
+        readonly signer: x2.api.ssm.domain.model.TxSsmUserBase;
+    }
+}
+export namespace x2.api.ssm.domain.model {
+    interface TxSsmUser {
+        readonly name: string;
+        readonly publicKey: string;
+    }
+    class TxSsmUserBase implements x2.api.ssm.domain.model.TxSsmUser {
+        constructor(name: string, publicKey: string);
+        readonly name: string;
+        readonly publicKey: string;
     }
 }
 export as namespace x2_ssm_domain;

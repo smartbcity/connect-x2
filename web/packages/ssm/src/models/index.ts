@@ -1,14 +1,15 @@
 import {x2} from  "x2-ssm-domain"
 
-export interface SSM extends x2.api.ssm.model.Ssm {} 
+export interface SSM extends x2.api.ssm.domain.model.TxSsm {} 
 
-export interface Transition extends x2.api.ssm.model.SsmTransition {}
+export interface Session extends x2.api.ssm.domain.model.TxSsmSession {}
 
-export interface Session extends x2.api.ssm.model.SsmSession {}
+export interface Transaction extends x2.api.ssm.domain.model.TxSsmTransaction {}
 
-export interface Transaction extends x2.api.ssm.model.SsmTransaction {}
+export interface User extends x2.api.ssm.domain.model.TxSsmUser {}
 
-export interface User extends x2.api.ssm.model.SsmUser {}
+const test: SSM = null
+test.ssm.transitions
 
 //@ts-ignore
 export const defaultProtocols: string[] = window._env_.PROTOCOLS

@@ -47,8 +47,6 @@
   S2Exception.prototype.constructor = S2Exception;
   S2NotFoundException.prototype = Object.create(Exception.prototype);
   S2NotFoundException.prototype.constructor = S2NotFoundException;
-  SsmSessionState_0.prototype = Object.create(SsmSession_0.prototype);
-  SsmSessionState_0.prototype.constructor = SsmSessionState_0;
   function joinToString(_this_, separator, prefix, postfix, limit, truncated, transform) {
     return joinTo(_this_, StringBuilder_init_$Create$(), separator, prefix, postfix, limit, truncated, transform).toString();
   }
@@ -2444,83 +2442,97 @@
     kind: 'interface',
     interfaces: []
   };
-  function Ssm_0(name, transitions) {
+  function Ssm_0() {
+  }
+  Ssm_0.$metadata$ = {
+    simpleName: 'Ssm',
+    kind: 'interface',
+    interfaces: []
+  };
+  function SsmBase_0(name, transitions) {
     this._name = name;
     this._transitions = transitions;
   }
-  Ssm_0.prototype._get_name__10 = function () {
+  SsmBase_0.prototype._get_name__10 = function () {
     return this._name;
   };
-  Ssm_0.prototype._get_transitions__1 = function () {
+  SsmBase_0.prototype._get_transitions__0 = function () {
     return this._transitions;
   };
-  Ssm_0.prototype.component1_7 = function () {
+  SsmBase_0.prototype.component1_7 = function () {
     return this._name;
   };
-  Ssm_0.prototype.component2_5 = function () {
+  SsmBase_0.prototype.component2_5 = function () {
     return this._transitions;
   };
-  Ssm_0.prototype.copy = function (name, transitions) {
-    return new Ssm_0(name, transitions);
+  SsmBase_0.prototype.copy = function (name, transitions) {
+    return new SsmBase_0(name, transitions);
   };
-  Ssm_0.prototype.copy$default = function (name, transitions, $mask0, $handler) {
+  SsmBase_0.prototype.copy$default = function (name, transitions, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       name = this._name;
     if (!(($mask0 & 2) === 0))
       transitions = this._transitions;
     return this.copy(name, transitions);
   };
-  Ssm_0.prototype.toString = function () {
-    return '' + 'Ssm(name=' + this._name + ', transitions=' + this._transitions + ')';
+  SsmBase_0.prototype.toString = function () {
+    return '' + 'SsmBase(name=' + this._name + ', transitions=' + toString_1(this._transitions) + ')';
   };
-  Ssm_0.prototype.hashCode = function () {
+  SsmBase_0.prototype.hashCode = function () {
     var result = getStringHashCode(this._name);
     result = imul(result, 31) + hashCode(this._transitions) | 0;
     return result;
   };
-  Ssm_0.prototype.equals = function (other) {
+  SsmBase_0.prototype.equals = function (other) {
     if (this === other)
       return true;
-    if (!(other instanceof Ssm_0))
+    if (!(other instanceof SsmBase_0))
       return false;
     else {
     }
-    var tmp0_other_with_cast = other instanceof Ssm_0 ? other : THROW_CCE();
+    var tmp0_other_with_cast = other instanceof SsmBase_0 ? other : THROW_CCE();
     if (!(this._name === tmp0_other_with_cast._name))
       return false;
     if (!equals(this._transitions, tmp0_other_with_cast._transitions))
       return false;
     return true;
   };
-  Ssm_0.$metadata$ = {
-    simpleName: 'Ssm',
+  SsmBase_0.$metadata$ = {
+    simpleName: 'SsmBase',
     kind: 'class',
+    interfaces: [Ssm_0]
+  };
+  Object.defineProperty(SsmBase_0.prototype, 'name', {
+    configurable: true,
+    get: SsmBase_0.prototype._get_name__10
+  });
+  Object.defineProperty(SsmBase_0.prototype, 'transitions', {
+    configurable: true,
+    get: SsmBase_0.prototype._get_transitions__0
+  });
+  function SsmAgent() {
+  }
+  SsmAgent.$metadata$ = {
+    simpleName: 'SsmAgent',
+    kind: 'interface',
     interfaces: []
   };
-  Object.defineProperty(Ssm_0.prototype, 'name', {
-    configurable: true,
-    get: Ssm_0.prototype._get_name__10
-  });
-  Object.defineProperty(Ssm_0.prototype, 'transitions', {
-    configurable: true,
-    get: Ssm_0.prototype._get_transitions__1
-  });
-  function SsmAgent(name, pub) {
+  function SsmAgentBase(name, pub) {
     this._name_0 = name;
     this._pub = pub;
   }
-  SsmAgent.prototype._get_name__10 = function () {
+  SsmAgentBase.prototype._get_name__10 = function () {
     return this._name_0;
   };
-  SsmAgent.prototype._get_pub_ = function () {
+  SsmAgentBase.prototype._get_pub__0 = function () {
     return this._pub;
   };
-  SsmAgent.prototype.equals = function (other) {
+  SsmAgentBase.prototype.equals = function (other) {
     if (this === other)
       return true;
     if (other == null ? true : !getKClassFromExpression_0(this).equals(getKClassFromExpression_0(other)))
       return false;
-    if (other instanceof SsmAgent)
+    if (other instanceof SsmAgentBase)
       other;
     else
       THROW_CCE();
@@ -2531,42 +2543,42 @@
       return false;
     return true;
   };
-  SsmAgent.prototype.hashCode = function () {
+  SsmAgentBase.prototype.hashCode = function () {
     var result = getStringHashCode(this._name_0);
     result = imul(31, result) + contentHashCode(this._pub) | 0;
     return result;
   };
-  SsmAgent.prototype.component1_7 = function () {
+  SsmAgentBase.prototype.component1_7 = function () {
     return this._name_0;
   };
-  SsmAgent.prototype.component2_5 = function () {
+  SsmAgentBase.prototype.component2_5 = function () {
     return this._pub;
   };
-  SsmAgent.prototype.copy_0 = function (name, pub) {
-    return new SsmAgent(name, pub);
+  SsmAgentBase.prototype.copy_0 = function (name, pub) {
+    return new SsmAgentBase(name, pub);
   };
-  SsmAgent.prototype.copy$default_0 = function (name, pub, $mask0, $handler) {
+  SsmAgentBase.prototype.copy$default_0 = function (name, pub, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       name = this._name_0;
     if (!(($mask0 & 2) === 0))
       pub = this._pub;
     return this.copy_0(name, pub);
   };
-  SsmAgent.prototype.toString = function () {
-    return '' + 'SsmAgent(name=' + this._name_0 + ', pub=' + toString_1(this._pub) + ')';
+  SsmAgentBase.prototype.toString = function () {
+    return '' + 'SsmAgentBase(name=' + this._name_0 + ', pub=' + toString_1(this._pub) + ')';
   };
-  SsmAgent.$metadata$ = {
-    simpleName: 'SsmAgent',
+  SsmAgentBase.$metadata$ = {
+    simpleName: 'SsmAgentBase',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmAgent]
   };
-  Object.defineProperty(SsmAgent.prototype, 'name', {
+  Object.defineProperty(SsmAgentBase.prototype, 'name', {
     configurable: true,
-    get: SsmAgent.prototype._get_name__10
+    get: SsmAgentBase.prototype._get_name__10
   });
-  Object.defineProperty(SsmAgent.prototype, 'pub', {
+  Object.defineProperty(SsmAgentBase.prototype, 'pub', {
     configurable: true,
-    get: SsmAgent.prototype._get_pub_
+    get: SsmAgentBase.prototype._get_pub__0
   });
   function SsmCommand_0() {
   }
@@ -2575,49 +2587,56 @@
     kind: 'interface',
     interfaces: [Command_0]
   };
-  function SsmContext_init_$Init$(session, public_0, iteration, private_0, $mask0, $marker, $this) {
+  function SsmContext_0() {
+  }
+  SsmContext_0.$metadata$ = {
+    simpleName: 'SsmContext',
+    kind: 'interface',
+    interfaces: [WithPrivate]
+  };
+  function SsmContextBase_init_$Init$(session, public_0, iteration, private_0, $mask0, $marker, $this) {
     if (!(($mask0 & 8) === 0))
       private_0 = null;
-    SsmContext.call($this, session, public_0, iteration, private_0);
+    SsmContextBase_0.call($this, session, public_0, iteration, private_0);
     return $this;
   }
-  function SsmContext_init_$Create$(session, public_0, iteration, private_0, $mask0, $marker) {
-    return SsmContext_init_$Init$(session, public_0, iteration, private_0, $mask0, $marker, Object.create(SsmContext.prototype));
+  function SsmContextBase_init_$Create$(session, public_0, iteration, private_0, $mask0, $marker) {
+    return SsmContextBase_init_$Init$(session, public_0, iteration, private_0, $mask0, $marker, Object.create(SsmContextBase_0.prototype));
   }
-  function SsmContext(session, public_0, iteration, private_0) {
+  function SsmContextBase_0(session, public_0, iteration, private_0) {
     this._session = session;
     this._public = public_0;
     this._iteration = iteration;
     this._private = private_0;
   }
-  SsmContext.prototype._get_session__4 = function () {
+  SsmContextBase_0.prototype._get_session__7 = function () {
     return this._session;
   };
-  SsmContext.prototype._get_public__1 = function () {
+  SsmContextBase_0.prototype._get_public__4 = function () {
     return this._public;
   };
-  SsmContext.prototype._get_iteration__1 = function () {
+  SsmContextBase_0.prototype._get_iteration__3 = function () {
     return this._iteration;
   };
-  SsmContext.prototype._get_private__1 = function () {
+  SsmContextBase_0.prototype._get_private__4 = function () {
     return this._private;
   };
-  SsmContext.prototype.component1_7 = function () {
+  SsmContextBase_0.prototype.component1_7 = function () {
     return this._session;
   };
-  SsmContext.prototype.component2_5 = function () {
+  SsmContextBase_0.prototype.component2_5 = function () {
     return this._public;
   };
-  SsmContext.prototype.component3_2 = function () {
+  SsmContextBase_0.prototype.component3_2 = function () {
     return this._iteration;
   };
-  SsmContext.prototype.component4_1 = function () {
+  SsmContextBase_0.prototype.component4_1 = function () {
     return this._private;
   };
-  SsmContext.prototype.copy_1 = function (session, public_0, iteration, private_0) {
-    return new SsmContext(session, public_0, iteration, private_0);
+  SsmContextBase_0.prototype.copy_1 = function (session, public_0, iteration, private_0) {
+    return new SsmContextBase_0(session, public_0, iteration, private_0);
   };
-  SsmContext.prototype.copy$default_1 = function (session, public_0, iteration, private_0, $mask0, $handler) {
+  SsmContextBase_0.prototype.copy$default_1 = function (session, public_0, iteration, private_0, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       session = this._session;
     if (!(($mask0 & 2) === 0))
@@ -2628,24 +2647,24 @@
       private_0 = this._private;
     return this.copy_1(session, public_0, iteration, private_0);
   };
-  SsmContext.prototype.toString = function () {
-    return '' + 'SsmContext(session=' + this._session + ', public=' + this._public + ', iteration=' + this._iteration + ', private=' + this._private + ')';
+  SsmContextBase_0.prototype.toString = function () {
+    return '' + 'SsmContextBase(session=' + this._session + ', public=' + this._public + ', iteration=' + this._iteration + ', private=' + this._private + ')';
   };
-  SsmContext.prototype.hashCode = function () {
+  SsmContextBase_0.prototype.hashCode = function () {
     var result = getStringHashCode(this._session);
     result = imul(result, 31) + getStringHashCode(this._public) | 0;
     result = imul(result, 31) + this._iteration | 0;
     result = imul(result, 31) + (this._private == null ? 0 : hashCode(this._private)) | 0;
     return result;
   };
-  SsmContext.prototype.equals = function (other) {
+  SsmContextBase_0.prototype.equals = function (other) {
     if (this === other)
       return true;
-    if (!(other instanceof SsmContext))
+    if (!(other instanceof SsmContextBase_0))
       return false;
     else {
     }
-    var tmp0_other_with_cast = other instanceof SsmContext ? other : THROW_CCE();
+    var tmp0_other_with_cast = other instanceof SsmContextBase_0 ? other : THROW_CCE();
     if (!(this._session === tmp0_other_with_cast._session))
       return false;
     if (!(this._public === tmp0_other_with_cast._public))
@@ -2656,26 +2675,26 @@
       return false;
     return true;
   };
-  SsmContext.$metadata$ = {
-    simpleName: 'SsmContext',
+  SsmContextBase_0.$metadata$ = {
+    simpleName: 'SsmContextBase',
     kind: 'class',
-    interfaces: [WithPrivate]
+    interfaces: [SsmContext_0]
   };
-  Object.defineProperty(SsmContext.prototype, 'session', {
+  Object.defineProperty(SsmContextBase_0.prototype, 'session', {
     configurable: true,
-    get: SsmContext.prototype._get_session__4
+    get: SsmContextBase_0.prototype._get_session__7
   });
-  Object.defineProperty(SsmContext.prototype, 'public', {
+  Object.defineProperty(SsmContextBase_0.prototype, 'public', {
     configurable: true,
-    get: SsmContext.prototype._get_public__1
+    get: SsmContextBase_0.prototype._get_public__4
   });
-  Object.defineProperty(SsmContext.prototype, 'iteration', {
+  Object.defineProperty(SsmContextBase_0.prototype, 'iteration', {
     configurable: true,
-    get: SsmContext.prototype._get_iteration__1
+    get: SsmContextBase_0.prototype._get_iteration__3
   });
-  Object.defineProperty(SsmContext.prototype, 'private', {
+  Object.defineProperty(SsmContextBase_0.prototype, 'private', {
     configurable: true,
-    get: SsmContext.prototype._get_private__1
+    get: SsmContextBase_0.prototype._get_private__4
   });
   function SsmGrant(user, iteration, credits) {
     this._user = user;
@@ -2685,7 +2704,7 @@
   SsmGrant.prototype._get_user__0 = function () {
     return this._user;
   };
-  SsmGrant.prototype._get_iteration__1 = function () {
+  SsmGrant.prototype._get_iteration__3 = function () {
     return this._iteration_0;
   };
   SsmGrant.prototype._get_credits_ = function () {
@@ -2748,7 +2767,7 @@
   });
   Object.defineProperty(SsmGrant.prototype, 'iteration', {
     configurable: true,
-    get: SsmGrant.prototype._get_iteration__1
+    get: SsmGrant.prototype._get_iteration__3
   });
   Object.defineProperty(SsmGrant.prototype, 'credits', {
     configurable: true,
@@ -2798,73 +2817,86 @@
     configurable: true,
     get: Credit_0.prototype._get_amount_
   });
-  function SsmSession_init_$Init$(ssm, session, roles, public_0, private_0, $mask0, $marker, $this) {
+  function SsmSession_0() {
+  }
+  SsmSession_0.$metadata$ = {
+    simpleName: 'SsmSession',
+    kind: 'interface',
+    interfaces: [WithPrivate]
+  };
+  function SsmSessionBase_init_$Init$(ssm, session, roles, public_0, private_0, $mask0, $marker, $this) {
     if (!(($mask0 & 16) === 0)) {
       private_0 = HashMap_init_$Create$();
-    }SsmSession_0.call($this, ssm, session, roles, public_0, private_0);
+    }SsmSessionBase_0.call($this, ssm, session, roles, public_0, private_0);
     return $this;
   }
-  function SsmSession_init_$Create$(ssm, session, roles, public_0, private_0, $mask0, $marker) {
-    return SsmSession_init_$Init$(ssm, session, roles, public_0, private_0, $mask0, $marker, Object.create(SsmSession_0.prototype));
+  function SsmSessionBase_init_$Create$(ssm, session, roles, public_0, private_0, $mask0, $marker) {
+    return SsmSessionBase_init_$Init$(ssm, session, roles, public_0, private_0, $mask0, $marker, Object.create(SsmSessionBase_0.prototype));
   }
-  function SsmSession_0(ssm, session, roles, public_0, private_0) {
+  function SsmSessionBase_0(ssm, session, roles, public_0, private_0) {
     this._ssm = ssm;
     this._session_0 = session;
     this._roles = roles;
     this._public_0 = public_0;
     this._private_0 = private_0;
   }
-  SsmSession_0.prototype._get_ssm__3 = function () {
+  SsmSessionBase_0.prototype._get_ssm__6 = function () {
     return this._ssm;
   };
-  SsmSession_0.prototype._get_session__4 = function () {
+  SsmSessionBase_0.prototype._get_session__7 = function () {
     return this._session_0;
   };
-  SsmSession_0.prototype._get_roles__0 = function () {
+  SsmSessionBase_0.prototype._get_roles__2 = function () {
     return this._roles;
   };
-  SsmSession_0.prototype._get_public__1 = function () {
+  SsmSessionBase_0.prototype._get_public__4 = function () {
     return this._public_0;
   };
-  SsmSession_0.prototype._get_private__1 = function () {
+  SsmSessionBase_0.prototype._get_private__4 = function () {
     return this._private_0;
   };
-  SsmSession_0.$metadata$ = {
-    simpleName: 'SsmSession',
+  SsmSessionBase_0.$metadata$ = {
+    simpleName: 'SsmSessionBase',
     kind: 'class',
-    interfaces: [WithPrivate]
+    interfaces: [SsmSession_0]
   };
-  Object.defineProperty(SsmSession_0.prototype, 'ssm', {
+  Object.defineProperty(SsmSessionBase_0.prototype, 'ssm', {
     configurable: true,
-    get: SsmSession_0.prototype._get_ssm__3
+    get: SsmSessionBase_0.prototype._get_ssm__6
   });
-  Object.defineProperty(SsmSession_0.prototype, 'session', {
+  Object.defineProperty(SsmSessionBase_0.prototype, 'session', {
     configurable: true,
-    get: SsmSession_0.prototype._get_session__4
+    get: SsmSessionBase_0.prototype._get_session__7
   });
-  Object.defineProperty(SsmSession_0.prototype, 'roles', {
+  Object.defineProperty(SsmSessionBase_0.prototype, 'roles', {
     configurable: true,
-    get: SsmSession_0.prototype._get_roles__0
+    get: SsmSessionBase_0.prototype._get_roles__2
   });
-  Object.defineProperty(SsmSession_0.prototype, 'public', {
+  Object.defineProperty(SsmSessionBase_0.prototype, 'public', {
     configurable: true,
-    get: SsmSession_0.prototype._get_public__1
+    get: SsmSessionBase_0.prototype._get_public__4
   });
-  Object.defineProperty(SsmSession_0.prototype, 'private', {
+  Object.defineProperty(SsmSessionBase_0.prototype, 'private', {
     configurable: true,
-    get: SsmSession_0.prototype._get_private__1
+    get: SsmSessionBase_0.prototype._get_private__4
   });
-  function SsmSessionState_init_$Init$(ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $marker, $this) {
+  function SsmSessionState_0() {
+  }
+  SsmSessionState_0.$metadata$ = {
+    simpleName: 'SsmSessionState',
+    kind: 'interface',
+    interfaces: [SsmSession_0, WithPrivate]
+  };
+  function SsmSessionStateBase_init_$Init$(ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $marker, $this) {
     if (!(($mask0 & 16) === 0)) {
       private_0 = HashMap_init_$Create$();
-    }SsmSessionState_0.call($this, ssm, session, roles, public_0, private_0, origin, current, iteration);
+    }SsmSessionStateBase_0.call($this, ssm, session, roles, public_0, private_0, origin, current, iteration);
     return $this;
   }
-  function SsmSessionState_init_$Create$(ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $marker) {
-    return SsmSessionState_init_$Init$(ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $marker, Object.create(SsmSessionState_0.prototype));
+  function SsmSessionStateBase_init_$Create$(ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $marker) {
+    return SsmSessionStateBase_init_$Init$(ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $marker, Object.create(SsmSessionStateBase_0.prototype));
   }
-  function SsmSessionState_0(ssm, session, roles, public_0, private_0, origin, current, iteration) {
-    SsmSession_0.call(this, ssm, session, roles, public_0, private_0);
+  function SsmSessionStateBase_0(ssm, session, roles, public_0, private_0, origin, current, iteration) {
     this._ssm_0 = ssm;
     this._session_1 = session;
     this._roles_0 = roles;
@@ -2874,58 +2906,58 @@
     this._current = current;
     this._iteration_1 = iteration;
   }
-  SsmSessionState_0.prototype._get_ssm__3 = function () {
+  SsmSessionStateBase_0.prototype._get_ssm__6 = function () {
     return this._ssm_0;
   };
-  SsmSessionState_0.prototype._get_session__4 = function () {
+  SsmSessionStateBase_0.prototype._get_session__7 = function () {
     return this._session_1;
   };
-  SsmSessionState_0.prototype._get_roles__0 = function () {
+  SsmSessionStateBase_0.prototype._get_roles__2 = function () {
     return this._roles_0;
   };
-  SsmSessionState_0.prototype._get_public__1 = function () {
+  SsmSessionStateBase_0.prototype._get_public__4 = function () {
     return this._public_1;
   };
-  SsmSessionState_0.prototype._get_private__1 = function () {
+  SsmSessionStateBase_0.prototype._get_private__4 = function () {
     return this._private_1;
   };
-  SsmSessionState_0.prototype._get_origin_ = function () {
+  SsmSessionStateBase_0.prototype._get_origin__0 = function () {
     return this._origin;
   };
-  SsmSessionState_0.prototype._get_current_ = function () {
+  SsmSessionStateBase_0.prototype._get_current__0 = function () {
     return this._current;
   };
-  SsmSessionState_0.prototype._get_iteration__1 = function () {
+  SsmSessionStateBase_0.prototype._get_iteration__3 = function () {
     return this._iteration_1;
   };
-  SsmSessionState_0.prototype.component1_7 = function () {
+  SsmSessionStateBase_0.prototype.component1_7 = function () {
     return this._ssm_0;
   };
-  SsmSessionState_0.prototype.component2_5 = function () {
+  SsmSessionStateBase_0.prototype.component2_5 = function () {
     return this._session_1;
   };
-  SsmSessionState_0.prototype.component3_2 = function () {
+  SsmSessionStateBase_0.prototype.component3_2 = function () {
     return this._roles_0;
   };
-  SsmSessionState_0.prototype.component4_1 = function () {
+  SsmSessionStateBase_0.prototype.component4_1 = function () {
     return this._public_1;
   };
-  SsmSessionState_0.prototype.component5 = function () {
+  SsmSessionStateBase_0.prototype.component5 = function () {
     return this._private_1;
   };
-  SsmSessionState_0.prototype.component6 = function () {
+  SsmSessionStateBase_0.prototype.component6 = function () {
     return this._origin;
   };
-  SsmSessionState_0.prototype.component7 = function () {
+  SsmSessionStateBase_0.prototype.component7 = function () {
     return this._current;
   };
-  SsmSessionState_0.prototype.component8 = function () {
+  SsmSessionStateBase_0.prototype.component8 = function () {
     return this._iteration_1;
   };
-  SsmSessionState_0.prototype.copy_4 = function (ssm, session, roles, public_0, private_0, origin, current, iteration) {
-    return new SsmSessionState_0(ssm, session, roles, public_0, private_0, origin, current, iteration);
+  SsmSessionStateBase_0.prototype.copy_4 = function (ssm, session, roles, public_0, private_0, origin, current, iteration) {
+    return new SsmSessionStateBase_0(ssm, session, roles, public_0, private_0, origin, current, iteration);
   };
-  SsmSessionState_0.prototype.copy$default_4 = function (ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $handler) {
+  SsmSessionStateBase_0.prototype.copy$default_4 = function (ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       ssm = this._ssm_0;
     if (!(($mask0 & 2) === 0))
@@ -2944,10 +2976,10 @@
       iteration = this._iteration_1;
     return this.copy_4(ssm, session, roles, public_0, private_0, origin, current, iteration);
   };
-  SsmSessionState_0.prototype.toString = function () {
-    return '' + 'SsmSessionState(ssm=' + this._ssm_0 + ', session=' + this._session_1 + ', roles=' + this._roles_0 + ', public=' + this._public_1 + ', private=' + this._private_1 + ', origin=' + this._origin + ', current=' + this._current + ', iteration=' + this._iteration_1 + ')';
+  SsmSessionStateBase_0.prototype.toString = function () {
+    return '' + 'SsmSessionStateBase(ssm=' + this._ssm_0 + ', session=' + this._session_1 + ', roles=' + this._roles_0 + ', public=' + this._public_1 + ', private=' + this._private_1 + ', origin=' + this._origin + ', current=' + this._current + ', iteration=' + this._iteration_1 + ')';
   };
-  SsmSessionState_0.prototype.hashCode = function () {
+  SsmSessionStateBase_0.prototype.hashCode = function () {
     var result = this._ssm_0 == null ? 0 : getStringHashCode(this._ssm_0);
     result = imul(result, 31) + getStringHashCode(this._session_1) | 0;
     result = imul(result, 31) + (this._roles_0 == null ? 0 : hashCode(this._roles_0)) | 0;
@@ -2958,14 +2990,14 @@
     result = imul(result, 31) + this._iteration_1 | 0;
     return result;
   };
-  SsmSessionState_0.prototype.equals = function (other) {
+  SsmSessionStateBase_0.prototype.equals = function (other) {
     if (this === other)
       return true;
-    if (!(other instanceof SsmSessionState_0))
+    if (!(other instanceof SsmSessionStateBase_0))
       return false;
     else {
     }
-    var tmp0_other_with_cast = other instanceof SsmSessionState_0 ? other : THROW_CCE();
+    var tmp0_other_with_cast = other instanceof SsmSessionStateBase_0 ? other : THROW_CCE();
     if (!(this._ssm_0 == tmp0_other_with_cast._ssm_0))
       return false;
     if (!(this._session_1 === tmp0_other_with_cast._session_1))
@@ -2984,42 +3016,42 @@
       return false;
     return true;
   };
-  SsmSessionState_0.$metadata$ = {
-    simpleName: 'SsmSessionState',
+  SsmSessionStateBase_0.$metadata$ = {
+    simpleName: 'SsmSessionStateBase',
     kind: 'class',
-    interfaces: [WithPrivate]
+    interfaces: [SsmSessionState_0]
   };
-  Object.defineProperty(SsmSessionState_0.prototype, 'ssm', {
+  Object.defineProperty(SsmSessionStateBase_0.prototype, 'ssm', {
     configurable: true,
-    get: SsmSessionState_0.prototype._get_ssm__3
+    get: SsmSessionStateBase_0.prototype._get_ssm__6
   });
-  Object.defineProperty(SsmSessionState_0.prototype, 'session', {
+  Object.defineProperty(SsmSessionStateBase_0.prototype, 'session', {
     configurable: true,
-    get: SsmSessionState_0.prototype._get_session__4
+    get: SsmSessionStateBase_0.prototype._get_session__7
   });
-  Object.defineProperty(SsmSessionState_0.prototype, 'roles', {
+  Object.defineProperty(SsmSessionStateBase_0.prototype, 'roles', {
     configurable: true,
-    get: SsmSessionState_0.prototype._get_roles__0
+    get: SsmSessionStateBase_0.prototype._get_roles__2
   });
-  Object.defineProperty(SsmSessionState_0.prototype, 'public', {
+  Object.defineProperty(SsmSessionStateBase_0.prototype, 'public', {
     configurable: true,
-    get: SsmSessionState_0.prototype._get_public__1
+    get: SsmSessionStateBase_0.prototype._get_public__4
   });
-  Object.defineProperty(SsmSessionState_0.prototype, 'private', {
+  Object.defineProperty(SsmSessionStateBase_0.prototype, 'private', {
     configurable: true,
-    get: SsmSessionState_0.prototype._get_private__1
+    get: SsmSessionStateBase_0.prototype._get_private__4
   });
-  Object.defineProperty(SsmSessionState_0.prototype, 'origin', {
+  Object.defineProperty(SsmSessionStateBase_0.prototype, 'origin', {
     configurable: true,
-    get: SsmSessionState_0.prototype._get_origin_
+    get: SsmSessionStateBase_0.prototype._get_origin__0
   });
-  Object.defineProperty(SsmSessionState_0.prototype, 'current', {
+  Object.defineProperty(SsmSessionStateBase_0.prototype, 'current', {
     configurable: true,
-    get: SsmSessionState_0.prototype._get_current_
+    get: SsmSessionStateBase_0.prototype._get_current__0
   });
-  Object.defineProperty(SsmSessionState_0.prototype, 'iteration', {
+  Object.defineProperty(SsmSessionStateBase_0.prototype, 'iteration', {
     configurable: true,
-    get: SsmSessionState_0.prototype._get_iteration__1
+    get: SsmSessionStateBase_0.prototype._get_iteration__3
   });
   function SsmSessionStateLog_0(txId, state) {
     this._txId = txId;
@@ -3028,7 +3060,7 @@
   SsmSessionStateLog_0.prototype._get_txId_ = function () {
     return this._txId;
   };
-  SsmSessionStateLog_0.prototype._get_state_ = function () {
+  SsmSessionStateLog_0.prototype._get_state__1 = function () {
     return this._state_0;
   };
   SsmSessionStateLog_0.prototype.component1_7 = function () {
@@ -3052,7 +3084,7 @@
   };
   SsmSessionStateLog_0.prototype.hashCode = function () {
     var result = getStringHashCode(this._txId);
-    result = imul(result, 31) + this._state_0.hashCode() | 0;
+    result = imul(result, 31) + hashCode(this._state_0) | 0;
     return result;
   };
   SsmSessionStateLog_0.prototype.equals = function (other) {
@@ -3065,7 +3097,7 @@
     var tmp0_other_with_cast = other instanceof SsmSessionStateLog_0 ? other : THROW_CCE();
     if (!(this._txId === tmp0_other_with_cast._txId))
       return false;
-    if (!this._state_0.equals(tmp0_other_with_cast._state_0))
+    if (!equals(this._state_0, tmp0_other_with_cast._state_0))
       return false;
     return true;
   };
@@ -3080,42 +3112,49 @@
   });
   Object.defineProperty(SsmSessionStateLog_0.prototype, 'state', {
     configurable: true,
-    get: SsmSessionStateLog_0.prototype._get_state_
+    get: SsmSessionStateLog_0.prototype._get_state__1
   });
-  function SsmTransition_0(from, to, role, action) {
+  function SsmTransition_0() {
+  }
+  SsmTransition_0.$metadata$ = {
+    simpleName: 'SsmTransition',
+    kind: 'interface',
+    interfaces: []
+  };
+  function SsmTransitionBase_0(from, to, role, action) {
     this._from = from;
     this._to = to;
     this._role = role;
     this._action = action;
   }
-  SsmTransition_0.prototype._get_from__3 = function () {
+  SsmTransitionBase_0.prototype._get_from__2 = function () {
     return this._from;
   };
-  SsmTransition_0.prototype._get_to__3 = function () {
+  SsmTransitionBase_0.prototype._get_to__2 = function () {
     return this._to;
   };
-  SsmTransition_0.prototype._get_role__1 = function () {
+  SsmTransitionBase_0.prototype._get_role__0 = function () {
     return this._role;
   };
-  SsmTransition_0.prototype._get_action__1 = function () {
+  SsmTransitionBase_0.prototype._get_action__0 = function () {
     return this._action;
   };
-  SsmTransition_0.prototype.component1_7 = function () {
+  SsmTransitionBase_0.prototype.component1_7 = function () {
     return this._from;
   };
-  SsmTransition_0.prototype.component2_5 = function () {
+  SsmTransitionBase_0.prototype.component2_5 = function () {
     return this._to;
   };
-  SsmTransition_0.prototype.component3_2 = function () {
+  SsmTransitionBase_0.prototype.component3_2 = function () {
     return this._role;
   };
-  SsmTransition_0.prototype.component4_1 = function () {
+  SsmTransitionBase_0.prototype.component4_1 = function () {
     return this._action;
   };
-  SsmTransition_0.prototype.copy_6 = function (from, to, role, action) {
-    return new SsmTransition_0(from, to, role, action);
+  SsmTransitionBase_0.prototype.copy_6 = function (from, to, role, action) {
+    return new SsmTransitionBase_0(from, to, role, action);
   };
-  SsmTransition_0.prototype.copy$default_6 = function (from, to, role, action, $mask0, $handler) {
+  SsmTransitionBase_0.prototype.copy$default_6 = function (from, to, role, action, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       from = this._from;
     if (!(($mask0 & 2) === 0))
@@ -3126,24 +3165,24 @@
       action = this._action;
     return this.copy_6(from, to, role, action);
   };
-  SsmTransition_0.prototype.toString = function () {
-    return '' + 'SsmTransition(from=' + this._from + ', to=' + this._to + ', role=' + this._role + ', action=' + this._action + ')';
+  SsmTransitionBase_0.prototype.toString = function () {
+    return '' + 'SsmTransitionBase(from=' + this._from + ', to=' + this._to + ', role=' + this._role + ', action=' + this._action + ')';
   };
-  SsmTransition_0.prototype.hashCode = function () {
+  SsmTransitionBase_0.prototype.hashCode = function () {
     var result = this._from;
     result = imul(result, 31) + this._to | 0;
     result = imul(result, 31) + getStringHashCode(this._role) | 0;
     result = imul(result, 31) + getStringHashCode(this._action) | 0;
     return result;
   };
-  SsmTransition_0.prototype.equals = function (other) {
+  SsmTransitionBase_0.prototype.equals = function (other) {
     if (this === other)
       return true;
-    if (!(other instanceof SsmTransition_0))
+    if (!(other instanceof SsmTransitionBase_0))
       return false;
     else {
     }
-    var tmp0_other_with_cast = other instanceof SsmTransition_0 ? other : THROW_CCE();
+    var tmp0_other_with_cast = other instanceof SsmTransitionBase_0 ? other : THROW_CCE();
     if (!(this._from === tmp0_other_with_cast._from))
       return false;
     if (!(this._to === tmp0_other_with_cast._to))
@@ -3154,26 +3193,26 @@
       return false;
     return true;
   };
-  SsmTransition_0.$metadata$ = {
-    simpleName: 'SsmTransition',
+  SsmTransitionBase_0.$metadata$ = {
+    simpleName: 'SsmTransitionBase',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmTransition_0]
   };
-  Object.defineProperty(SsmTransition_0.prototype, 'from', {
+  Object.defineProperty(SsmTransitionBase_0.prototype, 'from', {
     configurable: true,
-    get: SsmTransition_0.prototype._get_from__3
+    get: SsmTransitionBase_0.prototype._get_from__2
   });
-  Object.defineProperty(SsmTransition_0.prototype, 'to', {
+  Object.defineProperty(SsmTransitionBase_0.prototype, 'to', {
     configurable: true,
-    get: SsmTransition_0.prototype._get_to__3
+    get: SsmTransitionBase_0.prototype._get_to__2
   });
-  Object.defineProperty(SsmTransition_0.prototype, 'role', {
+  Object.defineProperty(SsmTransitionBase_0.prototype, 'role', {
     configurable: true,
-    get: SsmTransition_0.prototype._get_role__1
+    get: SsmTransitionBase_0.prototype._get_role__0
   });
-  Object.defineProperty(SsmTransition_0.prototype, 'action', {
+  Object.defineProperty(SsmTransitionBase_0.prototype, 'action', {
     configurable: true,
-    get: SsmTransition_0.prototype._get_action__1
+    get: SsmTransitionBase_0.prototype._get_action__0
   });
   function WithPrivate() {
   }
@@ -3198,16 +3237,16 @@
     this._bearerToken = bearerToken;
     this._name_1 = name;
   }
-  SsmGetAdminQuery_0.prototype._get_baseUrl__14 = function () {
+  SsmGetAdminQuery_0.prototype._get_baseUrl__13 = function () {
     return this._baseUrl;
   };
-  SsmGetAdminQuery_0.prototype._get_channelId__14 = function () {
+  SsmGetAdminQuery_0.prototype._get_channelId__13 = function () {
     return this._channelId;
   };
-  SsmGetAdminQuery_0.prototype._get_chaincodeId__14 = function () {
+  SsmGetAdminQuery_0.prototype._get_chaincodeId__13 = function () {
     return this._chaincodeId;
   };
-  SsmGetAdminQuery_0.prototype._get_bearerToken__14 = function () {
+  SsmGetAdminQuery_0.prototype._get_bearerToken__13 = function () {
     return this._bearerToken;
   };
   SsmGetAdminQuery_0.prototype._get_name__10 = function () {
@@ -3220,19 +3259,19 @@
   };
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_baseUrl__14
+    get: SsmGetAdminQuery_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_channelId__14
+    get: SsmGetAdminQuery_0.prototype._get_channelId__13
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_chaincodeId__14
+    get: SsmGetAdminQuery_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_bearerToken__14
+    get: SsmGetAdminQuery_0.prototype._get_bearerToken__13
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'name', {
     configurable: true,
@@ -3253,63 +3292,6 @@
     configurable: true,
     get: SsmGetAdminResult_0.prototype._get_admin_
   });
-  function SsmGetBlockQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, $this) {
-    if (!(($mask0 & 4) === 0))
-      chaincodeId = null;
-    if (!(($mask0 & 8) === 0))
-      bearerToken = null;
-    SsmGetBlockQuery_0.call($this, baseUrl, channelId, chaincodeId, bearerToken);
-    return $this;
-  }
-  function SsmGetBlockQuery_init_$Create$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker) {
-    return SsmGetBlockQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, Object.create(SsmGetBlockQuery_0.prototype));
-  }
-  function SsmGetBlockQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
-    this._baseUrl_0 = baseUrl;
-    this._channelId_0 = channelId;
-    this._chaincodeId_0 = chaincodeId;
-    this._bearerToken_0 = bearerToken;
-  }
-  SsmGetBlockQuery_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_0;
-  };
-  SsmGetBlockQuery_0.prototype._get_channelId__14 = function () {
-    return this._channelId_0;
-  };
-  SsmGetBlockQuery_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_0;
-  };
-  SsmGetBlockQuery_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_0;
-  };
-  SsmGetBlockQuery_0.$metadata$ = {
-    simpleName: 'SsmGetBlockQuery',
-    kind: 'class',
-    interfaces: [SsmCommand_0]
-  };
-  Object.defineProperty(SsmGetBlockQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_baseUrl__14
-  });
-  Object.defineProperty(SsmGetBlockQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_channelId__14
-  });
-  Object.defineProperty(SsmGetBlockQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_chaincodeId__14
-  });
-  Object.defineProperty(SsmGetBlockQuery_0.prototype, 'bearerToken', {
-    configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_bearerToken__14
-  });
-  function SsmGetBlockResult_0() {
-  }
-  SsmGetBlockResult_0.$metadata$ = {
-    simpleName: 'SsmGetBlockResult',
-    kind: 'class',
-    interfaces: [Event_0]
-  };
   function SsmGetQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, $this) {
     if (!(($mask0 & 8) === 0))
       bearerToken = null;
@@ -3320,23 +3302,23 @@
     return SsmGetQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, Object.create(SsmGetQuery_0.prototype));
   }
   function SsmGetQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
-    this._baseUrl_1 = baseUrl;
-    this._channelId_1 = channelId;
-    this._chaincodeId_1 = chaincodeId;
-    this._bearerToken_1 = bearerToken;
+    this._baseUrl_0 = baseUrl;
+    this._channelId_0 = channelId;
+    this._chaincodeId_0 = chaincodeId;
+    this._bearerToken_0 = bearerToken;
     this._name_2 = name;
   }
-  SsmGetQuery_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_1;
+  SsmGetQuery_0.prototype._get_baseUrl__13 = function () {
+    return this._baseUrl_0;
   };
-  SsmGetQuery_0.prototype._get_channelId__14 = function () {
-    return this._channelId_1;
+  SsmGetQuery_0.prototype._get_channelId__13 = function () {
+    return this._channelId_0;
   };
-  SsmGetQuery_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_1;
+  SsmGetQuery_0.prototype._get_chaincodeId__13 = function () {
+    return this._chaincodeId_0;
   };
-  SsmGetQuery_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_1;
+  SsmGetQuery_0.prototype._get_bearerToken__13 = function () {
+    return this._bearerToken_0;
   };
   SsmGetQuery_0.prototype._get_name__10 = function () {
     return this._name_2;
@@ -3348,60 +3330,60 @@
   };
   Object.defineProperty(SsmGetQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_baseUrl__14
+    get: SsmGetQuery_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_channelId__14
+    get: SsmGetQuery_0.prototype._get_channelId__13
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_chaincodeId__14
+    get: SsmGetQuery_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_bearerToken__14
+    get: SsmGetQuery_0.prototype._get_bearerToken__13
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'name', {
     configurable: true,
     get: SsmGetQuery_0.prototype._get_name__10
   });
-  function SsmGetResult_0(ssm) {
-    this._ssm_1 = ssm;
+  function SsmGetResult_0(ssmBase) {
+    this._ssmBase = ssmBase;
   }
-  SsmGetResult_0.prototype._get_ssm__3 = function () {
-    return this._ssm_1;
+  SsmGetResult_0.prototype._get_ssmBase_ = function () {
+    return this._ssmBase;
   };
   SsmGetResult_0.$metadata$ = {
     simpleName: 'SsmGetResult',
     kind: 'class',
     interfaces: [Event_0]
   };
-  Object.defineProperty(SsmGetResult_0.prototype, 'ssm', {
+  Object.defineProperty(SsmGetResult_0.prototype, 'ssmBase', {
     configurable: true,
-    get: SsmGetResult_0.prototype._get_ssm__3
+    get: SsmGetResult_0.prototype._get_ssmBase_
   });
   function SsmGetSessionFirstAndLastTransactionQuery_0(session, baseUrl, channelId, chaincodeId, bearerToken) {
     this._session_2 = session;
-    this._baseUrl_2 = baseUrl;
-    this._channelId_2 = channelId;
-    this._chaincodeId_2 = chaincodeId;
-    this._bearerToken_2 = bearerToken;
+    this._baseUrl_1 = baseUrl;
+    this._channelId_1 = channelId;
+    this._chaincodeId_1 = chaincodeId;
+    this._bearerToken_1 = bearerToken;
   }
-  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_session__4 = function () {
+  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_session__7 = function () {
     return this._session_2;
   };
-  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_2;
+  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_baseUrl__13 = function () {
+    return this._baseUrl_1;
   };
-  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_channelId__14 = function () {
-    return this._channelId_2;
+  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_channelId__13 = function () {
+    return this._channelId_1;
   };
-  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_2;
+  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_chaincodeId__13 = function () {
+    return this._chaincodeId_1;
   };
-  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_2;
+  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_bearerToken__13 = function () {
+    return this._bearerToken_1;
   };
   SsmGetSessionFirstAndLastTransactionQuery_0.$metadata$ = {
     simpleName: 'SsmGetSessionFirstAndLastTransactionQuery',
@@ -3410,23 +3392,23 @@
   };
   Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'session', {
     configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_session__4
+    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_session__7
   });
   Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_baseUrl__14
+    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_channelId__14
+    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_channelId__13
   });
   Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_chaincodeId__14
+    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_bearerToken__14
+    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_bearerToken__13
   });
   function SsmGetSessionFirstAndLastTransactionQueryResult_0(firstTransaction, lastTransaction) {
     this._firstTransaction = firstTransaction;
@@ -3453,25 +3435,25 @@
   });
   function SsmGetSessionLogsQuery_0(session, baseUrl, channelId, chaincodeId, bearerToken) {
     this._session_3 = session;
-    this._baseUrl_3 = baseUrl;
-    this._channelId_3 = channelId;
-    this._chaincodeId_3 = chaincodeId;
-    this._bearerToken_3 = bearerToken;
+    this._baseUrl_2 = baseUrl;
+    this._channelId_2 = channelId;
+    this._chaincodeId_2 = chaincodeId;
+    this._bearerToken_2 = bearerToken;
   }
-  SsmGetSessionLogsQuery_0.prototype._get_session__4 = function () {
+  SsmGetSessionLogsQuery_0.prototype._get_session__7 = function () {
     return this._session_3;
   };
-  SsmGetSessionLogsQuery_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_3;
+  SsmGetSessionLogsQuery_0.prototype._get_baseUrl__13 = function () {
+    return this._baseUrl_2;
   };
-  SsmGetSessionLogsQuery_0.prototype._get_channelId__14 = function () {
-    return this._channelId_3;
+  SsmGetSessionLogsQuery_0.prototype._get_channelId__13 = function () {
+    return this._channelId_2;
   };
-  SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_3;
+  SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__13 = function () {
+    return this._chaincodeId_2;
   };
-  SsmGetSessionLogsQuery_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_3;
+  SsmGetSessionLogsQuery_0.prototype._get_bearerToken__13 = function () {
+    return this._bearerToken_2;
   };
   SsmGetSessionLogsQuery_0.$metadata$ = {
     simpleName: 'SsmGetSessionLogsQuery',
@@ -3480,23 +3462,23 @@
   };
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'session', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_session__4
+    get: SsmGetSessionLogsQuery_0.prototype._get_session__7
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_baseUrl__14
+    get: SsmGetSessionLogsQuery_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_channelId__14
+    get: SsmGetSessionLogsQuery_0.prototype._get_channelId__13
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__14
+    get: SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_bearerToken__14
+    get: SsmGetSessionLogsQuery_0.prototype._get_bearerToken__13
   });
   function SsmGetSessionLogsQueryResult_0(logs) {
     this._logs = logs;
@@ -3552,23 +3534,23 @@
     return SsmGetSessionQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, Object.create(SsmGetSessionQuery_0.prototype));
   }
   function SsmGetSessionQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
-    this._baseUrl_4 = baseUrl;
-    this._channelId_4 = channelId;
-    this._chaincodeId_4 = chaincodeId;
-    this._bearerToken_4 = bearerToken;
+    this._baseUrl_3 = baseUrl;
+    this._channelId_3 = channelId;
+    this._chaincodeId_3 = chaincodeId;
+    this._bearerToken_3 = bearerToken;
     this._name_3 = name;
   }
-  SsmGetSessionQuery_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_4;
+  SsmGetSessionQuery_0.prototype._get_baseUrl__13 = function () {
+    return this._baseUrl_3;
   };
-  SsmGetSessionQuery_0.prototype._get_channelId__14 = function () {
-    return this._channelId_4;
+  SsmGetSessionQuery_0.prototype._get_channelId__13 = function () {
+    return this._channelId_3;
   };
-  SsmGetSessionQuery_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_4;
+  SsmGetSessionQuery_0.prototype._get_chaincodeId__13 = function () {
+    return this._chaincodeId_3;
   };
-  SsmGetSessionQuery_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_4;
+  SsmGetSessionQuery_0.prototype._get_bearerToken__13 = function () {
+    return this._bearerToken_3;
   };
   SsmGetSessionQuery_0.prototype._get_name__10 = function () {
     return this._name_3;
@@ -3580,19 +3562,19 @@
   };
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_baseUrl__14
+    get: SsmGetSessionQuery_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_channelId__14
+    get: SsmGetSessionQuery_0.prototype._get_channelId__13
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_chaincodeId__14
+    get: SsmGetSessionQuery_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_bearerToken__14
+    get: SsmGetSessionQuery_0.prototype._get_bearerToken__13
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'name', {
     configurable: true,
@@ -3601,7 +3583,7 @@
   function SsmGetSessionResult_0(session) {
     this._session_4 = session;
   }
-  SsmGetSessionResult_0.prototype._get_session__4 = function () {
+  SsmGetSessionResult_0.prototype._get_session__7 = function () {
     return this._session_4;
   };
   SsmGetSessionResult_0.$metadata$ = {
@@ -3611,7 +3593,7 @@
   };
   Object.defineProperty(SsmGetSessionResult_0.prototype, 'session', {
     configurable: true,
-    get: SsmGetSessionResult_0.prototype._get_session__4
+    get: SsmGetSessionResult_0.prototype._get_session__7
   });
   function SsmGetUserQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, $this) {
     if (!(($mask0 & 8) === 0))
@@ -3623,23 +3605,23 @@
     return SsmGetUserQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, Object.create(SsmGetUserQuery_0.prototype));
   }
   function SsmGetUserQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
-    this._baseUrl_5 = baseUrl;
-    this._channelId_5 = channelId;
-    this._chaincodeId_5 = chaincodeId;
-    this._bearerToken_5 = bearerToken;
+    this._baseUrl_4 = baseUrl;
+    this._channelId_4 = channelId;
+    this._chaincodeId_4 = chaincodeId;
+    this._bearerToken_4 = bearerToken;
     this._name_4 = name;
   }
-  SsmGetUserQuery_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_5;
+  SsmGetUserQuery_0.prototype._get_baseUrl__13 = function () {
+    return this._baseUrl_4;
   };
-  SsmGetUserQuery_0.prototype._get_channelId__14 = function () {
-    return this._channelId_5;
+  SsmGetUserQuery_0.prototype._get_channelId__13 = function () {
+    return this._channelId_4;
   };
-  SsmGetUserQuery_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_5;
+  SsmGetUserQuery_0.prototype._get_chaincodeId__13 = function () {
+    return this._chaincodeId_4;
   };
-  SsmGetUserQuery_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_5;
+  SsmGetUserQuery_0.prototype._get_bearerToken__13 = function () {
+    return this._bearerToken_4;
   };
   SsmGetUserQuery_0.prototype._get_name__10 = function () {
     return this._name_4;
@@ -3651,19 +3633,19 @@
   };
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_baseUrl__14
+    get: SsmGetUserQuery_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_channelId__14
+    get: SsmGetUserQuery_0.prototype._get_channelId__13
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_chaincodeId__14
+    get: SsmGetUserQuery_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_bearerToken__14
+    get: SsmGetUserQuery_0.prototype._get_bearerToken__13
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'name', {
     configurable: true,
@@ -3694,22 +3676,22 @@
     return SsmListAdminQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, Object.create(SsmListAdminQuery_0.prototype));
   }
   function SsmListAdminQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
-    this._baseUrl_6 = baseUrl;
-    this._channelId_6 = channelId;
-    this._chaincodeId_6 = chaincodeId;
-    this._bearerToken_6 = bearerToken;
+    this._baseUrl_5 = baseUrl;
+    this._channelId_5 = channelId;
+    this._chaincodeId_5 = chaincodeId;
+    this._bearerToken_5 = bearerToken;
   }
-  SsmListAdminQuery_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_6;
+  SsmListAdminQuery_0.prototype._get_baseUrl__13 = function () {
+    return this._baseUrl_5;
   };
-  SsmListAdminQuery_0.prototype._get_channelId__14 = function () {
-    return this._channelId_6;
+  SsmListAdminQuery_0.prototype._get_channelId__13 = function () {
+    return this._channelId_5;
   };
-  SsmListAdminQuery_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_6;
+  SsmListAdminQuery_0.prototype._get_chaincodeId__13 = function () {
+    return this._chaincodeId_5;
   };
-  SsmListAdminQuery_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_6;
+  SsmListAdminQuery_0.prototype._get_bearerToken__13 = function () {
+    return this._bearerToken_5;
   };
   SsmListAdminQuery_0.$metadata$ = {
     simpleName: 'SsmListAdminQuery',
@@ -3718,19 +3700,19 @@
   };
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_baseUrl__14
+    get: SsmListAdminQuery_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_channelId__14
+    get: SsmListAdminQuery_0.prototype._get_channelId__13
   });
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_chaincodeId__14
+    get: SsmListAdminQuery_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_bearerToken__14
+    get: SsmListAdminQuery_0.prototype._get_bearerToken__13
   });
   function SsmListAdminResult_0(values) {
     this._values = values;
@@ -3757,22 +3739,22 @@
     return SsmListSessionQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, Object.create(SsmListSessionQuery_0.prototype));
   }
   function SsmListSessionQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
-    this._baseUrl_7 = baseUrl;
-    this._channelId_7 = channelId;
-    this._chaincodeId_7 = chaincodeId;
-    this._bearerToken_7 = bearerToken;
+    this._baseUrl_6 = baseUrl;
+    this._channelId_6 = channelId;
+    this._chaincodeId_6 = chaincodeId;
+    this._bearerToken_6 = bearerToken;
   }
-  SsmListSessionQuery_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_7;
+  SsmListSessionQuery_0.prototype._get_baseUrl__13 = function () {
+    return this._baseUrl_6;
   };
-  SsmListSessionQuery_0.prototype._get_channelId__14 = function () {
-    return this._channelId_7;
+  SsmListSessionQuery_0.prototype._get_channelId__13 = function () {
+    return this._channelId_6;
   };
-  SsmListSessionQuery_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_7;
+  SsmListSessionQuery_0.prototype._get_chaincodeId__13 = function () {
+    return this._chaincodeId_6;
   };
-  SsmListSessionQuery_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_7;
+  SsmListSessionQuery_0.prototype._get_bearerToken__13 = function () {
+    return this._bearerToken_6;
   };
   SsmListSessionQuery_0.$metadata$ = {
     simpleName: 'SsmListSessionQuery',
@@ -3781,19 +3763,19 @@
   };
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_baseUrl__14
+    get: SsmListSessionQuery_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_channelId__14
+    get: SsmListSessionQuery_0.prototype._get_channelId__13
   });
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_chaincodeId__14
+    get: SsmListSessionQuery_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_bearerToken__14
+    get: SsmListSessionQuery_0.prototype._get_bearerToken__13
   });
   function SsmListSessionResult_0(values) {
     this._values_0 = values;
@@ -3820,22 +3802,22 @@
     return SsmListSsmQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, Object.create(SsmListSsmQuery_0.prototype));
   }
   function SsmListSsmQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
-    this._baseUrl_8 = baseUrl;
-    this._channelId_8 = channelId;
-    this._chaincodeId_8 = chaincodeId;
-    this._bearerToken_8 = bearerToken;
+    this._baseUrl_7 = baseUrl;
+    this._channelId_7 = channelId;
+    this._chaincodeId_7 = chaincodeId;
+    this._bearerToken_7 = bearerToken;
   }
-  SsmListSsmQuery_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_8;
+  SsmListSsmQuery_0.prototype._get_baseUrl__13 = function () {
+    return this._baseUrl_7;
   };
-  SsmListSsmQuery_0.prototype._get_channelId__14 = function () {
-    return this._channelId_8;
+  SsmListSsmQuery_0.prototype._get_channelId__13 = function () {
+    return this._channelId_7;
   };
-  SsmListSsmQuery_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_8;
+  SsmListSsmQuery_0.prototype._get_chaincodeId__13 = function () {
+    return this._chaincodeId_7;
   };
-  SsmListSsmQuery_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_8;
+  SsmListSsmQuery_0.prototype._get_bearerToken__13 = function () {
+    return this._bearerToken_7;
   };
   SsmListSsmQuery_0.$metadata$ = {
     simpleName: 'SsmListSsmQuery',
@@ -3844,19 +3826,19 @@
   };
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_baseUrl__14
+    get: SsmListSsmQuery_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_channelId__14
+    get: SsmListSsmQuery_0.prototype._get_channelId__13
   });
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_chaincodeId__14
+    get: SsmListSsmQuery_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_bearerToken__14
+    get: SsmListSsmQuery_0.prototype._get_bearerToken__13
   });
   function SsmListSsmResult_0(values) {
     this._values_1 = values;
@@ -3883,22 +3865,22 @@
     return SsmListUserQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, Object.create(SsmListUserQuery_0.prototype));
   }
   function SsmListUserQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
-    this._baseUrl_9 = baseUrl;
-    this._channelId_9 = channelId;
-    this._chaincodeId_9 = chaincodeId;
-    this._bearerToken_9 = bearerToken;
+    this._baseUrl_8 = baseUrl;
+    this._channelId_8 = channelId;
+    this._chaincodeId_8 = chaincodeId;
+    this._bearerToken_8 = bearerToken;
   }
-  SsmListUserQuery_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_9;
+  SsmListUserQuery_0.prototype._get_baseUrl__13 = function () {
+    return this._baseUrl_8;
   };
-  SsmListUserQuery_0.prototype._get_channelId__14 = function () {
-    return this._channelId_9;
+  SsmListUserQuery_0.prototype._get_channelId__13 = function () {
+    return this._channelId_8;
   };
-  SsmListUserQuery_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_9;
+  SsmListUserQuery_0.prototype._get_chaincodeId__13 = function () {
+    return this._chaincodeId_8;
   };
-  SsmListUserQuery_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_9;
+  SsmListUserQuery_0.prototype._get_bearerToken__13 = function () {
+    return this._bearerToken_8;
   };
   SsmListUserQuery_0.$metadata$ = {
     simpleName: 'SsmListUserQuery',
@@ -3907,19 +3889,19 @@
   };
   Object.defineProperty(SsmListUserQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_baseUrl__14
+    get: SsmListUserQuery_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(SsmListUserQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_channelId__14
+    get: SsmListUserQuery_0.prototype._get_channelId__13
   });
   Object.defineProperty(SsmListUserQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_chaincodeId__14
+    get: SsmListUserQuery_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(SsmListUserQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_bearerToken__14
+    get: SsmListUserQuery_0.prototype._get_bearerToken__13
   });
   function SsmListUserResult_0(values) {
     this._values_2 = values;
@@ -3936,220 +3918,13 @@
     configurable: true,
     get: SsmListUserResult_0.prototype._get_values__2
   });
-  function Ssm_1() {
+  function SsmApiFinder_0() {
   }
-  Ssm_1.$metadata$ = {
-    simpleName: 'Ssm',
+  SsmApiFinder_0.$metadata$ = {
+    simpleName: 'SsmApiFinder',
     kind: 'interface',
     interfaces: []
   };
-  function SsmBase_0(name, version, transitions) {
-    this._name_5 = name;
-    this._version = version;
-    this._transitions_0 = transitions;
-  }
-  SsmBase_0.prototype._get_name__10 = function () {
-    return this._name_5;
-  };
-  SsmBase_0.prototype._get_version__0 = function () {
-    return this._version;
-  };
-  SsmBase_0.prototype._get_transitions__1 = function () {
-    return this._transitions_0;
-  };
-  SsmBase_0.$metadata$ = {
-    simpleName: 'SsmBase',
-    kind: 'class',
-    interfaces: [Ssm_1]
-  };
-  Object.defineProperty(SsmBase_0.prototype, 'name', {
-    configurable: true,
-    get: SsmBase_0.prototype._get_name__10
-  });
-  Object.defineProperty(SsmBase_0.prototype, 'version', {
-    configurable: true,
-    get: SsmBase_0.prototype._get_version__0
-  });
-  Object.defineProperty(SsmBase_0.prototype, 'transitions', {
-    configurable: true,
-    get: SsmBase_0.prototype._get_transitions__1
-  });
-  function SsmSession_1() {
-  }
-  SsmSession_1.$metadata$ = {
-    simpleName: 'SsmSession',
-    kind: 'interface',
-    interfaces: []
-  };
-  function SsmSessionBase_0(id, channel, creationDate, lastTransaction) {
-    this._id_0 = id;
-    this._channel = channel;
-    this._creationDate = creationDate;
-    this._lastTransaction_0 = lastTransaction;
-  }
-  SsmSessionBase_0.prototype._get_id__3 = function () {
-    return this._id_0;
-  };
-  SsmSessionBase_0.prototype._get_channel__0 = function () {
-    return this._channel;
-  };
-  SsmSessionBase_0.prototype._get_creationDate__0 = function () {
-    return this._creationDate;
-  };
-  SsmSessionBase_0.prototype._get_lastTransaction__1 = function () {
-    return this._lastTransaction_0;
-  };
-  SsmSessionBase_0.$metadata$ = {
-    simpleName: 'SsmSessionBase',
-    kind: 'class',
-    interfaces: [SsmSession_1]
-  };
-  Object.defineProperty(SsmSessionBase_0.prototype, 'id', {
-    configurable: true,
-    get: SsmSessionBase_0.prototype._get_id__3
-  });
-  Object.defineProperty(SsmSessionBase_0.prototype, 'channel', {
-    configurable: true,
-    get: SsmSessionBase_0.prototype._get_channel__0
-  });
-  Object.defineProperty(SsmSessionBase_0.prototype, 'creationDate', {
-    configurable: true,
-    get: SsmSessionBase_0.prototype._get_creationDate__0
-  });
-  Object.defineProperty(SsmSessionBase_0.prototype, 'lastTransaction', {
-    configurable: true,
-    get: SsmSessionBase_0.prototype._get_lastTransaction__1
-  });
-  function SsmTransaction_0() {
-  }
-  SsmTransaction_0.$metadata$ = {
-    simpleName: 'SsmTransaction',
-    kind: 'interface',
-    interfaces: []
-  };
-  function SsmTransactionBase_0(id, from, to, date, signer) {
-    this._id_1 = id;
-    this._from_0 = from;
-    this._to_0 = to;
-    this._date_0 = date;
-    this._signer = signer;
-  }
-  SsmTransactionBase_0.prototype._get_id__3 = function () {
-    return this._id_1;
-  };
-  SsmTransactionBase_0.prototype._get_from__3 = function () {
-    return this._from_0;
-  };
-  SsmTransactionBase_0.prototype._get_to__3 = function () {
-    return this._to_0;
-  };
-  SsmTransactionBase_0.prototype._get_date__2 = function () {
-    return this._date_0;
-  };
-  SsmTransactionBase_0.prototype._get_signer__0 = function () {
-    return this._signer;
-  };
-  SsmTransactionBase_0.$metadata$ = {
-    simpleName: 'SsmTransactionBase',
-    kind: 'class',
-    interfaces: [SsmTransaction_0]
-  };
-  Object.defineProperty(SsmTransactionBase_0.prototype, 'id', {
-    configurable: true,
-    get: SsmTransactionBase_0.prototype._get_id__3
-  });
-  Object.defineProperty(SsmTransactionBase_0.prototype, 'from', {
-    configurable: true,
-    get: SsmTransactionBase_0.prototype._get_from__3
-  });
-  Object.defineProperty(SsmTransactionBase_0.prototype, 'to', {
-    configurable: true,
-    get: SsmTransactionBase_0.prototype._get_to__3
-  });
-  Object.defineProperty(SsmTransactionBase_0.prototype, 'date', {
-    configurable: true,
-    get: SsmTransactionBase_0.prototype._get_date__2
-  });
-  Object.defineProperty(SsmTransactionBase_0.prototype, 'signer', {
-    configurable: true,
-    get: SsmTransactionBase_0.prototype._get_signer__0
-  });
-  function SsmTransition_1() {
-  }
-  SsmTransition_1.$metadata$ = {
-    simpleName: 'SsmTransition',
-    kind: 'interface',
-    interfaces: []
-  };
-  function SsmTransitionBase_0(from, to, role, action) {
-    this._from_1 = from;
-    this._to_1 = to;
-    this._role_0 = role;
-    this._action_0 = action;
-  }
-  SsmTransitionBase_0.prototype._get_from__3 = function () {
-    return this._from_1;
-  };
-  SsmTransitionBase_0.prototype._get_to__3 = function () {
-    return this._to_1;
-  };
-  SsmTransitionBase_0.prototype._get_role__1 = function () {
-    return this._role_0;
-  };
-  SsmTransitionBase_0.prototype._get_action__1 = function () {
-    return this._action_0;
-  };
-  SsmTransitionBase_0.$metadata$ = {
-    simpleName: 'SsmTransitionBase',
-    kind: 'class',
-    interfaces: [SsmTransition_1]
-  };
-  Object.defineProperty(SsmTransitionBase_0.prototype, 'from', {
-    configurable: true,
-    get: SsmTransitionBase_0.prototype._get_from__3
-  });
-  Object.defineProperty(SsmTransitionBase_0.prototype, 'to', {
-    configurable: true,
-    get: SsmTransitionBase_0.prototype._get_to__3
-  });
-  Object.defineProperty(SsmTransitionBase_0.prototype, 'role', {
-    configurable: true,
-    get: SsmTransitionBase_0.prototype._get_role__1
-  });
-  Object.defineProperty(SsmTransitionBase_0.prototype, 'action', {
-    configurable: true,
-    get: SsmTransitionBase_0.prototype._get_action__1
-  });
-  function SsmUser_0() {
-  }
-  SsmUser_0.$metadata$ = {
-    simpleName: 'SsmUser',
-    kind: 'interface',
-    interfaces: []
-  };
-  function SsmUserBase_0(name, publicKey) {
-    this._name_6 = name;
-    this._publicKey = publicKey;
-  }
-  SsmUserBase_0.prototype._get_name__10 = function () {
-    return this._name_6;
-  };
-  SsmUserBase_0.prototype._get_publicKey__0 = function () {
-    return this._publicKey;
-  };
-  SsmUserBase_0.$metadata$ = {
-    simpleName: 'SsmUserBase',
-    kind: 'class',
-    interfaces: [SsmUser_0]
-  };
-  Object.defineProperty(SsmUserBase_0.prototype, 'name', {
-    configurable: true,
-    get: SsmUserBase_0.prototype._get_name__10
-  });
-  Object.defineProperty(SsmUserBase_0.prototype, 'publicKey', {
-    configurable: true,
-    get: SsmUserBase_0.prototype._get_publicKey__0
-  });
   function GetSsmListCommand_0() {
   }
   GetSsmListCommand_0.$metadata$ = {
@@ -4180,26 +3955,26 @@
     interfaces: [SsmCommand_0]
   };
   function GetSsmSessionCommandBase_0(name, baseUrl, channelId, chaincodeId, bearerToken) {
-    this._name_7 = name;
-    this._baseUrl_10 = baseUrl;
-    this._channelId_10 = channelId;
-    this._chaincodeId_10 = chaincodeId;
-    this._bearerToken_10 = bearerToken;
+    this._name_5 = name;
+    this._baseUrl_9 = baseUrl;
+    this._channelId_9 = channelId;
+    this._chaincodeId_9 = chaincodeId;
+    this._bearerToken_9 = bearerToken;
   }
   GetSsmSessionCommandBase_0.prototype._get_name__10 = function () {
-    return this._name_7;
+    return this._name_5;
   };
-  GetSsmSessionCommandBase_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_10;
+  GetSsmSessionCommandBase_0.prototype._get_baseUrl__13 = function () {
+    return this._baseUrl_9;
   };
-  GetSsmSessionCommandBase_0.prototype._get_channelId__14 = function () {
-    return this._channelId_10;
+  GetSsmSessionCommandBase_0.prototype._get_channelId__13 = function () {
+    return this._channelId_9;
   };
-  GetSsmSessionCommandBase_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_10;
+  GetSsmSessionCommandBase_0.prototype._get_chaincodeId__13 = function () {
+    return this._chaincodeId_9;
   };
-  GetSsmSessionCommandBase_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_10;
+  GetSsmSessionCommandBase_0.prototype._get_bearerToken__13 = function () {
+    return this._bearerToken_9;
   };
   GetSsmSessionCommandBase_0.$metadata$ = {
     simpleName: 'GetSsmSessionCommandBase',
@@ -4212,19 +3987,19 @@
   });
   Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'baseUrl', {
     configurable: true,
-    get: GetSsmSessionCommandBase_0.prototype._get_baseUrl__14
+    get: GetSsmSessionCommandBase_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'channelId', {
     configurable: true,
-    get: GetSsmSessionCommandBase_0.prototype._get_channelId__14
+    get: GetSsmSessionCommandBase_0.prototype._get_channelId__13
   });
   Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: GetSsmSessionCommandBase_0.prototype._get_chaincodeId__14
+    get: GetSsmSessionCommandBase_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'bearerToken', {
     configurable: true,
-    get: GetSsmSessionCommandBase_0.prototype._get_bearerToken__14
+    get: GetSsmSessionCommandBase_0.prototype._get_bearerToken__13
   });
   function GetSsmSessionListCommand_0() {
   }
@@ -4234,30 +4009,30 @@
     interfaces: [SsmCommand_0]
   };
   function GetSsmSessionListCommandBase_0(baseUrl, dbName, channelId, chaincodeId, bearerToken, ssm) {
-    this._baseUrl_11 = baseUrl;
+    this._baseUrl_10 = baseUrl;
     this._dbName_0 = dbName;
-    this._channelId_11 = channelId;
-    this._chaincodeId_11 = chaincodeId;
-    this._bearerToken_11 = bearerToken;
-    this._ssm_2 = ssm;
+    this._channelId_10 = channelId;
+    this._chaincodeId_10 = chaincodeId;
+    this._bearerToken_10 = bearerToken;
+    this._ssm_1 = ssm;
   }
-  GetSsmSessionListCommandBase_0.prototype._get_baseUrl__14 = function () {
-    return this._baseUrl_11;
+  GetSsmSessionListCommandBase_0.prototype._get_baseUrl__13 = function () {
+    return this._baseUrl_10;
   };
   GetSsmSessionListCommandBase_0.prototype._get_dbName__2 = function () {
     return this._dbName_0;
   };
-  GetSsmSessionListCommandBase_0.prototype._get_channelId__14 = function () {
-    return this._channelId_11;
+  GetSsmSessionListCommandBase_0.prototype._get_channelId__13 = function () {
+    return this._channelId_10;
   };
-  GetSsmSessionListCommandBase_0.prototype._get_chaincodeId__14 = function () {
-    return this._chaincodeId_11;
+  GetSsmSessionListCommandBase_0.prototype._get_chaincodeId__13 = function () {
+    return this._chaincodeId_10;
   };
-  GetSsmSessionListCommandBase_0.prototype._get_bearerToken__14 = function () {
-    return this._bearerToken_11;
+  GetSsmSessionListCommandBase_0.prototype._get_bearerToken__13 = function () {
+    return this._bearerToken_10;
   };
-  GetSsmSessionListCommandBase_0.prototype._get_ssm__3 = function () {
-    return this._ssm_2;
+  GetSsmSessionListCommandBase_0.prototype._get_ssm__6 = function () {
+    return this._ssm_1;
   };
   GetSsmSessionListCommandBase_0.$metadata$ = {
     simpleName: 'GetSsmSessionListCommandBase',
@@ -4266,7 +4041,7 @@
   };
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'baseUrl', {
     configurable: true,
-    get: GetSsmSessionListCommandBase_0.prototype._get_baseUrl__14
+    get: GetSsmSessionListCommandBase_0.prototype._get_baseUrl__13
   });
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'dbName', {
     configurable: true,
@@ -4274,19 +4049,209 @@
   });
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'channelId', {
     configurable: true,
-    get: GetSsmSessionListCommandBase_0.prototype._get_channelId__14
+    get: GetSsmSessionListCommandBase_0.prototype._get_channelId__13
   });
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: GetSsmSessionListCommandBase_0.prototype._get_chaincodeId__14
+    get: GetSsmSessionListCommandBase_0.prototype._get_chaincodeId__13
   });
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'bearerToken', {
     configurable: true,
-    get: GetSsmSessionListCommandBase_0.prototype._get_bearerToken__14
+    get: GetSsmSessionListCommandBase_0.prototype._get_bearerToken__13
   });
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'ssm', {
     configurable: true,
-    get: GetSsmSessionListCommandBase_0.prototype._get_ssm__3
+    get: GetSsmSessionListCommandBase_0.prototype._get_ssm__6
+  });
+  function TxChannel_0() {
+  }
+  TxChannel_0.$metadata$ = {
+    simpleName: 'TxChannel',
+    kind: 'interface',
+    interfaces: []
+  };
+  function TxChannelBase_0(id) {
+    this._id_0 = id;
+  }
+  TxChannelBase_0.prototype._get_id__3 = function () {
+    return this._id_0;
+  };
+  TxChannelBase_0.$metadata$ = {
+    simpleName: 'TxChannelBase',
+    kind: 'class',
+    interfaces: [TxChannel_0]
+  };
+  Object.defineProperty(TxChannelBase_0.prototype, 'id', {
+    configurable: true,
+    get: TxChannelBase_0.prototype._get_id__3
+  });
+  function TxSsm_0() {
+  }
+  TxSsm_0.$metadata$ = {
+    simpleName: 'TxSsm',
+    kind: 'interface',
+    interfaces: []
+  };
+  function TxSsmBase_0(ssm, channel, version) {
+    this._ssm_2 = ssm;
+    this._channel = channel;
+    this._version = version;
+  }
+  TxSsmBase_0.prototype._get_ssm__6 = function () {
+    return this._ssm_2;
+  };
+  TxSsmBase_0.prototype._get_channel__2 = function () {
+    return this._channel;
+  };
+  TxSsmBase_0.prototype._get_version__0 = function () {
+    return this._version;
+  };
+  TxSsmBase_0.$metadata$ = {
+    simpleName: 'TxSsmBase',
+    kind: 'class',
+    interfaces: [TxSsm_0]
+  };
+  Object.defineProperty(TxSsmBase_0.prototype, 'ssm', {
+    configurable: true,
+    get: TxSsmBase_0.prototype._get_ssm__6
+  });
+  Object.defineProperty(TxSsmBase_0.prototype, 'channel', {
+    configurable: true,
+    get: TxSsmBase_0.prototype._get_channel__2
+  });
+  Object.defineProperty(TxSsmBase_0.prototype, 'version', {
+    configurable: true,
+    get: TxSsmBase_0.prototype._get_version__0
+  });
+  function TxSsmSession_0() {
+  }
+  TxSsmSession_0.$metadata$ = {
+    simpleName: 'TxSsmSession',
+    kind: 'interface',
+    interfaces: []
+  };
+  function TxSsmSessionBase_0(state, channel, creationDate, lastTransaction) {
+    this._state_1 = state;
+    this._channel_0 = channel;
+    this._creationDate = creationDate;
+    this._lastTransaction_0 = lastTransaction;
+  }
+  TxSsmSessionBase_0.prototype._get_state__1 = function () {
+    return this._state_1;
+  };
+  TxSsmSessionBase_0.prototype._get_channel__2 = function () {
+    return this._channel_0;
+  };
+  TxSsmSessionBase_0.prototype._get_creationDate__0 = function () {
+    return this._creationDate;
+  };
+  TxSsmSessionBase_0.prototype._get_lastTransaction__1 = function () {
+    return this._lastTransaction_0;
+  };
+  TxSsmSessionBase_0.$metadata$ = {
+    simpleName: 'TxSsmSessionBase',
+    kind: 'class',
+    interfaces: [TxSsmSession_0]
+  };
+  Object.defineProperty(TxSsmSessionBase_0.prototype, 'state', {
+    configurable: true,
+    get: TxSsmSessionBase_0.prototype._get_state__1
+  });
+  Object.defineProperty(TxSsmSessionBase_0.prototype, 'channel', {
+    configurable: true,
+    get: TxSsmSessionBase_0.prototype._get_channel__2
+  });
+  Object.defineProperty(TxSsmSessionBase_0.prototype, 'creationDate', {
+    configurable: true,
+    get: TxSsmSessionBase_0.prototype._get_creationDate__0
+  });
+  Object.defineProperty(TxSsmSessionBase_0.prototype, 'lastTransaction', {
+    configurable: true,
+    get: TxSsmSessionBase_0.prototype._get_lastTransaction__1
+  });
+  function TxSsmTransaction_0() {
+  }
+  TxSsmTransaction_0.$metadata$ = {
+    simpleName: 'TxSsmTransaction',
+    kind: 'interface',
+    interfaces: []
+  };
+  function TxSsmTransactionBase_0(id, from, to, date, signer) {
+    this._id_1 = id;
+    this._from_0 = from;
+    this._to_0 = to;
+    this._date_0 = date;
+    this._signer = signer;
+  }
+  TxSsmTransactionBase_0.prototype._get_id__3 = function () {
+    return this._id_1;
+  };
+  TxSsmTransactionBase_0.prototype._get_from__2 = function () {
+    return this._from_0;
+  };
+  TxSsmTransactionBase_0.prototype._get_to__2 = function () {
+    return this._to_0;
+  };
+  TxSsmTransactionBase_0.prototype._get_date__2 = function () {
+    return this._date_0;
+  };
+  TxSsmTransactionBase_0.prototype._get_signer__0 = function () {
+    return this._signer;
+  };
+  TxSsmTransactionBase_0.$metadata$ = {
+    simpleName: 'TxSsmTransactionBase',
+    kind: 'class',
+    interfaces: [TxSsmTransaction_0]
+  };
+  Object.defineProperty(TxSsmTransactionBase_0.prototype, 'id', {
+    configurable: true,
+    get: TxSsmTransactionBase_0.prototype._get_id__3
+  });
+  Object.defineProperty(TxSsmTransactionBase_0.prototype, 'from', {
+    configurable: true,
+    get: TxSsmTransactionBase_0.prototype._get_from__2
+  });
+  Object.defineProperty(TxSsmTransactionBase_0.prototype, 'to', {
+    configurable: true,
+    get: TxSsmTransactionBase_0.prototype._get_to__2
+  });
+  Object.defineProperty(TxSsmTransactionBase_0.prototype, 'date', {
+    configurable: true,
+    get: TxSsmTransactionBase_0.prototype._get_date__2
+  });
+  Object.defineProperty(TxSsmTransactionBase_0.prototype, 'signer', {
+    configurable: true,
+    get: TxSsmTransactionBase_0.prototype._get_signer__0
+  });
+  function TxSsmUser_0() {
+  }
+  TxSsmUser_0.$metadata$ = {
+    simpleName: 'TxSsmUser',
+    kind: 'interface',
+    interfaces: []
+  };
+  function TxSsmUserBase_0(name, publicKey) {
+    this._name_6 = name;
+    this._publicKey = publicKey;
+  }
+  TxSsmUserBase_0.prototype._get_name__10 = function () {
+    return this._name_6;
+  };
+  TxSsmUserBase_0.prototype._get_publicKey__0 = function () {
+    return this._publicKey;
+  };
+  TxSsmUserBase_0.$metadata$ = {
+    simpleName: 'TxSsmUserBase',
+    kind: 'class',
+    interfaces: [TxSsmUser_0]
+  };
+  Object.defineProperty(TxSsmUserBase_0.prototype, 'name', {
+    configurable: true,
+    get: TxSsmUserBase_0.prototype._get_name__10
+  });
+  Object.defineProperty(TxSsmUserBase_0.prototype, 'publicKey', {
+    configurable: true,
+    get: TxSsmUserBase_0.prototype._get_publicKey__0
   });
   AbstractMap.prototype._get_entries__2 = Map_0.prototype._get_entries__2;
   AbstractMutableMap.prototype._get_entries__2 = MutableMap.prototype._get_entries__2;
@@ -4314,20 +4279,18 @@
   var $f2$dsl$function = $f2$dsl.function || ($f2$dsl.function = {});
   var $ssm = _.ssm || (_.ssm = {});
   var $ssm$dsl = $ssm.dsl || ($ssm.dsl = {});
-  $ssm$dsl.Ssm = Ssm_0;
-  $ssm$dsl.Agent = SsmAgent;
-  $ssm$dsl.Context = SsmContext;
+  $ssm$dsl.SsmBase = SsmBase_0;
+  $ssm$dsl.AgentBase = SsmAgentBase;
+  $ssm$dsl.SsmContextBase = SsmContextBase_0;
   $ssm$dsl.Grant = SsmGrant;
   $ssm$dsl.Credit = Credit_0;
-  $ssm$dsl.SsmSession = SsmSession_0;
-  $ssm$dsl.SsmSessionState = SsmSessionState_0;
+  $ssm$dsl.SsmSessionBase = SsmSessionBase_0;
+  $ssm$dsl.SsmSessionStateBase = SsmSessionStateBase_0;
   $ssm$dsl.SsmSessionStateLog = SsmSessionStateLog_0;
-  $ssm$dsl.Transition = SsmTransition_0;
+  $ssm$dsl.SsmTransitionBase = SsmTransitionBase_0;
   var $ssm$dsl$query = $ssm$dsl.query || ($ssm$dsl.query = {});
   $ssm$dsl$query.SsmGetAdminQuery = SsmGetAdminQuery_0;
   $ssm$dsl$query.SsmGetAdminResult = SsmGetAdminResult_0;
-  $ssm$dsl$query.SsmGetBlockQuery = SsmGetBlockQuery_0;
-  $ssm$dsl$query.SsmGetBlockResult = SsmGetBlockResult_0;
   $ssm$dsl$query.SsmGetQuery = SsmGetQuery_0;
   $ssm$dsl$query.SsmGetResult = SsmGetResult_0;
   $ssm$dsl$query.SsmGetSessionFirstAndLastTransactionQuery = SsmGetSessionFirstAndLastTransactionQuery_0;
@@ -4349,15 +4312,16 @@
   var $x2 = _.x2 || (_.x2 = {});
   var $x2$api = $x2.api || ($x2.api = {});
   var $x2$api$ssm = $x2$api.ssm || ($x2$api.ssm = {});
-  var $x2$api$ssm$model = $x2$api$ssm.model || ($x2$api$ssm.model = {});
-  $x2$api$ssm$model.SsmBase = SsmBase_0;
-  $x2$api$ssm$model.SsmSessionBase = SsmSessionBase_0;
-  $x2$api$ssm$model.SsmTransactionBase = SsmTransactionBase_0;
-  $x2$api$ssm$model.SsmTransitionBase = SsmTransitionBase_0;
-  $x2$api$ssm$model.SsmUserBase = SsmUserBase_0;
-  var $x2$api$ssm$model$features = $x2$api$ssm$model.features || ($x2$api$ssm$model.features = {});
-  $x2$api$ssm$model$features.GetSsmListCommandBase = GetSsmListCommandBase_0;
-  $x2$api$ssm$model$features.GetSsmSessionCommandBase = GetSsmSessionCommandBase_0;
-  $x2$api$ssm$model$features.GetSsmSessionListCommandBase = GetSsmSessionListCommandBase_0;
+  var $x2$api$ssm$domain = $x2$api$ssm.domain || ($x2$api$ssm.domain = {});
+  var $x2$api$ssm$domain$features = $x2$api$ssm$domain.features || ($x2$api$ssm$domain.features = {});
+  $x2$api$ssm$domain$features.GetSsmListCommandBase = GetSsmListCommandBase_0;
+  $x2$api$ssm$domain$features.GetSsmSessionCommandBase = GetSsmSessionCommandBase_0;
+  $x2$api$ssm$domain$features.GetSsmSessionListCommandBase = GetSsmSessionListCommandBase_0;
+  var $x2$api$ssm$domain$model = $x2$api$ssm$domain.model || ($x2$api$ssm$domain.model = {});
+  $x2$api$ssm$domain$model.TxChannelBase = TxChannelBase_0;
+  $x2$api$ssm$domain$model.TxSsmBase = TxSsmBase_0;
+  $x2$api$ssm$domain$model.TxSsmSessionBase = TxSsmSessionBase_0;
+  $x2$api$ssm$domain$model.TxSsmTransactionBase = TxSsmTransactionBase_0;
+  $x2$api$ssm$domain$model.TxSsmUserBase = TxSsmUserBase_0;
   return _;
 }));
