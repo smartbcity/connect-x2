@@ -20197,15 +20197,15 @@
   CancellableContinuationImpl.prototype._get_context__155 = function () {
     return this._context_0;
   };
-  CancellableContinuationImpl.prototype._get_state__13 = function () {
+  CancellableContinuationImpl.prototype._get_state__11 = function () {
     return this.__state._value_7;
   };
   CancellableContinuationImpl.prototype._get_isCompleted__10 = function () {
-    var tmp = this._get_state__13();
+    var tmp = this._get_state__11();
     return !(!(tmp == null) ? isInterface(tmp, NotCompleted) : false);
   };
   CancellableContinuationImpl.prototype._get_isCancelled__13 = function () {
-    var tmp = this._get_state__13();
+    var tmp = this._get_state__11();
     return tmp instanceof CancelledContinuation;
   };
   CancellableContinuationImpl.prototype.initCancellability_0 = function () {
@@ -20231,7 +20231,7 @@
     return true;
   };
   CancellableContinuationImpl.prototype.takeState_2 = function () {
-    return this._get_state__13();
+    return this._get_state__11();
   };
   CancellableContinuationImpl.prototype.cancelCompletedResult_2 = function (takenState, cause) {
     var tmp0_loop_0 = this.__state;
@@ -20342,7 +20342,7 @@
     setupCancellation(this);
     if (trySuspend(this))
       return _get_COROUTINE_SUSPENDED_();
-    var state = this._get_state__13();
+    var state = this._get_state__11();
     if (state instanceof CompletedExceptionally)
       throw recoverStackTrace(state._cause, this);
     else {
@@ -20480,7 +20480,7 @@
     return tmp;
   };
   CancellableContinuationImpl.prototype.toString = function () {
-    return '' + this.nameString_10() + '(' + toDebugString(this._delegate) + '){' + this._get_state__13() + '}@' + _get_hexAddress_(this);
+    return '' + this.nameString_10() + '(' + toDebugString(this._delegate) + '){' + this._get_state__11() + '}@' + _get_hexAddress_(this);
   };
   CancellableContinuationImpl.prototype.nameString_10 = function () {
     return 'CancellableContinuation';
@@ -21816,7 +21816,7 @@
   function addLastAtomic($this, expect, list, node) {
     var tmp$ret$0;
     l$ret$1: do {
-      if (!($this._get_state__13() === expect)) {
+      if (!($this._get_state__11() === expect)) {
         tmp$ret$0 = false;
         break l$ret$1;
       } else {
@@ -21842,7 +21842,7 @@
   }
   function joinInternal($this) {
     while (true) {
-      var tmp0__anonymous__1 = $this._get_state__13();
+      var tmp0__anonymous__1 = $this._get_state__11();
       if (!(!(tmp0__anonymous__1 == null) ? isInterface(tmp0__anonymous__1, Incomplete) : false))
         return false;
       else {
@@ -21862,7 +21862,7 @@
   }
   function cancelMakeCompleting($this, cause) {
     while (true) {
-      var tmp0__anonymous__1 = $this._get_state__13();
+      var tmp0__anonymous__1 = $this._get_state__11();
       var tmp;
       if (!(!(tmp0__anonymous__1 == null) ? isInterface(tmp0__anonymous__1, Incomplete) : false)) {
         tmp = true;
@@ -21918,7 +21918,7 @@
     while (true) {
       var tmp$ret$0;
       l$ret$1: do {
-        var tmp0__anonymous__1 = $this._get_state__13();
+        var tmp0__anonymous__1 = $this._get_state__11();
         var tmp0_subject_2 = tmp0__anonymous__1;
         if (tmp0_subject_2 instanceof Finishing) {
           if (tmp0__anonymous__1._get_isSealed_())
@@ -22347,7 +22347,7 @@
     this._job_0 = job;
   }
   AwaitContinuation.prototype.getContinuationCancellationCause_0 = function (parent) {
-    var state = this._job_0._get_state__13();
+    var state = this._job_0._get_state__11();
     if (state instanceof Finishing) {
       var tmp0_safe_receiver = state._get_rootCause_();
       if (tmp0_safe_receiver == null)
@@ -22404,7 +22404,7 @@
       handle.dispose_31();
       this._set_parentHandle__8(NonDisposableHandle_getInstance());
     }};
-  JobSupport.prototype._get_state__13 = function () {
+  JobSupport.prototype._get_state__11 = function () {
     var tmp0_loop_0 = this.__state_0;
     while (true) {
       var tmp1__anonymous__1 = tmp0_loop_0._value_7;
@@ -22418,7 +22418,7 @@
     Unit_getInstance();
   };
   JobSupport.prototype._get_isActive__27 = function () {
-    var state = this._get_state__13();
+    var state = this._get_state__11();
     var tmp;
     if (!(state == null) ? isInterface(state, Incomplete) : false) {
       tmp = state._get_isActive__27();
@@ -22430,11 +22430,11 @@
     return tmp;
   };
   JobSupport.prototype._get_isCompleted__10 = function () {
-    var tmp = this._get_state__13();
+    var tmp = this._get_state__11();
     return !(!(tmp == null) ? isInterface(tmp, Incomplete) : false);
   };
   JobSupport.prototype._get_isCancelled__13 = function () {
-    var state = this._get_state__13();
+    var state = this._get_state__11();
     var tmp;
     if (state instanceof CompletedExceptionally) {
       tmp = true;
@@ -22455,7 +22455,7 @@
   };
   JobSupport.prototype.start_16 = function () {
     while (true) {
-      var tmp0__anonymous__1 = this._get_state__13();
+      var tmp0__anonymous__1 = this._get_state__11();
       var tmp0_subject_2 = startInternal(this, tmp0__anonymous__1);
       if (tmp0_subject_2 === 0)
         return false;
@@ -22467,7 +22467,7 @@
   JobSupport.prototype.onStartInternal_8 = function () {
   };
   JobSupport.prototype.getCancellationException_11 = function () {
-    var state = this._get_state__13();
+    var state = this._get_state__11();
     var tmp;
     if (state instanceof Finishing) {
       var tmp0_safe_receiver = state._get_rootCause_();
@@ -22521,7 +22521,7 @@
     while (true) {
       var tmp$ret$0;
       l$ret$1: do {
-        var tmp0__anonymous__1 = this._get_state__13();
+        var tmp0__anonymous__1 = this._get_state__11();
         var tmp0_subject_2 = tmp0__anonymous__1;
         if (tmp0_subject_2 instanceof Empty) {
           if (tmp0__anonymous__1._isActive) {
@@ -22631,7 +22631,7 @@
   };
   JobSupport.prototype.removeNode_8 = function (node) {
     while (true) {
-      var tmp0__anonymous__1 = this._get_state__13();
+      var tmp0__anonymous__1 = this._get_state__11();
       var tmp0_subject_2 = tmp0__anonymous__1;
       if (tmp0_subject_2 instanceof JobNode) {
         if (!(tmp0__anonymous__1 === node))
@@ -22707,7 +22707,7 @@
     return tmp;
   };
   JobSupport.prototype.getChildJobCancellationCause_9 = function () {
-    var state = this._get_state__13();
+    var state = this._get_state__11();
     var tmp0_subject = state;
     var tmp;
     if (tmp0_subject instanceof Finishing) {
@@ -22734,7 +22734,7 @@
     while (true) {
       var tmp$ret$0;
       l$ret$1: do {
-        var tmp0__anonymous__1 = this._get_state__13();
+        var tmp0__anonymous__1 = this._get_state__11();
         var finalState_2 = tryMakeCompleting(this, tmp0__anonymous__1, proposedUpdate);
         if (finalState_2 === COMPLETING_ALREADY)
           return false;
@@ -22756,7 +22756,7 @@
     while (true) {
       var tmp$ret$0;
       l$ret$1: do {
-        var tmp0__anonymous__1 = this._get_state__13();
+        var tmp0__anonymous__1 = this._get_state__11();
         var finalState_2 = tryMakeCompleting(this, tmp0__anonymous__1, proposedUpdate);
         if (finalState_2 === COMPLETING_ALREADY)
           throw IllegalStateException_init_$Create$_0('' + 'Job ' + this + ' is already complete or completing, ' + ('' + 'but is being completed with ' + proposedUpdate), _get_exceptionOrNull_(proposedUpdate, this));
@@ -22797,13 +22797,13 @@
     return '' + this.toDebugString_8() + '@' + _get_hexAddress_(this);
   };
   JobSupport.prototype.toDebugString_8 = function () {
-    return '' + this.nameString_10() + '{' + stateString(this, this._get_state__13()) + '}';
+    return '' + this.nameString_10() + '{' + stateString(this, this._get_state__11()) + '}';
   };
   JobSupport.prototype.nameString_10 = function () {
     return _get_classSimpleName_(this);
   };
   JobSupport.prototype.getCompletionExceptionOrNull_3 = function () {
-    var state = this._get_state__13();
+    var state = this._get_state__11();
     var tmp0_check_0 = !(!(state == null) ? isInterface(state, Incomplete) : false);
     if (!tmp0_check_0) {
       var message_1 = 'This job has not completed yet';
@@ -22811,7 +22811,7 @@
     }return _get_exceptionOrNull_(state, this);
   };
   JobSupport.prototype.getCompletedInternal_2 = function () {
-    var state = this._get_state__13();
+    var state = this._get_state__11();
     var tmp0_check_0 = !(!(state == null) ? isInterface(state, Incomplete) : false);
     if (!tmp0_check_0) {
       var message_1 = 'This job has not completed yet';
@@ -22824,7 +22824,7 @@
   };
   JobSupport.prototype.awaitInternal_2 = function ($cont) {
     $l$break: while (true) {
-      var state = this._get_state__13();
+      var state = this._get_state__11();
       if (!(!(state == null) ? isInterface(state, Incomplete) : false)) {
         if (state instanceof CompletedExceptionally) {
           var tmp0_recoverAndThrow_0 = state._cause;
@@ -22841,7 +22841,7 @@
   };
   JobSupport.prototype.registerSelectClause1Internal_2 = function (select, block) {
     while (true) {
-      var tmp0__anonymous__1 = this._get_state__13();
+      var tmp0__anonymous__1 = this._get_state__11();
       if (select._get_isSelected__0())
         return Unit_getInstance();
       if (!(!(tmp0__anonymous__1 == null) ? isInterface(tmp0__anonymous__1, Incomplete) : false)) {
@@ -22865,7 +22865,7 @@
     Unit_getInstance();
   };
   JobSupport.prototype.selectAwaitCompletion_8 = function (select, block) {
-    var state = this._get_state__13();
+    var state = this._get_state__11();
     if (state instanceof CompletedExceptionally)
       select.resumeSelectWithException_0(state._cause);
     else {
@@ -22996,7 +22996,7 @@
     this._continuation_2 = continuation;
   }
   ResumeAwaitOnCompletion.prototype.invoke_414 = function (cause) {
-    var state = this._get_job__14()._get_state__13();
+    var state = this._get_job__14()._get_state__11();
     if (state instanceof CompletedExceptionally) {
       var tmp0_resumeWithException_0 = this._continuation_2;
       var tmp1_resumeWithException_0 = state._cause;
@@ -29265,13 +29265,13 @@
     this._payload = payload;
     this._severity_0 = severity;
   }
-  ErrorBase_0.prototype._get_type__12 = function () {
+  ErrorBase_0.prototype._get_type__14 = function () {
     return this._type_0;
   };
   ErrorBase_0.prototype._get_description__0 = function () {
     return this._description;
   };
-  ErrorBase_0.prototype._get_date__2 = function () {
+  ErrorBase_0.prototype._get_date__0 = function () {
     return this._date;
   };
   ErrorBase_0.prototype._get_payload__0 = function () {
@@ -29287,7 +29287,7 @@
   };
   Object.defineProperty(ErrorBase_0.prototype, 'type', {
     configurable: true,
-    get: ErrorBase_0.prototype._get_type__12
+    get: ErrorBase_0.prototype._get_type__14
   });
   Object.defineProperty(ErrorBase_0.prototype, 'description', {
     configurable: true,
@@ -29295,7 +29295,7 @@
   });
   Object.defineProperty(ErrorBase_0.prototype, 'date', {
     configurable: true,
-    get: ErrorBase_0.prototype._get_date__2
+    get: ErrorBase_0.prototype._get_date__0
   });
   Object.defineProperty(ErrorBase_0.prototype, 'payload', {
     configurable: true,
@@ -29373,7 +29373,7 @@
     this._error = error_1;
     captureStack(this, S2Exception);
   }
-  S2Exception.prototype._get_id__3 = function () {
+  S2Exception.prototype._get_id__6 = function () {
     return this._id;
   };
   S2Exception.prototype._get_error_ = function () {
@@ -29386,7 +29386,7 @@
   };
   Object.defineProperty(S2Exception.prototype, 'id', {
     configurable: true,
-    get: S2Exception.prototype._get_id__3
+    get: S2Exception.prototype._get_id__6
   });
   Object.defineProperty(S2Exception.prototype, 'error', {
     configurable: true,
@@ -29433,7 +29433,7 @@
     this._name_1 = name;
     this._transitions = transitions;
   }
-  SsmBase_0.prototype._get_name__13 = function () {
+  SsmBase_0.prototype._get_name__11 = function () {
     return this._name_1;
   };
   SsmBase_0.prototype._get_transitions__0 = function () {
@@ -29484,35 +29484,35 @@
   };
   Object.defineProperty(SsmBase_0.prototype, 'name', {
     configurable: true,
-    get: SsmBase_0.prototype._get_name__13
+    get: SsmBase_0.prototype._get_name__11
   });
   Object.defineProperty(SsmBase_0.prototype, 'transitions', {
     configurable: true,
     get: SsmBase_0.prototype._get_transitions__0
   });
-  function SsmAgent() {
+  function SsmAgent_0() {
   }
-  SsmAgent.$metadata$ = {
+  SsmAgent_0.$metadata$ = {
     simpleName: 'SsmAgent',
     kind: 'interface',
     interfaces: []
   };
-  function SsmAgentBase(name, pub) {
+  function SsmAgentBase_0(name, pub) {
     this._name_2 = name;
     this._pub = pub;
   }
-  SsmAgentBase.prototype._get_name__13 = function () {
+  SsmAgentBase_0.prototype._get_name__11 = function () {
     return this._name_2;
   };
-  SsmAgentBase.prototype._get_pub__0 = function () {
+  SsmAgentBase_0.prototype._get_pub__0 = function () {
     return this._pub;
   };
-  SsmAgentBase.prototype.equals = function (other) {
+  SsmAgentBase_0.prototype.equals = function (other) {
     if (this === other)
       return true;
     if (other == null ? true : !getKClassFromExpression_0(this).equals(getKClassFromExpression_0(other)))
       return false;
-    if (other instanceof SsmAgentBase)
+    if (other instanceof SsmAgentBase_0)
       other;
     else
       THROW_CCE();
@@ -29523,42 +29523,42 @@
       return false;
     return true;
   };
-  SsmAgentBase.prototype.hashCode = function () {
+  SsmAgentBase_0.prototype.hashCode = function () {
     var result = getStringHashCode(this._name_2);
     result = imul(31, result) + contentHashCode_0(this._pub) | 0;
     return result;
   };
-  SsmAgentBase.prototype.component1_10 = function () {
+  SsmAgentBase_0.prototype.component1_10 = function () {
     return this._name_2;
   };
-  SsmAgentBase.prototype.component2_8 = function () {
+  SsmAgentBase_0.prototype.component2_8 = function () {
     return this._pub;
   };
-  SsmAgentBase.prototype.copy_1 = function (name, pub) {
-    return new SsmAgentBase(name, pub);
+  SsmAgentBase_0.prototype.copy_1 = function (name, pub) {
+    return new SsmAgentBase_0(name, pub);
   };
-  SsmAgentBase.prototype.copy$default_1 = function (name, pub, $mask0, $handler) {
+  SsmAgentBase_0.prototype.copy$default_1 = function (name, pub, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       name = this._name_2;
     if (!(($mask0 & 2) === 0))
       pub = this._pub;
     return this.copy_1(name, pub);
   };
-  SsmAgentBase.prototype.toString = function () {
+  SsmAgentBase_0.prototype.toString = function () {
     return '' + 'SsmAgentBase(name=' + this._name_2 + ', pub=' + toString_2(this._pub) + ')';
   };
-  SsmAgentBase.$metadata$ = {
+  SsmAgentBase_0.$metadata$ = {
     simpleName: 'SsmAgentBase',
     kind: 'class',
-    interfaces: [SsmAgent]
+    interfaces: [SsmAgent_0]
   };
-  Object.defineProperty(SsmAgentBase.prototype, 'name', {
+  Object.defineProperty(SsmAgentBase_0.prototype, 'name', {
     configurable: true,
-    get: SsmAgentBase.prototype._get_name__13
+    get: SsmAgentBase_0.prototype._get_name__11
   });
-  Object.defineProperty(SsmAgentBase.prototype, 'pub', {
+  Object.defineProperty(SsmAgentBase_0.prototype, 'pub', {
     configurable: true,
-    get: SsmAgentBase.prototype._get_pub__0
+    get: SsmAgentBase_0.prototype._get_pub__0
   });
   function SsmCommand_0() {
   }
@@ -29589,7 +29589,7 @@
     this._iteration = iteration;
     this._private = private_0;
   }
-  SsmContextBase_0.prototype._get_session__8 = function () {
+  SsmContextBase_0.prototype._get_session__6 = function () {
     return this._session;
   };
   SsmContextBase_0.prototype._get_public__4 = function () {
@@ -29662,7 +29662,7 @@
   };
   Object.defineProperty(SsmContextBase_0.prototype, 'session', {
     configurable: true,
-    get: SsmContextBase_0.prototype._get_session__8
+    get: SsmContextBase_0.prototype._get_session__6
   });
   Object.defineProperty(SsmContextBase_0.prototype, 'public', {
     configurable: true,
@@ -29676,33 +29676,33 @@
     configurable: true,
     get: SsmContextBase_0.prototype._get_private__4
   });
-  function SsmGrant(user, iteration, credits) {
+  function SsmGrant_0(user, iteration, credits) {
     this._user = user;
     this._iteration_0 = iteration;
     this._credits = credits;
   }
-  SsmGrant.prototype._get_user__0 = function () {
+  SsmGrant_0.prototype._get_user__0 = function () {
     return this._user;
   };
-  SsmGrant.prototype._get_iteration__3 = function () {
+  SsmGrant_0.prototype._get_iteration__3 = function () {
     return this._iteration_0;
   };
-  SsmGrant.prototype._get_credits_ = function () {
+  SsmGrant_0.prototype._get_credits_ = function () {
     return this._credits;
   };
-  SsmGrant.prototype.component1_10 = function () {
+  SsmGrant_0.prototype.component1_10 = function () {
     return this._user;
   };
-  SsmGrant.prototype.component2_8 = function () {
+  SsmGrant_0.prototype.component2_8 = function () {
     return this._iteration_0;
   };
-  SsmGrant.prototype.component3_2 = function () {
+  SsmGrant_0.prototype.component3_2 = function () {
     return this._credits;
   };
-  SsmGrant.prototype.copy_3 = function (user, iteration, credits) {
-    return new SsmGrant(user, iteration, credits);
+  SsmGrant_0.prototype.copy_3 = function (user, iteration, credits) {
+    return new SsmGrant_0(user, iteration, credits);
   };
-  SsmGrant.prototype.copy$default_3 = function (user, iteration, credits, $mask0, $handler) {
+  SsmGrant_0.prototype.copy$default_3 = function (user, iteration, credits, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       user = this._user;
     if (!(($mask0 & 2) === 0))
@@ -29711,23 +29711,23 @@
       credits = this._credits;
     return this.copy_3(user, iteration, credits);
   };
-  SsmGrant.prototype.toString = function () {
+  SsmGrant_0.prototype.toString = function () {
     return '' + 'SsmGrant(user=' + this._user + ', iteration=' + this._iteration_0 + ', credits=' + this._credits + ')';
   };
-  SsmGrant.prototype.hashCode = function () {
+  SsmGrant_0.prototype.hashCode = function () {
     var result = getStringHashCode(this._user);
     result = imul(result, 31) + this._iteration_0 | 0;
     result = imul(result, 31) + hashCode(this._credits) | 0;
     return result;
   };
-  SsmGrant.prototype.equals = function (other) {
+  SsmGrant_0.prototype.equals = function (other) {
     if (this === other)
       return true;
-    if (!(other instanceof SsmGrant))
+    if (!(other instanceof SsmGrant_0))
       return false;
     else {
     }
-    var tmp0_other_with_cast = other instanceof SsmGrant ? other : THROW_CCE();
+    var tmp0_other_with_cast = other instanceof SsmGrant_0 ? other : THROW_CCE();
     if (!(this._user === tmp0_other_with_cast._user))
       return false;
     if (!(this._iteration_0 === tmp0_other_with_cast._iteration_0))
@@ -29736,22 +29736,22 @@
       return false;
     return true;
   };
-  SsmGrant.$metadata$ = {
+  SsmGrant_0.$metadata$ = {
     simpleName: 'SsmGrant',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmGrant.prototype, 'user', {
+  Object.defineProperty(SsmGrant_0.prototype, 'user', {
     configurable: true,
-    get: SsmGrant.prototype._get_user__0
+    get: SsmGrant_0.prototype._get_user__0
   });
-  Object.defineProperty(SsmGrant.prototype, 'iteration', {
+  Object.defineProperty(SsmGrant_0.prototype, 'iteration', {
     configurable: true,
-    get: SsmGrant.prototype._get_iteration__3
+    get: SsmGrant_0.prototype._get_iteration__3
   });
-  Object.defineProperty(SsmGrant.prototype, 'credits', {
+  Object.defineProperty(SsmGrant_0.prototype, 'credits', {
     configurable: true,
-    get: SsmGrant.prototype._get_credits_
+    get: SsmGrant_0.prototype._get_credits_
   });
   function Credit_0(amount) {
     this._amount = amount;
@@ -29823,7 +29823,7 @@
   SsmSessionBase_0.prototype._get_ssm__6 = function () {
     return this._ssm;
   };
-  SsmSessionBase_0.prototype._get_session__8 = function () {
+  SsmSessionBase_0.prototype._get_session__6 = function () {
     return this._session_0;
   };
   SsmSessionBase_0.prototype._get_roles__2 = function () {
@@ -29846,7 +29846,7 @@
   });
   Object.defineProperty(SsmSessionBase_0.prototype, 'session', {
     configurable: true,
-    get: SsmSessionBase_0.prototype._get_session__8
+    get: SsmSessionBase_0.prototype._get_session__6
   });
   Object.defineProperty(SsmSessionBase_0.prototype, 'roles', {
     configurable: true,
@@ -29889,7 +29889,7 @@
   SsmSessionStateBase_0.prototype._get_ssm__6 = function () {
     return this._ssm_0;
   };
-  SsmSessionStateBase_0.prototype._get_session__8 = function () {
+  SsmSessionStateBase_0.prototype._get_session__6 = function () {
     return this._session_1;
   };
   SsmSessionStateBase_0.prototype._get_roles__2 = function () {
@@ -30007,7 +30007,7 @@
   });
   Object.defineProperty(SsmSessionStateBase_0.prototype, 'session', {
     configurable: true,
-    get: SsmSessionStateBase_0.prototype._get_session__8
+    get: SsmSessionStateBase_0.prototype._get_session__6
   });
   Object.defineProperty(SsmSessionStateBase_0.prototype, 'roles', {
     configurable: true,
@@ -30040,7 +30040,7 @@
   SsmSessionStateLog_0.prototype._get_txId_ = function () {
     return this._txId;
   };
-  SsmSessionStateLog_0.prototype._get_state__13 = function () {
+  SsmSessionStateLog_0.prototype._get_state__11 = function () {
     return this._state_3;
   };
   SsmSessionStateLog_0.prototype.component1_10 = function () {
@@ -30092,7 +30092,7 @@
   });
   Object.defineProperty(SsmSessionStateLog_0.prototype, 'state', {
     configurable: true,
-    get: SsmSessionStateLog_0.prototype._get_state__13
+    get: SsmSessionStateLog_0.prototype._get_state__11
   });
   function SsmTransition_0() {
   }
@@ -30107,10 +30107,10 @@
     this._role = role;
     this._action_0 = action;
   }
-  SsmTransitionBase_0.prototype._get_from__2 = function () {
+  SsmTransitionBase_0.prototype._get_from__0 = function () {
     return this._from;
   };
-  SsmTransitionBase_0.prototype._get_to__2 = function () {
+  SsmTransitionBase_0.prototype._get_to__0 = function () {
     return this._to;
   };
   SsmTransitionBase_0.prototype._get_role__0 = function () {
@@ -30180,11 +30180,11 @@
   };
   Object.defineProperty(SsmTransitionBase_0.prototype, 'from', {
     configurable: true,
-    get: SsmTransitionBase_0.prototype._get_from__2
+    get: SsmTransitionBase_0.prototype._get_from__0
   });
   Object.defineProperty(SsmTransitionBase_0.prototype, 'to', {
     configurable: true,
-    get: SsmTransitionBase_0.prototype._get_to__2
+    get: SsmTransitionBase_0.prototype._get_to__0
   });
   Object.defineProperty(SsmTransitionBase_0.prototype, 'role', {
     configurable: true,
@@ -30201,6 +30201,168 @@
     kind: 'interface',
     interfaces: []
   };
+  function Block_0() {
+  }
+  Block_0.$metadata$ = {
+    simpleName: 'Block',
+    kind: 'interface',
+    interfaces: []
+  };
+  function BlockBase_0(blockId, previousHash, dataHash, transactions) {
+    this._blockId = blockId;
+    this._previousHash = previousHash;
+    this._dataHash = dataHash;
+    this._transactions = transactions;
+  }
+  BlockBase_0.prototype._get_blockId__2 = function () {
+    return this._blockId;
+  };
+  BlockBase_0.prototype._get_previousHash__0 = function () {
+    return this._previousHash;
+  };
+  BlockBase_0.prototype._get_dataHash__0 = function () {
+    return this._dataHash;
+  };
+  BlockBase_0.prototype._get_transactions__0 = function () {
+    return this._transactions;
+  };
+  BlockBase_0.$metadata$ = {
+    simpleName: 'BlockBase',
+    kind: 'class',
+    interfaces: [Block_0]
+  };
+  Object.defineProperty(BlockBase_0.prototype, 'blockId', {
+    configurable: true,
+    get: BlockBase_0.prototype._get_blockId__2
+  });
+  Object.defineProperty(BlockBase_0.prototype, 'previousHash', {
+    configurable: true,
+    get: BlockBase_0.prototype._get_previousHash__0
+  });
+  Object.defineProperty(BlockBase_0.prototype, 'dataHash', {
+    configurable: true,
+    get: BlockBase_0.prototype._get_dataHash__0
+  });
+  Object.defineProperty(BlockBase_0.prototype, 'transactions', {
+    configurable: true,
+    get: BlockBase_0.prototype._get_transactions__0
+  });
+  function IdentitiesInfo_0() {
+  }
+  IdentitiesInfo_0.$metadata$ = {
+    simpleName: 'IdentitiesInfo',
+    kind: 'interface',
+    interfaces: []
+  };
+  function IdentitiesInfoBase_0(id, mspid) {
+    this._id_0 = id;
+    this._mspid = mspid;
+  }
+  IdentitiesInfoBase_0.prototype._get_id__6 = function () {
+    return this._id_0;
+  };
+  IdentitiesInfoBase_0.prototype._get_mspid__0 = function () {
+    return this._mspid;
+  };
+  IdentitiesInfoBase_0.$metadata$ = {
+    simpleName: 'IdentitiesInfoBase',
+    kind: 'class',
+    interfaces: [IdentitiesInfo_0]
+  };
+  Object.defineProperty(IdentitiesInfoBase_0.prototype, 'id', {
+    configurable: true,
+    get: IdentitiesInfoBase_0.prototype._get_id__6
+  });
+  Object.defineProperty(IdentitiesInfoBase_0.prototype, 'mspid', {
+    configurable: true,
+    get: IdentitiesInfoBase_0.prototype._get_mspid__0
+  });
+  function Transaction_0() {
+  }
+  Transaction_0.$metadata$ = {
+    simpleName: 'Transaction',
+    kind: 'interface',
+    interfaces: []
+  };
+  function TransactionBase_0(transactionId, blockId, timestamp, isValid, channelId, creator, nonce, type, validationCode) {
+    this._transactionId = transactionId;
+    this._blockId_0 = blockId;
+    this._timestamp = timestamp;
+    this._isValid = isValid;
+    this._channelId = channelId;
+    this._creator = creator;
+    this._nonce = nonce;
+    this._type_1 = type;
+    this._validationCode = validationCode;
+  }
+  TransactionBase_0.prototype._get_transactionId__0 = function () {
+    return this._transactionId;
+  };
+  TransactionBase_0.prototype._get_blockId__2 = function () {
+    return this._blockId_0;
+  };
+  TransactionBase_0.prototype._get_timestamp__0 = function () {
+    return this._timestamp;
+  };
+  TransactionBase_0.prototype._get_isValid__0 = function () {
+    return this._isValid;
+  };
+  TransactionBase_0.prototype._get_channelId__18 = function () {
+    return this._channelId;
+  };
+  TransactionBase_0.prototype._get_creator__0 = function () {
+    return this._creator;
+  };
+  TransactionBase_0.prototype._get_nonce__0 = function () {
+    return this._nonce;
+  };
+  TransactionBase_0.prototype._get_type__14 = function () {
+    return this._type_1;
+  };
+  TransactionBase_0.prototype._get_validationCode__0 = function () {
+    return this._validationCode;
+  };
+  TransactionBase_0.$metadata$ = {
+    simpleName: 'TransactionBase',
+    kind: 'class',
+    interfaces: [Transaction_0]
+  };
+  Object.defineProperty(TransactionBase_0.prototype, 'transactionId', {
+    configurable: true,
+    get: TransactionBase_0.prototype._get_transactionId__0
+  });
+  Object.defineProperty(TransactionBase_0.prototype, 'blockId', {
+    configurable: true,
+    get: TransactionBase_0.prototype._get_blockId__2
+  });
+  Object.defineProperty(TransactionBase_0.prototype, 'timestamp', {
+    configurable: true,
+    get: TransactionBase_0.prototype._get_timestamp__0
+  });
+  Object.defineProperty(TransactionBase_0.prototype, 'isValid', {
+    configurable: true,
+    get: TransactionBase_0.prototype._get_isValid__0
+  });
+  Object.defineProperty(TransactionBase_0.prototype, 'channelId', {
+    configurable: true,
+    get: TransactionBase_0.prototype._get_channelId__18
+  });
+  Object.defineProperty(TransactionBase_0.prototype, 'creator', {
+    configurable: true,
+    get: TransactionBase_0.prototype._get_creator__0
+  });
+  Object.defineProperty(TransactionBase_0.prototype, 'nonce', {
+    configurable: true,
+    get: TransactionBase_0.prototype._get_nonce__0
+  });
+  Object.defineProperty(TransactionBase_0.prototype, 'type', {
+    configurable: true,
+    get: TransactionBase_0.prototype._get_type__14
+  });
+  Object.defineProperty(TransactionBase_0.prototype, 'validationCode', {
+    configurable: true,
+    get: TransactionBase_0.prototype._get_validationCode__0
+  });
   function SsmGetAdminQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, $this) {
     if (!(($mask0 & 8) === 0))
       bearerToken = null;
@@ -30212,24 +30374,24 @@
   }
   function SsmGetAdminQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
     this._baseUrl = baseUrl;
-    this._channelId = channelId;
+    this._channelId_0 = channelId;
     this._chaincodeId = chaincodeId;
     this._bearerToken = bearerToken;
     this._name_3 = name;
   }
-  SsmGetAdminQuery_0.prototype._get_baseUrl__15 = function () {
+  SsmGetAdminQuery_0.prototype._get_baseUrl__16 = function () {
     return this._baseUrl;
   };
-  SsmGetAdminQuery_0.prototype._get_channelId__15 = function () {
-    return this._channelId;
+  SsmGetAdminQuery_0.prototype._get_channelId__18 = function () {
+    return this._channelId_0;
   };
-  SsmGetAdminQuery_0.prototype._get_chaincodeId__15 = function () {
+  SsmGetAdminQuery_0.prototype._get_chaincodeId__16 = function () {
     return this._chaincodeId;
   };
-  SsmGetAdminQuery_0.prototype._get_bearerToken__15 = function () {
+  SsmGetAdminQuery_0.prototype._get_bearerToken__16 = function () {
     return this._bearerToken;
   };
-  SsmGetAdminQuery_0.prototype._get_name__13 = function () {
+  SsmGetAdminQuery_0.prototype._get_name__11 = function () {
     return this._name_3;
   };
   SsmGetAdminQuery_0.$metadata$ = {
@@ -30239,23 +30401,23 @@
   };
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_baseUrl__15
+    get: SsmGetAdminQuery_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_channelId__15
+    get: SsmGetAdminQuery_0.prototype._get_channelId__18
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_chaincodeId__15
+    get: SsmGetAdminQuery_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_bearerToken__15
+    get: SsmGetAdminQuery_0.prototype._get_bearerToken__16
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'name', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_name__13
+    get: SsmGetAdminQuery_0.prototype._get_name__11
   });
   function SsmGetAdminResult_0(admin) {
     this._admin = admin;
@@ -30285,20 +30447,20 @@
   }
   function SsmGetBlockQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
     this._baseUrl_0 = baseUrl;
-    this._channelId_0 = channelId;
+    this._channelId_1 = channelId;
     this._chaincodeId_0 = chaincodeId;
     this._bearerToken_0 = bearerToken;
   }
-  SsmGetBlockQuery_0.prototype._get_baseUrl__15 = function () {
+  SsmGetBlockQuery_0.prototype._get_baseUrl__16 = function () {
     return this._baseUrl_0;
   };
-  SsmGetBlockQuery_0.prototype._get_channelId__15 = function () {
-    return this._channelId_0;
+  SsmGetBlockQuery_0.prototype._get_channelId__18 = function () {
+    return this._channelId_1;
   };
-  SsmGetBlockQuery_0.prototype._get_chaincodeId__15 = function () {
+  SsmGetBlockQuery_0.prototype._get_chaincodeId__16 = function () {
     return this._chaincodeId_0;
   };
-  SsmGetBlockQuery_0.prototype._get_bearerToken__15 = function () {
+  SsmGetBlockQuery_0.prototype._get_bearerToken__16 = function () {
     return this._bearerToken_0;
   };
   SsmGetBlockQuery_0.$metadata$ = {
@@ -30308,19 +30470,19 @@
   };
   Object.defineProperty(SsmGetBlockQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_baseUrl__15
+    get: SsmGetBlockQuery_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(SsmGetBlockQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_channelId__15
+    get: SsmGetBlockQuery_0.prototype._get_channelId__18
   });
   Object.defineProperty(SsmGetBlockQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_chaincodeId__15
+    get: SsmGetBlockQuery_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(SsmGetBlockQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetBlockQuery_0.prototype._get_bearerToken__15
+    get: SsmGetBlockQuery_0.prototype._get_bearerToken__16
   });
   function SsmGetBlockResult_0() {
   }
@@ -30340,24 +30502,24 @@
   }
   function SsmGetQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
     this._baseUrl_1 = baseUrl;
-    this._channelId_1 = channelId;
+    this._channelId_2 = channelId;
     this._chaincodeId_1 = chaincodeId;
     this._bearerToken_1 = bearerToken;
     this._name_4 = name;
   }
-  SsmGetQuery_0.prototype._get_baseUrl__15 = function () {
+  SsmGetQuery_0.prototype._get_baseUrl__16 = function () {
     return this._baseUrl_1;
   };
-  SsmGetQuery_0.prototype._get_channelId__15 = function () {
-    return this._channelId_1;
+  SsmGetQuery_0.prototype._get_channelId__18 = function () {
+    return this._channelId_2;
   };
-  SsmGetQuery_0.prototype._get_chaincodeId__15 = function () {
+  SsmGetQuery_0.prototype._get_chaincodeId__16 = function () {
     return this._chaincodeId_1;
   };
-  SsmGetQuery_0.prototype._get_bearerToken__15 = function () {
+  SsmGetQuery_0.prototype._get_bearerToken__16 = function () {
     return this._bearerToken_1;
   };
-  SsmGetQuery_0.prototype._get_name__13 = function () {
+  SsmGetQuery_0.prototype._get_name__11 = function () {
     return this._name_4;
   };
   SsmGetQuery_0.$metadata$ = {
@@ -30367,23 +30529,23 @@
   };
   Object.defineProperty(SsmGetQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_baseUrl__15
+    get: SsmGetQuery_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_channelId__15
+    get: SsmGetQuery_0.prototype._get_channelId__18
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_chaincodeId__15
+    get: SsmGetQuery_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_bearerToken__15
+    get: SsmGetQuery_0.prototype._get_bearerToken__16
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'name', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_name__13
+    get: SsmGetQuery_0.prototype._get_name__11
   });
   function SsmGetResult_0(ssmBase) {
     this._ssmBase = ssmBase;
@@ -30400,97 +30562,27 @@
     configurable: true,
     get: SsmGetResult_0.prototype._get_ssmBase_
   });
-  function SsmGetSessionFirstAndLastTransactionQuery_0(session, baseUrl, channelId, chaincodeId, bearerToken) {
+  function SsmGetSessionLogsQuery_0(session, baseUrl, channelId, chaincodeId, bearerToken) {
     this._session_2 = session;
     this._baseUrl_2 = baseUrl;
-    this._channelId_2 = channelId;
+    this._channelId_3 = channelId;
     this._chaincodeId_2 = chaincodeId;
     this._bearerToken_2 = bearerToken;
   }
-  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_session__8 = function () {
+  SsmGetSessionLogsQuery_0.prototype._get_session__6 = function () {
     return this._session_2;
   };
-  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_baseUrl__15 = function () {
+  SsmGetSessionLogsQuery_0.prototype._get_baseUrl__16 = function () {
     return this._baseUrl_2;
   };
-  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_channelId__15 = function () {
-    return this._channelId_2;
-  };
-  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_chaincodeId__15 = function () {
-    return this._chaincodeId_2;
-  };
-  SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_bearerToken__15 = function () {
-    return this._bearerToken_2;
-  };
-  SsmGetSessionFirstAndLastTransactionQuery_0.$metadata$ = {
-    simpleName: 'SsmGetSessionFirstAndLastTransactionQuery',
-    kind: 'class',
-    interfaces: [SsmCommand_0]
-  };
-  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'session', {
-    configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_session__8
-  });
-  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_baseUrl__15
-  });
-  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_channelId__15
-  });
-  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_chaincodeId__15
-  });
-  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQuery_0.prototype, 'bearerToken', {
-    configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQuery_0.prototype._get_bearerToken__15
-  });
-  function SsmGetSessionFirstAndLastTransactionQueryResult_0(firstTransaction, lastTransaction) {
-    this._firstTransaction = firstTransaction;
-    this._lastTransaction = lastTransaction;
-  }
-  SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype._get_firstTransaction_ = function () {
-    return this._firstTransaction;
-  };
-  SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype._get_lastTransaction__1 = function () {
-    return this._lastTransaction;
-  };
-  SsmGetSessionFirstAndLastTransactionQueryResult_0.$metadata$ = {
-    simpleName: 'SsmGetSessionFirstAndLastTransactionQueryResult',
-    kind: 'class',
-    interfaces: []
-  };
-  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype, 'firstTransaction', {
-    configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype._get_firstTransaction_
-  });
-  Object.defineProperty(SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype, 'lastTransaction', {
-    configurable: true,
-    get: SsmGetSessionFirstAndLastTransactionQueryResult_0.prototype._get_lastTransaction__1
-  });
-  function SsmGetSessionLogsQuery_0(session, baseUrl, channelId, chaincodeId, bearerToken) {
-    this._session_3 = session;
-    this._baseUrl_3 = baseUrl;
-    this._channelId_3 = channelId;
-    this._chaincodeId_3 = chaincodeId;
-    this._bearerToken_3 = bearerToken;
-  }
-  SsmGetSessionLogsQuery_0.prototype._get_session__8 = function () {
-    return this._session_3;
-  };
-  SsmGetSessionLogsQuery_0.prototype._get_baseUrl__15 = function () {
-    return this._baseUrl_3;
-  };
-  SsmGetSessionLogsQuery_0.prototype._get_channelId__15 = function () {
+  SsmGetSessionLogsQuery_0.prototype._get_channelId__18 = function () {
     return this._channelId_3;
   };
-  SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__15 = function () {
-    return this._chaincodeId_3;
+  SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__16 = function () {
+    return this._chaincodeId_2;
   };
-  SsmGetSessionLogsQuery_0.prototype._get_bearerToken__15 = function () {
-    return this._bearerToken_3;
+  SsmGetSessionLogsQuery_0.prototype._get_bearerToken__16 = function () {
+    return this._bearerToken_2;
   };
   SsmGetSessionLogsQuery_0.$metadata$ = {
     simpleName: 'SsmGetSessionLogsQuery',
@@ -30499,23 +30591,23 @@
   };
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'session', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_session__8
+    get: SsmGetSessionLogsQuery_0.prototype._get_session__6
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_baseUrl__15
+    get: SsmGetSessionLogsQuery_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_channelId__15
+    get: SsmGetSessionLogsQuery_0.prototype._get_channelId__18
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__15
+    get: SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_bearerToken__15
+    get: SsmGetSessionLogsQuery_0.prototype._get_bearerToken__16
   });
   function SsmGetSessionLogsQueryResult_0(logs) {
     this._logs = logs;
@@ -30571,25 +30663,25 @@
     return SsmGetSessionQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, Object.create(SsmGetSessionQuery_0.prototype));
   }
   function SsmGetSessionQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
-    this._baseUrl_4 = baseUrl;
+    this._baseUrl_3 = baseUrl;
     this._channelId_4 = channelId;
-    this._chaincodeId_4 = chaincodeId;
-    this._bearerToken_4 = bearerToken;
+    this._chaincodeId_3 = chaincodeId;
+    this._bearerToken_3 = bearerToken;
     this._name_5 = name;
   }
-  SsmGetSessionQuery_0.prototype._get_baseUrl__15 = function () {
-    return this._baseUrl_4;
+  SsmGetSessionQuery_0.prototype._get_baseUrl__16 = function () {
+    return this._baseUrl_3;
   };
-  SsmGetSessionQuery_0.prototype._get_channelId__15 = function () {
+  SsmGetSessionQuery_0.prototype._get_channelId__18 = function () {
     return this._channelId_4;
   };
-  SsmGetSessionQuery_0.prototype._get_chaincodeId__15 = function () {
-    return this._chaincodeId_4;
+  SsmGetSessionQuery_0.prototype._get_chaincodeId__16 = function () {
+    return this._chaincodeId_3;
   };
-  SsmGetSessionQuery_0.prototype._get_bearerToken__15 = function () {
-    return this._bearerToken_4;
+  SsmGetSessionQuery_0.prototype._get_bearerToken__16 = function () {
+    return this._bearerToken_3;
   };
-  SsmGetSessionQuery_0.prototype._get_name__13 = function () {
+  SsmGetSessionQuery_0.prototype._get_name__11 = function () {
     return this._name_5;
   };
   SsmGetSessionQuery_0.$metadata$ = {
@@ -30599,29 +30691,29 @@
   };
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_baseUrl__15
+    get: SsmGetSessionQuery_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_channelId__15
+    get: SsmGetSessionQuery_0.prototype._get_channelId__18
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_chaincodeId__15
+    get: SsmGetSessionQuery_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_bearerToken__15
+    get: SsmGetSessionQuery_0.prototype._get_bearerToken__16
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'name', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_name__13
+    get: SsmGetSessionQuery_0.prototype._get_name__11
   });
   function SsmGetSessionResult_0(session) {
-    this._session_4 = session;
+    this._session_3 = session;
   }
-  SsmGetSessionResult_0.prototype._get_session__8 = function () {
-    return this._session_4;
+  SsmGetSessionResult_0.prototype._get_session__6 = function () {
+    return this._session_3;
   };
   SsmGetSessionResult_0.$metadata$ = {
     simpleName: 'SsmGetSessionResult',
@@ -30630,7 +30722,69 @@
   };
   Object.defineProperty(SsmGetSessionResult_0.prototype, 'session', {
     configurable: true,
-    get: SsmGetSessionResult_0.prototype._get_session__8
+    get: SsmGetSessionResult_0.prototype._get_session__6
+  });
+  function SsmGetTransactionQuery_0(id, baseUrl, channelId, chaincodeId, bearerToken) {
+    this._id_1 = id;
+    this._baseUrl_4 = baseUrl;
+    this._channelId_5 = channelId;
+    this._chaincodeId_4 = chaincodeId;
+    this._bearerToken_4 = bearerToken;
+  }
+  SsmGetTransactionQuery_0.prototype._get_id__6 = function () {
+    return this._id_1;
+  };
+  SsmGetTransactionQuery_0.prototype._get_baseUrl__16 = function () {
+    return this._baseUrl_4;
+  };
+  SsmGetTransactionQuery_0.prototype._get_channelId__18 = function () {
+    return this._channelId_5;
+  };
+  SsmGetTransactionQuery_0.prototype._get_chaincodeId__16 = function () {
+    return this._chaincodeId_4;
+  };
+  SsmGetTransactionQuery_0.prototype._get_bearerToken__16 = function () {
+    return this._bearerToken_4;
+  };
+  SsmGetTransactionQuery_0.$metadata$ = {
+    simpleName: 'SsmGetTransactionQuery',
+    kind: 'class',
+    interfaces: [SsmCommand_0]
+  };
+  Object.defineProperty(SsmGetTransactionQuery_0.prototype, 'id', {
+    configurable: true,
+    get: SsmGetTransactionQuery_0.prototype._get_id__6
+  });
+  Object.defineProperty(SsmGetTransactionQuery_0.prototype, 'baseUrl', {
+    configurable: true,
+    get: SsmGetTransactionQuery_0.prototype._get_baseUrl__16
+  });
+  Object.defineProperty(SsmGetTransactionQuery_0.prototype, 'channelId', {
+    configurable: true,
+    get: SsmGetTransactionQuery_0.prototype._get_channelId__18
+  });
+  Object.defineProperty(SsmGetTransactionQuery_0.prototype, 'chaincodeId', {
+    configurable: true,
+    get: SsmGetTransactionQuery_0.prototype._get_chaincodeId__16
+  });
+  Object.defineProperty(SsmGetTransactionQuery_0.prototype, 'bearerToken', {
+    configurable: true,
+    get: SsmGetTransactionQuery_0.prototype._get_bearerToken__16
+  });
+  function SsmGetTransactionQueryResult_0(transaction) {
+    this._transaction = transaction;
+  }
+  SsmGetTransactionQueryResult_0.prototype._get_transaction__1 = function () {
+    return this._transaction;
+  };
+  SsmGetTransactionQueryResult_0.$metadata$ = {
+    simpleName: 'SsmGetTransactionQueryResult',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(SsmGetTransactionQueryResult_0.prototype, 'transaction', {
+    configurable: true,
+    get: SsmGetTransactionQueryResult_0.prototype._get_transaction__1
   });
   function SsmGetUserQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, $this) {
     if (!(($mask0 & 8) === 0))
@@ -30643,24 +30797,24 @@
   }
   function SsmGetUserQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
     this._baseUrl_5 = baseUrl;
-    this._channelId_5 = channelId;
+    this._channelId_6 = channelId;
     this._chaincodeId_5 = chaincodeId;
     this._bearerToken_5 = bearerToken;
     this._name_6 = name;
   }
-  SsmGetUserQuery_0.prototype._get_baseUrl__15 = function () {
+  SsmGetUserQuery_0.prototype._get_baseUrl__16 = function () {
     return this._baseUrl_5;
   };
-  SsmGetUserQuery_0.prototype._get_channelId__15 = function () {
-    return this._channelId_5;
+  SsmGetUserQuery_0.prototype._get_channelId__18 = function () {
+    return this._channelId_6;
   };
-  SsmGetUserQuery_0.prototype._get_chaincodeId__15 = function () {
+  SsmGetUserQuery_0.prototype._get_chaincodeId__16 = function () {
     return this._chaincodeId_5;
   };
-  SsmGetUserQuery_0.prototype._get_bearerToken__15 = function () {
+  SsmGetUserQuery_0.prototype._get_bearerToken__16 = function () {
     return this._bearerToken_5;
   };
-  SsmGetUserQuery_0.prototype._get_name__13 = function () {
+  SsmGetUserQuery_0.prototype._get_name__11 = function () {
     return this._name_6;
   };
   SsmGetUserQuery_0.$metadata$ = {
@@ -30670,23 +30824,23 @@
   };
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_baseUrl__15
+    get: SsmGetUserQuery_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_channelId__15
+    get: SsmGetUserQuery_0.prototype._get_channelId__18
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_chaincodeId__15
+    get: SsmGetUserQuery_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_bearerToken__15
+    get: SsmGetUserQuery_0.prototype._get_bearerToken__16
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'name', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_name__13
+    get: SsmGetUserQuery_0.prototype._get_name__11
   });
   function SsmGetUserResult_0(user) {
     this._user_0 = user;
@@ -30714,20 +30868,20 @@
   }
   function SsmListAdminQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
     this._baseUrl_6 = baseUrl;
-    this._channelId_6 = channelId;
+    this._channelId_7 = channelId;
     this._chaincodeId_6 = chaincodeId;
     this._bearerToken_6 = bearerToken;
   }
-  SsmListAdminQuery_0.prototype._get_baseUrl__15 = function () {
+  SsmListAdminQuery_0.prototype._get_baseUrl__16 = function () {
     return this._baseUrl_6;
   };
-  SsmListAdminQuery_0.prototype._get_channelId__15 = function () {
-    return this._channelId_6;
+  SsmListAdminQuery_0.prototype._get_channelId__18 = function () {
+    return this._channelId_7;
   };
-  SsmListAdminQuery_0.prototype._get_chaincodeId__15 = function () {
+  SsmListAdminQuery_0.prototype._get_chaincodeId__16 = function () {
     return this._chaincodeId_6;
   };
-  SsmListAdminQuery_0.prototype._get_bearerToken__15 = function () {
+  SsmListAdminQuery_0.prototype._get_bearerToken__16 = function () {
     return this._bearerToken_6;
   };
   SsmListAdminQuery_0.$metadata$ = {
@@ -30737,19 +30891,19 @@
   };
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_baseUrl__15
+    get: SsmListAdminQuery_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_channelId__15
+    get: SsmListAdminQuery_0.prototype._get_channelId__18
   });
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_chaincodeId__15
+    get: SsmListAdminQuery_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_bearerToken__15
+    get: SsmListAdminQuery_0.prototype._get_bearerToken__16
   });
   function SsmListAdminResult_0(values_5) {
     this._values_0 = values_5;
@@ -30777,20 +30931,20 @@
   }
   function SsmListSessionQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
     this._baseUrl_7 = baseUrl;
-    this._channelId_7 = channelId;
+    this._channelId_8 = channelId;
     this._chaincodeId_7 = chaincodeId;
     this._bearerToken_7 = bearerToken;
   }
-  SsmListSessionQuery_0.prototype._get_baseUrl__15 = function () {
+  SsmListSessionQuery_0.prototype._get_baseUrl__16 = function () {
     return this._baseUrl_7;
   };
-  SsmListSessionQuery_0.prototype._get_channelId__15 = function () {
-    return this._channelId_7;
+  SsmListSessionQuery_0.prototype._get_channelId__18 = function () {
+    return this._channelId_8;
   };
-  SsmListSessionQuery_0.prototype._get_chaincodeId__15 = function () {
+  SsmListSessionQuery_0.prototype._get_chaincodeId__16 = function () {
     return this._chaincodeId_7;
   };
-  SsmListSessionQuery_0.prototype._get_bearerToken__15 = function () {
+  SsmListSessionQuery_0.prototype._get_bearerToken__16 = function () {
     return this._bearerToken_7;
   };
   SsmListSessionQuery_0.$metadata$ = {
@@ -30800,19 +30954,19 @@
   };
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_baseUrl__15
+    get: SsmListSessionQuery_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_channelId__15
+    get: SsmListSessionQuery_0.prototype._get_channelId__18
   });
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_chaincodeId__15
+    get: SsmListSessionQuery_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_bearerToken__15
+    get: SsmListSessionQuery_0.prototype._get_bearerToken__16
   });
   function SsmListSessionResult_0(values_5) {
     this._values_1 = values_5;
@@ -30829,68 +30983,6 @@
     configurable: true,
     get: SsmListSessionResult_0.prototype._get_values__18
   });
-  function SsmListSessionTransactionQuery_0(session, baseUrl, channelId, chaincodeId, bearerToken) {
-    this._session_5 = session;
-    this._baseUrl_8 = baseUrl;
-    this._channelId_8 = channelId;
-    this._chaincodeId_8 = chaincodeId;
-    this._bearerToken_8 = bearerToken;
-  }
-  SsmListSessionTransactionQuery_0.prototype._get_session__8 = function () {
-    return this._session_5;
-  };
-  SsmListSessionTransactionQuery_0.prototype._get_baseUrl__15 = function () {
-    return this._baseUrl_8;
-  };
-  SsmListSessionTransactionQuery_0.prototype._get_channelId__15 = function () {
-    return this._channelId_8;
-  };
-  SsmListSessionTransactionQuery_0.prototype._get_chaincodeId__15 = function () {
-    return this._chaincodeId_8;
-  };
-  SsmListSessionTransactionQuery_0.prototype._get_bearerToken__15 = function () {
-    return this._bearerToken_8;
-  };
-  SsmListSessionTransactionQuery_0.$metadata$ = {
-    simpleName: 'SsmListSessionTransactionQuery',
-    kind: 'class',
-    interfaces: [SsmCommand_0]
-  };
-  Object.defineProperty(SsmListSessionTransactionQuery_0.prototype, 'session', {
-    configurable: true,
-    get: SsmListSessionTransactionQuery_0.prototype._get_session__8
-  });
-  Object.defineProperty(SsmListSessionTransactionQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmListSessionTransactionQuery_0.prototype._get_baseUrl__15
-  });
-  Object.defineProperty(SsmListSessionTransactionQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmListSessionTransactionQuery_0.prototype._get_channelId__15
-  });
-  Object.defineProperty(SsmListSessionTransactionQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmListSessionTransactionQuery_0.prototype._get_chaincodeId__15
-  });
-  Object.defineProperty(SsmListSessionTransactionQuery_0.prototype, 'bearerToken', {
-    configurable: true,
-    get: SsmListSessionTransactionQuery_0.prototype._get_bearerToken__15
-  });
-  function SsmListSessionTransactionQueryResult_0(transactions) {
-    this._transactions = transactions;
-  }
-  SsmListSessionTransactionQueryResult_0.prototype._get_transactions_ = function () {
-    return this._transactions;
-  };
-  SsmListSessionTransactionQueryResult_0.$metadata$ = {
-    simpleName: 'SsmListSessionTransactionQueryResult',
-    kind: 'class',
-    interfaces: []
-  };
-  Object.defineProperty(SsmListSessionTransactionQueryResult_0.prototype, 'transactions', {
-    configurable: true,
-    get: SsmListSessionTransactionQueryResult_0.prototype._get_transactions_
-  });
   function SsmListSsmQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, $this) {
     if (!(($mask0 & 8) === 0))
       bearerToken = null;
@@ -30901,22 +30993,22 @@
     return SsmListSsmQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, Object.create(SsmListSsmQuery_0.prototype));
   }
   function SsmListSsmQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
-    this._baseUrl_9 = baseUrl;
+    this._baseUrl_8 = baseUrl;
     this._channelId_9 = channelId;
-    this._chaincodeId_9 = chaincodeId;
-    this._bearerToken_9 = bearerToken;
+    this._chaincodeId_8 = chaincodeId;
+    this._bearerToken_8 = bearerToken;
   }
-  SsmListSsmQuery_0.prototype._get_baseUrl__15 = function () {
-    return this._baseUrl_9;
+  SsmListSsmQuery_0.prototype._get_baseUrl__16 = function () {
+    return this._baseUrl_8;
   };
-  SsmListSsmQuery_0.prototype._get_channelId__15 = function () {
+  SsmListSsmQuery_0.prototype._get_channelId__18 = function () {
     return this._channelId_9;
   };
-  SsmListSsmQuery_0.prototype._get_chaincodeId__15 = function () {
-    return this._chaincodeId_9;
+  SsmListSsmQuery_0.prototype._get_chaincodeId__16 = function () {
+    return this._chaincodeId_8;
   };
-  SsmListSsmQuery_0.prototype._get_bearerToken__15 = function () {
-    return this._bearerToken_9;
+  SsmListSsmQuery_0.prototype._get_bearerToken__16 = function () {
+    return this._bearerToken_8;
   };
   SsmListSsmQuery_0.$metadata$ = {
     simpleName: 'SsmListSsmQuery',
@@ -30925,19 +31017,19 @@
   };
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_baseUrl__15
+    get: SsmListSsmQuery_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_channelId__15
+    get: SsmListSsmQuery_0.prototype._get_channelId__18
   });
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_chaincodeId__15
+    get: SsmListSsmQuery_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_bearerToken__15
+    get: SsmListSsmQuery_0.prototype._get_bearerToken__16
   });
   function SsmListSsmResult_0(values_5) {
     this._values_2 = values_5;
@@ -30964,22 +31056,22 @@
     return SsmListUserQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, Object.create(SsmListUserQuery_0.prototype));
   }
   function SsmListUserQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
-    this._baseUrl_10 = baseUrl;
+    this._baseUrl_9 = baseUrl;
     this._channelId_10 = channelId;
-    this._chaincodeId_10 = chaincodeId;
-    this._bearerToken_10 = bearerToken;
+    this._chaincodeId_9 = chaincodeId;
+    this._bearerToken_9 = bearerToken;
   }
-  SsmListUserQuery_0.prototype._get_baseUrl__15 = function () {
-    return this._baseUrl_10;
+  SsmListUserQuery_0.prototype._get_baseUrl__16 = function () {
+    return this._baseUrl_9;
   };
-  SsmListUserQuery_0.prototype._get_channelId__15 = function () {
+  SsmListUserQuery_0.prototype._get_channelId__18 = function () {
     return this._channelId_10;
   };
-  SsmListUserQuery_0.prototype._get_chaincodeId__15 = function () {
-    return this._chaincodeId_10;
+  SsmListUserQuery_0.prototype._get_chaincodeId__16 = function () {
+    return this._chaincodeId_9;
   };
-  SsmListUserQuery_0.prototype._get_bearerToken__15 = function () {
-    return this._bearerToken_10;
+  SsmListUserQuery_0.prototype._get_bearerToken__16 = function () {
+    return this._bearerToken_9;
   };
   SsmListUserQuery_0.$metadata$ = {
     simpleName: 'SsmListUserQuery',
@@ -30988,19 +31080,19 @@
   };
   Object.defineProperty(SsmListUserQuery_0.prototype, 'baseUrl', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_baseUrl__15
+    get: SsmListUserQuery_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(SsmListUserQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_channelId__15
+    get: SsmListUserQuery_0.prototype._get_channelId__18
   });
   Object.defineProperty(SsmListUserQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_chaincodeId__15
+    get: SsmListUserQuery_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(SsmListUserQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_bearerToken__15
+    get: SsmListUserQuery_0.prototype._get_bearerToken__16
   });
   function SsmListUserResult_0(values_5) {
     this._values_3 = values_5;
@@ -31046,52 +31138,52 @@
     kind: 'interface',
     interfaces: [SsmCommand_0]
   };
-  function GetSsmSessionCommandBase_0(name, baseUrl, channelId, chaincodeId, bearerToken) {
-    this._name_7 = name;
-    this._baseUrl_11 = baseUrl;
+  function GetSsmSessionCommandBase_0(sessionId, baseUrl, channelId, chaincodeId, bearerToken) {
+    this._sessionId = sessionId;
+    this._baseUrl_10 = baseUrl;
     this._channelId_11 = channelId;
-    this._chaincodeId_11 = chaincodeId;
-    this._bearerToken_11 = bearerToken;
+    this._chaincodeId_10 = chaincodeId;
+    this._bearerToken_10 = bearerToken;
   }
-  GetSsmSessionCommandBase_0.prototype._get_name__13 = function () {
-    return this._name_7;
+  GetSsmSessionCommandBase_0.prototype._get_sessionId__2 = function () {
+    return this._sessionId;
   };
-  GetSsmSessionCommandBase_0.prototype._get_baseUrl__15 = function () {
-    return this._baseUrl_11;
+  GetSsmSessionCommandBase_0.prototype._get_baseUrl__16 = function () {
+    return this._baseUrl_10;
   };
-  GetSsmSessionCommandBase_0.prototype._get_channelId__15 = function () {
+  GetSsmSessionCommandBase_0.prototype._get_channelId__18 = function () {
     return this._channelId_11;
   };
-  GetSsmSessionCommandBase_0.prototype._get_chaincodeId__15 = function () {
-    return this._chaincodeId_11;
+  GetSsmSessionCommandBase_0.prototype._get_chaincodeId__16 = function () {
+    return this._chaincodeId_10;
   };
-  GetSsmSessionCommandBase_0.prototype._get_bearerToken__15 = function () {
-    return this._bearerToken_11;
+  GetSsmSessionCommandBase_0.prototype._get_bearerToken__16 = function () {
+    return this._bearerToken_10;
   };
   GetSsmSessionCommandBase_0.$metadata$ = {
     simpleName: 'GetSsmSessionCommandBase',
     kind: 'class',
     interfaces: [GetSsmSessionCommand_0]
   };
-  Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'name', {
+  Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'sessionId', {
     configurable: true,
-    get: GetSsmSessionCommandBase_0.prototype._get_name__13
+    get: GetSsmSessionCommandBase_0.prototype._get_sessionId__2
   });
   Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'baseUrl', {
     configurable: true,
-    get: GetSsmSessionCommandBase_0.prototype._get_baseUrl__15
+    get: GetSsmSessionCommandBase_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'channelId', {
     configurable: true,
-    get: GetSsmSessionCommandBase_0.prototype._get_channelId__15
+    get: GetSsmSessionCommandBase_0.prototype._get_channelId__18
   });
   Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: GetSsmSessionCommandBase_0.prototype._get_chaincodeId__15
+    get: GetSsmSessionCommandBase_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'bearerToken', {
     configurable: true,
-    get: GetSsmSessionCommandBase_0.prototype._get_bearerToken__15
+    get: GetSsmSessionCommandBase_0.prototype._get_bearerToken__16
   });
   function GetSsmSessionListCommand_0() {
   }
@@ -31101,27 +31193,27 @@
     interfaces: [SsmCommand_0]
   };
   function GetSsmSessionListCommandBase_0(baseUrl, dbName, channelId, chaincodeId, bearerToken, ssm) {
-    this._baseUrl_12 = baseUrl;
+    this._baseUrl_11 = baseUrl;
     this._dbName_0 = dbName;
     this._channelId_12 = channelId;
-    this._chaincodeId_12 = chaincodeId;
-    this._bearerToken_12 = bearerToken;
+    this._chaincodeId_11 = chaincodeId;
+    this._bearerToken_11 = bearerToken;
     this._ssm_1 = ssm;
   }
-  GetSsmSessionListCommandBase_0.prototype._get_baseUrl__15 = function () {
-    return this._baseUrl_12;
+  GetSsmSessionListCommandBase_0.prototype._get_baseUrl__16 = function () {
+    return this._baseUrl_11;
   };
   GetSsmSessionListCommandBase_0.prototype._get_dbName__2 = function () {
     return this._dbName_0;
   };
-  GetSsmSessionListCommandBase_0.prototype._get_channelId__15 = function () {
+  GetSsmSessionListCommandBase_0.prototype._get_channelId__18 = function () {
     return this._channelId_12;
   };
-  GetSsmSessionListCommandBase_0.prototype._get_chaincodeId__15 = function () {
-    return this._chaincodeId_12;
+  GetSsmSessionListCommandBase_0.prototype._get_chaincodeId__16 = function () {
+    return this._chaincodeId_11;
   };
-  GetSsmSessionListCommandBase_0.prototype._get_bearerToken__15 = function () {
-    return this._bearerToken_12;
+  GetSsmSessionListCommandBase_0.prototype._get_bearerToken__16 = function () {
+    return this._bearerToken_11;
   };
   GetSsmSessionListCommandBase_0.prototype._get_ssm__6 = function () {
     return this._ssm_1;
@@ -31133,7 +31225,7 @@
   };
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'baseUrl', {
     configurable: true,
-    get: GetSsmSessionListCommandBase_0.prototype._get_baseUrl__15
+    get: GetSsmSessionListCommandBase_0.prototype._get_baseUrl__16
   });
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'dbName', {
     configurable: true,
@@ -31141,19 +31233,73 @@
   });
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'channelId', {
     configurable: true,
-    get: GetSsmSessionListCommandBase_0.prototype._get_channelId__15
+    get: GetSsmSessionListCommandBase_0.prototype._get_channelId__18
   });
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: GetSsmSessionListCommandBase_0.prototype._get_chaincodeId__15
+    get: GetSsmSessionListCommandBase_0.prototype._get_chaincodeId__16
   });
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'bearerToken', {
     configurable: true,
-    get: GetSsmSessionListCommandBase_0.prototype._get_bearerToken__15
+    get: GetSsmSessionListCommandBase_0.prototype._get_bearerToken__16
   });
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'ssm', {
     configurable: true,
     get: GetSsmSessionListCommandBase_0.prototype._get_ssm__6
+  });
+  function GetSsmSessionLogsCommand_0() {
+  }
+  GetSsmSessionLogsCommand_0.$metadata$ = {
+    simpleName: 'GetSsmSessionLogsCommand',
+    kind: 'interface',
+    interfaces: [SsmCommand_0]
+  };
+  function GetSsmSessionLogsCommandBase(sessionId, baseUrl, channelId, chaincodeId, bearerToken) {
+    this._sessionId_0 = sessionId;
+    this._baseUrl_12 = baseUrl;
+    this._channelId_13 = channelId;
+    this._chaincodeId_12 = chaincodeId;
+    this._bearerToken_12 = bearerToken;
+  }
+  GetSsmSessionLogsCommandBase.prototype._get_sessionId__2 = function () {
+    return this._sessionId_0;
+  };
+  GetSsmSessionLogsCommandBase.prototype._get_baseUrl__16 = function () {
+    return this._baseUrl_12;
+  };
+  GetSsmSessionLogsCommandBase.prototype._get_channelId__18 = function () {
+    return this._channelId_13;
+  };
+  GetSsmSessionLogsCommandBase.prototype._get_chaincodeId__16 = function () {
+    return this._chaincodeId_12;
+  };
+  GetSsmSessionLogsCommandBase.prototype._get_bearerToken__16 = function () {
+    return this._bearerToken_12;
+  };
+  GetSsmSessionLogsCommandBase.$metadata$ = {
+    simpleName: 'GetSsmSessionLogsCommandBase',
+    kind: 'class',
+    interfaces: [GetSsmSessionLogsCommand_0]
+  };
+  Object.defineProperty(GetSsmSessionLogsCommandBase.prototype, 'sessionId', {
+    configurable: true,
+    get: GetSsmSessionLogsCommandBase.prototype._get_sessionId__2
+  });
+  Object.defineProperty(GetSsmSessionLogsCommandBase.prototype, 'baseUrl', {
+    configurable: true,
+    get: GetSsmSessionLogsCommandBase.prototype._get_baseUrl__16
+  });
+  Object.defineProperty(GetSsmSessionLogsCommandBase.prototype, 'channelId', {
+    configurable: true,
+    get: GetSsmSessionLogsCommandBase.prototype._get_channelId__18
+  });
+  Object.defineProperty(GetSsmSessionLogsCommandBase.prototype, 'chaincodeId', {
+    configurable: true,
+    get: GetSsmSessionLogsCommandBase.prototype._get_chaincodeId__16
+  });
+  Object.defineProperty(GetSsmSessionLogsCommandBase.prototype, 'bearerToken', {
+    configurable: true,
+    get: GetSsmSessionLogsCommandBase.prototype._get_bearerToken__16
   });
   function TxChannel_0() {
   }
@@ -31163,10 +31309,10 @@
     interfaces: []
   };
   function TxChannelBase_0(id) {
-    this._id_0 = id;
+    this._id_2 = id;
   }
-  TxChannelBase_0.prototype._get_id__3 = function () {
-    return this._id_0;
+  TxChannelBase_0.prototype._get_id__6 = function () {
+    return this._id_2;
   };
   TxChannelBase_0.$metadata$ = {
     simpleName: 'TxChannelBase',
@@ -31175,7 +31321,7 @@
   };
   Object.defineProperty(TxChannelBase_0.prototype, 'id', {
     configurable: true,
-    get: TxChannelBase_0.prototype._get_id__3
+    get: TxChannelBase_0.prototype._get_id__6
   });
   function TxSsm_0() {
   }
@@ -31222,98 +31368,74 @@
     kind: 'interface',
     interfaces: []
   };
-  function TxSsmSessionBase_0(state, channel, creationDate, lastTransaction) {
-    this._state_4 = state;
+  function TxSsmSessionBase_0(id, currentState, channel, creationTransaction) {
+    this._id_3 = id;
+    this._currentState = currentState;
     this._channel_2 = channel;
-    this._creationDate = creationDate;
-    this._lastTransaction_0 = lastTransaction;
+    this._creationTransaction = creationTransaction;
   }
-  TxSsmSessionBase_0.prototype._get_state__13 = function () {
-    return this._state_4;
+  TxSsmSessionBase_0.prototype._get_id__6 = function () {
+    return this._id_3;
+  };
+  TxSsmSessionBase_0.prototype._get_currentState__0 = function () {
+    return this._currentState;
   };
   TxSsmSessionBase_0.prototype._get_channel__6 = function () {
     return this._channel_2;
   };
-  TxSsmSessionBase_0.prototype._get_creationDate__0 = function () {
-    return this._creationDate;
-  };
-  TxSsmSessionBase_0.prototype._get_lastTransaction__1 = function () {
-    return this._lastTransaction_0;
+  TxSsmSessionBase_0.prototype._get_creationTransaction__0 = function () {
+    return this._creationTransaction;
   };
   TxSsmSessionBase_0.$metadata$ = {
     simpleName: 'TxSsmSessionBase',
     kind: 'class',
     interfaces: [TxSsmSession_0]
   };
-  Object.defineProperty(TxSsmSessionBase_0.prototype, 'state', {
+  Object.defineProperty(TxSsmSessionBase_0.prototype, 'id', {
     configurable: true,
-    get: TxSsmSessionBase_0.prototype._get_state__13
+    get: TxSsmSessionBase_0.prototype._get_id__6
+  });
+  Object.defineProperty(TxSsmSessionBase_0.prototype, 'currentState', {
+    configurable: true,
+    get: TxSsmSessionBase_0.prototype._get_currentState__0
   });
   Object.defineProperty(TxSsmSessionBase_0.prototype, 'channel', {
     configurable: true,
     get: TxSsmSessionBase_0.prototype._get_channel__6
   });
-  Object.defineProperty(TxSsmSessionBase_0.prototype, 'creationDate', {
+  Object.defineProperty(TxSsmSessionBase_0.prototype, 'creationTransaction', {
     configurable: true,
-    get: TxSsmSessionBase_0.prototype._get_creationDate__0
+    get: TxSsmSessionBase_0.prototype._get_creationTransaction__0
   });
-  Object.defineProperty(TxSsmSessionBase_0.prototype, 'lastTransaction', {
-    configurable: true,
-    get: TxSsmSessionBase_0.prototype._get_lastTransaction__1
-  });
-  function TxSsmTransaction_0() {
+  function TxSsmSessionState_0() {
   }
-  TxSsmTransaction_0.$metadata$ = {
-    simpleName: 'TxSsmTransaction',
+  TxSsmSessionState_0.$metadata$ = {
+    simpleName: 'TxSsmSessionState',
     kind: 'interface',
     interfaces: []
   };
-  function TxSsmTransactionBase_0(id, from, to_1, date, signer) {
-    this._id_1 = id;
-    this._from_0 = from;
-    this._to_0 = to_1;
-    this._date_0 = date;
-    this._signer = signer;
+  function TxSsmSessionStateBase_0(details, transaction) {
+    this._details = details;
+    this._transaction_0 = transaction;
   }
-  TxSsmTransactionBase_0.prototype._get_id__3 = function () {
-    return this._id_1;
+  TxSsmSessionStateBase_0.prototype._get_details__0 = function () {
+    return this._details;
   };
-  TxSsmTransactionBase_0.prototype._get_from__2 = function () {
-    return this._from_0;
+  TxSsmSessionStateBase_0.prototype._get_transaction__1 = function () {
+    return this._transaction_0;
   };
-  TxSsmTransactionBase_0.prototype._get_to__2 = function () {
-    return this._to_0;
-  };
-  TxSsmTransactionBase_0.prototype._get_date__2 = function () {
-    return this._date_0;
-  };
-  TxSsmTransactionBase_0.prototype._get_signer__0 = function () {
-    return this._signer;
-  };
-  TxSsmTransactionBase_0.$metadata$ = {
-    simpleName: 'TxSsmTransactionBase',
+  TxSsmSessionStateBase_0.$metadata$ = {
+    simpleName: 'TxSsmSessionStateBase',
     kind: 'class',
-    interfaces: [TxSsmTransaction_0]
+    interfaces: [TxSsmSessionState_0]
   };
-  Object.defineProperty(TxSsmTransactionBase_0.prototype, 'id', {
+  Object.defineProperty(TxSsmSessionStateBase_0.prototype, 'details', {
     configurable: true,
-    get: TxSsmTransactionBase_0.prototype._get_id__3
+    get: TxSsmSessionStateBase_0.prototype._get_details__0
   });
-  Object.defineProperty(TxSsmTransactionBase_0.prototype, 'from', {
+  Object.defineProperty(TxSsmSessionStateBase_0.prototype, 'transaction', {
     configurable: true,
-    get: TxSsmTransactionBase_0.prototype._get_from__2
-  });
-  Object.defineProperty(TxSsmTransactionBase_0.prototype, 'to', {
-    configurable: true,
-    get: TxSsmTransactionBase_0.prototype._get_to__2
-  });
-  Object.defineProperty(TxSsmTransactionBase_0.prototype, 'date', {
-    configurable: true,
-    get: TxSsmTransactionBase_0.prototype._get_date__2
-  });
-  Object.defineProperty(TxSsmTransactionBase_0.prototype, 'signer', {
-    configurable: true,
-    get: TxSsmTransactionBase_0.prototype._get_signer__0
+    get: TxSsmSessionStateBase_0.prototype._get_transaction__1
   });
   function TxSsmUser_0() {
   }
@@ -31323,11 +31445,11 @@
     interfaces: []
   };
   function TxSsmUserBase_0(name, publicKey) {
-    this._name_8 = name;
+    this._name_7 = name;
     this._publicKey = publicKey;
   }
-  TxSsmUserBase_0.prototype._get_name__13 = function () {
-    return this._name_8;
+  TxSsmUserBase_0.prototype._get_name__11 = function () {
+    return this._name_7;
   };
   TxSsmUserBase_0.prototype._get_publicKey__0 = function () {
     return this._publicKey;
@@ -31339,7 +31461,7 @@
   };
   Object.defineProperty(TxSsmUserBase_0.prototype, 'name', {
     configurable: true,
-    get: TxSsmUserBase_0.prototype._get_name__13
+    get: TxSsmUserBase_0.prototype._get_name__11
   });
   Object.defineProperty(TxSsmUserBase_0.prototype, 'publicKey', {
     configurable: true,
@@ -31379,19 +31501,19 @@
     return $this._flushBuffer._get_size__47();
   }
   function _set__totalBytesRead_($this, value) {
-    $this._state_5._totalBytesRead = value;
+    $this._state_4._totalBytesRead = value;
   }
   function _get__totalBytesRead_($this) {
-    return $this._state_5._totalBytesRead;
+    return $this._state_4._totalBytesRead;
   }
   function _set__totalBytesWritten_($this, value) {
-    $this._state_5._totalBytesWritten = value;
+    $this._state_4._totalBytesWritten = value;
   }
   function _get__totalBytesWritten_($this) {
-    return $this._state_5._totalBytesWritten;
+    return $this._state_4._totalBytesWritten;
   }
   function _set_closedCause_($this, value) {
-    $this._state_5._closedCause = value;
+    $this._state_4._closedCause = value;
   }
   function flushImpl($this) {
     if ($this._writable._get_isEmpty__4()) {
@@ -32031,7 +32153,7 @@
   };
   function ByteChannelSequentialBase(initial, autoFlush, pool) {
     this._autoFlush = autoFlush;
-    this._state_5 = new ByteChannelSequentialBaseSharedState();
+    this._state_4 = new ByteChannelSequentialBaseSharedState();
     this._writable = new BytePacketBuilder(0, pool);
     this._readable = ByteReadPacket_init_$Create$(initial, pool);
     this._slot = new AwaitingSlot();
@@ -32043,10 +32165,10 @@
     return this._autoFlush;
   };
   ByteChannelSequentialBase.prototype._set_closed__0 = function (value) {
-    this._state_5._closed = value;
+    this._state_4._closed = value;
   };
   ByteChannelSequentialBase.prototype._get_closed__0 = function () {
-    return this._state_5._closed;
+    return this._state_4._closed;
   };
   ByteChannelSequentialBase.prototype._get_availableForRead__0 = function () {
     return _get_flushSize_(this) + this._readable._get_remaining__2().toInt_5() | 0;
@@ -32086,7 +32208,7 @@
     return tmp;
   };
   ByteChannelSequentialBase.prototype._get_closedCause__0 = function () {
-    return this._state_5._closedCause;
+    return this._state_4._closedCause;
   };
   ByteChannelSequentialBase.prototype.awaitAtLeastNBytesAvailableForWrite_0 = function (count_0, $cont) {
     var tmp = new $awaitAtLeastNBytesAvailableForWriteCOROUTINE$0(this, count_0, $cont);
@@ -32663,23 +32785,23 @@
     return encode(_this_, input, fromIndex, toIndex);
   }
   function _set__head_($this, newHead) {
-    $this._state_6._head_2 = newHead;
-    $this._state_6._headMemory = newHead._get_memory__1();
-    $this._state_6._headPosition = newHead._get_readPosition__1();
-    $this._state_6._headEndExclusive = newHead._get_writePosition__1();
+    $this._state_5._head_2 = newHead;
+    $this._state_5._headMemory = newHead._get_memory__1();
+    $this._state_5._headPosition = newHead._get_readPosition__1();
+    $this._state_5._headEndExclusive = newHead._get_writePosition__1();
   }
   function _get__head_($this) {
-    return $this._state_6._head_2;
+    return $this._state_5._head_2;
   }
   function _set_tailRemaining_($this, newValue) {
     var tmp0_require_0 = newValue.compareTo_60(new Long(0, 0)) >= 0;
     if (!tmp0_require_0) {
       var m_2 = new _no_name_provided__3_0(newValue);
       m_2.doFail_4_13();
-    }$this._state_6._tailRemaining = newValue;
+    }$this._state_5._tailRemaining = newValue;
   }
   function _get_tailRemaining_($this) {
-    return $this._state_6._tailRemaining;
+    return $this._state_5._tailRemaining;
   }
   function doPrefetch($this, min) {
     var tail = findTail(_get__head_($this));
@@ -33344,7 +33466,7 @@
   function AbstractInput(head, remaining, pool) {
     Companion_getInstance_22();
     this._pool = pool;
-    this._state_6 = new AbstractInputSharedState(head, remaining);
+    this._state_5 = new AbstractInputSharedState(head, remaining);
     this._noMoreChunksAvailable = false;
   }
   AbstractInput.prototype._get_pool__5 = function () {
@@ -33356,19 +33478,19 @@
     return tmp0_also_0;
   };
   AbstractInput.prototype._get_headMemory__2 = function () {
-    return this._state_6._headMemory;
+    return this._state_5._headMemory;
   };
   AbstractInput.prototype._set_headPosition__2 = function (value) {
-    this._state_6._headPosition = value;
+    this._state_5._headPosition = value;
   };
   AbstractInput.prototype._get_headPosition__2 = function () {
-    return this._state_6._headPosition;
+    return this._state_5._headPosition;
   };
   AbstractInput.prototype._set_headEndExclusive__2 = function (value) {
-    this._state_6._headEndExclusive = value;
+    this._state_5._headEndExclusive = value;
   };
   AbstractInput.prototype._get_headEndExclusive__2 = function () {
-    return this._state_6._headEndExclusive;
+    return this._state_5._headEndExclusive;
   };
   AbstractInput.prototype.prefetch_2 = function (min) {
     if (min.compareTo_60(new Long(0, 0)) <= 0)
@@ -33665,31 +33787,31 @@
     return $this;
   }
   function _set__head__0($this, value) {
-    $this._state_7._head_3 = value;
+    $this._state_6._head_3 = value;
   }
   function _get__head__0($this) {
-    return $this._state_7._head_3;
+    return $this._state_6._head_3;
   }
   function _set__tail_($this, value) {
-    $this._state_7._tail_0 = value;
+    $this._state_6._tail_0 = value;
   }
   function _get__tail_($this) {
-    return $this._state_7._tail_0;
+    return $this._state_6._tail_0;
   }
   function _set_tailEndExclusive_($this, value) {
-    $this._state_7._tailEndExclusive = value;
+    $this._state_6._tailEndExclusive = value;
   }
   function _set_tailInitialPosition_($this, value) {
-    $this._state_7._tailInitialPosition = value;
+    $this._state_6._tailInitialPosition = value;
   }
   function _get_tailInitialPosition_($this) {
-    return $this._state_7._tailInitialPosition;
+    return $this._state_6._tailInitialPosition;
   }
   function _set_chainedSize_($this, value) {
-    $this._state_7._chainedSize = value;
+    $this._state_6._chainedSize = value;
   }
   function _get_chainedSize_($this) {
-    return $this._state_7._chainedSize;
+    return $this._state_6._chainedSize;
   }
   function flushChain($this) {
     var tmp0_elvis_lhs = $this.stealAll_4();
@@ -33899,7 +34021,7 @@
   function AbstractOutput(headerSizeHint, pool) {
     this._headerSizeHint_0 = headerSizeHint;
     this._pool_0 = pool;
-    this._state_7 = new AbstractOutputSharedState();
+    this._state_6 = new AbstractOutputSharedState();
     this._byteOrder = ByteOrder_BIG_ENDIAN_getInstance();
   }
   AbstractOutput.prototype._get_pool__5 = function () {
@@ -33910,19 +34032,19 @@
     return tmp0_elvis_lhs == null ? Companion_getInstance_26()._get_Empty__1() : tmp0_elvis_lhs;
   };
   AbstractOutput.prototype._set_tailMemory__2 = function (value) {
-    this._state_7._tailMemory = value;
+    this._state_6._tailMemory = value;
   };
   AbstractOutput.prototype._get_tailMemory__2 = function () {
-    return this._state_7._tailMemory;
+    return this._state_6._tailMemory;
   };
   AbstractOutput.prototype._set_tailPosition__2 = function (value) {
-    this._state_7._tailPosition = value;
+    this._state_6._tailPosition = value;
   };
   AbstractOutput.prototype._get_tailPosition__2 = function () {
-    return this._state_7._tailPosition;
+    return this._state_6._tailPosition;
   };
   AbstractOutput.prototype._get_tailEndExclusive__2 = function () {
-    return this._state_7._tailEndExclusive;
+    return this._state_6._tailEndExclusive;
   };
   AbstractOutput.prototype._get__size__0 = function () {
     return _get_chainedSize_(this) + (this._get_tailPosition__2() - _get_tailInitialPosition_(this) | 0) | 0;
@@ -37506,7 +37628,7 @@
   };
   function CharsetImpl(name) {
     Charset.call(this, name);
-    this._name_9 = name;
+    this._name_8 = name;
   }
   CharsetImpl.prototype.newEncoder_0 = function () {
     return new CharsetEncoderImpl(this);
@@ -37515,10 +37637,10 @@
     return new CharsetDecoderImpl(this);
   };
   CharsetImpl.prototype.toString = function () {
-    return '' + 'CharsetImpl(name=' + this._name_9 + ')';
+    return '' + 'CharsetImpl(name=' + this._name_8 + ')';
   };
   CharsetImpl.prototype.hashCode = function () {
-    return getStringHashCode(this._name_9);
+    return getStringHashCode(this._name_8);
   };
   CharsetImpl.prototype.equals = function (other) {
     if (this === other)
@@ -37528,7 +37650,7 @@
     else {
     }
     var tmp0_other_with_cast = other instanceof CharsetImpl ? other : THROW_CCE();
-    if (!(this._name_9 === tmp0_other_with_cast._name_9))
+    if (!(this._name_8 === tmp0_other_with_cast._name_8))
       return false;
     return true;
   };
@@ -38858,16 +38980,16 @@
     interfaces: [ObjectPool]
   };
   function AttributeKey(name) {
-    this._name_10 = name;
+    this._name_9 = name;
   }
   AttributeKey.prototype.toString = function () {
     var tmp;
-    var tmp0_isEmpty_0 = this._name_10;
+    var tmp0_isEmpty_0 = this._name_9;
     if (charSequenceLength(tmp0_isEmpty_0) === 0) {
       tmp = anyToString(this);
     } else {
       {
-        tmp = '' + 'AttributeKey: ' + this._name_10;
+        tmp = '' + 'AttributeKey: ' + this._name_9;
       }
     }
     return tmp;
@@ -41425,16 +41547,16 @@
     this._dayOfYear = dayOfYear;
     this._month = month;
     this._year = year;
-    this._timestamp = timestamp;
+    this._timestamp_0 = timestamp;
   }
   GMTDate.prototype.compareTo_24 = function (other) {
-    return this._timestamp.compareTo_60(other._timestamp);
+    return this._timestamp_0.compareTo_60(other._timestamp_0);
   };
   GMTDate.prototype.compareTo_25 = function (other) {
     return this.compareTo_24(other instanceof GMTDate ? other : THROW_CCE());
   };
   GMTDate.prototype.toString = function () {
-    return '' + 'GMTDate(seconds=' + this._seconds + ', minutes=' + this._minutes + ', hours=' + this._hours + ', dayOfWeek=' + this._dayOfWeek + ', dayOfMonth=' + this._dayOfMonth + ', dayOfYear=' + this._dayOfYear + ', month=' + this._month + ', year=' + this._year + ', timestamp=' + this._timestamp + ')';
+    return '' + 'GMTDate(seconds=' + this._seconds + ', minutes=' + this._minutes + ', hours=' + this._hours + ', dayOfWeek=' + this._dayOfWeek + ', dayOfMonth=' + this._dayOfMonth + ', dayOfYear=' + this._dayOfYear + ', month=' + this._month + ', year=' + this._year + ', timestamp=' + this._timestamp_0 + ')';
   };
   GMTDate.prototype.hashCode = function () {
     var result = this._seconds;
@@ -41445,7 +41567,7 @@
     result = imul(result, 31) + this._dayOfYear | 0;
     result = imul(result, 31) + this._month.hashCode() | 0;
     result = imul(result, 31) + this._year | 0;
-    result = imul(result, 31) + this._timestamp.hashCode() | 0;
+    result = imul(result, 31) + this._timestamp_0.hashCode() | 0;
     return result;
   };
   GMTDate.prototype.equals = function (other) {
@@ -41472,7 +41594,7 @@
       return false;
     if (!(this._year === tmp0_other_with_cast._year))
       return false;
-    if (!this._timestamp.equals(tmp0_other_with_cast._timestamp))
+    if (!this._timestamp_0.equals(tmp0_other_with_cast._timestamp_0))
       return false;
     return true;
   };
@@ -41883,7 +42005,7 @@
     return tmp0_apply_0;
   };
   PhaseContent.prototype.toString = function () {
-    return '' + 'Phase `' + this._phase._name_11 + '`, ' + this._get_size__47() + ' handlers';
+    return '' + 'Phase `' + this._phase._name_10 + '`, ' + this._get_size__47() + ' handlers';
   };
   PhaseContent.$metadata$ = {
     simpleName: 'PhaseContent',
@@ -42259,10 +42381,10 @@
     return tmp;
   }
   function PipelinePhase(name) {
-    this._name_11 = name;
+    this._name_10 = name;
   }
   PipelinePhase.prototype.toString = function () {
-    return '' + "Phase('" + this._name_11 + "')";
+    return '' + "Phase('" + this._name_10 + "')";
   };
   PipelinePhase.$metadata$ = {
     simpleName: 'PipelinePhase',
@@ -43167,7 +43289,7 @@
         break;
       case 1:
         var tmp0_let_0 = $this._get_parameters__0().get_78(0);
-        tmp = equals_0(tmp0_let_0._name_12, name, true) ? equals_0(tmp0_let_0._value_20, value, true) : false;
+        tmp = equals_0(tmp0_let_0._name_11, name, true) ? equals_0(tmp0_let_0._value_20, value, true) : false;
         break;
       default:var tmp$ret$0;
         l$ret$1: do {
@@ -43188,7 +43310,7 @@
           var tmp0_iterator_1 = tmp1_any_0.iterator_62();
           while (tmp0_iterator_1.hasNext_29()) {
             var element_2 = tmp0_iterator_1.next_32();
-            if (equals_0(element_2._name_12, name, true) ? equals_0(element_2._value_20, value, true) : false) {
+            if (equals_0(element_2._name_11, name, true) ? equals_0(element_2._value_20, value, true) : false) {
               tmp$ret$0 = true;
               break l$ret$1;
             } else {
@@ -43639,7 +43761,7 @@
       var tmp0_iterator_1 = tmp0_firstOrNull_0.iterator_62();
       while (tmp0_iterator_1.hasNext_29()) {
         var element_2 = tmp0_iterator_1.next_32();
-        if (equals_0(element_2._name_12, name, true)) {
+        if (equals_0(element_2._name_11, name, true)) {
           tmp$ret$0 = element_2;
           break l$ret$1;
         } else {
@@ -43663,7 +43785,7 @@
       while (tmp0_iterator_2.hasNext_29()) {
         var element_3 = tmp0_iterator_2.next_32();
         var tmp_1 = sum_1;
-        sum_1 = tmp_1 + ((element_3._name_12.length + element_3._value_20.length | 0) + 3 | 0) | 0;
+        sum_1 = tmp_1 + ((element_3._name_11.length + element_3._value_20.length | 0) + 3 | 0) | 0;
       }
       var size_0 = tmp_0 + sum_1 | 0;
       var tmp1_apply_0 = StringBuilder_init_$Create$(size_0);
@@ -43886,14 +44008,14 @@
     return EmptyHeaders_instance;
   }
   function HeaderValueParam(name, value) {
-    this._name_12 = name;
+    this._name_11 = name;
     this._value_20 = value;
   }
   HeaderValueParam.prototype.equals = function (other) {
     var tmp;
     var tmp_0;
     if (other instanceof HeaderValueParam) {
-      tmp_0 = equals_0(other._name_12, this._name_12, true);
+      tmp_0 = equals_0(other._name_11, this._name_11, true);
     } else {
       {
         tmp_0 = false;
@@ -43909,7 +44031,7 @@
     return tmp;
   };
   HeaderValueParam.prototype.hashCode = function () {
-    var tmp0_toLowerCase_0 = this._name_12;
+    var tmp0_toLowerCase_0 = this._name_11;
     var result = getStringHashCode(tmp0_toLowerCase_0.toLowerCase());
     var tmp = result;
     var tmp_0 = imul(31, result);
@@ -43918,13 +44040,13 @@
     return result;
   };
   HeaderValueParam.prototype.component1_10 = function () {
-    return this._name_12;
+    return this._name_11;
   };
   HeaderValueParam.prototype.component2_8 = function () {
     return this._value_20;
   };
   HeaderValueParam.prototype.toString = function () {
-    return '' + 'HeaderValueParam(name=' + this._name_12 + ', value=' + this._value_20 + ')';
+    return '' + 'HeaderValueParam(name=' + this._name_11 + ', value=' + this._value_20 + ')';
   };
   HeaderValueParam.$metadata$ = {
     simpleName: 'HeaderValueParam',
@@ -43941,7 +44063,7 @@
       var tmp0_iterator_1 = tmp0_firstOrNull_0.iterator_62();
       while (tmp0_iterator_1.hasNext_29()) {
         var element_2 = tmp0_iterator_1.next_32();
-        if (element_2._name_12 === 'q') {
+        if (element_2._name_11 === 'q') {
           tmp$ret$0 = element_2;
           break l$ret$1;
         } else {
@@ -44454,15 +44576,15 @@
   }
   function HttpProtocolVersion(name, major, minor) {
     Companion_getInstance_40();
-    this._name_13 = name;
+    this._name_12 = name;
     this._major = major;
     this._minor = minor;
   }
   HttpProtocolVersion.prototype.toString = function () {
-    return '' + this._name_13 + '/' + this._major + '.' + this._minor;
+    return '' + this._name_12 + '/' + this._major + '.' + this._minor;
   };
   HttpProtocolVersion.prototype.hashCode = function () {
-    var result = getStringHashCode(this._name_13);
+    var result = getStringHashCode(this._name_12);
     result = imul(result, 31) + this._major | 0;
     result = imul(result, 31) + this._minor | 0;
     return result;
@@ -44475,7 +44597,7 @@
     else {
     }
     var tmp0_other_with_cast = other instanceof HttpProtocolVersion ? other : THROW_CCE();
-    if (!(this._name_13 === tmp0_other_with_cast._name_13))
+    if (!(this._name_12 === tmp0_other_with_cast._name_12))
       return false;
     if (!(this._major === tmp0_other_with_cast._major))
       return false;
@@ -44946,9 +45068,9 @@
     return URLBuilder_init_$Init$(protocol, host, port, user, password, encodedPath, parameters, fragment, trailingQuery, $mask0, $marker, Object.create(URLBuilder.prototype));
   }
   function appendTo($this, out) {
-    out.append_31($this._protocol._name_14);
+    out.append_31($this._protocol._name_13);
     Unit_getInstance();
-    var tmp0_subject = $this._protocol._name_14;
+    var tmp0_subject = $this._protocol._name_13;
     if (tmp0_subject === 'file') {
       appendFile(out, $this._host, $this._encodedPath);
       return out;
@@ -45076,9 +45198,9 @@
     var tmp0_apply_0_1 = StringBuilder_init_$Create$_0();
     var tmp$ret$0;
     l$ret$1: do {
-      tmp0_apply_0_1.append_7(this._protocol_0._name_14);
+      tmp0_apply_0_1.append_7(this._protocol_0._name_13);
       Unit_getInstance();
-      var tmp0_subject_3 = this._protocol_0._name_14;
+      var tmp0_subject_3 = this._protocol_0._name_13;
       if (tmp0_subject_3 === 'file') {
         appendFile(tmp0_apply_0_1, this._host_0, this._encodedPath_0);
         tmp$ret$0 = Unit_getInstance();
@@ -45296,10 +45418,10 @@
       startIndex = startIndex + (schemeLength + 1 | 0) | 0;
     }var slashCount = count(urlString, startIndex, endIndex, new Char(47));
     startIndex = startIndex + slashCount | 0;
-    if (_this_._protocol._name_14 === 'file') {
+    if (_this_._protocol._name_13 === 'file') {
       parseFile(_this_, urlString, startIndex, endIndex, slashCount);
       return _this_;
-    }if (_this_._protocol._name_14 === 'mailto') {
+    }if (_this_._protocol._name_13 === 'mailto') {
       var tmp4_require_0 = slashCount === 0;
       if (!tmp4_require_0) {
         var message_1_1 = 'Failed requirement.';
@@ -45579,7 +45701,7 @@
     var tmp0_iterator_1_3 = tmp0_associateBy_0.iterator_62();
     while (tmp0_iterator_1_3.hasNext_29()) {
       var element_2_4 = tmp0_iterator_1_3.next_32();
-      tmp0_associateByTo_0_2.put_10(element_2_4._name_14, element_2_4);
+      tmp0_associateByTo_0_2.put_10(element_2_4._name_13, element_2_4);
       Unit_getInstance();
     }
     tmp._byName = tmp0_associateByTo_0_2;
@@ -45602,11 +45724,11 @@
   }
   function URLProtocol(name, defaultPort) {
     Companion_getInstance_45();
-    this._name_14 = name;
+    this._name_13 = name;
     this._defaultPort = defaultPort;
     var tmp$ret$0;
     l$ret$1: do {
-      var tmp0_all_0 = this._name_14;
+      var tmp0_all_0 = this._name_13;
       var indexedObject = tmp0_all_0;
       var inductionVariable = 0;
       var last_2 = indexedObject.length;
@@ -45628,10 +45750,10 @@
       throw IllegalArgumentException_init_$Create$_0(toString_2(message_1));
     }}
   URLProtocol.prototype.toString = function () {
-    return '' + 'URLProtocol(name=' + this._name_14 + ', defaultPort=' + this._defaultPort + ')';
+    return '' + 'URLProtocol(name=' + this._name_13 + ', defaultPort=' + this._defaultPort + ')';
   };
   URLProtocol.prototype.hashCode = function () {
-    var result = getStringHashCode(this._name_14);
+    var result = getStringHashCode(this._name_13);
     result = imul(result, 31) + this._defaultPort | 0;
     return result;
   };
@@ -45643,7 +45765,7 @@
     else {
     }
     var tmp0_other_with_cast = other instanceof URLProtocol ? other : THROW_CCE();
-    if (!(this._name_14 === tmp0_other_with_cast._name_14))
+    if (!(this._name_13 === tmp0_other_with_cast._name_13))
       return false;
     if (!(this._defaultPort === tmp0_other_with_cast._defaultPort))
       return false;
@@ -45655,10 +45777,10 @@
     interfaces: []
   };
   function isSecure(_this_) {
-    return _this_._name_14 === 'https' ? true : _this_._name_14 === 'wss';
+    return _this_._name_13 === 'https' ? true : _this_._name_13 === 'wss';
   }
   function isWebsocket(_this_) {
-    return _this_._name_14 === 'ws' ? true : _this_._name_14 === 'wss';
+    return _this_._name_13 === 'ws' ? true : _this_._name_13 === 'wss';
   }
   function takeFrom_0(_this_, url_0) {
     _this_._protocol = url_0._protocol;
@@ -45994,8 +46116,8 @@
   };
   function RangeGrammar(from, to_1) {
     Grammar.call(this);
-    this._from_1 = from;
-    this._to_1 = to_1;
+    this._from_0 = from;
+    this._to_0 = to_1;
   }
   RangeGrammar.$metadata$ = {
     simpleName: 'RangeGrammar',
@@ -46060,7 +46182,7 @@
           var tmp_2 = _this_._grammar_0;
           var tmp_3 = offset + 1 | 0;
           var nested = toRegex$default(tmp_2, groups, tmp_3, false, 4, null);
-          add_0(groups, _this_._name_15, offset);
+          add_0(groups, _this_._name_14, offset);
           tmp = new GrammarRegex(nested._regex, nested._groupsCount, true);
         } else {
           if (isInterface(tmp0_subject, ComplexGrammar)) {
@@ -46122,7 +46244,7 @@
                 tmp = GrammarRegex_init_$Create$(tmp_7, 0, false, 6, null);
               } else {
                 if (tmp0_subject instanceof RangeGrammar) {
-                  var tmp_8 = '' + '[' + _this_._from_1 + '-' + _this_._to_1 + ']';
+                  var tmp_8 = '' + '[' + _this_._from_0 + '-' + _this_._to_0 + ']';
                   tmp = GrammarRegex_init_$Create$(tmp_8, 0, false, 6, null);
                 } else {
                   {
@@ -46897,11 +47019,11 @@
     return tmp;
   }
   function WebSocketExtensionHeader(name, parameters) {
-    this._name_16 = name;
+    this._name_15 = name;
     this._parameters_2 = parameters;
   }
   WebSocketExtensionHeader.prototype.toString = function () {
-    return '' + this._name_16 + ' ' + parametersToString(this);
+    return '' + this._name_15 + ' ' + parametersToString(this);
   };
   WebSocketExtensionHeader.$metadata$ = {
     simpleName: 'WebSocketExtensionHeader',
@@ -47693,7 +47815,7 @@
           case 2:
             this._exceptionState = 9;
             this._exceptionState = 8;
-            if (instanceOf(this.__this__32._get_response__0(), this._info._type_1)) {
+            if (instanceOf(this.__this__32._get_response__0(), this._info._type_2)) {
               this._tmp$ret$01_3 = this.__this__32._get_response__0();
               this._exceptionState = 10;
               this._state_0 = 7;
@@ -47749,9 +47871,9 @@
           case 6:
             var ARGUMENT = suspendResult;
             var result = ARGUMENT._response_2;
-            if (!instanceOf(result, this._info._type_1)) {
+            if (!instanceOf(result, this._info._type_2)) {
               var from = getKClassFromExpression_0(result);
-              var to_1 = this._info._type_1;
+              var to_1 = this._info._type_2;
               throw new NoTransformationFoundException(this.__this__32._get_response__0(), from, to_1);
             }
             this._tmp$ret$01_3 = result;
@@ -48137,15 +48259,15 @@
     return TypeInfo_init_$Init$(type, reifiedType, kotlinType, $mask0, $marker, Object.create(TypeInfo.prototype));
   }
   function TypeInfo(type, reifiedType, kotlinType) {
-    this._type_1 = type;
+    this._type_2 = type;
     this._reifiedType = reifiedType;
     this._kotlinType = kotlinType;
   }
   TypeInfo.prototype.toString = function () {
-    return '' + 'TypeInfo(type=' + this._type_1 + ', reifiedType=' + this._reifiedType + ', kotlinType=' + this._kotlinType + ')';
+    return '' + 'TypeInfo(type=' + this._type_2 + ', reifiedType=' + this._reifiedType + ', kotlinType=' + this._kotlinType + ')';
   };
   TypeInfo.prototype.hashCode = function () {
-    var result = this._type_1.hashCode();
+    var result = this._type_2.hashCode();
     result = imul(result, 31) + hashCode(this._reifiedType) | 0;
     result = imul(result, 31) + (this._kotlinType == null ? 0 : hashCode(this._kotlinType)) | 0;
     return result;
@@ -48158,7 +48280,7 @@
     else {
     }
     var tmp0_other_with_cast = other instanceof TypeInfo ? other : THROW_CCE();
-    if (!this._type_1.equals(tmp0_other_with_cast._type_1))
+    if (!this._type_2.equals(tmp0_other_with_cast._type_2))
       return false;
     if (!equals_1(this._reifiedType, tmp0_other_with_cast._reifiedType))
       return false;
@@ -49164,7 +49286,7 @@
             var tmp0_safe_receiver = this._response2._get_headers__17().get_64(HttpHeaders_getInstance()._ContentLength);
             var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : toLong(tmp0_safe_receiver);
             tmp_1._contentLength3 = tmp1_elvis_lhs == null ? new Long(-1, 2147483647) : tmp1_elvis_lhs;
-            this._tmp2_subject4 = this._info0._type_1;
+            this._tmp2_subject4 = this._info0._type_2;
             if (this._tmp2_subject4.equals(getKClass_0(Unit))) {
               cancel_3(this._body1);
               Unit_getInstance();
@@ -49926,7 +50048,7 @@
             this._info0_0 = this.__name_for_destructuring_parameter_0__0.component1_10();
             this._body1_0 = this.__name_for_destructuring_parameter_0__0.component2_8();
             var tmp_0;
-            if (!this._info0_0._type_1.equals(PrimitiveClasses_getInstance()._get_stringClass_())) {
+            if (!this._info0_0._type_2.equals(PrimitiveClasses_getInstance()._get_stringClass_())) {
               tmp_0 = true;
             } else {
               var tmp_1 = this._body1_0;
@@ -51363,12 +51485,12 @@
     var nonce_3 = generateNonce(16);
     tmp0_apply_0_1.append_7(encodeBase64(nonce_3));
     Unit_getInstance();
-    tmp._nonce = tmp0_apply_0_1.toString();
+    tmp._nonce_0 = tmp0_apply_0_1.toString();
     var tmp_0 = this;
     var tmp0_apply_0 = HeadersBuilder_init_$Create$(0, 1, null);
     tmp0_apply_0.append_35(HttpHeaders_getInstance()._Upgrade, 'websocket');
     tmp0_apply_0.append_35(HttpHeaders_getInstance()._Connection, 'upgrade');
-    tmp0_apply_0.append_35(HttpHeaders_getInstance()._SecWebSocketKey, this._nonce);
+    tmp0_apply_0.append_35(HttpHeaders_getInstance()._SecWebSocketKey, this._nonce_0);
     tmp0_apply_0.append_35(HttpHeaders_getInstance()._SecWebSocketVersion, '13');
     tmp_0._headers_0 = tmp0_apply_0.build_25();
   }
@@ -51507,7 +51629,7 @@
             }
 
             var tmp_1 = this;
-            var tmp0_subject = this._info0_1._type_1;
+            var tmp0_subject = this._info0_1._type_2;
             var tmp_2;
             if (tmp0_subject.equals(getKClass_0(DefaultClientWebSocketSession))) {
               var defaultSession = this._$feature_10.convertSessionToDefault(this._session1);
@@ -54831,7 +54953,7 @@
   };
   KotlinxSerializer.prototype.read_6 = function (type, body) {
     var text = readText$default(body, null, 0, 3, null);
-    var deserializationStrategy = this._json_3._get_serializersModule__15().getContextual_0(type._type_1);
+    var deserializationStrategy = this._json_3._get_serializersModule__15().getContextual_0(type._type_2);
     var tmp2_elvis_lhs = deserializationStrategy;
     var tmp;
     if (tmp2_elvis_lhs == null) {
@@ -54843,7 +54965,7 @@
         tmp_0 = serializer(tmp0_safe_receiver);
       }
       var tmp1_elvis_lhs = tmp_0;
-      tmp = tmp1_elvis_lhs == null ? serializer_0(type._type_1) : tmp1_elvis_lhs;
+      tmp = tmp1_elvis_lhs == null ? serializer_0(type._type_2) : tmp1_elvis_lhs;
     } else {
       tmp = tmp2_elvis_lhs;
     }
@@ -56653,7 +56775,7 @@
         switch (tmp) {
           case 0:
             this._exceptionState = 3;
-            this._tmp0_elvis_lhs0 = current(this.__this__60._state_8._get_value__25(), this.__this__60);
+            this._tmp0_elvis_lhs0 = current(this.__this__60._state_7._get_value__25(), this.__this__60);
             if (this._tmp0_elvis_lhs0 == null) {
               this._state_0 = 1;
               suspendResult = first_1(this.__this__60._reconnectHandler, this);
@@ -56836,9 +56958,9 @@
   };
   function ReconnectableRSocket_0(job, state) {
     this._job_3 = job;
-    this._state_8 = state;
+    this._state_7 = state;
     var tmp = this;
-    var tmp0_mapNotNull_0 = this._state_8;
+    var tmp0_mapNotNull_0 = this._state_7;
     tmp._reconnectHandler = take_0(new _no_name_provided__1_1_1(tmp0_mapNotNull_0, this), 1);
   }
   ReconnectableRSocket_0.prototype._get_job__14 = function () {
@@ -57832,13 +57954,13 @@
     return new ExtensionFrame(streamId, extendedType, payload);
   }
   function Frame_0(type) {
-    this._type_2 = type;
+    this._type_3 = type;
   }
-  Frame_0.prototype._get_type__12 = function () {
-    return this._type_2;
+  Frame_0.prototype._get_type__14 = function () {
+    return this._type_3;
   };
   Frame_0.prototype.toPacket_10 = function (pool) {
-    var tmp0_check_0 = this._get_type__12()._canHaveMetadata ? true : !check(this._get_flags__10(), 256);
+    var tmp0_check_0 = this._get_type__14()._canHaveMetadata ? true : !check(this._get_flags__10(), 256);
     if (!tmp0_check_0) {
       var message_1 = 'bad value for metadata flag';
       throw IllegalStateException_init_$Create$(toString_2(message_1));
@@ -57847,7 +57969,7 @@
       var builder_1 = new BytePacketBuilder(0, pool);
       try {
         writeInt_0(builder_1, this._get_streamId__10());
-        writeShort_0(builder_1, toShort_0(this._get_type__12()._encodedType << 10 | this._get_flags__10()));
+        writeShort_0(builder_1, toShort_0(this._get_type__14()._encodedType << 10 | this._get_flags__10()));
         this.writeSelf_12(builder_1);
         tmp$ret$0 = builder_1.build_25();
         break l$ret$1;
@@ -57867,7 +57989,7 @@
   };
   Frame_0.prototype.dump_10 = function (length) {
     var tmp0_apply_0_1 = StringBuilder_init_$Create$_0();
-    tmp0_apply_0_1.append_7('\n').append_5(this._get_type__12()).append_7(' frame -> Stream Id: ').append_5(this._get_streamId__10()).append_7(' Length: ').append_5(length);
+    tmp0_apply_0_1.append_7('\n').append_5(this._get_type__14()).append_7(' frame -> Stream Id: ').append_5(this._get_streamId__10()).append_7(' Length: ').append_5(length);
     Unit_getInstance();
     var tmp0_apply_0_3 = tmp0_apply_0_1.append_7('\nFlags: 0b').append_7(toBinaryString(this._get_flags__10())).append_7(' (');
     this.appendFlags_10(tmp0_apply_0_3);
@@ -58240,7 +58362,7 @@
   }
   function RequestFrame(type, streamId, follows, complete_0, next, initialRequest, payload) {
     Frame_0.call(this, type);
-    this._type_3 = type;
+    this._type_4 = type;
     this._streamId_2 = streamId;
     this._follows = follows;
     this._complete = complete_0;
@@ -58248,8 +58370,8 @@
     this._initialRequest = initialRequest;
     this._payload_4 = payload;
   }
-  RequestFrame.prototype._get_type__12 = function () {
-    return this._type_3;
+  RequestFrame.prototype._get_type__14 = function () {
+    return this._type_4;
   };
   RequestFrame.prototype._get_streamId__10 = function () {
     return this._streamId_2;
@@ -58850,7 +58972,7 @@
     this.invoke_420((!(p1 == null) ? isInterface(p1, Closeable) : false) ? p1 : THROW_CCE());
     return Unit_getInstance();
   };
-  _no_name_provided__229.prototype._get_name__13 = function () {
+  _no_name_provided__229.prototype._get_name__11 = function () {
     return 'close';
   };
   _no_name_provided__229.$metadata$ = {
@@ -58863,7 +58985,7 @@
       i.invoke_420(p1);
       return Unit_getInstance();
     };
-    l.callableName = i._get_name__13();
+    l.callableName = i._get_name__11();
     return l;
   }
   function onUndeliveredCloseable$init$() {
@@ -59294,7 +59416,7 @@
     return l;
   }
   function nextStreamId($this) {
-    return $this._streamId_4.next_33($this._state_9._receivers);
+    return $this._streamId_4.next_33($this._state_8._receivers);
   }
   function checkAvailable($this) {
     if (_get_isActive__0($this))
@@ -59317,7 +59439,7 @@
           case 0:
             this._exceptionState = 12;
             var tmp_0 = this;
-            tmp_0._tmp0_with_00 = this.__this__74._state_9;
+            tmp_0._tmp0_with_00 = this.__this__74._state_8;
             this._state_0 = 1;
             continue $sm;
           case 1:
@@ -59464,18 +59586,18 @@
     interfaces: []
   };
   function RSocketRequester(state, streamId) {
-    this._state_9 = state;
+    this._state_8 = state;
     this._streamId_4 = streamId;
   }
   RSocketRequester.prototype._get_job__14 = function () {
-    return this._state_9._get_job__14();
+    return this._state_8._get_job__14();
   };
   RSocketRequester.prototype.metadataPush_2 = function (metadata_0, $cont) {
     var tmp$ret$0;
     l$ret$1: do {
       try {
         checkAvailable(this);
-        tmp$ret$0 = this._state_9.sendPrioritized_0(new MetadataPushFrame(metadata_0));
+        tmp$ret$0 = this._state_8.sendPrioritized_0(new MetadataPushFrame(metadata_0));
         break l$ret$1;
       } catch ($p) {
         if ($p instanceof Error) {
@@ -59496,7 +59618,7 @@
     l$ret$1: do {
       try {
         var streamId_3 = this.createStream();
-        tmp$ret$0 = this._state_9.send_16(RequestFireAndForgetFrame(streamId_3, payload));
+        tmp$ret$0 = this._state_8.send_16(RequestFireAndForgetFrame(streamId_3, payload));
         break l$ret$1;
       } catch ($p) {
         if ($p instanceof Error) {
@@ -59519,10 +59641,10 @@
     return tmp.doResume_139();
   };
   RSocketRequester.prototype.requestStream_2 = function (payload) {
-    return new RequestStreamRequesterFlow(payload, this, this._state_9);
+    return new RequestStreamRequesterFlow(payload, this, this._state_8);
   };
   RSocketRequester.prototype.requestChannel_2 = function (initPayload, payloads) {
-    return new RequestChannelRequesterFlow(initPayload, payloads, this, this._state_9);
+    return new RequestChannelRequesterFlow(initPayload, payloads, this, this._state_8);
   };
   RSocketRequester.prototype.createStream = function () {
     checkAvailable(this);
@@ -59889,7 +60011,7 @@
               var e_1_6 = this._exception_0;
               var tmp_1 = this;
               if (_get_isActive_(this.__this__79)) {
-                this._this$0_67._state_10.send_16(ErrorFrame_init_$Create$(this._$streamId_2_1, e_1_6, null, 4, null));
+                this._this$0_67._state_9.send_16(ErrorFrame_init_$Create$(this._$streamId_2_1, e_1_6, null, 4, null));
                 cancel_0(this.__this__79, 'Request handling failed', e_1_6);
               }tmp_1._TRY_RESULT0 = null;
               this._state_0 = 4;
@@ -59986,7 +60108,7 @@
               if ($p instanceof Error) {
                 if (_get_isActive_(this.__this__80)) {
                   var tmp_3 = $p;
-                  this._this$0_68._state_10.send_16(ErrorFrame_init_$Create$(this._$streamId_2_2, tmp_3, null, 4, null));
+                  this._this$0_68._state_9.send_16(ErrorFrame_init_$Create$(this._$streamId_2_2, tmp_3, null, 4, null));
                   cancel_0(this.__this__80, 'Request handling failed', $p);
                 }tmp_2 = null;
               } else {
@@ -60089,7 +60211,7 @@
               if ($p instanceof Error) {
                 if (_get_isActive_(this.__this__81)) {
                   var tmp_3 = $p;
-                  this._this$0_69._state_10.send_16(ErrorFrame_init_$Create$(this._$streamId_2_3, tmp_3, null, 4, null));
+                  this._this$0_69._state_9.send_16(ErrorFrame_init_$Create$(this._$streamId_2_3, tmp_3, null, 4, null));
                   cancel_0(this.__this__81, 'Request handling failed', $p);
                 }tmp_2 = null;
               } else {
@@ -60162,41 +60284,41 @@
     interfaces: []
   };
   function RSocketResponder(state, requestHandler) {
-    this._state_10 = state;
+    this._state_9 = state;
     this._requestHandler = requestHandler;
   }
   RSocketResponder.prototype._get_job__14 = function () {
-    return this._state_10._get_job__14();
+    return this._state_9._get_job__14();
   };
   RSocketResponder.prototype.handleMetadataPush = function (frame) {
-    var tmp = this._state_10.launch(_no_name_provided_$factory_191(this, frame, null));
+    var tmp = this._state_9.launch(_no_name_provided_$factory_191(this, frame, null));
     tmp.invokeOnCompletion_25(_no_name_provided_$factory_192(frame));
     Unit_getInstance();
   };
   RSocketResponder.prototype.handleFireAndForget = function (frame) {
-    var tmp = this._state_10.launch(_no_name_provided_$factory_193(this, frame, null));
+    var tmp = this._state_9.launch(_no_name_provided_$factory_193(this, frame, null));
     tmp.invokeOnCompletion_25(_no_name_provided_$factory_194(frame));
     Unit_getInstance();
   };
   RSocketResponder.prototype.handlerRequestResponse = function (frame) {
-    var tmp0_with_0 = this._state_10;
+    var tmp0_with_0 = this._state_9;
     var streamId_2 = frame._streamId_2;
     var tmp = tmp0_with_0.launchCancelable(streamId_2, _no_name_provided_$factory_195(this, frame, streamId_2, tmp0_with_0, null));
     tmp.invokeOnCompletion_25(_no_name_provided_$factory_196(frame));
     return Unit_getInstance();
   };
   RSocketResponder.prototype.handleRequestStream = function (initFrame) {
-    var tmp0_with_0 = this._state_10;
+    var tmp0_with_0 = this._state_9;
     var streamId_2 = initFrame._streamId_2;
     var tmp = tmp0_with_0.launchCancelable(streamId_2, _no_name_provided_$factory_197(this, initFrame, streamId_2, tmp0_with_0, null));
     tmp.invokeOnCompletion_25(_no_name_provided_$factory_198(initFrame));
     return Unit_getInstance();
   };
   RSocketResponder.prototype.handleRequestChannel = function (initFrame) {
-    var tmp0_with_0 = this._state_10;
+    var tmp0_with_0 = this._state_9;
     var streamId_2 = initFrame._streamId_2;
     var receiver_3 = tmp0_with_0.createReceiverFor(streamId_2);
-    var request_4 = new RequestChannelResponderFlow(streamId_2, receiver_3, this._state_10);
+    var request_4 = new RequestChannelResponderFlow(streamId_2, receiver_3, this._state_9);
     var tmp = tmp0_with_0.launchCancelable(streamId_2, _no_name_provided_$factory_199(this, initFrame, request_4, streamId_2, tmp0_with_0, null));
     tmp.invokeOnCompletion_25(_no_name_provided_$factory_200(initFrame, receiver_3));
     return Unit_getInstance();
@@ -60359,7 +60481,7 @@
             frame.release_23();
           } else {
             if (tmp1_subject instanceof RequestFrame) {
-              var tmp5_subject = frame._get_type__12();
+              var tmp5_subject = frame._get_type__14();
               if (tmp5_subject.equals(FrameType_Payload_getInstance())) {
                 var tmp6_safe_receiver = $this._receivers.get_78(streamId);
                 var tmp;
@@ -60407,7 +60529,7 @@
     this.invoke_397(p1 instanceof Frame_0 ? p1 : THROW_CCE());
     return Unit_getInstance();
   };
-  _no_name_provided__244.prototype._get_name__13 = function () {
+  _no_name_provided__244.prototype._get_name__11 = function () {
     return 'sendPrioritized';
   };
   _no_name_provided__244.$metadata$ = {
@@ -60947,7 +61069,7 @@
       i.invoke_397(p1);
       return Unit_getInstance();
     };
-    l.callableName = i._get_name__13();
+    l.callableName = i._get_name__11();
     return l;
   }
   function _no_name_provided_$factory_204(this$0, $streamId) {
@@ -61064,7 +61186,7 @@
             continue $sm;
           case 2:
             suspendResult;
-            this._tmp$ret$00_6 = this.__this__85._state_11.send_16(NextPayloadFrame(this.__this__85._streamId_7, this._value_30));
+            this._tmp$ret$00_6 = this.__this__85._state_10.send_16(NextPayloadFrame(this.__this__85._streamId_7, this._value_30));
             this._exceptionState = 4;
             this._state_0 = 6;
             continue $sm;
@@ -61168,7 +61290,7 @@
     interfaces: []
   };
   function LimitingFlowCollector(state, streamId, initial) {
-    this._state_11 = state;
+    this._state_10 = state;
     this._streamId_7 = streamId;
     this._requests = atomic_1(initial);
     this._awaiter = atomic(null);
@@ -61388,7 +61510,7 @@
           case 0:
             this._exceptionState = 9;
             var tmp_0 = this;
-            tmp_0._tmp0_with_00_0 = this.__this__89._state_12;
+            tmp_0._tmp0_with_00_0 = this.__this__89._state_11;
             var tmp_1 = this;
             tmp_1._tmp0_check_0_21 = !this.__this__89._consumed.getAndSet$atomicfu(true);
             if (!this._tmp0_check_0_21) {
@@ -61500,7 +61622,7 @@
     this._initPayload = initPayload;
     this._payloads = payloads;
     this._requester_0 = requester;
-    this._state_12 = state;
+    this._state_11 = state;
     this._consumed = atomic_0(false);
   }
   RequestChannelRequesterFlow.prototype.collect_18 = function (collector, $cont) {
@@ -61554,7 +61676,7 @@
           case 0:
             this._exceptionState = 3;
             var tmp_0 = this;
-            tmp_0._tmp0_with_00_1 = this.__this__90._state_13;
+            tmp_0._tmp0_with_00_1 = this.__this__90._state_12;
             var tmp_1 = this;
             tmp_1._tmp0_check_0_21_0 = !this.__this__90._consumed_0.getAndSet$atomicfu(true);
             if (!this._tmp0_check_0_21_0) {
@@ -61602,7 +61724,7 @@
   function RequestChannelResponderFlow(streamId, receiver, state) {
     this._streamId_8 = streamId;
     this._receiver_0 = receiver;
-    this._state_13 = state;
+    this._state_12 = state;
     this._consumed_0 = atomic_0(false);
   }
   RequestChannelResponderFlow.prototype.collect_18 = function (collector, $cont) {
@@ -61633,7 +61755,7 @@
           case 0:
             this._exceptionState = 7;
             var tmp_0 = this;
-            tmp_0._tmp0_with_00_2 = this.__this__91._state_14;
+            tmp_0._tmp0_with_00_2 = this.__this__91._state_13;
             var tmp_1 = this;
             tmp_1._tmp0_check_0_21_1 = !this.__this__91._consumed_1.getAndSet$atomicfu(true);
             if (!this._tmp0_check_0_21_1) {
@@ -61715,7 +61837,7 @@
   function RequestStreamRequesterFlow(payload, requester, state) {
     this._payload_7 = payload;
     this._requester_1 = requester;
-    this._state_14 = state;
+    this._state_13 = state;
     this._consumed_1 = atomic_0(false);
   }
   RequestStreamRequesterFlow.prototype.collect_18 = function (collector, $cont) {
@@ -62449,7 +62571,7 @@
     this.invoke_420((!(p1 == null) ? isInterface(p1, Closeable) : false) ? p1 : THROW_CCE());
     return Unit_getInstance();
   };
-  _no_name_provided__255.prototype._get_name__13 = function () {
+  _no_name_provided__255.prototype._get_name__11 = function () {
     return 'close';
   };
   _no_name_provided__255.$metadata$ = {
@@ -62462,7 +62584,7 @@
       i.invoke_420(p1);
       return Unit_getInstance();
     };
-    l.callableName = i._get_name__13();
+    l.callableName = i._get_name__11();
     return l;
   }
   function onUndeliveredCloseable$init$_0() {
@@ -62494,7 +62616,7 @@
           case 0:
             this._exceptionState = 2;
             this._state_0 = 1;
-            suspendResult = this.__this__93._session_6._get_incoming__3().receive_11(this);
+            suspendResult = this.__this__93._session_4._get_incoming__3().receive_11(this);
             if (suspendResult === _get_COROUTINE_SUSPENDED_()) {
               return suspendResult;
             }
@@ -62524,14 +62646,14 @@
     interfaces: []
   };
   function WebSocketConnection(session) {
-    this._session_6 = session;
-    this._job_4 = Job_0(this._session_6._get_coroutineContext__27().get_66(Key_getInstance_3()));
+    this._session_4 = session;
+    this._job_4 = Job_0(this._session_4._get_coroutineContext__27().get_66(Key_getInstance_3()));
   }
   WebSocketConnection.prototype._get_job__14 = function () {
     return this._job_4;
   };
   WebSocketConnection.prototype.send_17 = function (packet, $cont) {
-    return this._session_6.send_12(Binary_init_$Create$_0(true, packet), $cont);
+    return this._session_4.send_12(Binary_init_$Create$_0(true, packet), $cont);
   };
   WebSocketConnection.prototype.receive_11 = function ($cont) {
     var tmp = new $receiveCOROUTINE$0(this, $cont);
@@ -64392,14 +64514,18 @@
   var $ssm = _.ssm || (_.ssm = {});
   var $ssm$dsl = $ssm.dsl || ($ssm.dsl = {});
   $ssm$dsl.SsmBase = SsmBase_0;
-  $ssm$dsl.AgentBase = SsmAgentBase;
+  $ssm$dsl.SsmAgentBase = SsmAgentBase_0;
   $ssm$dsl.SsmContextBase = SsmContextBase_0;
-  $ssm$dsl.Grant = SsmGrant;
+  $ssm$dsl.SsmGrant = SsmGrant_0;
   $ssm$dsl.Credit = Credit_0;
   $ssm$dsl.SsmSessionBase = SsmSessionBase_0;
   $ssm$dsl.SsmSessionStateBase = SsmSessionStateBase_0;
   $ssm$dsl.SsmSessionStateLog = SsmSessionStateLog_0;
   $ssm$dsl.SsmTransitionBase = SsmTransitionBase_0;
+  var $ssm$dsl$blockchain = $ssm$dsl.blockchain || ($ssm$dsl.blockchain = {});
+  $ssm$dsl$blockchain.BlockBase = BlockBase_0;
+  $ssm$dsl$blockchain.IdentitiesInfoBase = IdentitiesInfoBase_0;
+  $ssm$dsl$blockchain.TransactionBase = TransactionBase_0;
   var $ssm$dsl$query = $ssm$dsl.query || ($ssm$dsl.query = {});
   $ssm$dsl$query.SsmGetAdminQuery = SsmGetAdminQuery_0;
   $ssm$dsl$query.SsmGetAdminResult = SsmGetAdminResult_0;
@@ -64407,20 +64533,18 @@
   $ssm$dsl$query.SsmGetBlockResult = SsmGetBlockResult_0;
   $ssm$dsl$query.SsmGetQuery = SsmGetQuery_0;
   $ssm$dsl$query.SsmGetResult = SsmGetResult_0;
-  $ssm$dsl$query.SsmGetSessionFirstAndLastTransactionQuery = SsmGetSessionFirstAndLastTransactionQuery_0;
-  $ssm$dsl$query.SsmGetSessionFirstAndLastTransactionQueryResult = SsmGetSessionFirstAndLastTransactionQueryResult_0;
   $ssm$dsl$query.SsmGetSessionLogsQuery = SsmGetSessionLogsQuery_0;
   $ssm$dsl$query.SsmGetSessionLogsQueryResult = SsmGetSessionLogsQueryResult_0;
   $ssm$dsl$query.SsmGetSessionQuery = SsmGetSessionQuery_0;
   $ssm$dsl$query.SsmGetSessionResult = SsmGetSessionResult_0;
+  $ssm$dsl$query.SsmGetTransactionQuery = SsmGetTransactionQuery_0;
+  $ssm$dsl$query.SsmGetTransactionQueryResult = SsmGetTransactionQueryResult_0;
   $ssm$dsl$query.SsmGetUserQuery = SsmGetUserQuery_0;
   $ssm$dsl$query.SsmGetUserResult = SsmGetUserResult_0;
   $ssm$dsl$query.SsmListAdminQuery = SsmListAdminQuery_0;
   $ssm$dsl$query.SsmListAdminResult = SsmListAdminResult_0;
   $ssm$dsl$query.SsmListSessionQuery = SsmListSessionQuery_0;
   $ssm$dsl$query.SsmListSessionResult = SsmListSessionResult_0;
-  $ssm$dsl$query.SsmListSessionTransactionQuery = SsmListSessionTransactionQuery_0;
-  $ssm$dsl$query.SsmListSessionTransactionQueryResult = SsmListSessionTransactionQueryResult_0;
   $ssm$dsl$query.SsmListSsmQuery = SsmListSsmQuery_0;
   $ssm$dsl$query.SsmListSsmResult = SsmListSsmResult_0;
   $ssm$dsl$query.SsmListUserQuery = SsmListUserQuery_0;
@@ -64428,10 +64552,11 @@
   _.GetSsmListCommandBase = GetSsmListCommandBase_0;
   _.GetSsmSessionCommandBase = GetSsmSessionCommandBase_0;
   _.GetSsmSessionListCommandBase = GetSsmSessionListCommandBase_0;
+  _.GetSsmSessionLogsBaseCommand = GetSsmSessionLogsCommandBase;
   _.TxChannelBase = TxChannelBase_0;
   _.TxSsmBase = TxSsmBase_0;
   _.TxSsmSessionBase = TxSsmSessionBase_0;
-  _.TxSsmTransactionBase = TxSsmTransactionBase_0;
+  _.TxSsmSessionStateBase = TxSsmSessionStateBase_0;
   _.TxSsmUserBase = TxSsmUserBase_0;
   var $x2 = _.x2 || (_.x2 = {});
   var $x2$api = $x2.api || ($x2.api = {});

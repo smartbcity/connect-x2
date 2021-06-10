@@ -96,7 +96,7 @@ export namespace f2.dsl.function {
 export namespace ssm.dsl {
     interface Ssm {
         readonly name: string;
-        readonly transitions: Array<ssm.dsl.SsmTransitionBase>;
+        readonly transitions: Array<ssm.dsl.SsmTransition>;
     }
     class SsmBase implements ssm.dsl.Ssm {
         constructor(name: string, transitions: Array<ssm.dsl.SsmTransitionBase>);
@@ -111,11 +111,11 @@ export namespace ssm.dsl {
     }
 }
 export namespace ssm.dsl {
-    interface Agent {
+    interface SsmAgent {
         readonly name: string;
         readonly pub: Int8Array;
     }
-    class AgentBase implements ssm.dsl.SsmAgent {
+    class SsmAgentBase implements ssm.dsl.SsmAgent {
         constructor(name: string, pub: Int8Array);
         readonly name: string;
         readonly pub: Int8Array;
@@ -159,7 +159,7 @@ export namespace ssm.dsl {
     }
 }
 export namespace ssm.dsl {
-    class Grant {
+    class SsmGrant {
         constructor(user: string, iteration: number, credits: kotlin.collections.Map<string, ssm.dsl.Credit>);
         readonly user: string;
         readonly iteration: number;
@@ -206,7 +206,7 @@ export namespace ssm.dsl {
         readonly roles: Nullable<kotlin.collections.Map<string, string>>;
         readonly public: Nullable<any>;
         readonly private: Nullable<kotlin.collections.Map<string, string>>;
-        readonly origin: Nullable<ssm.dsl.SsmTransitionBase>;
+        readonly origin: Nullable<ssm.dsl.SsmTransition>;
         readonly current: number;
         readonly iteration: number;
     }
@@ -270,6 +270,57 @@ export namespace ssm.dsl {
         equals(other: Nullable<any>): boolean;
     }
 }
+export namespace ssm.dsl.blockchain {
+    interface Block {
+        readonly blockId: kotlin.Long;
+        readonly previousHash: Int8Array;
+        readonly dataHash: Int8Array;
+        readonly transactions: kotlin.collections.List<ssm.dsl.blockchain.Transaction>;
+    }
+    class BlockBase implements ssm.dsl.blockchain.Block {
+        constructor(blockId: kotlin.Long, previousHash: Int8Array, dataHash: Int8Array, transactions: kotlin.collections.List<ssm.dsl.blockchain.TransactionBase>);
+        readonly blockId: kotlin.Long;
+        readonly previousHash: Int8Array;
+        readonly dataHash: Int8Array;
+        readonly transactions: kotlin.collections.List<ssm.dsl.blockchain.TransactionBase>;
+    }
+}
+export namespace ssm.dsl.blockchain {
+    interface IdentitiesInfo {
+        readonly id: string;
+        readonly mspid: string;
+    }
+    class IdentitiesInfoBase implements ssm.dsl.blockchain.IdentitiesInfo {
+        constructor(id: string, mspid: string);
+        readonly id: string;
+        readonly mspid: string;
+    }
+}
+export namespace ssm.dsl.blockchain {
+    interface Transaction {
+        readonly transactionId: string;
+        readonly blockId: kotlin.Long;
+        readonly timestamp: kotlin.Long;
+        readonly isValid: boolean;
+        readonly channelId: string;
+        readonly creator: ssm.dsl.blockchain.IdentitiesInfo;
+        readonly nonce: Int8Array;
+        readonly type: any /*Class ssm.dsl.blockchain.EnvelopeType with kind: ENUM_CLASS*/;
+        readonly validationCode: number;
+    }
+    class TransactionBase implements ssm.dsl.blockchain.Transaction {
+        constructor(transactionId: string, blockId: kotlin.Long, timestamp: kotlin.Long, isValid: boolean, channelId: string, creator: ssm.dsl.blockchain.IdentitiesInfoBase, nonce: Int8Array, type: any /*Class ssm.dsl.blockchain.EnvelopeType with kind: ENUM_CLASS*/, validationCode: number);
+        readonly transactionId: string;
+        readonly blockId: kotlin.Long;
+        readonly timestamp: kotlin.Long;
+        readonly isValid: boolean;
+        readonly channelId: string;
+        readonly creator: ssm.dsl.blockchain.IdentitiesInfoBase;
+        readonly nonce: Int8Array;
+        readonly type: any /*Class ssm.dsl.blockchain.EnvelopeType with kind: ENUM_CLASS*/;
+        readonly validationCode: number;
+    }
+}
 export namespace ssm.dsl.query {
     class SsmGetAdminQuery implements ssm.dsl.SsmCommand {
         constructor(baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>, name: string);
@@ -311,21 +362,6 @@ export namespace ssm.dsl.query {
     }
 }
 export namespace ssm.dsl.query {
-    class SsmGetSessionFirstAndLastTransactionQuery implements ssm.dsl.SsmCommand {
-        constructor(session: string, baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
-        readonly session: string;
-        readonly baseUrl: string;
-        readonly channelId: Nullable<string>;
-        readonly chaincodeId: Nullable<string>;
-        readonly bearerToken: Nullable<string>;
-    }
-    class SsmGetSessionFirstAndLastTransactionQueryResult {
-        constructor(firstTransaction: Nullable<ssm.dsl.blockchain.Transaction>, lastTransaction: Nullable<ssm.dsl.blockchain.Transaction>);
-        readonly firstTransaction: Nullable<ssm.dsl.blockchain.Transaction>;
-        readonly lastTransaction: Nullable<ssm.dsl.blockchain.Transaction>;
-    }
-}
-export namespace ssm.dsl.query {
     class SsmGetSessionLogsQuery implements ssm.dsl.SsmCommand {
         constructor(session: string, baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
         readonly session: string;
@@ -356,6 +392,20 @@ export namespace ssm.dsl.query {
     class SsmGetSessionResult implements f2.dsl.cqrs.Event {
         constructor(session: Nullable<ssm.dsl.SsmSessionStateBase>);
         readonly session: Nullable<ssm.dsl.SsmSessionStateBase>;
+    }
+}
+export namespace ssm.dsl.query {
+    class SsmGetTransactionQuery implements ssm.dsl.SsmCommand {
+        constructor(id: string, baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
+        readonly id: string;
+        readonly baseUrl: string;
+        readonly channelId: Nullable<string>;
+        readonly chaincodeId: Nullable<string>;
+        readonly bearerToken: Nullable<string>;
+    }
+    class SsmGetTransactionQueryResult {
+        constructor(transaction: Nullable<ssm.dsl.blockchain.TransactionBase>);
+        readonly transaction: Nullable<ssm.dsl.blockchain.TransactionBase>;
     }
 }
 export namespace ssm.dsl.query {
@@ -399,20 +449,6 @@ export namespace ssm.dsl.query {
     }
 }
 export namespace ssm.dsl.query {
-    class SsmListSessionTransactionQuery implements ssm.dsl.SsmCommand {
-        constructor(session: string, baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
-        readonly session: string;
-        readonly baseUrl: string;
-        readonly channelId: Nullable<string>;
-        readonly chaincodeId: Nullable<string>;
-        readonly bearerToken: Nullable<string>;
-    }
-    class SsmListSessionTransactionQueryResult {
-        constructor(transactions: Array<ssm.dsl.blockchain.Transaction>);
-        readonly transactions: Array<ssm.dsl.blockchain.Transaction>;
-    }
-}
-export namespace ssm.dsl.query {
     class SsmListSsmQuery implements ssm.dsl.SsmCommand {
         constructor(baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
         readonly baseUrl: string;
@@ -446,15 +482,15 @@ export class GetSsmListCommandBase implements GetSsmListCommand {
     readonly dbName: string;
 }
 export interface GetSsmSessionCommand extends ssm.dsl.SsmCommand {
-    readonly name: string;
+    readonly sessionId: string;
     readonly baseUrl: string;
     readonly channelId: Nullable<string>;
     readonly chaincodeId: Nullable<string>;
     readonly bearerToken: Nullable<string>;
 }
 export class GetSsmSessionCommandBase implements GetSsmSessionCommand {
-    constructor(name: string, baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
-    readonly name: string;
+    constructor(sessionId: string, baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
+    readonly sessionId: string;
     readonly baseUrl: string;
     readonly channelId: Nullable<string>;
     readonly chaincodeId: Nullable<string>;
@@ -477,6 +513,21 @@ export class GetSsmSessionListCommandBase implements GetSsmSessionListCommand {
     readonly bearerToken: Nullable<string>;
     readonly ssm: Nullable<string>;
 }
+export interface GetSsmSessionLogsCommand extends ssm.dsl.SsmCommand {
+    readonly sessionId: string;
+    readonly baseUrl: string;
+    readonly channelId: Nullable<string>;
+    readonly chaincodeId: Nullable<string>;
+    readonly bearerToken: Nullable<string>;
+}
+export class GetSsmSessionLogsBaseCommand implements GetSsmSessionLogsCommand {
+    constructor(sessionId: string, baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
+    readonly sessionId: string;
+    readonly baseUrl: string;
+    readonly channelId: Nullable<string>;
+    readonly chaincodeId: Nullable<string>;
+    readonly bearerToken: Nullable<string>;
+}
 export interface TxChannel {
     readonly id: string;
 }
@@ -496,32 +547,26 @@ export class TxSsmBase implements TxSsm {
     readonly version: string;
 }
 export interface TxSsmSession {
-    readonly state: ssm.dsl.SsmSessionState;
+    readonly id: string;
+    readonly currentState: TxSsmSessionState;
     readonly channel: TxChannel;
-    readonly creationDate: kotlin.Long;
-    readonly lastTransaction: TxSsmTransaction;
+    readonly creationTransaction: Nullable<ssm.dsl.blockchain.Transaction>;
 }
 export class TxSsmSessionBase implements TxSsmSession {
-    constructor(state: ssm.dsl.SsmSessionStateBase, channel: TxChannelBase, creationDate: kotlin.Long, lastTransaction: TxSsmTransactionBase);
-    readonly state: ssm.dsl.SsmSessionStateBase;
+    constructor(id: string, currentState: TxSsmSessionStateBase, channel: TxChannelBase, creationTransaction: Nullable<ssm.dsl.blockchain.TransactionBase>);
+    readonly id: string;
+    readonly currentState: TxSsmSessionStateBase;
     readonly channel: TxChannelBase;
-    readonly creationDate: kotlin.Long;
-    readonly lastTransaction: TxSsmTransactionBase;
+    readonly creationTransaction: Nullable<ssm.dsl.blockchain.TransactionBase>;
 }
-export interface TxSsmTransaction {
-    readonly id: string;
-    readonly from: number;
-    readonly to: number;
-    readonly date: kotlin.Long;
-    readonly signer: TxSsmUser;
+export interface TxSsmSessionState {
+    readonly details: ssm.dsl.SsmSessionState;
+    readonly transaction: Nullable<ssm.dsl.blockchain.Transaction>;
 }
-export class TxSsmTransactionBase implements TxSsmTransaction {
-    constructor(id: string, from: number, to: number, date: kotlin.Long, signer: TxSsmUserBase);
-    readonly id: string;
-    readonly from: number;
-    readonly to: number;
-    readonly date: kotlin.Long;
-    readonly signer: TxSsmUserBase;
+export class TxSsmSessionStateBase implements TxSsmSessionState {
+    constructor(details: ssm.dsl.SsmSessionState, transaction: Nullable<ssm.dsl.blockchain.TransactionBase>);
+    readonly details: ssm.dsl.SsmSessionState;
+    readonly transaction: Nullable<ssm.dsl.blockchain.TransactionBase>;
 }
 export interface TxSsmUser {
     readonly name: string;
