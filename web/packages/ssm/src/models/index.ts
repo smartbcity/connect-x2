@@ -8,9 +8,6 @@ export interface Transaction extends x2.api.ssm.domain.model.TxSsmTransaction {}
 
 export interface User extends x2.api.ssm.domain.model.TxSsmUser {}
 
-const test: SSM = null
-test.ssm.transitions
-
 //@ts-ignore
 export const defaultProtocols: string[] = window._env_.PROTOCOLS
 

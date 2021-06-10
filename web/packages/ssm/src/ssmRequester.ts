@@ -42,10 +42,11 @@ const fetchSession = async (sessionId?: string) => {
 };
 
 
-const fetchTransactions = (
+const fetchTransactions = async (
     sessionId: string
 ) => {
-    return fetchCoop<Transaction[][]>("", JSON.stringify({...requestBase, sessionId: sessionId})) ?? [[]]
+    const transactions = await fetchCoop<Transaction[][]>("", JSON.stringify({...requestBase, sessionId: sessionId})) ?? [[]]
+    return transactions[0] ?? []
 };
 
 

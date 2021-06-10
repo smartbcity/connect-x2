@@ -6,6 +6,7 @@ import { Session, Transaction } from "ssm"
 import { highLevelStyles } from "@smartb/archetypes-ui-themes"
 import { useFetchTransactions } from "./useFetchTransactions"
 
+
 const useStyles = highLevelStyles()({
     panel: {
         width: "40%",

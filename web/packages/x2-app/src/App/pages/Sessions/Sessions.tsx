@@ -60,7 +60,7 @@ export const Sessions = (props: SessionsProps) => {
         <SessionNumberCard />
         <ProtocolCard currentSSM={currentSSM} />
       </Box>
-      <SessionTable isLoading={currentSessions?.status === "PENDING"} sessions={currentSessions?.sessions} gotoSessionDetails={gotoSessionDetails} currentSSM={currentSSM} />
+      <SessionTable isLoading={currentSessions?.status === "PENDING"} sessions={currentSessions?.sessions} gotoSessionDetails={gotoSessionDetails} />
     </Page>
   );
 };

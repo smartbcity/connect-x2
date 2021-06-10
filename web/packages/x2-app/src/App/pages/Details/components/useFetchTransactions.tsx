@@ -2,7 +2,7 @@ import { Box, Typography } from "@material-ui/core"
 import { TimeLineCell } from "@smartb/archetypes-ui-components"
 import { useCallback } from "react"
 import { Session, SSMRequester, Transaction } from "ssm"
-import { useAsync } from "utils"
+import { useAsyncResponse } from "utils"
 
 export const useFetchTransactions = (currentSession?: Session) => {
     const getLines = useCallback(
@@ -30,7 +30,7 @@ export const useFetchTransactions = (currentSession?: Session) => {
         },
         [currentSession]
     )
-    const { result } = useAsync(getLines)
+    const { result } = useAsyncResponse(getLines)
 
     return result
 }
