@@ -2,7 +2,7 @@ import { Timeline, TimeLineCell } from "@smartb/archetypes-ui-components"
 import { LoadingComponent, Panel } from "components"
 import { useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Session, Transaction } from "ssm"
+import { Session, SessionState } from "ssm"
 import { highLevelStyles } from "@smartb/archetypes-ui-themes"
 import { useFetchTransactions } from "./useFetchTransactions"
 
@@ -25,8 +25,8 @@ const useStyles = highLevelStyles()({
 })
 
 interface HistoryCardProps {
-    currentSession?: Session
-    onChangeTransaction: (log?: Transaction) => void
+    currentSession: Session
+    onChangeTransaction: (log?: SessionState) => void
 }
 
 export const HistoryCard = (props: HistoryCardProps) => {
@@ -35,14 +35,14 @@ export const HistoryCard = (props: HistoryCardProps) => {
     const classes = useStyles()
     const [selectedCellId, setSelectedCellId] = useState<string | undefined>(undefined)
 
-    const result: { lines: TimeLineCell[], transactions: Transaction[] } | undefined = useFetchTransactions(currentSession)
+    const result = useFetchTransactions(currentSession)
 
     const onSelectCell = useCallback(
         (cell: TimeLineCell) => {
             setSelectedCellId(prevCellId => {
                 const cellId = cell.id === prevCellId ? undefined : cell.id
                 if (cellId) {
-                    const log = result?.transactions.find((transaction) => cellId === transaction.id)
+                    const log = result?.sessionStates.find((sessionState) => cellId === sessionState.transaction?.transactionId)
                     log && onChangeTransaction(log)
                 } else {
                     onChangeTransaction(undefined)
@@ -50,7 +50,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
                 return cellId
             })
         },
-        [onChangeTransaction, result?.transactions],
+        [onChangeTransaction, result?.sessionStates],
     )
 
     return (

@@ -1,31 +1,29 @@
 import { Box, Typography } from "@material-ui/core"
 import { TimeLineCell } from "@smartb/archetypes-ui-components"
 import { useCallback } from "react"
-import { Session, SSMRequester, Transaction } from "ssm"
+import { Session, SSMRequester, SessionState } from "ssm"
 import { useAsyncResponse } from "utils"
 
-export const useFetchTransactions = (currentSession?: Session) => {
+export const useFetchTransactions = (currentSession: Session) => {
     const getLines = useCallback(
-        async (): Promise<{ lines: TimeLineCell[], transactions: Transaction[] }> => {
-            if (!currentSession) return { lines: [], transactions: [] }
-            const transactions = await SSMRequester.fetchTransactions(currentSession.id)
-            if (!transactions) return { lines: [], transactions: [] }
+        async (): Promise<{ lines: TimeLineCell[], sessionStates: SessionState[] }> => {
+            const sessionStates = await SSMRequester.fetchSessionStates(currentSession.id)
             return {
-                lines: transactions.map((transaction) => {
-                    const init = transaction.state?.origin?.role === undefined && log.state?.origin?.action === undefined
+                lines: sessionStates.map((sessionState, index): TimeLineCell => {
+                    const init = sessionState.details?.origin?.role === undefined && sessionState.details?.origin?.action === undefined
                     return {
-                        id: transaction.id,
+                        id: sessionState.transaction?.transactionId ?? "session n°" + index,
                         content: (
                             <Box display="flex" flexDirection="column">
                                 <Typography>
-                                    {init ? "Initialization" : `${log.state?.origin?.role}: ${log.state?.origin?.action}`}
+                                    {init ? "Initialization" : `${sessionState.details?.origin?.role}: ${sessionState.details?.origin?.action}`}
                                 </Typography>
                             </Box>
                         ),
-                        startTime: "12/02/2021",
+                        startTime: new Date(sessionState.transaction?.timestamp).toLocaleDateString(),
                     }
                 }),
-                transactions: transactions
+                sessionStates: sessionStates
             }
         },
         [currentSession]

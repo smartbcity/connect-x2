@@ -57,14 +57,14 @@ export const SessionTable = (props: SessionTableProps) => {
     const data: SessionColumn[] = useMemo(() => {
         if (!sessions) return []
         return sessions.map((session): SessionColumn => ({
-            id: session.state.session,
-            creationDate: new Date(session.creationDate).toLocaleDateString(),
+            id: session.id,
+            creationDate: new Date(session.creationTransaction?.timestamp).toLocaleDateString(),
             channel: session.channel.id,
-            protocolEngine: session.state.ssm as string,
+            protocolEngine: session.currentState.details.ssm as string,
             completedStep: {
-                date: new Date(session.lastTransaction.date).toLocaleDateString(),
-                status: session.lastTransaction.to,
-                user: session.lastTransaction.signer.name,
+                date: new Date(session.creationTransaction?.timestamp).toLocaleDateString(),
+                status: session.currentState.details.current,
+                user: session.currentState.transaction?.creator.mspid ?? ""
             }
         }))
     }, [sessions])

@@ -14,21 +14,21 @@ const useStyles = highLevelStyles()({
 })
 
 interface InformationCardProps { 
-    currentSession?: Session
+    currentSession: Session
 }
 
 export const InformationCard = (props: InformationCardProps) => {
     const { currentSession } = props
     const classes = useStyles()
     const { t } = useTranslation()
-    if (!currentSession) return (<></>)
+    
     return (
         <Panel 
         className={classes.panel} 
         noPadding 
         bodyClassName={classes.body} 
         header={t("detailsPage.sessionInformations")}
-        embedUrl={`${window.location.origin}/embed/${currentSession?.ssm}/${currentSession.session}/informations`}
+        embedUrl={`${window.location.origin}/embed/${currentSession.currentState.details.ssm}/${currentSession.id}/informations`}
         >
             <SessionInformations currentSession={currentSession}  />
         </Panel>

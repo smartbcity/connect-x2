@@ -41,13 +41,13 @@ const useMenu = (t: TFunction, ssmList: Map<string, SSM>, path: string) => {
 const getMenu = (t: TFunction, ssmList: Map<string, SSM>, path: string): Menu<LinkProps>[] => {
   const ssmName = path.split("/")[1]
   const protocolsList: MenuItem<LinkProps>[] = Array.from(ssmList.values()).map((ssm) => ({
-    key: `appLayout-protocols-${ssm.name}`,
-    label: ssm.name,
+    key: `appLayout-protocols-${ssm.ssm.name}`,
+    label: ssm.ssm.name,
     component: Link,
     componentProps: {
-      to: `/${ssm.name}/sessions`
+      to: `/${ssm.ssm.name}/sessions`
     },
-    isSelected: ssm.name === ssmName
+    isSelected: ssm.ssm.name === ssmName
   }))
   const menu: Menu<LinkProps>[] = [{
     key: "appLayout-dashboard",

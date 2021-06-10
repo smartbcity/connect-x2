@@ -4,7 +4,7 @@ import { midLevelStyles } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Transaction } from 'ssm'
+import { SessionState } from 'ssm'
 
 const useStyles = midLevelStyles()({
     preContainer: {
@@ -55,7 +55,7 @@ const useStyles = midLevelStyles()({
 })
 
 interface TransactionDetailsProps {
-    transaction: Transaction
+    transaction: SessionState
     className?: string
     minified?: boolean
     shortVersion?: boolean
@@ -76,8 +76,8 @@ export const TransactionDetails = (props: TransactionDetailsProps) => {
                 </Box>
                 <Box className={clsx(classes.box, minified && classes.boxMinified)}>
                     <Box position="relative">
-                        <Typography variant={typovariant} className={classes.rightTypo}>{transaction.id}</Typography>
-                        <CopyToClipboard className={classes.iconButton} value={transaction.id} helperText={t("copyToClipboard")} />
+                        <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.transactionId}</Typography>
+                        <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.transactionId ?? ""} helperText={t("copyToClipboard")} />
                     </Box>
                     <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
@@ -98,21 +98,24 @@ export const TransactionDetails = (props: TransactionDetailsProps) => {
                 </Box>
                 <Box className={clsx(classes.box, minified && classes.boxMinified)}>
                     <Box position="relative">
-                        <Typography variant={typovariant} className={classes.rightTypo}>{transaction.id}</Typography>
-                        <CopyToClipboard className={classes.iconButton} value={transaction.id} helperText={t("copyToClipboard")} />
+                        <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.transactionId}</Typography>
+                        <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.transactionId ?? ""} helperText={t("copyToClipboard")} />
                     </Box>
-                    <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{transaction.state?.origin?.from ?? ""}</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{transaction.state?.current ?? ""}</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{new Date(transaction.transaction?.timestamp).toLocaleDateString()}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.creator.mspid}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{transaction.details?.origin?.from ?? ""}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{transaction.details?.current ?? ""}</Typography>
+                    <Box position="relative">
+                        <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.creator.id}</Typography>
+                        <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.creator.id ?? ""} helperText={t("copyToClipboard")} />
+                    </Box>
                 </Box>
             </Box>
             <Typography className={classes.typo}>{t("detailsPage.transactionPayload")}:</Typography>
             <Box className={classes.preContainer}>
                 <CodeHighlighter object={{
-                    origin: transaction.state.origin,
-                    public: transaction.state.public,
+                    origin: transaction.details.origin,
+                    public: transaction.details.public,
                 }} language="json" />
             </Box>
         </>

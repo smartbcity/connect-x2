@@ -18,16 +18,16 @@ const useStyles = highLevelStyles()({
 })
 
 interface ProtocolCardProps {
-    currentSSM?: SSM
+    currentSSM: SSM
 }
 
 export const ProtocolCard = (props: ProtocolCardProps) => {
     const {currentSSM} = props
     const {t} = useTranslation()
-    const transitions = useMemo(() => currentSSM ? currentSSM.transitions.map((transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
+    const transitions = useMemo(() => currentSSM.ssm.transitions.map((transition) => ({...transition, label: `${transition.role}: ${transition.action}`})), [currentSSM])
     const classes = useStyles()
     return (
-        <Panel className={classes.panel} bodyClassName={classes.body} header={t("protocolDiagram")} embedUrl={`${window.location.origin}/embed/${currentSSM?.name}/diagram`}>
+        <Panel className={classes.panel} bodyClassName={classes.body} header={t("protocolDiagram")} embedUrl={`${window.location.origin}/embed/${currentSSM.ssm.name}/diagram`}>
             <AutomateViewer transitions={transitions} className={classes.viewer}/>
         </Panel>
     )

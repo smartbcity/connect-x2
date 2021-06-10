@@ -1,6 +1,6 @@
 import { Panel, TransactionDetails } from "components"
 import { useTranslation } from "react-i18next"
-import { SessionLog } from "ssm";
+import { SessionState } from "ssm";
 import { highLevelStyles } from "@smartb/archetypes-ui-themes";
 import { Box, Typography } from "@material-ui/core";
 
@@ -15,14 +15,14 @@ const useStyles = highLevelStyles()({
 })
 
 interface DetailsCardProps {
-    transaction?: Transaction
+    transaction?: SessionState
 }
 
 export const DetailsCard = (props: DetailsCardProps) => {
     const { transaction } = props
     const { t } = useTranslation()
     const classes = useStyles()
-    const embed = transaction ? `${window.location.origin}/embed/${transaction?.state.ssm}/${transaction?.state.session}/${currentLog?.txId}/details` : undefined
+    const embed = transaction ? `${window.location.origin}/embed/${transaction?.details.ssm}/${transaction?.details.session}/${transaction?.transaction?.transactionId}/details` : undefined
     return (
         <Panel 
         className={classes.panel} 
@@ -31,7 +31,7 @@ export const DetailsCard = (props: DetailsCardProps) => {
         header={t("detailsPage.transactionDetails")}
         embedUrl={embed}
         >
-            {v === undefined ? (
+            {transaction === undefined ? (
                 <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="100%">
                     <Typography align="center">
                         {t("detailsPage.selectATransaction")}

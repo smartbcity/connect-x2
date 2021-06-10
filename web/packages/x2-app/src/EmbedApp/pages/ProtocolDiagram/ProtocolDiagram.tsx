@@ -31,13 +31,13 @@ export const ProtocolDiagram = (props: ProtocolDiagramProps) => {
   const classes = useStyles()
   const { ssmName } = useParams<{ ssmName: string }>();
   const currentSSM = useMemo(() => ssmList.get(ssmName), [ssmList, ssmName])
-  const transitions = useMemo(() => currentSSM ? currentSSM.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
+  const transitions = useMemo(() => currentSSM ? currentSSM.ssm.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
 
   if (!currentSSM) return <NoMatchPage />
 
   return (
     <Box position="relative" width="100vw" height="100vh">
-      <Typography className={classes.title} variant="body1">{t("protocolDiagramOf", {ssmName: currentSSM.name})}</Typography>
+      <Typography className={classes.title} variant="body1">{t("protocolDiagramOf", {ssmName: currentSSM.ssm.name})}</Typography>
       <AutomateViewer transitions={transitions} className={classes.viewer}/>
     </Box>
   );

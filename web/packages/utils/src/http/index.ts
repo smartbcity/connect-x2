@@ -2,7 +2,7 @@
 export interface httpOptions {
     url: string,
     method: "GET" | "PUT" | "POST" | "DELETE",
-    body?: string,
+    body?: object,
     jwt?: string,
     contentType?: "application/json" | "text/plain" | "none"
     returnType?: "json" | "text"
@@ -28,7 +28,7 @@ export const request = <T>(
                 : {}),
             "Access-Control-Allow-Origin": "*",
         },
-        body: body,
+        body: JSON.stringify(body),
     })
         .then((response) => {
             if (!response.ok) {

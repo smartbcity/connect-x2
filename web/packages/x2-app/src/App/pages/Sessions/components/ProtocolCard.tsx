@@ -31,9 +31,9 @@ export const ProtocolCard = (props: ProtocolCardProps) => {
     const {currentSSM} = props
     const {t} = useTranslation()
     const classes = useStyles()
-    const transitions = useMemo(() => currentSSM ? currentSSM.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
+    const transitions = useMemo(() => currentSSM ? currentSSM.ssm.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
     return (
-        <Panel className={classes.root} bodyClassName={classes.body} noPadding header={t("protocolDiagram")} embedUrl={`${window.location.origin}/embed/${currentSSM?.name}/diagram`}>
+        <Panel className={classes.root} bodyClassName={classes.body} noPadding header={t("protocolDiagram")} embedUrl={`${window.location.origin}/embed/${currentSSM?.ssm.name}/diagram`}>
             <AutomateViewer transitions={transitions} className={classes.viewer}/>
         </Panel>
     )
