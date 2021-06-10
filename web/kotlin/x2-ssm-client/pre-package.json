@@ -1,0 +1,19 @@
+{
+  "name": "x2-ssm-client",
+  "version": "0.0.0-latest",
+  "main": "kotlin/x2-ssm-client.js",
+  "devDependencies": {
+    "dukat": "0.5.8-rc.3",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12",
+    "source-map-loader": "1.1.0"
+  },
+  "dependencies": {
+    "x2-ssm-domain": "0.0.0-latest",
+    "ktor-ktor-client-core-jsIr": "file:/Users/luc/Bazar/fixers/x2/build/js/packages_imported/ktor-ktor-client-core-jsIr/1.5.2",
+    "ktor-ktor-network-jsIr": "file:/Users/luc/Bazar/fixers/x2/build/js/packages_imported/ktor-ktor-network-jsIr/1.4.3"
+  },
+  "peerDependencies": {},
+  "optionalDependencies": {},
+  "bundledDependencies": []
+}
