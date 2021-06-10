@@ -33,7 +33,7 @@ export const ProtocolDiagram = (props: ProtocolDiagramProps) => {
   const currentSSM = useMemo(() => ssmList.get(ssmName), [ssmList, ssmName])
   const transitions = useMemo(() => currentSSM ? currentSSM.ssm.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
 
-  if (!currentSSM) return <NoMatchPage />
+  if (!currentSSM) return <NoMatchPage noGoBack/>
 
   return (
     <Box position="relative" width="100vw" height="100vh">

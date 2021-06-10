@@ -6,7 +6,7 @@ import TransactionDetail  from "./pages/TransactionDetail";
 
 export const EmbedApp = () => {
   return (
-    <Router>
+    <Router noMatchPageProps={{noGoBack: true}}>
       <Route exact path="/embed/:ssmName/diagram" >
         <ProtocolDiagram />
       </Route>

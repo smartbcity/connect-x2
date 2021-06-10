@@ -26,6 +26,7 @@
   "year": "Année",
   "all": "Tout",
   "copyToClipboard": "Copier dans le presse-papier",
+  "copyToClipboardSuccess": "Déjà copié, cliquez ici si vous voulez le re-copier",
   "preview": "Apperçu",
   "detailsPage": {
     "sessionInformations": "Informations sur la session",

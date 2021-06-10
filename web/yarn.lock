@@ -1737,15 +1737,15 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smartb/archetypes-ui-components@^0.1.42":
-  version "0.1.42"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-components/-/archetypes-ui-components-0.1.42.tgz#44325bac6430968a288109ee14deefe67b96219f"
-  integrity sha512-6yb0/wMNcBOUAGaAhSodpw+xLGTpqoRr7D91CbApSdM7TM2Rc560zoh/f4Khud1jtOe4U6OHRABVS8oxZwn66Q==
+"@smartb/archetypes-ui-components@^0.1.43":
+  version "0.1.43"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-components/-/archetypes-ui-components-0.1.43.tgz#ccdbb77e29322ffa321b267cf83b20d73d2c47cb"
+  integrity sha512-7+kI7ney3Ed1egNcpqj/P1RaG7x8uegesh6H7116HWVT3RUo8U7oeoJnor0lKeDVEJz2CSdW4HHkpvD3xrWbyA==
   dependencies:
     "@material-ui/icons" "^4.11.2"
     "@material-ui/lab" "^4.0.0-alpha.57"
-    "@smartb/archetypes-ui-forms" "^0.1.42"
-    "@smartb/archetypes-ui-layout" "^0.1.42"
+    "@smartb/archetypes-ui-forms" "^0.1.43"
+    "@smartb/archetypes-ui-layout" "^0.1.43"
     clsx "^1.1.1"
     github-markdown-css "^4.0.0"
     react-data-table-component "^6.9.7"
@@ -1759,38 +1759,38 @@
     stringify-object "^3.3.0"
     styled-components "^5.2.1"
 
-"@smartb/archetypes-ui-forms@^0.1.42":
-  version "0.1.42"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-forms/-/archetypes-ui-forms-0.1.42.tgz#cd70e904469bfd1fb708c9abb46b1bcd663d9a86"
-  integrity sha512-Sp0QMPiCrNx/IlbYlgEfm/+c8VXcxit1XpRt0jINCFBD0o03KStSQUuOpxUcCIdK4hALMFEXGHC8fxUHTwulqA==
+"@smartb/archetypes-ui-forms@^0.1.43":
+  version "0.1.43"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-forms/-/archetypes-ui-forms-0.1.43.tgz#8a3d92c5ee8eb01313f6aa24d036cba943bf7804"
+  integrity sha512-ihF4FCZn5xXAITMpbaTcIeJRmXU8r6BB/m52wodvluacpL2CWRVOWTFV2pNl52EQVvlj1Cq492kMCOheN0u/yw==
   dependencies:
     "@date-io/date-fns" "1.3.13"
     "@material-ui/icons" "^4.11.2"
     "@material-ui/pickers" "^3.3.10"
-    "@smartb/archetypes-ui-components" "^0.1.42"
+    "@smartb/archetypes-ui-components" "^0.1.43"
     clsx "^1.1.1"
     date-fns "^2.21.3"
     react-device-detect "^1.17.0"
 
-"@smartb/archetypes-ui-layout@^0.1.42":
-  version "0.1.42"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-layout/-/archetypes-ui-layout-0.1.42.tgz#fdc43917ed8e656168862c66ff804bd63cb5b75b"
-  integrity sha512-bwSCc3unUJTko1VUvSotxw+8vjUC/JRidZsjMVwkxBX3ODkqM17xk3OaEwsxinK0SFjzLl9IFvw8lwH0jH0bDA==
+"@smartb/archetypes-ui-layout@^0.1.43":
+  version "0.1.43"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-layout/-/archetypes-ui-layout-0.1.43.tgz#131c793310901b55a711ef04668fa5b59e0908db"
+  integrity sha512-3q+ltx3Vt7SVvhCuHHRUV7laJGQvS4cvZrCEnCJYtwRRsLXRzPub/VSN2fFrErIabCLMQ4MIApumDCJwao96+Q==
   dependencies:
     "@material-ui/icons" "^4.11.2"
     "@material-ui/lab" "^4.0.0-alpha.57"
-    "@smartb/archetypes-ui-components" "^0.1.42"
+    "@smartb/archetypes-ui-components" "^0.1.43"
     clsx "^1.1.1"
     use-debounce "^3.4.2"
 
-"@smartb/archetypes-ui-providers@^0.1.42":
-  version "0.1.42"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-providers/-/archetypes-ui-providers-0.1.42.tgz#8d6167a7590012556a9b049bbd2ccd446c28035d"
-  integrity sha512-zL0D15fy+d3ov0UlvL/dIH65Pj53Qm8KH9OhqPV8q4YO0jNqPPN9L1V+Q7GTCRGYSk/NPduhl6hQP+gm8XWSBA==
+"@smartb/archetypes-ui-providers@^0.1.43":
+  version "0.1.43"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-providers/-/archetypes-ui-providers-0.1.43.tgz#9eb812cd95bf5613e40a403efbb256401db93121"
+  integrity sha512-oxff7A65rrS7TIUvm/JCBVyKfJbkN6LM3KOQG1PU7IMJ/FSfhuuXN0AgGRZ5iVBGSDIkJknIYmw1z6wVYwMd/g==
   dependencies:
     "@react-keycloak/ssr" "^3.3.0"
     "@react-keycloak/web" "^3.4.0"
-    "@smartb/archetypes-ui-components" "^0.1.42"
+    "@smartb/archetypes-ui-components" "^0.1.43"
     clsx "^1.1.1"
     connected-react-router "^6.9.1"
     history "^4.10.1"
@@ -1804,20 +1804,20 @@
     react-router-dom "^5.2.0"
     redux "^4.1.0"
 
-"@smartb/archetypes-ui-s2@^0.1.42":
-  version "0.1.42"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-s2/-/archetypes-ui-s2-0.1.42.tgz#2e285df0c1e88208d40558c578cb412a2d9e6ff2"
-  integrity sha512-mRgAF18lGBwKXZNEeuxI56bLJa5jDEk2BFsIPK2LJ//lzJsQicKjnGH9ziOHkuB3l2NwOvYv6dO/+qPRgBn09g==
+"@smartb/archetypes-ui-s2@^0.1.43":
+  version "0.1.43"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-s2/-/archetypes-ui-s2-0.1.43.tgz#636e5db9cb3f06ea75236f795c24ab3337a8f69d"
+  integrity sha512-lUFWBp50+nxTxeVh8GOVmi60m+7WpDvrat+hgAmm36tX0nUr21TeaX/DE1AwghSHSUI93EuXCr4oWNh9HJpi5Q==
   dependencies:
     clsx "^1.1.1"
     mermaid "^8.9.2"
     vis-data "^7.1.2"
     vis-network "^9.0.0"
 
-"@smartb/archetypes-ui-themes@^0.1.42":
-  version "0.1.42"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-themes/-/archetypes-ui-themes-0.1.42.tgz#bc7466fec3cd62c9308c2a69af9bb5556953863a"
-  integrity sha512-HV7EcSB0M0i9kV0Zzyyrd4UdzYtmt2FXAwrZ92ngSq0ST7NLITdzkD/0PmALMEEiYtCppNtb0X7oGqEBs/yCbg==
+"@smartb/archetypes-ui-themes@^0.1.43":
+  version "0.1.43"
+  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-themes/-/archetypes-ui-themes-0.1.43.tgz#d6cf14f98abc6f5dbd8d5d1024b3dafdc7bfceb7"
+  integrity sha512-GWM0ydWlVLZ2o69hkxwrPxCuMlZPpVJaSgIbtYjSTSGT0zX20tqdMKs6Jd4t1CINaJJsbbNKJ+OcXFTXVcekdg==
 
 "@surma/rollup-plugin-off-main-thread@^1.1.1":
   version "1.4.2"

@@ -26,6 +26,7 @@
   "year": "Year",
   "all": "All",
   "copyToClipboard": "Copy to clipboard",
+  "copyToClipboardSuccess": "Already copied, click here to re-copy it",
   "preview": "Preview",
   "detailsPage": {
     "sessionInformations": "Session informations",

@@ -9,9 +9,6 @@
     "source-map-loader": "1.1.0"
   },
   "dependencies": {
-    "x2-ssm-domain": "0.0.0-latest",
-    "ktor-ktor-client-core-jsIr": "file:/Users/luc/Bazar/fixers/x2/build/js/packages_imported/ktor-ktor-client-core-jsIr/1.5.2",
-    "ktor-ktor-network-jsIr": "file:/Users/luc/Bazar/fixers/x2/build/js/packages_imported/ktor-ktor-network-jsIr/1.4.3"
   },
   "peerDependencies": {},
   "optionalDependencies": {},

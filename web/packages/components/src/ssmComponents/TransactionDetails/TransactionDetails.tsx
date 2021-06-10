@@ -1,10 +1,11 @@
 import { Box, InputLabel, Typography } from '@material-ui/core'
-import { CodeHighlighter, CopyToClipboard } from '@smartb/archetypes-ui-components'
+import { CodeHighlighter } from '@smartb/archetypes-ui-components'
 import { midLevelStyles } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SessionState } from 'ssm'
+import { CopyToClipboard } from '../../components/CopyToClipboard'
 
 const useStyles = midLevelStyles()({
     preContainer: {
@@ -77,10 +78,10 @@ export const TransactionDetails = (props: TransactionDetailsProps) => {
                 <Box className={clsx(classes.box, minified && classes.boxMinified)}>
                     <Box position="relative">
                         <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.transactionId}</Typography>
-                        <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.transactionId ?? ""} helperText={t("copyToClipboard")} />
+                        <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.transactionId ?? ""} />
                     </Box>
-                    <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>Not yet implemented</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.creator.mspid}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.creator.id}</Typography>
                 </Box>
             </Box>
         </>
@@ -99,7 +100,7 @@ export const TransactionDetails = (props: TransactionDetailsProps) => {
                 <Box className={clsx(classes.box, minified && classes.boxMinified)}>
                     <Box position="relative">
                         <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.transactionId}</Typography>
-                        <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.transactionId ?? ""} helperText={t("copyToClipboard")} />
+                        <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.transactionId ?? ""} />
                     </Box>
                     <Typography variant={typovariant} className={classes.rightTypo}>{new Date(transaction.transaction?.timestamp).toLocaleDateString()}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.creator.mspid}</Typography>
@@ -107,7 +108,7 @@ export const TransactionDetails = (props: TransactionDetailsProps) => {
                     <Typography variant={typovariant} className={classes.rightTypo}>{transaction.details?.current ?? ""}</Typography>
                     <Box position="relative">
                         <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.creator.id}</Typography>
-                        <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.creator.id ?? ""} helperText={t("copyToClipboard")} />
+                        <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.creator.id ?? ""} />
                     </Box>
                 </Box>
             </Box>
