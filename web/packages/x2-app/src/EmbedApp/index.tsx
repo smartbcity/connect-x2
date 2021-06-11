@@ -3,6 +3,7 @@ import {Route} from "react-router-dom";
 import ProtocolDiagram  from "./pages/ProtocolDiagram";
 import SessionInformation  from "./pages/SessionInformation";
 import TransactionDetail  from "./pages/TransactionDetail";
+import TransactionHistory  from "./pages/TransactionHistory";
 
 export const EmbedApp = () => {
   return (
@@ -16,8 +17,8 @@ export const EmbedApp = () => {
       <Route exact path="/embed/:ssmName/:sessionName/:transactionId/details" >
         <TransactionDetail />
       </Route>
-      <Route exact path="/embed/:ssmName/:sessionName/:transactionId/history" >
-        <TransactionDetail />
+      <Route exact path="/embed/:ssmName/:sessionName/history" >
+        <TransactionHistory />
       </Route>
     </Router>
   );

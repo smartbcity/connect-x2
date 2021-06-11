@@ -20,7 +20,7 @@ const useStyles = highLevelStyles()({
     timeline: {
         display: "block",
         flexGrow: 0,
-        height:"max-content"
+        height: "max-content"
     }
 })
 
@@ -54,7 +54,12 @@ export const HistoryCard = (props: HistoryCardProps) => {
     )
 
     return (
-        <Panel className={classes.panel} header={t("detailsPage.transactionsHistory")} bodyClassName={classes.panelBody}>
+        <Panel
+            className={classes.panel}
+            header={t("detailsPage.transactionsHistory")}
+            bodyClassName={classes.panelBody}
+            embedUrl={`${window.location.origin}/embed/${currentSession.currentState.details.ssm}/${currentSession.id}/history`}
+        >
             {!result ?
                 <LoadingComponent />
                 :

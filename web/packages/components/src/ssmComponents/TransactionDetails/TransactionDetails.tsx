@@ -25,7 +25,8 @@ const useStyles = midLevelStyles()({
         whiteSpace: "nowrap",
         maxWidth: "250px",
         overflow: "hidden",
-        textOverflow: "ellipsis"
+        textOverflow: "ellipsis",
+        minHeight: "14px"
     },
     box: {
         display: "flex",
@@ -41,6 +42,16 @@ const useStyles = midLevelStyles()({
         "& label": {
             fontSize: "14px"
         }
+    },
+    shortBox: {
+        height: "80px",
+        padding: "10px 5px",
+        "& label": {
+            fontSize: "14px"
+        }
+    },
+    rightTypoShort: {
+        maxWidth: "200px",
     },
     descriptionContainer: {
         display: "inline-flex",
@@ -70,18 +81,21 @@ export const TransactionDetails = (props: TransactionDetailsProps) => {
     if (shortVersion) return (
         <>
             <Box className={clsx(classes.descriptionContainer, className)}>
-                <Box className={clsx(classes.box, minified && classes.boxMinified)} >
+                <Box className={clsx(classes.box, classes.shortBox)} style={{paddingLeft: 0}} >
                     <InputLabel>{t("transactionId")}:</InputLabel>
                     <InputLabel>{t("user")}:</InputLabel>
                     <InputLabel>{t("publicKey")}:</InputLabel>
                 </Box>
-                <Box className={clsx(classes.box, minified && classes.boxMinified)}>
+                <Box className={clsx(classes.box, classes.shortBox)} style={{paddingRight: 0}}>
                     <Box position="relative">
-                        <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.transactionId}</Typography>
+                        <Typography variant={typovariant} className={clsx(classes.rightTypo, classes.rightTypoShort)}>{transaction.transaction?.transactionId}</Typography>
                         <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.transactionId ?? ""} />
                     </Box>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.creator.mspid}</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.creator.id}</Typography>
+                    <Typography variant={typovariant} className={clsx(classes.rightTypo, classes.rightTypoShort)}>{transaction.transaction?.creator.mspid}</Typography>
+                    <Box position="relative">
+                        <Typography variant={typovariant} className={clsx(classes.rightTypo, classes.rightTypoShort)}>{transaction.transaction?.creator.id}</Typography>
+                        <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.creator.id ?? ""} />
+                    </Box>
                 </Box>
             </Box>
         </>

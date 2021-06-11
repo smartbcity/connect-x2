@@ -3,7 +3,7 @@
   "protocols": "Protocoles",
   "transactions": "Transactions",
   "sessions": "Sessions",
-  "details": "Détails",
+  "sessionsDetails": "Détails de la session",
   "back": "Retour",
   "date": "Date",
   "status": "Status",

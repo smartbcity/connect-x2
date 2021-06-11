@@ -3,3 +3,19 @@ body {
   margin: 0;
   padding: 0;
 }
+
+*::-webkit-scrollbar {
+  width: 0.4em;
+  height: 0.4em;
+  background-color: rgb(242, 244, 245);
+}
+ 
+body::-webkit-scrollbar-track {
+  border-radius: 5px;
+  border: 1px solid rgb(53, 57, 69, 0.3);
+}
+ 
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(53, 57, 69);
+  border-radius: 5px;
+}

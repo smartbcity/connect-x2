@@ -51,7 +51,7 @@ export const Details = (props: DetailsProps) => {
   return (
     <Page
       setTitle={setTitle}
-      title={t("details")}
+      title={t("sessionsDetails")}
     >
       <CardContainer>
         <ProtocolCard currentSSM={currentSSM} />

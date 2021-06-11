@@ -12,7 +12,7 @@ export const useFetchTransactions = (currentSession: Session) => {
                 lines: sessionStates.map((sessionState, index): TimeLineCell => {
                     const init = sessionState.details?.origin?.role === undefined && sessionState.details?.origin?.action === undefined
                     return {
-                        id: sessionState.transaction?.transactionId ?? "session n°" + index,
+                        id: sessionState.transaction?.transactionId ?? "sessionState n°" + index,
                         content: (
                             <Box display="flex" flexDirection="column">
                                 <Typography>

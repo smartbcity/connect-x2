@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import {Session} from "ssm"
+import { CopyToClipboard } from '../../components/CopyToClipboard'
 
 const useStyles = midLevelStyles()({
     box: {
@@ -30,6 +31,11 @@ const useStyles = midLevelStyles()({
         maxWidth: "250px",
         overflow: "hidden",
         textOverflow: "ellipsis"
+    },
+    iconButton: {
+        position: "absolute",
+        right: "-44px",
+        top: "-14px"
     }
 })
 
@@ -57,7 +63,10 @@ export const SessionInformations = (props: SessionInformationsProps) => {
                     <InputLabel>{t("protocolEngine")}:</InputLabel>
                 </Box>
                 <Box className={clsx(classes.box, minified && classes.boxMinified)}>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.id}</Typography>
+                    <Box position="relative">
+                        <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.id}</Typography>
+                        <CopyToClipboard className={classes.iconButton} value={currentSession.id} />
+                    </Box>
                     <Typography variant={typovariant} className={classes.rightTypo}>{new Date(currentSession.creationTransaction?.timestamp).toLocaleDateString()}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.currentState.details.current}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>{init ? "initialization" : `${currentSession.currentState.details.origin?.role}: ${currentSession.currentState.details.origin?.action}`}</Typography>
