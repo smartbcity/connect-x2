@@ -1,6 +1,6 @@
 import { SSM, Session, SessionState} from "./models";
 import { request, httpOptions } from "utils"
-import {GetSsmListCommand, GetSsmSessionListCommand, GetSsmSessionCommand, GetSsmSessionLogsCommand} from  "x2-ssm-domain"
+import {GetSsmListCommand, GetSsmSessionListCommand, GetSsmSessionCommand, GetSsmSessionLogListCommand, GetSsmSessionLogCommand} from  "x2-ssm-domain"
 
 //@ts-ignore
 const requestBase = {baseUrl: window._env_.BASE_URL, dbName: "proudhon_ssm"}
@@ -41,15 +41,25 @@ const fetchSession = async (sessionId: string) => {
 const fetchSessionStates = async (
     sessionId: string
 ) => {
-    const sessionStates = await fetchCoop<SessionState[][]>("getSessionLogs", {baseUrl: requestBase.baseUrl, sessionId: sessionId} as GetSsmSessionLogsCommand) ?? [[]]
+    const sessionStates = await fetchCoop<SessionState[][]>("getSessionLogs", {baseUrl: requestBase.baseUrl, sessionId: sessionId} as GetSsmSessionLogListCommand) ?? [[]]
     return sessionStates[0] ?? []
 };
+
+const fetchSessionState = async (
+    sessionId: string,
+    transactionId: string
+) => {
+    const sessionState = await fetchCoop<SessionState[]>("getOneSessionLog", {baseUrl: requestBase.baseUrl, txId: transactionId, sessionId: sessionId} as GetSsmSessionLogCommand) ?? []
+    return sessionState[0]
+};
+
 
 
 export const SSMRequester = {
     fetchSSMs: fetchSSMs,
     fetchSessions: fetchSessions,
     fetchSession: fetchSession,
-    fetchSessionStates: fetchSessionStates
+    fetchSessionStates: fetchSessionStates,
+    fetchSessionState: fetchSessionState
 };
 

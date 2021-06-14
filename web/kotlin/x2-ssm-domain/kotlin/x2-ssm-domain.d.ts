@@ -513,14 +513,31 @@ export class GetSsmSessionListCommandBase implements GetSsmSessionListCommand {
     readonly bearerToken: Nullable<string>;
     readonly ssm: Nullable<string>;
 }
-export interface GetSsmSessionLogsCommand extends ssm.dsl.SsmCommand {
+export interface GetSsmSessionLogCommand extends ssm.dsl.SsmCommand {
+    readonly sessionId: string;
+    readonly txId: string;
+    readonly baseUrl: string;
+    readonly channelId: Nullable<string>;
+    readonly chaincodeId: Nullable<string>;
+    readonly bearerToken: Nullable<string>;
+}
+export class GetSsmSessionLogCommandBase implements GetSsmSessionLogCommand {
+    constructor(sessionId: string, txId: string, baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
+    readonly sessionId: string;
+    readonly txId: string;
+    readonly baseUrl: string;
+    readonly channelId: Nullable<string>;
+    readonly chaincodeId: Nullable<string>;
+    readonly bearerToken: Nullable<string>;
+}
+export interface GetSsmSessionLogListCommand extends ssm.dsl.SsmCommand {
     readonly sessionId: string;
     readonly baseUrl: string;
     readonly channelId: Nullable<string>;
     readonly chaincodeId: Nullable<string>;
     readonly bearerToken: Nullable<string>;
 }
-export class GetSsmSessionLogsBaseCommand implements GetSsmSessionLogsCommand {
+export class GetSsmSessionLogListBaseCommand implements GetSsmSessionLogListCommand {
     constructor(sessionId: string, baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>);
     readonly sessionId: string;
     readonly baseUrl: string;
