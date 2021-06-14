@@ -9,7 +9,11 @@ const useStyles = highLevelStyles()({
     },
     body: {
         height: "450px",
-        overflow: "auto"
+        overflow: "auto",
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        alignItems: "center"
     }
 })
 

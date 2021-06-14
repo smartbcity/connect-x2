@@ -11,6 +11,11 @@ const useStyles = highLevelStyles()({
     body: {
         height: "450px",
         overflow: "auto",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        alignItems: "center"
     }
 })
 
