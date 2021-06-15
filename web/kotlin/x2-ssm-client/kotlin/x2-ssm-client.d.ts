@@ -575,4 +575,41 @@ export namespace x2.api.ssm.domain {
         getSessionLogs(): f2.dsl.function.F2FunctionRemote<ssm.chaincode.dsl.query.SsmGetSessionLogsQuery, Array<ssm.chaincode.dsl.SsmSessionStateLog>>;
     }
 }
-export as namespace x2_ssm_domain;
+export namespace f2.client.ktor.http {
+    class HttpClientBuilder {
+        constructor();
+        build(scheme: string, host: string, port: number, path: Nullable<string>): f2.client.F2Client;
+    }
+}
+export namespace f2.client.ktor {
+    class Protocol {
+        private constructor();
+    }
+    const HTTP: {
+    } & f2.client.ktor.Protocol;
+    const HTTPS: {
+    } & f2.client.ktor.Protocol;
+    const WS: {
+    } & f2.client.ktor.Protocol;
+    const WSS: {
+    } & f2.client.ktor.Protocol;
+    const TCP: {
+    } & f2.client.ktor.Protocol;
+}
+export namespace x2.ssm.client {
+    function ssmClient(host: string, port: number, path: Nullable<string>): kotlin.js.Promise<x2.ssm.client.SSMFunctionClient>;
+    class SSMFunctionClient {
+        constructor(client: f2.client.F2Client);
+        getAllSsm(msg: GetSsmListCommand): kotlin.js.Promise<Array<TxSsm>>;
+        getSsm(): f2.dsl.function.F2FunctionRemote<ssm.chaincode.dsl.query.SsmGetQuery, ssm.chaincode.dsl.query.SsmGetResult>;
+        getAllSessions(msg: GetSsmSessionListCommand): kotlin.js.Promise<Array<TxSsmSession>>;
+        getSession(): f2.dsl.function.F2FunctionRemote<GetSsmSessionCommand, Nullable<TxSsmSession>>;
+        getSessionLogs(): f2.dsl.function.F2FunctionRemote<ssm.chaincode.dsl.query.SsmGetSessionLogsQuery, Array<ssm.chaincode.dsl.SsmSessionStateLog>>;
+    }
+    class F2Promise<T> {
+        constructor(promise: kotlin.js.Promise<T>);
+        then<S>(onFulfilled: Nullable<(p0: T) => S>, onRejected: Nullable<(p0: Error) => S>): kotlin.js.Promise<S>;
+        /* ErrorDeclaration: Name is a reserved word */
+    }
+}
+export as namespace x2_ssm_client;
