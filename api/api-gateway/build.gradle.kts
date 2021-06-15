@@ -9,6 +9,7 @@ plugins {
 dependencies {
     api("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
 
-    implementation(project(":api:ssm:ssm-api"))
+    implementation(project(":api:api-config"))
     implementation(project(":api:api-infra:i2"))
+    implementation(project(":api:ssm:ssm-api"))
 }

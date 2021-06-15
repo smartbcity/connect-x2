@@ -10,6 +10,7 @@ rootProject.name = "x2"
 enableFeaturePreview("GRADLE_METADATA")
 
 include(
+	"api:api-config",
 	"api:api-gateway"
 )
 
