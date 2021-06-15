@@ -23,7 +23,7 @@ export const useFetchTransactions = (ssmName: string, sessionId: string) => {
                                 <TransactionDetails transaction={sessionState} minified shortVersion />
                             </Box>
                         ),
-                        startTime: "12/02/2021",
+                        startTime: new Date(sessionState.transaction?.timestamp).toLocaleDateString(),
                     }
                 }),
                 sessionStates: sessionStates
