@@ -25,17 +25,18 @@ const useStyles = highLevelStyles()({
 })
 
 interface HistoryCardProps {
+    ssmName: string
     currentSession: Session
     onChangeTransaction: (log?: SessionState) => void
 }
 
 export const HistoryCard = (props: HistoryCardProps) => {
-    const { currentSession, onChangeTransaction } = props
+    const { ssmName, currentSession, onChangeTransaction } = props
     const { t } = useTranslation()
     const classes = useStyles()
     const [selectedCellId, setSelectedCellId] = useState<string | undefined>(undefined)
 
-    const result = useFetchTransactions(currentSession)
+    const result = useFetchTransactions(ssmName, currentSession)
 
     const onSelectCell = useCallback(
         (cell: TimeLineCell) => {

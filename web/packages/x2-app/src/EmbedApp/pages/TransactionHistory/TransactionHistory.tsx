@@ -45,9 +45,9 @@ export const TransactionHistory = (props: TransactionHistoryProps) => {
   const { } = props
   const { t } = useTranslation()
   const classes = useStyles()
-  const { sessionName } = useParams<{ ssmName: string, sessionName: string }>();
+  const { ssmName, sessionName } = useParams<{ ssmName: string, sessionName: string }>();
 
-  const { result, status } = useFetchTransactions(sessionName)
+  const { result, status } = useFetchTransactions(ssmName, sessionName)
 
   if (status === "PENDING") return <LoadingPage />
 

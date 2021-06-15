@@ -8,9 +8,9 @@ export interface SessionState extends TxSsmSessionState {}
 
 export interface User extends TxSsmUser {}
 
-export interface Transaction extends ssm.dsl.blockchain.Transaction {}
+export interface Transaction extends ssm.chaincode.dsl.blockchain.Transaction {}
 
-export interface Transition extends ssm.dsl.SsmTransition {}
+export interface Transition extends ssm.chaincode.dsl.SsmTransition {}
 
 
 //@ts-ignore

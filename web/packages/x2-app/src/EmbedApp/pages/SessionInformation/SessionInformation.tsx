@@ -26,13 +26,13 @@ export const SessionInformation = (props: SessionInformationProps) => {
   const { } = props;
   const { t } = useTranslation()
   const classes = useStyles()
-  const { sessionName } = useParams<{ ssmName: string, sessionName: string }>();
+  const { sessionName, ssmName } = useParams<{ ssmName: string, sessionName: string }>();
 
   const fetchSession = useCallback(
     async () => {
-      return SSMRequester.fetchSession(sessionName)
+      return SSMRequester.fetchSession(ssmName, sessionName)
     },
-    [sessionName],
+    [sessionName, ssmName],
   )
 
   const { result, status } = useAsyncResponse(fetchSession)

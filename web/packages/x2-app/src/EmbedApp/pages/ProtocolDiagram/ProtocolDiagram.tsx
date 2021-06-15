@@ -2,10 +2,12 @@ import { Box, Typography } from "@material-ui/core";
 import { NoMatchPage } from "@smartb/archetypes-ui-providers";
 import { AutomateViewer } from "@smartb/archetypes-ui-s2";
 import { highLevelStyles } from "@smartb/archetypes-ui-themes";
-import { useMemo } from "react";
+import { LoadingPage } from "components";
+import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import { SSM, Transition } from "ssm";
+import { SSMRequester, Transition } from "ssm";
+import { useAsyncResponse } from "utils";
 
 const useStyles = highLevelStyles()({
   viewer: {
@@ -22,22 +24,31 @@ const useStyles = highLevelStyles()({
 })
 
 interface ProtocolDiagramProps {
-  ssmList: Map<string, SSM>
 }
 
 export const ProtocolDiagram = (props: ProtocolDiagramProps) => {
-  const { ssmList } = props;
+  const { } = props;
   const { t } = useTranslation()
   const classes = useStyles()
   const { ssmName } = useParams<{ ssmName: string }>();
-  const currentSSM = useMemo(() => ssmList.get(ssmName), [ssmList, ssmName])
-  const transitions = useMemo(() => currentSSM ? currentSSM.ssm.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
+  const fetchSSM = useCallback(
+    async () => {
+      return SSMRequester.fetchSSM(ssmName)
+    },
+    [ssmName],
+  )
 
-  if (!currentSSM) return <NoMatchPage noGoBack/>
+  const { result, status } = useAsyncResponse(fetchSSM)
+
+  const transitions = useMemo(() => result ? result.ssm.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [result])
+
+  if (status === "PENDING") return <LoadingPage />
+
+  if (!result) return <NoMatchPage noGoBack/>
 
   return (
     <Box position="relative" width="100vw" height="100vh">
-      <Typography className={classes.title} variant="body1">{t("protocolDiagramOf", {ssmName: currentSSM.ssm.name})}</Typography>
+      <Typography className={classes.title} variant="body1">{t("protocolDiagramOf", {ssmName: result.ssm.name})}</Typography>
       <AutomateViewer transitions={transitions} className={classes.viewer}/>
     </Box>
   );

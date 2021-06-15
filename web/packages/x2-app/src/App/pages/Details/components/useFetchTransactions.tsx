@@ -4,10 +4,10 @@ import { useCallback } from "react"
 import { Session, SSMRequester, SessionState } from "ssm"
 import { useAsyncResponse } from "utils"
 
-export const useFetchTransactions = (currentSession: Session) => {
+export const useFetchTransactions = (ssmName: string, currentSession: Session) => {
     const getLines = useCallback(
         async (): Promise<{ lines: TimeLineCell[], sessionStates: SessionState[] }> => {
-            const sessionStates = await SSMRequester.fetchSessionStates(currentSession.id)
+            const sessionStates = await SSMRequester.fetchSessionStates(ssmName, currentSession.id)
             return {
                 lines: sessionStates.map((sessionState, index): TimeLineCell => {
                     const init = sessionState.details?.origin?.role === undefined && sessionState.details?.origin?.action === undefined

@@ -3,7 +3,7 @@ import { SSM, defaultProtocols } from "ssm";
 import { LoadingPage } from "components";
 import { SSMRequester } from "ssm";
 import { useExtendedAuth } from "OptionnalKeycloakProvider";
-import { BaseRouter } from "BaseRouter";
+import App from "App";
 
 interface InitStoreProps {
   ssmList: Map<string, SSM>
@@ -36,7 +36,7 @@ export const InitStore = (props: InitStoreProps) => {
   )
 
   return (
-    <BaseRouter />
+    <App />
   );
 };
 

@@ -1,9 +1,7 @@
 import { SSM, Session, SessionState} from "./models";
 import { request, httpOptions } from "utils"
-import {GetSsmListCommand, GetSsmSessionListCommand, GetSsmSessionCommand, GetSsmSessionLogListCommand, GetSsmSessionLogCommand} from  "x2-ssm-domain"
+import { GetSsmSessionListCommand, GetSsmSessionCommand, GetSsmSessionLogListCommand, GetSsmSessionLogCommand, GetSsmCommand} from  "x2-ssm-domain"
 
-//@ts-ignore
-const requestBase = {baseUrl: window._env_.BASE_URL, dbName: "proudhon_ssm"}
 
 const fetchCoop = function <T>(
     location: string,
@@ -23,33 +21,40 @@ const fetchCoop = function <T>(
 };
 
 const fetchSSMs = async () => {
-    const ssms = await fetchCoop<SSM[][]>("getAllSsm", {...requestBase} as GetSsmListCommand) ?? [[]]
+    const ssms = await fetchCoop<SSM[][]>("getAllSsm") ?? [[]]
     return ssms[0] ?? []
 };
 
+const fetchSSM = async (ssmName?: string) => {
+    const ssms = await fetchCoop<SSM[]>("getSsm", {ssm: ssmName} as GetSsmCommand) ?? []
+    return ssms[0]
+};
+
 const fetchSessions = async (ssmName?: string) => {
-    const sessions = await fetchCoop<Session[][]>("getAllSessions", {...requestBase, ssm: ssmName} as GetSsmSessionListCommand) ?? [[]]
+    const sessions = await fetchCoop<Session[][]>("getAllSessions", {ssm: ssmName} as GetSsmSessionListCommand) ?? [[]]
     return sessions[0] ?? []
 };
 
-const fetchSession = async (sessionId: string) => {
-    const session = await fetchCoop<Session[]>("getSession", {baseUrl: requestBase.baseUrl, sessionId: sessionId} as GetSsmSessionCommand) ?? []
+const fetchSession = async (ssmName: string, sessionId: string) => {
+    const session = await fetchCoop<Session[]>("getSession", {sessionId: sessionId, ssm: ssmName} as GetSsmSessionCommand) ?? []
     return session[0]
 };
 
 
 const fetchSessionStates = async (
+    ssmName: string,
     sessionId: string
 ) => {
-    const sessionStates = await fetchCoop<SessionState[][]>("getSessionLogs", {baseUrl: requestBase.baseUrl, sessionId: sessionId} as GetSsmSessionLogListCommand) ?? [[]]
+    const sessionStates = await fetchCoop<SessionState[][]>("getSessionLogs", {sessionId: sessionId, ssm: ssmName} as GetSsmSessionLogListCommand) ?? [[]]
     return sessionStates[0] ?? []
 };
 
 const fetchSessionState = async (
+    ssmName: string,
     sessionId: string,
     transactionId: string
 ) => {
-    const sessionState = await fetchCoop<SessionState[]>("getOneSessionLog", {baseUrl: requestBase.baseUrl, txId: transactionId, sessionId: sessionId} as GetSsmSessionLogCommand) ?? []
+    const sessionState = await fetchCoop<SessionState[]>("getOneSessionLog", {txId: transactionId, sessionId: sessionId, ssm: ssmName} as GetSsmSessionLogCommand) ?? []
     return sessionState[0]
 };
 
@@ -57,6 +62,7 @@ const fetchSessionState = async (
 
 export const SSMRequester = {
     fetchSSMs: fetchSSMs,
+    fetchSSM: fetchSSM,
     fetchSessions: fetchSessions,
     fetchSession: fetchSession,
     fetchSessionStates: fetchSessionStates,

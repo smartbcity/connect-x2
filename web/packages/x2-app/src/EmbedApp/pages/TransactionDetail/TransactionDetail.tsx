@@ -22,13 +22,13 @@ const useStyles = highLevelStyles()({
 export const TransactionDetail = () => {
   const { t } = useTranslation()
   const classes = useStyles()
-  const { sessionName, transactionId } = useParams<{ ssmName: string, sessionName: string, transactionId: string }>();
+  const { sessionName, transactionId, ssmName } = useParams<{ ssmName: string, sessionName: string, transactionId: string }>();
 
   const fetchSession = useCallback(
     async () => {
-      return SSMRequester.fetchSessionState(sessionName, transactionId)
+      return SSMRequester.fetchSessionState(ssmName, sessionName, transactionId)
     },
-    [sessionName],
+    [sessionName, ssmName, transactionId],
   )
 
   const { result, status } = useAsyncResponse(fetchSession)

@@ -1,7 +1,7 @@
 import { Router } from '@smartb/archetypes-ui-providers'
 import { Route } from 'react-router'
-import App from "App";
 import EmbedApp from "EmbedApp";
+import InitStore from 'InitStore';
 
 export const BaseRouter = () => {
     return (
@@ -10,7 +10,7 @@ export const BaseRouter = () => {
                 <EmbedApp />
             </Route>
             <Route path="*" >
-                <App />
+                <InitStore />
             </Route>
         </Router>
     )

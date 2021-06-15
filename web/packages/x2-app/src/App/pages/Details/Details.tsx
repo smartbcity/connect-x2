@@ -58,7 +58,7 @@ export const Details = (props: DetailsProps) => {
         <InformationCard currentSession={currentSession} />
       </CardContainer>
       <CardContainer>
-        <HistoryCard currentSession={currentSession} onChangeTransaction={onChangeTransaction} />
+        <HistoryCard ssmName={ssmName} currentSession={currentSession} onChangeTransaction={onChangeTransaction} />
         <DetailsCard transaction={transaction} />
       </CardContainer>
     </Page>
