@@ -2840,7 +2840,7 @@
     this._public_0 = public_0;
     this._private_0 = private_0;
   }
-  SsmSessionBase_0.prototype._get_ssm__13 = function () {
+  SsmSessionBase_0.prototype._get_ssm__15 = function () {
     return this._ssm;
   };
   SsmSessionBase_0.prototype._get_session__6 = function () {
@@ -2862,7 +2862,7 @@
   };
   Object.defineProperty(SsmSessionBase_0.prototype, 'ssm', {
     configurable: true,
-    get: SsmSessionBase_0.prototype._get_ssm__13
+    get: SsmSessionBase_0.prototype._get_ssm__15
   });
   Object.defineProperty(SsmSessionBase_0.prototype, 'session', {
     configurable: true,
@@ -2906,7 +2906,7 @@
     this._current = current;
     this._iteration_1 = iteration;
   }
-  SsmSessionStateBase_0.prototype._get_ssm__13 = function () {
+  SsmSessionStateBase_0.prototype._get_ssm__15 = function () {
     return this._ssm_0;
   };
   SsmSessionStateBase_0.prototype._get_session__6 = function () {
@@ -3023,7 +3023,7 @@
   };
   Object.defineProperty(SsmSessionStateBase_0.prototype, 'ssm', {
     configurable: true,
-    get: SsmSessionStateBase_0.prototype._get_ssm__13
+    get: SsmSessionStateBase_0.prototype._get_ssm__15
   });
   Object.defineProperty(SsmSessionStateBase_0.prototype, 'session', {
     configurable: true,
@@ -3408,7 +3408,7 @@
   SsmGetAdminQuery_0.prototype._get_chaincodeId__9 = function () {
     return this._chaincodeId;
   };
-  SsmGetAdminQuery_0.prototype._get_bearerToken__20 = function () {
+  SsmGetAdminQuery_0.prototype._get_bearerToken__22 = function () {
     return this._bearerToken;
   };
   SsmGetAdminQuery_0.prototype._get_name__8 = function () {
@@ -3433,7 +3433,7 @@
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_bearerToken__20
+    get: SsmGetAdminQuery_0.prototype._get_bearerToken__22
   });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'name', {
     configurable: true,
@@ -3479,7 +3479,7 @@
   SsmGetQuery_0.prototype._get_chaincodeId__9 = function () {
     return this._chaincodeId_0;
   };
-  SsmGetQuery_0.prototype._get_bearerToken__20 = function () {
+  SsmGetQuery_0.prototype._get_bearerToken__22 = function () {
     return this._bearerToken_0;
   };
   SsmGetQuery_0.prototype._get_name__8 = function () {
@@ -3504,7 +3504,7 @@
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetQuery_0.prototype._get_bearerToken__20
+    get: SsmGetQuery_0.prototype._get_bearerToken__22
   });
   Object.defineProperty(SsmGetQuery_0.prototype, 'name', {
     configurable: true,
@@ -3544,7 +3544,7 @@
   SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__9 = function () {
     return this._chaincodeId_1;
   };
-  SsmGetSessionLogsQuery_0.prototype._get_bearerToken__20 = function () {
+  SsmGetSessionLogsQuery_0.prototype._get_bearerToken__22 = function () {
     return this._bearerToken_1;
   };
   SsmGetSessionLogsQuery_0.$metadata$ = {
@@ -3570,7 +3570,7 @@
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_bearerToken__20
+    get: SsmGetSessionLogsQuery_0.prototype._get_bearerToken__22
   });
   function SsmGetSessionLogsQueryResult_0(logs) {
     this._logs = logs;
@@ -3641,7 +3641,7 @@
   SsmGetSessionQuery_0.prototype._get_chaincodeId__9 = function () {
     return this._chaincodeId_2;
   };
-  SsmGetSessionQuery_0.prototype._get_bearerToken__20 = function () {
+  SsmGetSessionQuery_0.prototype._get_bearerToken__22 = function () {
     return this._bearerToken_2;
   };
   SsmGetSessionQuery_0.prototype._get_name__8 = function () {
@@ -3666,7 +3666,7 @@
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_bearerToken__20
+    get: SsmGetSessionQuery_0.prototype._get_bearerToken__22
   });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'name', {
     configurable: true,
@@ -3706,7 +3706,7 @@
   SsmGetTransactionQuery_0.prototype._get_chaincodeId__9 = function () {
     return this._chaincodeId_3;
   };
-  SsmGetTransactionQuery_0.prototype._get_bearerToken__20 = function () {
+  SsmGetTransactionQuery_0.prototype._get_bearerToken__22 = function () {
     return this._bearerToken_3;
   };
   SsmGetTransactionQuery_0.$metadata$ = {
@@ -3732,7 +3732,7 @@
   });
   Object.defineProperty(SsmGetTransactionQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetTransactionQuery_0.prototype._get_bearerToken__20
+    get: SsmGetTransactionQuery_0.prototype._get_bearerToken__22
   });
   function SsmGetTransactionQueryResult_0(transaction) {
     this._transaction = transaction;
@@ -3774,7 +3774,7 @@
   SsmGetUserQuery_0.prototype._get_chaincodeId__9 = function () {
     return this._chaincodeId_4;
   };
-  SsmGetUserQuery_0.prototype._get_bearerToken__20 = function () {
+  SsmGetUserQuery_0.prototype._get_bearerToken__22 = function () {
     return this._bearerToken_4;
   };
   SsmGetUserQuery_0.prototype._get_name__8 = function () {
@@ -3799,7 +3799,7 @@
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_bearerToken__20
+    get: SsmGetUserQuery_0.prototype._get_bearerToken__22
   });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'name', {
     configurable: true,
@@ -3844,7 +3844,7 @@
   SsmListAdminQuery_0.prototype._get_chaincodeId__9 = function () {
     return this._chaincodeId_5;
   };
-  SsmListAdminQuery_0.prototype._get_bearerToken__20 = function () {
+  SsmListAdminQuery_0.prototype._get_bearerToken__22 = function () {
     return this._bearerToken_5;
   };
   SsmListAdminQuery_0.$metadata$ = {
@@ -3866,7 +3866,7 @@
   });
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_bearerToken__20
+    get: SsmListAdminQuery_0.prototype._get_bearerToken__22
   });
   function SsmListAdminResult_0(values) {
     this._values = values;
@@ -3907,7 +3907,7 @@
   SsmListSessionQuery_0.prototype._get_chaincodeId__9 = function () {
     return this._chaincodeId_6;
   };
-  SsmListSessionQuery_0.prototype._get_bearerToken__20 = function () {
+  SsmListSessionQuery_0.prototype._get_bearerToken__22 = function () {
     return this._bearerToken_6;
   };
   SsmListSessionQuery_0.$metadata$ = {
@@ -3929,7 +3929,7 @@
   });
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_bearerToken__20
+    get: SsmListSessionQuery_0.prototype._get_bearerToken__22
   });
   function SsmListSessionResult_0(values) {
     this._values_0 = values;
@@ -3970,7 +3970,7 @@
   SsmListSsmQuery_0.prototype._get_chaincodeId__9 = function () {
     return this._chaincodeId_7;
   };
-  SsmListSsmQuery_0.prototype._get_bearerToken__20 = function () {
+  SsmListSsmQuery_0.prototype._get_bearerToken__22 = function () {
     return this._bearerToken_7;
   };
   SsmListSsmQuery_0.$metadata$ = {
@@ -3992,7 +3992,7 @@
   });
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_bearerToken__20
+    get: SsmListSsmQuery_0.prototype._get_bearerToken__22
   });
   function SsmListSsmResult_0(values) {
     this._values_1 = values;
@@ -4033,7 +4033,7 @@
   SsmListUserQuery_0.prototype._get_chaincodeId__9 = function () {
     return this._chaincodeId_8;
   };
-  SsmListUserQuery_0.prototype._get_bearerToken__20 = function () {
+  SsmListUserQuery_0.prototype._get_bearerToken__22 = function () {
     return this._bearerToken_8;
   };
   SsmListUserQuery_0.$metadata$ = {
@@ -4055,7 +4055,7 @@
   });
   Object.defineProperty(SsmListUserQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: SsmListUserQuery_0.prototype._get_bearerToken__20
+    get: SsmListUserQuery_0.prototype._get_bearerToken__22
   });
   function SsmListUserResult_0(values) {
     this._values_2 = values;
@@ -4072,6 +4072,36 @@
     configurable: true,
     get: SsmListUserResult_0.prototype._get_values__2
   });
+  function GetSsmCommand_0() {
+  }
+  GetSsmCommand_0.$metadata$ = {
+    simpleName: 'GetSsmCommand',
+    kind: 'interface',
+    interfaces: [TxSsmCommand_0]
+  };
+  function GetSsmCommandBase_0(ssm, bearerToken) {
+    this._ssm_1 = ssm;
+    this._bearerToken_9 = bearerToken;
+  }
+  GetSsmCommandBase_0.prototype._get_ssm__15 = function () {
+    return this._ssm_1;
+  };
+  GetSsmCommandBase_0.prototype._get_bearerToken__22 = function () {
+    return this._bearerToken_9;
+  };
+  GetSsmCommandBase_0.$metadata$ = {
+    simpleName: 'GetSsmCommandBase',
+    kind: 'class',
+    interfaces: [GetSsmCommand_0]
+  };
+  Object.defineProperty(GetSsmCommandBase_0.prototype, 'ssm', {
+    configurable: true,
+    get: GetSsmCommandBase_0.prototype._get_ssm__15
+  });
+  Object.defineProperty(GetSsmCommandBase_0.prototype, 'bearerToken', {
+    configurable: true,
+    get: GetSsmCommandBase_0.prototype._get_bearerToken__22
+  });
   function GetSsmListCommand_0() {
   }
   GetSsmListCommand_0.$metadata$ = {
@@ -4080,10 +4110,10 @@
     interfaces: []
   };
   function GetSsmListCommandBase_0(bearerToken) {
-    this._bearerToken_9 = bearerToken;
+    this._bearerToken_10 = bearerToken;
   }
-  GetSsmListCommandBase_0.prototype._get_bearerToken__20 = function () {
-    return this._bearerToken_9;
+  GetSsmListCommandBase_0.prototype._get_bearerToken__22 = function () {
+    return this._bearerToken_10;
   };
   GetSsmListCommandBase_0.$metadata$ = {
     simpleName: 'GetSsmListCommandBase',
@@ -4092,7 +4122,7 @@
   };
   Object.defineProperty(GetSsmListCommandBase_0.prototype, 'bearerToken', {
     configurable: true,
-    get: GetSsmListCommandBase_0.prototype._get_bearerToken__20
+    get: GetSsmListCommandBase_0.prototype._get_bearerToken__22
   });
   function GetSsmSessionCommand_0() {
   }
@@ -4103,17 +4133,17 @@
   };
   function GetSsmSessionCommandBase_0(sessionId, ssm, bearerToken) {
     this._sessionId = sessionId;
-    this._ssm_1 = ssm;
-    this._bearerToken_10 = bearerToken;
+    this._ssm_2 = ssm;
+    this._bearerToken_11 = bearerToken;
   }
   GetSsmSessionCommandBase_0.prototype._get_sessionId__4 = function () {
     return this._sessionId;
   };
-  GetSsmSessionCommandBase_0.prototype._get_ssm__13 = function () {
-    return this._ssm_1;
+  GetSsmSessionCommandBase_0.prototype._get_ssm__15 = function () {
+    return this._ssm_2;
   };
-  GetSsmSessionCommandBase_0.prototype._get_bearerToken__20 = function () {
-    return this._bearerToken_10;
+  GetSsmSessionCommandBase_0.prototype._get_bearerToken__22 = function () {
+    return this._bearerToken_11;
   };
   GetSsmSessionCommandBase_0.$metadata$ = {
     simpleName: 'GetSsmSessionCommandBase',
@@ -4126,11 +4156,11 @@
   });
   Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'ssm', {
     configurable: true,
-    get: GetSsmSessionCommandBase_0.prototype._get_ssm__13
+    get: GetSsmSessionCommandBase_0.prototype._get_ssm__15
   });
   Object.defineProperty(GetSsmSessionCommandBase_0.prototype, 'bearerToken', {
     configurable: true,
-    get: GetSsmSessionCommandBase_0.prototype._get_bearerToken__20
+    get: GetSsmSessionCommandBase_0.prototype._get_bearerToken__22
   });
   function GetSsmSessionListCommand_0() {
   }
@@ -4140,14 +4170,14 @@
     interfaces: [TxSsmCommand_0]
   };
   function GetSsmSessionListCommandBase_0(ssm, bearerToken) {
-    this._ssm_2 = ssm;
-    this._bearerToken_11 = bearerToken;
+    this._ssm_3 = ssm;
+    this._bearerToken_12 = bearerToken;
   }
-  GetSsmSessionListCommandBase_0.prototype._get_ssm__13 = function () {
-    return this._ssm_2;
+  GetSsmSessionListCommandBase_0.prototype._get_ssm__15 = function () {
+    return this._ssm_3;
   };
-  GetSsmSessionListCommandBase_0.prototype._get_bearerToken__20 = function () {
-    return this._bearerToken_11;
+  GetSsmSessionListCommandBase_0.prototype._get_bearerToken__22 = function () {
+    return this._bearerToken_12;
   };
   GetSsmSessionListCommandBase_0.$metadata$ = {
     simpleName: 'GetSsmSessionListCommandBase',
@@ -4156,11 +4186,11 @@
   };
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'ssm', {
     configurable: true,
-    get: GetSsmSessionListCommandBase_0.prototype._get_ssm__13
+    get: GetSsmSessionListCommandBase_0.prototype._get_ssm__15
   });
   Object.defineProperty(GetSsmSessionListCommandBase_0.prototype, 'bearerToken', {
     configurable: true,
-    get: GetSsmSessionListCommandBase_0.prototype._get_bearerToken__20
+    get: GetSsmSessionListCommandBase_0.prototype._get_bearerToken__22
   });
   function GetSsmSessionLogCommand_0() {
   }
@@ -4172,8 +4202,8 @@
   function GetSsmSessionLogCommandBase_0(sessionId, txId, ssm, bearerToken) {
     this._sessionId_0 = sessionId;
     this._txId_0 = txId;
-    this._ssm_3 = ssm;
-    this._bearerToken_12 = bearerToken;
+    this._ssm_4 = ssm;
+    this._bearerToken_13 = bearerToken;
   }
   GetSsmSessionLogCommandBase_0.prototype._get_sessionId__4 = function () {
     return this._sessionId_0;
@@ -4181,11 +4211,11 @@
   GetSsmSessionLogCommandBase_0.prototype._get_txId__1 = function () {
     return this._txId_0;
   };
-  GetSsmSessionLogCommandBase_0.prototype._get_ssm__13 = function () {
-    return this._ssm_3;
+  GetSsmSessionLogCommandBase_0.prototype._get_ssm__15 = function () {
+    return this._ssm_4;
   };
-  GetSsmSessionLogCommandBase_0.prototype._get_bearerToken__20 = function () {
-    return this._bearerToken_12;
+  GetSsmSessionLogCommandBase_0.prototype._get_bearerToken__22 = function () {
+    return this._bearerToken_13;
   };
   GetSsmSessionLogCommandBase_0.$metadata$ = {
     simpleName: 'GetSsmSessionLogCommandBase',
@@ -4202,11 +4232,11 @@
   });
   Object.defineProperty(GetSsmSessionLogCommandBase_0.prototype, 'ssm', {
     configurable: true,
-    get: GetSsmSessionLogCommandBase_0.prototype._get_ssm__13
+    get: GetSsmSessionLogCommandBase_0.prototype._get_ssm__15
   });
   Object.defineProperty(GetSsmSessionLogCommandBase_0.prototype, 'bearerToken', {
     configurable: true,
-    get: GetSsmSessionLogCommandBase_0.prototype._get_bearerToken__20
+    get: GetSsmSessionLogCommandBase_0.prototype._get_bearerToken__22
   });
   function GetSsmSessionLogListCommand_0() {
   }
@@ -4217,17 +4247,17 @@
   };
   function GetSsmSessionLogListCommandBase(sessionId, ssm, bearerToken) {
     this._sessionId_1 = sessionId;
-    this._ssm_4 = ssm;
-    this._bearerToken_13 = bearerToken;
+    this._ssm_5 = ssm;
+    this._bearerToken_14 = bearerToken;
   }
   GetSsmSessionLogListCommandBase.prototype._get_sessionId__4 = function () {
     return this._sessionId_1;
   };
-  GetSsmSessionLogListCommandBase.prototype._get_ssm__13 = function () {
-    return this._ssm_4;
+  GetSsmSessionLogListCommandBase.prototype._get_ssm__15 = function () {
+    return this._ssm_5;
   };
-  GetSsmSessionLogListCommandBase.prototype._get_bearerToken__20 = function () {
-    return this._bearerToken_13;
+  GetSsmSessionLogListCommandBase.prototype._get_bearerToken__22 = function () {
+    return this._bearerToken_14;
   };
   GetSsmSessionLogListCommandBase.$metadata$ = {
     simpleName: 'GetSsmSessionLogListCommandBase',
@@ -4240,11 +4270,11 @@
   });
   Object.defineProperty(GetSsmSessionLogListCommandBase.prototype, 'ssm', {
     configurable: true,
-    get: GetSsmSessionLogListCommandBase.prototype._get_ssm__13
+    get: GetSsmSessionLogListCommandBase.prototype._get_ssm__15
   });
   Object.defineProperty(GetSsmSessionLogListCommandBase.prototype, 'bearerToken', {
     configurable: true,
-    get: GetSsmSessionLogListCommandBase.prototype._get_bearerToken__20
+    get: GetSsmSessionLogListCommandBase.prototype._get_bearerToken__22
   });
   function TxChannel_0() {
   }
@@ -4276,12 +4306,12 @@
     interfaces: []
   };
   function TxSsmBase_0(ssm, channel, version) {
-    this._ssm_5 = ssm;
+    this._ssm_6 = ssm;
     this._channel = channel;
     this._version = version;
   }
-  TxSsmBase_0.prototype._get_ssm__13 = function () {
-    return this._ssm_5;
+  TxSsmBase_0.prototype._get_ssm__15 = function () {
+    return this._ssm_6;
   };
   TxSsmBase_0.prototype._get_channel__2 = function () {
     return this._channel;
@@ -4296,7 +4326,7 @@
   };
   Object.defineProperty(TxSsmBase_0.prototype, 'ssm', {
     configurable: true,
-    get: TxSsmBase_0.prototype._get_ssm__13
+    get: TxSsmBase_0.prototype._get_ssm__15
   });
   Object.defineProperty(TxSsmBase_0.prototype, 'channel', {
     configurable: true,
@@ -4487,6 +4517,7 @@
   $ssm$chaincode$dsl$query.SsmListSsmResult = SsmListSsmResult_0;
   $ssm$chaincode$dsl$query.SsmListUserQuery = SsmListUserQuery_0;
   $ssm$chaincode$dsl$query.SsmListUserResult = SsmListUserResult_0;
+  _.GetSsmCommandBase = GetSsmCommandBase_0;
   _.GetSsmListCommandBase = GetSsmListCommandBase_0;
   _.GetSsmSessionCommandBase = GetSsmSessionCommandBase_0;
   _.GetSsmSessionListCommandBase = GetSsmSessionListCommandBase_0;

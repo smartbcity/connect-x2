@@ -462,6 +462,15 @@ export namespace ssm.chaincode.dsl.query {
         readonly values: Array<string>;
     }
 }
+export interface GetSsmCommand extends TxSsmCommand {
+    readonly ssm: string;
+    readonly bearerToken: Nullable<string>;
+}
+export class GetSsmCommandBase implements GetSsmCommand {
+    constructor(ssm: string, bearerToken: Nullable<string>);
+    readonly ssm: string;
+    readonly bearerToken: Nullable<string>;
+}
 export interface GetSsmListCommand {
     readonly bearerToken: Nullable<string>;
 }
