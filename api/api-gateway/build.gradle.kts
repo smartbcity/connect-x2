@@ -13,3 +13,7 @@ dependencies {
     implementation(project(":api:api-infra:i2"))
     implementation(project(":api:ssm:ssm-api"))
 }
+
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {
+    imageName = "smartbcity/x2-gateway:${this.project.version}"
+}
