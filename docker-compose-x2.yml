@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+  x2-web:
+    image: smartbcity/x2-web-app:next
+    container_name: x2-web
+    ports:
+      - 80:80
+
+  x2-gateway:
+    image: smartbcity/x2-gateway:next
+    container_name: x2-gateway
+    ports:
+      - 8082:8082
+
+
