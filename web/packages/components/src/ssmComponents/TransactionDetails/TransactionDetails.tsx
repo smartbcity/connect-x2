@@ -1,5 +1,5 @@
 import { Box, InputLabel, Typography } from '@material-ui/core'
-import { CodeHighlighter } from '@smartb/archetypes-ui-components'
+import { CodeHighlighter } from '@smartb/archetypes-ui-documentation'
 import { midLevelStyles } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 import { useMemo } from 'react'

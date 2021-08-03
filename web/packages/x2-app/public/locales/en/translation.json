@@ -28,6 +28,9 @@
   "copyToClipboard": "Copy to clipboard",
   "copyToClipboardSuccess": "Already copied, click here to re-copy it",
   "preview": "Preview",
+  "generate": "Generate",
+  "download": "Download",
+  "cancel": "Cancel",
   "detailsPage": {
     "sessionInformations": "Session informations",
     "sessionInformationsOf": "{{sessionName}} session informations",
@@ -38,7 +41,8 @@
     "transactionPayload": "Transaction payload",
     "currentStep": "Current step",
     "LastActionPerformed": "Last action performed",
-    "selectATransaction": "Select a transaction from the timeline to visualize its content"
+    "selectATransaction": "Select a transaction from the timeline to visualize its content",
+    "sessionCertificate": "Session certificate"
   },
   "sessionsPage": {
     "completedStep": "Completed Step",
