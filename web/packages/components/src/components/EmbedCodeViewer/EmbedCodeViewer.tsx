@@ -1,6 +1,7 @@
 import { Box, IconButton, Typography } from '@material-ui/core'
 import { CodeRounded } from '@material-ui/icons'
-import { Tooltip, Popover, CodeHighlighter } from '@smartb/archetypes-ui-components'
+import { Tooltip, Popover } from '@smartb/archetypes-ui-components'
+import { CodeHighlighter } from '@smartb/archetypes-ui-documentation'
 import { midLevelStyles, Theme, useTheme } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
 import React, { useCallback, useMemo, useState } from 'react'

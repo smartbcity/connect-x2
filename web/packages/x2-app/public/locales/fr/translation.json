@@ -28,6 +28,9 @@
   "copyToClipboard": "Copier dans le presse-papier",
   "copyToClipboardSuccess": "Déjà copié, cliquez ici si vous voulez le re-copier",
   "preview": "Apperçu",
+  "generate": "Générer",
+  "download": "Télécharger",
+  "cancel": "Annuler",
   "detailsPage": {
     "sessionInformations": "Informations sur la session",
     "sessionInformationsOf": "Informations sur la session {{sessionName}}",
@@ -38,7 +41,8 @@
     "transactionPayload": "Contenu de la transaction",
     "currentStep": "Etape courante",
     "LastActionPerformed": "Dernière action effectuée",
-    "selectATransaction": "Sélectionnez une transaction dans la timeline pour pouvoir visualiser son contenu"
+    "selectATransaction": "Sélectionnez une transaction dans la timeline pour pouvoir visualiser son contenu",
+    "sessionCertificate": "Certificat de la session"
   },
   "sessionsPage": {
     "completedStep": "Etape complétée",
