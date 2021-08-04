@@ -1,5 +1,5 @@
 
-export interface httpOptions {
+export interface HttpOptions {
     url: string,
     method: "GET" | "PUT" | "POST" | "DELETE",
     body?: string,
@@ -9,8 +9,25 @@ export interface httpOptions {
     errorHandler?: (error: Error) => void
 }
 
+export const requestCoop = function <T, R>(
+    location: string,
+    body?: T
+): Promise<R> {
+    //@ts-ignore
+    const url = window._env_.COOP_URL
+    //@ts-ignore
+    const token = window.token
+    const options: HttpOptions = {
+        url: `${url}/api/${location}`,
+        method: "POST",
+        jwt: token,
+        body: JSON.stringify(body)
+    }
+    return request<R[]>(options).then(it => it[0])
+};
+
 export const request = <T>(
-    options: httpOptions
+    options: HttpOptions
 ): Promise<T> => {
     const { method, url, body, contentType = "application/json", jwt, errorHandler = () => { }, returnType = "json" } = options
     return fetch(url, {

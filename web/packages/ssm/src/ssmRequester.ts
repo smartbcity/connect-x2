@@ -15,27 +15,10 @@ import {
     TxSsmSessionLogListQueryDTO,
     TxSsmSessionLogListQueryResultDTO
 } from "./models";
-import {httpOptions, request} from "utils"
-
-const fetchCoop = function <T, R>(
-    location: string,
-    body?: T
-): Promise<R> {
-    //@ts-ignore
-    const url = window._env_.COOP_URL
-    //@ts-ignore
-    const token = window.token
-    const options: httpOptions = {
-        url: `${url}/api/${location}`,
-        method: "POST",
-        jwt: token,
-        body: JSON.stringify(body)
-    }
-    return request<R[]>(options).then(it => it[0])
-};
+import {requestCoop} from "utils";
 
 const fetchSSMs = async (): Promise<SSM[]> => {
-    return fetchCoop<TxSsmListQueryDTO, TxSsmListQueryResultDTO>("getAllSsm", {} as TxSsmListQueryResultDTO).then(
+    return requestCoop<TxSsmListQueryDTO, TxSsmListQueryResultDTO>("getAllSsm", {} as TxSsmListQueryResultDTO).then(
         it => {
             return it.list
         }
@@ -43,19 +26,19 @@ const fetchSSMs = async (): Promise<SSM[]> => {
 };
 
 const fetchSSM = async (ssmName?: string): Promise<SSM | undefined> => {
-    return fetchCoop<TxSsmGetQueryDTO, TxSsmGetQueryResultDTO>("getSsm", {ssm: ssmName} as TxSsmGetQueryDTO).then(
+    return requestCoop<TxSsmGetQueryDTO, TxSsmGetQueryResultDTO>("getSsm", {ssm: ssmName} as TxSsmGetQueryDTO).then(
         it => it.ssm ?? undefined
     )
 };
 
 const fetchSessions = async (ssmName?: string): Promise<Session[]> => {
-    return fetchCoop<TxSsmSessionListQueryDTO, TxSsmSessionListQueryResultDTO>("getAllSessions", {ssm: ssmName} as TxSsmSessionListQueryDTO).then(
+    return requestCoop<TxSsmSessionListQueryDTO, TxSsmSessionListQueryResultDTO>("getAllSessions", {ssm: ssmName} as TxSsmSessionListQueryDTO).then(
         it => it.list ?? []
     )
 };
 
 const fetchSession = async (ssmName: string, sessionId: string): Promise<Session | undefined> => {
-    return fetchCoop<TxSsmSessionGetQueryDTO, TxSsmSessionGetQueryResultDTO>("getSession", {
+    return requestCoop<TxSsmSessionGetQueryDTO, TxSsmSessionGetQueryResultDTO>("getSession", {
         sessionId: sessionId,
         ssm: ssmName
     } as TxSsmSessionGetQueryDTO).then(
@@ -68,7 +51,7 @@ const fetchSessionStates = async (
     ssmName: string,
     sessionId: string
 ): Promise<SessionState[]> => {
-    return fetchCoop<TxSsmSessionLogListQueryDTO, TxSsmSessionLogListQueryResultDTO>("getSessionLogs", {
+    return requestCoop<TxSsmSessionLogListQueryDTO, TxSsmSessionLogListQueryResultDTO>("getSessionLogs", {
         sessionId: sessionId,
         ssm: ssmName
     } as TxSsmSessionLogListQueryDTO).then(
@@ -81,7 +64,7 @@ const fetchSessionState = async (
     sessionId: string,
     transactionId: string
 ): Promise<SessionState | undefined> => {
-    return fetchCoop<TxSsmSessionLogGetQueryDTO, TxSsmSessionLogGetQueryResultDTO>("getOneSessionLog", {
+    return requestCoop<TxSsmSessionLogGetQueryDTO, TxSsmSessionLogGetQueryResultDTO>("getOneSessionLog", {
         txId: transactionId,
         sessionId: sessionId,
         ssm: ssmName
