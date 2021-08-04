@@ -4,6 +4,7 @@ import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { SSM } from "ssm"
 import { highLevelStyles } from "@smartb/archetypes-ui-themes"
+import {ssm} from "x2-ssm-domain";
 
 const useStyles = highLevelStyles()({
     panel: {
@@ -24,7 +25,7 @@ interface ProtocolCardProps {
 export const ProtocolCard = (props: ProtocolCardProps) => {
     const {currentSSM} = props
     const {t} = useTranslation()
-    const transitions = useMemo(() => currentSSM.ssm.transitions.map((transition) => ({...transition, label: `${transition.role}: ${transition.action}`})), [currentSSM])
+    const transitions = useMemo(() => currentSSM.ssm.transitions.map((transition: ssm.chaincode.dsl.SsmTransitionDTO) => ({...transition, label: `${transition.role}: ${transition.action}`})), [currentSSM])
     const classes = useStyles()
     return (
         <Panel className={classes.panel} bodyClassName={classes.body} header={t("protocolDiagram")} embedUrl={`${window.location.origin}/embed/${currentSSM.ssm.name}/diagram`}>

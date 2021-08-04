@@ -1,7 +1,7 @@
 package x2.api.config
 
-import SsmName
-import SsmVersion
+import ssm.tx.dsl.features.query.SsmName
+import ssm.tx.dsl.model.SsmVersion
 
 typealias SsmMetadataMap = Map<SsmName, Map<SsmVersion, SsmLocationProperties>>
 

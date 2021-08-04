@@ -26,9 +26,6 @@ allprojects {
 		jcenter()
 		mavenCentral()
 		maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
-
-		//For iris-sign
-		maven { url = uri("https://jitpack.io") }
 	}
 }
 

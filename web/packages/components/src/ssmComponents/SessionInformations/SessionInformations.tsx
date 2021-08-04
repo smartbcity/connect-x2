@@ -50,7 +50,7 @@ export const SessionInformations = (props: SessionInformationsProps) => {
     const classes = useStyles()
     const {t} = useTranslation()
     const typovariant = useMemo(() => minified ? "body2" : "body1", [minified])
-    const init = currentSession.currentState.details?.origin?.role === undefined && currentSession.currentState.details?.origin?.action === undefined
+    const init = currentSession.state.details?.origin?.role === undefined && currentSession.state.details?.origin?.action === undefined
     return (
         <Box className={clsx(classes.descriptionContainer, className)}>
                 <Box className={clsx(classes.box, minified && classes.boxMinified)}>
@@ -67,12 +67,12 @@ export const SessionInformations = (props: SessionInformationsProps) => {
                         <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.id}</Typography>
                         <CopyToClipboard className={classes.iconButton} value={currentSession.id} />
                     </Box>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{new Date(currentSession.creationTransaction?.timestamp).toLocaleDateString()}</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.currentState.details.current}</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{init ? "initialization" : `${currentSession.currentState.details.origin?.role}: ${currentSession.currentState.details.origin?.action}`}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{new Date(currentSession.transaction?.timestamp).toLocaleDateString()}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.state.details.current}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{init ? "initialization" : `${currentSession.state.details.origin?.role}: ${currentSession.state.details.origin?.action}`}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.channel.id}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>Not implemented</Typography>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.currentState.details.ssm}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.state.details.ssm}</Typography>
                 </Box>
             </Box>
     )

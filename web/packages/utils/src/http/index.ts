@@ -2,7 +2,7 @@
 export interface httpOptions {
     url: string,
     method: "GET" | "PUT" | "POST" | "DELETE",
-    body?: object,
+    body?: string,
     jwt?: string,
     contentType?: "application/json" | "text/plain" | "none"
     returnType?: "json" | "text"
@@ -11,7 +11,7 @@ export interface httpOptions {
 
 export const request = <T>(
     options: httpOptions
-): Promise<T> | undefined => {
+): Promise<T> => {
     const { method, url, body, contentType = "application/json", jwt, errorHandler = () => { }, returnType = "json" } = options
     return fetch(url, {
         method: method,
@@ -28,7 +28,7 @@ export const request = <T>(
                 : {}),
             "Access-Control-Allow-Origin": "*",
         },
-        body: JSON.stringify(body),
+        body: body,
     })
         .then((response) => {
             if (!response.ok) {

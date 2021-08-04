@@ -1,12 +1,26 @@
-import { SSM, Session, SessionState} from "./models";
-import { request, httpOptions } from "utils"
-import { GetSsmSessionListCommand, GetSsmSessionCommand, GetSsmSessionLogListCommand, GetSsmSessionLogCommand, GetSsmCommand} from  "x2-ssm-domain"
+import {
+    Session,
+    SessionState,
+    SSM,
+    TxSsmGetQueryDTO,
+    TxSsmGetQueryResultDTO,
+    TxSsmListQueryDTO,
+    TxSsmListQueryResultDTO,
+    TxSsmSessionGetQueryDTO,
+    TxSsmSessionGetQueryResultDTO,
+    TxSsmSessionListQueryDTO,
+    TxSsmSessionListQueryResultDTO,
+    TxSsmSessionLogGetQueryDTO,
+    TxSsmSessionLogGetQueryResultDTO,
+    TxSsmSessionLogListQueryDTO,
+    TxSsmSessionLogListQueryResultDTO
+} from "./models";
+import {httpOptions, request} from "utils"
 
-
-const fetchCoop = function <T>(
+const fetchCoop = function <T, R>(
     location: string,
-    body?: object
-) {
+    body?: T
+): Promise<R> {
     //@ts-ignore
     const url = window._env_.COOP_URL
     //@ts-ignore
@@ -15,49 +29,68 @@ const fetchCoop = function <T>(
         url: `${url}/api/${location}`,
         method: "POST",
         jwt: token,
-        body: body
+        body: JSON.stringify(body)
     }
-    return request<T>(options)
+    return request<R[]>(options).then(it => it[0])
 };
 
-const fetchSSMs = async () => {
-    const ssms = await fetchCoop<SSM[][]>("getAllSsm") ?? [[]]
-    return ssms[0] ?? []
+const fetchSSMs = async (): Promise<SSM[]> => {
+    return fetchCoop<TxSsmListQueryDTO, TxSsmListQueryResultDTO>("getAllSsm", {} as TxSsmListQueryResultDTO).then(
+        it => {
+            return it.list
+        }
+    )
 };
 
-const fetchSSM = async (ssmName?: string) => {
-    const ssms = await fetchCoop<SSM[]>("getSsm", {ssm: ssmName} as GetSsmCommand) ?? []
-    return ssms[0]
+const fetchSSM = async (ssmName?: string): Promise<SSM | undefined> => {
+    return fetchCoop<TxSsmGetQueryDTO, TxSsmGetQueryResultDTO>("getSsm", {ssm: ssmName} as TxSsmGetQueryDTO).then(
+        it => it.ssm ?? undefined
+    )
 };
 
-const fetchSessions = async (ssmName?: string) => {
-    const sessions = await fetchCoop<Session[][]>("getAllSessions", {ssm: ssmName} as GetSsmSessionListCommand) ?? [[]]
-    return sessions[0] ?? []
+const fetchSessions = async (ssmName?: string): Promise<Session[]> => {
+    return fetchCoop<TxSsmSessionListQueryDTO, TxSsmSessionListQueryResultDTO>("getAllSessions", {ssm: ssmName} as TxSsmSessionListQueryDTO).then(
+        it => it.list ?? []
+    )
 };
 
-const fetchSession = async (ssmName: string, sessionId: string) => {
-    const session = await fetchCoop<Session[]>("getSession", {sessionId: sessionId, ssm: ssmName} as GetSsmSessionCommand) ?? []
-    return session[0]
+const fetchSession = async (ssmName: string, sessionId: string): Promise<Session | undefined> => {
+    return fetchCoop<TxSsmSessionGetQueryDTO, TxSsmSessionGetQueryResultDTO>("getSession", {
+        sessionId: sessionId,
+        ssm: ssmName
+    } as TxSsmSessionGetQueryDTO).then(
+        it => it.session  ?? undefined
+    )
 };
 
 
 const fetchSessionStates = async (
     ssmName: string,
     sessionId: string
-) => {
-    const sessionStates = await fetchCoop<SessionState[][]>("getSessionLogs", {sessionId: sessionId, ssm: ssmName} as GetSsmSessionLogListCommand) ?? [[]]
-    return sessionStates[0] ?? []
+): Promise<SessionState[]> => {
+    return fetchCoop<TxSsmSessionLogListQueryDTO, TxSsmSessionLogListQueryResultDTO>("getSessionLogs", {
+        sessionId: sessionId,
+        ssm: ssmName
+    } as TxSsmSessionLogListQueryDTO).then(
+        it => it.list ?? []
+    )
 };
 
 const fetchSessionState = async (
     ssmName: string,
     sessionId: string,
     transactionId: string
-) => {
-    const sessionState = await fetchCoop<SessionState[]>("getOneSessionLog", {txId: transactionId, sessionId: sessionId, ssm: ssmName} as GetSsmSessionLogCommand) ?? []
-    return sessionState[0]
-};
-
+): Promise<SessionState | undefined> => {
+    return fetchCoop<TxSsmSessionLogGetQueryDTO, TxSsmSessionLogGetQueryResultDTO>("getOneSessionLog", {
+        txId: transactionId,
+        sessionId: sessionId,
+        ssm: ssmName
+    } as TxSsmSessionLogGetQueryDTO).then(
+        it => {
+            return it.ssmSessionState ?? undefined
+        }
+    );
+}
 
 
 export const SSMRequester = {

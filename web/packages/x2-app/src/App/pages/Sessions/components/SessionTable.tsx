@@ -58,13 +58,13 @@ export const SessionTable = (props: SessionTableProps) => {
         if (!sessions) return []
         return sessions.map((session): SessionColumn => ({
             id: session.id,
-            creationDate: new Date(session.creationTransaction?.timestamp).toLocaleDateString(),
+            creationDate: new Date(session.transaction?.timestamp).toLocaleDateString(),
             channel: session.channel.id,
-            protocolEngine: session.currentState.details.ssm as string,
+            protocolEngine: session.state.details.ssm as string,
             completedStep: {
-                date: new Date(session.creationTransaction?.timestamp).toLocaleDateString(),
-                status: session.currentState.details.current,
-                user: session.currentState.transaction?.creator.mspid ?? ""
+                date: new Date(session.transaction?.timestamp).toLocaleDateString(),
+                status: session.state.details.current,
+                user: session.state.transaction?.creator.mspid ?? ""
             }
         }))
     }, [sessions])

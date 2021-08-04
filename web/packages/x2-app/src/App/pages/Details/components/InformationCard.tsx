@@ -32,7 +32,7 @@ export const InformationCard = (props: InformationCardProps) => {
         noPadding 
         bodyClassName={classes.body} 
         header={t("detailsPage.sessionInformations")}
-        embedUrl={`${window.location.origin}/embed/${currentSession.currentState.details.ssm}/${currentSession.id}/informations`}
+        embedUrl={`${window.location.origin}/embed/${currentSession.state.details.ssm}/${currentSession.id}/informations`}
         >
             <SessionInformations currentSession={currentSession}  />
         </Panel>

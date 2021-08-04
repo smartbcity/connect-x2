@@ -59,7 +59,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
             className={classes.panel}
             header={t("detailsPage.transactionsHistory")}
             bodyClassName={classes.panelBody}
-            embedUrl={`${window.location.origin}/embed/${currentSession.currentState.details.ssm}/${currentSession.id}/history`}
+            embedUrl={`${window.location.origin}/embed/${currentSession.state.details.ssm}/${currentSession.id}/history`}
         >
             {!result ?
                 <LoadingComponent />
