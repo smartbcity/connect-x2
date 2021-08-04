@@ -1,13 +1,12 @@
-import { Box, Typography } from "@material-ui/core";
-import { NoMatchPage } from "@smartb/archetypes-ui-providers";
-import { AutomateViewer } from "@smartb/archetypes-ui-s2";
-import { highLevelStyles } from "@smartb/archetypes-ui-themes";
-import { LoadingPage } from "components";
-import { useCallback, useMemo } from "react";
-import { useTranslation } from "react-i18next";
-import { useParams } from "react-router";
-import { SSMRequester, Transition } from "ssm";
-import { useAsyncResponse } from "utils";
+import {Box, Typography} from "@material-ui/core";
+import {NoMatchPage} from "@smartb/archetypes-ui-providers";
+import {AutomateViewer} from "@smartb/archetypes-ui-s2";
+import {highLevelStyles} from "@smartb/archetypes-ui-themes";
+import {LoadingPage} from "components";
+import {useMemo} from "react";
+import {useTranslation} from "react-i18next";
+import {useParams} from "react-router";
+import {Transition, useFetchSsm} from "ssm";
 
 const useStyles = highLevelStyles()({
   viewer: {
@@ -31,14 +30,8 @@ export const ProtocolDiagram = (props: ProtocolDiagramProps) => {
   const { t } = useTranslation()
   const classes = useStyles()
   const { ssmName } = useParams<{ ssmName: string }>();
-  const fetchSSM = useCallback(
-    async () => {
-      return SSMRequester.fetchSSM(ssmName)
-    },
-    [ssmName],
-  )
 
-  const { result, status } = useAsyncResponse(fetchSSM)
+  const {result, status} = useFetchSsm(ssmName);
 
   const transitions = useMemo(() => result ? result.ssm.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [result])
 

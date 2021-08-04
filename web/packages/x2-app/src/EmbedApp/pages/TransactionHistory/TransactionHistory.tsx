@@ -5,7 +5,7 @@ import { highLevelStyles } from "@smartb/archetypes-ui-themes";
 import { LoadingPage } from "components";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import { useFetchTransactions } from "./components/useFetchTransactions";
+import {useFetchTransactions} from "ssm";
 
 const useStyles = highLevelStyles()({
   viewer: {
@@ -47,7 +47,7 @@ export const TransactionHistory = (props: TransactionHistoryProps) => {
   const classes = useStyles()
   const { ssmName, sessionName } = useParams<{ ssmName: string, sessionName: string }>();
 
-  const { result, status } = useFetchTransactions(ssmName, sessionName)
+  const { result, status } = useFetchTransactions(ssmName, sessionName, true)
 
   if (status === "PENDING") return <LoadingPage />
 

@@ -19,7 +19,13 @@ export const useAsyncFunction = (asyncFunction: () => Promise<void>, immediate: 
     return { execute, status };
 };
 
-export const useAsyncResponse = <T = any>(asyncResponse: () => Promise<T>, immediate: boolean = true): { execute: () => void, status: AsyncStatus, result?: T } => {
+interface AsyncResponse<T = any> {
+    execute: () => void,
+    status: AsyncStatus,
+    result?: T;
+}
+
+export const useAsyncResponse = <T = any>(asyncResponse: () => Promise<T>, immediate: boolean = true): AsyncResponse<T> => {
     const [status, setStatus] = useState<AsyncStatus>('IDLE');
     const [result, setResult] = useState<T | undefined>(undefined);
 

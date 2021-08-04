@@ -1,12 +1,10 @@
-import { Box, Typography } from "@material-ui/core";
-import { NoMatchPage } from "@smartb/archetypes-ui-providers";
-import { highLevelStyles } from "@smartb/archetypes-ui-themes";
-import { LoadingPage, SessionInformations } from "components";
-import { useCallback } from "react";
-import { useTranslation } from "react-i18next";
-import { useParams } from "react-router";
-import { SSMRequester } from "ssm";
-import { useAsyncResponse } from "utils";
+import {Box, Typography} from "@material-ui/core";
+import {NoMatchPage} from "@smartb/archetypes-ui-providers";
+import {highLevelStyles} from "@smartb/archetypes-ui-themes";
+import {LoadingPage, SessionInformations} from "components";
+import {useTranslation} from "react-i18next";
+import {useParams} from "react-router";
+import {useFetchSsmSession} from "ssm";
 
 const useStyles = highLevelStyles()({
   viewer: {
@@ -28,14 +26,7 @@ export const SessionInformation = (props: SessionInformationProps) => {
   const classes = useStyles()
   const { sessionName, ssmName } = useParams<{ ssmName: string, sessionName: string }>();
 
-  const fetchSession = useCallback(
-    async () => {
-      return SSMRequester.fetchSession(ssmName, sessionName)
-    },
-    [sessionName, ssmName],
-  )
-
-  const { result, status } = useAsyncResponse(fetchSession)
+  const {result, status} = useFetchSsmSession(ssmName, sessionName);
 
   if (status === "PENDING") return <LoadingPage />
 

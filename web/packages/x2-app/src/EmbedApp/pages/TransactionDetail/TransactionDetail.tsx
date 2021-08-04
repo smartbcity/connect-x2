@@ -1,12 +1,10 @@
-import { Box, Typography } from "@material-ui/core";
-import { NoMatchPage } from "@smartb/archetypes-ui-providers";
-import { highLevelStyles } from "@smartb/archetypes-ui-themes";
-import { LoadingPage, TransactionDetails } from "components";
-import { useCallback } from "react";
-import { useTranslation } from "react-i18next";
-import { useParams } from "react-router";
-import { SSMRequester } from "ssm";
-import { useAsyncResponse } from "utils";
+import {Box, Typography} from "@material-ui/core";
+import {NoMatchPage} from "@smartb/archetypes-ui-providers";
+import {highLevelStyles} from "@smartb/archetypes-ui-themes";
+import {LoadingPage, TransactionDetails} from "components";
+import {useTranslation} from "react-i18next";
+import {useParams} from "react-router";
+import {useFetchSsmSessionState} from "ssm";
 
 const useStyles = highLevelStyles()({
   viewer: {
@@ -23,16 +21,7 @@ export const TransactionDetail = () => {
   const { t } = useTranslation()
   const classes = useStyles()
   const { sessionName, transactionId, ssmName } = useParams<{ ssmName: string, sessionName: string, transactionId: string }>();
-
-  const fetchSession = useCallback(
-    async () => {
-      return SSMRequester.fetchSessionState(ssmName, sessionName, transactionId)
-    },
-    [sessionName, ssmName, transactionId],
-  )
-
-  const { result, status } = useAsyncResponse(fetchSession)
-
+  const {result, status} = useFetchSsmSessionState(ssmName, sessionName, transactionId);
 
   if (status === "PENDING") return <LoadingPage />
   if (!result) return <NoMatchPage noGoBack/>

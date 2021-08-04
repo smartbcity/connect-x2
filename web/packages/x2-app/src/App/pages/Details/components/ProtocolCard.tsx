@@ -25,11 +25,19 @@ interface ProtocolCardProps {
 export const ProtocolCard = (props: ProtocolCardProps) => {
     const {currentSSM} = props
     const {t} = useTranslation()
-    const transitions = useMemo(() => currentSSM.ssm.transitions.map((transition: ssm.chaincode.dsl.SsmTransitionDTO) => ({...transition, label: `${transition.role}: ${transition.action}`})), [currentSSM])
+
+    const transitions = useAutomateTransition(currentSSM)
     const classes = useStyles()
     return (
         <Panel className={classes.panel} bodyClassName={classes.body} header={t("protocolDiagram")} embedUrl={`${window.location.origin}/embed/${currentSSM.ssm.name}/diagram`}>
             <AutomateViewer transitions={transitions} className={classes.viewer}/>
         </Panel>
     )
+}
+
+const useAutomateTransition = (currentSSM: SSM) => {
+    return useMemo(() => currentSSM.ssm.transitions.map((transition: ssm.chaincode.dsl.SsmTransitionDTO) => ({
+        ...transition,
+        label: `${transition.role}: ${transition.action}`
+    })), [currentSSM]);
 }
