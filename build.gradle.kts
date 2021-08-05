@@ -57,6 +57,7 @@ subprojects {
 					dependencies.remove("kotlin-test-js-runner")
 					dependencies.remove("kotlin-test")
 					dependencies.remove("kotlin")
+					dependencies.remove("ktor-ktor-client-core-js-ir")
 				}
 			}
 			sourceSets {
