@@ -23,6 +23,7 @@ object Versions {
 
 	const val ssm = "experimental-SNAPSHOT"
 	const val f2 = "experimental-SNAPSHOT"
+    const val d2 = "0.1.1-SNAPSHOT"
 }
 
 
