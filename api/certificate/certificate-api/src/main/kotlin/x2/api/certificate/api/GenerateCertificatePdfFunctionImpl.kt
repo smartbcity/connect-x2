@@ -1,6 +1,6 @@
 package x2.api.certificate.api
 
-import f2.function.spring.adapter.f2Function
+import f2.dsl.fnc.f2Function
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import x2.api.certificate.api.model.translate
@@ -15,7 +15,6 @@ class GenerateCertificatePdfFunctionImpl {
     @Bean
     fun generateCertificatePdfFunction(): GenerateCertificatePdfFunction = f2Function { cmd ->
         val certificate = cmd.certificate.translate(cmd.lang)
-//        val base64Document = PdfBoxGenerator.generate(certificate)
         val base64Document = KotlinxHtmlGenerator.generate(certificate).let(HtmlToPdfConverter::htmlToPdfB64)
         GenerateCertificatePdfResult(base64Document)
     }
