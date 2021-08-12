@@ -1,6 +1,6 @@
 package x2.api.certificate.domain.model
 
-interface CertificateProtocolDTO {
+expect interface CertificateProtocolDTO {
     /**
      * Name of the protocol that validated the certificate
      * @example {
@@ -9,7 +9,7 @@ interface CertificateProtocolDTO {
      *  unit: {}
      * }
      */
-    val validationProtocol: CertificateData
+    val validationProtocol: CertificateDataDTO
 
     /**
      * Version of the protocol engine running the validation protocol
@@ -19,7 +19,7 @@ interface CertificateProtocolDTO {
      *  unit: {}
      * }
      */
-    val protocolEngineVersion: CertificateData
+    val protocolEngineVersion: CertificateDataDTO
 
     /**
      * Channel hosting the protocol engine
@@ -29,7 +29,7 @@ interface CertificateProtocolDTO {
      *  unit: {}
      * }
      */
-    val channel: CertificateData
+    val channel: CertificateDataDTO
 
     /**
      * Validation session holding the data necessary to validate the certificate
@@ -39,13 +39,13 @@ interface CertificateProtocolDTO {
      *  unit: {}
      * }
      */
-    val session: CertificateData
+    val session: CertificateDataDTO
 
     /**
      * Additional information about the protocol
      * @example []
      */
-    val additionals: Array<CertificateData>
+    val additionals: Array<out CertificateDataDTO>
 
     /**
      * Address of the certificate data visualizer

@@ -1,0 +1,17 @@
+import { CodeHighlighter, DescriptedCode } from '@smartb/archetypes-ui-documentation'
+import GenerateCertificateFromSessionStateQueryDesc from './desc.md'
+import GenerateCertificateFromSessionStateQuerySample from './sample.json'
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Generate Certificate Of Session: Parameters" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+<DescriptedCode
+  leftElement={<GenerateCertificateFromSessionStateQueryDesc />}
+  rightElement={
+    <CodeHighlighter
+      object={GenerateCertificateFromSessionStateQuerySample}
+      language={"json"}
+      title={"Example"}
+    />
+  }
+/>

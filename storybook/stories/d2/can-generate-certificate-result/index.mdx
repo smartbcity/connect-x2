@@ -1,0 +1,17 @@
+import CanGenerateCertificateResultDesc from './desc.md'
+import CanGenerateCertificateResultSample from './sample.json'
+import { CodeHighlighter, DescriptedCode } from '@smartb/archetypes-ui-documentation'
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Can Generate Certificate: Result" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+<DescriptedCode
+  leftElement={<CanGenerateCertificateResultDesc />}
+  rightElement={
+    <CodeHighlighter
+      object={CanGenerateCertificateResultSample}
+      language={"json"}
+      title={"Example"}
+    />
+  }
+/>

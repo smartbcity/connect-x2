@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "x2-ssm-domain": "0.0.0-latest",
-    "ktor-ktor-client-core-js-ir": "file:/home/adrien/dev/smartb/git/fixers/x2/build/js/packages_imported/ktor-ktor-client-core-js-ir/1.6.1"
+    "ktor-ktor-client-core-js-ir": "file:/Users/luc/Bazar/fixers/x2/build/js/packages_imported/ktor-ktor-client-core-js-ir/1.6.1"
   },
   "peerDependencies": {},
   "optionalDependencies": {},

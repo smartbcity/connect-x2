@@ -1,6 +1,6 @@
 package x2.api.certificate.domain.model
 
-interface CertificateDataDTO {
+expect interface CertificateDataDTO {
     val label: StringI18n
     val value: StringI18n
     val unit: StringI18n

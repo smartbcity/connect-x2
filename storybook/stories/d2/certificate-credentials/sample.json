@@ -1,4 +1,6 @@
 {
+  "context" : [ "https://www.smartb.city/credentials/certificate/v1" ],
+  "type" : [ "CertificateCredentials" ],
   "id" : "ssm.smartb.city/ssm-channel/sb-chaincode/ExampleSSM/session-14602958-9599-4a50-9b3c-aac4615942e3",
   "title" : {
     "value" : {
@@ -81,7 +83,5 @@
     "unit" : {
       "EN" : "kt"
     }
-  } ],
-  "context" : [ "https://www.smartb.city/credentials/certificate/v1" ],
-  "type" : [ "CertificateCredentials" ]
+  } ]
 }

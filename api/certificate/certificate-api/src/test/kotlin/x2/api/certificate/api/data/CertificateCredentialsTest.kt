@@ -16,6 +16,8 @@ fun DataTest.Companion.certificateCredentials(
      protocol: CertificateProtocol = certificateProtocol(),
      payload: Array<CertificateData> = emptyArray(),
 ) = CertificateCredentials(
+    context = emptyArray(),
+    type = emptyArray(),
     id = id,
     title = title,
     holder = holder,

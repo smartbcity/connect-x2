@@ -1,19 +1,17 @@
 package x2.api.certificate.domain.model
 
-interface CertificateCredentialsDTO {
+expect interface CertificateCredentialsDTO {
     /**
      * Definition of the ontology
      * @example ["https://www.smartb.city/credentials/certificate/v1"]
      */
     val context: Array<String>
-        get() = arrayOf("https://www.smartb.city/credentials/certificate/v1")
 
     /**
      * Implemented object of the ontology
      * @example ["CertificateCredentials"]
      */
     val type: Array<String>
-        get() = arrayOf("CertificateCredentials")
 
     /**
      * Identifier of the certificate
@@ -73,10 +71,12 @@ interface CertificateCredentialsDTO {
  * @@title Certificate
  */
 class CertificateCredentials(
+    override val context: Array<String>,
+    override val type: Array<String>,
     override val id: String,
     override val title: CertificateData,
     override val holder: CertificateSigner,
     override val issuer: CertificateSigner,
     override val protocol: CertificateProtocol,
-    override val payload: Array<CertificateData>
+    override val payload: Array<CertificateData>,
 ): CertificateCredentialsDTO
