@@ -1,2 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-x2.api.certificate.api.GenerateCertificatePdfFunctionImpl
+x2.api.certificate.api.features.GenerateCertificatePdfFunctionImpl,\
+x2.api.certificate.api.features.GenerateCertificateFromSessionStateFunctionImpl
+x2.api.certificate.api.features.CanGenerateCertificateFunctionImpl

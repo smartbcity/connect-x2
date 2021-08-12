@@ -7,3 +7,7 @@ actual interface GenerateCertificatePdfQueryDTO {
     actual val certificate: CertificateCredentialsDTO
     actual val lang: Lang
 }
+
+actual interface GenerateCertificatePdfResultDTO {
+    actual val base64Document: String
+}

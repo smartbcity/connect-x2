@@ -9,3 +9,9 @@ actual external interface GenerateCertificatePdfQueryDTO {
     actual val certificate: CertificateCredentialsDTO
     actual val lang: Lang
 }
+
+@JsExport
+@JsName("GenerateCertificatePdfResultDTO")
+actual external interface GenerateCertificatePdfResultDTO {
+    actual val base64Document: String
+}

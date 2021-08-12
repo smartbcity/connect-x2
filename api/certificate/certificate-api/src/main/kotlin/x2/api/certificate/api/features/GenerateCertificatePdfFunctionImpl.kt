@@ -1,4 +1,4 @@
-package x2.api.certificate.api
+package x2.api.certificate.api.features
 
 import f2.dsl.fnc.f2Function
 import org.springframework.context.annotation.Bean
