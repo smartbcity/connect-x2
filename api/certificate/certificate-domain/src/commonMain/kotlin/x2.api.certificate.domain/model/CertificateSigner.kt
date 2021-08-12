@@ -1,6 +1,6 @@
 package x2.api.certificate.domain.model
 
-interface CertificateSignerDTO {
+expect interface CertificateSignerDTO {
     /**
      * Name of the signer
      * @example {
@@ -9,7 +9,7 @@ interface CertificateSignerDTO {
      *  unit: {}
      * }
      */
-    val name: CertificateData
+    val name: CertificateDataDTO
 
     /**
      * Organization represented by the signer
