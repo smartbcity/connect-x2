@@ -13,17 +13,17 @@ let config = {
 
 // entry
 config.entry = {
-    main: ["/Users/luc/Bazar/fixers/x2/build/js/packages/x2-ssm-client/kotlin/x2-ssm-client.js"]
+    main: ["/Users/luc/Bazar/fixers/x2/build/js/packages/x2-certificate-domain/kotlin/x2-certificate-domain.js"]
 };
 
 config.output = {
-    path: "/Users/luc/Bazar/fixers/x2/api/ssm/ssm-client/build/distributions",
+    path: "/Users/luc/Bazar/fixers/x2/api/certificate/certificate-domain/build/distributions",
     filename: (chunkData) => {
         return chunkData.chunk.name === 'main'
-            ? "ssm-client.js"
-            : "ssm-client-[name].js";
+            ? "certificate-domain.js"
+            : "certificate-domain-[name].js";
     },
-    library: "ssm-client",
+    library: "certificate-domain",
     libraryTarget: "umd",
     globalObject: "this"
 };
@@ -66,7 +66,7 @@ config.ignoreWarnings = [/Failed to parse source map/]
     const util = require('util');
     const fs = require('fs');
     const evaluatedConfig = util.inspect(config, {showHidden: false, depth: null, compact: false});
-    fs.writeFile("/Users/luc/Bazar/fixers/x2/api/ssm/ssm-client/build/reports/webpack/x2-ssm-client/webpack.config.evaluated.js", evaluatedConfig, function (err) {});
+    fs.writeFile("/Users/luc/Bazar/fixers/x2/api/certificate/certificate-domain/build/reports/webpack/x2-certificate-domain/webpack.config.evaluated.js", evaluatedConfig, function (err) {});
 })(config);
 
 module.exports = config

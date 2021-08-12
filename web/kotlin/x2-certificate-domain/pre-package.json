@@ -1,17 +1,14 @@
 {
-  "name": "x2-ssm-client",
+  "name": "x2-certificate-domain",
   "version": "0.0.0-latest",
-  "main": "kotlin/x2-ssm-client.js",
+  "main": "kotlin/x2-certificate-domain.js",
   "devDependencies": {
     "webpack": "5.35.0",
     "webpack-cli": "4.6.0",
     "format-util": "1.0.5",
     "source-map-loader": "3.0.0"
   },
-  "dependencies": {
-    "x2-ssm-domain": "0.0.0-latest",
-    "ktor-ktor-client-core-js-ir": "file:/Users/luc/Bazar/fixers/x2/build/js/packages_imported/ktor-ktor-client-core-js-ir/1.6.1"
-  },
+  "dependencies": {},
   "peerDependencies": {},
   "optionalDependencies": {},
   "bundledDependencies": []
