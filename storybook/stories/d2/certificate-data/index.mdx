@@ -1,0 +1,20 @@
+import CertificateDataDesc from './desc.md'
+import CertificateDataSample from './sample.json'
+import { CodeHighlighter, DescriptedCode } from '@smartb/archetypes-ui-documentation'
+import { Meta } from '@storybook/addon-docs/blocks'
+import StringI18nIndex from '../string-i18n/index.mdx'
+
+<Meta title="CertificateData" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+<DescriptedCode
+  leftElement={<CertificateDataDesc />}
+  rightElement={
+    <CodeHighlighter
+      object={CertificateDataSample}
+      language={"json"}
+      title={"Example"}
+    />
+  }
+/>
+
+<StringI18nIndex />

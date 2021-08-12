@@ -1,0 +1,40 @@
+{
+  "validationProtocol" : {
+    "value" : {
+      "EN" : "ExampleSSM"
+    },
+    "label" : {
+      "EN" : "Validation Protocol"
+    },
+    "unit" : { }
+  },
+  "protocolEngineVersion" : {
+    "value" : {
+      "EN" : "sb-chaincode"
+    },
+    "label" : {
+      "EN" : "Protocol Engine Version"
+    },
+    "unit" : { }
+  },
+  "channel" : {
+    "value" : {
+      "EN" : "ssm-channel"
+    },
+    "label" : {
+      "EN" : "Channel"
+    },
+    "unit" : { }
+  },
+  "session" : {
+    "value" : {
+      "EN" : "session-14602958-9599-4a50-9b3c-aac4615942e3"
+    },
+    "label" : {
+      "EN" : "Session Number"
+    },
+    "unit" : { }
+  },
+  "additionals" : [ ],
+  "url" : "https://x2.smartb.city/ExampleSSM/ssm-channel/sb-chaincode/session-14602958-9599-4a50-9b3c-aac4615942e3"
+}

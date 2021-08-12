@@ -15,6 +15,11 @@ include(
 )
 
 include(
+	"api:certificate:certificate-api",
+	"api:certificate:certificate-domain"
+)
+
+include(
 	"api:ssm:ssm-api",
 	"api:ssm:ssm-client",
 	"api:ssm:ssm-domain"

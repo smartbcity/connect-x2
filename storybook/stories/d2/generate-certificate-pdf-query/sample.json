@@ -1,0 +1,90 @@
+{
+  "certificate" : {
+    "id" : "ssm.smartb.city/ssm-channel/sb-chaincode/ExampleSSM/session-14602958-9599-4a50-9b3c-aac4615942e3",
+    "title" : {
+      "value" : {
+        "EN" : "Very Important Certificate"
+      },
+      "label" : { },
+      "unit" : { }
+    },
+    "holder" : {
+      "name" : {
+        "value" : {
+          "EN" : "Elie Jible"
+        },
+        "label" : { },
+        "unit" : { }
+      },
+      "organization" : "GreenGuys",
+      "roles" : "CEO",
+      "signature" : "https://picture.com/greenguys/green-signature"
+    },
+    "issuer" : {
+      "name" : {
+        "value" : {
+          "EN" : "Jeanne Alyztou"
+        },
+        "label" : { },
+        "unit" : { }
+      },
+      "organization" : "SmartB",
+      "roles" : "CEO",
+      "signature" : "https://picture.com/smartb/pretty-signature"
+    },
+    "protocol" : {
+      "validationProtocol" : {
+        "value" : {
+          "EN" : "ExampleSSM"
+        },
+        "label" : {
+          "EN" : "Validation Protocol"
+        },
+        "unit" : { }
+      },
+      "protocolEngineVersion" : {
+        "value" : {
+          "EN" : "sb-chaincode"
+        },
+        "label" : {
+          "EN" : "Protocol Engine Version"
+        },
+        "unit" : { }
+      },
+      "channel" : {
+        "value" : {
+          "EN" : "ssm-channel"
+        },
+        "label" : {
+          "EN" : "Channel"
+        },
+        "unit" : { }
+      },
+      "session" : {
+        "value" : {
+          "EN" : "session-14602958-9599-4a50-9b3c-aac4615942e3"
+        },
+        "label" : {
+          "EN" : "Session Number"
+        },
+        "unit" : { }
+      },
+      "additionals" : [ ],
+      "url" : "https://x2.smartb.city/ExampleSSM/ssm-channel/sb-chaincode/session-14602958-9599-4a50-9b3c-aac4615942e3"
+    },
+    "payload" : [ {
+      "value" : {
+        "EN" : "0"
+      },
+      "label" : {
+        "EN" : "Amount of CO2 saved"
+      },
+      "unit" : {
+        "EN" : "kt"
+      }
+    } ],
+    "context" : [ "https://www.smartb.city/credentials/certificate/v1" ],
+    "type" : [ "CertificateCredentials" ]
+  },
+  "lang" : "EN"
+}
