@@ -51,43 +51,6 @@ export namespace x2.api.certificate.domain.features {
         readonly lang: any /*Class x2.api.certificate.domain.model.Lang with kind: ENUM_CLASS*/;
     }
 }
-export namespace x2.api.certificate.domain.model {
-    interface CertificateCredentialsDTO {
-        readonly context: Array<string>;
-        readonly type: Array<string>;
-        readonly id: string;
-        readonly title: x2.api.certificate.domain.model.CertificateDataDTO;
-        readonly holder: x2.api.certificate.domain.model.CertificateSignerDTO;
-        readonly issuer: x2.api.certificate.domain.model.CertificateSignerDTO;
-        readonly protocol: x2.api.certificate.domain.model.CertificateProtocolDTO;
-        readonly payload: Array<x2.api.certificate.domain.model.CertificateDataDTO>;
-    }
-}
-export namespace x2.api.certificate.domain.model {
-    interface CertificateDataDTO {
-        readonly label: kotlin.collections.Map<any /*Class x2.api.certificate.domain.model.Lang with kind: ENUM_CLASS*/, string>;
-        readonly value: kotlin.collections.Map<any /*Class x2.api.certificate.domain.model.Lang with kind: ENUM_CLASS*/, string>;
-        readonly unit: kotlin.collections.Map<any /*Class x2.api.certificate.domain.model.Lang with kind: ENUM_CLASS*/, string>;
-    }
-}
-export namespace x2.api.certificate.domain.model {
-    interface CertificateProtocolDTO {
-        readonly validationProtocol: x2.api.certificate.domain.model.CertificateDataDTO;
-        readonly protocolEngineVersion: x2.api.certificate.domain.model.CertificateDataDTO;
-        readonly channel: x2.api.certificate.domain.model.CertificateDataDTO;
-        readonly session: x2.api.certificate.domain.model.CertificateDataDTO;
-        readonly additionals: Array<x2.api.certificate.domain.model.CertificateDataDTO>;
-        readonly url: string;
-    }
-}
-export namespace x2.api.certificate.domain.model {
-    interface CertificateSignerDTO {
-        readonly name: x2.api.certificate.domain.model.CertificateDataDTO;
-        readonly organization: string;
-        readonly roles: Nullable<string>;
-        readonly signature: string;
-    }
-}
 export namespace kotlinx.atomicfu {
     function atomic$ref$<T>(initial: T, trace: kotlinx.atomicfu.TraceBase): kotlinx.atomicfu.AtomicRef<T>;
     function atomic$boolean$(initial: boolean, trace: kotlinx.atomicfu.TraceBase): kotlinx.atomicfu.AtomicBoolean;

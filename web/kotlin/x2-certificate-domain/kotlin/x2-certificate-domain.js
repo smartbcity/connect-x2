@@ -647,7 +647,6 @@
   var $x2$api$certificate = $x2$api.certificate || ($x2$api.certificate = {});
   var $x2$api$certificate$domain = $x2$api$certificate.domain || ($x2$api$certificate.domain = {});
   var $x2$api$certificate$domain$features = $x2$api$certificate$domain.features || ($x2$api$certificate$domain.features = {});
-  var $x2$api$certificate$domain$model = $x2$api$certificate$domain.model || ($x2$api$certificate$domain.model = {});
   var $kotlinx = _.kotlinx || (_.kotlinx = {});
   var $kotlinx$atomicfu = $kotlinx.atomicfu || ($kotlinx.atomicfu = {});
   $kotlinx$atomicfu.atomic$ref$ = atomic;
