@@ -151,7 +151,7 @@ export namespace ssm.chaincode.dsl.blockchain {
     }
 }
 export namespace ssm.chaincode.dsl.blockchain {
-    interface Transaction {
+    interface TransactionDTO {
         readonly transactionId: string;
         readonly blockId: kotlin.Long;
         readonly timestamp: kotlin.Long;
