@@ -1,4 +1,5 @@
 import {ssm} from "x2-ssm-domain";
+import {x2} from "x2-certificate-domain";
 
 export type Transaction = ssm.chaincode.dsl.blockchain.Transaction;
 export type Transition = ssm.chaincode.dsl.SsmTransition;
@@ -27,6 +28,10 @@ export type TxSsmSessionLogListQueryResultDTO = ssm.tx.dsl.features.query.TxSsmS
 
 export type TxSsmSessionLogGetQueryDTO = ssm.tx.dsl.features.query.TxSsmSessionLogGetQueryDTO;
 export type TxSsmSessionLogGetQueryResultDTO = ssm.tx.dsl.features.query.TxSsmSessionLogGetQueryResultDTO;
+
+export type GenerateCertificatePdfQuery = x2.api.certificate.domain.features.GenerateCertificatePdfQuery
+export type GenerateCertificatePdfQueryDTO = x2.api.certificate.domain.features.GenerateCertificatePdfQueryDTO;
+export type GenerateCertificatePdfResult = x2.api.certificate.domain.features.GenerateCertificatePdfResult;
 
 
 //@ts-ignore

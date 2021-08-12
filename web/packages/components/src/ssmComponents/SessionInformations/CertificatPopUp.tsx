@@ -73,7 +73,7 @@ export const CertificatPopUp = (props: CertificatPopUp) => {
             classes={{content: classes.content, actions: classes.actions, closeIcon: classes.closeIcon, button: classes.action}}
         >
             <Document
-                file={"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"}
+                file={pdf}
                 className={classes.document}
                 loading={<LoadingComponent />}
             >

@@ -1,4 +1,7 @@
 import {
+    GenerateCertificatePdfQuery,
+    GenerateCertificatePdfQueryDTO,
+    GenerateCertificatePdfResult,
     Session,
     SessionState,
     SSM,
@@ -69,6 +72,22 @@ const fetchSessionState = async (
         sessionId: sessionId,
         ssm: ssmName
     } as TxSsmSessionLogGetQueryDTO).then(
+        it => {
+            return it.ssmSessionState ?? undefined
+        }
+    );
+}
+
+const fetchSessionState = async (
+    ssmName: string,
+    sessionId: string,
+    transactionId: string
+): Promise<SessionState | undefined> => {
+    return requestCoop<GenerateCertificatePdfQuery, GenerateCertificatePdfResult>("generateCertificatePdf", {
+        certificate:  {
+            
+        }
+    } as GenerateCertificatePdfQueryDTO).then(
         it => {
             return it.ssmSessionState ?? undefined
         }
