@@ -1,6 +1,7 @@
 package x2.api.certificate.api.features
 
 import f2.dsl.fnc.f2Function
+import org.bouncycastle.asn1.isismtt.ocsp.RequestedCertificate.certificate
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import x2.api.certificate.api.model.translate
@@ -17,10 +18,13 @@ class GenerateCertificateFromSessionStateFunctionImpl {
 
     @Bean
     fun generateCertificateFromSessionStateFunction(): GenerateCertificateFromSessionStateFunction = f2Function { cmd ->
-        val certificate = cmd.sessionState.public
+        cmd.sessionState.public
             .toJson().parseJsonTo(CertificateCredentials::class.java)
-            .translate(cmd.lang)
-        val base64Document = KotlinxHtmlGenerator.generate(certificate).let(HtmlToPdfConverter::htmlToPdfB64)
-        GenerateCertificateFromSessionStateResult(base64Document)
+            ?.translate(cmd.lang)
+            ?.let { certificate ->
+                KotlinxHtmlGenerator.generate(certificate).let(HtmlToPdfConverter::htmlToPdfB64)
+            }.let { base64Document ->
+                GenerateCertificateFromSessionStateResult(base64Document)
+            }
     }
 }

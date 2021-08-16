@@ -23,10 +23,8 @@ class CertificateApiService(
 ) {
     @Bean
     fun canGenerateCertificate() = canGenerateCertificateFunction
-
     @Bean
     fun generateCertificate() = generateCertificatePdfFunction
-
     @Bean
     fun generateCertificateFromSessionState() = generateCertificateFromSessionStateFunction
 }

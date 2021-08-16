@@ -48,7 +48,7 @@ expect interface GenerateCertificateFromSessionStateResultDTO {
      * Generated PDF file as a Base64 String
      * @example "b64string"
      */
-    val base64Document: String
+    val base64Document: String?
 }
 
 /**
@@ -59,5 +59,5 @@ expect interface GenerateCertificateFromSessionStateResultDTO {
 @JsExport
 @JsName("GenerateCertificateFromSessionStateResult")
 class GenerateCertificateFromSessionStateResult(
-    override val base64Document: String
+    override val base64Document: String?
 ): GenerateCertificateFromSessionStateResultDTO
