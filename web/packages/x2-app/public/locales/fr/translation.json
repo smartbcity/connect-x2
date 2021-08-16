@@ -28,6 +28,10 @@
   "copyToClipboard": "Copier dans le presse-papier",
   "copyToClipboardSuccess": "Déjà copié, cliquez ici si vous voulez le re-copier",
   "preview": "Apperçu",
+  "generate": "Générer",
+  "download": "Télécharger",
+  "cancel": "Annuler",
+  "transactionCertificate": "Certificat de la transaction",
   "detailsPage": {
     "sessionInformations": "Informations sur la session",
     "sessionInformationsOf": "Informations sur la session {{sessionName}}",

@@ -1,0 +1,17 @@
+import { CodeHighlighter, DescriptedCode } from '@smartb/archetypes-ui-documentation'
+import GenerateCertificatePdfResultDesc from './desc.md'
+import GenerateCertificatePdfResultSample from './sample.json'
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Generate Certificate PDF: Result" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+<DescriptedCode
+  leftElement={<GenerateCertificatePdfResultDesc />}
+  rightElement={
+    <CodeHighlighter
+      object={GenerateCertificatePdfResultSample}
+      language={"json"}
+      title={"Example"}
+    />
+  }
+/>

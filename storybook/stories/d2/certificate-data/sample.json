@@ -1,0 +1,11 @@
+{
+  "label" : {
+    "EN" : "Amount of CO2 saved"
+  },
+  "value" : {
+    "EN" : "10"
+  },
+  "unit" : {
+    "EN" : "kt"
+  }
+}

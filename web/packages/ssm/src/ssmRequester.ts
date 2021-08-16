@@ -1,4 +1,6 @@
 import {
+    GenerateCertificatePdfQuery,
+    GenerateCertificatePdfResult,
     Session,
     SessionState,
     SSM,
@@ -13,7 +15,11 @@ import {
     TxSsmSessionLogGetQueryDTO,
     TxSsmSessionLogGetQueryResultDTO,
     TxSsmSessionLogListQueryDTO,
-    TxSsmSessionLogListQueryResultDTO
+    TxSsmSessionLogListQueryResultDTO,
+    GenerateCertificateFromSessionStateQuery, 
+    GenerateCertificateFromSessionStateResult,
+    CanGenerateCertificateQuery,
+    CanGenerateCertificateResult
 } from "./models";
 import {requestCoop} from "utils";
 
@@ -75,6 +81,36 @@ const fetchSessionState = async (
     );
 }
 
+const generateCertificatePdf = async (
+    query: GenerateCertificatePdfQuery
+): Promise<string | undefined> => {
+    return requestCoop<GenerateCertificatePdfQuery, GenerateCertificatePdfResult>("generateCertificate", query).then(
+        it => {
+            return it.base64Document ?? undefined
+        }
+    );
+}
+
+const generateCertificateFromSessionState = async (
+    query: GenerateCertificateFromSessionStateQuery
+): Promise<string | undefined> => {
+    return requestCoop<GenerateCertificateFromSessionStateQuery, GenerateCertificateFromSessionStateResult>("generateCertificateFromSessionState", query).then(
+        it => {
+            return it.base64Document ?? undefined
+        }
+    );
+}
+
+const CanGenerateCertificate = async (
+    query: CanGenerateCertificateQuery
+): Promise<boolean | undefined> => {
+    return requestCoop<CanGenerateCertificateQuery, CanGenerateCertificateResult>("canGenerateCertificate", query).then(
+        it => {
+            return it.canGenerateCertificate ?? undefined
+        }
+    );
+}
+
 
 export const SSMRequester = {
     fetchSSMs: fetchSSMs,
@@ -82,6 +118,9 @@ export const SSMRequester = {
     fetchSessions: fetchSessions,
     fetchSession: fetchSession,
     fetchSessionStates: fetchSessionStates,
-    fetchSessionState: fetchSessionState
+    fetchSessionState: fetchSessionState,
+    generateCertificatePdf: generateCertificatePdf,
+    generateCertificateFromSessionState: generateCertificateFromSessionState,
+    CanGenerateCertificate: CanGenerateCertificate
 };
 

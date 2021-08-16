@@ -1,0 +1,17 @@
+import CertificateSignerDesc from './desc.md'
+import CertificateSignerSample from './sample.json'
+import { CodeHighlighter, DescriptedCode } from '@smartb/archetypes-ui-documentation'
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="CertificateSigner" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+<DescriptedCode
+  leftElement={<CertificateSignerDesc />}
+  rightElement={
+    <CodeHighlighter
+      object={CertificateSignerSample}
+      language={"json"}
+      title={"Example"}
+    />
+  }
+/>

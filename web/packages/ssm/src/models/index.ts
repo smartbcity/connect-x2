@@ -1,6 +1,7 @@
 import {ssm} from "x2-ssm-domain";
+import {x2} from "x2-certificate-domain";
 
-export type Transaction = ssm.chaincode.dsl.blockchain.Transaction;
+export type TransactionDTO = ssm.chaincode.dsl.blockchain.TransactionDTO;
 export type Transition = ssm.chaincode.dsl.SsmTransition;
 export type Session = ssm.tx.dsl.model.TxSsmSessionDTO;
 export type SSM = ssm.tx.dsl.model.TxSsmDTO;
@@ -27,6 +28,13 @@ export type TxSsmSessionLogListQueryResultDTO = ssm.tx.dsl.features.query.TxSsmS
 
 export type TxSsmSessionLogGetQueryDTO = ssm.tx.dsl.features.query.TxSsmSessionLogGetQueryDTO;
 export type TxSsmSessionLogGetQueryResultDTO = ssm.tx.dsl.features.query.TxSsmSessionLogGetQueryResultDTO;
+
+export type GenerateCertificatePdfQuery = x2.api.certificate.domain.features.GenerateCertificatePdfQueryDTO
+export type GenerateCertificatePdfResult = x2.api.certificate.domain.features.GenerateCertificatePdfResultDTO;
+export type GenerateCertificateFromSessionStateQuery = x2.api.certificate.domain.features.GenerateCertificateFromSessionStateQueryDTO;
+export type GenerateCertificateFromSessionStateResult = x2.api.certificate.domain.features.GenerateCertificateFromSessionStateResultDTO;
+export type CanGenerateCertificateQuery = x2.api.certificate.domain.features.CanGenerateCertificateQueryDTO;
+export type CanGenerateCertificateResult = x2.api.certificate.domain.features.CanGenerateCertificateResultDTO;
 
 
 //@ts-ignore

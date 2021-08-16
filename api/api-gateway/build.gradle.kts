@@ -11,6 +11,7 @@ dependencies {
 
     implementation(project(":api:api-config"))
     implementation(project(":api:api-infra:i2"))
+    implementation(project(":api:certificate:certificate-api"))
     implementation(project(":api:ssm:ssm-api"))
 }
 

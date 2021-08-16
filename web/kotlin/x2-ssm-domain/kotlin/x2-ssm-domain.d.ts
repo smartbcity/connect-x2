@@ -151,7 +151,7 @@ export namespace ssm.chaincode.dsl.blockchain {
     }
 }
 export namespace ssm.chaincode.dsl.blockchain {
-    interface Transaction {
+    interface TransactionDTO {
         readonly transactionId: string;
         readonly blockId: kotlin.Long;
         readonly timestamp: kotlin.Long;
@@ -207,7 +207,6 @@ export namespace ssm.tx.dsl.features.query {
 }
 export namespace ssm.tx.dsl.features.query {
     interface TxSsmSessionListQueryDTO extends ssm.tx.dsl.features.query.TxQueryDTO {
-        readonly ssm: string;
     }
     interface TxSsmSessionListQueryResultDTO {
         readonly list: kotlin.collections.List<ssm.tx.dsl.model.TxSsmSessionDTO>;
@@ -485,20 +484,6 @@ export namespace ssm.chaincode.dsl.blockchain {
         readonly mspid: string;
     }
 }
-export namespace ssm.chaincode.dsl.blockchain {
-    class Transaction implements ssm.chaincode.dsl.blockchain.TransactionDTO {
-        constructor(transactionId: string, blockId: kotlin.Long, timestamp: kotlin.Long, isValid: boolean, channelId: string, creator: ssm.chaincode.dsl.blockchain.IdentitiesInfo, nonce: Int8Array, type: any /*Class ssm.chaincode.dsl.blockchain.EnvelopeType with kind: ENUM_CLASS*/, validationCode: number);
-        readonly transactionId: string;
-        readonly blockId: kotlin.Long;
-        readonly timestamp: kotlin.Long;
-        readonly isValid: boolean;
-        readonly channelId: string;
-        readonly creator: ssm.chaincode.dsl.blockchain.IdentitiesInfo;
-        readonly nonce: Int8Array;
-        readonly type: any /*Class ssm.chaincode.dsl.blockchain.EnvelopeType with kind: ENUM_CLASS*/;
-        readonly validationCode: number;
-    }
-}
 export namespace ssm.chaincode.dsl.query {
     class SsmGetAdminQuery implements ssm.chaincode.dsl.SsmCommandDTO {
         constructor(baseUrl: string, channelId: Nullable<string>, chaincodeId: Nullable<string>, bearerToken: Nullable<string>, name: string);
@@ -665,8 +650,8 @@ export namespace ssm.tx.dsl.features.query {
         constructor();
     }
     class TxSsmListQueryResult implements ssm.tx.dsl.features.query.TxSsmListQueryResultDTO {
-        constructor(list: kotlin.collections.List<ssm.tx.dsl.model.TxSsmDTO>);
-        readonly list: kotlin.collections.List<ssm.tx.dsl.model.TxSsmDTO>;
+        constructor(list: kotlin.collections.List<ssm.tx.dsl.model.TxSsm>);
+        readonly list: kotlin.collections.List<ssm.tx.dsl.model.TxSsm>;
     }
 }
 export namespace ssm.tx.dsl.features.query {
@@ -701,8 +686,8 @@ export namespace ssm.tx.dsl.features.query {
         readonly bearerToken: Nullable<string>;
     }
     class TxSsmSessionLogGetQueryResult implements ssm.tx.dsl.features.query.TxSsmSessionLogGetQueryResultDTO {
-        constructor(ssmSessionState: Nullable<ssm.tx.dsl.model.TxSsmSessionStateDTO>);
-        readonly ssmSessionState: Nullable<ssm.tx.dsl.model.TxSsmSessionStateDTO>;
+        constructor(ssmSessionState: Nullable<ssm.tx.dsl.model.TxSsmSessionState>);
+        readonly ssmSessionState: Nullable<ssm.tx.dsl.model.TxSsmSessionState>;
     }
 }
 export namespace ssm.tx.dsl.features.query {

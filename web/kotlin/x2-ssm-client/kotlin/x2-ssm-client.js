@@ -30592,85 +30592,6 @@
     configurable: true,
     get: IdentitiesInfo_0.prototype._get_mspid__0_k$
   });
-  function Transaction_0(transactionId, blockId, timestamp, isValid, channelId, creator, nonce, type, validationCode) {
-    this._transactionId_0 = transactionId;
-    this._blockId_0 = blockId;
-    this._timestamp = timestamp;
-    this._isValid = isValid;
-    this._channelId_0 = channelId;
-    this._creator = creator;
-    this._nonce = nonce;
-    this._type_1 = type;
-    this._validationCode = validationCode;
-  }
-  Transaction_0.prototype._get_transactionId__0_k$ = function () {
-    return this._transactionId_0;
-  };
-  Transaction_0.prototype._get_blockId__0_k$ = function () {
-    return this._blockId_0;
-  };
-  Transaction_0.prototype._get_timestamp__0_k$ = function () {
-    return this._timestamp;
-  };
-  Transaction_0.prototype._get_isValid__0_k$ = function () {
-    return this._isValid;
-  };
-  Transaction_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_0;
-  };
-  Transaction_0.prototype._get_creator__0_k$ = function () {
-    return this._creator;
-  };
-  Transaction_0.prototype._get_nonce__0_k$ = function () {
-    return this._nonce;
-  };
-  Transaction_0.prototype._get_type__0_k$ = function () {
-    return this._type_1;
-  };
-  Transaction_0.prototype._get_validationCode__0_k$ = function () {
-    return this._validationCode;
-  };
-  Transaction_0.$metadata$ = {
-    simpleName: 'Transaction',
-    kind: 'class',
-    interfaces: []
-  };
-  Object.defineProperty(Transaction_0.prototype, 'transactionId', {
-    configurable: true,
-    get: Transaction_0.prototype._get_transactionId__0_k$
-  });
-  Object.defineProperty(Transaction_0.prototype, 'blockId', {
-    configurable: true,
-    get: Transaction_0.prototype._get_blockId__0_k$
-  });
-  Object.defineProperty(Transaction_0.prototype, 'timestamp', {
-    configurable: true,
-    get: Transaction_0.prototype._get_timestamp__0_k$
-  });
-  Object.defineProperty(Transaction_0.prototype, 'isValid', {
-    configurable: true,
-    get: Transaction_0.prototype._get_isValid__0_k$
-  });
-  Object.defineProperty(Transaction_0.prototype, 'channelId', {
-    configurable: true,
-    get: Transaction_0.prototype._get_channelId__0_k$
-  });
-  Object.defineProperty(Transaction_0.prototype, 'creator', {
-    configurable: true,
-    get: Transaction_0.prototype._get_creator__0_k$
-  });
-  Object.defineProperty(Transaction_0.prototype, 'nonce', {
-    configurable: true,
-    get: Transaction_0.prototype._get_nonce__0_k$
-  });
-  Object.defineProperty(Transaction_0.prototype, 'type', {
-    configurable: true,
-    get: Transaction_0.prototype._get_type__0_k$
-  });
-  Object.defineProperty(Transaction_0.prototype, 'validationCode', {
-    configurable: true,
-    get: Transaction_0.prototype._get_validationCode__0_k$
-  });
   function SsmGetAdminQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, $this) {
     if (!(($mask0 & 8) === 0))
       bearerToken = null;
@@ -30683,7 +30604,7 @@
   function SsmGetAdminQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
     this._baseUrl = baseUrl;
-    this._channelId_1 = channelId;
+    this._channelId_0 = channelId;
     this._chaincodeId = chaincodeId;
     this._bearerToken = bearerToken_0;
     this._name_3 = name;
@@ -30692,7 +30613,7 @@
     return this._baseUrl;
   };
   SsmGetAdminQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_1;
+    return this._channelId_0;
   };
   SsmGetAdminQuery_0.prototype._get_chaincodeId__0_k$ = function () {
     return this._chaincodeId;
@@ -30755,7 +30676,7 @@
   function SsmGetQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
     this._baseUrl_0 = baseUrl;
-    this._channelId_2 = channelId;
+    this._channelId_1 = channelId;
     this._chaincodeId_0 = chaincodeId;
     this._bearerToken_0 = bearerToken_0;
     this._name_4 = name;
@@ -30764,7 +30685,7 @@
     return this._baseUrl_0;
   };
   SsmGetQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_2;
+    return this._channelId_1;
   };
   SsmGetQuery_0.prototype._get_chaincodeId__0_k$ = function () {
     return this._chaincodeId_0;
@@ -30818,7 +30739,7 @@
   function SsmGetSessionLogsQuery_0(session, baseUrl, channelId, chaincodeId, bearerToken) {
     this._session_2 = session;
     this._baseUrl_1 = baseUrl;
-    this._channelId_3 = channelId;
+    this._channelId_2 = channelId;
     this._chaincodeId_1 = chaincodeId;
     this._bearerToken_1 = bearerToken;
   }
@@ -30829,7 +30750,7 @@
     return this._baseUrl_1;
   };
   SsmGetSessionLogsQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_3;
+    return this._channelId_2;
   };
   SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__0_k$ = function () {
     return this._chaincodeId_1;
@@ -30921,7 +30842,7 @@
   function SsmGetSessionQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
     this._baseUrl_2 = baseUrl;
-    this._channelId_4 = channelId;
+    this._channelId_3 = channelId;
     this._chaincodeId_2 = chaincodeId;
     this._bearerToken_2 = bearerToken_0;
     this._name_5 = name;
@@ -30930,7 +30851,7 @@
     return this._baseUrl_2;
   };
   SsmGetSessionQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_4;
+    return this._channelId_3;
   };
   SsmGetSessionQuery_0.prototype._get_chaincodeId__0_k$ = function () {
     return this._chaincodeId_2;
@@ -30984,7 +30905,7 @@
   function SsmGetTransactionQuery_0(id, baseUrl, channelId, chaincodeId, bearerToken) {
     this._id_2 = id;
     this._baseUrl_3 = baseUrl;
-    this._channelId_5 = channelId;
+    this._channelId_4 = channelId;
     this._chaincodeId_3 = chaincodeId;
     this._bearerToken_3 = bearerToken;
   }
@@ -30995,7 +30916,7 @@
     return this._baseUrl_3;
   };
   SsmGetTransactionQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_5;
+    return this._channelId_4;
   };
   SsmGetTransactionQuery_0.prototype._get_chaincodeId__0_k$ = function () {
     return this._chaincodeId_3;
@@ -31010,7 +30931,7 @@
     return this._baseUrl_3;
   };
   SsmGetTransactionQuery_0.prototype.component3 = function () {
-    return this._channelId_5;
+    return this._channelId_4;
   };
   SsmGetTransactionQuery_0.prototype.component4 = function () {
     return this._chaincodeId_3;
@@ -31019,7 +30940,7 @@
     return this._bearerToken_3;
   };
   SsmGetTransactionQuery_0.prototype.copy = function (id, baseUrl, channelId, chaincodeId, bearerToken) {
-    return this.copy_ucggm6_k$(id === void 1 ? this._id_2 : id, baseUrl === void 1 ? this._baseUrl_3 : baseUrl, channelId === void 1 ? this._channelId_5 : channelId, chaincodeId === void 1 ? this._chaincodeId_3 : chaincodeId, bearerToken === void 1 ? this._bearerToken_3 : bearerToken);
+    return this.copy_ucggm6_k$(id === void 1 ? this._id_2 : id, baseUrl === void 1 ? this._baseUrl_3 : baseUrl, channelId === void 1 ? this._channelId_4 : channelId, chaincodeId === void 1 ? this._chaincodeId_3 : chaincodeId, bearerToken === void 1 ? this._bearerToken_3 : bearerToken);
   };
   SsmGetTransactionQuery_0.prototype.copy_ucggm6_k$ = function (id, baseUrl, channelId, chaincodeId, bearerToken) {
     return new SsmGetTransactionQuery_0(id, baseUrl, channelId, chaincodeId, bearerToken);
@@ -31030,7 +30951,7 @@
     if (!(($mask0 & 2) === 0))
       baseUrl = this._baseUrl_3;
     if (!(($mask0 & 4) === 0))
-      channelId = this._channelId_5;
+      channelId = this._channelId_4;
     if (!(($mask0 & 8) === 0))
       chaincodeId = this._chaincodeId_3;
     if (!(($mask0 & 16) === 0))
@@ -31038,12 +30959,12 @@
     return this.copy_ucggm6_k$(id, baseUrl, channelId, chaincodeId, bearerToken);
   };
   SsmGetTransactionQuery_0.prototype.toString = function () {
-    return '' + 'SsmGetTransactionQuery(id=' + this._id_2 + ', baseUrl=' + this._baseUrl_3 + ', channelId=' + this._channelId_5 + ', chaincodeId=' + this._chaincodeId_3 + ', bearerToken=' + this._bearerToken_3 + ')';
+    return '' + 'SsmGetTransactionQuery(id=' + this._id_2 + ', baseUrl=' + this._baseUrl_3 + ', channelId=' + this._channelId_4 + ', chaincodeId=' + this._chaincodeId_3 + ', bearerToken=' + this._bearerToken_3 + ')';
   };
   SsmGetTransactionQuery_0.prototype.hashCode = function () {
     var result = getStringHashCode(this._id_2);
     result = imul(result, 31) + getStringHashCode(this._baseUrl_3) | 0;
-    result = imul(result, 31) + (this._channelId_5 == null ? 0 : getStringHashCode(this._channelId_5)) | 0;
+    result = imul(result, 31) + (this._channelId_4 == null ? 0 : getStringHashCode(this._channelId_4)) | 0;
     result = imul(result, 31) + (this._chaincodeId_3 == null ? 0 : getStringHashCode(this._chaincodeId_3)) | 0;
     result = imul(result, 31) + (this._bearerToken_3 == null ? 0 : getStringHashCode(this._bearerToken_3)) | 0;
     return result;
@@ -31060,7 +30981,7 @@
       return false;
     if (!(this._baseUrl_3 === tmp0_other_with_cast._baseUrl_3))
       return false;
-    if (!(this._channelId_5 == tmp0_other_with_cast._channelId_5))
+    if (!(this._channelId_4 == tmp0_other_with_cast._channelId_4))
       return false;
     if (!(this._chaincodeId_3 == tmp0_other_with_cast._chaincodeId_3))
       return false;
@@ -31120,7 +31041,7 @@
   function SsmGetUserQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
     this._baseUrl_4 = baseUrl;
-    this._channelId_6 = channelId;
+    this._channelId_5 = channelId;
     this._chaincodeId_4 = chaincodeId;
     this._bearerToken_4 = bearerToken_0;
     this._name_6 = name;
@@ -31129,7 +31050,7 @@
     return this._baseUrl_4;
   };
   SsmGetUserQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_6;
+    return this._channelId_5;
   };
   SsmGetUserQuery_0.prototype._get_chaincodeId__0_k$ = function () {
     return this._chaincodeId_4;
@@ -31192,7 +31113,7 @@
   function SsmListAdminQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
     this._baseUrl_5 = baseUrl;
-    this._channelId_7 = channelId;
+    this._channelId_6 = channelId;
     this._chaincodeId_5 = chaincodeId;
     this._bearerToken_5 = bearerToken_0;
   }
@@ -31200,7 +31121,7 @@
     return this._baseUrl_5;
   };
   SsmListAdminQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_7;
+    return this._channelId_6;
   };
   SsmListAdminQuery_0.prototype._get_chaincodeId__0_k$ = function () {
     return this._chaincodeId_5;
@@ -31256,7 +31177,7 @@
   function SsmListSessionQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
     this._baseUrl_6 = baseUrl;
-    this._channelId_8 = channelId;
+    this._channelId_7 = channelId;
     this._chaincodeId_6 = chaincodeId;
     this._bearerToken_6 = bearerToken_0;
   }
@@ -31264,7 +31185,7 @@
     return this._baseUrl_6;
   };
   SsmListSessionQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_8;
+    return this._channelId_7;
   };
   SsmListSessionQuery_0.prototype._get_chaincodeId__0_k$ = function () {
     return this._chaincodeId_6;
@@ -31320,7 +31241,7 @@
   function SsmListSsmQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
     this._baseUrl_7 = baseUrl;
-    this._channelId_9 = channelId;
+    this._channelId_8 = channelId;
     this._chaincodeId_7 = chaincodeId;
     this._bearerToken_7 = bearerToken_0;
   }
@@ -31328,7 +31249,7 @@
     return this._baseUrl_7;
   };
   SsmListSsmQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_9;
+    return this._channelId_8;
   };
   SsmListSsmQuery_0.prototype._get_chaincodeId__0_k$ = function () {
     return this._chaincodeId_7;
@@ -31384,7 +31305,7 @@
   function SsmListUserQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
     this._baseUrl_8 = baseUrl;
-    this._channelId_10 = channelId;
+    this._channelId_9 = channelId;
     this._chaincodeId_8 = chaincodeId;
     this._bearerToken_8 = bearerToken_0;
   }
@@ -31392,7 +31313,7 @@
     return this._baseUrl_8;
   };
   SsmListUserQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_10;
+    return this._channelId_9;
   };
   SsmListUserQuery_0.prototype._get_chaincodeId__0_k$ = function () {
     return this._chaincodeId_8;
@@ -41824,16 +41745,16 @@
     this._dayOfYear = dayOfYear;
     this._month = month;
     this._year = year;
-    this._timestamp_0 = timestamp;
+    this._timestamp = timestamp;
   }
   GMTDate.prototype.compareTo_nwbqj3_k$ = function (other) {
-    return this._timestamp_0.compareTo_wiekkq_k$(other._timestamp_0);
+    return this._timestamp.compareTo_wiekkq_k$(other._timestamp);
   };
   GMTDate.prototype.compareTo_2c5_k$ = function (other) {
     return this.compareTo_nwbqj3_k$(other instanceof GMTDate ? other : THROW_CCE());
   };
   GMTDate.prototype.toString = function () {
-    return '' + 'GMTDate(seconds=' + this._seconds + ', minutes=' + this._minutes + ', hours=' + this._hours + ', dayOfWeek=' + this._dayOfWeek + ', dayOfMonth=' + this._dayOfMonth + ', dayOfYear=' + this._dayOfYear + ', month=' + this._month + ', year=' + this._year + ', timestamp=' + this._timestamp_0 + ')';
+    return '' + 'GMTDate(seconds=' + this._seconds + ', minutes=' + this._minutes + ', hours=' + this._hours + ', dayOfWeek=' + this._dayOfWeek + ', dayOfMonth=' + this._dayOfMonth + ', dayOfYear=' + this._dayOfYear + ', month=' + this._month + ', year=' + this._year + ', timestamp=' + this._timestamp + ')';
   };
   GMTDate.prototype.hashCode = function () {
     var result = this._seconds;
@@ -41844,7 +41765,7 @@
     result = imul(result, 31) + this._dayOfYear | 0;
     result = imul(result, 31) + this._month.hashCode() | 0;
     result = imul(result, 31) + this._year | 0;
-    result = imul(result, 31) + this._timestamp_0.hashCode() | 0;
+    result = imul(result, 31) + this._timestamp.hashCode() | 0;
     return result;
   };
   GMTDate.prototype.equals = function (other) {
@@ -41871,7 +41792,7 @@
       return false;
     if (!(this._year === tmp0_other_with_cast._year))
       return false;
-    if (!this._timestamp_0.equals(tmp0_other_with_cast._timestamp_0))
+    if (!this._timestamp.equals(tmp0_other_with_cast._timestamp))
       return false;
     return true;
   };
@@ -43029,12 +42950,12 @@
     interfaces: []
   };
   function TypeInfoImpl(type, reifiedType, kotlinType) {
-    this._type_2 = type;
+    this._type_1 = type;
     this._reifiedType = reifiedType;
     this._kotlinType = kotlinType;
   }
   TypeInfoImpl.prototype._get_type__0_k$ = function () {
-    return this._type_2;
+    return this._type_1;
   };
   TypeInfoImpl.prototype._get_reifiedType__0_k$ = function () {
     return this._reifiedType;
@@ -43043,10 +42964,10 @@
     return this._kotlinType;
   };
   TypeInfoImpl.prototype.toString = function () {
-    return '' + 'TypeInfoImpl(type=' + this._type_2 + ', reifiedType=' + this._reifiedType + ', kotlinType=' + this._kotlinType + ')';
+    return '' + 'TypeInfoImpl(type=' + this._type_1 + ', reifiedType=' + this._reifiedType + ', kotlinType=' + this._kotlinType + ')';
   };
   TypeInfoImpl.prototype.hashCode = function () {
-    var result = this._type_2.hashCode();
+    var result = this._type_1.hashCode();
     result = imul(result, 31) + hashCode(this._reifiedType) | 0;
     result = imul(result, 31) + (this._kotlinType == null ? 0 : hashCode(this._kotlinType)) | 0;
     return result;
@@ -43059,7 +42980,7 @@
     else {
     }
     var tmp0_other_with_cast = other instanceof TypeInfoImpl ? other : THROW_CCE();
-    if (!this._type_2.equals(tmp0_other_with_cast._type_2))
+    if (!this._type_1.equals(tmp0_other_with_cast._type_1))
       return false;
     if (!equals_1(this._reifiedType, tmp0_other_with_cast._reifiedType))
       return false;
@@ -48577,12 +48498,12 @@
     interfaces: []
   };
   function TypeInfo_0(type, reifiedType, kotlinType) {
-    this._type_3 = type;
+    this._type_2 = type;
     this._reifiedType_0 = reifiedType;
     this._kotlinType_0 = kotlinType;
   }
   TypeInfo_0.prototype._get_type__0_k$ = function () {
-    return this._type_3;
+    return this._type_2;
   };
   TypeInfo_0.prototype._get_reifiedType__0_k$ = function () {
     return this._reifiedType_0;
@@ -48591,10 +48512,10 @@
     return this._kotlinType_0;
   };
   TypeInfo_0.prototype.toString = function () {
-    return '' + 'TypeInfo(type=' + this._type_3 + ', reifiedType=' + this._reifiedType_0 + ', kotlinType=' + this._kotlinType_0 + ')';
+    return '' + 'TypeInfo(type=' + this._type_2 + ', reifiedType=' + this._reifiedType_0 + ', kotlinType=' + this._kotlinType_0 + ')';
   };
   TypeInfo_0.prototype.hashCode = function () {
-    var result = this._type_3.hashCode();
+    var result = this._type_2.hashCode();
     result = imul(result, 31) + hashCode(this._reifiedType_0) | 0;
     result = imul(result, 31) + (this._kotlinType_0 == null ? 0 : hashCode(this._kotlinType_0)) | 0;
     return result;
@@ -48607,7 +48528,7 @@
     else {
     }
     var tmp0_other_with_cast = other instanceof TypeInfo_0 ? other : THROW_CCE();
-    if (!this._type_3.equals(tmp0_other_with_cast._type_3))
+    if (!this._type_2.equals(tmp0_other_with_cast._type_2))
       return false;
     if (!equals_1(this._reifiedType_0, tmp0_other_with_cast._reifiedType_0))
       return false;
@@ -49945,7 +49866,7 @@
             }
 
             tmp_1._contentLength3 = tmp_2;
-            this._tmp2_subject4 = this._info0._type_3;
+            this._tmp2_subject4 = this._info0._type_2;
             if (this._tmp2_subject4.equals(getKClass_0(Unit))) {
               cancel_3(this._body1);
               Unit_getInstance();
@@ -50696,7 +50617,7 @@
             this._info0_0 = this.__name_for_destructuring_parameter_0__0.component1_0_k$();
             this._body1_0 = this.__name_for_destructuring_parameter_0__0.component2_0_k$();
             var tmp_0;
-            if (!this._info0_0._type_3.equals(PrimitiveClasses_getInstance()._get_stringClass__0_k$())) {
+            if (!this._info0_0._type_2.equals(PrimitiveClasses_getInstance()._get_stringClass__0_k$())) {
               tmp_0 = true;
             } else {
               var tmp_1 = this._body1_0;
@@ -52220,12 +52141,12 @@
     var nonce_3 = generateNonce(16);
     tmp0_apply_0_1.append_uch40_k$(encodeBase64(nonce_3));
     Unit_getInstance();
-    tmp._nonce_0 = tmp0_apply_0_1.toString();
+    tmp._nonce = tmp0_apply_0_1.toString();
     var tmp_0 = this;
     var tmp0_apply_0 = HeadersBuilder_init_$Create$(0, 1, null);
     tmp0_apply_0.append_wbz76b_k$(HttpHeaders_getInstance()._Upgrade, 'websocket');
     tmp0_apply_0.append_wbz76b_k$(HttpHeaders_getInstance()._Connection, 'upgrade');
-    tmp0_apply_0.append_wbz76b_k$(HttpHeaders_getInstance()._SecWebSocketKey, this._nonce_0);
+    tmp0_apply_0.append_wbz76b_k$(HttpHeaders_getInstance()._SecWebSocketKey, this._nonce);
     tmp0_apply_0.append_wbz76b_k$(HttpHeaders_getInstance()._SecWebSocketVersion, '13');
     tmp_0._headers_0 = tmp0_apply_0.build_0_k$();
   }
@@ -52363,7 +52284,7 @@
             }
 
             var tmp_1 = this;
-            var tmp0_subject = this._info0_1._type_3;
+            var tmp0_subject = this._info0_1._type_2;
             var tmp_2;
             if (tmp0_subject.equals(getKClass_0(DefaultClientWebSocketSession))) {
               var defaultSession = this._$feature_10.convertSessionToDefault_dn9paw_k$(this._session1);
@@ -59461,10 +59382,10 @@
     return new ExtensionFrame(streamId, extendedType, payload);
   }
   function Frame_0(type) {
-    this._type_4 = type;
+    this._type_3 = type;
   }
   Frame_0.prototype._get_type__0_k$ = function () {
-    return this._type_4;
+    return this._type_3;
   };
   Frame_0.prototype.toPacket_nl7d5v_k$ = function (pool) {
     var tmp;
@@ -59989,7 +59910,7 @@
   }
   function RequestFrame(type, streamId, follows, complete_0, next, initialRequest, payload) {
     Frame_0.call(this, type);
-    this._type_5 = type;
+    this._type_4 = type;
     this._streamId_2 = streamId;
     this._follows = follows;
     this._complete = complete_0;
@@ -59998,7 +59919,7 @@
     this._payload_4 = payload;
   }
   RequestFrame.prototype._get_type__0_k$ = function () {
-    return this._type_5;
+    return this._type_4;
   };
   RequestFrame.prototype._get_streamId__0_k$ = function () {
     return this._streamId_2;
@@ -65599,7 +65520,6 @@
   $ssm$chaincode$dsl.SsmTransition = SsmTransition_0;
   $ssm$chaincode$dsl$blockchain.Block = Block_0;
   $ssm$chaincode$dsl$blockchain.IdentitiesInfo = IdentitiesInfo_0;
-  $ssm$chaincode$dsl$blockchain.Transaction = Transaction_0;
   var $ssm$chaincode$dsl$query = $ssm$chaincode$dsl.query || ($ssm$chaincode$dsl.query = {});
   $ssm$chaincode$dsl$query.SsmGetAdminQuery = SsmGetAdminQuery_0;
   $ssm$chaincode$dsl$query.SsmGetAdminResult = SsmGetAdminResult_0;

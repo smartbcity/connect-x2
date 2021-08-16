@@ -1,4 +1,4 @@
-import { Menu, MenuItem } from "@smartb/archetypes-ui-layout";
+import { MenuItems, MenuItem } from "@smartb/archetypes-ui-components";
 import { AppLayout } from "components";
 import { useEffect, useMemo } from "react";
 import { useTranslation, TFunction } from "react-i18next";
@@ -38,7 +38,7 @@ const useMenu = (t: TFunction, ssmList: Map<string, SSM>, path: string) => {
   return useMemo(() => getMenu(t, ssmList, path), [ssmList, path])
 }
 
-const getMenu = (t: TFunction, ssmList: Map<string, SSM>, path: string): Menu<LinkProps>[] => {
+const getMenu = (t: TFunction, ssmList: Map<string, SSM>, path: string): MenuItems<LinkProps>[] => {
   const ssmName = path.split("/")[1]
   const protocolsList: MenuItem<LinkProps>[] = Array.from(ssmList.values()).map((ssm) => ({
     key: `appLayout-protocols-${ssm.ssm.name}`,
@@ -49,7 +49,7 @@ const getMenu = (t: TFunction, ssmList: Map<string, SSM>, path: string): Menu<Li
     },
     isSelected: ssm.ssm.name === ssmName
   }))
-  const menu: Menu<LinkProps>[] = [{
+  const menu: MenuItems<LinkProps>[] = [{
     key: "appLayout-dashboard",
     label: t("dashboard"),
     component: Link,
