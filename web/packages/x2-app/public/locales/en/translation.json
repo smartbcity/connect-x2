@@ -31,6 +31,7 @@
   "generate": "Generate",
   "download": "Download",
   "cancel": "Cancel",
+  "transactionCertificate": "Transaction certificate",
   "detailsPage": {
     "sessionInformations": "Session informations",
     "sessionInformationsOf": "{{sessionName}} session informations",
@@ -41,8 +42,7 @@
     "transactionPayload": "Transaction payload",
     "currentStep": "Current step",
     "LastActionPerformed": "Last action performed",
-    "selectATransaction": "Select a transaction from the timeline to visualize its content",
-    "sessionCertificate": "Session certificate"
+    "selectATransaction": "Select a transaction from the timeline to visualize its content"
   },
   "sessionsPage": {
     "completedStep": "Completed Step",

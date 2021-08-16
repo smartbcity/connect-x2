@@ -1,6 +1,5 @@
 import {
     GenerateCertificatePdfQuery,
-    GenerateCertificatePdfQueryDTO,
     GenerateCertificatePdfResult,
     Session,
     SessionState,
@@ -16,7 +15,11 @@ import {
     TxSsmSessionLogGetQueryDTO,
     TxSsmSessionLogGetQueryResultDTO,
     TxSsmSessionLogListQueryDTO,
-    TxSsmSessionLogListQueryResultDTO
+    TxSsmSessionLogListQueryResultDTO,
+    GenerateCertificateFromSessionStateQuery, 
+    GenerateCertificateFromSessionStateResult,
+    CanGenerateCertificateQuery,
+    CanGenerateCertificateResult
 } from "./models";
 import {requestCoop} from "utils";
 
@@ -78,18 +81,32 @@ const fetchSessionState = async (
     );
 }
 
-const fetchSessionState = async (
-    ssmName: string,
-    sessionId: string,
-    transactionId: string
-): Promise<SessionState | undefined> => {
-    return requestCoop<GenerateCertificatePdfQuery, GenerateCertificatePdfResult>("generateCertificatePdf", {
-        certificate:  {
-            
-        }
-    } as GenerateCertificatePdfQueryDTO).then(
+const generateCertificatePdf = async (
+    query: GenerateCertificatePdfQuery
+): Promise<string | undefined> => {
+    return requestCoop<GenerateCertificatePdfQuery, GenerateCertificatePdfResult>("generateCertificate", query).then(
         it => {
-            return it.ssmSessionState ?? undefined
+            return it.base64Document ?? undefined
+        }
+    );
+}
+
+const generateCertificateFromSessionState = async (
+    query: GenerateCertificateFromSessionStateQuery
+): Promise<string | undefined> => {
+    return requestCoop<GenerateCertificateFromSessionStateQuery, GenerateCertificateFromSessionStateResult>("generateCertificateFromSessionState", query).then(
+        it => {
+            return it.base64Document ?? undefined
+        }
+    );
+}
+
+const CanGenerateCertificate = async (
+    query: CanGenerateCertificateQuery
+): Promise<boolean | undefined> => {
+    return requestCoop<CanGenerateCertificateQuery, CanGenerateCertificateResult>("canGenerateCertificate", query).then(
+        it => {
+            return it.canGenerateCertificate ?? undefined
         }
     );
 }
@@ -101,6 +118,9 @@ export const SSMRequester = {
     fetchSessions: fetchSessions,
     fetchSession: fetchSession,
     fetchSessionStates: fetchSessionStates,
-    fetchSessionState: fetchSessionState
+    fetchSessionState: fetchSessionState,
+    generateCertificatePdf: generateCertificatePdf,
+    generateCertificateFromSessionState: generateCertificateFromSessionState,
+    CanGenerateCertificate: CanGenerateCertificate
 };
 

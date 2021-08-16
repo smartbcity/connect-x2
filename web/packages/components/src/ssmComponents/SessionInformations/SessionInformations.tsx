@@ -61,7 +61,7 @@ export const SessionInformations = (props: SessionInformationsProps) => {
     const {t} = useTranslation()
     const typovariant = useMemo(() => minified ? "body2" : "body1", [minified])
     const init = currentSession.state.details?.origin?.role === undefined && currentSession.state.details?.origin?.action === undefined
-    const creationDate = useMemo(() => new Date(currentSession.creationTransaction?.timestamp).toLocaleDateString(), [currentSession.creationTransaction?.timestamp])
+    const creationDate = useMemo(() => new Date(currentSession.transaction?.timestamp).toLocaleDateString(), [currentSession.transaction?.timestamp])
 
     const [openCertificatePopUp, setOpenCertificatePopUp] = useState(false)
     const onClickGenerate = useCallback(
@@ -83,7 +83,7 @@ export const SessionInformations = (props: SessionInformationsProps) => {
                     <InputLabel>{t("channel")}:</InputLabel>
                     <InputLabel>{t("protocolEngineVersion")}:</InputLabel>
                     <InputLabel>{t("protocolEngine")}:</InputLabel>
-                    <InputLabel>{t("detailsPage.sessionCertificate")}:</InputLabel>
+                    <InputLabel>{t("transactionCertificate")}:</InputLabel>
                 </Box>
                 <Box className={clsx(classes.box, minified && classes.boxMinified)}>
                     <Box position="relative">
@@ -100,7 +100,7 @@ export const SessionInformations = (props: SessionInformationsProps) => {
                         <Button onClick={onClickGenerate} className={classes.generateButton} >{t("generate")}</Button>
                     </Box>
                 </Box>
-                <CertificatPopUp onClose={onClosePopUp} open={openCertificatePopUp} />
+                <CertificatPopUp currentSession={currentSession} onClose={onClosePopUp} open={openCertificatePopUp} />
             </Box>
     )
 }

@@ -31,6 +31,7 @@
   "generate": "Générer",
   "download": "Télécharger",
   "cancel": "Annuler",
+  "transactionCertificate": "Certificat de la transaction",
   "detailsPage": {
     "sessionInformations": "Informations sur la session",
     "sessionInformationsOf": "Informations sur la session {{sessionName}}",
@@ -41,8 +42,7 @@
     "transactionPayload": "Contenu de la transaction",
     "currentStep": "Etape courante",
     "LastActionPerformed": "Dernière action effectuée",
-    "selectATransaction": "Sélectionnez une transaction dans la timeline pour pouvoir visualiser son contenu",
-    "sessionCertificate": "Certificat de la session"
+    "selectATransaction": "Sélectionnez une transaction dans la timeline pour pouvoir visualiser son contenu"
   },
   "sessionsPage": {
     "completedStep": "Etape complétée",
