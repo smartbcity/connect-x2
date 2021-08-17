@@ -1,12 +1,10 @@
 import { Box, InputLabel, Typography } from '@material-ui/core'
-import { Button } from '@smartb/archetypes-ui-components'
 import { CodeHighlighter } from '@smartb/archetypes-ui-documentation'
 import { midLevelStyles, Theme, useTheme } from '@smartb/archetypes-ui-themes'
 import clsx from 'clsx'
-import { useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SessionState, SSMRequester } from 'ssm'
-import { useAsyncResponse } from 'utils'
+import { SessionState } from 'ssm'
 import { CopyToClipboard } from '../../components/CopyToClipboard'
 
 const useStyles = midLevelStyles<Theme>()({
@@ -89,13 +87,6 @@ export const TransactionDetails = (props: TransactionDetailsProps) => {
     const { t } = useTranslation()
     const typovariant = useMemo(() => minified ? "body2" : "body1", [minified])
 
-    const canGenerateCertificate = useCallback(
-        //@ts-ignore
-        () => SSMRequester.CanGenerateCertificate({sessionState: transaction.details}),
-        [transaction],
-    )
-    const {result, status} = useAsyncResponse(canGenerateCertificate)
-
     if (shortVersion) return (
         <>
             <Box className={clsx(classes.descriptionContainer, className)}>
@@ -128,7 +119,6 @@ export const TransactionDetails = (props: TransactionDetailsProps) => {
                     <InputLabel>{t("from")}:</InputLabel>
                     <InputLabel>{t("to")}:</InputLabel>
                     <InputLabel>{t("publicKey")}:</InputLabel>
-                    <InputLabel>{t("transactionCertificate")}:</InputLabel>
                 </Box>
                 <Box className={clsx(classes.box, minified && classes.boxMinified)}>
                     <Box position="relative">
@@ -142,9 +132,6 @@ export const TransactionDetails = (props: TransactionDetailsProps) => {
                     <Box position="relative">
                         <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.creator.id}</Typography>
                         <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.creator.id ?? ""} />
-                    </Box>
-                    <Box display="flex" alignItems="center" height="16px">
-                        <Button isLoading={status !== "SUCCESS"} disabled={!result} onClick={() => {}} className={classes.generateButton} >{t("generate")}</Button>
                     </Box>
                 </Box>
             </Box>

@@ -11,8 +11,8 @@ export interface HttpOptions {
 
 export const requestCoop = function <T, R>(
     location: string,
-    body?: T
-): Promise<R> {
+    body?: T,
+) {
     //@ts-ignore
     const url = window._env_.COOP_URL
     //@ts-ignore
@@ -24,6 +24,23 @@ export const requestCoop = function <T, R>(
         body: JSON.stringify(body)
     }
     return request<R[]>(options).then(it => it[0])
+};
+
+export const requestCoops = function <T, R>(
+    location: string,
+    body?: T,
+) {
+    //@ts-ignore
+    const url = window._env_.COOP_URL
+    //@ts-ignore
+    const token = window.token
+    const options: HttpOptions = {
+        url: `${url}/api/${location}`,
+        method: "POST",
+        jwt: token,
+        body: JSON.stringify(body)
+    }
+    return request<R[]>(options)
 };
 
 export const request = <T>(
