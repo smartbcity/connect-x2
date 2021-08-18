@@ -165,20 +165,20 @@ export namespace ssm.chaincode.dsl.blockchain {
 }
 export namespace x2.api.certificate.domain.features {
     interface CanGenerateCertificateQueryDTO {
-        readonly sessionState: ssm.chaincode.dsl.SsmSessionState;
+        readonly sessionState: ssm.chaincode.dsl.SsmSessionStateDTO;
     }
     interface CanGenerateCertificateResultDTO {
-        readonly sessionState: ssm.chaincode.dsl.SsmSessionState;
+        readonly sessionState: ssm.chaincode.dsl.SsmSessionStateDTO;
         readonly canGenerateCertificate: boolean;
     }
 }
 export namespace x2.api.certificate.domain.features {
     interface GenerateCertificateFromSessionStateQueryDTO {
-        readonly sessionState: ssm.chaincode.dsl.SsmSessionState;
+        readonly sessionState: ssm.chaincode.dsl.SsmSessionStateDTO;
         readonly lang: any /*Class x2.api.certificate.domain.model.Lang with kind: ENUM_CLASS*/;
     }
     interface GenerateCertificateFromSessionStateResultDTO {
-        readonly base64Document: string;
+        readonly base64Document: Nullable<string>;
     }
 }
 export namespace x2.api.certificate.domain.features {
@@ -620,8 +620,8 @@ export namespace x2.api.certificate.domain.features {
         readonly lang: any /*Class x2.api.certificate.domain.model.Lang with kind: ENUM_CLASS*/;
     }
     class GenerateCertificateFromSessionStateResult implements x2.api.certificate.domain.features.GenerateCertificateFromSessionStateResultDTO {
-        constructor(base64Document: string);
-        readonly base64Document: string;
+        constructor(base64Document: Nullable<string>);
+        readonly base64Document: Nullable<string>;
     }
 }
 export namespace x2.api.certificate.domain.features {
