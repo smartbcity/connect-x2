@@ -9,5 +9,5 @@ actual interface GenerateCertificateFromSessionStateQueryDTO {
 }
 
 actual interface GenerateCertificateFromSessionStateResultDTO {
-    actual val base64Document: String
+    actual val base64Document: String?
 }

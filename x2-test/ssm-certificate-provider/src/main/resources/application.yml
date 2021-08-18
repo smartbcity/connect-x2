@@ -1,0 +1,25 @@
+x2:
+  test:
+    ssm:
+      certificate:
+        url: https://peer0.pr-commune.smartb.network/
+        channelId: proudhon
+        chaincodeId: ssm
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+x2:
+  test:
+    ssm:
+      certificate:
+        url: http://localhost:9090
+        channel: sandbox
+        chaincode: ssm
+      admin:
+        name: ssm-admin
+        key: bclan-x2/ssm-admin
+      agent:
+        name: bob
+        key: bclan-x2/bob

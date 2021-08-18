@@ -28,3 +28,7 @@ include(
 include(
 	"api:api-infra:i2"
 )
+
+include(
+	"x2-test:ssm-certificate-provider"
+)

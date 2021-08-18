@@ -13,5 +13,5 @@ actual external interface GenerateCertificateFromSessionStateQueryDTO {
 @JsExport
 @JsName("GenerateCertificateFromSessionStateResultDTO")
 actual external interface GenerateCertificateFromSessionStateResultDTO {
-    actual val base64Document: String
+    actual val base64Document: String?
 }

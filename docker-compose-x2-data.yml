@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  x2-ssm-certificate-provider:
+    image: smartbcity/x2-ssm-certificate-provider:experimental
+    container_name: x2-ssm-certificate-provider
+    environment:
+      - X2_TEST_SSM_CERTIFICATE_URL=http://coop-rest-bclan-network-x2:9090
+    networks:
+      - bclannet-it
+
+networks:
+  bclannet-it:
+    name: bclannet-it
