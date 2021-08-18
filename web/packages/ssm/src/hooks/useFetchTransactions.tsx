@@ -19,7 +19,6 @@ export const useFetchTransactions = (ssmName: string, sessionId: string) => {
 
 export const canDoGenerateCertificates = (sessionStates: SessionState[]) => {
     return SSMRequester.CanGenerateCertificates(
-        //@ts-ignore
         sessionStates.map((sessionState) => ({
             sessionState: sessionState.details
         }))

@@ -6,8 +6,10 @@ import { useTranslation } from 'react-i18next'
 const useStyles = midLevelStyles<Theme>()({
     descriptionContainer: {
         display: "inline-flex",
+        margin: "5px 0px"
     },
     generateButton: {
+        marginLeft: "5px",
         background: theme => theme.colors.secondary,
         padding: "4px 7px",
         "&:hover": {
@@ -22,10 +24,11 @@ interface GenerateButtonProps {
 }
 
 export const GenerateButton = (props: GenerateButtonProps) => {
-    const {onClickGenerate, canGenerate} = props
+    const {onClickGenerate, canGenerate = false} = props
     const {t} = useTranslation()
     const theme = useTheme()
     const classes = useStyles(theme)
+    if (!canGenerate) return <></>
     return (
         <Box className={classes.descriptionContainer}>
             <InputLabel>{t("transactionCertificate")}:</InputLabel>
@@ -33,8 +36,6 @@ export const GenerateButton = (props: GenerateButtonProps) => {
                 <Button
                     onClick={onClickGenerate}
                     className={classes.generateButton}
-                    disabled={!canGenerate}
-                    fail={!canGenerate}
                 >
                     {t("generate")}
                 </Button>

@@ -1,13 +1,10 @@
 import { Box, InputLabel, Typography } from '@material-ui/core'
 import { midLevelStyles, Theme, useTheme } from '@smartb/archetypes-ui-themes'
-import { Button } from '@smartb/archetypes-ui-components'
 import clsx from 'clsx'
-import { useCallback, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Session } from "ssm"
 import { CopyToClipboard } from '../../components/CopyToClipboard'
-import { CertificatPopUp } from '../generateCertificate'
-import { useAsyncResponse } from 'utils'
 
 const useStyles = midLevelStyles<Theme>()({
     box: {
@@ -39,13 +36,6 @@ const useStyles = midLevelStyles<Theme>()({
         position: "absolute",
         right: "-44px",
         top: "-14px"
-    },
-    generateButton: {
-        background: theme => theme.colors.secondary,
-        padding: "4px 7px",
-        "&:hover": {
-            background: theme => theme.colors.secondary,
-        }
     }
 })
 
@@ -64,22 +54,6 @@ export const SessionInformations = (props: SessionInformationsProps) => {
     const init = currentSession.state.details?.origin?.role === undefined && currentSession.state.details?.origin?.action === undefined
     const creationDate = useMemo(() => new Date(currentSession.transaction?.timestamp).toLocaleDateString(), [currentSession.transaction?.timestamp])
 
-    const [openCertificatePopUp, setOpenCertificatePopUp] = useState(false)
-    const onClickGenerate = useCallback(
-        () => setOpenCertificatePopUp(true),
-        [],
-    )
-    const onClosePopUp = useCallback(
-        () => setOpenCertificatePopUp(false),
-        [],
-    )
-
-    const canGenerateCertificate = useCallback(
-        //@ts-ignore
-        () => SSMRequester.CanGenerateCertificate({ sessionState: currentSession.state }),
-        [currentSession],
-    )
-    const { result, status } = useAsyncResponse(canGenerateCertificate)
 
     return (
         <Box className={clsx(classes.descriptionContainer, className)}>
@@ -91,7 +65,6 @@ export const SessionInformations = (props: SessionInformationsProps) => {
                 <InputLabel>{t("channel")}:</InputLabel>
                 <InputLabel>{t("protocolEngineVersion")}:</InputLabel>
                 <InputLabel>{t("protocolEngine")}:</InputLabel>
-                <InputLabel>{t("transactionCertificate")}:</InputLabel>
             </Box>
             <Box className={clsx(classes.box, minified && classes.boxMinified)}>
                 <Box position="relative">
@@ -104,19 +77,7 @@ export const SessionInformations = (props: SessionInformationsProps) => {
                 <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.channel.id}</Typography>
                 <Typography variant={typovariant} className={classes.rightTypo}>Not implemented</Typography>
                 <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.state.details.ssm}</Typography>
-                <Box display="flex" alignItems="center" height="16px">
-                    <Button
-                        onClick={onClickGenerate}
-                        className={classes.generateButton}
-                        isLoading={status !== "SUCCESS"}
-                        disabled={!result}
-                        fail={!result}
-                    >
-                        {t("generate")}
-                    </Button>
-                </Box>
             </Box>
-            <CertificatPopUp currentSessionState={currentSession.state} onClose={onClosePopUp} open={openCertificatePopUp} />
         </Box>
     )
 }

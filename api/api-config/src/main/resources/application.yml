@@ -11,8 +11,8 @@ ssm:
   couchdb:
     peer0_pr-commune:
       url: http://peer0.pr-commune.smartb.network:5984
-      username: admin
-      password: smartb
+      username: 1111
+      password: 2222
       serviceName: ssm-couchdb-unit
   list:
     account:
@@ -39,6 +39,13 @@ ssm:
     Negociation:
       v1_0:
         baseUrl: http://peer0.pr-commune.smartb.network
+        channel: proudhon
+        chaincode: ssm
+        couchdb: peer0_pr-commune
+        dbName: proudhon_ssm
+    certificate:
+      v1_0:
+        baseUrl: https://peer0.pr-commune.smartb.network
         channel: proudhon
         chaincode: ssm
         couchdb: peer0_pr-commune

@@ -56,7 +56,6 @@ export const CertificatPopUp = (props: CertificatPopUp) => {
 
     const fetchPdf = useCallback(
         async () => {
-            //@ts-ignore
             return SSMRequester.generateCertificateFromSessionState({lang: i18n.language, sessionState: currentSessionState.details})
             },
         [currentSessionState, i18n.language],

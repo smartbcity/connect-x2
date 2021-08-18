@@ -14,7 +14,6 @@ const useStyles = highLevelStyles()({
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        flexWrap: "wrap",
         alignItems: "center"
     }
 })
