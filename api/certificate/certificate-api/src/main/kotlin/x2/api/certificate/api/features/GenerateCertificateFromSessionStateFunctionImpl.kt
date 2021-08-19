@@ -18,8 +18,8 @@ class GenerateCertificateFromSessionStateFunctionImpl {
 
     @Bean
     fun generateCertificateFromSessionStateFunction(): GenerateCertificateFromSessionStateFunction = f2Function { cmd ->
-        cmd.sessionState.public
-            .toJson().parseJsonTo(CertificateCredentials::class.java)
+        (cmd.sessionState.public as String)
+            .parseJsonTo(CertificateCredentials::class.java)
             ?.translate(cmd.lang)
             ?.let { certificate ->
                 KotlinxHtmlGenerator.generate(certificate).let(HtmlToPdfConverter::htmlToPdfB64)

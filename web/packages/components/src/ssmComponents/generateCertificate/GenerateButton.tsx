@@ -1,12 +1,13 @@
 import { Box, InputLabel } from '@material-ui/core'
 import { Button } from '@smartb/archetypes-ui-components'
 import { midLevelStyles, Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import { ChangeEvent, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const useStyles = midLevelStyles<Theme>()({
     descriptionContainer: {
         display: "inline-flex",
-        margin: "5px 0px"
+        margin: "10px 0px"
     },
     generateButton: {
         marginLeft: "5px",
@@ -28,13 +29,20 @@ export const GenerateButton = (props: GenerateButtonProps) => {
     const {t} = useTranslation()
     const theme = useTheme()
     const classes = useStyles(theme)
+    const onGenerateMemoized = useCallback(
+        (event: ChangeEvent<{}>) => {
+            event.stopPropagation()
+            onClickGenerate()
+        },
+        [onClickGenerate],
+    )
     if (!canGenerate) return <></>
     return (
         <Box className={classes.descriptionContainer}>
             <InputLabel>{t("transactionCertificate")}:</InputLabel>
             <Box display="flex" alignItems="center" height="16px">
                 <Button
-                    onClick={onClickGenerate}
+                    onClick={onGenerateMemoized}
                     className={classes.generateButton}
                 >
                     {t("generate")}

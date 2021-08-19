@@ -6,15 +6,18 @@ import { Document, Page, pdfjs } from "react-pdf";
 import { SessionState, SSMRequester } from 'ssm';
 import { useAsyncResponse } from 'utils';
 import { LoadingComponent } from '../../components/Loading'
-import {useExtendedI18n} from "../../i18n"
+import { useExtendedI18n } from "../../i18n"
+// import pdf from "./certificate.pdf"
 // import { jsPDF } from "jspdf"
-// import html2canvas from "html2canvas"
+// import { toJpeg } from "html-to-image"
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const useStyles = midLevelStyles()({
     popUpRoot: {
         "& .MuiPaper-root": {
-            maxWidth: "unset"
+            maxWidth: "unset",
+            minWidth: "790px",
+            minHeight: "570px"
         }
     },
     content: {
@@ -32,10 +35,6 @@ const useStyles = midLevelStyles()({
     },
     closeIcon: {
         zIndex: 5
-    },
-    document: {
-        minWidth: "750px",
-        minHeight: "530px"
     }
 })
 
@@ -50,14 +49,14 @@ export const CertificatPopUp = (props: CertificatPopUp) => {
     const { t } = useTranslation()
     const [pageNumber] = useState<number>(1);
     const classes = useStyles()
-    const {i18n} = useExtendedI18n()
+    const { i18n } = useExtendedI18n()
 
     // const [state, setstate] = useState<HTMLDivElement | null>(null)
 
     const fetchPdf = useCallback(
         async () => {
-            return SSMRequester.generateCertificateFromSessionState({lang: i18n.language, sessionState: currentSessionState.details})
-            },
+            return SSMRequester.generateCertificateFromSessionState({ lang: 'EN', sessionState: currentSessionState.details })
+        },
         [currentSessionState, i18n.language],
     )
     const { result, execute, status } = useAsyncResponse(fetchPdf, false)
@@ -89,25 +88,41 @@ export const CertificatPopUp = (props: CertificatPopUp) => {
         [result, currentSessionState],
     )
 
-    // useEffect(() => {
-    //     const document = state
-    //     if (document) {
-    //         setTimeout(() => {
+
+
+    // const onRender = useCallback(
+    //     async () => {
+    //         const document = state
+    //         if (document) {
     //             const svg = document.getElementsByTagName('svg:svg')[0] as SVGElement
+    //             const spans = svg.getElementsByTagName('svg:tspan')
+
+    //             for (var i = 0; i < spans.length; i++) {
+    //                 if (spans[i].textContent == "ssm-yper") {
+    //                     spans[i].textContent =  "ssm-colisactiv"
+    //                     break;
+    //                 }
+    //             }
+
     //             if (svg) {
     //                 const svgParent = svg.parentElement
     //                 if (svgParent) {
-    //                     const doc2 = new jsPDF()
-    //                     html2canvas(svgParent).then((canvas) => {
-    //                         const image = canvas.toDataURL("image/jpeg")
-    //                         doc2.addImage(image, 0, 0, 100, 100)
-    //                         doc2.save("svg to image to pdf")
-    //                     })
+    //                     const doc2 = new jsPDF({ orientation: "landscape" })
+    //                     const image = await toJpeg(svgParent, { canvasWidth: svgParent.offsetWidth, canvasHeight: svgParent.offsetHeight })
+    //                     doc2.addImage(image, 0, 0, svgParent.offsetWidth / 2, svgParent.offsetHeight / 2)
+    //                     await doc2.html(svgParent, {html2canvas: {svgRendering: true, scale: 0.3, }, x: 0, y:0})
+    //                     console.log(svgParent.innerHTML.replaceAll("svg:", "").replace("svg", 'svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink"'))
+    //                     doc2.save("html to image to pdf")
+    //                     const doc1 = new jsPDF({orientation: "landscape"})
+    //                     const svg = svgParent.innerHTML.replaceAll("svg:svg", "svg").replace("svg", 'svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink"')
+    //                     doc1.addSvgAsImage(svg, 0, 0, svgParent.offsetWidth, svgParent.offsetHeight)
+    //                     doc1.save("svg to pdf")
     //                 }
     //             }
-    //         }, 500);
-    //     }
-    // }, [state])
+    //         }
+    //     },
+    //     [state],
+    // )
 
 
 
@@ -131,24 +146,24 @@ export const CertificatPopUp = (props: CertificatPopUp) => {
             className={classes.popUpRoot}
             classes={{ content: classes.content, actions: classes.actions, closeIcon: classes.closeIcon, button: classes.action }}
         >
-           {status !== "SUCCESS" ?
-           <LoadingComponent />
-           :
-           <Document
-                file={"data:application/pdf;base64," + result}
-                renderMode="svg"
-                /* inputRef={setstate} */
-                className={classes.document}
-                loading={<LoadingComponent />}
-            >
-                <Page
-                    pageNumber={pageNumber}
-                    width={750}
+            {status !== "SUCCESS" ?
+                <LoadingComponent />
+                :
+                <Document
+                    file={"data:application/pdf;base64," + result}
                     renderMode="svg"
-                    renderAnnotationLayer={false}
+                   /*  inputRef={setstate} */
                     loading={<LoadingComponent />}
-                />
-            </Document>}
+                >
+                    <Page
+                        pageNumber={pageNumber}
+                        width={750}
+                        renderMode="svg"
+                        /* onRenderSuccess={onRender} */
+                        renderAnnotationLayer={false}
+                        loading={<LoadingComponent />}
+                    />
+                </Document>}
         </PopUp>
     )
 }
