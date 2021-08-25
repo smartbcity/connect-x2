@@ -21,7 +21,7 @@ import {
     CanGenerateCertificateQuery,
     CanGenerateCertificateResult
 } from "./models";
-import {requestCoop} from "utils";
+import {requestCoop, requestCoops} from "utils";
 
 const fetchSSMs = async (): Promise<SSM[]> => {
     return requestCoop<TxSsmListQueryDTO, TxSsmListQueryResultDTO>("getAllSsm", {} as TxSsmListQueryResultDTO).then(
@@ -111,6 +111,12 @@ const CanGenerateCertificate = async (
     );
 }
 
+const CanGenerateCertificates = async (
+    queries: CanGenerateCertificateQuery[]
+) => {
+    return requestCoops<CanGenerateCertificateQuery[], CanGenerateCertificateResult>("canGenerateCertificate", queries)
+}
+
 
 export const SSMRequester = {
     fetchSSMs: fetchSSMs,
@@ -121,6 +127,7 @@ export const SSMRequester = {
     fetchSessionState: fetchSessionState,
     generateCertificatePdf: generateCertificatePdf,
     generateCertificateFromSessionState: generateCertificateFromSessionState,
-    CanGenerateCertificate: CanGenerateCertificate
+    CanGenerateCertificate: CanGenerateCertificate,
+    CanGenerateCertificates: CanGenerateCertificates
 };
 

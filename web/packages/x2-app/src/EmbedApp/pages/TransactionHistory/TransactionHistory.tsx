@@ -2,10 +2,11 @@ import { Box, Typography } from "@material-ui/core";
 import { Timeline } from "@smartb/archetypes-ui-components";
 import { NoMatchPage } from "@smartb/archetypes-ui-providers";
 import { highLevelStyles } from "@smartb/archetypes-ui-themes";
-import { LoadingPage } from "components";
+import { CertificatPopUp, LoadingPage, toTimeLineCells } from "components";
+import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import {useFetchTransactions} from "ssm";
+import { SessionState, useFetchTransactions } from "ssm";
 
 const useStyles = highLevelStyles()({
   viewer: {
@@ -19,13 +20,13 @@ const useStyles = highLevelStyles()({
   timeline: {
     display: "block",
     flexGrow: 0,
-    height: "max-content", 
+    height: "max-content",
     margin: 0,
-    "& .MuiTimelineContent-root" : {
+    "& .MuiTimelineContent-root": {
       padding: 0,
       paddingTop: "2px"
     },
-    "& .AruiTimeLine-timeContainer" : {
+    "& .AruiTimeLine-timeContainer": {
       padding: 0,
       paddingTop: "3px"
     },
@@ -47,21 +48,34 @@ export const TransactionHistory = (props: TransactionHistoryProps) => {
   const classes = useStyles()
   const { ssmName, sessionName } = useParams<{ ssmName: string, sessionName: string }>();
 
-  const { result, status } = useFetchTransactions(ssmName, sessionName, true)
+  const [sessionStatePdf, setSessionStatePdf] = useState<SessionState | undefined>(undefined)
+  const onGenerate = useCallback(
+    (sessionState: SessionState) => setSessionStatePdf(sessionState),
+    [],
+  )
+  const onClosePopUp = useCallback(
+    () => setSessionStatePdf(undefined),
+    [],
+  )
+
+  const { result, status } = useFetchTransactions(ssmName, sessionName)
+
+  const timeLineCells = useMemo(() => result ? toTimeLineCells(result.sessionStates, result.canGenerateCertificates, onGenerate, true) : undefined, [result])
 
   if (status === "PENDING") return <LoadingPage />
 
-  if (!result) return <NoMatchPage noGoBack />
+  if (!timeLineCells) return <NoMatchPage noGoBack />
 
   return (
     <Box display="flex" position="relative" width="100vw" height="100vh" alignItems="center" flexDirection="column">
       <Typography align="center" className={classes.title} variant="body1">{t("detailsPage.transactionsHistoryOf", { sessionName: sessionName })}</Typography>
       <Timeline
         className={classes.timeline}
-        lines={result.lines}
+        lines={timeLineCells}
         align="left"
         passedTimeLine
       />
+      {sessionStatePdf && <CertificatPopUp currentSessionState={sessionStatePdf} onClose={onClosePopUp} open={!!sessionStatePdf} />}
     </Box>
   );
 };

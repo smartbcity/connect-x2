@@ -2,6 +2,7 @@ package x2.api.certificate.domain.features
 
 import f2.dsl.fnc.F2Function
 import ssm.chaincode.dsl.SsmSessionState
+import ssm.chaincode.dsl.SsmSessionStateDTO
 import x2.api.certificate.domain.model.CertificateCredentials
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -40,7 +41,7 @@ expect interface CanGenerateCertificateQueryDTO {
      *  iteration: 3
      * }
      */
-    val sessionState: SsmSessionState
+    val sessionState: SsmSessionStateDTO
 }
 
 /**
@@ -59,7 +60,7 @@ expect interface CanGenerateCertificateResultDTO {
      * The checked session state
      * @example [CanGenerateCertificateQuery.sessionState]
      */
-    val sessionState: SsmSessionState
+    val sessionState: SsmSessionStateDTO
 
     /**
      * Result of the verification

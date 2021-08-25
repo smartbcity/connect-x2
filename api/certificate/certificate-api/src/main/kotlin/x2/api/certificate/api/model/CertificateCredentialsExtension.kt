@@ -1,12 +1,12 @@
 package x2.api.certificate.api.model
 
-import x2.api.certificate.domain.model.CertificateCredentials
-import x2.api.certificate.domain.model.CertificateData
-import x2.api.certificate.domain.model.CertificateProtocol
-import x2.api.certificate.domain.model.CertificateSigner
+import x2.api.certificate.domain.model.CertificateCredentialsDTO
+import x2.api.certificate.domain.model.CertificateDataDTO
+import x2.api.certificate.domain.model.CertificateProtocolDTO
+import x2.api.certificate.domain.model.CertificateSignerDTO
 import x2.api.certificate.domain.model.Lang
 
-fun CertificateCredentials.translate(lang: Lang): CertificateCredentialsTranslation {
+fun CertificateCredentialsDTO.translate(lang: Lang): CertificateCredentialsTranslation {
     return CertificateCredentialsTranslation(
         id = id,
         title = title.translate(lang),
@@ -17,7 +17,7 @@ fun CertificateCredentials.translate(lang: Lang): CertificateCredentialsTranslat
     )
 }
 
-fun CertificateSigner.translate(lang: Lang): CertificateSignerTranslation {
+fun CertificateSignerDTO.translate(lang: Lang): CertificateSignerTranslation {
     return CertificateSignerTranslation(
         name = name.translate(lang),
         organization = organization,
@@ -26,7 +26,7 @@ fun CertificateSigner.translate(lang: Lang): CertificateSignerTranslation {
     )
 }
 
-fun CertificateProtocol.translate(lang: Lang): CertificateProtocolTranslation {
+fun CertificateProtocolDTO.translate(lang: Lang): CertificateProtocolTranslation {
     return CertificateProtocolTranslation(
         validationProtocol = validationProtocol.translate(lang),
         protocolEngineVersion = protocolEngineVersion.translate(lang),
@@ -37,7 +37,7 @@ fun CertificateProtocol.translate(lang: Lang): CertificateProtocolTranslation {
     )
 }
 
-fun CertificateData.translate(lang: Lang): CertificateDataTranslation {
+fun CertificateDataDTO.translate(lang: Lang): CertificateDataTranslation {
     return CertificateDataTranslation(
         label = label.translate(lang),
         value = value.translate(lang),

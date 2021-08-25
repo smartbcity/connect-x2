@@ -9,3 +9,5 @@ export * from "./components/CopyToClipboard"
 export * from './i18n'
 export * from "./ssmComponents/SessionInformations"
 export * from "./ssmComponents/TransactionDetails"
+export * from "./ssmComponents/transactionHistory"
+export * from "./ssmComponents/generateCertificate"

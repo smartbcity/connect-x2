@@ -50,6 +50,13 @@ ssm:
         chaincode: ssm
         couchdb: peer0_pr-commune
         dbName: proudhon_ssm
+    certificate:
+      v1_0:
+        baseUrl: https://peer0.pr-commune.smartb.network
+        channel: proudhon
+        chaincode: ssm
+        couchdb: peer0_pr-commune
+        dbName: proudhon_ssm
 
 
 #couchdb:
