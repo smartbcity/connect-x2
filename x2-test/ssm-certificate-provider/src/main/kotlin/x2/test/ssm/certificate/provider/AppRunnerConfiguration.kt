@@ -74,10 +74,12 @@ class AppRunnerConfiguration {
 			val cmd = SsmSessionPerformActionCommand(
 				action = "transaction",
 				bearerToken = null,
-				chaincodeId = chaincode,
-				channelId = channel,
 				signer = agentSigner,
-				baseUrl = url,
+				chaincode = SsmChaincodeProperties(
+					chaincodeId = chaincode,
+					channelId = channel,
+					baseUrl = url,
+				),
 				context = SsmContext(
 					session = sessionName,
 					public = getPublic(),
@@ -113,10 +115,12 @@ class AppRunnerConfiguration {
 			public = "This is not a Certificate",
 		)
 		val cmd = SsmSessionStartCommand(
-			baseUrl = url,
 			bearerToken = null,
-			channelId = channel,
-			chaincodeId = chaincode,
+			chaincode = SsmChaincodeProperties(
+				chaincodeId = chaincode,
+				channelId = channel,
+				baseUrl = url,
+			),
 			session = session,
 			signerAdmin = adminSigner
 		)
@@ -135,10 +139,12 @@ class AppRunnerConfiguration {
 		ssmCreateFunction.invoke(SsmCreateCommand(
 			signerAdmin = adminSigner,
 			ssm = ssm,
-			baseUrl = url,
 			agent = agentSigner,
-			channelId = channel,
-			chaincodeId = chaincode,
+			chaincode = SsmChaincodeProperties(
+				chaincodeId = chaincode,
+				channelId = channel,
+				baseUrl = url,
+			),
 			bearerToken = null
 		))
 	}

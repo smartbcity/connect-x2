@@ -14,80 +14,42 @@ ssm:
       username: 1111
       password: 2222
       serviceName: ssm-couchdb-unit
+  chaincode:
+    peer0_pr-commune_proudhon_ssm:
+      baseUrl: http://peer0.pr-commune.smartb.network
+      channelId: proudhon
+      chaincodeId: ssm
+    colisactiv-angers-yper:
+      baseUrl: http://peer0.pr-commune.smartb.network
+      channelId: colisactiv-angers
+      chaincodeId: ssm-yper
+
   list:
     account:
       v1_0:
-        baseUrl: https://peer0.pr-commune.smartb.network
-        channel: proudhon
-        chaincode: ssm
+        chaincode: peer0_pr-commune_proudhon_ssm
         couchdb: peer0_pr-commune
         dbName: proudhon_ssm
     Delivery:
       v0_2:
-        baseUrl: https://peer0.pr-commune.smartb.network
-        channel: proudhon
-        chaincode: ssm
+        chaincode: peer0_pr-commune_proudhon_ssm
         couchdb: peer0_pr-commune
         dbName: proudhon_ssm
     MobilityImpactSsm:
       v1_0:
-        baseUrl: https://peer0.pr-commune.smartb.network
-        channel: proudhon
-        chaincode: ssm
+        chaincode: peer0_pr-commune_proudhon_ssm
         couchdb: peer0_pr-commune
         dbName: proudhon_ssm
     Negociation:
       v1_0:
-        baseUrl: https://peer0.pr-commune.smartb.network
-        channel: proudhon
-        chaincode: ssm
+        chaincode: peer0_pr-commune_proudhon_ssm
         couchdb: peer0_pr-commune
         dbName: proudhon_ssm
     Certificate:
       v1_0:
-        baseUrl: https://peer0.pr-commune.smartb.network
-        channel: proudhon
-        chaincode: ssm
+        chaincode: peer0_pr-commune_proudhon_ssm
         couchdb: peer0_pr-commune
         dbName: proudhon_ssm
-    certificate:
-      v1_0:
-        baseUrl: https://peer0.pr-commune.smartb.network
-        channel: proudhon
-        chaincode: ssm
-        couchdb: peer0_pr-commune
-        dbName: proudhon_ssm
-
-
-#couchdb:
-#  peer0_pr-commune:
-#    url: http://peer0.pr-commune.smartb.network:5984
-#    username: admin
-#    password: smartb
-#    serviceName: ssm-couchdb-unit
-#
-#chaincode:
-#  peer0_pr-commune_proudhon_ssm:
-#    baseUrl: http://peer0.pr-commune.smartb.network
-#    channel: proudhon
-#    chaincode: ssm
-#    couchdb: peer0_pr-commune
-#    dbName: proudhon_ssm
-#
-#ssm:
-#  account:
-#    v1_0:
-#      - peer0_pr-commune_proudhon_ssm
-#  Delivery:
-#    v0_2:
-#      - peer0_pr-commune_proudhon_ssm
-#  MobilityImpactSsm:
-#    v1_0:
-#      - peer0_pr-commune_proudhon_ssm
-#  Negociation:
-#    v1_0:
-#      - peer0_pr-commune_proudhon_ssm
-
 
 ---
 spring:
