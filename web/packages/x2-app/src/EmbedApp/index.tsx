@@ -1,4 +1,4 @@
-import { Router } from "@smartb/archetypes-ui-providers";
+import { Router } from "@smartb/g2-providers";
 import {Route} from "react-router-dom";
 import ProtocolDiagram  from "./pages/ProtocolDiagram";
 import SessionInformation  from "./pages/SessionInformation";

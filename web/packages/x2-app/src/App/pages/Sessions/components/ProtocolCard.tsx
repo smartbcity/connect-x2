@@ -1,7 +1,7 @@
-import { AutomateViewer } from "@smartb/archetypes-ui-s2"
+import { AutomateViewer } from "@smartb/g2-s2"
 import {Panel} from "components"
 import { useTranslation } from "react-i18next"
-import { highLevelStyles } from "@smartb/archetypes-ui-themes"
+import { highLevelStyles } from "@smartb/g2-themes"
 import { SSM, Transition } from "ssm"
 import { useMemo } from "react"
 

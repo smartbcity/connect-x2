@@ -1,4 +1,4 @@
-import { useI18n } from "@smartb/archetypes-ui-providers"
+import { useI18n } from "@smartb/g2-providers"
 
 export interface Languages {
   fr: string

@@ -1,7 +1,7 @@
 import { Page } from "components";
 import { useTranslation } from "react-i18next";
 import { CardsHeader } from "./components/CardsHeader";
-import { Label, LabelSwitch } from "@smartb/archetypes-ui-components";
+import { Label, LabelSwitch } from "@smartb/g2-components";
 import { useCallback, useMemo, useState } from "react";
 import { Box, Paper } from "@material-ui/core";
 

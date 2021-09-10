@@ -1,6 +1,6 @@
 import { titleReducer } from "./title/title.reducer";
 import { ssmReducer } from "./ssm/ssm.reducer";
-import { initRedux } from "@smartb/archetypes-ui-providers";
+import { initRedux } from "@smartb/g2-providers";
 import thunk from "redux-thunk";
 
 const reducers = {

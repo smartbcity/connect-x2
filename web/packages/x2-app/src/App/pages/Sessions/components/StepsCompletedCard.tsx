@@ -1,4 +1,4 @@
-import { highLevelStyles } from "@smartb/archetypes-ui-themes";
+import { highLevelStyles } from "@smartb/g2-themes";
 import { LineChart, Panel, useExtendedI18n } from "components"
 import { useTranslation } from "react-i18next"
 import { addMonths } from 'date-fns'

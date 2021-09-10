@@ -1,5 +1,5 @@
 import { Box, InputLabel, Select } from '@material-ui/core'
-import { midLevelStyles } from '@smartb/archetypes-ui-themes'
+import { midLevelStyles } from '@smartb/g2-themes'
 import React, { useCallback } from 'react'
 import { useExtendedI18n, Languages } from '../..'
 

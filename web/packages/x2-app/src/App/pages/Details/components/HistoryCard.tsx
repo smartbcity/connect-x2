@@ -1,9 +1,9 @@
-import { Timeline, TimeLineCell } from "@smartb/archetypes-ui-components"
+import { Timeline, TimeLineCell } from "@smartb/g2-components"
 import { LoadingComponent, Panel, toTimeLineCells, CertificatPopUp } from "components"
 import { useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Session, SessionState, useFetchTransactions } from "ssm"
-import { highLevelStyles } from "@smartb/archetypes-ui-themes"
+import { highLevelStyles } from "@smartb/g2-themes"
 
 
 const useStyles = highLevelStyles()({

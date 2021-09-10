@@ -1,7 +1,7 @@
 
 import {X2Icon} from "../../icons"
-import {Loading} from '@smartb/archetypes-ui-components'
-import { midLevelStyles } from "@smartb/archetypes-ui-themes"
+import {Loading} from '@smartb/g2-components'
+import { midLevelStyles } from "@smartb/g2-themes"
 
 const useStyles = midLevelStyles()({
     icon: {

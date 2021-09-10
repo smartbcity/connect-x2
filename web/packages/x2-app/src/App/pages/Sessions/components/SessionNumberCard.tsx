@@ -1,4 +1,4 @@
-import { highLevelStyles } from "@smartb/archetypes-ui-themes"
+import { highLevelStyles } from "@smartb/g2-themes"
 import { BarChart, Panel } from "components"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"

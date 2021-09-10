@@ -1,4 +1,4 @@
-import { KeycloakProvider, KeycloackService, useAuth } from '@smartb/archetypes-ui-providers';
+import { KeycloakProvider, KeycloackService, useAuth } from '@smartb/g2-providers';
 import { LoadingPage } from 'components';
 //@ts-ignore
 export const clientId: string | undefined = window._env_.KEYCLOAK_CLIENTID

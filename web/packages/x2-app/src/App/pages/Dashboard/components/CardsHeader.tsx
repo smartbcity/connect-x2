@@ -1,7 +1,7 @@
 import { Box } from '@material-ui/core'
 import { CheckCircleRounded } from '@material-ui/icons'
-import { Ticket } from "@smartb/archetypes-ui-components"
-import { highLevelStyles, Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import { Ticket } from "@smartb/g2-components"
+import { highLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
 import clsx from 'clsx'
 import { Channel, SSMIcon, User, TransactionIcon } from 'components'
 import { useTranslation } from "react-i18next"

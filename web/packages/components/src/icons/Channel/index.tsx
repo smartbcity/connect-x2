@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReactComponent } from './channel-icon.svg'
 import { MergeReactElementProps } from '../types'
-import { useTheme } from '@smartb/archetypes-ui-themes'
+import { useTheme } from '@smartb/g2-themes'
 
 interface ChannelBasicProps {
   color?: string

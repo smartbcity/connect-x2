@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { ReactComponent } from './X2.svg'
 import { MergeReactElementProps } from '../types'
-import { midLevelStyles, useTheme } from '@smartb/archetypes-ui-themes'
+import { midLevelStyles, useTheme } from '@smartb/g2-themes'
 import clsx from 'clsx'
 
 const useStyles = midLevelStyles<{firstColor: string, secondColor: string}>()({

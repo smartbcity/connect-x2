@@ -1,4 +1,4 @@
-import { MenuItems, MenuItem } from "@smartb/archetypes-ui-components";
+import { MenuItems, MenuItem } from "@smartb/g2-components";
 import { AppLayout } from "components";
 import { useEffect, useMemo } from "react";
 import { useTranslation, TFunction } from "react-i18next";

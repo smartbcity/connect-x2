@@ -1,4 +1,4 @@
-import { Router } from "@smartb/archetypes-ui-providers";
+import { Router } from "@smartb/g2-providers";
 import Dashboard from "App/pages/Dashboard";
 import Details from "App/pages/Details";
 import Sessions from "App/pages/Sessions";

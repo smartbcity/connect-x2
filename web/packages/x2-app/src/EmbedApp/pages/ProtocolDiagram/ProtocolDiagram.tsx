@@ -1,7 +1,7 @@
 import {Box, Typography} from "@material-ui/core";
-import {NoMatchPage} from "@smartb/archetypes-ui-providers";
-import {AutomateViewer} from "@smartb/archetypes-ui-s2";
-import {highLevelStyles} from "@smartb/archetypes-ui-themes";
+import {NoMatchPage} from "@smartb/g2-providers";
+import {AutomateViewer} from "@smartb/g2-s2";
+import {highLevelStyles} from "@smartb/g2-themes";
 import {LoadingPage} from "components";
 import {useMemo} from "react";
 import {useTranslation} from "react-i18next";

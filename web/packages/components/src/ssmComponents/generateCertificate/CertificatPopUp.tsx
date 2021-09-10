@@ -1,5 +1,5 @@
-import { PopUp, PopUpAction } from '@smartb/archetypes-ui-components'
-import { midLevelStyles } from '@smartb/archetypes-ui-themes'
+import { PopUp, PopUpAction } from '@smartb/g2-layout'
+import { midLevelStyles } from '@smartb/g2-themes'
 import { useCallback, useEffect, /* useEffect, */ useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Document, Page, pdfjs } from "react-pdf";

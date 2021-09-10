@@ -1,6 +1,6 @@
 import { Box, InputLabel } from '@material-ui/core'
-import { Button } from '@smartb/archetypes-ui-components'
-import { midLevelStyles, Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import { Button } from '@smartb/g2-components'
+import { midLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
 import { ChangeEvent, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
