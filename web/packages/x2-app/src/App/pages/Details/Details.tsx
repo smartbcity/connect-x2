@@ -1,5 +1,5 @@
 import { Box } from "@material-ui/core";
-import { NoMatchPage } from "@smartb/archetypes-ui-providers";
+import { NoMatchPage } from "@smartb/g2-providers";
 import { LoadingComponent, Page } from "components";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";

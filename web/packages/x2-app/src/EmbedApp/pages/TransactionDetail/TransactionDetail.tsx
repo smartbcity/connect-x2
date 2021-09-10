@@ -1,6 +1,6 @@
 import {Box, Typography} from "@material-ui/core";
-import {NoMatchPage} from "@smartb/archetypes-ui-providers";
-import {highLevelStyles} from "@smartb/archetypes-ui-themes";
+import {NoMatchPage} from "@smartb/g2-providers";
+import {highLevelStyles} from "@smartb/g2-themes";
 import {LoadingPage, TransactionDetails} from "components";
 import {useTranslation} from "react-i18next";
 import {useParams} from "react-router";

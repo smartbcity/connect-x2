@@ -1,6 +1,6 @@
 import { Box } from "@material-ui/core";
-import { NoMatchPage } from "@smartb/archetypes-ui-providers";
-import { highLevelStyles } from "@smartb/archetypes-ui-themes";
+import { NoMatchPage } from "@smartb/g2-providers";
+import { highLevelStyles } from "@smartb/g2-themes";
 import { Page } from "components";
 import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";

@@ -1,7 +1,7 @@
 import { Panel, TransactionDetails } from "components"
 import { useTranslation } from "react-i18next"
 import { SessionState } from "ssm";
-import { highLevelStyles } from "@smartb/archetypes-ui-themes";
+import { highLevelStyles } from "@smartb/g2-themes";
 import { Box, Typography } from "@material-ui/core";
 
 const useStyles = highLevelStyles()({

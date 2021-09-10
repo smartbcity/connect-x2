@@ -1,6 +1,6 @@
 
-import { Theme, useTheme, midLevelStyles} from '@smartb/archetypes-ui-themes'
-import {Card} from "@smartb/archetypes-ui-components"
+import { Theme, useTheme, midLevelStyles} from '@smartb/g2-themes'
+import {Card} from "@smartb/g2-components"
 import React from 'react'
 import { EmbedCodeViewer } from '../EmbedCodeViewer'
 

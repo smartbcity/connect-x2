@@ -1,7 +1,7 @@
 import { Box, Typography } from "@material-ui/core";
-import { Timeline } from "@smartb/archetypes-ui-components";
-import { NoMatchPage } from "@smartb/archetypes-ui-providers";
-import { highLevelStyles } from "@smartb/archetypes-ui-themes";
+import { Timeline } from "@smartb/g2-components";
+import { NoMatchPage } from "@smartb/g2-providers";
+import { highLevelStyles } from "@smartb/g2-themes";
 import { CertificatPopUp, LoadingPage, toTimeLineCells } from "components";
 import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";

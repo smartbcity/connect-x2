@@ -1,5 +1,5 @@
 import { Box, InputLabel, Typography } from '@material-ui/core'
-import { midLevelStyles, Theme, useTheme } from '@smartb/archetypes-ui-themes'
+import { midLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
 import clsx from 'clsx'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'

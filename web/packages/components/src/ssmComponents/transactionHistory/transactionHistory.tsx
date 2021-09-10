@@ -1,5 +1,5 @@
 import { Box, Typography } from "@material-ui/core";
-import { TimeLineCell } from "@smartb/archetypes-ui-components";
+import { TimeLineCell } from "@smartb/g2-components";
 import { SessionState } from "ssm";
 import { GenerateButton } from "../generateCertificate";
 import { TransactionDetails } from "../TransactionDetails";

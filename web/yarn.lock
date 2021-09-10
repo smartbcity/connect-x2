@@ -1757,15 +1757,15 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smartb/archetypes-ui-components@^0.1.48":
-  version "0.1.48"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-components/-/archetypes-ui-components-0.1.48.tgz#a08d776f31eb9f0305d5bcd60f03c748844ee6e0"
-  integrity sha512-pLsjmcryyyAWIY1LF/pRYxlAtCg0IbmdNb7MZUQJxvihCzTsfUIj8p1lNQhibSaK/0TneCW3QXz3fufQvNxeXA==
+"@smartb/g2-components@^0.1.0-alpha.1":
+  version "0.1.0-alpha.1"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-components/-/@smartb/g2-components-0.1.0-alpha.1.tgz#04397f27e4503f38b86a0d75b8c36f3068cc2d08"
+  integrity sha1-BDl/J+RQPzi4ag11uMNvMGjMLQg=
   dependencies:
     "@material-ui/icons" "^4.11.2"
     "@material-ui/lab" "^4.0.0-alpha.57"
-    "@smartb/archetypes-ui-forms" "^0.1.48"
-    "@smartb/archetypes-ui-themes" "^0.1.48"
+    "@smartb/g2-notifications" "^0.1.0-alpha.1"
+    "@smartb/g2-themes" "^0.1.0-alpha.1"
     clsx "^1.1.1"
     notistack "2.0.1-alpha.2"
     react-data-table-component "^6.9.7"
@@ -1774,12 +1774,12 @@
     stringify-object "^3.3.0"
     styled-components "^5.2.1"
 
-"@smartb/archetypes-ui-documentation@^0.1.48":
-  version "0.1.48"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-documentation/-/archetypes-ui-documentation-0.1.48.tgz#20b20b9ca78f6cc90a28f0623cd04903fe80d41e"
-  integrity sha512-FD6r0uJ4A6Hca/ez0I+eGAxFL19ClthOql/rUU11sVAnT7KdpaJKtRWeZfxLkWbug2hYXd6wkIBS9QFLsRqiXg==
+"@smartb/g2-documentation@^0.1.0-alpha.1":
+  version "0.1.0-alpha.1"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-documentation/-/@smartb/g2-documentation-0.1.0-alpha.1.tgz#df7aef144c5a945d0d2f5018d6f528e0953a1fc7"
+  integrity sha1-33rvFExalF0NL1AY1vUo4JU6H8c=
   dependencies:
-    "@smartb/archetypes-ui-themes" "^0.1.48"
+    "@smartb/g2-themes" "^0.1.0-alpha.1"
     clsx "^1.1.1"
     github-markdown-css "^4.0.0"
     react-markdown "^6.0.2"
@@ -1788,40 +1788,52 @@
     rehype-sanitize "^4.0.0"
     remark-gfm "^1.0.0"
 
-"@smartb/archetypes-ui-forms@^0.1.48":
-  version "0.1.48"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-forms/-/archetypes-ui-forms-0.1.48.tgz#9379e26f009cfd2d34881c5c082b8782a9108971"
-  integrity sha512-3Wz4eRHnr8maPWg/tKW6q+4vL7E/JZhDdIugX7002VuZHJ69IjtDoBpvC4ZO3gqYjs8svMxME8drh3yAw3+/Og==
+"@smartb/g2-forms@^0.1.0-alpha.1":
+  version "0.1.0-alpha.1"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-forms/-/@smartb/g2-forms-0.1.0-alpha.1.tgz#0f6bbcea16638e195c1b77468c46b14859f3f3b3"
+  integrity sha1-D2u86hZjjhlcG3dGjEaxSFnz87M=
   dependencies:
     "@date-io/date-fns" "1.3.13"
     "@material-ui/icons" "^4.11.2"
     "@material-ui/pickers" "^3.3.10"
-    "@smartb/archetypes-ui-themes" "^0.1.48"
+    "@smartb/g2-components" "^0.1.0-alpha.1"
+    "@smartb/g2-themes" "^0.1.0-alpha.1"
     clsx "^1.1.1"
     date-fns "^2.21.3"
+    formik "^2.2.9"
     react-device-detect "^1.17.0"
 
-"@smartb/archetypes-ui-layout@^0.1.48":
-  version "0.1.48"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-layout/-/archetypes-ui-layout-0.1.48.tgz#04bc1c28e4065b0c68c992d22669d735c4c31737"
-  integrity sha512-D3EMqdl2NrwCwJqoboGBaGr6bh2Z49rB09BVwR33WKw+ZfiK3NuS3CdMFvZqX/xa7WJ66Be/KGhTt86XkjNpHw==
+"@smartb/g2-layout@^0.1.0-alpha.1":
+  version "0.1.0-alpha.1"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-layout/-/@smartb/g2-layout-0.1.0-alpha.1.tgz#3b583a229ff2322a9195071fb1d6b89caca6b858"
+  integrity sha1-O1g6Ip/yMiqRlQcfsda4nKymuFg=
   dependencies:
     "@material-ui/icons" "^4.11.2"
     "@material-ui/lab" "^4.0.0-alpha.57"
-    "@smartb/archetypes-ui-components" "^0.1.48"
-    "@smartb/archetypes-ui-themes" "^0.1.48"
+    "@smartb/g2-components" "^0.1.0-alpha.1"
+    "@smartb/g2-forms" "^0.1.0-alpha.1"
+    "@smartb/g2-themes" "^0.1.0-alpha.1"
     clsx "^1.1.1"
     use-debounce "^3.4.2"
 
-"@smartb/archetypes-ui-providers@^0.1.48":
-  version "0.1.48"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-providers/-/archetypes-ui-providers-0.1.48.tgz#37cb49ef6368b81dcf33f2604c4b538fa1556767"
-  integrity sha512-l8vkAgPLS0HWdkI5tXnCiWbYmFH3d7/+4c3avkoCk5CbjkW335s5BMsCzqDvucatVn8EevR9YGXn+HpjhPyuJw==
+"@smartb/g2-notifications@^0.1.0-alpha.1":
+  version "0.1.0-alpha.1"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-notifications/-/@smartb/g2-notifications-0.1.0-alpha.1.tgz#631b3ab497f584e4bae96ef0c72672ca0290973a"
+  integrity sha1-Yxs6tJf1hOS66W7wxyZyygKQlzo=
+  dependencies:
+    "@material-ui/icons" "^4.11.2"
+    "@smartb/g2-themes" "^0.1.0-alpha.1"
+    clsx "^1.1.1"
+
+"@smartb/g2-providers@^0.1.0-alpha.1":
+  version "0.1.0-alpha.1"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-providers/-/@smartb/g2-providers-0.1.0-alpha.1.tgz#b036b83f144de78350e11b2749aad41da0a11360"
+  integrity sha1-sDa4PxRN54NQ4RsnSarUHaChE2A=
   dependencies:
     "@react-keycloak/ssr" "^3.3.0"
     "@react-keycloak/web" "^3.4.0"
-    "@smartb/archetypes-ui-components" "^0.1.48"
-    "@smartb/archetypes-ui-themes" "^0.1.48"
+    "@smartb/g2-components" "^0.1.0-alpha.1"
+    "@smartb/g2-themes" "^0.1.0-alpha.1"
     clsx "^1.1.1"
     connected-react-router "^6.9.1"
     history "^4.10.1"
@@ -1835,21 +1847,21 @@
     react-router-dom "^5.2.0"
     redux "^4.1.0"
 
-"@smartb/archetypes-ui-s2@^0.1.48":
-  version "0.1.48"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-s2/-/archetypes-ui-s2-0.1.48.tgz#c26e48acdb3d74bd07eb658e73f287d50b7571dd"
-  integrity sha512-uL04+Uq1s6ZE44o0PiJzFmOh1TvU5BOMY/R6HK9HTTbhgIEdwO6ZLv4e9IupcZfMPj7yrXWOq2Nr0jnKNRJ6+Q==
+"@smartb/g2-s2@^0.1.0-alpha.1":
+  version "0.1.0-alpha.1"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-s2/-/@smartb/g2-s2-0.1.0-alpha.1.tgz#9309bd5378d8fedbc2c9c149d4645dd48e4b8958"
+  integrity sha1-kwm9U3jY/tvCycFJ1GRd1I5LiVg=
   dependencies:
-    "@smartb/archetypes-ui-themes" "^0.1.48"
+    "@smartb/g2-themes" "^0.1.0-alpha.1"
     clsx "^1.1.1"
     mermaid "^8.9.2"
     vis-data "^7.1.2"
     vis-network "^9.0.0"
 
-"@smartb/archetypes-ui-themes@^0.1.48":
-  version "0.1.48"
-  resolved "https://registry.yarnpkg.com/@smartb/archetypes-ui-themes/-/archetypes-ui-themes-0.1.48.tgz#0b83264133c7113b58ff2e955862e3abac06e5a3"
-  integrity sha512-aQxk9BKHPIQ6nFg2D+5PZCeTbwjN8miCGL5MvGj3n0yKIF+SYXRaxyRe7qtfyopQ8Zun1FbV2q8FBBQ2V+MsdQ==
+"@smartb/g2-themes@^0.1.0-alpha.1":
+  version "0.1.0-alpha.1"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-themes/-/@smartb/g2-themes-0.1.0-alpha.1.tgz#44febab9f8658d600c7ced96e31cd3aa8741a877"
+  integrity sha1-RP66ufhljWAMfO2W4xzTqodBqHc=
 
 "@surma/rollup-plugin-off-main-thread@^1.1.1":
   version "1.4.2"
@@ -5092,6 +5104,11 @@ deep-is@^0.1.3, deep-is@~0.1.3:
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
   integrity sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
 
+deepmerge@^2.1.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
+  integrity sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==
+
 deepmerge@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
@@ -6320,6 +6337,19 @@ format@^0.2.0:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/format/-/format-0.2.2.tgz#d6170107e9efdc4ed30c9dc39016df942b5cb58b"
   integrity sha1-1hcBB+nv3E7TDJ3DkBbflCtctYs=
+
+formik@^2.2.9:
+  version "2.2.9"
+  resolved "https://registry.yarnpkg.com/formik/-/formik-2.2.9.tgz#8594ba9c5e2e5cf1f42c5704128e119fc46232d0"
+  integrity sha512-LQLcISMmf1r5at4/gyJigGn0gOwFbeEAlji+N9InZF6LIMXnFNkO42sCI8Jt84YZggpD4cPWObAZaxpEFtSzNA==
+  dependencies:
+    deepmerge "^2.1.1"
+    hoist-non-react-statics "^3.3.0"
+    lodash "^4.17.21"
+    lodash-es "^4.17.21"
+    react-fast-compare "^2.0.1"
+    tiny-warning "^1.0.2"
+    tslib "^1.10.0"
 
 forwarded@~0.1.2:
   version "0.1.2"
@@ -8607,6 +8637,11 @@ locate-path@^5.0.0:
   integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
   dependencies:
     p-locate "^4.1.0"
+
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
@@ -11074,6 +11109,11 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
+react-fast-compare@^2.0.1:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+  integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
 react-fast-compare@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
@@ -13066,7 +13106,7 @@ tsconfig-paths@^3.9.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==

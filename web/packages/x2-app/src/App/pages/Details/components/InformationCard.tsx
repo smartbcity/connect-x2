@@ -1,6 +1,6 @@
 import { Panel, SessionInformations } from "components"
 import { useTranslation } from "react-i18next"
-import { highLevelStyles } from "@smartb/archetypes-ui-themes"
+import { highLevelStyles } from "@smartb/g2-themes"
 import { Session } from "ssm";
 
 const useStyles = highLevelStyles()({
