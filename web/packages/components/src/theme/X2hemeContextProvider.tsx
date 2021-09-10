@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeContextProvider } from '@smartb/g2-themes'
-import { Muitheme, theme } from './Themes'
+import { theme } from './Themes'
 
 export interface X2ThemeContextProviderProps {
   children: React.ReactNode
@@ -8,7 +8,7 @@ export interface X2ThemeContextProviderProps {
 
 export const X2ThemeContextProvider = (props: X2ThemeContextProviderProps) => {
   return (
-    <ThemeContextProvider theme={theme} customMuiTheme={Muitheme}>
+    <ThemeContextProvider theme={theme} >
       {props.children}
     </ThemeContextProvider>
   )
