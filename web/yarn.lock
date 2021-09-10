@@ -1757,15 +1757,15 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smartb/g2-components@^0.1.0-alpha.1":
-  version "0.1.0-alpha.1"
-  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-components/-/@smartb/g2-components-0.1.0-alpha.1.tgz#04397f27e4503f38b86a0d75b8c36f3068cc2d08"
-  integrity sha1-BDl/J+RQPzi4ag11uMNvMGjMLQg=
+"@smartb/g2-components@^0.1.0-alpha.2":
+  version "0.1.0-alpha.2"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-components/-/@smartb/g2-components-0.1.0-alpha.2.tgz#b82ffcfbe961e17d1f3ef03b2b5729c045c1c533"
+  integrity sha1-uC/8++lh4X0fPvA7K1cpwEXBxTM=
   dependencies:
     "@material-ui/icons" "^4.11.2"
     "@material-ui/lab" "^4.0.0-alpha.57"
-    "@smartb/g2-notifications" "^0.1.0-alpha.1"
-    "@smartb/g2-themes" "^0.1.0-alpha.1"
+    "@smartb/g2-notifications" "^0.1.0-alpha.2"
+    "@smartb/g2-themes" "^0.1.0-alpha.2"
     clsx "^1.1.1"
     notistack "2.0.1-alpha.2"
     react-data-table-component "^6.9.7"
@@ -1774,12 +1774,12 @@
     stringify-object "^3.3.0"
     styled-components "^5.2.1"
 
-"@smartb/g2-documentation@^0.1.0-alpha.1":
-  version "0.1.0-alpha.1"
-  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-documentation/-/@smartb/g2-documentation-0.1.0-alpha.1.tgz#df7aef144c5a945d0d2f5018d6f528e0953a1fc7"
-  integrity sha1-33rvFExalF0NL1AY1vUo4JU6H8c=
+"@smartb/g2-documentation@^0.1.0-alpha.2":
+  version "0.1.0-alpha.2"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-documentation/-/@smartb/g2-documentation-0.1.0-alpha.2.tgz#d844cd602a3c7d86a081728f7dcd6dd7f4a41952"
+  integrity sha1-2ETNYCo8fYaggXKPfc1t1/SkGVI=
   dependencies:
-    "@smartb/g2-themes" "^0.1.0-alpha.1"
+    "@smartb/g2-themes" "^0.1.0-alpha.2"
     clsx "^1.1.1"
     github-markdown-css "^4.0.0"
     react-markdown "^6.0.2"
@@ -1788,52 +1788,52 @@
     rehype-sanitize "^4.0.0"
     remark-gfm "^1.0.0"
 
-"@smartb/g2-forms@^0.1.0-alpha.1":
-  version "0.1.0-alpha.1"
-  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-forms/-/@smartb/g2-forms-0.1.0-alpha.1.tgz#0f6bbcea16638e195c1b77468c46b14859f3f3b3"
-  integrity sha1-D2u86hZjjhlcG3dGjEaxSFnz87M=
+"@smartb/g2-forms@^0.1.0-alpha.2":
+  version "0.1.0-alpha.2"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-forms/-/@smartb/g2-forms-0.1.0-alpha.2.tgz#37e292752e4a491557adb786248f41e126a48a4b"
+  integrity sha1-N+KSdS5KSRVXrbeGJI9B4Sakiks=
   dependencies:
     "@date-io/date-fns" "1.3.13"
     "@material-ui/icons" "^4.11.2"
     "@material-ui/pickers" "^3.3.10"
-    "@smartb/g2-components" "^0.1.0-alpha.1"
-    "@smartb/g2-themes" "^0.1.0-alpha.1"
+    "@smartb/g2-components" "^0.1.0-alpha.2"
+    "@smartb/g2-themes" "^0.1.0-alpha.2"
     clsx "^1.1.1"
     date-fns "^2.21.3"
     formik "^2.2.9"
     react-device-detect "^1.17.0"
 
-"@smartb/g2-layout@^0.1.0-alpha.1":
-  version "0.1.0-alpha.1"
-  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-layout/-/@smartb/g2-layout-0.1.0-alpha.1.tgz#3b583a229ff2322a9195071fb1d6b89caca6b858"
-  integrity sha1-O1g6Ip/yMiqRlQcfsda4nKymuFg=
+"@smartb/g2-layout@^0.1.0-alpha.2":
+  version "0.1.0-alpha.2"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-layout/-/@smartb/g2-layout-0.1.0-alpha.2.tgz#d51331014fe11c02540b7f7cc8ca64977c635d68"
+  integrity sha1-1RMxAU/hHAJUC398yMpkl3xjXWg=
   dependencies:
     "@material-ui/icons" "^4.11.2"
     "@material-ui/lab" "^4.0.0-alpha.57"
-    "@smartb/g2-components" "^0.1.0-alpha.1"
-    "@smartb/g2-forms" "^0.1.0-alpha.1"
-    "@smartb/g2-themes" "^0.1.0-alpha.1"
+    "@smartb/g2-components" "^0.1.0-alpha.2"
+    "@smartb/g2-forms" "^0.1.0-alpha.2"
+    "@smartb/g2-themes" "^0.1.0-alpha.2"
     clsx "^1.1.1"
     use-debounce "^3.4.2"
 
-"@smartb/g2-notifications@^0.1.0-alpha.1":
-  version "0.1.0-alpha.1"
-  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-notifications/-/@smartb/g2-notifications-0.1.0-alpha.1.tgz#631b3ab497f584e4bae96ef0c72672ca0290973a"
-  integrity sha1-Yxs6tJf1hOS66W7wxyZyygKQlzo=
+"@smartb/g2-notifications@^0.1.0-alpha.2":
+  version "0.1.0-alpha.2"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-notifications/-/@smartb/g2-notifications-0.1.0-alpha.2.tgz#001a305b605d7428126451919879ccd27cc0b3e0"
+  integrity sha1-ABowW2BddCgSZFGRmHnM0nzAs+A=
   dependencies:
     "@material-ui/icons" "^4.11.2"
-    "@smartb/g2-themes" "^0.1.0-alpha.1"
+    "@smartb/g2-themes" "^0.1.0-alpha.2"
     clsx "^1.1.1"
 
-"@smartb/g2-providers@^0.1.0-alpha.1":
-  version "0.1.0-alpha.1"
-  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-providers/-/@smartb/g2-providers-0.1.0-alpha.1.tgz#b036b83f144de78350e11b2749aad41da0a11360"
-  integrity sha1-sDa4PxRN54NQ4RsnSarUHaChE2A=
+"@smartb/g2-providers@^0.1.0-alpha.2":
+  version "0.1.0-alpha.2"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-providers/-/@smartb/g2-providers-0.1.0-alpha.2.tgz#ce1232a0f6c1525a9fd926b2e8fb62b4214f9d7e"
+  integrity sha1-zhIyoPbBUlqf2Say6PtitCFPnX4=
   dependencies:
     "@react-keycloak/ssr" "^3.3.0"
     "@react-keycloak/web" "^3.4.0"
-    "@smartb/g2-components" "^0.1.0-alpha.1"
-    "@smartb/g2-themes" "^0.1.0-alpha.1"
+    "@smartb/g2-components" "^0.1.0-alpha.2"
+    "@smartb/g2-themes" "^0.1.0-alpha.2"
     clsx "^1.1.1"
     connected-react-router "^6.9.1"
     history "^4.10.1"
@@ -1847,21 +1847,35 @@
     react-router-dom "^5.2.0"
     redux "^4.1.0"
 
-"@smartb/g2-s2@^0.1.0-alpha.1":
-  version "0.1.0-alpha.1"
-  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-s2/-/@smartb/g2-s2-0.1.0-alpha.1.tgz#9309bd5378d8fedbc2c9c149d4645dd48e4b8958"
-  integrity sha1-kwm9U3jY/tvCycFJ1GRd1I5LiVg=
+"@smartb/g2-s2@^0.1.0-alpha.2":
+  version "0.1.0-alpha.2"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-s2/-/@smartb/g2-s2-0.1.0-alpha.2.tgz#7c166c56d30fde369f23cb23f0d4ee3373d3b8eb"
+  integrity sha1-fBZsVtMP3jafI8sj8NTuM3PTuOs=
   dependencies:
-    "@smartb/g2-themes" "^0.1.0-alpha.1"
+    "@smartb/g2-themes" "^0.1.0-alpha.2"
     clsx "^1.1.1"
     mermaid "^8.9.2"
     vis-data "^7.1.2"
     vis-network "^9.0.0"
 
-"@smartb/g2-themes@^0.1.0-alpha.1":
-  version "0.1.0-alpha.1"
-  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-themes/-/@smartb/g2-themes-0.1.0-alpha.1.tgz#44febab9f8658d600c7ced96e31cd3aa8741a877"
-  integrity sha1-RP66ufhljWAMfO2W4xzTqodBqHc=
+"@smartb/g2-themes@^0.1.0-alpha.2":
+  version "0.1.0-alpha.2"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2-themes/-/@smartb/g2-themes-0.1.0-alpha.2.tgz#bb204b30686e76464d19f0db3c170fbf6d9d71d7"
+  integrity sha1-uyBLMGhudkZNGfDbPBcPv22dcdc=
+
+"@smartb/g2@^0.1.0-alpha.2":
+  version "0.1.0-alpha.2"
+  resolved "https://gitlab.smartb.city/api/v4/projects/52/packages/npm/@smartb/g2/-/@smartb/g2-0.1.0-alpha.2.tgz#636ef4bf27350336dd0c76ec875e9264220ef3fa"
+  integrity sha1-Y270vyc1AzbdDHbsh16SZCIO8/o=
+  dependencies:
+    "@smartb/g2-components" "^0.1.0-alpha.2"
+    "@smartb/g2-documentation" "^0.1.0-alpha.2"
+    "@smartb/g2-forms" "^0.1.0-alpha.2"
+    "@smartb/g2-layout" "^0.1.0-alpha.2"
+    "@smartb/g2-notifications" "^0.1.0-alpha.2"
+    "@smartb/g2-providers" "^0.1.0-alpha.2"
+    "@smartb/g2-s2" "^0.1.0-alpha.2"
+    "@smartb/g2-themes" "^0.1.0-alpha.2"
 
 "@surma/rollup-plugin-off-main-thread@^1.1.1":
   version "1.4.2"

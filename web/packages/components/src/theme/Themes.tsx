@@ -1,4 +1,3 @@
-import { createTheme } from '@material-ui/core'
 import { Theme as AruiTheme } from '@smartb/g2-themes'
 import { StyleProps } from '@smartb/g2-layout'
 
@@ -37,7 +36,7 @@ export const theme: AruiTheme = {
   ]
 }
 
-export const Muitheme = createTheme({
+export const Muitheme = {
   palette: {
     primary: {
       main: theme.colors.primary
@@ -50,6 +49,6 @@ export const Muitheme = createTheme({
       secondary: "rgba(53, 57, 69, 0.7)"
     }
   }
-})
+}
 
 
