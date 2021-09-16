@@ -9,6 +9,7 @@ import { Session, SSM } from "ssm";
 import { AsyncObject } from "utils";
 import { ProtocolCard } from "./components/ProtocolCard";
 import { SessionNumberCard } from "./components/SessionNumberCard";
+import { SessionsFilters } from "./components/SessionsFilters";
 import { SessionTable } from "./components/SessionTable";
 import { StepsCompletedCard } from "./components/StepsCompletedCard";
 
@@ -29,13 +30,14 @@ const useStyles = highLevelStyles()({
 interface SessionsProps {
   setTitle: (title: string) => void
   gotoSessionDetails: (ssmName: string, sessionName: any) => void
+  gotoSessions: (ssmName: string, params: Object) => void
   ssmList: Map<string, SSM>
   sessionsList: Map<string, AsyncObject<{ sessions?: Session[] }>>
   fetchSessions: (ssmName: string) => void
 }
 
 export const Sessions = (props: SessionsProps) => {
-  const { setTitle, ssmList, gotoSessionDetails, fetchSessions, sessionsList } = props;
+  const { setTitle, ssmList, gotoSessionDetails, gotoSessions, fetchSessions, sessionsList } = props;
   const { t } = useTranslation()
   const { ssmName } = useParams<{ ssmName: string }>();
   const classes = useStyles()
@@ -54,6 +56,7 @@ export const Sessions = (props: SessionsProps) => {
     <Page
       setTitle={setTitle}
       title={t("sessions")}
+      headerContent={<SessionsFilters ssmName={ssmName} gotoSessions={gotoSessions} />}
     >
       <Box className={classes.container}>
         <StepsCompletedCard />

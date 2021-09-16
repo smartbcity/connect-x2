@@ -18,7 +18,7 @@
   "peerDependencies": {
     "react": "^17.0.1",
     "react-i18next": "^11.8.7",
-    "@smartb/g2": "^0.1.0-alpha.2",
+    "@smartb/g2": "^0.1.0-alpha.3",
     "react-router-dom": "^5.2.0",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2"
