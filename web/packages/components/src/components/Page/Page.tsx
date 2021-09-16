@@ -6,12 +6,14 @@ import { midLevelStyles } from "@smartb/g2-themes"
 
 const useStyles = midLevelStyles()({
     header: {
-        position: "fixed",
-        top: "60px",
-        zIndex: 0
+        top: "5px",
+        zIndex: 0,
+        position: "relative",
+        justifyContent: "space-between",
+        alignItems: "center"
     },
     page: {
-        paddingTop:"40px",
+        paddingTop:"0px",
         paddingBottom: "40px"
     }
 })
@@ -20,10 +22,11 @@ interface PageProps {
     children?: React.ReactNode
     title: string
     setTitle: (title: string) => void
+    headerContent?: React.ReactNode
 }
 
 export const Page = (props: PageProps) => {
-    const {children, setTitle, title} = props
+    const {children, setTitle, title, headerContent} = props
     const {t} = useTranslation()
     const history = useHistory()
     const classes = useStyles()
@@ -40,6 +43,7 @@ export const Page = (props: PageProps) => {
         <AruiPage
             goBackLabel={t("back")}
             onGoBackClick={onGoBackClick}
+            headerContent={headerContent}
             fixedHeader
             className={classes.page}
             classes={{header: classes.header, backButton: ""}}

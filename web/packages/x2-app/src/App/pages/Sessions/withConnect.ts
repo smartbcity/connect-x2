@@ -12,6 +12,7 @@ const mapStateToProps = (state: State) => ({
 const mapDispatchToProps = {
     setTitle: title.actions.setTitle,
     gotoSessionDetails: router.goto.sessionDetails,
+    gotoSessions: router.goto.sessions,
     fetchSessions: ssm.queries.fetchSessions
 };
 
