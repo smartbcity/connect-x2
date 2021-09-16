@@ -16,7 +16,7 @@ class CanGenerateCertificateFunctionImpl {
     @Bean
     fun canGenerateCertificateFunction(): CanGenerateCertificateFunction = f2Function { cmd ->
         val canGenerateCertificate = try {
-            val result = (cmd.sessionState.public as String).parseJsonTo(CertificateCredentials::class.java)
+            val result = (cmd.sessionState.public as String?)?.parseJsonTo(CertificateCredentials::class.java)
             result != null
         } catch (e: JacksonException) {
             false
