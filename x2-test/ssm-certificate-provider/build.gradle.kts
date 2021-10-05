@@ -12,8 +12,8 @@ dependencies {
     api("city.smartb.ssm:ssm-tx-session-start-spring-boot-starter:${Versions.ssm}")
     api("city.smartb.ssm:ssm-tx-session-perform-action-spring-boot-starter:${Versions.ssm}")
 
-    implementation(project(":api:certificate:certificate-domain"))
-    implementation(project(":api:ssm:ssm-domain"))
+    implementation(project(":x2-f2:certificate:certificate-domain"))
+    implementation(project(":x2-f2:ssm:ssm-domain"))
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {

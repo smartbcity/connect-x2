@@ -7,10 +7,10 @@ plugins {
 dependencies {
     api("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
 
-    implementation(project(":api:api-config"))
-    implementation(project(":api:api-infra:i2"))
-    implementation(project(":api:certificate:certificate-api"))
-    implementation(project(":api:ssm:ssm-api"))
+    implementation(project(":x2-api:api-config"))
+    implementation(project(":x2-api:api-infra:i2"))
+    implementation(project(":x2-f2:certificate:certificate-api"))
+    implementation(project(":x2-f2:ssm:ssm-api"))
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {

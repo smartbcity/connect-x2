@@ -4,9 +4,9 @@ plugins {
 }
 
 dependencies {
-    api(project(":api:ssm:ssm-domain"))
+    api(project(":x2-f2:ssm:ssm-domain"))
 
-    implementation(project(":api:api-config"))
+    implementation(project(":x2-api:api-config"))
 
     api("city.smartb.ssm:ssm-data-f2:${Versions.ssm}")
     api("city.smartb.ssm:ssm-couchdb-f2:${Versions.ssm}")

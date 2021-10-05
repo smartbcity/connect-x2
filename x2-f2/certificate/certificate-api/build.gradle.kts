@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    api(project(":api:certificate:certificate-domain"))
+    api(project(":x2-f2:certificate:certificate-domain"))
 
     implementation("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
 

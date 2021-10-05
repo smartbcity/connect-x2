@@ -10,23 +10,23 @@ rootProject.name = "x2"
 enableFeaturePreview("GRADLE_METADATA")
 
 include(
-	"api:api-config",
-	"api:api-gateway"
+	"x2-api:api-config",
+	"x2-api:api-gateway"
 )
 
 include(
-	"api:certificate:certificate-api",
-	"api:certificate:certificate-domain"
+	"x2-f2:certificate:certificate-api",
+	"x2-f2:certificate:certificate-domain"
 )
 
 include(
-	"api:ssm:ssm-api",
-	"api:ssm:ssm-client",
-	"api:ssm:ssm-domain"
+	"x2-f2:ssm:ssm-api",
+	"x2-f2:ssm:ssm-client",
+	"x2-f2:ssm:ssm-domain"
 )
 
 include(
-	"api:api-infra:i2"
+	"x2-api:api-infra:i2"
 )
 
 include(
