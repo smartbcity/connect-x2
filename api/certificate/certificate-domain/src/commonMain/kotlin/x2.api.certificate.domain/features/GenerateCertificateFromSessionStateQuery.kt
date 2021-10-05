@@ -1,8 +1,8 @@
 package x2.api.certificate.domain.features
 
 import f2.dsl.fnc.F2Function
-import ssm.chaincode.dsl.SsmSessionState
-import ssm.chaincode.dsl.SsmSessionStateDTO
+import ssm.chaincode.dsl.model.SsmSessionState
+import ssm.chaincode.dsl.model.SsmSessionStateDTO
 import x2.api.certificate.domain.model.CertificateCredentials
 import x2.api.certificate.domain.model.Lang
 import kotlin.js.JsExport
@@ -16,7 +16,8 @@ import kotlin.js.JsName
  * @order 15
  * @title Generate Certificate Of Session
  */
-typealias GenerateCertificateFromSessionStateFunction = F2Function<GenerateCertificateFromSessionStateQuery, GenerateCertificateFromSessionStateResult>
+typealias GenerateCertificateFromSessionStateFunction =
+        F2Function<GenerateCertificateFromSessionStateQuery, GenerateCertificateFromSessionStateResult>
 
 expect interface GenerateCertificateFromSessionStateQueryDTO {
     /**

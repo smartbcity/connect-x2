@@ -1,8 +1,8 @@
 package x2.api.certificate.domain.features
 
 import f2.dsl.fnc.F2Function
-import ssm.chaincode.dsl.SsmSessionState
-import ssm.chaincode.dsl.SsmSessionStateDTO
+import ssm.chaincode.dsl.model.SsmSessionState
+import ssm.chaincode.dsl.model.SsmSessionStateDTO
 import x2.api.certificate.domain.model.CertificateCredentials
 import kotlin.js.JsExport
 import kotlin.js.JsName

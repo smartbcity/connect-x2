@@ -8,7 +8,8 @@ import kotlin.js.Promise
 
 @JsName("ssmClient")
 @JsExport
-fun ssmClient(host: String, port: Int, path: String? = null): Promise<SSMFunctionClient> = F2ClientBuilder.get(HTTP, host, port, path).then {
+fun ssmClient(host: String, port: Int, path: String? = null): Promise<SSMFunctionClient> =
+	F2ClientBuilder.get(HTTP, host, port, path).then {
 	SSMFunctionClient(it)
 }
 

@@ -5,46 +5,62 @@ import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Service
-import ssm.tx.dsl.features.query.*
+import ssm.data.dsl.features.query.DataSsmGetQuery
+import ssm.data.dsl.features.query.DataSsmGetQueryFunction
+import ssm.data.dsl.features.query.DataSsmGetQueryResultDTO
+import ssm.data.dsl.features.query.DataSsmListQuery
+import ssm.data.dsl.features.query.DataSsmListQueryFunction
+import ssm.data.dsl.features.query.DataSsmListQueryResultDTO
+import ssm.data.dsl.features.query.DataSsmSessionGetQuery
+import ssm.data.dsl.features.query.DataSsmSessionGetQueryFunction
+import ssm.data.dsl.features.query.DataSsmSessionGetQueryResultDTO
+import ssm.data.dsl.features.query.DataSsmSessionListQuery
+import ssm.data.dsl.features.query.DataSsmSessionListQueryFunction
+import ssm.data.dsl.features.query.DataSsmSessionListQueryResultDTO
+import ssm.data.dsl.features.query.DataSsmSessionLogGetQuery
+import ssm.data.dsl.features.query.DataSsmSessionLogGetQueryFunction
+import ssm.data.dsl.features.query.DataSsmSessionLogGetQueryResultDTO
+import ssm.data.dsl.features.query.DataSsmSessionLogListQuery
+import ssm.data.dsl.features.query.DataSsmSessionLogListQueryFunction
+import ssm.data.dsl.features.query.DataSsmSessionLogListQueryResultDTO
 
 @Service
 class SsmApiFinderService(
-	private val txSsmListQueryFunction: TxSsmListQueryFunction,
-	private val txSsmGetQueryFunction: TxSsmGetQueryFunction,
-	private val txSsmSessionListQueryFunction: TxSsmSessionListQueryFunction,
-	private val txSsmSessionGetOneQueryFunction: TxSsmSessionGetQueryFunction,
-	private val txSsmSessionLogGetQueryFunction: TxSsmSessionLogGetQueryFunction,
-	private val txSsmSessionLogListQueryFunction: TxSsmSessionLogListQueryFunction,
+	private val dataSsmListQueryFunction: DataSsmListQueryFunction,
+	private val dataSsmGetQueryFunction: DataSsmGetQueryFunction,
+	private val dataSsmSessionListQueryFunction: DataSsmSessionListQueryFunction,
+	private val dataSsmSessionGetOneQueryFunction: DataSsmSessionGetQueryFunction,
+	private val dataSsmSessionLogGetQueryFunction: DataSsmSessionLogGetQueryFunction,
+	private val dataSsmSessionLogListQueryFunction: DataSsmSessionLogListQueryFunction,
 ) {
 
 	@Bean
-	fun getAllSsm(): F2Function<TxSsmListQuery, TxSsmListQueryResultDTO> = f2Function { query ->
-		txSsmListQueryFunction(query)
+	fun getAllSsm(): F2Function<DataSsmListQuery, DataSsmListQueryResultDTO> = f2Function { query ->
+		dataSsmListQueryFunction(query)
 	}
 
 	@Bean
-	fun getSsm(): F2Function<TxSsmGetQuery, TxSsmGetQueryResultDTO> = f2Function { query ->
-		txSsmGetQueryFunction(query)
+	fun getSsm(): F2Function<DataSsmGetQuery, DataSsmGetQueryResultDTO> = f2Function { query ->
+		dataSsmGetQueryFunction(query)
 	}
 
 	@Bean
-	fun getAllSessions(): F2Function<TxSsmSessionListQuery, TxSsmSessionListQueryResultDTO> = f2Function { query ->
-		txSsmSessionListQueryFunction(query)
+	fun getAllSessions(): F2Function<DataSsmSessionListQuery, DataSsmSessionListQueryResultDTO> = f2Function { query ->
+		dataSsmSessionListQueryFunction(query)
 	}
 
 	@Bean
-	fun getSession(): F2Function<TxSsmSessionGetQuery, TxSsmSessionGetQueryResultDTO> = f2Function { query ->
-		txSsmSessionGetOneQueryFunction(query)
+	fun getSession(): F2Function<DataSsmSessionGetQuery, DataSsmSessionGetQueryResultDTO> = f2Function { query ->
+		dataSsmSessionGetOneQueryFunction(query)
 	}
 
 	@Bean
-	fun getSessionLogs(): F2Function<TxSsmSessionLogListQuery, TxSsmSessionLogListQueryResultDTO> = f2Function { query ->
-		txSsmSessionLogListQueryFunction(query)
+	fun getSessionLogs(): F2Function<DataSsmSessionLogListQuery, DataSsmSessionLogListQueryResultDTO> = f2Function { query ->
+		dataSsmSessionLogListQueryFunction(query)
 	}
 
 	@Bean
-	fun getOneSessionLog(): F2Function<TxSsmSessionLogGetQuery, TxSsmSessionLogGetQueryResultDTO> = f2Function { query ->
-		txSsmSessionLogGetQueryFunction(query)
+	fun getOneSessionLog(): F2Function<DataSsmSessionLogGetQuery, DataSsmSessionLogGetQueryResultDTO> = f2Function { query ->
+		dataSsmSessionLogGetQueryFunction(query)
 	}
-
 }

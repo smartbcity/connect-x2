@@ -16,5 +16,4 @@ open class SSMFunctionClient(private val client: F2Client)
 //	override fun getSession(): TxSsmSessionGetQueryFunction= client.declaration("getAllSsm")
 //	override fun getSessionLogs(): TxSsmSessionLogListQueryFunction= client.declaration("getAllSsm")
 //	override fun getOneSessionLog(): TxSsmSessionLogGetQueryFunction = client.declaration("getAllSsm")
-
 }

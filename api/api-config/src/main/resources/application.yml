@@ -7,6 +7,39 @@ spring:
       web:
         path: /api
 
+
+ssm:
+  data:
+    couchdb:
+      url: http://peer0.pr-commune.smartb.network:5984
+      username: 1111
+      password: 2222
+      serviceName: ssm-couchdb-unit
+    chaincode:
+      url: http://peer0.pr-commune.smartb.network
+  filter:
+    - ssm:peer0:proudhon:ssm:account,
+    - ssm:peer0:proudhon:ssm:Delivery,
+    - ssm:peer0:proudhon:ssm:MobilityImpactSsm
+    - ssm:peer0:proudhon:ssm:Negociation
+    - ssm:peer0:proudhon:ssm:certificate
+#ssm:
+#  peers:
+#    peer0:
+#      couchdb:
+#        url: http://peer0.pr-commune.smartb.network:5984
+#        username: 1111
+#        password: 2222
+#        serviceName: ssm-couchdb-unit
+#      api:
+#        url: http://peer0.pr-commune.smartb.network
+#  filter:
+#    - ssm:peer0:channelId:chaincodeId:ssmId
+#    - ssm:peer0:proudhon:ssm:account
+#    - ssm:peer0:proudhon:ssm:Delivery
+#    - ssm:peer0:proudhon:ssm:MobilityImpactSsm
+#    - ssm:proudhon:ssm:Negociation
+#    - ssm:peer0.pr-commune.smartb.network:proudhon:ssm:certificate
 ssm:
   couchdb:
     peer0_pr-commune:
@@ -45,7 +78,7 @@ ssm:
         chaincode: peer0_pr-commune_proudhon_ssm
         couchdb: peer0_pr-commune
         dbName: proudhon_ssm
-    Certificate:
+    certificate:
       v1_0:
         chaincode: peer0_pr-commune_proudhon_ssm
         couchdb: peer0_pr-commune

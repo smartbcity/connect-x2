@@ -1,7 +1,5 @@
 plugins {
-    id("io.spring.dependency-management")
-    kotlin("jvm")
-    kotlin("plugin.jpa")
+    id("city.smartb.fixers.gradle.kotlin.jvm")
     kotlin("plugin.spring")
 }
 
@@ -10,7 +8,7 @@ dependencies {
 
     implementation(project(":api:api-config"))
 
-    api("city.smartb.ssm:ssm-tx-f2:${Versions.ssm}")
+    api("city.smartb.ssm:ssm-data-f2:${Versions.ssm}")
     api("city.smartb.ssm:ssm-couchdb-f2:${Versions.ssm}")
     api("city.smartb.ssm:f2-query:${Versions.ssm}")
 

@@ -8,15 +8,7 @@ import x2.api.certificate.domain.model.Lang
 import x2.api.certificate.domain.model.StringI18n
 import java.util.UUID
 
-/**
- * Merge with domain-api.test
- */
-
-class DataTest {
-    companion object
-}
-
-fun DataTest.Companion.certificateCredentials(
+fun DataTest.certificateCredentials(
      id: String = UUID.randomUUID().toString(),
      title: CertificateData = certificateData(),
      holder: CertificateSigner = certificateSigner(),
@@ -34,7 +26,7 @@ fun DataTest.Companion.certificateCredentials(
     payload = payload
 )
 
-fun DataTest.Companion.certificateProtocol(
+fun DataTest.certificateProtocol(
     validationProtocol: CertificateData = certificateData(),
     protocolEngineVersion: CertificateData = certificateData(),
     channel: CertificateData = certificateData(),
@@ -50,7 +42,7 @@ fun DataTest.Companion.certificateProtocol(
     url = url
 )
 
-fun DataTest.Companion.certificateSigner(
+fun DataTest.certificateSigner(
     name: CertificateData = certificateData(),
     organization: String = "",
     roles: String? = null,
@@ -62,7 +54,7 @@ fun DataTest.Companion.certificateSigner(
     signature = signature
 )
 
-fun DataTest.Companion.certificateData(
+fun DataTest.certificateData(
     label: StringI18n = stringI18n(),
     value: StringI18n = stringI18n(),
     unit: StringI18n = stringI18n(),
@@ -72,7 +64,7 @@ fun DataTest.Companion.certificateData(
     unit = unit
 )
 
-fun DataTest.Companion.stringI18n(
+fun DataTest.stringI18n(
     value: String = "",
     lang: Lang = Lang.EN
 ) = mapOf(lang to value)

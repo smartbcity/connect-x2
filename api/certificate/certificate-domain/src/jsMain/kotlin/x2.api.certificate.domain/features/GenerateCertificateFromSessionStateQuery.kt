@@ -1,6 +1,6 @@
 package x2.api.certificate.domain.features
 
-import ssm.chaincode.dsl.SsmSessionStateDTO
+import ssm.chaincode.dsl.model.SsmSessionStateDTO
 import x2.api.certificate.domain.model.Lang
 
 @JsExport

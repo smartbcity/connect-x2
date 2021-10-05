@@ -11,12 +11,23 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import ssm.chaincode.dsl.*
-import ssm.chaincode.f2.*
+import ssm.chaincode.dsl.model.Ssm
+import ssm.chaincode.dsl.model.SsmAgent
+import ssm.chaincode.dsl.model.SsmContext
+import ssm.chaincode.dsl.model.SsmSession
+import ssm.chaincode.dsl.model.SsmTransition
+import ssm.chaincode.f2.SsmCreateCommand
+import ssm.chaincode.f2.SsmCreateFunction
+import ssm.chaincode.f2.SsmSessionPerformActionCommand
+import ssm.chaincode.f2.SsmSessionPerformActionFunction
+import ssm.chaincode.f2.SsmSessionPerformActionResult
+import ssm.chaincode.f2.SsmSessionStartCommand
+import ssm.chaincode.f2.SsmSessionStartFunction
+import ssm.chaincode.f2.SsmSessionStartResult
 import ssm.sdk.sign.crypto.KeyPairReader
 import ssm.sdk.sign.model.Signer
 import ssm.sdk.sign.model.SignerAdmin
-import java.util.*
+import java.util.UUID
 
 
 @Configuration
@@ -75,11 +86,11 @@ class AppRunnerConfiguration {
 				action = "transaction",
 				bearerToken = null,
 				signer = agentSigner,
-				chaincode = SsmChaincodeProperties(
-					chaincodeId = chaincode,
-					channelId = channel,
-					baseUrl = url,
-				),
+//				chaincode = SsmChaincodeProperties(
+//					chaincodeId = chaincode,
+//					channelId = channel,
+//					baseUrl = url,
+//				),
 				context = SsmContext(
 					session = sessionName,
 					public = getPublic(),
@@ -116,11 +127,11 @@ class AppRunnerConfiguration {
 		)
 		val cmd = SsmSessionStartCommand(
 			bearerToken = null,
-			chaincode = SsmChaincodeProperties(
-				chaincodeId = chaincode,
-				channelId = channel,
-				baseUrl = url,
-			),
+//			chaincode = SsmChaincodeProperties(
+//				chaincodeId = chaincode,
+//				channelId = channel,
+//				baseUrl = url,
+//			),
 			session = session,
 			signerAdmin = adminSigner
 		)
@@ -136,17 +147,19 @@ class AppRunnerConfiguration {
 		val first = SsmTransition(0, 0, "Agent", "transaction")
 		val ssm = Ssm(ssmName, listOf(first))
 
-		ssmCreateFunction.invoke(SsmCreateCommand(
+		ssmCreateFunction.invoke(
+			SsmCreateCommand(
 			signerAdmin = adminSigner,
 			ssm = ssm,
 			agent = agentSigner,
-			chaincode = SsmChaincodeProperties(
-				chaincodeId = chaincode,
-				channelId = channel,
-				baseUrl = url,
-			),
+//			chaincode = SsmChaincodeProperties(
+//				chaincodeId = chaincode,
+//				channelId = channel,
+//				baseUrl = url,
+//			),
 			bearerToken = null
-		))
+		)
+		)
 	}
 
 	@Throws(Exception::class)

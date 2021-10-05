@@ -1,20 +1,16 @@
 plugins {
     id("org.springframework.boot")
-    id("io.spring.dependency-management")
-    kotlin("jvm")
-    kotlin("plugin.jpa")
+    id("city.smartb.fixers.gradle.kotlin.jvm")
     kotlin("plugin.spring")
 }
 
 dependencies {
-//    api("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
-    implementation("org.springframework.boot:spring-boot-starter")
-//    implementation(project(":api:api-config"))
+    implementation("org.springframework.boot:spring-boot-starter:${Versions.springBoot}")
 
     api("city.smartb.ssm:ssm-sdk-sign:${Versions.ssm}")
-    api("city.smartb.ssm:f2-create-ssm:${Versions.ssm}")
-    api("city.smartb.ssm:f2-session-start:${Versions.ssm}")
-    api("city.smartb.ssm:f2-session-perform-action:${Versions.ssm}")
+    api("city.smartb.ssm:ssm-tx-create-ssm-spring-boot-starter:${Versions.ssm}")
+    api("city.smartb.ssm:ssm-tx-session-start-spring-boot-starter:${Versions.ssm}")
+    api("city.smartb.ssm:ssm-tx-session-perform-action-spring-boot-starter:${Versions.ssm}")
 
     implementation(project(":api:certificate:certificate-domain"))
     implementation(project(":api:ssm:ssm-domain"))

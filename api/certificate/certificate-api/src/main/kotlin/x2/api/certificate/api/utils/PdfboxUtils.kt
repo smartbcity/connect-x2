@@ -11,6 +11,7 @@ import rst.pdfbox.layout.text.Alignment
 import rst.pdfbox.layout.text.BaseFont
 import java.awt.Color
 
+@Suppress("MagicNumber")
 fun Document.addText(text: String, fontSize: Float = 12f, alignment: Alignment = Alignment.Left): Document {
     val paragraph = Paragraph()
     paragraph.alignment = alignment
@@ -26,6 +27,7 @@ fun Document.addSpacer(size: Float): Document {
     return this
 }
 
+@Suppress("MagicNumber")
 fun Document.drawLine(): Document {
     val fakeParagraph = Paragraph()
     fakeParagraph.addMarkup("", 1f, BaseFont.Helvetica)

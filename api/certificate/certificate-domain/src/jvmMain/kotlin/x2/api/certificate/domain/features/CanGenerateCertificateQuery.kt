@@ -1,6 +1,7 @@
 package x2.api.certificate.domain.features
 
-import ssm.chaincode.dsl.SsmSessionStateDTO
+import ssm.chaincode.dsl.model.SsmSessionStateDTO
+
 
 actual interface CanGenerateCertificateQueryDTO {
     actual val sessionState: SsmSessionStateDTO
