@@ -9,7 +9,12 @@ x2:
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile:
+
+ssm:
+  chaincode:
+    url: http://localhost:9090
+
 x2:
   test:
     ssm:

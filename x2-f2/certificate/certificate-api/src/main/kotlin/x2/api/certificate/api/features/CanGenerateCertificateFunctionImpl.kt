@@ -19,6 +19,7 @@ class CanGenerateCertificateFunctionImpl {
             val result = (cmd.sessionState.public as String?)?.parseJsonTo(CertificateCredentials::class.java)
             result != null
         } catch (e: JacksonException) {
+            println(e)
             false
         }
 

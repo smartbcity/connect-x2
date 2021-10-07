@@ -7,7 +7,6 @@ spring:
       web:
         path: /api
 
-
 ssm:
   data:
     couchdb:
@@ -17,90 +16,27 @@ ssm:
       serviceName: ssm-couchdb-unit
     chaincode:
       url: http://peer0.pr-commune.smartb.network
-  filter:
-    - ssm:peer0:proudhon:ssm:account,
-    - ssm:peer0:proudhon:ssm:Delivery,
-    - ssm:peer0:proudhon:ssm:MobilityImpactSsm
-    - ssm:peer0:proudhon:ssm:Negociation
-    - ssm:peer0:proudhon:ssm:certificate
-#ssm:
-#  peers:
-#    peer0:
-#      couchdb:
-#        url: http://peer0.pr-commune.smartb.network:5984
-#        username: 1111
-#        password: 2222
-#        serviceName: ssm-couchdb-unit
-#      api:
-#        url: http://peer0.pr-commune.smartb.network
-#  filter:
-#    - ssm:peer0:channelId:chaincodeId:ssmId
-#    - ssm:peer0:proudhon:ssm:account
-#    - ssm:peer0:proudhon:ssm:Delivery
-#    - ssm:peer0:proudhon:ssm:MobilityImpactSsm
-#    - ssm:proudhon:ssm:Negociation
-#    - ssm:peer0.pr-commune.smartb.network:proudhon:ssm:certificate
-ssm:
-  couchdb:
-    peer0_pr-commune:
-      url: http://peer0.pr-commune.smartb.network:5984
-      username: 1111
-      password: 2222
-      serviceName: ssm-couchdb-unit
-  chaincode:
-    peer0_pr-commune_proudhon_ssm:
-      baseUrl: http://peer0.pr-commune.smartb.network
-      channelId: proudhon
-      chaincodeId: ssm
-    colisactiv-angers-yper:
-      baseUrl: http://peer0.pr-commune.smartb.network
-      channelId: colisactiv-angers
-      chaincodeId: ssm-yper
-
-  list:
-    account:
-      v1_0:
-        chaincode: peer0_pr-commune_proudhon_ssm
-        couchdb: peer0_pr-commune
-        dbName: proudhon_ssm
-    Delivery:
-      v0_2:
-        chaincode: peer0_pr-commune_proudhon_ssm
-        couchdb: peer0_pr-commune
-        dbName: proudhon_ssm
-    MobilityImpactSsm:
-      v1_0:
-        chaincode: peer0_pr-commune_proudhon_ssm
-        couchdb: peer0_pr-commune
-        dbName: proudhon_ssm
-    Negociation:
-      v1_0:
-        chaincode: peer0_pr-commune_proudhon_ssm
-        couchdb: peer0_pr-commune
-        dbName: proudhon_ssm
-    certificate:
-      v1_0:
-        chaincode: peer0_pr-commune_proudhon_ssm
-        couchdb: peer0_pr-commune
-        dbName: proudhon_ssm
+    filter:
+      - ssm:peer0:proudhon:ssm:account
+      - ssm:peer0:proudhon:ssm:Delivery
+      - ssm:peer0:proudhon:ssm:MobilityImpactSsm
+      - ssm:peer0:proudhon:ssm:Negociation
+      - ssm:peer0:proudhon:ssm:certificate
 
 ---
 spring:
   config:
     activate:
       on-profile: local
+
 ssm:
-  couchdb:
-    couch-ssm-x2:
-      url: http://couchdb-x2:5984
+  data:
+    couchdb:
+      url: http://localhost:5984
       username: couchdb
       password: couchdb
       serviceName: ssm-couchdb-unit
-  list:
-    certificate:
-      v1_0:
-        baseUrl: http://coop-rest-bclan-network-x2:9090
-        channel: sandbox
-        chaincode: ssm
-        couchdb: couch-ssm-x2
-        dbName: sandbox_ssm
+    chaincode:
+      url: http://localhost:9090
+    filter:
+      - ssm:sandbox:ssm:certificate

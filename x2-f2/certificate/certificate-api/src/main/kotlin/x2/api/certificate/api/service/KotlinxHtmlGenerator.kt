@@ -85,8 +85,7 @@ object KotlinxHtmlGenerator {
 							}
 						}
 					}
-					@Suppress("MagicNumber")
-					img(src = "data:image/png;base64,${certificate.protocol.url.toQRCodeB64(100, 100)}") {
+					img(src = "data:image/png;base64,${certificate.protocol.url.toQRCodeB64( width = 100, height = 100)}") {
 						withStyles("margin-right" to "30px")
 					}
 				}

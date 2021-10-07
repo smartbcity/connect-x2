@@ -54,6 +54,38 @@ fun DataTest.certificateSigner(
     signature = signature
 )
 
+fun DataTest.certificateCredentials(
+
+) = CertificateCredentials(
+    id = UUID.randomUUID().toString(),
+    issuer = CertificateSigner(
+        name = certificateData(),
+        organization = "L'organisation issuer",
+        roles = null,
+        signature = "La signature de l'organisation issuer"
+    ),
+    holder = CertificateSigner(
+        name = certificateData(),
+        organization = "L'organisation holder",
+        roles = null,
+        signature = "La signature de l'organisation holder"
+    ),
+    payload = listOf(
+        certificateData()
+    ).toTypedArray(),
+    protocol = CertificateProtocol(
+        validationProtocol = certificateData(),
+        protocolEngineVersion = certificateData(),
+        channel = certificateData(),
+        session = certificateData(),
+        additionals = emptyArray(),
+        url = "http://www.smartb.city"
+    ),
+    title = certificateData(value = stringI18n("Le titre!!!!")),
+    type = emptyArray(),
+    context = emptyArray()
+)
+
 fun DataTest.certificateData(
     label: StringI18n = stringI18n(),
     value: StringI18n = stringI18n(),
@@ -65,6 +97,50 @@ fun DataTest.certificateData(
 )
 
 fun DataTest.stringI18n(
-    value: String = "",
+    value: String = "Voila du text",
     lang: Lang = Lang.EN
 ) = mapOf(lang to value)
+
+
+fun DataTest.certificate2() = DataTest.certificateCredentials(
+    id = "bl-bl-bl-bl",
+    title = DataTest.certificateData(value = DataTest.stringI18n("Certificate of Credit Insurance")),
+    holder = DataTest.certificateSigner(
+        name = DataTest.certificateData(value = DataTest.stringI18n("Elie Jible")),
+        organization = "Colisactiv",
+        roles = "CEO",
+        signature = "CA"
+    ),
+    issuer = DataTest.certificateSigner(
+        name = DataTest.certificateData(value = DataTest.stringI18n("Jeanne Alyztou")),
+        organization = "SmartB",
+        roles = "CEO",
+        signature = "SB"
+    ),
+    protocol = DataTest.certificateProtocol(
+        validationProtocol = DataTest.certificateData(
+            label = DataTest.stringI18n("Validation Protocol"),
+            value = DataTest.stringI18n("Delivery")
+        ),
+        protocolEngineVersion = DataTest.certificateData(
+            label = DataTest.stringI18n("Protocol Engine Version"),
+            value = DataTest.stringI18n("ssm-yper")
+        ),
+        channel = DataTest.certificateData(
+            label = DataTest.stringI18n("Channel"),
+            value = DataTest.stringI18n("territoire-angers"),
+        ),
+        session = DataTest.certificateData(
+            label = DataTest.stringI18n("Session"),
+            value = DataTest.stringI18n("delivery-U-U-I-D")
+        ),
+        url = "http://app.colisactiv.fr"
+    ),
+    payload = arrayOf(
+        DataTest.certificateData(
+            label = DataTest.stringI18n("Amount of CO2 saved"),
+            value = DataTest.stringI18n("666"),
+            unit = DataTest.stringI18n("g")
+        )
+    )
+)

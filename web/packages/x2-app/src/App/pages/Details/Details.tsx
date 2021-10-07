@@ -4,7 +4,7 @@ import { LoadingComponent, Page } from "components";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import { SSM, Session, SessionState } from "ssm";
+import {SSM, Session, SessionState, SsmName} from "ssm";
 import { AsyncObject } from "utils";
 import { DetailsCard } from "./components/DetailsCard";
 import { HistoryCard } from "./components/HistoryCard";
@@ -15,7 +15,7 @@ interface DetailsProps {
   setTitle: (title: string) => void
   ssmList: Map<string, SSM>
   sessionsList: Map<string, AsyncObject<{ sessions?: Session[] }>>
-  fetchSessions: (ssmName: string) => void
+  fetchSessions: (ssmName: SsmName) => void
 }
 
 export const Details = (props: DetailsProps) => {
@@ -38,7 +38,7 @@ export const Details = (props: DetailsProps) => {
 
   useEffect(() => {
     fetchSessions(ssmName)
-  }, [ssmName, fetchSessions])
+  }, [currentSSM, fetchSessions])
 
 
   const onChangeTransaction = useCallback(
@@ -58,7 +58,7 @@ export const Details = (props: DetailsProps) => {
         <InformationCard currentSession={currentSession} />
       </CardContainer>
       <CardContainer>
-        <HistoryCard ssmName={ssmName} currentSession={currentSession} onChangeTransaction={onChangeTransaction} />
+        <HistoryCard ssmUri={currentSSM.uri} currentSession={currentSession} onChangeTransaction={onChangeTransaction} />
         <DetailsCard transaction={transaction} />
       </CardContainer>
     </Page>

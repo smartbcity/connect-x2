@@ -5,6 +5,7 @@ import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Service
+import ssm.data.dsl.config.DataSsmConfig
 import ssm.data.dsl.features.query.DataSsmGetQuery
 import ssm.data.dsl.features.query.DataSsmGetQueryFunction
 import ssm.data.dsl.features.query.DataSsmGetQueryResultDTO
@@ -26,6 +27,7 @@ import ssm.data.dsl.features.query.DataSsmSessionLogListQueryResultDTO
 
 @Service
 class SsmApiFinderService(
+	private val dataSsmConfig: DataSsmConfig,
 	private val dataSsmListQueryFunction: DataSsmListQueryFunction,
 	private val dataSsmGetQueryFunction: DataSsmGetQueryFunction,
 	private val dataSsmSessionListQueryFunction: DataSsmSessionListQueryFunction,
@@ -35,7 +37,8 @@ class SsmApiFinderService(
 ) {
 
 	@Bean
-	fun getAllSsm(): F2Function<DataSsmListQuery, DataSsmListQueryResultDTO> = f2Function { query ->
+	fun getAllSsm(): F2Function <DataSsmListQuery, DataSsmListQueryResultDTO> = f2Function { query ->
+		println(dataSsmConfig.filter)
 		dataSsmListQueryFunction(query)
 	}
 

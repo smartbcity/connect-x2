@@ -1,20 +1,19 @@
 import { createActionCreator } from "deox";
-import { Session, SSM } from "ssm";
-import { SSMName } from "./ssm.reducer";
+import {Session, SSM, SsmName} from "ssm";
 
 const setSsmList = createActionCreator(
   "SSMLIST_SET",
-  (resolve) => (ssmList: Map<SSMName, SSM>) => resolve({ ssmList: ssmList })
+  (resolve) => (ssmList: Map<SsmName, SSM>) => resolve({ ssmList: ssmList })
 );
 
 const fetchSessions = createActionCreator(
   "FETCHSESSIONS",
-  (resolve) => (ssmName: string) => resolve({ ssmName: ssmName })
+  (resolve) => (ssmName: SsmName) => resolve({ ssmName: ssmName })
 );
 
 const fetchedSessions = createActionCreator(
   "FETCHEDSESSIONS",
-  (resolve) => (sessions: Session[], ssmName: string) => resolve({ sessions: sessions, ssmName: ssmName })
+  (resolve) => (sessions: Session[], ssmName: SsmName) => resolve({ sessions: sessions, ssmName: ssmName })
 );
 
 

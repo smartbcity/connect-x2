@@ -1,5 +1,5 @@
 import {useCallback} from "react";
-import {Session, SSMRequester} from "ssm";
+import {Session, SSMRequester, SsmUri} from "ssm";
 import {AsyncStatus, useAsyncResponse} from "utils";
 
 export interface FetchSsmSessionResponse {
@@ -7,12 +7,12 @@ export interface FetchSsmSessionResponse {
     result?: Session;
 }
 
-export const useFetchSsmSession = (ssmName: string, sessionName: string): FetchSsmSessionResponse => {
+export const useFetchSsmSession = (ssmUri: SsmUri, sessionName: string): FetchSsmSessionResponse => {
     const fetchSession = useCallback(
         async () => {
-            return SSMRequester.fetchSession(ssmName, sessionName)
+            return SSMRequester.fetchSession(ssmUri, sessionName)
         },
-        [sessionName, ssmName],
+        [ssmUri, sessionName],
     )
 
     return useAsyncResponse(fetchSession);

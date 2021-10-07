@@ -13,11 +13,11 @@ let config = {
 
 // entry
 config.entry = {
-    main: ["/Users/luc/Bazar/fixers/x2/build/js/packages/x2-ssm-client/kotlin/x2-ssm-client.js"]
+    main: ["/home/adrien/dev/smartb/git/fixers/x2/build/js/packages/x2-ssm-client/kotlin/x2-ssm-client.js"]
 };
 
 config.output = {
-    path: "/Users/luc/Bazar/fixers/x2/api/ssm/ssm-client/build/distributions",
+    path: "/home/adrien/dev/smartb/git/fixers/x2/x2-f2/ssm/ssm-client/build/distributions",
     filename: (chunkData) => {
         return chunkData.chunk.name === 'main'
             ? "ssm-client.js"
@@ -44,7 +44,7 @@ config.ignoreWarnings = [/Failed to parse source map/]
     const handler = (percentage, message, ...args) => {
         const p = percentage * 100;
         let msg = `${Math.trunc(p / 10)}${Math.trunc(p % 10)}% ${message} ${args.join(' ')}`;
-        msg = msg.replace(new RegExp("/Users/luc/Bazar/fixers/x2/build/js", 'g'), '');;
+        msg = msg.replace("/home/adrien/dev/smartb/git/fixers/x2/build/js", '');;
         console.log(msg);
     };
 
@@ -66,7 +66,7 @@ config.ignoreWarnings = [/Failed to parse source map/]
     const util = require('util');
     const fs = require('fs');
     const evaluatedConfig = util.inspect(config, {showHidden: false, depth: null, compact: false});
-    fs.writeFile("/Users/luc/Bazar/fixers/x2/api/ssm/ssm-client/build/reports/webpack/x2-ssm-client/webpack.config.evaluated.js", evaluatedConfig, function (err) {});
+    fs.writeFile("/home/adrien/dev/smartb/git/fixers/x2/x2-f2/ssm/ssm-client/build/reports/webpack/x2-ssm-client/webpack.config.evaluated.js", evaluatedConfig, function (err) {});
 })(config);
 
 module.exports = config

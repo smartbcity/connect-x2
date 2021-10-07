@@ -1,31 +1,29 @@
 import { createReducer } from "deox";
 import { actions } from "./ssm.actions";
-import { Session, SSM } from "ssm";
+import {Session, SSM, SsmName} from "ssm";
 import { AsyncObject } from "utils";
 
-export type SSMName = string
-
 export interface SSMState {
-  ssmList: Map<SSMName, SSM>;
-  sessionsList: Map<SSMName, AsyncObject<{ sessions?: Session[] }>>;
+  ssmList: Map<SsmName, SSM>;
+  sessionsList: Map<SsmName, AsyncObject<{ sessions?: Session[] }>>;
 }
 
 export const initialState: SSMState = {
-  ssmList: new Map<SSMName, SSM>(),
-  sessionsList: new Map<SSMName, AsyncObject<{ sessions?: Session[] }>>(),
+  ssmList: new Map<SsmName, SSM>(),
+  sessionsList: new Map<SsmName, AsyncObject<{ sessions?: Session[] }>>(),
 };
 
-const setSsmList = (ssmList: Map<SSMName, SSM>, state: SSMState): SSMState => {
+const setSsmList = (ssmList: Map<SsmName, SSM>, state: SSMState): SSMState => {
   return { ...state, ssmList: ssmList }
 };
 
-const fetchSessions = (ssmName: string, state: SSMState): SSMState => {
+const fetchSessions = (ssmName: SsmName, state: SSMState): SSMState => {
   const sessionsList = new Map(state.sessionsList)
   sessionsList.set(ssmName, { status: "PENDING", sessions: undefined })
   return { ...state, sessionsList: sessionsList }
 };
 
-const fetchedSessions = (sessions: Session[], ssmName: string, state: SSMState): SSMState => {
+const fetchedSessions = (sessions: Session[], ssmName: SsmName, state: SSMState): SSMState => {
   const sessionsList = new Map(state.sessionsList)
   sessionsList.set(ssmName, { status: "SUCCESS", sessions: sessions })
   return { ...state, sessionsList: sessionsList }

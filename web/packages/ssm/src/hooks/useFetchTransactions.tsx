@@ -1,12 +1,16 @@
 import {useCallback} from "react"
-import {SessionState, SSMRequester} from "ssm"
+import {SessionState, SSMRequester, SsmUri} from "ssm"
 import { useAsyncResponse} from "utils"
 
-export const useFetchTransactions = (ssmName: string, sessionId: string) => {
+export const useFetchTransactions = (ssmUri: SsmUri, sessionId: string) => {
     const getLines = useCallback(
         async () => {
-            const sessionStates = await SSMRequester.fetchSessionStates(ssmName, sessionId)
-            const canGenerateCertificates = await (canDoGenerateCertificates(sessionStates).then((list) => list.map((it) => it.canGenerateCertificate)))
+            const sessionStates = await SSMRequester.fetchSessionStates(ssmUri, sessionId)
+            const canGenerateCertificates = await (canDoGenerateCertificates(sessionStates)
+                .then((list) =>
+                    list.map((it) => it.canGenerateCertificate)
+                )
+            )
             return  {
                 sessionStates: sessionStates,
                 canGenerateCertificates: canGenerateCertificates

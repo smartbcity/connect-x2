@@ -4,77 +4,77 @@ import {
     Session,
     SessionState,
     SSM,
-    TxSsmGetQueryDTO,
-    TxSsmGetQueryResultDTO,
-    TxSsmListQueryDTO,
-    TxSsmListQueryResultDTO,
-    TxSsmSessionGetQueryDTO,
-    TxSsmSessionGetQueryResultDTO,
-    TxSsmSessionListQueryDTO,
-    TxSsmSessionListQueryResultDTO,
-    TxSsmSessionLogGetQueryDTO,
-    TxSsmSessionLogGetQueryResultDTO,
-    TxSsmSessionLogListQueryDTO,
-    TxSsmSessionLogListQueryResultDTO,
-    GenerateCertificateFromSessionStateQuery, 
+    DataSsmGetQueryDTO,
+    DataSsmGetQueryResultDTO,
+    DataSsmListQueryDTO,
+    DataSsmListQueryResultDTO,
+    DataSsmSessionGetQueryDTO,
+    DataSsmSessionGetQueryResultDTO,
+    DataSsmSessionListQueryDTO,
+    DataSsmSessionListQueryResultDTO,
+    DataSsmSessionLogGetQueryDTO,
+    DataSsmSessionLogGetQueryResultDTO,
+    DataSsmSessionLogListQueryDTO,
+    DataSsmSessionLogListQueryResultDTO,
+    GenerateCertificateFromSessionStateQuery,
     GenerateCertificateFromSessionStateResult,
     CanGenerateCertificateQuery,
-    CanGenerateCertificateResult
+    CanGenerateCertificateResult, SsmUri
 } from "./models";
 import {requestCoop, requestCoops} from "utils";
 
 const fetchSSMs = async (): Promise<SSM[]> => {
-    return requestCoop<TxSsmListQueryDTO, TxSsmListQueryResultDTO>("getAllSsm", {} as TxSsmListQueryResultDTO).then(
+    return requestCoop<DataSsmListQueryDTO, DataSsmListQueryResultDTO>("getAllSsm", {} as DataSsmListQueryResultDTO).then(
         it => {
             return it.list
         }
     )
 };
 
-const fetchSSM = async (ssmName?: string): Promise<SSM | undefined> => {
-    return requestCoop<TxSsmGetQueryDTO, TxSsmGetQueryResultDTO>("getSsm", {ssm: ssmName} as TxSsmGetQueryDTO).then(
+const fetchSSM = async (ssm: SsmUri): Promise<SSM | undefined> => {
+    return requestCoop<DataSsmGetQueryDTO, DataSsmGetQueryResultDTO>("getSsm", {ssm: ssm} as DataSsmGetQueryDTO).then(
         it => it.ssm ?? undefined
     )
 };
 
-const fetchSessions = async (ssmName?: string): Promise<Session[]> => {
-    return requestCoop<TxSsmSessionListQueryDTO, TxSsmSessionListQueryResultDTO>("getAllSessions", {ssm: ssmName} as TxSsmSessionListQueryDTO).then(
+const fetchSessions = async (ssm: SsmUri): Promise<Session[]> => {
+    return requestCoop<DataSsmSessionListQueryDTO, DataSsmSessionListQueryResultDTO>("getAllSessions", {ssm: ssm} as DataSsmSessionListQueryDTO).then(
         it => it.list ?? []
     )
 };
 
-const fetchSession = async (ssmName: string, sessionId: string): Promise<Session | undefined> => {
-    return requestCoop<TxSsmSessionGetQueryDTO, TxSsmSessionGetQueryResultDTO>("getSession", {
+const fetchSession = async (ssm: SsmUri, sessionId: string): Promise<Session | undefined> => {
+    return requestCoop<DataSsmSessionGetQueryDTO, DataSsmSessionGetQueryResultDTO>("getSession", {
         sessionId: sessionId,
-        ssm: ssmName
-    } as TxSsmSessionGetQueryDTO).then(
+        ssm: ssm
+    } as DataSsmSessionGetQueryDTO).then(
         it => it.session  ?? undefined
     )
 };
 
 
 const fetchSessionStates = async (
-    ssmName: string,
+    ssm: SsmUri,
     sessionId: string
 ): Promise<SessionState[]> => {
-    return requestCoop<TxSsmSessionLogListQueryDTO, TxSsmSessionLogListQueryResultDTO>("getSessionLogs", {
+    return requestCoop<DataSsmSessionLogListQueryDTO, DataSsmSessionLogListQueryResultDTO>("getSessionLogs", {
         sessionId: sessionId,
-        ssm: ssmName
-    } as TxSsmSessionLogListQueryDTO).then(
+        ssm: ssm
+    } as DataSsmSessionLogListQueryDTO).then(
         it => it.list ?? []
     )
 };
 
 const fetchSessionState = async (
-    ssmName: string,
+    ssm: SsmUri,
     sessionId: string,
     transactionId: string
 ): Promise<SessionState | undefined> => {
-    return requestCoop<TxSsmSessionLogGetQueryDTO, TxSsmSessionLogGetQueryResultDTO>("getOneSessionLog", {
+    return requestCoop<DataSsmSessionLogGetQueryDTO, DataSsmSessionLogGetQueryResultDTO>("getOneSessionLog", {
         txId: transactionId,
         sessionId: sessionId,
-        ssm: ssmName
-    } as TxSsmSessionLogGetQueryDTO).then(
+        ssm: ssm
+    } as DataSsmSessionLogGetQueryDTO).then(
         it => {
             return it.ssmSessionState ?? undefined
         }

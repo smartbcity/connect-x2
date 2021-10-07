@@ -3,14 +3,12 @@
   "version": "0.0.0-latest",
   "main": "kotlin/x2-ssm-client.js",
   "devDependencies": {
-    "webpack": "5.35.0",
-    "webpack-cli": "4.6.0",
+    "webpack": "5.38.1",
+    "webpack-cli": "4.7.1",
     "format-util": "1.0.5",
     "source-map-loader": "3.0.0"
   },
-  "dependencies": {
-    "x2-ssm-domain": "0.0.0-latest"
-  },
+  "dependencies": {},
   "peerDependencies": {},
   "optionalDependencies": {},
   "bundledDependencies": []

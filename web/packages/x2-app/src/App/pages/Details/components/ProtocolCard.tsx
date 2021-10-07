@@ -2,9 +2,8 @@ import { AutomateViewer } from "@smartb/g2-s2"
 import {Panel} from "components"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
-import { SSM } from "ssm"
+import {SSM, SsmTransitionDTO} from "ssm"
 import { highLevelStyles } from "@smartb/g2-themes"
-import {ssm} from "x2-ssm-domain";
 
 const useStyles = highLevelStyles()({
     panel: {
@@ -36,7 +35,7 @@ export const ProtocolCard = (props: ProtocolCardProps) => {
 }
 
 const useAutomateTransition = (currentSSM: SSM) => {
-    return useMemo(() => currentSSM.ssm.transitions.map((transition: ssm.chaincode.dsl.SsmTransitionDTO) => ({
+    return useMemo(() => currentSSM.ssm.transitions.map((transition: SsmTransitionDTO) => ({
         ...transition,
         label: `${transition.role}: ${transition.action}`
     })), [currentSSM]);

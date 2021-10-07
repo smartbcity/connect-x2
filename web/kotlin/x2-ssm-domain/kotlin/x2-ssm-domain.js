@@ -109,7 +109,7 @@
   }
   AbstractCollection.prototype.contains_2bq_k$ = function (element) {
     var tmp$ret$0;
-    l$ret$1: do {
+    $l$block_2: {
       var tmp;
       if (isInterface(this, Collection)) {
         tmp = this.isEmpty_0_k$();
@@ -120,26 +120,31 @@
       }
       if (tmp) {
         tmp$ret$0 = false;
-        break l$ret$1;
+        break $l$block_2;
       } else {
       }
       var tmp0_iterator_1 = this.iterator_0_k$();
       while (tmp0_iterator_1.hasNext_0_k$()) {
         var element_2 = tmp0_iterator_1.next_0_k$();
-        if (equals(element_2, element)) {
+        var tmp$ret$1;
+        $l$block_0: {
+          tmp$ret$1 = equals(element_2, element);
+          break $l$block_0;
+        }
+        if (tmp$ret$1) {
           tmp$ret$0 = true;
-          break l$ret$1;
+          break $l$block_2;
         } else {
         }
       }
       tmp$ret$0 = false;
+      break $l$block_2;
     }
-     while (false);
     return tmp$ret$0;
   };
   AbstractCollection.prototype.containsAll_dxd4eo_k$ = function (elements) {
     var tmp$ret$0;
-    l$ret$1: do {
+    $l$block_2: {
       var tmp;
       if (isInterface(elements, Collection)) {
         tmp = elements.isEmpty_0_k$();
@@ -150,21 +155,26 @@
       }
       if (tmp) {
         tmp$ret$0 = true;
-        break l$ret$1;
+        break $l$block_2;
       } else {
       }
       var tmp0_iterator_1 = elements.iterator_0_k$();
       while (tmp0_iterator_1.hasNext_0_k$()) {
         var element_2 = tmp0_iterator_1.next_0_k$();
-        if (!this.contains_2bq_k$(element_2)) {
+        var tmp$ret$1;
+        $l$block_0: {
+          tmp$ret$1 = this.contains_2bq_k$(element_2);
+          break $l$block_0;
+        }
+        if (!tmp$ret$1) {
           tmp$ret$0 = false;
-          break l$ret$1;
+          break $l$block_2;
         } else {
         }
       }
       tmp$ret$0 = true;
+      break $l$block_2;
     }
-     while (false);
     return tmp$ret$0;
   };
   AbstractCollection.prototype.isEmpty_0_k$ = function () {
@@ -191,22 +201,27 @@
     return o === $this ? '(this Map)' : toString_0(o);
   }
   function implFindEntry($this, key) {
-    var tmp$ret$0;
-    l$ret$1: do {
+    var tmp$ret$1;
+    $l$block_1: {
       var tmp0_firstOrNull_0 = $this._get_entries__0_k$();
       var tmp0_iterator_1 = tmp0_firstOrNull_0.iterator_0_k$();
       while (tmp0_iterator_1.hasNext_0_k$()) {
         var element_2 = tmp0_iterator_1.next_0_k$();
-        if (equals(element_2._get_key__0_k$(), key)) {
-          tmp$ret$0 = element_2;
-          break l$ret$1;
+        var tmp$ret$0;
+        $l$block: {
+          tmp$ret$0 = equals(element_2._get_key__0_k$(), key);
+          break $l$block;
+        }
+        if (tmp$ret$0) {
+          tmp$ret$1 = element_2;
+          break $l$block_1;
         } else {
         }
       }
-      tmp$ret$0 = null;
+      tmp$ret$1 = null;
+      break $l$block_1;
     }
-     while (false);
-    return tmp$ret$0;
+    return tmp$ret$1;
   }
   function Companion_0() {
     Companion_instance = this;
@@ -250,12 +265,22 @@
     }
     var key = entry._get_key__0_k$();
     var value = entry._get_value__0_k$();
-    var ourValue = (isInterface(this, Map_0) ? this : THROW_CCE()).get_2bw_k$(key);
+    var tmp$ret$0;
+    $l$block: {
+      tmp$ret$0 = (isInterface(this, Map_0) ? this : THROW_CCE()).get_2bw_k$(key);
+      break $l$block;
+    }
+    var ourValue = tmp$ret$0;
     if (!equals(value, ourValue)) {
       return false;
     }var tmp;
     if (ourValue == null) {
-      tmp = !(isInterface(this, Map_0) ? this : THROW_CCE()).containsKey_2bw_k$(key);
+      var tmp$ret$1;
+      $l$block_0: {
+        tmp$ret$1 = (isInterface(this, Map_0) ? this : THROW_CCE()).containsKey_2bw_k$(key);
+        break $l$block_0;
+      }
+      tmp = !tmp$ret$1;
     } else {
       tmp = false;
     }
@@ -275,7 +300,7 @@
     if (!(this._get_size__0_k$() === other._get_size__0_k$()))
       return false;
     var tmp$ret$0;
-    l$ret$1: do {
+    $l$block_2: {
       var tmp0_all_0 = other._get_entries__0_k$();
       var tmp;
       if (isInterface(tmp0_all_0, Collection)) {
@@ -287,21 +312,26 @@
       }
       if (tmp) {
         tmp$ret$0 = true;
-        break l$ret$1;
+        break $l$block_2;
       } else {
       }
       var tmp0_iterator_1 = tmp0_all_0.iterator_0_k$();
       while (tmp0_iterator_1.hasNext_0_k$()) {
         var element_2 = tmp0_iterator_1.next_0_k$();
-        if (!this.containsEntry_7gsh9e_k$(element_2)) {
+        var tmp$ret$1;
+        $l$block_0: {
+          tmp$ret$1 = this.containsEntry_7gsh9e_k$(element_2);
+          break $l$block_0;
+        }
+        if (!tmp$ret$1) {
           tmp$ret$0 = false;
-          break l$ret$1;
+          break $l$block_2;
         } else {
         }
       }
       tmp$ret$0 = true;
+      break $l$block_2;
     }
-     while (false);
     return tmp$ret$0;
   };
   AbstractMap.prototype.get_2bw_k$ = function (key) {
@@ -350,7 +380,12 @@
   Companion_1.prototype.setEquals_qlktm2_k$ = function (c, other) {
     if (!(c._get_size__0_k$() === other._get_size__0_k$()))
       return false;
-    return c.containsAll_dxd4eo_k$(other);
+    var tmp$ret$0;
+    $l$block: {
+      tmp$ret$0 = c.containsAll_dxd4eo_k$(other);
+      break $l$block;
+    }
+    return tmp$ret$0;
   };
   Companion_1.$metadata$ = {
     simpleName: 'Companion',
@@ -444,10 +479,20 @@
     return Unit_instance;
   }
   function copyToArrayImpl_0(collection) {
-    var array = [];
+    var tmp$ret$0;
+    $l$block: {
+      tmp$ret$0 = [];
+      break $l$block;
+    }
+    var array = tmp$ret$0;
     var iterator = collection.iterator_0_k$();
     while (iterator.hasNext_0_k$()) {
-      array.push(iterator.next_0_k$());
+      var tmp$ret$1;
+      $l$block_0: {
+        tmp$ret$1 = array;
+        break $l$block_0;
+      }
+      tmp$ret$1.push(iterator.next_0_k$());
     }
     return array;
   }
@@ -591,8 +636,13 @@
   };
   function computeNext($this) {
     if ($this._chainOrEntry != null ? $this._isChain : false) {
-      var tmp0_unsafeCast_0 = $this._chainOrEntry;
-      var chainSize = tmp0_unsafeCast_0.length;
+      var tmp$ret$0;
+      $l$block: {
+        var tmp0_unsafeCast_0 = $this._chainOrEntry;
+        tmp$ret$0 = tmp0_unsafeCast_0;
+        break $l$block;
+      }
+      var chainSize = tmp$ret$0.length;
       var tmp0_this = $this;
       tmp0_this._itemIndex = tmp0_this._itemIndex + 1 | 0;
       if (tmp0_this._itemIndex < chainSize)
@@ -639,24 +689,29 @@
     }
   }
   function findEntryInChain(_this_, $this, key) {
-    var tmp$ret$0;
-    l$ret$1: do {
+    var tmp$ret$1;
+    $l$block_1: {
       var indexedObject = _this_;
       var inductionVariable = 0;
       var last = indexedObject.length;
       while (inductionVariable < last) {
         var element_2 = indexedObject[inductionVariable];
         inductionVariable = inductionVariable + 1 | 0;
-        if ($this._equality_0.equals_rvz98i_k$(element_2._get_key__0_k$(), key)) {
-          tmp$ret$0 = element_2;
-          break l$ret$1;
+        var tmp$ret$0;
+        $l$block: {
+          tmp$ret$0 = $this._equality_0.equals_rvz98i_k$(element_2._get_key__0_k$(), key);
+          break $l$block;
+        }
+        if (tmp$ret$0) {
+          tmp$ret$1 = element_2;
+          break $l$block_1;
         } else {
         }
       }
-      tmp$ret$0 = null;
+      tmp$ret$1 = null;
+      break $l$block_1;
     }
-     while (false);
-    return tmp$ret$0;
+    return tmp$ret$1;
   }
   function getChainOrEntryOrNull($this, hashCode_1) {
     var chainOrEntry = $this._backingMap[hashCode_1];
@@ -682,11 +737,21 @@
       throw NoSuchElementException_init_$Create$();
     var tmp;
     if (this._isChain) {
-      var tmp0_unsafeCast_0 = this._chainOrEntry;
-      tmp = tmp0_unsafeCast_0[this._itemIndex];
+      var tmp$ret$0;
+      $l$block: {
+        var tmp0_unsafeCast_0 = this._chainOrEntry;
+        tmp$ret$0 = tmp0_unsafeCast_0;
+        break $l$block;
+      }
+      tmp = tmp$ret$0[this._itemIndex];
     } else {
-      var tmp1_unsafeCast_0 = this._chainOrEntry;
-      tmp = tmp1_unsafeCast_0;
+      var tmp$ret$1;
+      $l$block_0: {
+        var tmp1_unsafeCast_0 = this._chainOrEntry;
+        tmp$ret$1 = tmp1_unsafeCast_0;
+        break $l$block_0;
+      }
+      tmp = tmp$ret$1;
     }
     var lastEntry = tmp;
     this._lastEntry = lastEntry;
@@ -843,9 +908,19 @@
   function SimpleKClassImpl(jClass) {
     KClassImpl.call(this, jClass);
     var tmp = this;
-    var tmp0_safe_receiver = jClass.$metadata$;
-    var tmp0_unsafeCast_0 = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.simpleName;
-    tmp._simpleName_0 = tmp0_unsafeCast_0;
+    var tmp$ret$1;
+    $l$block_0: {
+      var tmp$ret$0;
+      $l$block: {
+        tmp$ret$0 = jClass;
+        break $l$block;
+      }
+      var tmp0_safe_receiver = tmp$ret$0.$metadata$;
+      var tmp0_unsafeCast_0 = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.simpleName;
+      tmp$ret$1 = tmp0_unsafeCast_0;
+      break $l$block_0;
+    }
+    tmp._simpleName_0 = tmp$ret$1;
   }
   SimpleKClassImpl.prototype._get_simpleName__0_k$ = function () {
     return this._simpleName_0;
@@ -1090,7 +1165,12 @@
   _no_name_provided__21.prototype.invoke_wi7j7l_k$ = function (it) {
     var tmp;
     if (typeof it === 'function') {
-      tmp = it.length === this._$arity;
+      var tmp$ret$0;
+      $l$block: {
+        tmp$ret$0 = it;
+        break $l$block;
+      }
+      tmp = tmp$ret$0.length === this._$arity;
     } else {
       tmp = false;
     }
@@ -1106,63 +1186,177 @@
   function PrimitiveClasses_0() {
     PrimitiveClasses_instance = this;
     var tmp = this;
-    var tmp0_unsafeCast_0 = Object;
-    tmp._anyClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0, 'Any', _no_name_provided_$factory_1());
-    var tmp_0 = this;
-    var tmp0_unsafeCast_0_0 = Number;
-    tmp_0._numberClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_0, 'Number', _no_name_provided_$factory_2());
-    this._nothingClass = NothingKClassImpl_getInstance();
+    var tmp$ret$0;
+    $l$block: {
+      var tmp0_unsafeCast_0 = Object;
+      tmp$ret$0 = tmp0_unsafeCast_0;
+      break $l$block;
+    }
+    var tmp_0 = tmp$ret$0;
+    tmp._anyClass = new PrimitiveKClassImpl(tmp_0, 'Any', _no_name_provided_$factory_1());
     var tmp_1 = this;
-    var tmp0_unsafeCast_0_1 = Boolean;
-    tmp_1._booleanClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_1, 'Boolean', _no_name_provided_$factory_3());
-    var tmp_2 = this;
-    var tmp0_unsafeCast_0_2 = Number;
-    tmp_2._byteClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_2, 'Byte', _no_name_provided_$factory_4());
+    var tmp$ret$1;
+    $l$block_0: {
+      var tmp0_unsafeCast_0_0 = Number;
+      tmp$ret$1 = tmp0_unsafeCast_0_0;
+      break $l$block_0;
+    }
+    var tmp_2 = tmp$ret$1;
+    tmp_1._numberClass = new PrimitiveKClassImpl(tmp_2, 'Number', _no_name_provided_$factory_2());
+    this._nothingClass = NothingKClassImpl_getInstance();
     var tmp_3 = this;
-    var tmp0_unsafeCast_0_3 = Number;
-    tmp_3._shortClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_3, 'Short', _no_name_provided_$factory_5());
-    var tmp_4 = this;
-    var tmp0_unsafeCast_0_4 = Number;
-    tmp_4._intClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_4, 'Int', _no_name_provided_$factory_6());
+    var tmp$ret$2;
+    $l$block_1: {
+      var tmp0_unsafeCast_0_1 = Boolean;
+      tmp$ret$2 = tmp0_unsafeCast_0_1;
+      break $l$block_1;
+    }
+    var tmp_4 = tmp$ret$2;
+    tmp_3._booleanClass = new PrimitiveKClassImpl(tmp_4, 'Boolean', _no_name_provided_$factory_3());
     var tmp_5 = this;
-    var tmp0_unsafeCast_0_5 = Number;
-    tmp_5._floatClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_5, 'Float', _no_name_provided_$factory_7());
-    var tmp_6 = this;
-    var tmp0_unsafeCast_0_6 = Number;
-    tmp_6._doubleClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_6, 'Double', _no_name_provided_$factory_8());
+    var tmp$ret$3;
+    $l$block_2: {
+      var tmp0_unsafeCast_0_2 = Number;
+      tmp$ret$3 = tmp0_unsafeCast_0_2;
+      break $l$block_2;
+    }
+    var tmp_6 = tmp$ret$3;
+    tmp_5._byteClass = new PrimitiveKClassImpl(tmp_6, 'Byte', _no_name_provided_$factory_4());
     var tmp_7 = this;
-    var tmp0_unsafeCast_0_7 = Array;
-    tmp_7._arrayClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_7, 'Array', _no_name_provided_$factory_9());
-    var tmp_8 = this;
-    var tmp0_unsafeCast_0_8 = String;
-    tmp_8._stringClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_8, 'String', _no_name_provided_$factory_10());
+    var tmp$ret$4;
+    $l$block_3: {
+      var tmp0_unsafeCast_0_3 = Number;
+      tmp$ret$4 = tmp0_unsafeCast_0_3;
+      break $l$block_3;
+    }
+    var tmp_8 = tmp$ret$4;
+    tmp_7._shortClass = new PrimitiveKClassImpl(tmp_8, 'Short', _no_name_provided_$factory_5());
     var tmp_9 = this;
-    var tmp0_unsafeCast_0_9 = Error;
-    tmp_9._throwableClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_9, 'Throwable', _no_name_provided_$factory_11());
-    var tmp_10 = this;
-    var tmp0_unsafeCast_0_10 = Array;
-    tmp_10._booleanArrayClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_10, 'BooleanArray', _no_name_provided_$factory_12());
+    var tmp$ret$5;
+    $l$block_4: {
+      var tmp0_unsafeCast_0_4 = Number;
+      tmp$ret$5 = tmp0_unsafeCast_0_4;
+      break $l$block_4;
+    }
+    var tmp_10 = tmp$ret$5;
+    tmp_9._intClass = new PrimitiveKClassImpl(tmp_10, 'Int', _no_name_provided_$factory_6());
     var tmp_11 = this;
-    var tmp0_unsafeCast_0_11 = Uint16Array;
-    tmp_11._charArrayClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_11, 'CharArray', _no_name_provided_$factory_13());
-    var tmp_12 = this;
-    var tmp0_unsafeCast_0_12 = Int8Array;
-    tmp_12._byteArrayClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_12, 'ByteArray', _no_name_provided_$factory_14());
+    var tmp$ret$6;
+    $l$block_5: {
+      var tmp0_unsafeCast_0_5 = Number;
+      tmp$ret$6 = tmp0_unsafeCast_0_5;
+      break $l$block_5;
+    }
+    var tmp_12 = tmp$ret$6;
+    tmp_11._floatClass = new PrimitiveKClassImpl(tmp_12, 'Float', _no_name_provided_$factory_7());
     var tmp_13 = this;
-    var tmp0_unsafeCast_0_13 = Int16Array;
-    tmp_13._shortArrayClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_13, 'ShortArray', _no_name_provided_$factory_15());
-    var tmp_14 = this;
-    var tmp0_unsafeCast_0_14 = Int32Array;
-    tmp_14._intArrayClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_14, 'IntArray', _no_name_provided_$factory_16());
+    var tmp$ret$7;
+    $l$block_6: {
+      var tmp0_unsafeCast_0_6 = Number;
+      tmp$ret$7 = tmp0_unsafeCast_0_6;
+      break $l$block_6;
+    }
+    var tmp_14 = tmp$ret$7;
+    tmp_13._doubleClass = new PrimitiveKClassImpl(tmp_14, 'Double', _no_name_provided_$factory_8());
     var tmp_15 = this;
-    var tmp0_unsafeCast_0_15 = Array;
-    tmp_15._longArrayClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_15, 'LongArray', _no_name_provided_$factory_17());
-    var tmp_16 = this;
-    var tmp0_unsafeCast_0_16 = Float32Array;
-    tmp_16._floatArrayClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_16, 'FloatArray', _no_name_provided_$factory_18());
+    var tmp$ret$8;
+    $l$block_7: {
+      var tmp0_unsafeCast_0_7 = Array;
+      tmp$ret$8 = tmp0_unsafeCast_0_7;
+      break $l$block_7;
+    }
+    var tmp_16 = tmp$ret$8;
+    tmp_15._arrayClass = new PrimitiveKClassImpl(tmp_16, 'Array', _no_name_provided_$factory_9());
     var tmp_17 = this;
-    var tmp0_unsafeCast_0_17 = Float64Array;
-    tmp_17._doubleArrayClass = new PrimitiveKClassImpl(tmp0_unsafeCast_0_17, 'DoubleArray', _no_name_provided_$factory_19());
+    var tmp$ret$9;
+    $l$block_8: {
+      var tmp0_unsafeCast_0_8 = String;
+      tmp$ret$9 = tmp0_unsafeCast_0_8;
+      break $l$block_8;
+    }
+    var tmp_18 = tmp$ret$9;
+    tmp_17._stringClass = new PrimitiveKClassImpl(tmp_18, 'String', _no_name_provided_$factory_10());
+    var tmp_19 = this;
+    var tmp$ret$10;
+    $l$block_9: {
+      var tmp0_unsafeCast_0_9 = Error;
+      tmp$ret$10 = tmp0_unsafeCast_0_9;
+      break $l$block_9;
+    }
+    var tmp_20 = tmp$ret$10;
+    tmp_19._throwableClass = new PrimitiveKClassImpl(tmp_20, 'Throwable', _no_name_provided_$factory_11());
+    var tmp_21 = this;
+    var tmp$ret$11;
+    $l$block_10: {
+      var tmp0_unsafeCast_0_10 = Array;
+      tmp$ret$11 = tmp0_unsafeCast_0_10;
+      break $l$block_10;
+    }
+    var tmp_22 = tmp$ret$11;
+    tmp_21._booleanArrayClass = new PrimitiveKClassImpl(tmp_22, 'BooleanArray', _no_name_provided_$factory_12());
+    var tmp_23 = this;
+    var tmp$ret$12;
+    $l$block_11: {
+      var tmp0_unsafeCast_0_11 = Uint16Array;
+      tmp$ret$12 = tmp0_unsafeCast_0_11;
+      break $l$block_11;
+    }
+    var tmp_24 = tmp$ret$12;
+    tmp_23._charArrayClass = new PrimitiveKClassImpl(tmp_24, 'CharArray', _no_name_provided_$factory_13());
+    var tmp_25 = this;
+    var tmp$ret$13;
+    $l$block_12: {
+      var tmp0_unsafeCast_0_12 = Int8Array;
+      tmp$ret$13 = tmp0_unsafeCast_0_12;
+      break $l$block_12;
+    }
+    var tmp_26 = tmp$ret$13;
+    tmp_25._byteArrayClass = new PrimitiveKClassImpl(tmp_26, 'ByteArray', _no_name_provided_$factory_14());
+    var tmp_27 = this;
+    var tmp$ret$14;
+    $l$block_13: {
+      var tmp0_unsafeCast_0_13 = Int16Array;
+      tmp$ret$14 = tmp0_unsafeCast_0_13;
+      break $l$block_13;
+    }
+    var tmp_28 = tmp$ret$14;
+    tmp_27._shortArrayClass = new PrimitiveKClassImpl(tmp_28, 'ShortArray', _no_name_provided_$factory_15());
+    var tmp_29 = this;
+    var tmp$ret$15;
+    $l$block_14: {
+      var tmp0_unsafeCast_0_14 = Int32Array;
+      tmp$ret$15 = tmp0_unsafeCast_0_14;
+      break $l$block_14;
+    }
+    var tmp_30 = tmp$ret$15;
+    tmp_29._intArrayClass = new PrimitiveKClassImpl(tmp_30, 'IntArray', _no_name_provided_$factory_16());
+    var tmp_31 = this;
+    var tmp$ret$16;
+    $l$block_15: {
+      var tmp0_unsafeCast_0_15 = Array;
+      tmp$ret$16 = tmp0_unsafeCast_0_15;
+      break $l$block_15;
+    }
+    var tmp_32 = tmp$ret$16;
+    tmp_31._longArrayClass = new PrimitiveKClassImpl(tmp_32, 'LongArray', _no_name_provided_$factory_17());
+    var tmp_33 = this;
+    var tmp$ret$17;
+    $l$block_16: {
+      var tmp0_unsafeCast_0_16 = Float32Array;
+      tmp$ret$17 = tmp0_unsafeCast_0_16;
+      break $l$block_16;
+    }
+    var tmp_34 = tmp$ret$17;
+    tmp_33._floatArrayClass = new PrimitiveKClassImpl(tmp_34, 'FloatArray', _no_name_provided_$factory_18());
+    var tmp_35 = this;
+    var tmp$ret$18;
+    $l$block_17: {
+      var tmp0_unsafeCast_0_17 = Float64Array;
+      tmp$ret$18 = tmp0_unsafeCast_0_17;
+      break $l$block_17;
+    }
+    var tmp_36 = tmp$ret$18;
+    tmp_35._doubleArrayClass = new PrimitiveKClassImpl(tmp_36, 'DoubleArray', _no_name_provided_$factory_19());
   }
   PrimitiveClasses_0.prototype._get_anyClass__0_k$ = function () {
     return this._anyClass;
@@ -1228,12 +1422,35 @@
     var tmp0_elvis_lhs = functionClasses[arity];
     var tmp;
     if (tmp0_elvis_lhs == null) {
-      var tmp0_unsafeCast_0_3 = Function;
-      var tmp_0 = '' + 'Function' + arity;
-      var result_2 = new PrimitiveKClassImpl(tmp0_unsafeCast_0_3, tmp_0, _no_name_provided_$factory_20(arity));
-      var tmp1_asDynamic_0_5 = functionClasses;
-      tmp1_asDynamic_0_5[arity] = result_2;
-      tmp = result_2;
+      var tmp$ret$3;
+      $l$block_2: {
+        {
+        }
+        var tmp$ret$2;
+        $l$block_1: {
+          var tmp$ret$0;
+          $l$block: {
+            var tmp0_unsafeCast_0_3 = Function;
+            tmp$ret$0 = tmp0_unsafeCast_0_3;
+            break $l$block;
+          }
+          var tmp_0 = tmp$ret$0;
+          var tmp_1 = '' + 'Function' + arity;
+          var result_2 = new PrimitiveKClassImpl(tmp_0, tmp_1, _no_name_provided_$factory_20(arity));
+          var tmp$ret$1;
+          $l$block_0: {
+            var tmp1_asDynamic_0_5 = functionClasses;
+            tmp$ret$1 = tmp1_asDynamic_0_5;
+            break $l$block_0;
+          }
+          tmp$ret$1[arity] = result_2;
+          tmp$ret$2 = result_2;
+          break $l$block_1;
+        }
+        tmp$ret$3 = tmp$ret$2;
+        break $l$block_2;
+      }
+      tmp = tmp$ret$3;
     } else {
       tmp = tmp0_elvis_lhs;
     }
@@ -1451,14 +1668,39 @@
     };
   }
   function functionClasses$init$() {
-    return fillArrayVal(Array(0), null);
+    var tmp$ret$0;
+    $l$block: {
+      tmp$ret$0 = fillArrayVal(Array(0), null);
+      break $l$block;
+    }
+    return tmp$ret$0;
   }
   function getKClass_0(jClass) {
     var tmp;
     if (Array.isArray(jClass)) {
-      tmp = getKClassM_0(jClass);
+      var tmp$ret$1;
+      $l$block_0: {
+        var tmp$ret$0;
+        $l$block: {
+          tmp$ret$0 = jClass;
+          break $l$block;
+        }
+        tmp$ret$1 = tmp$ret$0;
+        break $l$block_0;
+      }
+      tmp = getKClassM_0(tmp$ret$1);
     } else {
-      tmp = getKClass1_0(jClass);
+      var tmp$ret$3;
+      $l$block_2: {
+        var tmp$ret$2;
+        $l$block_1: {
+          tmp$ret$2 = jClass;
+          break $l$block_1;
+        }
+        tmp$ret$3 = tmp$ret$2;
+        break $l$block_2;
+      }
+      tmp = getKClass1_0(tmp$ret$3);
     }
     return tmp;
   }
@@ -1470,20 +1712,57 @@
         tmp = getKClass1_0(jClasses[0]);
         break;
       case 0:
-        var tmp0_unsafeCast_0 = NothingKClassImpl_getInstance();
-        tmp = tmp0_unsafeCast_0;
+        var tmp$ret$1;
+        $l$block_0: {
+          var tmp0_unsafeCast_0 = NothingKClassImpl_getInstance();
+          var tmp$ret$0;
+          $l$block: {
+            tmp$ret$0 = tmp0_unsafeCast_0;
+            break $l$block;
+          }
+          tmp$ret$1 = tmp$ret$0;
+          break $l$block_0;
+        }
+
+        tmp = tmp$ret$1;
         break;
-      default:var tmp1_unsafeCast_0 = new ErrorKClass();
-        tmp = tmp1_unsafeCast_0;
+      default:var tmp$ret$3;
+        $l$block_2: {
+          var tmp1_unsafeCast_0 = new ErrorKClass();
+          var tmp$ret$2;
+          $l$block_1: {
+            tmp$ret$2 = tmp1_unsafeCast_0;
+            break $l$block_1;
+          }
+          tmp$ret$3 = tmp$ret$2;
+          break $l$block_2;
+        }
+
+        tmp = tmp$ret$3;
         break;
     }
     return tmp;
   }
   function getKClass1_0(jClass) {
     if (jClass === String) {
-      var tmp0_unsafeCast_0 = PrimitiveClasses_getInstance()._stringClass;
-      return tmp0_unsafeCast_0;
-    }var metadata = jClass.$metadata$;
+      var tmp$ret$1;
+      $l$block_0: {
+        var tmp0_unsafeCast_0 = PrimitiveClasses_getInstance()._stringClass;
+        var tmp$ret$0;
+        $l$block: {
+          tmp$ret$0 = tmp0_unsafeCast_0;
+          break $l$block;
+        }
+        tmp$ret$1 = tmp$ret$0;
+        break $l$block_0;
+      }
+      return tmp$ret$1;
+    }var tmp$ret$2;
+    $l$block_1: {
+      tmp$ret$2 = jClass;
+      break $l$block_1;
+    }
+    var metadata = tmp$ret$2.$metadata$;
     var tmp;
     if (metadata != null) {
       var tmp_0;
@@ -1501,75 +1780,90 @@
     return tmp;
   }
   function getKClassFromExpression_0(e) {
-    var tmp0_subject = typeof e;
-    var tmp;
-    switch (tmp0_subject) {
-      case 'string':
-        tmp = PrimitiveClasses_getInstance()._stringClass;
-        break;
-      case 'number':
-        var tmp_0;
-        var tmp0_asDynamic_0 = jsBitwiseOr(e, 0);
-        if (tmp0_asDynamic_0 === e) {
-          tmp_0 = PrimitiveClasses_getInstance()._intClass;
-        } else {
-          {
-            tmp_0 = PrimitiveClasses_getInstance()._doubleClass;
+    var tmp$ret$3;
+    $l$block_2: {
+      var tmp0_subject = typeof e;
+      var tmp;
+      switch (tmp0_subject) {
+        case 'string':
+          tmp = PrimitiveClasses_getInstance()._stringClass;
+          break;
+        case 'number':
+          var tmp_0;
+          var tmp$ret$0;
+          $l$block: {
+            var tmp0_asDynamic_0 = jsBitwiseOr(e, 0);
+            tmp$ret$0 = tmp0_asDynamic_0;
+            break $l$block;
           }
-        }
 
-        tmp = tmp_0;
-        break;
-      case 'boolean':
-        tmp = PrimitiveClasses_getInstance()._booleanClass;
-        break;
-      case 'function':
-        var tmp_1 = PrimitiveClasses_getInstance();
-        tmp = tmp_1.functionClass(e.length);
-        break;
-      default:var tmp_2;
-        if (isBooleanArray(e)) {
-          tmp_2 = PrimitiveClasses_getInstance()._booleanArrayClass;
-        } else {
-          if (isCharArray(e)) {
-            tmp_2 = PrimitiveClasses_getInstance()._charArrayClass;
+          if (tmp$ret$0 === e) {
+            tmp_0 = PrimitiveClasses_getInstance()._intClass;
           } else {
-            if (isByteArray(e)) {
-              tmp_2 = PrimitiveClasses_getInstance()._byteArrayClass;
+            {
+              tmp_0 = PrimitiveClasses_getInstance()._doubleClass;
+            }
+          }
+
+          tmp = tmp_0;
+          break;
+        case 'boolean':
+          tmp = PrimitiveClasses_getInstance()._booleanClass;
+          break;
+        case 'function':
+          var tmp_1 = PrimitiveClasses_getInstance();
+          var tmp$ret$1;
+          $l$block_0: {
+            tmp$ret$1 = e;
+            break $l$block_0;
+          }
+
+          tmp = tmp_1.functionClass(tmp$ret$1.length);
+          break;
+        default:var tmp_2;
+          if (isBooleanArray(e)) {
+            tmp_2 = PrimitiveClasses_getInstance()._booleanArrayClass;
+          } else {
+            if (isCharArray(e)) {
+              tmp_2 = PrimitiveClasses_getInstance()._charArrayClass;
             } else {
-              if (isShortArray(e)) {
-                tmp_2 = PrimitiveClasses_getInstance()._shortArrayClass;
+              if (isByteArray(e)) {
+                tmp_2 = PrimitiveClasses_getInstance()._byteArrayClass;
               } else {
-                if (isIntArray(e)) {
-                  tmp_2 = PrimitiveClasses_getInstance()._intArrayClass;
+                if (isShortArray(e)) {
+                  tmp_2 = PrimitiveClasses_getInstance()._shortArrayClass;
                 } else {
-                  if (isLongArray(e)) {
-                    tmp_2 = PrimitiveClasses_getInstance()._longArrayClass;
+                  if (isIntArray(e)) {
+                    tmp_2 = PrimitiveClasses_getInstance()._intArrayClass;
                   } else {
-                    if (isFloatArray(e)) {
-                      tmp_2 = PrimitiveClasses_getInstance()._floatArrayClass;
+                    if (isLongArray(e)) {
+                      tmp_2 = PrimitiveClasses_getInstance()._longArrayClass;
                     } else {
-                      if (isDoubleArray(e)) {
-                        tmp_2 = PrimitiveClasses_getInstance()._doubleArrayClass;
+                      if (isFloatArray(e)) {
+                        tmp_2 = PrimitiveClasses_getInstance()._floatArrayClass;
                       } else {
-                        if (isInterface(e, KClass)) {
-                          tmp_2 = getKClass_0(KClass);
+                        if (isDoubleArray(e)) {
+                          tmp_2 = PrimitiveClasses_getInstance()._doubleArrayClass;
                         } else {
-                          if (isArray(e)) {
-                            tmp_2 = PrimitiveClasses_getInstance()._arrayClass;
+                          if (isInterface(e, KClass)) {
+                            tmp_2 = getKClass_0(KClass);
                           } else {
-                            {
-                              var constructor = Object.getPrototypeOf(e).constructor;
-                              var tmp_3;
-                              if (constructor === Object) {
-                                tmp_3 = PrimitiveClasses_getInstance()._anyClass;
-                              } else if (constructor === Error) {
-                                tmp_3 = PrimitiveClasses_getInstance()._throwableClass;
-                              } else {
-                                var jsClass_0 = constructor;
-                                tmp_3 = getKClass1_0(jsClass_0);
+                            if (isArray(e)) {
+                              tmp_2 = PrimitiveClasses_getInstance()._arrayClass;
+                            } else {
+                              {
+                                var constructor = Object.getPrototypeOf(e).constructor;
+                                var tmp_3;
+                                if (constructor === Object) {
+                                  tmp_3 = PrimitiveClasses_getInstance()._anyClass;
+                                } else if (constructor === Error) {
+                                  tmp_3 = PrimitiveClasses_getInstance()._throwableClass;
+                                } else {
+                                  var jsClass = constructor;
+                                  tmp_3 = getKClass1_0(jsClass);
+                                }
+                                tmp_2 = tmp_3;
                               }
-                              tmp_2 = tmp_3;
                             }
                           }
                         }
@@ -1580,13 +1874,20 @@
               }
             }
           }
-        }
 
-        tmp = tmp_2;
-        break;
+          tmp = tmp_2;
+          break;
+      }
+      var tmp1_unsafeCast_0 = tmp;
+      var tmp$ret$2;
+      $l$block_1: {
+        tmp$ret$2 = tmp1_unsafeCast_0;
+        break $l$block_1;
+      }
+      tmp$ret$3 = tmp$ret$2;
+      break $l$block_2;
     }
-    var tmp1_unsafeCast_0 = tmp;
-    return tmp1_unsafeCast_0;
+    return tmp$ret$3;
   }
   function Appendable() {
   }
@@ -1665,13 +1966,6 @@
     kind: 'interface',
     interfaces: [Collection]
   };
-  function MutableMap() {
-  }
-  MutableMap.$metadata$ = {
-    simpleName: 'MutableMap',
-    kind: 'interface',
-    interfaces: [Map_0]
-  };
   function Collection() {
   }
   Collection.$metadata$ = {
@@ -1692,6 +1986,13 @@
     simpleName: 'MutableIterable',
     kind: 'interface',
     interfaces: [Iterable]
+  };
+  function MutableMap() {
+  }
+  MutableMap.$metadata$ = {
+    simpleName: 'MutableMap',
+    kind: 'interface',
+    interfaces: [Map_0]
   };
   function toString_0(_this_) {
     var tmp0_safe_receiver = _this_;
@@ -1716,8 +2017,18 @@
   var lowIndex;
   var highIndex;
   function getNumberHashCode(obj) {
-    var tmp0_unsafeCast_0 = jsBitwiseOr(obj, 0);
-    if (tmp0_unsafeCast_0 === obj) {
+    var tmp$ret$1;
+    $l$block_0: {
+      var tmp0_unsafeCast_0 = jsBitwiseOr(obj, 0);
+      var tmp$ret$0;
+      $l$block: {
+        tmp$ret$0 = tmp0_unsafeCast_0;
+        break $l$block;
+      }
+      tmp$ret$1 = tmp$ret$0;
+      break $l$block_0;
+    }
+    if (tmp$ret$1 === obj) {
       return numberToInt(obj);
     } else {
     }
@@ -1725,20 +2036,62 @@
     return imul(bufInt32[highIndex], 31) + bufInt32[lowIndex] | 0;
   }
   function bufFloat64$init$() {
-    var tmp0_unsafeCast_0 = new Float64Array(buf);
-    return tmp0_unsafeCast_0;
+    var tmp$ret$1;
+    $l$block_0: {
+      var tmp0_unsafeCast_0 = new Float64Array(buf);
+      var tmp$ret$0;
+      $l$block: {
+        tmp$ret$0 = tmp0_unsafeCast_0;
+        break $l$block;
+      }
+      tmp$ret$1 = tmp$ret$0;
+      break $l$block_0;
+    }
+    return tmp$ret$1;
   }
   function bufInt32$init$() {
-    var tmp0_unsafeCast_0 = new Int32Array(buf);
-    return tmp0_unsafeCast_0;
+    var tmp$ret$1;
+    $l$block_0: {
+      var tmp0_unsafeCast_0 = new Int32Array(buf);
+      var tmp$ret$0;
+      $l$block: {
+        tmp$ret$0 = tmp0_unsafeCast_0;
+        break $l$block;
+      }
+      tmp$ret$1 = tmp$ret$0;
+      break $l$block_0;
+    }
+    return tmp$ret$1;
   }
   function lowIndex$init$() {
-    bufFloat64[0] = -1.0;
-    return !(bufInt32[0] === 0) ? 1 : 0;
+    var tmp$ret$1;
+    $l$block_0: {
+      {
+      }
+      var tmp$ret$0;
+      $l$block: {
+        bufFloat64[0] = -1.0;
+        tmp$ret$0 = !(bufInt32[0] === 0) ? 1 : 0;
+        break $l$block;
+      }
+      tmp$ret$1 = tmp$ret$0;
+      break $l$block_0;
+    }
+    return tmp$ret$1;
   }
   function contentEqualsInternal(_this_, other) {
-    var a = _this_;
-    var b = other;
+    var tmp$ret$0;
+    $l$block: {
+      tmp$ret$0 = _this_;
+      break $l$block;
+    }
+    var a = tmp$ret$0;
+    var tmp$ret$1;
+    $l$block_0: {
+      tmp$ret$1 = other;
+      break $l$block_0;
+    }
+    var b = tmp$ret$1;
     if (a === b)
       return true;
     if (((a == null ? true : b == null) ? true : !isArrayish(b)) ? true : a.length != b.length)
@@ -1756,7 +2109,12 @@
     return true;
   }
   function contentHashCodeInternal(_this_) {
-    var a = _this_;
+    var tmp$ret$0;
+    $l$block: {
+      tmp$ret$0 = _this_;
+      break $l$block;
+    }
+    var a = tmp$ret$0;
     if (a == null)
       return 0;
     var result = 1;
@@ -1778,8 +2136,13 @@
       descriptor.value = hash;
       descriptor.enumerable = false;
       Object.defineProperty(obj, 'kotlinHashCodeValue$', descriptor);
-    }var tmp0_unsafeCast_0 = obj['kotlinHashCodeValue$'];
-    return tmp0_unsafeCast_0;
+    }var tmp$ret$0;
+    $l$block: {
+      var tmp0_unsafeCast_0 = obj['kotlinHashCodeValue$'];
+      tmp$ret$0 = tmp0_unsafeCast_0;
+      break $l$block;
+    }
+    return tmp$ret$0;
   }
   function equals(obj1, obj2) {
     if (obj1 == null) {
@@ -1797,8 +2160,18 @@
         if (obj1 !== 0) {
           tmp_0 = true;
         } else {
-          var tmp_1 = 1 / obj1;
-          tmp_0 = tmp_1 === 1 / obj2;
+          var tmp$ret$0;
+          $l$block: {
+            tmp$ret$0 = 1;
+            break $l$block;
+          }
+          var tmp_1 = tmp$ret$0 / obj1;
+          var tmp$ret$1;
+          $l$block_0: {
+            tmp$ret$1 = 1;
+            break $l$block_0;
+          }
+          tmp_0 = tmp_1 === tmp$ret$1 / obj2;
         }
         tmp = tmp_0;
       } else {
@@ -1824,7 +2197,13 @@
         break;
       case 'boolean':
         var tmp_0;
-        if (obj) {
+        var tmp$ret$0;
+        $l$block: {
+          tmp$ret$0 = obj;
+          break $l$block;
+        }
+
+        if (tmp$ret$0) {
           tmp_0 = 1;
         } else {
           {
@@ -1846,8 +2225,13 @@
     } else if (isArrayish(o)) {
       tmp = '[...]';
     } else {
-      var tmp0_unsafeCast_0 = o.toString();
-      tmp = tmp0_unsafeCast_0;
+      var tmp$ret$0;
+      $l$block: {
+        var tmp0_unsafeCast_0 = o.toString();
+        tmp$ret$0 = tmp0_unsafeCast_0;
+        break $l$block;
+      }
+      tmp = tmp$ret$0;
     }
     return tmp;
   }
@@ -1860,7 +2244,12 @@
       do {
         var i = inductionVariable;
         inductionVariable = inductionVariable + 1 | 0;
-        var code = str.charCodeAt(i);
+        var tmp$ret$0;
+        $l$block: {
+          tmp$ret$0 = str;
+          break $l$block;
+        }
+        var code = tmp$ret$0.charCodeAt(i);
         hash = imul(hash, 31) + code | 0;
       }
        while (!(i === last));
@@ -1870,7 +2259,12 @@
     if (Error.captureStackTrace != null) {
       Error.captureStackTrace(instance, constructorFunction);
     } else {
-      instance.stack = (new Error()).stack;
+      var tmp$ret$0;
+      $l$block: {
+        tmp$ret$0 = instance;
+        break $l$block;
+      }
+      tmp$ret$0.stack = (new Error()).stack;
     }
   }
   function extendThrowable(this_, message, cause) {
@@ -1899,8 +2293,13 @@
     }this_.name = Object.getPrototypeOf(this_).constructor.name;
   }
   function hasOwnPrototypeProperty(o, name) {
-    var tmp0_unsafeCast_0 = Object.getPrototypeOf(o).hasOwnProperty(name);
-    return tmp0_unsafeCast_0;
+    var tmp$ret$0;
+    $l$block: {
+      var tmp0_unsafeCast_0 = Object.getPrototypeOf(o).hasOwnProperty(name);
+      tmp$ret$0 = tmp0_unsafeCast_0;
+      break $l$block;
+    }
+    return tmp$ret$0;
   }
   function ensureNotNull(v) {
     var tmp;
@@ -2187,8 +2586,18 @@
         var div = _this_.div_wiekkq_k$(radixLong);
         var rem = subtract(multiply(div, radixLong), _this_).toInt_0_k$();
         var tmp = toStringImpl(div, radix);
-        var tmp0_unsafeCast_0 = rem.toString(radix);
-        return tmp + tmp0_unsafeCast_0;
+        var tmp$ret$1;
+        $l$block_0: {
+          var tmp$ret$0;
+          $l$block: {
+            tmp$ret$0 = rem;
+            break $l$block;
+          }
+          var tmp0_unsafeCast_0 = tmp$ret$0.toString(radix);
+          tmp$ret$1 = tmp0_unsafeCast_0;
+          break $l$block_0;
+        }
+        return tmp + tmp$ret$1;
       } else {
         return '' + '-' + toStringImpl(negate(_this_), radix);
       }
@@ -2198,8 +2607,18 @@
     while (true) {
       var remDiv = rem_0.div_wiekkq_k$(radixToPower);
       var intval = subtract(rem_0, multiply(remDiv, radixToPower)).toInt_0_k$();
-      var tmp1_unsafeCast_0 = intval.toString(radix);
-      var digits = tmp1_unsafeCast_0;
+      var tmp$ret$3;
+      $l$block_2: {
+        var tmp$ret$2;
+        $l$block_1: {
+          tmp$ret$2 = intval;
+          break $l$block_1;
+        }
+        var tmp1_unsafeCast_0 = tmp$ret$2.toString(radix);
+        tmp$ret$3 = tmp1_unsafeCast_0;
+        break $l$block_2;
+      }
+      var digits = tmp$ret$3;
       rem_0 = remDiv;
       if (isZero(rem_0)) {
         return digits + result;
@@ -2276,14 +2695,24 @@
     if (isJsArray(o)) {
       tmp = true;
     } else {
-      var tmp0_unsafeCast_0 = ArrayBuffer.isView(o);
-      tmp = tmp0_unsafeCast_0;
+      var tmp$ret$0;
+      $l$block: {
+        var tmp0_unsafeCast_0 = ArrayBuffer.isView(o);
+        tmp$ret$0 = tmp0_unsafeCast_0;
+        break $l$block;
+      }
+      tmp = tmp$ret$0;
     }
     return tmp;
   }
   function isJsArray(obj) {
-    var tmp0_unsafeCast_0 = Array.isArray(obj);
-    return tmp0_unsafeCast_0;
+    var tmp$ret$0;
+    $l$block: {
+      var tmp0_unsafeCast_0 = Array.isArray(obj);
+      tmp$ret$0 = tmp0_unsafeCast_0;
+      break $l$block;
+    }
+    return tmp$ret$0;
   }
   function isInterface(obj, iface) {
     var tmp0_elvis_lhs = obj.constructor;
@@ -2318,7 +2747,12 @@
   function isArray(obj) {
     var tmp;
     if (isJsArray(obj)) {
-      tmp = !obj.$type$;
+      var tmp$ret$0;
+      $l$block: {
+        tmp$ret$0 = obj;
+        break $l$block;
+      }
+      tmp = !tmp$ret$0.$type$;
     } else {
       tmp = false;
     }
@@ -2495,44 +2929,69 @@
     interfaces: []
   };
   function jsIn(lhs_hack, rhs_hack) {
-    var tmp0_unsafeCast_0 = jsIn$outlinedJsCode$(lhs_hack, rhs_hack);
-    return tmp0_unsafeCast_0;
+    var tmp$ret$0;
+    $l$block: {
+      var tmp0_unsafeCast_0 = jsIn$outlinedJsCode$(lhs_hack, rhs_hack);
+      tmp$ret$0 = tmp0_unsafeCast_0;
+      break $l$block;
+    }
+    return tmp$ret$0;
   }
   function jsBitwiseOr(lhs_hack, rhs_hack) {
-    var tmp0_unsafeCast_0 = jsBitwiseOr$outlinedJsCode$_0(lhs_hack, rhs_hack);
-    return tmp0_unsafeCast_0;
+    var tmp$ret$0;
+    $l$block: {
+      var tmp0_unsafeCast_0 = jsBitwiseOr$outlinedJsCode$(lhs_hack, rhs_hack);
+      tmp$ret$0 = tmp0_unsafeCast_0;
+      break $l$block;
+    }
+    return tmp$ret$0;
   }
   function jsTypeOf(value_hack) {
-    var tmp0_unsafeCast_0 = jsTypeOf$outlinedJsCode$_1(value_hack);
-    return tmp0_unsafeCast_0;
+    var tmp$ret$0;
+    $l$block: {
+      var tmp0_unsafeCast_0 = jsTypeOf$outlinedJsCode$(value_hack);
+      tmp$ret$0 = tmp0_unsafeCast_0;
+      break $l$block;
+    }
+    return tmp$ret$0;
   }
   function jsDeleteProperty(obj_hack, property_hack) {
-    jsDeleteProperty$outlinedJsCode$_2(obj_hack, property_hack);
+    jsDeleteProperty$outlinedJsCode$(obj_hack, property_hack);
   }
   function jsInstanceOf(obj_hack, jsClass_hack) {
-    var tmp0_unsafeCast_0 = jsInstanceOf$outlinedJsCode$_3(obj_hack, jsClass_hack);
-    return tmp0_unsafeCast_0;
+    var tmp$ret$0;
+    $l$block: {
+      var tmp0_unsafeCast_0 = jsInstanceOf$outlinedJsCode$(obj_hack, jsClass_hack);
+      tmp$ret$0 = tmp0_unsafeCast_0;
+      break $l$block;
+    }
+    return tmp$ret$0;
   }
   function jsBitwiseAnd(lhs_hack, rhs_hack) {
-    var tmp0_unsafeCast_0 = jsBitwiseAnd$outlinedJsCode$_4(lhs_hack, rhs_hack);
-    return tmp0_unsafeCast_0;
+    var tmp$ret$0;
+    $l$block: {
+      var tmp0_unsafeCast_0 = jsBitwiseAnd$outlinedJsCode$(lhs_hack, rhs_hack);
+      tmp$ret$0 = tmp0_unsafeCast_0;
+      break $l$block;
+    }
+    return tmp$ret$0;
   }
   function jsIn$outlinedJsCode$(lhs_hack, rhs_hack) {
     return lhs_hack in rhs_hack;
   }
-  function jsBitwiseOr$outlinedJsCode$_0(lhs_hack, rhs_hack) {
+  function jsBitwiseOr$outlinedJsCode$(lhs_hack, rhs_hack) {
     return lhs_hack | rhs_hack;
   }
-  function jsTypeOf$outlinedJsCode$_1(value_hack) {
+  function jsTypeOf$outlinedJsCode$(value_hack) {
     return typeof value_hack;
   }
-  function jsDeleteProperty$outlinedJsCode$_2(obj_hack, property_hack) {
+  function jsDeleteProperty$outlinedJsCode$(obj_hack, property_hack) {
     return delete obj_hack[property_hack];
   }
-  function jsInstanceOf$outlinedJsCode$_3(obj_hack, jsClass_hack) {
+  function jsInstanceOf$outlinedJsCode$(obj_hack, jsClass_hack) {
     return obj_hack instanceof jsClass_hack;
   }
-  function jsBitwiseAnd$outlinedJsCode$_4(lhs_hack, rhs_hack) {
+  function jsBitwiseAnd$outlinedJsCode$(lhs_hack, rhs_hack) {
     return lhs_hack & rhs_hack;
   }
   function None() {
@@ -2787,11 +3246,58 @@
   function atomic_6(initial, trace) {
     return new AtomicLong(initial);
   }
-  function ErrorSeverity_0(severity) {
+  function Error_0(type, description, date, payload, severity) {
+    this._type = type;
+    this._description = description;
+    this._date = date;
+    this._payload = payload;
     this._severity = severity;
   }
-  ErrorSeverity_0.prototype._get_severity__0_k$ = function () {
+  Error_0.prototype._get_type__0_k$ = function () {
+    return this._type;
+  };
+  Error_0.prototype._get_description__0_k$ = function () {
+    return this._description;
+  };
+  Error_0.prototype._get_date__0_k$ = function () {
+    return this._date;
+  };
+  Error_0.prototype._get_payload__0_k$ = function () {
+    return this._payload;
+  };
+  Error_0.prototype._get_severity__0_k$ = function () {
     return this._severity;
+  };
+  Error_0.$metadata$ = {
+    simpleName: 'Error',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(Error_0.prototype, 'type', {
+    configurable: true,
+    get: Error_0.prototype._get_type__0_k$
+  });
+  Object.defineProperty(Error_0.prototype, 'description', {
+    configurable: true,
+    get: Error_0.prototype._get_description__0_k$
+  });
+  Object.defineProperty(Error_0.prototype, 'date', {
+    configurable: true,
+    get: Error_0.prototype._get_date__0_k$
+  });
+  Object.defineProperty(Error_0.prototype, 'payload', {
+    configurable: true,
+    get: Error_0.prototype._get_payload__0_k$
+  });
+  Object.defineProperty(Error_0.prototype, 'severity', {
+    configurable: true,
+    get: Error_0.prototype._get_severity__0_k$
+  });
+  function ErrorSeverity_0(severity) {
+    this._severity_0 = severity;
+  }
+  ErrorSeverity_0.prototype._get_severity__0_k$ = function () {
+    return this._severity_0;
   };
   ErrorSeverity_0.$metadata$ = {
     simpleName: 'ErrorSeverity',
@@ -2818,115 +3324,6 @@
     kind: 'class',
     interfaces: []
   };
-  function ErrorBase_0(type, description, date, payload, severity) {
-    this._type = type;
-    this._description = description;
-    this._date = date;
-    this._payload = payload;
-    this._severity_0 = severity;
-  }
-  ErrorBase_0.prototype._get_type__0_k$ = function () {
-    return this._type;
-  };
-  ErrorBase_0.prototype._get_description__0_k$ = function () {
-    return this._description;
-  };
-  ErrorBase_0.prototype._get_date__0_k$ = function () {
-    return this._date;
-  };
-  ErrorBase_0.prototype._get_payload__0_k$ = function () {
-    return this._payload;
-  };
-  ErrorBase_0.prototype._get_severity__0_k$ = function () {
-    return this._severity_0;
-  };
-  ErrorBase_0.$metadata$ = {
-    simpleName: 'ErrorBase',
-    kind: 'class',
-    interfaces: []
-  };
-  Object.defineProperty(ErrorBase_0.prototype, 'type', {
-    configurable: true,
-    get: ErrorBase_0.prototype._get_type__0_k$
-  });
-  Object.defineProperty(ErrorBase_0.prototype, 'description', {
-    configurable: true,
-    get: ErrorBase_0.prototype._get_description__0_k$
-  });
-  Object.defineProperty(ErrorBase_0.prototype, 'date', {
-    configurable: true,
-    get: ErrorBase_0.prototype._get_date__0_k$
-  });
-  Object.defineProperty(ErrorBase_0.prototype, 'payload', {
-    configurable: true,
-    get: ErrorBase_0.prototype._get_payload__0_k$
-  });
-  Object.defineProperty(ErrorBase_0.prototype, 'severity', {
-    configurable: true,
-    get: ErrorBase_0.prototype._get_severity__0_k$
-  });
-  function PageBase_0(page, size, total, list) {
-    this._page = page;
-    this._size_0 = size;
-    this._total = total;
-    this._list = list;
-  }
-  PageBase_0.prototype._get_page__0_k$ = function () {
-    return this._page;
-  };
-  PageBase_0.prototype._get_size__0_k$ = function () {
-    return this._size_0;
-  };
-  PageBase_0.prototype._get_total__0_k$ = function () {
-    return this._total;
-  };
-  PageBase_0.prototype._get_list__0_k$ = function () {
-    return this._list;
-  };
-  PageBase_0.$metadata$ = {
-    simpleName: 'PageBase',
-    kind: 'class',
-    interfaces: []
-  };
-  Object.defineProperty(PageBase_0.prototype, 'page', {
-    configurable: true,
-    get: PageBase_0.prototype._get_page__0_k$
-  });
-  Object.defineProperty(PageBase_0.prototype, 'size', {
-    configurable: true,
-    get: PageBase_0.prototype._get_size__0_k$
-  });
-  Object.defineProperty(PageBase_0.prototype, 'total', {
-    configurable: true,
-    get: PageBase_0.prototype._get_total__0_k$
-  });
-  Object.defineProperty(PageBase_0.prototype, 'list', {
-    configurable: true,
-    get: PageBase_0.prototype._get_list__0_k$
-  });
-  function PageRequestBase_0(page, size) {
-    this._page_0 = page;
-    this._size_1 = size;
-  }
-  PageRequestBase_0.prototype._get_page__0_k$ = function () {
-    return this._page_0;
-  };
-  PageRequestBase_0.prototype._get_size__0_k$ = function () {
-    return this._size_1;
-  };
-  PageRequestBase_0.$metadata$ = {
-    simpleName: 'PageRequestBase',
-    kind: 'class',
-    interfaces: []
-  };
-  Object.defineProperty(PageRequestBase_0.prototype, 'page', {
-    configurable: true,
-    get: PageRequestBase_0.prototype._get_page__0_k$
-  });
-  Object.defineProperty(PageRequestBase_0.prototype, 'size', {
-    configurable: true,
-    get: PageRequestBase_0.prototype._get_size__0_k$
-  });
   function S2Exception(id, error) {
     Exception_init_$Init$_0(error.description, this);
     this._id = id;
@@ -2961,40 +3358,178 @@
     kind: 'class',
     interfaces: []
   };
-  function Chaincode_0(id, channelId) {
+  function Page_0(total, list) {
+    this._total = total;
+    this._list = list;
+  }
+  Page_0.prototype._get_total__0_k$ = function () {
+    return this._total;
+  };
+  Page_0.prototype._get_list__0_k$ = function () {
+    return this._list;
+  };
+  Page_0.$metadata$ = {
+    simpleName: 'Page',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(Page_0.prototype, 'total', {
+    configurable: true,
+    get: Page_0.prototype._get_total__0_k$
+  });
+  Object.defineProperty(Page_0.prototype, 'list', {
+    configurable: true,
+    get: Page_0.prototype._get_list__0_k$
+  });
+  function OffsetPagination(offset, limit) {
+    this._offset = offset;
+    this._limit = limit;
+  }
+  OffsetPagination.prototype._get_offset__0_k$ = function () {
+    return this._offset;
+  };
+  OffsetPagination.prototype._get_limit__0_k$ = function () {
+    return this._limit;
+  };
+  OffsetPagination.$metadata$ = {
+    simpleName: 'OffsetPagination',
+    kind: 'class',
+    interfaces: [Pagination]
+  };
+  Object.defineProperty(OffsetPagination.prototype, 'offset', {
+    configurable: true,
+    get: OffsetPagination.prototype._get_offset__0_k$
+  });
+  Object.defineProperty(OffsetPagination.prototype, 'limit', {
+    configurable: true,
+    get: OffsetPagination.prototype._get_limit__0_k$
+  });
+  function PagePagination_0(page, size) {
+    this._page = page;
+    this._size_0 = size;
+  }
+  PagePagination_0.prototype._get_page__0_k$ = function () {
+    return this._page;
+  };
+  PagePagination_0.prototype._get_size__0_k$ = function () {
+    return this._size_0;
+  };
+  PagePagination_0.$metadata$ = {
+    simpleName: 'PagePagination',
+    kind: 'class',
+    interfaces: [Pagination]
+  };
+  Object.defineProperty(PagePagination_0.prototype, 'page', {
+    configurable: true,
+    get: PagePagination_0.prototype._get_page__0_k$
+  });
+  Object.defineProperty(PagePagination_0.prototype, 'size', {
+    configurable: true,
+    get: PagePagination_0.prototype._get_size__0_k$
+  });
+  function Pagination() {
+  }
+  Pagination.$metadata$ = {
+    simpleName: 'Pagination',
+    kind: 'interface',
+    interfaces: []
+  };
+  function Block_0(blockId, previousHash, dataHash, transactions) {
+    this._blockId = blockId;
+    this._previousHash = previousHash;
+    this._dataHash = dataHash;
+    this._transactions = transactions;
+  }
+  Block_0.prototype._get_blockId__0_k$ = function () {
+    return this._blockId;
+  };
+  Block_0.prototype._get_previousHash__0_k$ = function () {
+    return this._previousHash;
+  };
+  Block_0.prototype._get_dataHash__0_k$ = function () {
+    return this._dataHash;
+  };
+  Block_0.prototype._get_transactions__0_k$ = function () {
+    return this._transactions;
+  };
+  Block_0.$metadata$ = {
+    simpleName: 'Block',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(Block_0.prototype, 'blockId', {
+    configurable: true,
+    get: Block_0.prototype._get_blockId__0_k$
+  });
+  Object.defineProperty(Block_0.prototype, 'previousHash', {
+    configurable: true,
+    get: Block_0.prototype._get_previousHash__0_k$
+  });
+  Object.defineProperty(Block_0.prototype, 'dataHash', {
+    configurable: true,
+    get: Block_0.prototype._get_dataHash__0_k$
+  });
+  Object.defineProperty(Block_0.prototype, 'transactions', {
+    configurable: true,
+    get: Block_0.prototype._get_transactions__0_k$
+  });
+  function IdentitiesInfo_0(id, mspid) {
     this._id_0 = id;
+    this._mspid = mspid;
+  }
+  IdentitiesInfo_0.prototype._get_id__0_k$ = function () {
+    return this._id_0;
+  };
+  IdentitiesInfo_0.prototype._get_mspid__0_k$ = function () {
+    return this._mspid;
+  };
+  IdentitiesInfo_0.$metadata$ = {
+    simpleName: 'IdentitiesInfo',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(IdentitiesInfo_0.prototype, 'id', {
+    configurable: true,
+    get: IdentitiesInfo_0.prototype._get_id__0_k$
+  });
+  Object.defineProperty(IdentitiesInfo_0.prototype, 'mspid', {
+    configurable: true,
+    get: IdentitiesInfo_0.prototype._get_mspid__0_k$
+  });
+  function Chaincode_0(id, channelId) {
+    this._id_1 = id;
     this._channelId = channelId;
   }
   Chaincode_0.prototype._get_id__0_k$ = function () {
-    return this._id_0;
+    return this._id_1;
   };
   Chaincode_0.prototype._get_channelId__0_k$ = function () {
     return this._channelId;
   };
   Chaincode_0.prototype.component1 = function () {
-    return this._id_0;
+    return this._id_1;
   };
   Chaincode_0.prototype.component2 = function () {
     return this._channelId;
   };
   Chaincode_0.prototype.copy = function (id, channelId) {
-    return this.copy_jg38oy_k$(id === void 1 ? this._id_0 : id, channelId === void 1 ? this._channelId : channelId);
+    return this.copy_jg38oy_k$(id === void 1 ? this._id_1 : id, channelId === void 1 ? this._channelId : channelId);
   };
   Chaincode_0.prototype.copy_jg38oy_k$ = function (id, channelId) {
     return new Chaincode_0(id, channelId);
   };
   Chaincode_0.prototype.copy$default_9kq45a_k$ = function (id, channelId, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
-      id = this._id_0;
+      id = this._id_1;
     if (!(($mask0 & 2) === 0))
       channelId = this._channelId;
     return this.copy_jg38oy_k$(id, channelId);
   };
   Chaincode_0.prototype.toString = function () {
-    return '' + 'Chaincode(id=' + this._id_0 + ', channelId=' + this._channelId + ')';
+    return '' + 'Chaincode(id=' + this._id_1 + ', channelId=' + this._channelId + ')';
   };
   Chaincode_0.prototype.hashCode = function () {
-    var result = getStringHashCode(this._id_0);
+    var result = getStringHashCode(this._id_1);
     result = imul(result, 31) + getStringHashCode(this._channelId) | 0;
     return result;
   };
@@ -3006,7 +3541,7 @@
     else {
     }
     var tmp0_other_with_cast = other instanceof Chaincode_0 ? other : THROW_CCE();
-    if (!(this._id_0 === tmp0_other_with_cast._id_0))
+    if (!(this._id_1 === tmp0_other_with_cast._id_1))
       return false;
     if (!(this._channelId === tmp0_other_with_cast._channelId))
       return false;
@@ -3073,17 +3608,17 @@
     return this._transitions;
   };
   Ssm_0.prototype.copy = function (name, transitions) {
-    return this.copy_ku2l7e_k$(name === void 1 ? this._name : name, transitions === void 1 ? this._transitions : transitions);
+    return this.copy_rikwln_k$(name === void 1 ? this._name : name, transitions === void 1 ? this._transitions : transitions);
   };
-  Ssm_0.prototype.copy_ku2l7e_k$ = function (name, transitions) {
+  Ssm_0.prototype.copy_rikwln_k$ = function (name, transitions) {
     return new Ssm_0(name, transitions);
   };
-  Ssm_0.prototype.copy$default_ixi2su_k$ = function (name, transitions, $mask0, $handler) {
+  Ssm_0.prototype.copy$default_5owj7_k$ = function (name, transitions, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       name = this._name;
     if (!(($mask0 & 2) === 0))
       transitions = this._transitions;
-    return this.copy_ku2l7e_k$(name, transitions);
+    return this.copy_rikwln_k$(name, transitions);
   };
   Ssm_0.prototype.toString = function () {
     return '' + 'Ssm(name=' + this._name + ', transitions=' + this._transitions + ')';
@@ -3316,19 +3851,19 @@
     return this._credits;
   };
   SsmGrant_0.prototype.copy = function (user, iteration, credits) {
-    return this.copy_xg3cec_k$(user === void 1 ? this._user : user, iteration === void 1 ? this._iteration_0 : iteration, credits === void 1 ? this._credits : credits);
+    return this.copy_pfs7m1_k$(user === void 1 ? this._user : user, iteration === void 1 ? this._iteration_0 : iteration, credits === void 1 ? this._credits : credits);
   };
-  SsmGrant_0.prototype.copy_xg3cec_k$ = function (user, iteration, credits) {
+  SsmGrant_0.prototype.copy_pfs7m1_k$ = function (user, iteration, credits) {
     return new SsmGrant_0(user, iteration, credits);
   };
-  SsmGrant_0.prototype.copy$default_zgyp72_k$ = function (user, iteration, credits, $mask0, $handler) {
+  SsmGrant_0.prototype.copy$default_b864z7_k$ = function (user, iteration, credits, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       user = this._user;
     if (!(($mask0 & 2) === 0))
       iteration = this._iteration_0;
     if (!(($mask0 & 4) === 0))
       credits = this._credits;
-    return this.copy_xg3cec_k$(user, iteration, credits);
+    return this.copy_pfs7m1_k$(user, iteration, credits);
   };
   SsmGrant_0.prototype.toString = function () {
     return '' + 'SsmGrant(user=' + this._user + ', iteration=' + this._iteration_0 + ', credits=' + this._credits + ')';
@@ -3421,7 +3956,14 @@
   });
   function SsmSession_init_$Init$(ssm, session, roles, public_0, private_0, $mask0, $marker, $this) {
     if (!(($mask0 & 16) === 0)) {
-      private_0 = HashMap_init_$Create$();
+      var tmp$ret$0;
+      var tmp$ret$0_0;
+      $l$block: {
+        tmp$ret$0 = HashMap_init_$Create$();
+        tmp$ret$0_0 = Unit_getInstance();
+        break $l$block;
+      }
+      private_0 = tmp$ret$0;
     }SsmSession_0.call($this, ssm, session, roles, public_0, private_0);
     return $this;
   }
@@ -3431,7 +3973,14 @@
   function SsmSession_0(ssm, session, roles, public_0, private_0) {
     var tmp;
     if (private_0 === void 1) {
-      tmp = HashMap_init_$Create$();
+      var tmp$ret$0;
+      var tmp$ret$0_0;
+      $l$block: {
+        tmp$ret$0 = HashMap_init_$Create$();
+        tmp$ret$0_0 = Unit_getInstance();
+        break $l$block;
+      }
+      tmp = tmp$ret$0;
     } else {
       tmp = private_0;
     }
@@ -3484,7 +4033,14 @@
   });
   function SsmSessionState_init_$Init$(ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $marker, $this) {
     if (!(($mask0 & 16) === 0)) {
-      private_0 = HashMap_init_$Create$();
+      var tmp$ret$0;
+      var tmp$ret$0_0;
+      $l$block: {
+        tmp$ret$0 = HashMap_init_$Create$();
+        tmp$ret$0_0 = Unit_getInstance();
+        break $l$block;
+      }
+      private_0 = tmp$ret$0;
     }SsmSessionState_0.call($this, ssm, session, roles, public_0, private_0, origin, current, iteration);
     return $this;
   }
@@ -3494,7 +4050,14 @@
   function SsmSessionState_0(ssm, session, roles, public_0, private_0, origin, current, iteration) {
     var tmp;
     if (private_0 === void 1) {
-      tmp = HashMap_init_$Create$();
+      var tmp$ret$0;
+      var tmp$ret$0_0;
+      $l$block: {
+        tmp$ret$0 = HashMap_init_$Create$();
+        tmp$ret$0_0 = Unit_getInstance();
+        break $l$block;
+      }
+      tmp = tmp$ret$0;
     } else {
       tmp = private_0;
     }
@@ -3557,12 +4120,12 @@
     return this._iteration_1;
   };
   SsmSessionState_0.prototype.copy = function (ssm, session, roles, public_0, private_0, origin, current, iteration) {
-    return this.copy_had0og_k$(ssm === void 1 ? this._ssm_0 : ssm, session === void 1 ? this._session_1 : session, roles === void 1 ? this._roles_0 : roles, public_0 === void 1 ? this._public_1 : public_0, private_0 === void 1 ? this._private_1 : private_0, origin === void 1 ? this._origin : origin, current === void 1 ? this._current : current, iteration === void 1 ? this._iteration_1 : iteration);
+    return this.copy_o0o7it_k$(ssm === void 1 ? this._ssm_0 : ssm, session === void 1 ? this._session_1 : session, roles === void 1 ? this._roles_0 : roles, public_0 === void 1 ? this._public_1 : public_0, private_0 === void 1 ? this._private_1 : private_0, origin === void 1 ? this._origin : origin, current === void 1 ? this._current : current, iteration === void 1 ? this._iteration_1 : iteration);
   };
-  SsmSessionState_0.prototype.copy_had0og_k$ = function (ssm, session, roles, public_0, private_0, origin, current, iteration) {
+  SsmSessionState_0.prototype.copy_o0o7it_k$ = function (ssm, session, roles, public_0, private_0, origin, current, iteration) {
     return new SsmSessionState_0(ssm, session, roles, public_0, private_0, origin, current, iteration);
   };
-  SsmSessionState_0.prototype.copy$default_y6ugxf_k$ = function (ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $handler) {
+  SsmSessionState_0.prototype.copy$default_2zzd76_k$ = function (ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       ssm = this._ssm_0;
     if (!(($mask0 & 2) === 0))
@@ -3579,7 +4142,7 @@
       current = this._current;
     if (!(($mask0 & 128) === 0))
       iteration = this._iteration_1;
-    return this.copy_had0og_k$(ssm, session, roles, public_0, private_0, origin, current, iteration);
+    return this.copy_o0o7it_k$(ssm, session, roles, public_0, private_0, origin, current, iteration);
   };
   SsmSessionState_0.prototype.toString = function () {
     return '' + 'SsmSessionState(ssm=' + this._ssm_0 + ', session=' + this._session_1 + ', roles=' + this._roles_0 + ', public=' + this._public_1 + ', private=' + this._private_1 + ', origin=' + this._origin + ', current=' + this._current + ', iteration=' + this._iteration_1 + ')';
@@ -3675,17 +4238,17 @@
     return this._state_0;
   };
   SsmSessionStateLog_0.prototype.copy = function (txId, state) {
-    return this.copy_kmwkgm_k$(txId === void 1 ? this._txId : txId, state === void 1 ? this._state_0 : state);
+    return this.copy_edk381_k$(txId === void 1 ? this._txId : txId, state === void 1 ? this._state_0 : state);
   };
-  SsmSessionStateLog_0.prototype.copy_kmwkgm_k$ = function (txId, state) {
+  SsmSessionStateLog_0.prototype.copy_edk381_k$ = function (txId, state) {
     return new SsmSessionStateLog_0(txId, state);
   };
-  SsmSessionStateLog_0.prototype.copy$default_fskiau_k$ = function (txId, state, $mask0, $handler) {
+  SsmSessionStateLog_0.prototype.copy$default_qcmjzf_k$ = function (txId, state, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       txId = this._txId;
     if (!(($mask0 & 2) === 0))
       state = this._state_0;
-    return this.copy_kmwkgm_k$(txId, state);
+    return this.copy_edk381_k$(txId, state);
   };
   SsmSessionStateLog_0.prototype.toString = function () {
     return '' + 'SsmSessionStateLog(txId=' + this._txId + ', state=' + this._state_0 + ')';
@@ -3818,94 +4381,20 @@
     configurable: true,
     get: SsmTransition_0.prototype._get_action__0_k$
   });
-  function Block_0(blockId, previousHash, dataHash, transactions) {
-    this._blockId = blockId;
-    this._previousHash = previousHash;
-    this._dataHash = dataHash;
-    this._transactions = transactions;
-  }
-  Block_0.prototype._get_blockId__0_k$ = function () {
-    return this._blockId;
-  };
-  Block_0.prototype._get_previousHash__0_k$ = function () {
-    return this._previousHash;
-  };
-  Block_0.prototype._get_dataHash__0_k$ = function () {
-    return this._dataHash;
-  };
-  Block_0.prototype._get_transactions__0_k$ = function () {
-    return this._transactions;
-  };
-  Block_0.$metadata$ = {
-    simpleName: 'Block',
-    kind: 'class',
-    interfaces: []
-  };
-  Object.defineProperty(Block_0.prototype, 'blockId', {
-    configurable: true,
-    get: Block_0.prototype._get_blockId__0_k$
-  });
-  Object.defineProperty(Block_0.prototype, 'previousHash', {
-    configurable: true,
-    get: Block_0.prototype._get_previousHash__0_k$
-  });
-  Object.defineProperty(Block_0.prototype, 'dataHash', {
-    configurable: true,
-    get: Block_0.prototype._get_dataHash__0_k$
-  });
-  Object.defineProperty(Block_0.prototype, 'transactions', {
-    configurable: true,
-    get: Block_0.prototype._get_transactions__0_k$
-  });
-  function IdentitiesInfo_0(id, mspid) {
-    this._id_1 = id;
-    this._mspid = mspid;
-  }
-  IdentitiesInfo_0.prototype._get_id__0_k$ = function () {
-    return this._id_1;
-  };
-  IdentitiesInfo_0.prototype._get_mspid__0_k$ = function () {
-    return this._mspid;
-  };
-  IdentitiesInfo_0.$metadata$ = {
-    simpleName: 'IdentitiesInfo',
-    kind: 'class',
-    interfaces: []
-  };
-  Object.defineProperty(IdentitiesInfo_0.prototype, 'id', {
-    configurable: true,
-    get: IdentitiesInfo_0.prototype._get_id__0_k$
-  });
-  Object.defineProperty(IdentitiesInfo_0.prototype, 'mspid', {
-    configurable: true,
-    get: IdentitiesInfo_0.prototype._get_mspid__0_k$
-  });
-  function SsmGetAdminQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, $this) {
-    if (!(($mask0 & 8) === 0))
+  function SsmGetAdminQuery_init_$Init$(bearerToken, name, $mask0, $marker, $this) {
+    if (!(($mask0 & 1) === 0))
       bearerToken = null;
-    SsmGetAdminQuery_0.call($this, baseUrl, channelId, chaincodeId, bearerToken, name);
+    SsmGetAdminQuery_0.call($this, bearerToken, name);
     return $this;
   }
-  function SsmGetAdminQuery_init_$Create$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker) {
-    return SsmGetAdminQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, Object.create(SsmGetAdminQuery_0.prototype));
+  function SsmGetAdminQuery_init_$Create$(bearerToken, name, $mask0, $marker) {
+    return SsmGetAdminQuery_init_$Init$(bearerToken, name, $mask0, $marker, Object.create(SsmGetAdminQuery_0.prototype));
   }
-  function SsmGetAdminQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
+  function SsmGetAdminQuery_0(bearerToken, name) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
-    this._baseUrl = baseUrl;
-    this._channelId_0 = channelId;
-    this._chaincodeId = chaincodeId;
     this._bearerToken = bearerToken_0;
     this._name_1 = name;
   }
-  SsmGetAdminQuery_0.prototype._get_baseUrl__0_k$ = function () {
-    return this._baseUrl;
-  };
-  SsmGetAdminQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_0;
-  };
-  SsmGetAdminQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId;
-  };
   SsmGetAdminQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken;
   };
@@ -3917,18 +4406,6 @@
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmGetAdminQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_baseUrl__0_k$
-  });
-  Object.defineProperty(SsmGetAdminQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_channelId__0_k$
-  });
-  Object.defineProperty(SsmGetAdminQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmGetAdminQuery_0.prototype._get_chaincodeId__0_k$
-  });
   Object.defineProperty(SsmGetAdminQuery_0.prototype, 'bearerToken', {
     configurable: true,
     get: SsmGetAdminQuery_0.prototype._get_bearerToken__0_k$
@@ -3952,32 +4429,20 @@
     configurable: true,
     get: SsmGetAdminResult_0.prototype._get_admin__0_k$
   });
-  function SsmGetQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, $this) {
-    if (!(($mask0 & 8) === 0))
+  function SsmGetQuery_init_$Init$(bearerToken, name, $mask0, $marker, $this) {
+    if (!(($mask0 & 1) === 0))
       bearerToken = null;
-    SsmGetQuery_0.call($this, baseUrl, channelId, chaincodeId, bearerToken, name);
+    SsmGetQuery_0.call($this, bearerToken, name);
     return $this;
   }
-  function SsmGetQuery_init_$Create$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker) {
-    return SsmGetQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, Object.create(SsmGetQuery_0.prototype));
+  function SsmGetQuery_init_$Create$(bearerToken, name, $mask0, $marker) {
+    return SsmGetQuery_init_$Init$(bearerToken, name, $mask0, $marker, Object.create(SsmGetQuery_0.prototype));
   }
-  function SsmGetQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
+  function SsmGetQuery_0(bearerToken, name) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
-    this._baseUrl_0 = baseUrl;
-    this._channelId_1 = channelId;
-    this._chaincodeId_0 = chaincodeId;
     this._bearerToken_0 = bearerToken_0;
     this._name_2 = name;
   }
-  SsmGetQuery_0.prototype._get_baseUrl__0_k$ = function () {
-    return this._baseUrl_0;
-  };
-  SsmGetQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_1;
-  };
-  SsmGetQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId_0;
-  };
   SsmGetQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_0;
   };
@@ -3989,18 +4454,6 @@
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmGetQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmGetQuery_0.prototype._get_baseUrl__0_k$
-  });
-  Object.defineProperty(SsmGetQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmGetQuery_0.prototype._get_channelId__0_k$
-  });
-  Object.defineProperty(SsmGetQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmGetQuery_0.prototype._get_chaincodeId__0_k$
-  });
   Object.defineProperty(SsmGetQuery_0.prototype, 'bearerToken', {
     configurable: true,
     get: SsmGetQuery_0.prototype._get_bearerToken__0_k$
@@ -4024,24 +4477,12 @@
     configurable: true,
     get: SsmGetResult_0.prototype._get_ssm__0_k$
   });
-  function SsmGetSessionLogsQuery_0(session, baseUrl, channelId, chaincodeId, bearerToken) {
+  function SsmGetSessionLogsQuery_0(session, bearerToken) {
     this._session_2 = session;
-    this._baseUrl_1 = baseUrl;
-    this._channelId_2 = channelId;
-    this._chaincodeId_1 = chaincodeId;
     this._bearerToken_1 = bearerToken;
   }
   SsmGetSessionLogsQuery_0.prototype._get_session__0_k$ = function () {
     return this._session_2;
-  };
-  SsmGetSessionLogsQuery_0.prototype._get_baseUrl__0_k$ = function () {
-    return this._baseUrl_1;
-  };
-  SsmGetSessionLogsQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_2;
-  };
-  SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId_1;
   };
   SsmGetSessionLogsQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_1;
@@ -4054,18 +4495,6 @@
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'session', {
     configurable: true,
     get: SsmGetSessionLogsQuery_0.prototype._get_session__0_k$
-  });
-  Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_baseUrl__0_k$
-  });
-  Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_channelId__0_k$
-  });
-  Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmGetSessionLogsQuery_0.prototype._get_chaincodeId__0_k$
   });
   Object.defineProperty(SsmGetSessionLogsQuery_0.prototype, 'bearerToken', {
     configurable: true,
@@ -4081,15 +4510,15 @@
     return this._logs;
   };
   SsmGetSessionLogsQueryResult_0.prototype.copy = function (logs) {
-    return this.copy_sse2x3_k$(logs === void 1 ? this._logs : logs);
+    return this.copy_ftsjec_k$(logs === void 1 ? this._logs : logs);
   };
-  SsmGetSessionLogsQueryResult_0.prototype.copy_sse2x3_k$ = function (logs) {
+  SsmGetSessionLogsQueryResult_0.prototype.copy_ftsjec_k$ = function (logs) {
     return new SsmGetSessionLogsQueryResult_0(logs);
   };
-  SsmGetSessionLogsQueryResult_0.prototype.copy$default_fg1u6k_k$ = function (logs, $mask0, $handler) {
+  SsmGetSessionLogsQueryResult_0.prototype.copy$default_msj2zd_k$ = function (logs, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       logs = this._logs;
-    return this.copy_sse2x3_k$(logs);
+    return this.copy_ftsjec_k$(logs);
   };
   SsmGetSessionLogsQueryResult_0.prototype.toString = function () {
     return '' + 'SsmGetSessionLogsQueryResult(logs=' + this._logs + ')';
@@ -4118,32 +4547,20 @@
     configurable: true,
     get: SsmGetSessionLogsQueryResult_0.prototype._get_logs__0_k$
   });
-  function SsmGetSessionQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, $this) {
-    if (!(($mask0 & 8) === 0))
+  function SsmGetSessionQuery_init_$Init$(bearerToken, name, $mask0, $marker, $this) {
+    if (!(($mask0 & 1) === 0))
       bearerToken = null;
-    SsmGetSessionQuery_0.call($this, baseUrl, channelId, chaincodeId, bearerToken, name);
+    SsmGetSessionQuery_0.call($this, bearerToken, name);
     return $this;
   }
-  function SsmGetSessionQuery_init_$Create$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker) {
-    return SsmGetSessionQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, Object.create(SsmGetSessionQuery_0.prototype));
+  function SsmGetSessionQuery_init_$Create$(bearerToken, name, $mask0, $marker) {
+    return SsmGetSessionQuery_init_$Init$(bearerToken, name, $mask0, $marker, Object.create(SsmGetSessionQuery_0.prototype));
   }
-  function SsmGetSessionQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
+  function SsmGetSessionQuery_0(bearerToken, name) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
-    this._baseUrl_2 = baseUrl;
-    this._channelId_3 = channelId;
-    this._chaincodeId_2 = chaincodeId;
     this._bearerToken_2 = bearerToken_0;
     this._name_3 = name;
   }
-  SsmGetSessionQuery_0.prototype._get_baseUrl__0_k$ = function () {
-    return this._baseUrl_2;
-  };
-  SsmGetSessionQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_3;
-  };
-  SsmGetSessionQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId_2;
-  };
   SsmGetSessionQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_2;
   };
@@ -4155,18 +4572,6 @@
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmGetSessionQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_baseUrl__0_k$
-  });
-  Object.defineProperty(SsmGetSessionQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_channelId__0_k$
-  });
-  Object.defineProperty(SsmGetSessionQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmGetSessionQuery_0.prototype._get_chaincodeId__0_k$
-  });
   Object.defineProperty(SsmGetSessionQuery_0.prototype, 'bearerToken', {
     configurable: true,
     get: SsmGetSessionQuery_0.prototype._get_bearerToken__0_k$
@@ -4190,24 +4595,12 @@
     configurable: true,
     get: SsmGetSessionResult_0.prototype._get_session__0_k$
   });
-  function SsmGetTransactionQuery_0(id, baseUrl, channelId, chaincodeId, bearerToken) {
+  function SsmGetTransactionQuery_0(id, bearerToken) {
     this._id_2 = id;
-    this._baseUrl_3 = baseUrl;
-    this._channelId_4 = channelId;
-    this._chaincodeId_3 = chaincodeId;
     this._bearerToken_3 = bearerToken;
   }
   SsmGetTransactionQuery_0.prototype._get_id__0_k$ = function () {
     return this._id_2;
-  };
-  SsmGetTransactionQuery_0.prototype._get_baseUrl__0_k$ = function () {
-    return this._baseUrl_3;
-  };
-  SsmGetTransactionQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_4;
-  };
-  SsmGetTransactionQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId_3;
   };
   SsmGetTransactionQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_3;
@@ -4216,44 +4609,26 @@
     return this._id_2;
   };
   SsmGetTransactionQuery_0.prototype.component2 = function () {
-    return this._baseUrl_3;
-  };
-  SsmGetTransactionQuery_0.prototype.component3 = function () {
-    return this._channelId_4;
-  };
-  SsmGetTransactionQuery_0.prototype.component4 = function () {
-    return this._chaincodeId_3;
-  };
-  SsmGetTransactionQuery_0.prototype.component5 = function () {
     return this._bearerToken_3;
   };
-  SsmGetTransactionQuery_0.prototype.copy = function (id, baseUrl, channelId, chaincodeId, bearerToken) {
-    return this.copy_ucggm6_k$(id === void 1 ? this._id_2 : id, baseUrl === void 1 ? this._baseUrl_3 : baseUrl, channelId === void 1 ? this._channelId_4 : channelId, chaincodeId === void 1 ? this._chaincodeId_3 : chaincodeId, bearerToken === void 1 ? this._bearerToken_3 : bearerToken);
+  SsmGetTransactionQuery_0.prototype.copy = function (id, bearerToken) {
+    return this.copy_ylw1mn_k$(id === void 1 ? this._id_2 : id, bearerToken === void 1 ? this._bearerToken_3 : bearerToken);
   };
-  SsmGetTransactionQuery_0.prototype.copy_ucggm6_k$ = function (id, baseUrl, channelId, chaincodeId, bearerToken) {
-    return new SsmGetTransactionQuery_0(id, baseUrl, channelId, chaincodeId, bearerToken);
+  SsmGetTransactionQuery_0.prototype.copy_ylw1mn_k$ = function (id, bearerToken) {
+    return new SsmGetTransactionQuery_0(id, bearerToken);
   };
-  SsmGetTransactionQuery_0.prototype.copy$default_xhj74u_k$ = function (id, baseUrl, channelId, chaincodeId, bearerToken, $mask0, $handler) {
+  SsmGetTransactionQuery_0.prototype.copy$default_9kq45a_k$ = function (id, bearerToken, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
       id = this._id_2;
     if (!(($mask0 & 2) === 0))
-      baseUrl = this._baseUrl_3;
-    if (!(($mask0 & 4) === 0))
-      channelId = this._channelId_4;
-    if (!(($mask0 & 8) === 0))
-      chaincodeId = this._chaincodeId_3;
-    if (!(($mask0 & 16) === 0))
       bearerToken = this._bearerToken_3;
-    return this.copy_ucggm6_k$(id, baseUrl, channelId, chaincodeId, bearerToken);
+    return this.copy_ylw1mn_k$(id, bearerToken);
   };
   SsmGetTransactionQuery_0.prototype.toString = function () {
-    return '' + 'SsmGetTransactionQuery(id=' + this._id_2 + ', baseUrl=' + this._baseUrl_3 + ', channelId=' + this._channelId_4 + ', chaincodeId=' + this._chaincodeId_3 + ', bearerToken=' + this._bearerToken_3 + ')';
+    return '' + 'SsmGetTransactionQuery(id=' + this._id_2 + ', bearerToken=' + this._bearerToken_3 + ')';
   };
   SsmGetTransactionQuery_0.prototype.hashCode = function () {
     var result = getStringHashCode(this._id_2);
-    result = imul(result, 31) + getStringHashCode(this._baseUrl_3) | 0;
-    result = imul(result, 31) + (this._channelId_4 == null ? 0 : getStringHashCode(this._channelId_4)) | 0;
-    result = imul(result, 31) + (this._chaincodeId_3 == null ? 0 : getStringHashCode(this._chaincodeId_3)) | 0;
     result = imul(result, 31) + (this._bearerToken_3 == null ? 0 : getStringHashCode(this._bearerToken_3)) | 0;
     return result;
   };
@@ -4267,12 +4642,6 @@
     var tmp0_other_with_cast = other instanceof SsmGetTransactionQuery_0 ? other : THROW_CCE();
     if (!(this._id_2 === tmp0_other_with_cast._id_2))
       return false;
-    if (!(this._baseUrl_3 === tmp0_other_with_cast._baseUrl_3))
-      return false;
-    if (!(this._channelId_4 == tmp0_other_with_cast._channelId_4))
-      return false;
-    if (!(this._chaincodeId_3 == tmp0_other_with_cast._chaincodeId_3))
-      return false;
     if (!(this._bearerToken_3 == tmp0_other_with_cast._bearerToken_3))
       return false;
     return true;
@@ -4285,18 +4654,6 @@
   Object.defineProperty(SsmGetTransactionQuery_0.prototype, 'id', {
     configurable: true,
     get: SsmGetTransactionQuery_0.prototype._get_id__0_k$
-  });
-  Object.defineProperty(SsmGetTransactionQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmGetTransactionQuery_0.prototype._get_baseUrl__0_k$
-  });
-  Object.defineProperty(SsmGetTransactionQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmGetTransactionQuery_0.prototype._get_channelId__0_k$
-  });
-  Object.defineProperty(SsmGetTransactionQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmGetTransactionQuery_0.prototype._get_chaincodeId__0_k$
   });
   Object.defineProperty(SsmGetTransactionQuery_0.prototype, 'bearerToken', {
     configurable: true,
@@ -4317,32 +4674,20 @@
     configurable: true,
     get: SsmGetTransactionQueryResult_0.prototype._get_transaction__0_k$
   });
-  function SsmGetUserQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, $this) {
-    if (!(($mask0 & 8) === 0))
+  function SsmGetUserQuery_init_$Init$(bearerToken, name, $mask0, $marker, $this) {
+    if (!(($mask0 & 1) === 0))
       bearerToken = null;
-    SsmGetUserQuery_0.call($this, baseUrl, channelId, chaincodeId, bearerToken, name);
+    SsmGetUserQuery_0.call($this, bearerToken, name);
     return $this;
   }
-  function SsmGetUserQuery_init_$Create$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker) {
-    return SsmGetUserQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, name, $mask0, $marker, Object.create(SsmGetUserQuery_0.prototype));
+  function SsmGetUserQuery_init_$Create$(bearerToken, name, $mask0, $marker) {
+    return SsmGetUserQuery_init_$Init$(bearerToken, name, $mask0, $marker, Object.create(SsmGetUserQuery_0.prototype));
   }
-  function SsmGetUserQuery_0(baseUrl, channelId, chaincodeId, bearerToken, name) {
+  function SsmGetUserQuery_0(bearerToken, name) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
-    this._baseUrl_4 = baseUrl;
-    this._channelId_5 = channelId;
-    this._chaincodeId_4 = chaincodeId;
     this._bearerToken_4 = bearerToken_0;
     this._name_4 = name;
   }
-  SsmGetUserQuery_0.prototype._get_baseUrl__0_k$ = function () {
-    return this._baseUrl_4;
-  };
-  SsmGetUserQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_5;
-  };
-  SsmGetUserQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId_4;
-  };
   SsmGetUserQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_4;
   };
@@ -4354,18 +4699,6 @@
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmGetUserQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_baseUrl__0_k$
-  });
-  Object.defineProperty(SsmGetUserQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_channelId__0_k$
-  });
-  Object.defineProperty(SsmGetUserQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmGetUserQuery_0.prototype._get_chaincodeId__0_k$
-  });
   Object.defineProperty(SsmGetUserQuery_0.prototype, 'bearerToken', {
     configurable: true,
     get: SsmGetUserQuery_0.prototype._get_bearerToken__0_k$
@@ -4389,31 +4722,19 @@
     configurable: true,
     get: SsmGetUserResult_0.prototype._get_user__0_k$
   });
-  function SsmListAdminQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, $this) {
-    if (!(($mask0 & 8) === 0))
+  function SsmListAdminQuery_init_$Init$(bearerToken, $mask0, $marker, $this) {
+    if (!(($mask0 & 1) === 0))
       bearerToken = null;
-    SsmListAdminQuery_0.call($this, baseUrl, channelId, chaincodeId, bearerToken);
+    SsmListAdminQuery_0.call($this, bearerToken);
     return $this;
   }
-  function SsmListAdminQuery_init_$Create$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker) {
-    return SsmListAdminQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, Object.create(SsmListAdminQuery_0.prototype));
+  function SsmListAdminQuery_init_$Create$(bearerToken, $mask0, $marker) {
+    return SsmListAdminQuery_init_$Init$(bearerToken, $mask0, $marker, Object.create(SsmListAdminQuery_0.prototype));
   }
-  function SsmListAdminQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
+  function SsmListAdminQuery_0(bearerToken) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
-    this._baseUrl_5 = baseUrl;
-    this._channelId_6 = channelId;
-    this._chaincodeId_5 = chaincodeId;
     this._bearerToken_5 = bearerToken_0;
   }
-  SsmListAdminQuery_0.prototype._get_baseUrl__0_k$ = function () {
-    return this._baseUrl_5;
-  };
-  SsmListAdminQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_6;
-  };
-  SsmListAdminQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId_5;
-  };
   SsmListAdminQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_5;
   };
@@ -4422,18 +4743,6 @@
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmListAdminQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_baseUrl__0_k$
-  });
-  Object.defineProperty(SsmListAdminQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_channelId__0_k$
-  });
-  Object.defineProperty(SsmListAdminQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmListAdminQuery_0.prototype._get_chaincodeId__0_k$
-  });
   Object.defineProperty(SsmListAdminQuery_0.prototype, 'bearerToken', {
     configurable: true,
     get: SsmListAdminQuery_0.prototype._get_bearerToken__0_k$
@@ -4453,31 +4762,19 @@
     configurable: true,
     get: SsmListAdminResult_0.prototype._get_values__0_k$
   });
-  function SsmListSessionQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, $this) {
-    if (!(($mask0 & 8) === 0))
+  function SsmListSessionQuery_init_$Init$(bearerToken, $mask0, $marker, $this) {
+    if (!(($mask0 & 1) === 0))
       bearerToken = null;
-    SsmListSessionQuery_0.call($this, baseUrl, channelId, chaincodeId, bearerToken);
+    SsmListSessionQuery_0.call($this, bearerToken);
     return $this;
   }
-  function SsmListSessionQuery_init_$Create$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker) {
-    return SsmListSessionQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, Object.create(SsmListSessionQuery_0.prototype));
+  function SsmListSessionQuery_init_$Create$(bearerToken, $mask0, $marker) {
+    return SsmListSessionQuery_init_$Init$(bearerToken, $mask0, $marker, Object.create(SsmListSessionQuery_0.prototype));
   }
-  function SsmListSessionQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
+  function SsmListSessionQuery_0(bearerToken) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
-    this._baseUrl_6 = baseUrl;
-    this._channelId_7 = channelId;
-    this._chaincodeId_6 = chaincodeId;
     this._bearerToken_6 = bearerToken_0;
   }
-  SsmListSessionQuery_0.prototype._get_baseUrl__0_k$ = function () {
-    return this._baseUrl_6;
-  };
-  SsmListSessionQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_7;
-  };
-  SsmListSessionQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId_6;
-  };
   SsmListSessionQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_6;
   };
@@ -4486,18 +4783,6 @@
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmListSessionQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_baseUrl__0_k$
-  });
-  Object.defineProperty(SsmListSessionQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_channelId__0_k$
-  });
-  Object.defineProperty(SsmListSessionQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmListSessionQuery_0.prototype._get_chaincodeId__0_k$
-  });
   Object.defineProperty(SsmListSessionQuery_0.prototype, 'bearerToken', {
     configurable: true,
     get: SsmListSessionQuery_0.prototype._get_bearerToken__0_k$
@@ -4517,31 +4802,19 @@
     configurable: true,
     get: SsmListSessionResult_0.prototype._get_values__0_k$
   });
-  function SsmListSsmQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, $this) {
-    if (!(($mask0 & 8) === 0))
+  function SsmListSsmQuery_init_$Init$(bearerToken, $mask0, $marker, $this) {
+    if (!(($mask0 & 1) === 0))
       bearerToken = null;
-    SsmListSsmQuery_0.call($this, baseUrl, channelId, chaincodeId, bearerToken);
+    SsmListSsmQuery_0.call($this, bearerToken);
     return $this;
   }
-  function SsmListSsmQuery_init_$Create$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker) {
-    return SsmListSsmQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, Object.create(SsmListSsmQuery_0.prototype));
+  function SsmListSsmQuery_init_$Create$(bearerToken, $mask0, $marker) {
+    return SsmListSsmQuery_init_$Init$(bearerToken, $mask0, $marker, Object.create(SsmListSsmQuery_0.prototype));
   }
-  function SsmListSsmQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
+  function SsmListSsmQuery_0(bearerToken) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
-    this._baseUrl_7 = baseUrl;
-    this._channelId_8 = channelId;
-    this._chaincodeId_7 = chaincodeId;
     this._bearerToken_7 = bearerToken_0;
   }
-  SsmListSsmQuery_0.prototype._get_baseUrl__0_k$ = function () {
-    return this._baseUrl_7;
-  };
-  SsmListSsmQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_8;
-  };
-  SsmListSsmQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId_7;
-  };
   SsmListSsmQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_7;
   };
@@ -4550,18 +4823,6 @@
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmListSsmQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_baseUrl__0_k$
-  });
-  Object.defineProperty(SsmListSsmQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_channelId__0_k$
-  });
-  Object.defineProperty(SsmListSsmQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmListSsmQuery_0.prototype._get_chaincodeId__0_k$
-  });
   Object.defineProperty(SsmListSsmQuery_0.prototype, 'bearerToken', {
     configurable: true,
     get: SsmListSsmQuery_0.prototype._get_bearerToken__0_k$
@@ -4581,31 +4842,19 @@
     configurable: true,
     get: SsmListSsmResult_0.prototype._get_values__0_k$
   });
-  function SsmListUserQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, $this) {
-    if (!(($mask0 & 8) === 0))
+  function SsmListUserQuery_init_$Init$(bearerToken, $mask0, $marker, $this) {
+    if (!(($mask0 & 1) === 0))
       bearerToken = null;
-    SsmListUserQuery_0.call($this, baseUrl, channelId, chaincodeId, bearerToken);
+    SsmListUserQuery_0.call($this, bearerToken);
     return $this;
   }
-  function SsmListUserQuery_init_$Create$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker) {
-    return SsmListUserQuery_init_$Init$(baseUrl, channelId, chaincodeId, bearerToken, $mask0, $marker, Object.create(SsmListUserQuery_0.prototype));
+  function SsmListUserQuery_init_$Create$(bearerToken, $mask0, $marker) {
+    return SsmListUserQuery_init_$Init$(bearerToken, $mask0, $marker, Object.create(SsmListUserQuery_0.prototype));
   }
-  function SsmListUserQuery_0(baseUrl, channelId, chaincodeId, bearerToken) {
+  function SsmListUserQuery_0(bearerToken) {
     var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
-    this._baseUrl_8 = baseUrl;
-    this._channelId_9 = channelId;
-    this._chaincodeId_8 = chaincodeId;
     this._bearerToken_8 = bearerToken_0;
   }
-  SsmListUserQuery_0.prototype._get_baseUrl__0_k$ = function () {
-    return this._baseUrl_8;
-  };
-  SsmListUserQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_9;
-  };
-  SsmListUserQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId_8;
-  };
   SsmListUserQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_8;
   };
@@ -4614,18 +4863,6 @@
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmListUserQuery_0.prototype, 'baseUrl', {
-    configurable: true,
-    get: SsmListUserQuery_0.prototype._get_baseUrl__0_k$
-  });
-  Object.defineProperty(SsmListUserQuery_0.prototype, 'channelId', {
-    configurable: true,
-    get: SsmListUserQuery_0.prototype._get_channelId__0_k$
-  });
-  Object.defineProperty(SsmListUserQuery_0.prototype, 'chaincodeId', {
-    configurable: true,
-    get: SsmListUserQuery_0.prototype._get_chaincodeId__0_k$
-  });
   Object.defineProperty(SsmListUserQuery_0.prototype, 'bearerToken', {
     configurable: true,
     get: SsmListUserQuery_0.prototype._get_bearerToken__0_k$
@@ -4645,249 +4882,599 @@
     configurable: true,
     get: SsmListUserResult_0.prototype._get_values__0_k$
   });
-  function TxSsmGetQuery_0(ssm, bearerToken) {
-    this._ssm_2 = ssm;
-    this._bearerToken_9 = bearerToken;
+  function Database_0(name) {
+    this._name_5 = name;
   }
-  TxSsmGetQuery_0.prototype._get_ssm__0_k$ = function () {
+  Database_0.prototype._get_name__0_k$ = function () {
+    return this._name_5;
+  };
+  Database_0.$metadata$ = {
+    simpleName: 'Database',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(Database_0.prototype, 'name', {
+    configurable: true,
+    get: Database_0.prototype._get_name__0_k$
+  });
+  function DatabaseChanges_0(changeEventId, docType, objectId) {
+    this._changeEventId = changeEventId;
+    this._docType = docType;
+    this._objectId = objectId;
+  }
+  DatabaseChanges_0.prototype._get_changeEventId__0_k$ = function () {
+    return this._changeEventId;
+  };
+  DatabaseChanges_0.prototype._get_docType__0_k$ = function () {
+    return this._docType;
+  };
+  DatabaseChanges_0.prototype._get_objectId__0_k$ = function () {
+    return this._objectId;
+  };
+  DatabaseChanges_0.$metadata$ = {
+    simpleName: 'DatabaseChanges',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(DatabaseChanges_0.prototype, 'changeEventId', {
+    configurable: true,
+    get: DatabaseChanges_0.prototype._get_changeEventId__0_k$
+  });
+  Object.defineProperty(DatabaseChanges_0.prototype, 'docType', {
+    configurable: true,
+    get: DatabaseChanges_0.prototype._get_docType__0_k$
+  });
+  Object.defineProperty(DatabaseChanges_0.prototype, 'objectId', {
+    configurable: true,
+    get: DatabaseChanges_0.prototype._get_objectId__0_k$
+  });
+  function CouchdbDatabaseGetChangesQuery_0(channelId, chaincodeId, docType, lastEventId) {
+    this._channelId_0 = channelId;
+    this._chaincodeId = chaincodeId;
+    this._docType_0 = docType;
+    this._lastEventId = lastEventId;
+  }
+  CouchdbDatabaseGetChangesQuery_0.prototype._get_channelId__0_k$ = function () {
+    return this._channelId_0;
+  };
+  CouchdbDatabaseGetChangesQuery_0.prototype._get_chaincodeId__0_k$ = function () {
+    return this._chaincodeId;
+  };
+  CouchdbDatabaseGetChangesQuery_0.prototype._get_docType__0_k$ = function () {
+    return this._docType_0;
+  };
+  CouchdbDatabaseGetChangesQuery_0.prototype._get_lastEventId__0_k$ = function () {
+    return this._lastEventId;
+  };
+  CouchdbDatabaseGetChangesQuery_0.$metadata$ = {
+    simpleName: 'CouchdbDatabaseGetChangesQuery',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(CouchdbDatabaseGetChangesQuery_0.prototype, 'channelId', {
+    configurable: true,
+    get: CouchdbDatabaseGetChangesQuery_0.prototype._get_channelId__0_k$
+  });
+  Object.defineProperty(CouchdbDatabaseGetChangesQuery_0.prototype, 'chaincodeId', {
+    configurable: true,
+    get: CouchdbDatabaseGetChangesQuery_0.prototype._get_chaincodeId__0_k$
+  });
+  Object.defineProperty(CouchdbDatabaseGetChangesQuery_0.prototype, 'docType', {
+    configurable: true,
+    get: CouchdbDatabaseGetChangesQuery_0.prototype._get_docType__0_k$
+  });
+  Object.defineProperty(CouchdbDatabaseGetChangesQuery_0.prototype, 'lastEventId', {
+    configurable: true,
+    get: CouchdbDatabaseGetChangesQuery_0.prototype._get_lastEventId__0_k$
+  });
+  function CouchdbSsmDatabaseGetChangesQueryResult_0(items) {
+    this._items = items;
+  }
+  CouchdbSsmDatabaseGetChangesQueryResult_0.prototype._get_items__0_k$ = function () {
+    return this._items;
+  };
+  CouchdbSsmDatabaseGetChangesQueryResult_0.$metadata$ = {
+    simpleName: 'CouchdbSsmDatabaseGetChangesQueryResult',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(CouchdbSsmDatabaseGetChangesQueryResult_0.prototype, 'items', {
+    configurable: true,
+    get: CouchdbSsmDatabaseGetChangesQueryResult_0.prototype._get_items__0_k$
+  });
+  function CouchdbDatabaseGetQuery_0(channelId, chaincodeId) {
+    this._channelId_1 = channelId;
+    this._chaincodeId_0 = chaincodeId;
+  }
+  CouchdbDatabaseGetQuery_0.prototype._get_channelId__0_k$ = function () {
+    return this._channelId_1;
+  };
+  CouchdbDatabaseGetQuery_0.prototype._get_chaincodeId__0_k$ = function () {
+    return this._chaincodeId_0;
+  };
+  CouchdbDatabaseGetQuery_0.$metadata$ = {
+    simpleName: 'CouchdbDatabaseGetQuery',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(CouchdbDatabaseGetQuery_0.prototype, 'channelId', {
+    configurable: true,
+    get: CouchdbDatabaseGetQuery_0.prototype._get_channelId__0_k$
+  });
+  Object.defineProperty(CouchdbDatabaseGetQuery_0.prototype, 'chaincodeId', {
+    configurable: true,
+    get: CouchdbDatabaseGetQuery_0.prototype._get_chaincodeId__0_k$
+  });
+  function CouchdbSsmDatabaseGetQueryResult_0(item) {
+    this._item = item;
+  }
+  CouchdbSsmDatabaseGetQueryResult_0.prototype._get_item__0_k$ = function () {
+    return this._item;
+  };
+  CouchdbSsmDatabaseGetQueryResult_0.$metadata$ = {
+    simpleName: 'CouchdbSsmDatabaseGetQueryResult',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(CouchdbSsmDatabaseGetQueryResult_0.prototype, 'item', {
+    configurable: true,
+    get: CouchdbSsmDatabaseGetQueryResult_0.prototype._get_item__0_k$
+  });
+  function CouchdbDatabaseListQuery_init_$Init$(pagination, channelId, chaincodeId, $mask0, $marker, $this) {
+    if (!(($mask0 & 1) === 0))
+      pagination = null;
+    if (!(($mask0 & 2) === 0))
+      channelId = null;
+    if (!(($mask0 & 4) === 0))
+      chaincodeId = null;
+    CouchdbDatabaseListQuery_0.call($this, pagination, channelId, chaincodeId);
+    return $this;
+  }
+  function CouchdbDatabaseListQuery_init_$Create$(pagination, channelId, chaincodeId, $mask0, $marker) {
+    return CouchdbDatabaseListQuery_init_$Init$(pagination, channelId, chaincodeId, $mask0, $marker, Object.create(CouchdbDatabaseListQuery_0.prototype));
+  }
+  function CouchdbDatabaseListQuery_0(pagination, channelId, chaincodeId) {
+    var pagination_0 = pagination === void 1 ? null : pagination;
+    var channelId_0 = channelId === void 1 ? null : channelId;
+    var chaincodeId_0 = chaincodeId === void 1 ? null : chaincodeId;
+    this._pagination = pagination_0;
+    this._channelId_2 = channelId_0;
+    this._chaincodeId_1 = chaincodeId_0;
+  }
+  CouchdbDatabaseListQuery_0.prototype._get_pagination__0_k$ = function () {
+    return this._pagination;
+  };
+  CouchdbDatabaseListQuery_0.prototype._get_channelId__0_k$ = function () {
+    return this._channelId_2;
+  };
+  CouchdbDatabaseListQuery_0.prototype._get_chaincodeId__0_k$ = function () {
+    return this._chaincodeId_1;
+  };
+  CouchdbDatabaseListQuery_0.$metadata$ = {
+    simpleName: 'CouchdbDatabaseListQuery',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(CouchdbDatabaseListQuery_0.prototype, 'pagination', {
+    configurable: true,
+    get: CouchdbDatabaseListQuery_0.prototype._get_pagination__0_k$
+  });
+  Object.defineProperty(CouchdbDatabaseListQuery_0.prototype, 'channelId', {
+    configurable: true,
+    get: CouchdbDatabaseListQuery_0.prototype._get_channelId__0_k$
+  });
+  Object.defineProperty(CouchdbDatabaseListQuery_0.prototype, 'chaincodeId', {
+    configurable: true,
+    get: CouchdbDatabaseListQuery_0.prototype._get_chaincodeId__0_k$
+  });
+  function CouchdbDatabaseListQueryResult_0(page, pagination) {
+    this._page_0 = page;
+    this._pagination_0 = pagination;
+  }
+  CouchdbDatabaseListQueryResult_0.prototype._get_page__0_k$ = function () {
+    return this._page_0;
+  };
+  CouchdbDatabaseListQueryResult_0.prototype._get_pagination__0_k$ = function () {
+    return this._pagination_0;
+  };
+  CouchdbDatabaseListQueryResult_0.$metadata$ = {
+    simpleName: 'CouchdbDatabaseListQueryResult',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(CouchdbDatabaseListQueryResult_0.prototype, 'page', {
+    configurable: true,
+    get: CouchdbDatabaseListQueryResult_0.prototype._get_page__0_k$
+  });
+  Object.defineProperty(CouchdbDatabaseListQueryResult_0.prototype, 'pagination', {
+    configurable: true,
+    get: CouchdbDatabaseListQueryResult_0.prototype._get_pagination__0_k$
+  });
+  function CouchdbSsmListQuery_0(pagination, channelId, chaincodeId) {
+    this._pagination_1 = pagination;
+    this._channelId_3 = channelId;
+    this._chaincodeId_2 = chaincodeId;
+  }
+  CouchdbSsmListQuery_0.prototype._get_pagination__0_k$ = function () {
+    return this._pagination_1;
+  };
+  CouchdbSsmListQuery_0.prototype._get_channelId__0_k$ = function () {
+    return this._channelId_3;
+  };
+  CouchdbSsmListQuery_0.prototype._get_chaincodeId__0_k$ = function () {
+    return this._chaincodeId_2;
+  };
+  CouchdbSsmListQuery_0.$metadata$ = {
+    simpleName: 'CouchdbSsmListQuery',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(CouchdbSsmListQuery_0.prototype, 'pagination', {
+    configurable: true,
+    get: CouchdbSsmListQuery_0.prototype._get_pagination__0_k$
+  });
+  Object.defineProperty(CouchdbSsmListQuery_0.prototype, 'channelId', {
+    configurable: true,
+    get: CouchdbSsmListQuery_0.prototype._get_channelId__0_k$
+  });
+  Object.defineProperty(CouchdbSsmListQuery_0.prototype, 'chaincodeId', {
+    configurable: true,
+    get: CouchdbSsmListQuery_0.prototype._get_chaincodeId__0_k$
+  });
+  function CouchdbSsmListQueryResult_0(page, pagination) {
+    this._page_1 = page;
+    this._pagination_2 = pagination;
+  }
+  CouchdbSsmListQueryResult_0.prototype._get_page__0_k$ = function () {
+    return this._page_1;
+  };
+  CouchdbSsmListQueryResult_0.prototype._get_pagination__0_k$ = function () {
+    return this._pagination_2;
+  };
+  CouchdbSsmListQueryResult_0.$metadata$ = {
+    simpleName: 'CouchdbSsmListQueryResult',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(CouchdbSsmListQueryResult_0.prototype, 'page', {
+    configurable: true,
+    get: CouchdbSsmListQueryResult_0.prototype._get_page__0_k$
+  });
+  Object.defineProperty(CouchdbSsmListQueryResult_0.prototype, 'pagination', {
+    configurable: true,
+    get: CouchdbSsmListQueryResult_0.prototype._get_pagination__0_k$
+  });
+  function CouchdbSsmSessionStateListQuery_init_$Init$(channelId, chaincodeId, ssm, pagination, $mask0, $marker, $this) {
+    if (!(($mask0 & 8) === 0))
+      pagination = null;
+    CouchdbSsmSessionStateListQuery_0.call($this, channelId, chaincodeId, ssm, pagination);
+    return $this;
+  }
+  function CouchdbSsmSessionStateListQuery_init_$Create$(channelId, chaincodeId, ssm, pagination, $mask0, $marker) {
+    return CouchdbSsmSessionStateListQuery_init_$Init$(channelId, chaincodeId, ssm, pagination, $mask0, $marker, Object.create(CouchdbSsmSessionStateListQuery_0.prototype));
+  }
+  function CouchdbSsmSessionStateListQuery_0(channelId, chaincodeId, ssm, pagination) {
+    var pagination_0 = pagination === void 1 ? null : pagination;
+    this._channelId_4 = channelId;
+    this._chaincodeId_3 = chaincodeId;
+    this._ssm_2 = ssm;
+    this._pagination_3 = pagination_0;
+  }
+  CouchdbSsmSessionStateListQuery_0.prototype._get_channelId__0_k$ = function () {
+    return this._channelId_4;
+  };
+  CouchdbSsmSessionStateListQuery_0.prototype._get_chaincodeId__0_k$ = function () {
+    return this._chaincodeId_3;
+  };
+  CouchdbSsmSessionStateListQuery_0.prototype._get_ssm__0_k$ = function () {
     return this._ssm_2;
   };
-  TxSsmGetQuery_0.prototype._get_bearerToken__0_k$ = function () {
-    return this._bearerToken_9;
+  CouchdbSsmSessionStateListQuery_0.prototype._get_pagination__0_k$ = function () {
+    return this._pagination_3;
   };
-  TxSsmGetQuery_0.$metadata$ = {
-    simpleName: 'TxSsmGetQuery',
+  CouchdbSsmSessionStateListQuery_0.$metadata$ = {
+    simpleName: 'CouchdbSsmSessionStateListQuery',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmGetQuery_0.prototype, 'ssm', {
+  Object.defineProperty(CouchdbSsmSessionStateListQuery_0.prototype, 'channelId', {
     configurable: true,
-    get: TxSsmGetQuery_0.prototype._get_ssm__0_k$
+    get: CouchdbSsmSessionStateListQuery_0.prototype._get_channelId__0_k$
   });
-  Object.defineProperty(TxSsmGetQuery_0.prototype, 'bearerToken', {
+  Object.defineProperty(CouchdbSsmSessionStateListQuery_0.prototype, 'chaincodeId', {
     configurable: true,
-    get: TxSsmGetQuery_0.prototype._get_bearerToken__0_k$
+    get: CouchdbSsmSessionStateListQuery_0.prototype._get_chaincodeId__0_k$
   });
-  function TxSsmGetQueryResult_0(ssm) {
-    this._ssm_3 = ssm;
+  Object.defineProperty(CouchdbSsmSessionStateListQuery_0.prototype, 'ssm', {
+    configurable: true,
+    get: CouchdbSsmSessionStateListQuery_0.prototype._get_ssm__0_k$
+  });
+  Object.defineProperty(CouchdbSsmSessionStateListQuery_0.prototype, 'pagination', {
+    configurable: true,
+    get: CouchdbSsmSessionStateListQuery_0.prototype._get_pagination__0_k$
+  });
+  function CouchdbSsmSessionStateListQueryResult_0(page, pagination) {
+    this._page_2 = page;
+    this._pagination_4 = pagination;
   }
-  TxSsmGetQueryResult_0.prototype._get_ssm__0_k$ = function () {
+  CouchdbSsmSessionStateListQueryResult_0.prototype._get_page__0_k$ = function () {
+    return this._page_2;
+  };
+  CouchdbSsmSessionStateListQueryResult_0.prototype._get_pagination__0_k$ = function () {
+    return this._pagination_4;
+  };
+  CouchdbSsmSessionStateListQueryResult_0.$metadata$ = {
+    simpleName: 'CouchdbSsmSessionStateListQueryResult',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(CouchdbSsmSessionStateListQueryResult_0.prototype, 'page', {
+    configurable: true,
+    get: CouchdbSsmSessionStateListQueryResult_0.prototype._get_page__0_k$
+  });
+  Object.defineProperty(CouchdbSsmSessionStateListQueryResult_0.prototype, 'pagination', {
+    configurable: true,
+    get: CouchdbSsmSessionStateListQueryResult_0.prototype._get_pagination__0_k$
+  });
+  function DataSsmGetQuery_0(ssm, bearerToken) {
+    this._ssm_3 = ssm;
+    this._bearerToken_9 = bearerToken;
+  }
+  DataSsmGetQuery_0.prototype._get_ssm__0_k$ = function () {
     return this._ssm_3;
   };
-  TxSsmGetQueryResult_0.$metadata$ = {
-    simpleName: 'TxSsmGetQueryResult',
+  DataSsmGetQuery_0.prototype._get_bearerToken__0_k$ = function () {
+    return this._bearerToken_9;
+  };
+  DataSsmGetQuery_0.$metadata$ = {
+    simpleName: 'DataSsmGetQuery',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmGetQueryResult_0.prototype, 'ssm', {
+  Object.defineProperty(DataSsmGetQuery_0.prototype, 'ssm', {
     configurable: true,
-    get: TxSsmGetQueryResult_0.prototype._get_ssm__0_k$
+    get: DataSsmGetQuery_0.prototype._get_ssm__0_k$
   });
-  function TxSsmListQuery_0() {
-  }
-  TxSsmListQuery_0.$metadata$ = {
-    simpleName: 'TxSsmListQuery',
-    kind: 'class',
-    interfaces: []
-  };
-  function TxSsmListQueryResult_0(list) {
-    this._list_0 = list;
-  }
-  TxSsmListQueryResult_0.prototype._get_list__0_k$ = function () {
-    return this._list_0;
-  };
-  TxSsmListQueryResult_0.$metadata$ = {
-    simpleName: 'TxSsmListQueryResult',
-    kind: 'class',
-    interfaces: []
-  };
-  Object.defineProperty(TxSsmListQueryResult_0.prototype, 'list', {
+  Object.defineProperty(DataSsmGetQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: TxSsmListQueryResult_0.prototype._get_list__0_k$
+    get: DataSsmGetQuery_0.prototype._get_bearerToken__0_k$
   });
-  function TxSsmSessionGetQuery_0(sessionId, ssm, bearerToken) {
-    this._sessionId = sessionId;
+  function DataSsmGetQueryResult_0(ssm) {
     this._ssm_4 = ssm;
-    this._bearerToken_10 = bearerToken;
   }
-  TxSsmSessionGetQuery_0.prototype._get_sessionId__0_k$ = function () {
-    return this._sessionId;
-  };
-  TxSsmSessionGetQuery_0.prototype._get_ssm__0_k$ = function () {
+  DataSsmGetQueryResult_0.prototype._get_ssm__0_k$ = function () {
     return this._ssm_4;
   };
-  TxSsmSessionGetQuery_0.prototype._get_bearerToken__0_k$ = function () {
-    return this._bearerToken_10;
-  };
-  TxSsmSessionGetQuery_0.$metadata$ = {
-    simpleName: 'TxSsmSessionGetQuery',
+  DataSsmGetQueryResult_0.$metadata$ = {
+    simpleName: 'DataSsmGetQueryResult',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmSessionGetQuery_0.prototype, 'sessionId', {
+  Object.defineProperty(DataSsmGetQueryResult_0.prototype, 'ssm', {
     configurable: true,
-    get: TxSsmSessionGetQuery_0.prototype._get_sessionId__0_k$
+    get: DataSsmGetQueryResult_0.prototype._get_ssm__0_k$
   });
-  Object.defineProperty(TxSsmSessionGetQuery_0.prototype, 'ssm', {
-    configurable: true,
-    get: TxSsmSessionGetQuery_0.prototype._get_ssm__0_k$
-  });
-  Object.defineProperty(TxSsmSessionGetQuery_0.prototype, 'bearerToken', {
-    configurable: true,
-    get: TxSsmSessionGetQuery_0.prototype._get_bearerToken__0_k$
-  });
-  function TxSsmSessionGetQueryResult_0(session) {
-    this._session_4 = session;
-  }
-  TxSsmSessionGetQueryResult_0.prototype._get_session__0_k$ = function () {
-    return this._session_4;
-  };
-  TxSsmSessionGetQueryResult_0.$metadata$ = {
-    simpleName: 'TxSsmSessionGetQueryResult',
-    kind: 'class',
-    interfaces: []
-  };
-  Object.defineProperty(TxSsmSessionGetQueryResult_0.prototype, 'session', {
-    configurable: true,
-    get: TxSsmSessionGetQueryResult_0.prototype._get_session__0_k$
-  });
-  function TxSsmSessionListQuery_0(ssm, bearerToken) {
+  function DataSsmListQuery_0(ssm, bearerToken) {
     this._ssm_5 = ssm;
-    this._bearerToken_11 = bearerToken;
+    this._bearerToken_10 = bearerToken;
   }
-  TxSsmSessionListQuery_0.prototype._get_ssm__0_k$ = function () {
+  DataSsmListQuery_0.prototype._get_ssm__0_k$ = function () {
     return this._ssm_5;
   };
-  TxSsmSessionListQuery_0.prototype._get_bearerToken__0_k$ = function () {
-    return this._bearerToken_11;
+  DataSsmListQuery_0.prototype._get_bearerToken__0_k$ = function () {
+    return this._bearerToken_10;
   };
-  TxSsmSessionListQuery_0.$metadata$ = {
-    simpleName: 'TxSsmSessionListQuery',
+  DataSsmListQuery_0.$metadata$ = {
+    simpleName: 'DataSsmListQuery',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmSessionListQuery_0.prototype, 'ssm', {
+  Object.defineProperty(DataSsmListQuery_0.prototype, 'ssm', {
     configurable: true,
-    get: TxSsmSessionListQuery_0.prototype._get_ssm__0_k$
+    get: DataSsmListQuery_0.prototype._get_ssm__0_k$
   });
-  Object.defineProperty(TxSsmSessionListQuery_0.prototype, 'bearerToken', {
+  Object.defineProperty(DataSsmListQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: TxSsmSessionListQuery_0.prototype._get_bearerToken__0_k$
+    get: DataSsmListQuery_0.prototype._get_bearerToken__0_k$
   });
-  function TxSsmSessionListQueryResult_0(list) {
-    this._list_1 = list;
+  function DataSsmListQueryResult_0(list) {
+    this._list_0 = list;
   }
-  TxSsmSessionListQueryResult_0.prototype._get_list__0_k$ = function () {
-    return this._list_1;
+  DataSsmListQueryResult_0.prototype._get_list__0_k$ = function () {
+    return this._list_0;
   };
-  TxSsmSessionListQueryResult_0.$metadata$ = {
-    simpleName: 'TxSsmSessionListQueryResult',
+  DataSsmListQueryResult_0.$metadata$ = {
+    simpleName: 'DataSsmListQueryResult',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmSessionListQueryResult_0.prototype, 'list', {
+  Object.defineProperty(DataSsmListQueryResult_0.prototype, 'list', {
     configurable: true,
-    get: TxSsmSessionListQueryResult_0.prototype._get_list__0_k$
+    get: DataSsmListQueryResult_0.prototype._get_list__0_k$
   });
-  function TxSsmSessionLogGetQuery_0(sessionId, txId, ssm, bearerToken) {
-    this._sessionId_0 = sessionId;
-    this._txId_0 = txId;
+  function DataSsmSessionGetQuery_0(sessionId, ssm, bearerToken) {
+    this._sessionId = sessionId;
     this._ssm_6 = ssm;
-    this._bearerToken_12 = bearerToken;
+    this._bearerToken_11 = bearerToken;
   }
-  TxSsmSessionLogGetQuery_0.prototype._get_sessionId__0_k$ = function () {
-    return this._sessionId_0;
+  DataSsmSessionGetQuery_0.prototype._get_sessionId__0_k$ = function () {
+    return this._sessionId;
   };
-  TxSsmSessionLogGetQuery_0.prototype._get_txId__0_k$ = function () {
-    return this._txId_0;
-  };
-  TxSsmSessionLogGetQuery_0.prototype._get_ssm__0_k$ = function () {
+  DataSsmSessionGetQuery_0.prototype._get_ssm__0_k$ = function () {
     return this._ssm_6;
   };
-  TxSsmSessionLogGetQuery_0.prototype._get_bearerToken__0_k$ = function () {
-    return this._bearerToken_12;
+  DataSsmSessionGetQuery_0.prototype._get_bearerToken__0_k$ = function () {
+    return this._bearerToken_11;
   };
-  TxSsmSessionLogGetQuery_0.$metadata$ = {
-    simpleName: 'TxSsmSessionLogGetQuery',
+  DataSsmSessionGetQuery_0.$metadata$ = {
+    simpleName: 'DataSsmSessionGetQuery',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmSessionLogGetQuery_0.prototype, 'sessionId', {
+  Object.defineProperty(DataSsmSessionGetQuery_0.prototype, 'sessionId', {
     configurable: true,
-    get: TxSsmSessionLogGetQuery_0.prototype._get_sessionId__0_k$
+    get: DataSsmSessionGetQuery_0.prototype._get_sessionId__0_k$
   });
-  Object.defineProperty(TxSsmSessionLogGetQuery_0.prototype, 'txId', {
+  Object.defineProperty(DataSsmSessionGetQuery_0.prototype, 'ssm', {
     configurable: true,
-    get: TxSsmSessionLogGetQuery_0.prototype._get_txId__0_k$
+    get: DataSsmSessionGetQuery_0.prototype._get_ssm__0_k$
   });
-  Object.defineProperty(TxSsmSessionLogGetQuery_0.prototype, 'ssm', {
+  Object.defineProperty(DataSsmSessionGetQuery_0.prototype, 'bearerToken', {
     configurable: true,
-    get: TxSsmSessionLogGetQuery_0.prototype._get_ssm__0_k$
+    get: DataSsmSessionGetQuery_0.prototype._get_bearerToken__0_k$
   });
-  Object.defineProperty(TxSsmSessionLogGetQuery_0.prototype, 'bearerToken', {
-    configurable: true,
-    get: TxSsmSessionLogGetQuery_0.prototype._get_bearerToken__0_k$
-  });
-  function TxSsmSessionLogGetQueryResult_0(ssmSessionState) {
-    this._ssmSessionState = ssmSessionState;
+  function DataSsmSessionGetQueryResult_0(session) {
+    this._session_4 = session;
   }
-  TxSsmSessionLogGetQueryResult_0.prototype._get_ssmSessionState__0_k$ = function () {
-    return this._ssmSessionState;
+  DataSsmSessionGetQueryResult_0.prototype._get_session__0_k$ = function () {
+    return this._session_4;
   };
-  TxSsmSessionLogGetQueryResult_0.$metadata$ = {
-    simpleName: 'TxSsmSessionLogGetQueryResult',
+  DataSsmSessionGetQueryResult_0.$metadata$ = {
+    simpleName: 'DataSsmSessionGetQueryResult',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmSessionLogGetQueryResult_0.prototype, 'ssmSessionState', {
+  Object.defineProperty(DataSsmSessionGetQueryResult_0.prototype, 'session', {
     configurable: true,
-    get: TxSsmSessionLogGetQueryResult_0.prototype._get_ssmSessionState__0_k$
+    get: DataSsmSessionGetQueryResult_0.prototype._get_session__0_k$
   });
-  function TxSsmSessionLogListQuery_0(sessionId, ssm, bearerToken) {
-    this._sessionId_1 = sessionId;
+  function DataSsmSessionListQuery_0(ssm, bearerToken) {
     this._ssm_7 = ssm;
-    this._bearerToken_13 = bearerToken;
+    this._bearerToken_12 = bearerToken;
   }
-  TxSsmSessionLogListQuery_0.prototype._get_sessionId__0_k$ = function () {
-    return this._sessionId_1;
-  };
-  TxSsmSessionLogListQuery_0.prototype._get_ssm__0_k$ = function () {
+  DataSsmSessionListQuery_0.prototype._get_ssm__0_k$ = function () {
     return this._ssm_7;
   };
-  TxSsmSessionLogListQuery_0.prototype._get_bearerToken__0_k$ = function () {
+  DataSsmSessionListQuery_0.prototype._get_bearerToken__0_k$ = function () {
+    return this._bearerToken_12;
+  };
+  DataSsmSessionListQuery_0.$metadata$ = {
+    simpleName: 'DataSsmSessionListQuery',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(DataSsmSessionListQuery_0.prototype, 'ssm', {
+    configurable: true,
+    get: DataSsmSessionListQuery_0.prototype._get_ssm__0_k$
+  });
+  Object.defineProperty(DataSsmSessionListQuery_0.prototype, 'bearerToken', {
+    configurable: true,
+    get: DataSsmSessionListQuery_0.prototype._get_bearerToken__0_k$
+  });
+  function DataSsmSessionListQueryResult_0(list) {
+    this._list_1 = list;
+  }
+  DataSsmSessionListQueryResult_0.prototype._get_list__0_k$ = function () {
+    return this._list_1;
+  };
+  DataSsmSessionListQueryResult_0.$metadata$ = {
+    simpleName: 'DataSsmSessionListQueryResult',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(DataSsmSessionListQueryResult_0.prototype, 'list', {
+    configurable: true,
+    get: DataSsmSessionListQueryResult_0.prototype._get_list__0_k$
+  });
+  function DataSsmSessionLogGetQuery_0(sessionId, txId, ssm, bearerToken) {
+    this._sessionId_0 = sessionId;
+    this._txId_0 = txId;
+    this._ssm_8 = ssm;
+    this._bearerToken_13 = bearerToken;
+  }
+  DataSsmSessionLogGetQuery_0.prototype._get_sessionId__0_k$ = function () {
+    return this._sessionId_0;
+  };
+  DataSsmSessionLogGetQuery_0.prototype._get_txId__0_k$ = function () {
+    return this._txId_0;
+  };
+  DataSsmSessionLogGetQuery_0.prototype._get_ssm__0_k$ = function () {
+    return this._ssm_8;
+  };
+  DataSsmSessionLogGetQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_13;
   };
-  TxSsmSessionLogListQuery_0.$metadata$ = {
-    simpleName: 'TxSsmSessionLogListQuery',
+  DataSsmSessionLogGetQuery_0.$metadata$ = {
+    simpleName: 'DataSsmSessionLogGetQuery',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmSessionLogListQuery_0.prototype, 'sessionId', {
+  Object.defineProperty(DataSsmSessionLogGetQuery_0.prototype, 'sessionId', {
     configurable: true,
-    get: TxSsmSessionLogListQuery_0.prototype._get_sessionId__0_k$
+    get: DataSsmSessionLogGetQuery_0.prototype._get_sessionId__0_k$
   });
-  Object.defineProperty(TxSsmSessionLogListQuery_0.prototype, 'ssm', {
+  Object.defineProperty(DataSsmSessionLogGetQuery_0.prototype, 'txId', {
     configurable: true,
-    get: TxSsmSessionLogListQuery_0.prototype._get_ssm__0_k$
+    get: DataSsmSessionLogGetQuery_0.prototype._get_txId__0_k$
   });
-  Object.defineProperty(TxSsmSessionLogListQuery_0.prototype, 'bearerToken', {
+  Object.defineProperty(DataSsmSessionLogGetQuery_0.prototype, 'ssm', {
     configurable: true,
-    get: TxSsmSessionLogListQuery_0.prototype._get_bearerToken__0_k$
+    get: DataSsmSessionLogGetQuery_0.prototype._get_ssm__0_k$
   });
-  function TxSsmSessionLogListQueryResult(list) {
+  Object.defineProperty(DataSsmSessionLogGetQuery_0.prototype, 'bearerToken', {
+    configurable: true,
+    get: DataSsmSessionLogGetQuery_0.prototype._get_bearerToken__0_k$
+  });
+  function DataSsmSessionLogGetQueryResult_0(ssmSessionState) {
+    this._ssmSessionState = ssmSessionState;
+  }
+  DataSsmSessionLogGetQueryResult_0.prototype._get_ssmSessionState__0_k$ = function () {
+    return this._ssmSessionState;
+  };
+  DataSsmSessionLogGetQueryResult_0.$metadata$ = {
+    simpleName: 'DataSsmSessionLogGetQueryResult',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(DataSsmSessionLogGetQueryResult_0.prototype, 'ssmSessionState', {
+    configurable: true,
+    get: DataSsmSessionLogGetQueryResult_0.prototype._get_ssmSessionState__0_k$
+  });
+  function DataSsmSessionLogListQuery_0(sessionId, ssm, bearerToken) {
+    this._sessionId_1 = sessionId;
+    this._ssm_9 = ssm;
+    this._bearerToken_14 = bearerToken;
+  }
+  DataSsmSessionLogListQuery_0.prototype._get_sessionId__0_k$ = function () {
+    return this._sessionId_1;
+  };
+  DataSsmSessionLogListQuery_0.prototype._get_ssm__0_k$ = function () {
+    return this._ssm_9;
+  };
+  DataSsmSessionLogListQuery_0.prototype._get_bearerToken__0_k$ = function () {
+    return this._bearerToken_14;
+  };
+  DataSsmSessionLogListQuery_0.$metadata$ = {
+    simpleName: 'DataSsmSessionLogListQuery',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(DataSsmSessionLogListQuery_0.prototype, 'sessionId', {
+    configurable: true,
+    get: DataSsmSessionLogListQuery_0.prototype._get_sessionId__0_k$
+  });
+  Object.defineProperty(DataSsmSessionLogListQuery_0.prototype, 'ssm', {
+    configurable: true,
+    get: DataSsmSessionLogListQuery_0.prototype._get_ssm__0_k$
+  });
+  Object.defineProperty(DataSsmSessionLogListQuery_0.prototype, 'bearerToken', {
+    configurable: true,
+    get: DataSsmSessionLogListQuery_0.prototype._get_bearerToken__0_k$
+  });
+  function DataSsmSessionLogListQueryResult(list) {
     this._list_2 = list;
   }
-  TxSsmSessionLogListQueryResult.prototype._get_list__0_k$ = function () {
+  DataSsmSessionLogListQueryResult.prototype._get_list__0_k$ = function () {
     return this._list_2;
   };
-  TxSsmSessionLogListQueryResult.$metadata$ = {
-    simpleName: 'TxSsmSessionLogListQueryResult',
+  DataSsmSessionLogListQueryResult.$metadata$ = {
+    simpleName: 'DataSsmSessionLogListQueryResult',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmSessionLogListQueryResult.prototype, 'list', {
+  Object.defineProperty(DataSsmSessionLogListQueryResult.prototype, 'list', {
     configurable: true,
-    get: TxSsmSessionLogListQueryResult.prototype._get_list__0_k$
+    get: DataSsmSessionLogListQueryResult.prototype._get_list__0_k$
   });
   function TxChannel_0(id) {
     this._id_3 = id;
@@ -4904,113 +5491,129 @@
     configurable: true,
     get: TxChannel_0.prototype._get_id__0_k$
   });
-  function TxSsm_0(ssm, channel, version) {
-    this._ssm_8 = ssm;
+  function DataSsm_0(uri, ssm, channel, version) {
+    this._uri = uri;
+    this._ssm_10 = ssm;
     this._channel = channel;
     this._version = version;
   }
-  TxSsm_0.prototype._get_ssm__0_k$ = function () {
-    return this._ssm_8;
+  DataSsm_0.prototype._get_uri__0_k$ = function () {
+    return this._uri;
   };
-  TxSsm_0.prototype._get_channel__0_k$ = function () {
+  DataSsm_0.prototype._get_ssm__0_k$ = function () {
+    return this._ssm_10;
+  };
+  DataSsm_0.prototype._get_channel__0_k$ = function () {
     return this._channel;
   };
-  TxSsm_0.prototype._get_version__0_k$ = function () {
+  DataSsm_0.prototype._get_version__0_k$ = function () {
     return this._version;
   };
-  TxSsm_0.$metadata$ = {
-    simpleName: 'TxSsm',
+  DataSsm_0.$metadata$ = {
+    simpleName: 'DataSsm',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsm_0.prototype, 'ssm', {
+  Object.defineProperty(DataSsm_0.prototype, 'uri', {
     configurable: true,
-    get: TxSsm_0.prototype._get_ssm__0_k$
+    get: DataSsm_0.prototype._get_uri__0_k$
   });
-  Object.defineProperty(TxSsm_0.prototype, 'channel', {
+  Object.defineProperty(DataSsm_0.prototype, 'ssm', {
     configurable: true,
-    get: TxSsm_0.prototype._get_channel__0_k$
+    get: DataSsm_0.prototype._get_ssm__0_k$
   });
-  Object.defineProperty(TxSsm_0.prototype, 'version', {
+  Object.defineProperty(DataSsm_0.prototype, 'channel', {
     configurable: true,
-    get: TxSsm_0.prototype._get_version__0_k$
+    get: DataSsm_0.prototype._get_channel__0_k$
   });
-  function TxSsmSession_0(id, state, channel, transaction) {
+  Object.defineProperty(DataSsm_0.prototype, 'version', {
+    configurable: true,
+    get: DataSsm_0.prototype._get_version__0_k$
+  });
+  function DataSsmSession_0(id, state, channel, transaction, ssmUri) {
     this._id_4 = id;
     this._state_1 = state;
     this._channel_0 = channel;
     this._transaction_0 = transaction;
+    this._ssmUri = ssmUri;
   }
-  TxSsmSession_0.prototype._get_id__0_k$ = function () {
+  DataSsmSession_0.prototype._get_id__0_k$ = function () {
     return this._id_4;
   };
-  TxSsmSession_0.prototype._get_state__0_k$ = function () {
+  DataSsmSession_0.prototype._get_state__0_k$ = function () {
     return this._state_1;
   };
-  TxSsmSession_0.prototype._get_channel__0_k$ = function () {
+  DataSsmSession_0.prototype._get_channel__0_k$ = function () {
     return this._channel_0;
   };
-  TxSsmSession_0.prototype._get_transaction__0_k$ = function () {
+  DataSsmSession_0.prototype._get_transaction__0_k$ = function () {
     return this._transaction_0;
   };
-  TxSsmSession_0.$metadata$ = {
-    simpleName: 'TxSsmSession',
+  DataSsmSession_0.prototype._get_ssmUri__0_k$ = function () {
+    return this._ssmUri;
+  };
+  DataSsmSession_0.$metadata$ = {
+    simpleName: 'DataSsmSession',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmSession_0.prototype, 'id', {
+  Object.defineProperty(DataSsmSession_0.prototype, 'id', {
     configurable: true,
-    get: TxSsmSession_0.prototype._get_id__0_k$
+    get: DataSsmSession_0.prototype._get_id__0_k$
   });
-  Object.defineProperty(TxSsmSession_0.prototype, 'state', {
+  Object.defineProperty(DataSsmSession_0.prototype, 'state', {
     configurable: true,
-    get: TxSsmSession_0.prototype._get_state__0_k$
+    get: DataSsmSession_0.prototype._get_state__0_k$
   });
-  Object.defineProperty(TxSsmSession_0.prototype, 'channel', {
+  Object.defineProperty(DataSsmSession_0.prototype, 'channel', {
     configurable: true,
-    get: TxSsmSession_0.prototype._get_channel__0_k$
+    get: DataSsmSession_0.prototype._get_channel__0_k$
   });
-  Object.defineProperty(TxSsmSession_0.prototype, 'transaction', {
+  Object.defineProperty(DataSsmSession_0.prototype, 'transaction', {
     configurable: true,
-    get: TxSsmSession_0.prototype._get_transaction__0_k$
+    get: DataSsmSession_0.prototype._get_transaction__0_k$
   });
-  function TxSsmSessionState_0(details, transaction) {
+  Object.defineProperty(DataSsmSession_0.prototype, 'ssmUri', {
+    configurable: true,
+    get: DataSsmSession_0.prototype._get_ssmUri__0_k$
+  });
+  function DataSsmSessionState_0(details, transaction) {
     this._details = details;
     this._transaction_1 = transaction;
   }
-  TxSsmSessionState_0.prototype._get_details__0_k$ = function () {
+  DataSsmSessionState_0.prototype._get_details__0_k$ = function () {
     return this._details;
   };
-  TxSsmSessionState_0.prototype._get_transaction__0_k$ = function () {
+  DataSsmSessionState_0.prototype._get_transaction__0_k$ = function () {
     return this._transaction_1;
   };
-  TxSsmSessionState_0.$metadata$ = {
-    simpleName: 'TxSsmSessionState',
+  DataSsmSessionState_0.$metadata$ = {
+    simpleName: 'DataSsmSessionState',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmSessionState_0.prototype, 'details', {
+  Object.defineProperty(DataSsmSessionState_0.prototype, 'details', {
     configurable: true,
-    get: TxSsmSessionState_0.prototype._get_details__0_k$
+    get: DataSsmSessionState_0.prototype._get_details__0_k$
   });
-  Object.defineProperty(TxSsmSessionState_0.prototype, 'transaction', {
+  Object.defineProperty(DataSsmSessionState_0.prototype, 'transaction', {
     configurable: true,
-    get: TxSsmSessionState_0.prototype._get_transaction__0_k$
+    get: DataSsmSessionState_0.prototype._get_transaction__0_k$
   });
-  function TxSsmUser_0(agent) {
+  function DataSsmUser_0(agent) {
     this._agent = agent;
   }
-  TxSsmUser_0.prototype._get_agent__0_k$ = function () {
+  DataSsmUser_0.prototype._get_agent__0_k$ = function () {
     return this._agent;
   };
-  TxSsmUser_0.$metadata$ = {
-    simpleName: 'TxSsmUser',
+  DataSsmUser_0.$metadata$ = {
+    simpleName: 'DataSsmUser',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(TxSsmUser_0.prototype, 'agent', {
+  Object.defineProperty(DataSsmUser_0.prototype, 'agent', {
     configurable: true,
-    get: TxSsmUser_0.prototype._get_agent__0_k$
+    get: DataSsmUser_0.prototype._get_agent__0_k$
   });
   AbstractMap.prototype._get_entries__0_k$ = Map_0.prototype._get_entries__0_k$;
   AbstractMutableMap.prototype._get_entries__0_k$ = MutableMap.prototype._get_entries__0_k$;
@@ -5031,45 +5634,53 @@
   var $f2 = _.f2 || (_.f2 = {});
   var $f2$dsl = $f2.dsl || ($f2.dsl = {});
   var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
+  var $f2$dsl$cqrs$error = $f2$dsl$cqrs.error || ($f2$dsl$cqrs.error = {});
+  var $f2$dsl$cqrs$page = $f2$dsl$cqrs.page || ($f2$dsl$cqrs.page = {});
   var $f2$dsl$fnc = $f2$dsl.fnc || ($f2$dsl.fnc = {});
-  var $ssm = _.ssm || (_.ssm = {});
+  var $ssm = _.ssm || (_.ssmUri = {});
   var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
   var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
   var $ssm$chaincode$dsl$blockchain = $ssm$chaincode$dsl.blockchain || ($ssm$chaincode$dsl.blockchain = {});
-  var $ssm$tx = $ssm.tx || ($ssm.tx = {});
-  var $ssm$tx$dsl = $ssm$tx.dsl || ($ssm$tx.dsl = {});
-  var $ssm$tx$dsl$features = $ssm$tx$dsl.features || ($ssm$tx$dsl.features = {});
-  var $ssm$tx$dsl$features$query = $ssm$tx$dsl$features.query || ($ssm$tx$dsl$features.query = {});
-  var $ssm$tx$dsl$model = $ssm$tx$dsl.model || ($ssm$tx$dsl.model = {});
+  var $ssm$chaincode$dsl$config = $ssm$chaincode$dsl.config || ($ssm$chaincode$dsl.config = {});
+  var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
+  var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
+  var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
+  var $ssm$couchdb$dsl$model = $ssm$couchdb$dsl.model || ($ssm$couchdb$dsl.model = {});
+  var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
+  var $ssm$data = $ssm.data || ($ssm.data = {});
+  var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
+  var $ssm$data$dsl$features = $ssm$data$dsl.features || ($ssm$data$dsl.features = {});
+  var $ssm$data$dsl$features$query = $ssm$data$dsl$features.query || ($ssm$data$dsl$features.query = {});
+  var $ssm$data$dsl$model = $ssm$data$dsl.model || ($ssm$data$dsl.model = {});
   var $kotlinx = _.kotlinx || (_.kotlinx = {});
   var $kotlinx$atomicfu = $kotlinx.atomicfu || ($kotlinx.atomicfu = {});
   $kotlinx$atomicfu.atomic$ref$ = atomic;
   $kotlinx$atomicfu.atomic$boolean$ = atomic_1;
   $kotlinx$atomicfu.atomic$int$ = atomic_3;
   $kotlinx$atomicfu.atomic$long$ = atomic_5;
-  $f2$dsl$cqrs.ErrorSeverity = ErrorSeverity_0;
-  $f2$dsl$cqrs.ErrorSeverityWarning = ErrorSeverityWarning_0;
-  $f2$dsl$cqrs.AlertSeverityError = ErrorSeverityError;
-  var $f2$dsl$cqrs$base = $f2$dsl$cqrs.base || ($f2$dsl$cqrs.base = {});
-  $f2$dsl$cqrs$base.ErrorBase = ErrorBase_0;
-  $f2$dsl$cqrs$base.PageBase = PageBase_0;
-  $f2$dsl$cqrs$base.PageRequestBase = PageRequestBase_0;
+  $f2$dsl$cqrs$error.Error = Error_0;
+  $f2$dsl$cqrs$error.ErrorSeverity = ErrorSeverity_0;
+  $f2$dsl$cqrs$error.ErrorSeverityWarning = ErrorSeverityWarning_0;
+  $f2$dsl$cqrs$error.AlertSeverityError = ErrorSeverityError;
   var $f2$dsl$cqrs$exception = $f2$dsl$cqrs.exception || ($f2$dsl$cqrs.exception = {});
   $f2$dsl$cqrs$exception.R2Exception = S2Exception;
   $f2$dsl$cqrs$exception.R2NotFoundException = S2NotFoundException;
-  $ssm$chaincode$dsl.Chaincode = Chaincode_0;
-  $ssm$chaincode$dsl.InvokeReturn = InvokeReturn_0;
-  $ssm$chaincode$dsl.Ssm = Ssm_0;
-  $ssm$chaincode$dsl.SsmAgent = SsmAgent_0;
-  $ssm$chaincode$dsl.SsmContext = SsmContext_0;
-  $ssm$chaincode$dsl.SsmGrant = SsmGrant_0;
-  $ssm$chaincode$dsl.Credit = Credit_0;
-  $ssm$chaincode$dsl.SsmSession = SsmSession_0;
-  $ssm$chaincode$dsl.SsmSessionState = SsmSessionState_0;
-  $ssm$chaincode$dsl.SsmSessionStateLog = SsmSessionStateLog_0;
-  $ssm$chaincode$dsl.SsmTransition = SsmTransition_0;
+  $f2$dsl$cqrs$page.Page = Page_0;
+  $f2$dsl$cqrs$page.OffsetRequest = OffsetPagination;
+  $f2$dsl$cqrs$page.PagePagination = PagePagination_0;
   $ssm$chaincode$dsl$blockchain.Block = Block_0;
   $ssm$chaincode$dsl$blockchain.IdentitiesInfo = IdentitiesInfo_0;
+  $ssm$chaincode$dsl$model.Chaincode = Chaincode_0;
+  $ssm$chaincode$dsl$model.InvokeReturn = InvokeReturn_0;
+  $ssm$chaincode$dsl$model.Ssm = Ssm_0;
+  $ssm$chaincode$dsl$model.SsmAgent = SsmAgent_0;
+  $ssm$chaincode$dsl$model.SsmContext = SsmContext_0;
+  $ssm$chaincode$dsl$model.SsmGrant = SsmGrant_0;
+  $ssm$chaincode$dsl$model.Credit = Credit_0;
+  $ssm$chaincode$dsl$model.SsmSession = SsmSession_0;
+  $ssm$chaincode$dsl$model.SsmSessionState = SsmSessionState_0;
+  $ssm$chaincode$dsl$model.SsmSessionStateLog = SsmSessionStateLog_0;
+  $ssm$chaincode$dsl$model.SsmTransition = SsmTransition_0;
   var $ssm$chaincode$dsl$query = $ssm$chaincode$dsl.query || ($ssm$chaincode$dsl.query = {});
   $ssm$chaincode$dsl$query.SsmGetAdminQuery = SsmGetAdminQuery_0;
   $ssm$chaincode$dsl$query.SsmGetAdminResult = SsmGetAdminResult_0;
@@ -5091,22 +5702,36 @@
   $ssm$chaincode$dsl$query.SsmListSsmResult = SsmListSsmResult_0;
   $ssm$chaincode$dsl$query.SsmListUserQuery = SsmListUserQuery_0;
   $ssm$chaincode$dsl$query.SsmListUserResult = SsmListUserResult_0;
-  $ssm$tx$dsl$features$query.TxSsmGetQuery = TxSsmGetQuery_0;
-  $ssm$tx$dsl$features$query.TxSsmGetQueryResult = TxSsmGetQueryResult_0;
-  $ssm$tx$dsl$features$query.TxSsmListQuery = TxSsmListQuery_0;
-  $ssm$tx$dsl$features$query.TxSsmListQueryResult = TxSsmListQueryResult_0;
-  $ssm$tx$dsl$features$query.TxSsmSessionGetQuery = TxSsmSessionGetQuery_0;
-  $ssm$tx$dsl$features$query.TxSsmSessionGetQueryResult = TxSsmSessionGetQueryResult_0;
-  $ssm$tx$dsl$features$query.TxSsmSessionListQuery = TxSsmSessionListQuery_0;
-  $ssm$tx$dsl$features$query.TxSsmSessionListQueryResult = TxSsmSessionListQueryResult_0;
-  $ssm$tx$dsl$features$query.TxSsmSessionLogGetQuery = TxSsmSessionLogGetQuery_0;
-  $ssm$tx$dsl$features$query.TxSsmSessionLogGetQueryResult = TxSsmSessionLogGetQueryResult_0;
-  $ssm$tx$dsl$features$query.TxSsmSessionLogListQuery = TxSsmSessionLogListQuery_0;
-  $ssm$tx$dsl$features$query.SsmSessionLogListQueryResult = TxSsmSessionLogListQueryResult;
-  $ssm$tx$dsl$model.TxChannel = TxChannel_0;
-  $ssm$tx$dsl$model.TxSsm = TxSsm_0;
-  $ssm$tx$dsl$model.TxSsmSession = TxSsmSession_0;
-  $ssm$tx$dsl$model.TxSsmSessionState = TxSsmSessionState_0;
-  $ssm$tx$dsl$model.TxSsmUser = TxSsmUser_0;
+  $ssm$couchdb$dsl$model.Database = Database_0;
+  $ssm$couchdb$dsl$model.DatabaseChanges = DatabaseChanges_0;
+  $ssm$couchdb$dsl$query.CouchdbDatabaseGetChangesQuery = CouchdbDatabaseGetChangesQuery_0;
+  $ssm$couchdb$dsl$query.CouchdbSsmDatabaseGetChangesQueryResult = CouchdbSsmDatabaseGetChangesQueryResult_0;
+  $ssm$couchdb$dsl$query.CouchdbDatabaseGetQuery = CouchdbDatabaseGetQuery_0;
+  $ssm$couchdb$dsl$query.CouchdbSsmDatabaseGetQueryResult = CouchdbSsmDatabaseGetQueryResult_0;
+  $ssm$couchdb$dsl$query.CouchdbDatabaseListQuery = CouchdbDatabaseListQuery_0;
+  $ssm$couchdb$dsl$query.CouchdbDatabaseListQueryResult = CouchdbDatabaseListQueryResult_0;
+  $ssm$couchdb$dsl$query.CouchdbSsmListQuery = CouchdbSsmListQuery_0;
+  $ssm$couchdb$dsl$query.CouchdbSsmListQueryResult = CouchdbSsmListQueryResult_0;
+  $ssm$couchdb$dsl$query.CouchdbSsmSessionStateListQuery = CouchdbSsmSessionStateListQuery_0;
+  $ssm$couchdb$dsl$query.CouchdbSsmSessionStateListQueryResult = CouchdbSsmSessionStateListQueryResult_0;
+  $ssm$data$dsl$features$query.DataSsmGetQuery = DataSsmGetQuery_0;
+  $ssm$data$dsl$features$query.DataSsmGetQueryResult = DataSsmGetQueryResult_0;
+  $ssm$data$dsl$features$query.DataSsmListQuery = DataSsmListQuery_0;
+  $ssm$data$dsl$features$query.DataSsmListQueryResult = DataSsmListQueryResult_0;
+  $ssm$data$dsl$features$query.DataSsmSessionGetQuery = DataSsmSessionGetQuery_0;
+  $ssm$data$dsl$features$query.DataSsmSessionGetQueryResult = DataSsmSessionGetQueryResult_0;
+  $ssm$data$dsl$features$query.DataSsmSessionListQuery = DataSsmSessionListQuery_0;
+  $ssm$data$dsl$features$query.DataSsmSessionListQueryResult = DataSsmSessionListQueryResult_0;
+  $ssm$data$dsl$features$query.DataSsmSessionLogGetQuery = DataSsmSessionLogGetQuery_0;
+  $ssm$data$dsl$features$query.DataSsmSessionLogGetQueryResult = DataSsmSessionLogGetQueryResult_0;
+  $ssm$data$dsl$features$query.DataSsmSessionLogListQuery = DataSsmSessionLogListQuery_0;
+  $ssm$data$dsl$features$query.SsmSessionLogListQueryResult = DataSsmSessionLogListQueryResult;
+  $ssm$data$dsl$model.TxChannel = TxChannel_0;
+  $ssm$data$dsl$model.DataSsm = DataSsm_0;
+  $ssm$data$dsl$model.DataSsmSession = DataSsmSession_0;
+  $ssm$data$dsl$model.DataSsmSessionState = DataSsmSessionState_0;
+  $ssm$data$dsl$model.DataSsmUser = DataSsmUser_0;
   return _;
 }));
+
+//# sourceMappingURL=x2-ssm-domain.js.map

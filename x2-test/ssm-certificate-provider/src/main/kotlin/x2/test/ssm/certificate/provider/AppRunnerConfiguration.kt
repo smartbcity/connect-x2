@@ -86,11 +86,6 @@ class AppRunnerConfiguration {
 				action = "transaction",
 				bearerToken = null,
 				signer = agentSigner,
-//				chaincode = SsmChaincodeProperties(
-//					chaincodeId = chaincode,
-//					channelId = channel,
-//					baseUrl = url,
-//				),
 				context = SsmContext(
 					session = sessionName,
 					public = getPublic(),
@@ -103,8 +98,13 @@ class AppRunnerConfiguration {
 
 	private fun getPublic(): String {
 		val isEvent = (0..10).random() % 2 == 0
+		val isEventSecond = (0..10).random() % 2 == 0
 		return if(isEvent) {
-			val certificate = DataTest.certificateData()
+			val certificate = if(isEventSecond) {
+				DataTest.certificateCredentials()
+			} else {
+				DataTest.certificate2()
+			}
 			jacksonObjectMapper().writeValueAsString(certificate)
 		} else {
 			"This is not a certificate"
