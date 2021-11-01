@@ -1,9 +1,8 @@
 object PluginVersions {
-	const val springBoot = "2.5.5"
-	const val kotlin = "1.5.31"
+	const val springBoot = "2.6.0-RC1"
+	const val kotlin = "1.6.0-RC"
 
 	const val fixers = "experimental-SNAPSHOT"
-
 }
 
 object Versions {
@@ -14,11 +13,13 @@ object Versions {
     const val d2 = "0.1.1-SNAPSHOT"
 }
 
-
-object Dependencies {
-	object jvm {
-	}
-
-	object common {
-	}
+object Repo {
+	val snapshot: List<String> = listOf(
+		// For fixers
+		"https://oss.sonatype.org/content/repositories/snapshots",
+		// For spring 2.6.0-RC1
+		"https://repo.spring.io/milestone",
+		//For pdfbox
+		"https://jitpack.io"
+	)
 }

@@ -36694,19 +36694,73 @@
     configurable: true,
     get: CouchdbDatabaseListQueryResult_0.prototype._get_pagination__0_k$
   });
-  function CouchdbSsmListQuery_0(pagination, channelId, chaincodeId) {
-    this._pagination_1 = pagination;
+  function CouchdbSsmGetQuery_0(channelId, chaincodeId, ssmName) {
     this._channelId_3 = channelId;
     this._chaincodeId_2 = chaincodeId;
+    this._ssmName = ssmName;
+  }
+  CouchdbSsmGetQuery_0.prototype._get_channelId__0_k$ = function () {
+    return this._channelId_3;
+  };
+  CouchdbSsmGetQuery_0.prototype._get_chaincodeId__0_k$ = function () {
+    return this._chaincodeId_2;
+  };
+  CouchdbSsmGetQuery_0.prototype._get_ssmName__0_k$ = function () {
+    return this._ssmName;
+  };
+  CouchdbSsmGetQuery_0.$metadata$ = {
+    simpleName: 'CouchdbSsmGetQuery',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(CouchdbSsmGetQuery_0.prototype, 'channelId', {
+    configurable: true,
+    get: CouchdbSsmGetQuery_0.prototype._get_channelId__0_k$
+  });
+  Object.defineProperty(CouchdbSsmGetQuery_0.prototype, 'chaincodeId', {
+    configurable: true,
+    get: CouchdbSsmGetQuery_0.prototype._get_chaincodeId__0_k$
+  });
+  Object.defineProperty(CouchdbSsmGetQuery_0.prototype, 'ssmName', {
+    configurable: true,
+    get: CouchdbSsmGetQuery_0.prototype._get_ssmName__0_k$
+  });
+  function CouchdbSsmGetQueryResult_0(uri, item) {
+    this._uri = uri;
+    this._item_0 = item;
+  }
+  CouchdbSsmGetQueryResult_0.prototype._get_uri__0_k$ = function () {
+    return this._uri;
+  };
+  CouchdbSsmGetQueryResult_0.prototype._get_item__0_k$ = function () {
+    return this._item_0;
+  };
+  CouchdbSsmGetQueryResult_0.$metadata$ = {
+    simpleName: 'CouchdbSsmGetQueryResult',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(CouchdbSsmGetQueryResult_0.prototype, 'uri', {
+    configurable: true,
+    get: CouchdbSsmGetQueryResult_0.prototype._get_uri__0_k$
+  });
+  Object.defineProperty(CouchdbSsmGetQueryResult_0.prototype, 'item', {
+    configurable: true,
+    get: CouchdbSsmGetQueryResult_0.prototype._get_item__0_k$
+  });
+  function CouchdbSsmListQuery_0(pagination, channelId, chaincodeId) {
+    this._pagination_1 = pagination;
+    this._channelId_4 = channelId;
+    this._chaincodeId_3 = chaincodeId;
   }
   CouchdbSsmListQuery_0.prototype._get_pagination__0_k$ = function () {
     return this._pagination_1;
   };
   CouchdbSsmListQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_3;
+    return this._channelId_4;
   };
   CouchdbSsmListQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId_2;
+    return this._chaincodeId_3;
   };
   CouchdbSsmListQuery_0.$metadata$ = {
     simpleName: 'CouchdbSsmListQuery',
@@ -36759,16 +36813,16 @@
   }
   function CouchdbSsmSessionStateListQuery_0(channelId, chaincodeId, ssm, pagination) {
     var pagination_0 = pagination === void 1 ? null : pagination;
-    this._channelId_4 = channelId;
-    this._chaincodeId_3 = chaincodeId;
+    this._channelId_5 = channelId;
+    this._chaincodeId_4 = chaincodeId;
     this._ssm_2 = ssm;
     this._pagination_3 = pagination_0;
   }
   CouchdbSsmSessionStateListQuery_0.prototype._get_channelId__0_k$ = function () {
-    return this._channelId_4;
+    return this._channelId_5;
   };
   CouchdbSsmSessionStateListQuery_0.prototype._get_chaincodeId__0_k$ = function () {
-    return this._chaincodeId_3;
+    return this._chaincodeId_4;
   };
   CouchdbSsmSessionStateListQuery_0.prototype._get_ssm__0_k$ = function () {
     return this._ssm_2;
@@ -36858,13 +36912,9 @@
     configurable: true,
     get: DataSsmGetQueryResult_0.prototype._get_ssm__0_k$
   });
-  function DataSsmListQuery_0(ssm, bearerToken) {
-    this._ssm_5 = ssm;
+  function DataSsmListQuery_0(bearerToken) {
     this._bearerToken_10 = bearerToken;
   }
-  DataSsmListQuery_0.prototype._get_ssm__0_k$ = function () {
-    return this._ssm_5;
-  };
   DataSsmListQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_10;
   };
@@ -36873,10 +36923,6 @@
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(DataSsmListQuery_0.prototype, 'ssm', {
-    configurable: true,
-    get: DataSsmListQuery_0.prototype._get_ssm__0_k$
-  });
   Object.defineProperty(DataSsmListQuery_0.prototype, 'bearerToken', {
     configurable: true,
     get: DataSsmListQuery_0.prototype._get_bearerToken__0_k$
@@ -36898,14 +36944,14 @@
   });
   function DataSsmSessionGetQuery_0(sessionId, ssm, bearerToken) {
     this._sessionId = sessionId;
-    this._ssm_6 = ssm;
+    this._ssm_5 = ssm;
     this._bearerToken_11 = bearerToken;
   }
   DataSsmSessionGetQuery_0.prototype._get_sessionId__0_k$ = function () {
     return this._sessionId;
   };
   DataSsmSessionGetQuery_0.prototype._get_ssm__0_k$ = function () {
-    return this._ssm_6;
+    return this._ssm_5;
   };
   DataSsmSessionGetQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_11;
@@ -36942,12 +36988,22 @@
     configurable: true,
     get: DataSsmSessionGetQueryResult_0.prototype._get_session__0_k$
   });
+  function DataSsmSessionListQuery_init_$Init$(ssm, bearerToken, $mask0, $marker, $this) {
+    if (!(($mask0 & 2) === 0))
+      bearerToken = null;
+    DataSsmSessionListQuery_0.call($this, ssm, bearerToken);
+    return $this;
+  }
+  function DataSsmSessionListQuery_init_$Create$(ssm, bearerToken, $mask0, $marker) {
+    return DataSsmSessionListQuery_init_$Init$(ssm, bearerToken, $mask0, $marker, Object.create(DataSsmSessionListQuery_0.prototype));
+  }
   function DataSsmSessionListQuery_0(ssm, bearerToken) {
-    this._ssm_7 = ssm;
-    this._bearerToken_12 = bearerToken;
+    var bearerToken_0 = bearerToken === void 1 ? null : bearerToken;
+    this._ssm_6 = ssm;
+    this._bearerToken_12 = bearerToken_0;
   }
   DataSsmSessionListQuery_0.prototype._get_ssm__0_k$ = function () {
-    return this._ssm_7;
+    return this._ssm_6;
   };
   DataSsmSessionListQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_12;
@@ -36983,7 +37039,7 @@
   function DataSsmSessionLogGetQuery_0(sessionId, txId, ssm, bearerToken) {
     this._sessionId_0 = sessionId;
     this._txId_0 = txId;
-    this._ssm_8 = ssm;
+    this._ssm_7 = ssm;
     this._bearerToken_13 = bearerToken;
   }
   DataSsmSessionLogGetQuery_0.prototype._get_sessionId__0_k$ = function () {
@@ -36993,7 +37049,7 @@
     return this._txId_0;
   };
   DataSsmSessionLogGetQuery_0.prototype._get_ssm__0_k$ = function () {
-    return this._ssm_8;
+    return this._ssm_7;
   };
   DataSsmSessionLogGetQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_13;
@@ -37036,14 +37092,14 @@
   });
   function DataSsmSessionLogListQuery_0(sessionId, ssm, bearerToken) {
     this._sessionId_1 = sessionId;
-    this._ssm_9 = ssm;
+    this._ssm_8 = ssm;
     this._bearerToken_14 = bearerToken;
   }
   DataSsmSessionLogListQuery_0.prototype._get_sessionId__0_k$ = function () {
     return this._sessionId_1;
   };
   DataSsmSessionLogListQuery_0.prototype._get_ssm__0_k$ = function () {
-    return this._ssm_9;
+    return this._ssm_8;
   };
   DataSsmSessionLogListQuery_0.prototype._get_bearerToken__0_k$ = function () {
     return this._bearerToken_14;
@@ -37096,16 +37152,16 @@
     get: TxChannel_0.prototype._get_id__0_k$
   });
   function DataSsm_0(uri, ssm, channel, version) {
-    this._uri = uri;
-    this._ssm_10 = ssm;
+    this._uri_0 = uri;
+    this._ssm_9 = ssm;
     this._channel_1 = channel;
     this._version = version;
   }
   DataSsm_0.prototype._get_uri__0_k$ = function () {
-    return this._uri;
+    return this._uri_0;
   };
   DataSsm_0.prototype._get_ssm__0_k$ = function () {
-    return this._ssm_10;
+    return this._ssm_9;
   };
   DataSsm_0.prototype._get_channel__0_k$ = function () {
     return this._channel_1;
@@ -49557,13 +49613,13 @@
     return !(_get_current_(this) == null);
   };
   _no_name_provided__119.prototype.next_0_k$ = function () {
-    var result = ensureNotNull(ensureNotNull(_get_current_(this))._item_0);
+    var result = ensureNotNull(ensureNotNull(_get_current_(this))._item_1);
     var tmp0_safe_receiver = _get_current_(this);
     _set_current_(this, tmp0_safe_receiver == null ? null : tmp0_safe_receiver._get_next__0_k$());
     return result;
   };
   _no_name_provided__119.prototype.remove_sv8swh_k$ = function () {
-    var item = ensureNotNull(ensureNotNull(_get_previous_(this))._item_0);
+    var item = ensureNotNull(ensureNotNull(_get_previous_(this))._item_1);
     this._this$0_40.remove_1q9vk_k$(item._key_3);
     Unit_getInstance();
   };
@@ -50006,12 +50062,12 @@
   };
   ForwardListIterator.prototype.hasNext_0_k$ = function () {
     var tmp0_safe_receiver = this._get_current__0_k$();
-    return !((tmp0_safe_receiver == null ? null : tmp0_safe_receiver._item_0) == null);
+    return !((tmp0_safe_receiver == null ? null : tmp0_safe_receiver._item_1) == null);
   };
   ForwardListIterator.prototype.next_0_k$ = function () {
     this._set_previous__55uhd6_k$(this._get_current__0_k$());
     var tmp0_safe_receiver = this._get_previous__0_k$();
-    var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver._item_0;
+    var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver._item_1;
     var tmp;
     if (tmp1_elvis_lhs == null) {
       throw NoSuchElementException_init_$Create$();
@@ -50057,7 +50113,7 @@
   }
   function ForwardListNode(list, next, item, previous) {
     this._list_5 = list;
-    this._item_0 = item;
+    this._item_1 = item;
     var tmp = this;
     var tmp$ret$0;
     $l$block: {
@@ -77300,7 +77356,7 @@
   var $f2$dsl$cqrs$error = $f2$dsl$cqrs.error || ($f2$dsl$cqrs.error = {});
   var $f2$dsl$cqrs$page = $f2$dsl$cqrs.page || ($f2$dsl$cqrs.page = {});
   var $f2$dsl$fnc = $f2$dsl.fnc || ($f2$dsl.fnc = {});
-  var $ssm = _.ssm || (_.ssmUri = {});
+  var $ssm = _.ssm || (_.ssm = {});
   var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
   var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
   var $ssm$chaincode$dsl$blockchain = $ssm$chaincode$dsl.blockchain || ($ssm$chaincode$dsl.blockchain = {});
@@ -77374,6 +77430,8 @@
   $ssm$couchdb$dsl$query.CouchdbSsmDatabaseGetQueryResult = CouchdbSsmDatabaseGetQueryResult_0;
   $ssm$couchdb$dsl$query.CouchdbDatabaseListQuery = CouchdbDatabaseListQuery_0;
   $ssm$couchdb$dsl$query.CouchdbDatabaseListQueryResult = CouchdbDatabaseListQueryResult_0;
+  $ssm$couchdb$dsl$query.CouchdbSsmGetQuery = CouchdbSsmGetQuery_0;
+  $ssm$couchdb$dsl$query.CouchdbSsmGetQueryResult = CouchdbSsmGetQueryResult_0;
   $ssm$couchdb$dsl$query.CouchdbSsmListQuery = CouchdbSsmListQuery_0;
   $ssm$couchdb$dsl$query.CouchdbSsmListQueryResult = CouchdbSsmListQueryResult_0;
   $ssm$couchdb$dsl$query.CouchdbSsmSessionStateListQuery = CouchdbSsmSessionStateListQuery_0;

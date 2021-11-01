@@ -8,7 +8,7 @@ dependencies {
     api("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
 
     implementation(project(":x2-api:api-config"))
-    implementation(project(":x2-api:api-infra:i2"))
+    implementation(project(":x2-api:api-auth"))
     implementation(project(":x2-f2:certificate:certificate-api"))
     implementation(project(":x2-f2:ssm:ssm-api"))
 }

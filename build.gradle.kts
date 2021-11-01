@@ -5,8 +5,6 @@ plugins {
 
 	id("org.springframework.boot") version PluginVersions.springBoot apply false
 
-//	id("com.moowork.node") version "1.2.0"
-
 	id("city.smartb.fixers.gradle.config") version PluginVersions.fixers
 	id("city.smartb.fixers.gradle.sonar") version PluginVersions.fixers
 	id("city.smartb.fixers.gradle.d2") version PluginVersions.fixers
@@ -19,8 +17,9 @@ allprojects {
 	repositories {
 		jcenter()
 		mavenCentral()
-		maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
-		maven { url = uri("https://jitpack.io") }
+		Repo.snapshot.forEach {
+			maven { url = uri(it) }
+		}
 	}
 }
 

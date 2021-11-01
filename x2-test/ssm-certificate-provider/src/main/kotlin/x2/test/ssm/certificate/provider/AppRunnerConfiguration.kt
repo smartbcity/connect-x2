@@ -66,8 +66,8 @@ class AppRunnerConfiguration {
 			val agentSigner = Signer.loadFromFile(agentName, agentKey)
 
 			(0..5).asFlow().map { iteration ->
-				val ssmName = "certificate"
-				val sessionName = "certificate-session-${iteration}-${UUID.randomUUID()}"
+				val ssmName = "Certificates"
+				val sessionName = "certificates-session-${iteration}-${UUID.randomUUID()}"
 				createSsm(ssmCreateFunction, adminSigner, agent, ssmName = ssmName)
 				startSession(ssmSessionStartFunction, adminSigner, agent, ssmName, sessionName)
 				performTransaction(ssmSessionPerformActionFunction, agentSigner, sessionName)

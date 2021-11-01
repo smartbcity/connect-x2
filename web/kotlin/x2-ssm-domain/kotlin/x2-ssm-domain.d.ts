@@ -226,6 +226,17 @@ export namespace ssm.couchdb.dsl.query {
     }
 }
 export namespace ssm.couchdb.dsl.query {
+    interface CouchdbSsmGetQueryDTO extends f2.dsl.cqrs.Query {
+        readonly channelId: string;
+        readonly chaincodeId: string;
+        readonly ssmName: string;
+    }
+    interface CouchdbSsmGetQueryDTO extends f2.dsl.cqrs.Event {
+        readonly item: Nullable<ssm.chaincode.dsl.model.SsmDTO>;
+        readonly uri: string;
+    }
+}
+export namespace ssm.couchdb.dsl.query {
     interface CouchdbSsmListQueryDTO extends f2.dsl.cqrs.page.PageQueryDTO {
         readonly channelId: string;
         readonly chaincodeId: string;
@@ -270,7 +281,7 @@ export namespace ssm.data.dsl.features.query {
     }
 }
 export namespace ssm.data.dsl.features.query {
-    interface DataSsmListQueryDTO extends ssm.data.dsl.features.query.DataQueryDTO {
+    interface DataSsmListQueryDTO {
     }
     interface DataSsmListQueryResultDTO {
         readonly list: kotlin.collections.List<ssm.data.dsl.model.DataSsmDTO>;
@@ -737,6 +748,19 @@ export namespace ssm.couchdb.dsl.query {
     }
 }
 export namespace ssm.couchdb.dsl.query {
+    class CouchdbSsmGetQuery implements ssm.couchdb.dsl.query.CouchdbSsmGetQueryDTO {
+        constructor(channelId: string, chaincodeId: string, ssmName: string);
+        readonly channelId: string;
+        readonly chaincodeId: string;
+        readonly ssmName: string;
+    }
+    class CouchdbSsmGetQueryResult implements ssm.couchdb.dsl.query.CouchdbSsmGetQueryResultDTO {
+        constructor(uri: string, item: Nullable<ssm.chaincode.dsl.model.Ssm>);
+        readonly uri: string;
+        readonly item: Nullable<ssm.chaincode.dsl.model.Ssm>;
+    }
+}
+export namespace ssm.couchdb.dsl.query {
     class CouchdbSsmListQuery implements ssm.couchdb.dsl.query.CouchdbSsmListQueryDTO {
         constructor(pagination: Nullable<f2.dsl.cqrs.page.OffsetPaginationDTO>, channelId: string, chaincodeId: string);
         readonly pagination: Nullable<f2.dsl.cqrs.page.OffsetPaginationDTO>;
@@ -776,8 +800,7 @@ export namespace ssm.data.dsl.features.query {
 }
 export namespace ssm.data.dsl.features.query {
     class DataSsmListQuery implements ssm.data.dsl.features.query.DataSsmListQueryDTO {
-        constructor(ssm: string, bearerToken: Nullable<string>);
-        readonly ssm: string;
+        constructor(bearerToken: Nullable<string>);
         readonly bearerToken: Nullable<string>;
     }
     class DataSsmListQueryResult implements ssm.data.dsl.features.query.DataSsmListQueryResultDTO {
