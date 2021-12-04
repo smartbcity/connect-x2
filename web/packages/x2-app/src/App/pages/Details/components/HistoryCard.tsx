@@ -46,7 +46,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
 
     // TODO If possible We should not request all transactions here here, just fetch transaction with id,
     //  and we should probably not do http request in a sub components
-    const { result } = useFetchTransactions(ssmUri, currentSession.id)
+    const { result } = useFetchTransactions(ssmUri, currentSession.sessionName)
 
     const timeLineCells = useMemo(() => result ? toTimeLineCells(result.sessionStates, result.canGenerateCertificates, onGenerate) : undefined, [result])
 
@@ -73,7 +73,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
             className={classes.panel}
             header={t("detailsPage.transactionsHistory")}
             bodyClassName={classes.panelBody}
-            embedUrl={`${window.location.origin}/embed/${currentSession.state.details.ssm}/${currentSession.id}/history`}
+            embedUrl={`${window.location.origin}/embed/${currentSession.state.details.ssm}/${currentSession.ssmUri}/history`}
         >
             {!timeLineCells ?
                 <LoadingComponent />

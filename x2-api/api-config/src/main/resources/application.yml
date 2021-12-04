@@ -7,21 +7,21 @@ spring:
       web:
         path: /api
 
+x2:
+  ssm:
+    chaincodes:
+      - chaincode:proudhon:ssm
+
 ssm:
-  data:
-    couchdb:
-      url: http://peer0.pr-commune.smartb.network:5984
-      username: 1111
-      password: 2222
-      serviceName: ssm-couchdb-unit
-    chaincode:
-      url: http://peer0.pr-commune.smartb.network
-    filter:
-      - ssm:peer0:proudhon:ssm:account
-      - ssm:peer0:proudhon:ssm:Delivery
-      - ssm:peer0:proudhon:ssm:MobilityImpactSsm
-      - ssm:peer0:proudhon:ssm:Negociation
-      - ssm:peer0:proudhon:ssm:Certificates
+  couchdb:
+    url: http://peer0.pr-commune.smartb.network:5984
+    username: 1111
+    password: 2222
+    serviceName: ssm-couchdb-unit
+  chaincode:
+    url: http://peer0.pr-commune.smartb.network
+
+
 ---
 spring:
   config:
@@ -29,14 +29,13 @@ spring:
       on-profile: impactmate
 
 ssm:
-  data:
-    couchdb:
-      url: http://peer0.pr-commune.smartb.network:5984
-      username: 1111
-      password: 2222
-      serviceName: ssm-couchdb-unit
-    chaincode:
-      url: http://peer0.pr-commune.smartb.network
+  couchdb:
+    url: http://peer0.pr-commune.smartb.network:5984
+    username: 1111
+    password: 2222
+    serviceName: ssm-couchdb-unit
+  chaincode:
+    url: http://peer0.pr-commune.smartb.network
     filter:
       - ssm:peer0:proudhon:ssm:Request
       - ssm:peer0:proudhon:ssm:Certificates
@@ -47,14 +46,16 @@ spring:
     activate:
       on-profile: local
 
+x2:
+  ssm:
+    chaincodes:
+      - chaincode:sandbox:ssm
+
 ssm:
-  data:
-    couchdb:
-      url: http://localhost:5984
-      username: couchdb
-      password: couchdb
-      serviceName: ssm-couchdb-unit
-    chaincode:
-      url: http://localhost:9090
-    filter:
-      - ssm:sandbox:ssm:certificate
+  couchdb:
+    url: http://localhost:5984
+    username: couchdb
+    password: couchdb
+    serviceName: ssm-couchdb-unit
+  chaincode:
+    url: http://localhost:9090

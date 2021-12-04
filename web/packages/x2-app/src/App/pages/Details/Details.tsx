@@ -33,7 +33,7 @@ export const Details = (props: DetailsProps) => {
   }, [ssmName, sessionsList])
 
   const currentSession = useMemo(() => {
-    return currentSessions?.sessions?.find((session) => session.id === sessionName)
+    return currentSessions?.sessions?.find((session) => session.sessionName === sessionName)
   }, [currentSessions, sessionName])
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export const Details = (props: DetailsProps) => {
         <InformationCard currentSession={currentSession} />
       </CardContainer>
       <CardContainer>
-        <HistoryCard ssmUri={currentSSM.uri} currentSession={currentSession} onChangeTransaction={onChangeTransaction} />
+        <HistoryCard ssmUri={currentSSM.uri.uri} currentSession={currentSession} onChangeTransaction={onChangeTransaction} />
         <DetailsCard transaction={transaction} />
       </CardContainer>
     </Page>

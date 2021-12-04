@@ -34,7 +34,7 @@ export const SessionInformation = (props: SessionInformationProps) => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" position="relative" width="100vw" height="100vh">
-      <Typography align="center" className={classes.title} variant="body1">{t("detailsPage.sessionInformationsOf", { sessionName: result.id })}</Typography>
+      <Typography align="center" className={classes.title} variant="body1">{t("detailsPage.sessionInformationsOf", { sessionName: result.sessionName })}</Typography>
       <SessionInformations currentSession={result} minified />
     </Box>
   );

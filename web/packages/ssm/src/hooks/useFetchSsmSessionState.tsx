@@ -10,7 +10,7 @@ export interface FetchSsmSessionTransactionResponse {
 export const useFetchSsmSessionState = (ssmList: Map<SsmName, SSM>, ssmName: SsmName, sessionName: string, transactionId: string): FetchSsmSessionTransactionResponse => {
     const fetchSession = useCallback(
         async () => {
-            const ssmUri = ssmList.get(ssmName)?.uri!!
+            const ssmUri = ssmList.get(ssmName)?.uri?.uri ?? ""
             return SSMRequester.fetchSessionState(ssmUri, sessionName, transactionId)
         },
         [ssmList, ssmName, sessionName, transactionId],

@@ -7,7 +7,7 @@ plugins {
 
 	id("city.smartb.fixers.gradle.config") version PluginVersions.fixers
 	id("city.smartb.fixers.gradle.sonar") version PluginVersions.fixers
-	id("city.smartb.fixers.gradle.d2") version PluginVersions.fixers
+	id("city.smartb.fixers.gradle.d2") version PluginVersions.d2
 
 }
 
@@ -15,7 +15,7 @@ allprojects {
 	group = "city.smartb.x2"
 	version = System.getenv("VERSION") ?: "latest"
 	repositories {
-		jcenter()
+		mavenLocal()
 		mavenCentral()
 		Repo.snapshot.forEach {
 			maven { url = uri(it) }

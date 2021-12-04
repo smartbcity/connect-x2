@@ -8,8 +8,6 @@ pluginManagement {
 
 rootProject.name = "x2"
 
-enableFeaturePreview("GRADLE_METADATA")
-
 include(
 	"x2-api:api-config",
 	"x2-api:api-gateway",

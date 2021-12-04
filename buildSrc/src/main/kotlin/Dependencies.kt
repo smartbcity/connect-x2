@@ -1,24 +1,24 @@
-object PluginVersions {
-	const val springBoot = "2.6.0-RC1"
-	const val kotlin = "1.6.0-RC"
+import city.smartb.gradle.dependencies.FixersPluginVersions
 
-	const val fixers = "experimental-SNAPSHOT"
+object PluginVersions {
+	const val fixers = "0.3.2"
+	const val d2 = "0.3.1"
+	const val kotlin = FixersPluginVersions.kotlin
+	const val springBoot = FixersPluginVersions.springBoot
 }
 
 object Versions {
 	const val springBoot = PluginVersions.springBoot
 
-	const val ssm = "experimental-x2-SNAPSHOT"
-	const val f2 = "experimental-SNAPSHOT"
-    const val d2 = "0.1.1-SNAPSHOT"
+	const val ssm = "experimental-local-SNAPSHOT"
+	const val f2 = "0.3.1"
+
 }
 
 object Repo {
 	val snapshot: List<String> = listOf(
 		// For fixers
 		"https://oss.sonatype.org/content/repositories/snapshots",
-		// For spring 2.6.0-RC1
-		"https://repo.spring.io/milestone",
 		//For pdfbox
 		"https://jitpack.io"
 	)

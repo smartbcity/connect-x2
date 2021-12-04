@@ -16,7 +16,7 @@ const fetchSessions = (
 
     if (status === "IDLE") {
       dispatch(actions.fetchSessions(ssmName));
-      const sessions = await SSMRequester.fetchSessions(ssm!!.uri)
+      const sessions = await SSMRequester.fetchSessions(ssm!!.uri.uri)
       dispatch(actions.fetchedSessions(sessions, ssmName));
     }
   };

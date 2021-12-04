@@ -57,8 +57,13 @@ export namespace f2.dsl.fnc {
     }
 }
 export namespace ssm.chaincode.dsl {
-    interface SsmCommandDTO extends f2.dsl.cqrs.Command {
-        readonly bearerToken: Nullable<string>;
+    interface SsmQueryDTO extends f2.dsl.cqrs.Query {
+    }
+    interface SsmItemResultDTO<T> extends f2.dsl.cqrs.Event {
+        readonly item: Nullable<T>;
+    }
+    interface SsmItemsResultDTO<T> extends f2.dsl.cqrs.Event {
+        readonly items: Array<T>;
     }
 }
 export namespace ssm.chaincode.dsl.blockchain {
@@ -97,13 +102,6 @@ export namespace ssm.chaincode.dsl.model {
     interface ChaincodeDTO {
         readonly id: string;
         readonly channelId: string;
-    }
-}
-export namespace ssm.chaincode.dsl.model {
-    interface InvokeReturnDTO {
-        readonly status: string;
-        readonly info: string;
-        readonly transactionId: string;
     }
 }
 export namespace ssm.chaincode.dsl.model {
@@ -172,15 +170,6 @@ export namespace ssm.chaincode.dsl.model {
     }
 }
 export namespace ssm.chaincode.dsl.model {
-    interface SsmUriBurstDTO {
-        readonly peerId: Nullable<string>;
-        readonly channelId: string;
-        readonly chaincodeId: string;
-        readonly ssmName: string;
-        readonly ssmVersion: string;
-    }
-}
-export namespace ssm.chaincode.dsl.model {
     interface WithPrivate {
         readonly private: Nullable<kotlin.collections.Map<string, string>>;
     }
@@ -198,14 +187,32 @@ export namespace ssm.couchdb.dsl.model {
     }
 }
 export namespace ssm.couchdb.dsl.query {
+    interface CouchdbAdminListQueryDTO extends f2.dsl.cqrs.Query {
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
+    }
+    interface CouchdbAdminListQueryResultDTO extends f2.dsl.cqrs.Event {
+        readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.SsmAgentDTO>;
+    }
+}
+export namespace ssm.couchdb.dsl.query {
+    interface CouchdbChaincodeListQueryDTO extends f2.dsl.cqrs.Query {
+    }
+    interface CouchdbChaincodeListQueryResultDTO extends f2.dsl.cqrs.Event {
+        readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.uri.ChaincodeUri>;
+    }
+}
+export namespace ssm.couchdb.dsl.query {
     interface CouchdbDatabaseGetChangesQueryDTO extends f2.dsl.cqrs.Query {
         readonly channelId: string;
         readonly chaincodeId: string;
-        readonly docType: ssm.couchdb.dsl.model.DocType<any>;
+        readonly ssmName: Nullable<string>;
+        readonly sessionName: Nullable<string>;
+        readonly docType: Nullable<ssm.couchdb.dsl.model.DocType<any /*UnknownType **/>>;
         readonly lastEventId: Nullable<string>;
     }
     interface CouchdbDatabaseGetChangesQueryResultDTO extends f2.dsl.cqrs.Event {
         readonly items: kotlin.collections.List<ssm.couchdb.dsl.model.DatabaseChangesDTO>;
+        readonly lastEventId: Nullable<string>;
     }
 }
 export namespace ssm.couchdb.dsl.query {
@@ -233,7 +240,7 @@ export namespace ssm.couchdb.dsl.query {
     }
     interface CouchdbSsmGetQueryDTO extends f2.dsl.cqrs.Event {
         readonly item: Nullable<ssm.chaincode.dsl.model.SsmDTO>;
-        readonly uri: string;
+        readonly uri: ssm.chaincode.dsl.model.uri.SsmUri;
     }
 }
 export namespace ssm.couchdb.dsl.query {
@@ -246,88 +253,108 @@ export namespace ssm.couchdb.dsl.query {
     }
 }
 export namespace ssm.couchdb.dsl.query {
+    interface CouchdbSsmSessionStateGetQueryDTO extends f2.dsl.cqrs.Query {
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
+        readonly ssmName: Nullable<string>;
+        readonly sessionName: string;
+    }
+    interface CouchdbSsmSessionStateGetQueryResultDTO extends f2.dsl.cqrs.Event {
+        readonly item: ssm.chaincode.dsl.model.SsmSessionStateDTO;
+    }
+}
+export namespace ssm.couchdb.dsl.query {
     interface CouchdbSsmSessionStateListQueryDTO extends f2.dsl.cqrs.page.PageQueryDTO {
-        readonly channelId: string;
-        readonly chaincodeId: string;
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
         readonly ssm: Nullable<string>;
     }
     interface CouchdbSsmSessionStateListQueryResultDTO extends f2.dsl.cqrs.page.PageQueryResultDTO<ssm.chaincode.dsl.model.SsmSessionStateDTO> {
         readonly page: f2.dsl.cqrs.page.PageDTO<ssm.chaincode.dsl.model.SsmSessionStateDTO>;
     }
 }
+export namespace ssm.couchdb.dsl.query {
+    interface CouchdbUserListQueryDTO extends f2.dsl.cqrs.Query {
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
+    }
+    interface CouchdbUserListQueryResultDTO extends f2.dsl.cqrs.Event {
+        readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.SsmAgentDTO>;
+    }
+}
 export namespace ssm.data.dsl {
     interface SsmApiFinder {
-        dataSsmListQueryFunction(config: ssm.data.dsl.config.DataSsmConfig): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmListQuery, ssm.data.dsl.features.query.DataSsmListQueryResult>;
-        dataSsmGetQueryFunction(config: ssm.data.dsl.config.DataSsmConfig): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmGetQueryDTO, ssm.data.dsl.features.query.DataSsmGetQueryResultDTO>;
-        dataSsmSessionListQueryFunction(config: ssm.data.dsl.config.DataSsmConfig): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmSessionListQueryDTO, ssm.data.dsl.features.query.DataSsmSessionListQueryResultDTO>;
-        dataSsmSessionGetQueryFunction(config: ssm.data.dsl.config.DataSsmConfig): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmSessionGetQueryDTO, ssm.data.dsl.features.query.DataSsmSessionGetQueryResultDTO>;
-        dataSsmSessionLogListQueryFunction(config: ssm.data.dsl.config.DataSsmConfig): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmSessionLogListQueryDTO, ssm.data.dsl.features.query.DataSsmSessionLogListQueryResultDTO>;
-        dataSsmSessionLogGetQueryFunction(config: ssm.data.dsl.config.DataSsmConfig): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmSessionLogGetQueryDTO, ssm.data.dsl.features.query.DataSsmSessionLogGetQueryResultDTO>;
+        dataChaincodeListQueryFunction(): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataChaincodeListQuery, ssm.data.dsl.features.query.DataChaincodeListQueryResult>;
+        dataSsmListQueryFunction(): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmListQuery, ssm.data.dsl.features.query.DataSsmListQueryResult>;
+        dataSsmGetQueryFunction(): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmGetQueryDTO, ssm.data.dsl.features.query.DataSsmGetQueryResultDTO>;
+        dataSsmSessionListQueryFunction(): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmSessionListQueryDTO, ssm.data.dsl.features.query.DataSsmSessionListQueryResultDTO>;
+        dataSsmSessionGetQueryFunction(): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmSessionGetQueryDTO, ssm.data.dsl.features.query.DataSsmSessionGetQueryResultDTO>;
+        dataSsmSessionLogListQueryFunction(): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmSessionLogListQueryDTO, ssm.data.dsl.features.query.DataSsmSessionLogListQueryResultDTO>;
+        dataSsmSessionLogGetQueryFunction(): f2.dsl.fnc.F2Function<ssm.data.dsl.features.query.DataSsmSessionLogGetQueryDTO, ssm.data.dsl.features.query.DataSsmSessionLogGetQueryResultDTO>;
     }
 }
 export namespace ssm.data.dsl.features.query {
-    interface TxQueryDTO {
-        readonly ssm: string;
-        readonly bearerToken: Nullable<string>;
+    interface DataChaincodeListQueryDTO {
+    }
+    interface DataChaincodeListQueryResultDTO {
+        readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.uri.ChaincodeUri>;
+    }
+}
+export namespace ssm.data.dsl.features.query {
+    interface DataQueryDTO {
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUriDTO;
     }
 }
 export namespace ssm.data.dsl.features.query {
     interface DataSsmGetQueryDTO extends ssm.data.dsl.features.query.DataQueryDTO {
-        readonly ssm: string;
-        readonly bearerToken: Nullable<string>;
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUriDTO;
     }
     interface DataSsmGetQueryResultDTO {
-        readonly ssm: Nullable<ssm.data.dsl.model.DataSsm>;
+        readonly item: Nullable<ssm.data.dsl.model.DataSsm>;
     }
 }
 export namespace ssm.data.dsl.features.query {
     interface DataSsmListQueryDTO {
     }
     interface DataSsmListQueryResultDTO {
-        readonly list: kotlin.collections.List<ssm.data.dsl.model.DataSsmDTO>;
+        readonly items: kotlin.collections.List<ssm.data.dsl.model.DataSsmDTO>;
     }
 }
 export namespace ssm.data.dsl.features.query {
     interface DataSsmSessionGetQueryDTO extends ssm.data.dsl.features.query.DataQueryDTO {
-        readonly sessionId: string;
-        readonly ssm: string;
-        readonly bearerToken: Nullable<string>;
+        readonly sessionName: string;
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUriDTO;
     }
-    interface DataSsmSessionGetQueryResultDTO {
-        readonly session: Nullable<ssm.data.dsl.model.DataSsmSessionDTO>;
+    interface DataSsmSessionGetQueryResultDTO extends f2.dsl.cqrs.Event {
+        readonly item: Nullable<ssm.data.dsl.model.DataSsmSessionDTO>;
     }
 }
 export namespace ssm.data.dsl.features.query {
     interface DataSsmSessionListQueryDTO extends ssm.data.dsl.features.query.DataQueryDTO {
     }
     interface DataSsmSessionListQueryResultDTO {
-        readonly list: kotlin.collections.List<ssm.data.dsl.model.DataSsmSessionDTO>;
+        readonly items: kotlin.collections.List<ssm.data.dsl.model.DataSsmSessionDTO>;
     }
 }
 export namespace ssm.data.dsl.features.query {
     interface DataSsmSessionLogGetQueryDTO extends ssm.data.dsl.features.query.DataQueryDTO {
-        readonly sessionId: string;
+        readonly sessionName: string;
         readonly txId: string;
-        readonly ssm: string;
-        readonly bearerToken: Nullable<string>;
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUriDTO;
     }
     interface DataSsmSessionLogGetQueryResultDTO {
-        readonly ssmSessionState: Nullable<ssm.data.dsl.model.DataSsmSessionStateDTO>;
+        readonly item: Nullable<ssm.data.dsl.model.DataSsmSessionStateDTO>;
     }
 }
 export namespace ssm.data.dsl.features.query {
     interface DataSsmSessionLogListQueryDTO extends ssm.data.dsl.features.query.DataQueryDTO {
-        readonly sessionId: string;
-        readonly ssm: string;
-        readonly bearerToken: Nullable<string>;
+        readonly sessionName: string;
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUriDTO;
     }
     interface DataSsmSessionLogListQueryResultDTO {
-        readonly list: kotlin.collections.List<ssm.data.dsl.model.DataSsmSessionState>;
+        readonly items: kotlin.collections.List<ssm.data.dsl.model.DataSsmSessionState>;
     }
 }
 export namespace ssm.data.dsl.model {
     interface DataSsmDTO {
-        readonly uri: string;
+        readonly uri: ssm.chaincode.dsl.model.uri.SsmUriDTO;
         readonly ssm: ssm.chaincode.dsl.model.SsmDTO;
         readonly channel: ssm.data.dsl.model.DataChannelDTO;
         readonly version: Nullable<string>;
@@ -335,11 +362,12 @@ export namespace ssm.data.dsl.model {
 }
 export namespace ssm.data.dsl.model {
     interface DataSsmSessionDTO {
-        readonly ssmUri: string;
-        readonly id: string;
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUri;
+        readonly sessionName: string;
         readonly state: ssm.data.dsl.model.DataSsmSessionStateDTO;
         readonly channel: ssm.data.dsl.model.DataChannelDTO;
         readonly transaction: Nullable<ssm.chaincode.dsl.blockchain.TransactionDTO>;
+        readonly transactions: kotlin.collections.List<ssm.chaincode.dsl.blockchain.TransactionDTO>;
     }
 }
 export namespace ssm.data.dsl.model {
@@ -490,6 +518,35 @@ export namespace ssm.chaincode.dsl.blockchain {
         readonly mspid: string;
     }
 }
+export namespace ssm.chaincode.dsl.blockchain {
+    class Transaction implements ssm.chaincode.dsl.blockchain.TransactionDTO {
+        constructor(transactionId: string, blockId: kotlin.Long, timestamp: kotlin.Long, isValid: boolean, channelId: string, creator: ssm.chaincode.dsl.blockchain.IdentitiesInfo, nonce: Int8Array, type: any /*Class ssm.chaincode.dsl.blockchain.EnvelopeType with kind: ENUM_CLASS*/, validationCode: number);
+        readonly transactionId: string;
+        readonly blockId: kotlin.Long;
+        readonly timestamp: kotlin.Long;
+        readonly isValid: boolean;
+        readonly channelId: string;
+        readonly creator: ssm.chaincode.dsl.blockchain.IdentitiesInfo;
+        readonly nonce: Int8Array;
+        readonly type: any /*Class ssm.chaincode.dsl.blockchain.EnvelopeType with kind: ENUM_CLASS*/;
+        readonly validationCode: number;
+    }
+}
+export namespace ssm.chaincode.dsl.model {
+    class SsmAgent implements ssm.chaincode.dsl.model.SsmAgentDTO {
+        constructor(name: string, pub: Int8Array);
+        readonly name: string;
+        readonly pub: Int8Array;
+        equals(other: Nullable<any>): boolean;
+        hashCode(): number;
+        readonly Companion: {
+        };
+        component1(): string;
+        component2(): Int8Array;
+        copy(name: string, pub: Int8Array): ssm.chaincode.dsl.model.Agent;
+        toString(): string;
+    }
+}
 export namespace ssm.chaincode.dsl.model {
     class Chaincode implements ssm.chaincode.dsl.model.ChaincodeDTO {
         constructor(id: string, channelId: string);
@@ -504,14 +561,6 @@ export namespace ssm.chaincode.dsl.model {
     }
 }
 export namespace ssm.chaincode.dsl.model {
-    class InvokeReturn {
-        constructor(status: string, info: string, transactionId: string);
-        readonly status: string;
-        readonly info: string;
-        readonly transactionId: string;
-    }
-}
-export namespace ssm.chaincode.dsl.model {
     class Ssm implements ssm.chaincode.dsl.model.SsmDTO {
         constructor(name: string, transitions: kotlin.collections.List<ssm.chaincode.dsl.model.SsmTransition>);
         readonly name: string;
@@ -522,19 +571,6 @@ export namespace ssm.chaincode.dsl.model {
         toString(): string;
         hashCode(): number;
         equals(other: Nullable<any>): boolean;
-    }
-}
-export namespace ssm.chaincode.dsl.model {
-    class SsmAgent implements ssm.chaincode.dsl.model.SsmAgentDTO {
-        constructor(name: string, pub: Int8Array);
-        readonly name: string;
-        readonly pub: Int8Array;
-        equals(other: Nullable<any>): boolean;
-        hashCode(): number;
-        component1(): string;
-        component2(): Int8Array;
-        copy(name: string, pub: Int8Array): ssm.chaincode.dsl.model.SsmAgent;
-        toString(): string;
     }
 }
 export namespace ssm.chaincode.dsl.model {
@@ -643,121 +679,134 @@ export namespace ssm.chaincode.dsl.model {
         equals(other: Nullable<any>): boolean;
     }
 }
-export namespace ssm.chaincode.dsl.query {
-    class SsmGetAdminQuery implements ssm.chaincode.dsl.SsmCommandDTO {
-        constructor(bearerToken: Nullable<string>, name: string);
-        readonly bearerToken: Nullable<string>;
-        readonly name: string;
-    }
-    class SsmGetAdminResult implements f2.dsl.cqrs.Event {
-        constructor(admin: Nullable<ssm.chaincode.dsl.model.SsmAgent>);
-        readonly admin: Nullable<ssm.chaincode.dsl.model.SsmAgent>;
-    }
-}
-export namespace ssm.chaincode.dsl.query {
-    class SsmGetQuery implements ssm.chaincode.dsl.SsmCommandDTO {
-        constructor(bearerToken: Nullable<string>, name: string);
-        readonly bearerToken: Nullable<string>;
-        readonly name: string;
-    }
-    class SsmGetResult implements f2.dsl.cqrs.Event {
-        constructor(ssm: Nullable<ssm.chaincode.dsl.model.Ssm>);
-        readonly ssm: Nullable<ssm.chaincode.dsl.model.Ssm>;
+export namespace ssm.chaincode.dsl.model.uri {
+    class SsmUri implements ssm.chaincode.dsl.model.uri.SsmUriDTO {
+        constructor(uri: string);
+        readonly uri: string;
+        readonly Companion: {
+            readonly PARTS: number;
+            readonly PREFIX: string;
+        };
+        readonly channelId: string;
+        readonly chaincodeId: string;
+        readonly ssmName: string;
+        readonly ssmVersion: string;
+        component1(): string;
+        copy(uri: string): ssm.chaincode.dsl.model.uri.SsmUri;
+        toString(): string;
+        hashCode(): number;
+        equals(other: Nullable<any>): boolean;
     }
 }
 export namespace ssm.chaincode.dsl.query {
-    class SsmGetSessionLogsQuery implements ssm.chaincode.dsl.SsmCommandDTO {
-        constructor(session: string, bearerToken: Nullable<string>);
-        readonly session: string;
-        readonly bearerToken: Nullable<string>;
+    class SsmGetAdminQuery implements ssm.chaincode.dsl.SsmQueryDTO {
+        constructor(name: string);
+        readonly name: string;
+    }
+    class SsmGetAdminResult implements ssm.chaincode.dsl.SsmItemResultDTO<ssm.chaincode.dsl.model.Agent> {
+        constructor(item: Nullable<ssm.chaincode.dsl.model.Agent>);
+        readonly item: Nullable<ssm.chaincode.dsl.model.Agent>;
+    }
+}
+export namespace ssm.chaincode.dsl.query {
+    class SsmGetQuery implements ssm.chaincode.dsl.SsmQueryDTO {
+        constructor(name: string);
+        readonly name: string;
+    }
+    class SsmGetResult implements ssm.chaincode.dsl.SsmItemResultDTO<ssm.chaincode.dsl.model.Ssm> {
+        constructor(item: Nullable<ssm.chaincode.dsl.model.Ssm>);
+        readonly item: Nullable<ssm.chaincode.dsl.model.Ssm>;
+    }
+}
+export namespace ssm.chaincode.dsl.query {
+    class SsmGetSessionLogsQuery implements ssm.chaincode.dsl.SsmQueryDTO {
+        constructor(ssmUri: ssm.chaincode.dsl.model.uri.SsmUri, sessionName: string);
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUri;
+        readonly sessionName: string;
     }
     class SsmGetSessionLogsQueryResult {
-        constructor(logs: kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog>);
+        constructor(ssmUri: ssm.chaincode.dsl.model.uri.SsmUri, sessionName: string, logs: kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog>);
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUri;
+        readonly sessionName: string;
         readonly logs: kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog>;
-        component1(): kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog>;
-        copy(logs: kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog>): ssm.chaincode.dsl.query.SsmGetSessionLogsQueryResult;
+        component1(): ssm.chaincode.dsl.model.uri.SsmUri;
+        component2(): string;
+        component3(): kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog>;
+        copy(ssmUri: ssm.chaincode.dsl.model.uri.SsmUri, sessionName: string, logs: kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog>): ssm.chaincode.dsl.query.SsmGetSessionLogsQueryResult;
         toString(): string;
         hashCode(): number;
         equals(other: Nullable<any>): boolean;
     }
 }
 export namespace ssm.chaincode.dsl.query {
-    class SsmGetSessionQuery implements ssm.chaincode.dsl.SsmCommandDTO {
-        constructor(bearerToken: Nullable<string>, name: string);
-        readonly bearerToken: Nullable<string>;
-        readonly name: string;
+    class SsmGetSessionQuery implements ssm.chaincode.dsl.SsmQueryDTO {
+        constructor(sessionName: string);
+        readonly sessionName: string;
     }
-    class SsmGetSessionResult implements f2.dsl.cqrs.Event {
-        constructor(session: Nullable<ssm.chaincode.dsl.model.SsmSessionState>);
-        readonly session: Nullable<ssm.chaincode.dsl.model.SsmSessionState>;
+    class SsmGetSessionResult implements ssm.chaincode.dsl.SsmItemResultDTO<ssm.chaincode.dsl.model.SsmSessionState> {
+        constructor(item: Nullable<ssm.chaincode.dsl.model.SsmSessionState>);
+        readonly item: Nullable<ssm.chaincode.dsl.model.SsmSessionState>;
     }
 }
 export namespace ssm.chaincode.dsl.query {
-    class SsmGetTransactionQuery implements ssm.chaincode.dsl.SsmCommandDTO {
-        constructor(id: string, bearerToken: Nullable<string>);
+    class SsmGetTransactionQuery implements ssm.chaincode.dsl.SsmQueryDTO {
+        constructor(id: string);
         readonly id: string;
-        readonly bearerToken: Nullable<string>;
         component1(): string;
-        component2(): Nullable<string>;
-        copy(id: string, bearerToken: Nullable<string>): ssm.chaincode.dsl.query.SsmGetTransactionQuery;
+        copy(id: string): ssm.chaincode.dsl.query.SsmGetTransactionQuery;
         toString(): string;
         hashCode(): number;
         equals(other: Nullable<any>): boolean;
     }
-    class SsmGetTransactionQueryResult {
-        constructor(transaction: Nullable<ssm.chaincode.dsl.blockchain.Transaction>);
-        readonly transaction: Nullable<ssm.chaincode.dsl.blockchain.Transaction>;
+    class SsmGetTransactionQueryResult implements ssm.chaincode.dsl.SsmItemResultDTO<ssm.chaincode.dsl.blockchain.Transaction> {
+        constructor(item: Nullable<ssm.chaincode.dsl.blockchain.Transaction>);
+        readonly item: Nullable<ssm.chaincode.dsl.blockchain.Transaction>;
     }
 }
 export namespace ssm.chaincode.dsl.query {
-    class SsmGetUserQuery implements ssm.chaincode.dsl.SsmCommandDTO {
-        constructor(bearerToken: Nullable<string>, name: string);
-        readonly bearerToken: Nullable<string>;
+    class SsmGetUserQuery implements ssm.chaincode.dsl.SsmQueryDTO {
+        constructor(name: string);
         readonly name: string;
     }
-    class SsmGetUserResult implements f2.dsl.cqrs.Event {
-        constructor(user: Nullable<ssm.chaincode.dsl.model.SsmAgent>);
-        readonly user: Nullable<ssm.chaincode.dsl.model.SsmAgent>;
+    class SsmGetUserResult implements ssm.chaincode.dsl.SsmItemResultDTO<ssm.chaincode.dsl.model.Agent> {
+        constructor(item: Nullable<ssm.chaincode.dsl.model.Agent>);
+        readonly item: Nullable<ssm.chaincode.dsl.model.Agent>;
     }
 }
 export namespace ssm.chaincode.dsl.query {
-    class SsmListAdminQuery implements ssm.chaincode.dsl.SsmCommandDTO {
-        constructor(bearerToken: Nullable<string>);
-        readonly bearerToken: Nullable<string>;
+    class SsmListAdminQuery implements ssm.chaincode.dsl.SsmQueryDTO {
+        constructor();
     }
-    class SsmListAdminResult implements f2.dsl.cqrs.Event {
-        constructor(values: Array<string>);
-        readonly values: Array<string>;
-    }
-}
-export namespace ssm.chaincode.dsl.query {
-    class SsmListSessionQuery implements ssm.chaincode.dsl.SsmCommandDTO {
-        constructor(bearerToken: Nullable<string>);
-        readonly bearerToken: Nullable<string>;
-    }
-    class SsmListSessionResult implements f2.dsl.cqrs.Event {
-        constructor(values: Array<string>);
-        readonly values: Array<string>;
+    class SsmListAdminResult implements ssm.chaincode.dsl.SsmItemsResultDTO<string> {
+        constructor(items: Array<string>);
+        readonly items: Array<string>;
     }
 }
 export namespace ssm.chaincode.dsl.query {
-    class SsmListSsmQuery implements ssm.chaincode.dsl.SsmCommandDTO {
-        constructor(bearerToken: Nullable<string>);
-        readonly bearerToken: Nullable<string>;
+    class SsmListSessionQuery implements ssm.chaincode.dsl.SsmQueryDTO {
+        constructor();
     }
-    class SsmListSsmResult implements f2.dsl.cqrs.Event {
-        constructor(values: Array<string>);
-        readonly values: Array<string>;
+    class SsmListSessionResult implements ssm.chaincode.dsl.SsmItemsResultDTO<string> {
+        constructor(items: Array<string>);
+        readonly items: Array<string>;
     }
 }
 export namespace ssm.chaincode.dsl.query {
-    class SsmListUserQuery implements ssm.chaincode.dsl.SsmCommandDTO {
-        constructor(bearerToken: Nullable<string>);
-        readonly bearerToken: Nullable<string>;
+    class SsmListSsmQuery implements ssm.chaincode.dsl.SsmQueryDTO {
+        constructor();
     }
-    class SsmListUserResult implements f2.dsl.cqrs.Event {
-        constructor(values: Array<string>);
-        readonly values: Array<string>;
+    class SsmListSsmResult implements ssm.chaincode.dsl.SsmItemsResultDTO<string> {
+        constructor(items: Array<string>);
+        readonly items: Array<string>;
+    }
+}
+export namespace ssm.chaincode.dsl.query {
+    class SsmListUserQuery implements ssm.chaincode.dsl.SsmQueryDTO {
+        constructor();
+    }
+    class SsmListUserResult implements ssm.chaincode.dsl.SsmItemsResultDTO<string> {
+        constructor(items: Array<string>);
+        readonly items: Array<string>;
     }
 }
 export namespace ssm.couchdb.dsl.model {
@@ -775,16 +824,38 @@ export namespace ssm.couchdb.dsl.model {
     }
 }
 export namespace ssm.couchdb.dsl.query {
+    class CouchdbAdminListQuery implements ssm.couchdb.dsl.query.CouchdbAdminListQueryDTO {
+        constructor(chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri);
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
+    }
+    class CouchdbAdminListQueryResult implements ssm.couchdb.dsl.query.CouchdbAdminListQueryResultDTO {
+        constructor(items: kotlin.collections.List<ssm.chaincode.dsl.model.Agent>);
+        readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.Agent>;
+    }
+}
+export namespace ssm.couchdb.dsl.query {
+    class CouchdbChaincodeListQuery implements ssm.couchdb.dsl.query.CouchdbChaincodeListQueryDTO {
+        constructor();
+    }
+    class CouchdbChaincodeListQueryResult implements ssm.couchdb.dsl.query.CouchdbChaincodeListQueryResultDTO {
+        constructor(items: kotlin.collections.List<ssm.chaincode.dsl.model.uri.ChaincodeUri>);
+        readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.uri.ChaincodeUri>;
+    }
+}
+export namespace ssm.couchdb.dsl.query {
     class CouchdbDatabaseGetChangesQuery implements ssm.couchdb.dsl.query.CouchdbDatabaseGetChangesQueryDTO {
-        constructor(channelId: string, chaincodeId: string, docType: ssm.couchdb.dsl.model.DocType<any>, lastEventId: Nullable<string>);
+        constructor(channelId: string, chaincodeId: string, docType: Nullable<ssm.couchdb.dsl.model.DocType<any /*UnknownType **/>>, lastEventId: Nullable<string>, ssmName: Nullable<string>, sessionName: Nullable<string>);
         readonly channelId: string;
         readonly chaincodeId: string;
-        readonly docType: ssm.couchdb.dsl.model.DocType<any>;
+        readonly docType: Nullable<ssm.couchdb.dsl.model.DocType<any /*UnknownType **/>>;
         readonly lastEventId: Nullable<string>;
+        readonly ssmName: Nullable<string>;
+        readonly sessionName: Nullable<string>;
     }
-    class CouchdbSsmDatabaseGetChangesQueryResult implements ssm.couchdb.dsl.query.CouchdbDatabaseGetChangesQueryResultDTO {
-        constructor(items: kotlin.collections.List<ssm.couchdb.dsl.model.DatabaseChanges>);
+    class CouchdbDatabaseGetChangesQueryResult implements ssm.couchdb.dsl.query.CouchdbDatabaseGetChangesQueryResultDTO {
+        constructor(items: kotlin.collections.List<ssm.couchdb.dsl.model.DatabaseChanges>, lastEventId: Nullable<string>);
         readonly items: kotlin.collections.List<ssm.couchdb.dsl.model.DatabaseChanges>;
+        readonly lastEventId: Nullable<string>;
     }
 }
 export namespace ssm.couchdb.dsl.query {
@@ -793,7 +864,7 @@ export namespace ssm.couchdb.dsl.query {
         readonly channelId: string;
         readonly chaincodeId: string;
     }
-    class CouchdbSsmDatabaseGetQueryResult implements ssm.couchdb.dsl.query.CouchdbDatabaseGetQueryResultDTO {
+    class CouchdbDatabaseGetQueryResult implements ssm.couchdb.dsl.query.CouchdbDatabaseGetQueryResultDTO {
         constructor(item: Nullable<ssm.couchdb.dsl.model.Database>);
         readonly item: Nullable<ssm.couchdb.dsl.model.Database>;
     }
@@ -819,8 +890,8 @@ export namespace ssm.couchdb.dsl.query {
         readonly ssmName: string;
     }
     class CouchdbSsmGetQueryResult implements ssm.couchdb.dsl.query.CouchdbSsmGetQueryResultDTO {
-        constructor(uri: string, item: Nullable<ssm.chaincode.dsl.model.Ssm>);
-        readonly uri: string;
+        constructor(uri: ssm.chaincode.dsl.model.uri.SsmUri, item: Nullable<ssm.chaincode.dsl.model.Ssm>);
+        readonly uri: ssm.chaincode.dsl.model.uri.SsmUri;
         readonly item: Nullable<ssm.chaincode.dsl.model.Ssm>;
     }
 }
@@ -838,12 +909,23 @@ export namespace ssm.couchdb.dsl.query {
     }
 }
 export namespace ssm.couchdb.dsl.query {
+    class CouchdbSsmSessionStateGetQuery implements ssm.couchdb.dsl.query.CouchdbSsmSessionStateGetQueryDTO {
+        constructor(chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri, ssmName: Nullable<string>, sessionName: string);
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
+        readonly ssmName: Nullable<string>;
+        readonly sessionName: string;
+    }
+    class CouchdbSsmSessionStateGetQueryResult implements ssm.couchdb.dsl.query.CouchdbSsmSessionStateGetQueryResultDTO {
+        constructor(item: ssm.chaincode.dsl.model.SsmSessionStateDTO);
+        readonly item: ssm.chaincode.dsl.model.SsmSessionStateDTO;
+    }
+}
+export namespace ssm.couchdb.dsl.query {
     class CouchdbSsmSessionStateListQuery implements ssm.couchdb.dsl.query.CouchdbSsmSessionStateListQueryDTO {
-        constructor(channelId: string, chaincodeId: string, ssm: Nullable<string>, pagination: Nullable<f2.dsl.cqrs.page.OffsetPagination>);
-        readonly channelId: string;
-        readonly chaincodeId: string;
+        constructor(pagination: Nullable<f2.dsl.cqrs.page.OffsetPaginationDTO>, chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri, ssm: Nullable<string>);
+        readonly pagination: Nullable<f2.dsl.cqrs.page.OffsetPaginationDTO>;
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
         readonly ssm: Nullable<string>;
-        readonly pagination: Nullable<f2.dsl.cqrs.page.OffsetPagination>;
     }
     class CouchdbSsmSessionStateListQueryResult implements ssm.couchdb.dsl.query.CouchdbSsmSessionStateListQueryResultDTO {
         constructor(page: f2.dsl.cqrs.page.Page<ssm.chaincode.dsl.model.SsmSessionState>, pagination: Nullable<f2.dsl.cqrs.page.OffsetPaginationDTO>);
@@ -851,98 +933,113 @@ export namespace ssm.couchdb.dsl.query {
         readonly pagination: Nullable<f2.dsl.cqrs.page.OffsetPaginationDTO>;
     }
 }
+export namespace ssm.couchdb.dsl.query {
+    class CouchdbUserListQuery implements ssm.couchdb.dsl.query.CouchdbUserListQueryDTO {
+        constructor(chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri);
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
+    }
+    class CouchdbUserListQueryResult implements ssm.couchdb.dsl.query.CouchdbUserListQueryResultDTO {
+        constructor(items: kotlin.collections.List<ssm.chaincode.dsl.model.Agent>);
+        readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.Agent>;
+    }
+}
+export namespace ssm.data.dsl.features.query {
+    class DataChaincodeListQuery implements ssm.data.dsl.features.query.DataChaincodeListQueryDTO {
+        constructor();
+    }
+    class DataChaincodeListQueryResult implements ssm.data.dsl.features.query.DataChaincodeListQueryResultDTO {
+        constructor(items: kotlin.collections.List<ssm.chaincode.dsl.model.uri.ChaincodeUri>);
+        readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.uri.ChaincodeUri>;
+    }
+}
 export namespace ssm.data.dsl.features.query {
     class DataSsmGetQuery implements ssm.data.dsl.features.query.DataSsmGetQueryDTO {
-        constructor(ssm: string, bearerToken: Nullable<string>);
-        readonly ssm: string;
-        readonly bearerToken: Nullable<string>;
+        constructor(ssmUri: ssm.chaincode.dsl.model.uri.SsmUri);
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUri;
     }
     class DataSsmGetQueryResult implements ssm.data.dsl.features.query.DataSsmGetQueryResultDTO {
-        constructor(ssm: Nullable<ssm.data.dsl.model.DataSsm>);
-        readonly ssm: Nullable<ssm.data.dsl.model.DataSsm>;
+        constructor(item: Nullable<ssm.data.dsl.model.DataSsm>);
+        readonly item: Nullable<ssm.data.dsl.model.DataSsm>;
     }
 }
 export namespace ssm.data.dsl.features.query {
     class DataSsmListQuery implements ssm.data.dsl.features.query.DataSsmListQueryDTO {
-        constructor(bearerToken: Nullable<string>);
-        readonly bearerToken: Nullable<string>;
+        constructor(chaincodes: kotlin.collections.List<ssm.chaincode.dsl.model.uri.ChaincodeUri>);
+        readonly chaincodes: kotlin.collections.List<ssm.chaincode.dsl.model.uri.ChaincodeUri>;
     }
     class DataSsmListQueryResult implements ssm.data.dsl.features.query.DataSsmListQueryResultDTO {
-        constructor(list: kotlin.collections.List<ssm.data.dsl.model.DataSsm>);
-        readonly list: kotlin.collections.List<ssm.data.dsl.model.DataSsm>;
+        constructor(items: kotlin.collections.List<ssm.data.dsl.model.DataSsm>);
+        readonly items: kotlin.collections.List<ssm.data.dsl.model.DataSsm>;
     }
 }
 export namespace ssm.data.dsl.features.query {
     class DataSsmSessionGetQuery implements ssm.data.dsl.features.query.DataSsmSessionGetQueryDTO {
-        constructor(sessionId: string, ssm: string, bearerToken: Nullable<string>);
-        readonly sessionId: string;
-        readonly ssm: string;
-        readonly bearerToken: Nullable<string>;
+        constructor(sessionName: string, ssmUri: ssm.chaincode.dsl.model.uri.SsmUri);
+        readonly sessionName: string;
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUri;
     }
     class DataSsmSessionGetQueryResult implements ssm.data.dsl.features.query.DataSsmSessionGetQueryResultDTO {
-        constructor(session: Nullable<ssm.data.dsl.model.DataSsmSession>);
-        readonly session: Nullable<ssm.data.dsl.model.DataSsmSession>;
+        constructor(item: Nullable<ssm.data.dsl.model.DataSsmSession>);
+        readonly item: Nullable<ssm.data.dsl.model.DataSsmSession>;
     }
 }
 export namespace ssm.data.dsl.features.query {
     class DataSsmSessionListQuery implements ssm.data.dsl.features.query.DataSsmSessionListQueryDTO {
-        constructor(ssm: string, bearerToken: Nullable<string>);
-        readonly ssm: string;
-        readonly bearerToken: Nullable<string>;
+        constructor(ssmUri: ssm.chaincode.dsl.model.uri.SsmUri);
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUri;
     }
     class DataSsmSessionListQueryResult implements ssm.data.dsl.features.query.DataSsmSessionListQueryResultDTO {
-        constructor(list: kotlin.collections.List<ssm.data.dsl.model.DataSsmSession>);
-        readonly list: kotlin.collections.List<ssm.data.dsl.model.DataSsmSession>;
+        constructor(items: kotlin.collections.List<ssm.data.dsl.model.DataSsmSession>);
+        readonly items: kotlin.collections.List<ssm.data.dsl.model.DataSsmSession>;
     }
 }
 export namespace ssm.data.dsl.features.query {
     class DataSsmSessionLogGetQuery implements ssm.data.dsl.features.query.DataSsmSessionLogGetQueryDTO {
-        constructor(sessionId: string, txId: string, ssm: string, bearerToken: Nullable<string>);
-        readonly sessionId: string;
+        constructor(sessionName: string, txId: string, ssmUri: ssm.chaincode.dsl.model.uri.SsmUri);
+        readonly sessionName: string;
         readonly txId: string;
-        readonly ssm: string;
-        readonly bearerToken: Nullable<string>;
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUri;
     }
     class DataSsmSessionLogGetQueryResult implements ssm.data.dsl.features.query.DataSsmSessionLogGetQueryResultDTO {
-        constructor(ssmSessionState: Nullable<ssm.data.dsl.model.DataSsmSessionState>);
-        readonly ssmSessionState: Nullable<ssm.data.dsl.model.DataSsmSessionState>;
+        constructor(item: Nullable<ssm.data.dsl.model.DataSsmSessionState>);
+        readonly item: Nullable<ssm.data.dsl.model.DataSsmSessionState>;
     }
 }
 export namespace ssm.data.dsl.features.query {
     class DataSsmSessionLogListQuery implements ssm.data.dsl.features.query.DataSsmSessionLogListQueryDTO {
-        constructor(sessionId: string, ssm: string, bearerToken: Nullable<string>);
-        readonly sessionId: string;
-        readonly ssm: string;
-        readonly bearerToken: Nullable<string>;
+        constructor(sessionName: string, ssmUri: ssm.chaincode.dsl.model.uri.SsmUri);
+        readonly sessionName: string;
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUri;
     }
     class SsmSessionLogListQueryResult implements ssm.data.dsl.features.query.DataSsmSessionLogListQueryResultDTO {
-        constructor(list: kotlin.collections.List<ssm.data.dsl.model.DataSsmSessionState>);
-        readonly list: kotlin.collections.List<ssm.data.dsl.model.DataSsmSessionState>;
+        constructor(items: kotlin.collections.List<ssm.data.dsl.model.DataSsmSessionState>);
+        readonly items: kotlin.collections.List<ssm.data.dsl.model.DataSsmSessionState>;
     }
 }
 export namespace ssm.data.dsl.model {
-    class TxChannel implements ssm.data.dsl.model.DataChannelDTO {
+    class DataChannel implements ssm.data.dsl.model.DataChannelDTO {
         constructor(id: string);
         readonly id: string;
     }
 }
 export namespace ssm.data.dsl.model {
     class DataSsm implements ssm.data.dsl.model.DataSsmDTO {
-        constructor(uri: string, ssm: ssm.chaincode.dsl.model.Ssm, channel: ssm.data.dsl.model.TxChannel, version: Nullable<string>);
-        readonly uri: string;
+        constructor(uri: ssm.chaincode.dsl.model.uri.SsmUri, ssm: ssm.chaincode.dsl.model.Ssm, channel: ssm.data.dsl.model.DataChannel, version: Nullable<string>);
+        readonly uri: ssm.chaincode.dsl.model.uri.SsmUri;
         readonly ssm: ssm.chaincode.dsl.model.Ssm;
-        readonly channel: ssm.data.dsl.model.TxChannel;
+        readonly channel: ssm.data.dsl.model.DataChannel;
         readonly version: Nullable<string>;
     }
 }
 export namespace ssm.data.dsl.model {
     class DataSsmSession implements ssm.data.dsl.model.DataSsmSessionDTO {
-        constructor(id: string, state: ssm.data.dsl.model.DataSsmSessionState, channel: ssm.data.dsl.model.TxChannel, transaction: Nullable<ssm.chaincode.dsl.blockchain.Transaction>, ssmUri: string);
-        readonly id: string;
+        constructor(sessionName: string, state: ssm.data.dsl.model.DataSsmSessionState, channel: ssm.data.dsl.model.DataChannel, transaction: Nullable<ssm.chaincode.dsl.blockchain.Transaction>, ssmUri: ssm.chaincode.dsl.model.uri.SsmUri, transactions: kotlin.collections.List<ssm.chaincode.dsl.blockchain.TransactionDTO>);
+        readonly sessionName: string;
         readonly state: ssm.data.dsl.model.DataSsmSessionState;
-        readonly channel: ssm.data.dsl.model.TxChannel;
+        readonly channel: ssm.data.dsl.model.DataChannel;
         readonly transaction: Nullable<ssm.chaincode.dsl.blockchain.Transaction>;
-        readonly ssmUri: string;
+        readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUri;
+        readonly transactions: kotlin.collections.List<ssm.chaincode.dsl.blockchain.TransactionDTO>;
     }
 }
 export namespace ssm.data.dsl.model {
@@ -954,8 +1051,8 @@ export namespace ssm.data.dsl.model {
 }
 export namespace ssm.data.dsl.model {
     class DataSsmUser implements ssm.data.dsl.model.DataSsmUserDTO {
-        constructor(agent: ssm.chaincode.dsl.model.SsmAgent);
-        readonly agent: ssm.chaincode.dsl.model.SsmAgent;
+        constructor(agent: ssm.chaincode.dsl.model.Agent);
+        readonly agent: ssm.chaincode.dsl.model.Agent;
     }
 }
 export namespace x2.api.certificate.domain.features {

@@ -11,6 +11,8 @@ export type User = ssm.data.dsl.model.DataSsmUser;
 export type SsmUri = string;
 export type SsmName = string;
 
+export type SsmUriObj = ssm.chaincode.dsl.model.uri.SsmUri;
+
 
 export type DataSsmListQueryDTO = ssm.data.dsl.features.query.DataSsmListQueryDTO;
 export type DataSsmListQueryResultDTO = ssm.data.dsl.features.query.DataSsmListQueryResultDTO;

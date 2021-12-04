@@ -68,8 +68,8 @@ export const SessionInformations = (props: SessionInformationsProps) => {
             </Box>
             <Box className={clsx(classes.box, minified && classes.boxMinified)}>
                 <Box position="relative">
-                    <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.id}</Typography>
-                    <CopyToClipboard className={classes.iconButton} value={currentSession.id} />
+                    <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.sessionName}</Typography>
+                    <CopyToClipboard className={classes.iconButton} value={currentSession.sessionName} />
                 </Box>
                 <Typography variant={typovariant} className={classes.rightTypo}>{creationDate}</Typography>
                 <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.state.details.current}</Typography>

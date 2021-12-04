@@ -1,11 +1,12 @@
 package x2.api.ssm.api
 
 import f2.dsl.fnc.F2Function
+import f2.dsl.fnc.F2Supplier
 import f2.dsl.fnc.f2Function
+import f2.dsl.fnc.f2Supplier
 import f2.dsl.fnc.invoke
 import org.springframework.context.annotation.Bean
-import org.springframework.stereotype.Service
-import ssm.data.dsl.config.DataSsmConfig
+import org.springframework.context.annotation.Configuration
 import ssm.data.dsl.features.query.DataSsmGetQuery
 import ssm.data.dsl.features.query.DataSsmGetQueryFunction
 import ssm.data.dsl.features.query.DataSsmGetQueryResultDTO
@@ -24,10 +25,13 @@ import ssm.data.dsl.features.query.DataSsmSessionLogGetQueryResultDTO
 import ssm.data.dsl.features.query.DataSsmSessionLogListQuery
 import ssm.data.dsl.features.query.DataSsmSessionLogListQueryFunction
 import ssm.data.dsl.features.query.DataSsmSessionLogListQueryResultDTO
+import ssm.data.spring.autoconfigure.DataSsmProperties
+import x2.api.ssm.domain.config.X2SsmProperties
 
-@Service
-class SsmApiFinderService(
-	private val dataSsmConfig: DataSsmConfig,
+@Configuration
+open class SsmApiFinderService(
+	private val x2SsmProperties: X2SsmProperties,
+	private val dataSsmProperties: DataSsmProperties,
 	private val dataSsmListQueryFunction: DataSsmListQueryFunction,
 	private val dataSsmGetQueryFunction: DataSsmGetQueryFunction,
 	private val dataSsmSessionListQueryFunction: DataSsmSessionListQueryFunction,
@@ -36,10 +40,16 @@ class SsmApiFinderService(
 	private val dataSsmSessionLogListQueryFunction: DataSsmSessionLogListQueryFunction,
 ) {
 
+
 	@Bean
-	fun getAllSsm(): F2Function <DataSsmListQuery, DataSsmListQueryResultDTO> = f2Function { query ->
-		println(dataSsmConfig.filter)
-		dataSsmListQueryFunction(query)
+	fun getAllSsm(): F2Supplier<DataSsmListQueryResultDTO> = f2Supplier {
+		val tt = dataSsmProperties.chaincode
+		println(tt)
+		dataSsmListQueryFunction(
+			DataSsmListQuery(
+				x2SsmProperties.chaincodes
+			)
+		)
 	}
 
 	@Bean

@@ -11,7 +11,7 @@ dependencies {
     implementation("org.apache.pdfbox:pdfbox:2.0.24")
     implementation("com.github.ralfstuckert.pdfbox-layout:pdfbox2-layout:1.0.1")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.3")
 
     implementation("com.itextpdf:html2pdf:3.0.5")
 
