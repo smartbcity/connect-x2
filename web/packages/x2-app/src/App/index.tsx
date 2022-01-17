@@ -3,13 +3,13 @@ import { AppLayout } from "components";
 import { useEffect, useMemo } from "react";
 import { useTranslation, TFunction } from "react-i18next";
 import { LinkProps, Link, useLocation } from "react-router-dom";
-import { SSM } from "ssm";
+import {burst, SSM, SsmPath} from "ssm";
 import { AppRouter } from "./routes";
 import withConnect from "./withConnect";
 
 interface AppProps {
   title: string
-  ssmList: Map<string, SSM>
+  ssmList: Map<SsmPath, SSM>
 }
 
 const App = (props: AppProps) => {
@@ -34,21 +34,24 @@ const App = (props: AppProps) => {
 export default withConnect(App);
 
 
-const useMenu = (t: TFunction, ssmList: Map<string, SSM>, path: string) => {
+const useMenu = (t: TFunction, ssmList: Map<SsmPath, SSM>, path: string) => {
   return useMemo(() => getMenu(t, ssmList, path), [ssmList, path])
 }
 
-const getMenu = (t: TFunction, ssmList: Map<string, SSM>, path: string): MenuItems<LinkProps>[] => {
+const getMenu = (t: TFunction, ssmList: Map<SsmPath, SSM>, path: string): MenuItems<LinkProps>[] => {
   const ssmName = path.split("/")[1]
-  const protocolsList: MenuItem<LinkProps>[] = Array.from(ssmList.values()).map((ssm) => ({
-    key: `appLayout-protocols-${ssm.ssm.name}`,
-    label: ssm.ssm.name,
-    component: Link,
-    componentProps: {
-      to: `/${ssm.ssm.name}/sessions`
-    },
-    isSelected: ssm.ssm.name === ssmName
-  }))
+  const protocolsList: MenuItem<LinkProps>[] = Array.from(ssmList.values()).map((ssm) => {
+      const uri = burst(ssm.uri)
+      return ({
+        key: `appLayout-protocols-${ssm.ssm.name}`,
+        label: ssm.ssm.name,
+        component: Link,
+        componentProps: {
+          to: `/${uri.channelId}/${uri.chaincodeId}/${uri.ssmName}/sessions`
+        },
+        isSelected: ssm.ssm.name === ssmName
+      })
+  })
   const menu: MenuItems<LinkProps>[] = [{
     key: "appLayout-dashboard",
     label: t("dashboard"),

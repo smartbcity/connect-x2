@@ -1,5 +1,5 @@
 import {useCallback} from "react";
-import {SSM, SSMRequester, SsmUri} from "ssm";
+import {SSM, SSMRequester, SsmUriDTO} from "ssm";
 import {AsyncStatus, useAsyncResponse} from "utils";
 
 export interface FetchSSMResponse {
@@ -7,12 +7,12 @@ export interface FetchSSMResponse {
     result?: SSM;
 }
 
-export const useFetchSsm = (ssmUri: SsmUri): FetchSSMResponse => {
+export const useFetchSsm = (ssmUri: SsmUriDTO): FetchSSMResponse => {
     const fetchSSM = useCallback(
         async () => {
             return SSMRequester.fetchSSM(ssmUri)
         },
-        [ssmUri],
+        [ssmUri.uri],
     )
     return useAsyncResponse(fetchSSM)
 }

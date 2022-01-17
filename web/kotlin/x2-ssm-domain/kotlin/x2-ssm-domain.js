@@ -7666,7 +7666,7 @@
   $ssm$chaincode$dsl$model.SsmSessionStateLog = SsmSessionStateLog_0;
   $ssm$chaincode$dsl$model.SsmTransition = SsmTransition_0;
   var $ssm$chaincode$dsl$model$uri = $ssm$chaincode$dsl$model.uri || ($ssm$chaincode$dsl$model.uri = {});
-  $ssm$chaincode$dsl$model$uri.SsmUri = SsmUri_0;
+  $ssm$chaincode$dsl$model$uri.SsmUriDTO = SsmUri_0;
   var $ssm$chaincode$dsl$query = $ssm$chaincode$dsl.query || ($ssm$chaincode$dsl.query = {});
   $ssm$chaincode$dsl$query.SsmGetAdminQuery = SsmGetAdminQuery_0;
   $ssm$chaincode$dsl$query.SsmGetAdminResult = SsmGetAdminResult_0;

@@ -4,7 +4,7 @@ import {highLevelStyles} from "@smartb/g2-themes";
 import {LoadingPage, TransactionDetails} from "components";
 import {useTranslation} from "react-i18next";
 import {useParams} from "react-router";
-import {SSM, SsmName, useFetchSsmSessionState} from "ssm";
+import {useFetchSsmSessionState, useParamsSsmUri} from "ssm";
 
 const useStyles = highLevelStyles()({
   viewer: {
@@ -18,16 +18,14 @@ const useStyles = highLevelStyles()({
 })
 
 interface TransactionDetailProps {
-  ssmList: Map<SsmName, SSM>
 }
 
-export const TransactionDetail = (props: TransactionDetailProps) => {
+export const TransactionDetail = (_: TransactionDetailProps) => {
   const { t } = useTranslation()
   const classes = useStyles()
-  const { ssmList } = props
-  const { sessionName, transactionId, ssmName } = useParams<{ ssmName: string, sessionName: string, transactionId: string }>();
-
-  const {result, status} = useFetchSsmSessionState(ssmList, ssmName, sessionName, transactionId);
+  const { sessionName, transactionId } = useParams<{ sessionName: string, transactionId: string }>();
+  const ssmUri = useParamsSsmUri()
+  const {result, status} = useFetchSsmSessionState(ssmUri, sessionName, transactionId);
 
   if (status === "PENDING") return <LoadingPage />
   if (!result) return <NoMatchPage noGoBack/>

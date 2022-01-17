@@ -10,9 +10,8 @@ object PluginVersions {
 object Versions {
 	const val springBoot = PluginVersions.springBoot
 
-	const val ssm = "experimental-local-SNAPSHOT"
 	const val f2 = "0.3.1"
-
+	const val ssm = "experimental-SNAPSHOT"
 }
 
 object Repo {

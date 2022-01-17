@@ -1,5 +1,5 @@
-import {ssm} from "x2-ssm-domain";
-import {x2} from "x2-certificate-domain";
+// import {ssm} from "x2-ssm-domain";
+import {ssm, x2} from "x2-certificate-domain";
 
 export type TransactionDTO = ssm.chaincode.dsl.blockchain.TransactionDTO;
 export type Transition = ssm.chaincode.dsl.model.SsmTransition;
@@ -8,12 +8,41 @@ export type Session = ssm.data.dsl.model.DataSsmSessionDTO;
 export type SSM = ssm.data.dsl.model.DataSsmDTO;
 export type SessionState = ssm.data.dsl.model.DataSsmSessionStateDTO;
 export type User = ssm.data.dsl.model.DataSsmUser;
-export interface SsmUri {
-    readonly uri: string
-}
-export type SsmName = string;
+export type SsmUri = ssm.chaincode.dsl.model.uri.SsmUri;
+export type SsmPath = string;
 
-export type SsmUriObj = ssm.chaincode.dsl.model.uri.SsmUri;
+export interface SsmUriDTO {
+    readonly uri: SsmPath
+}
+
+// export class SsmUriObj extends ssm.chaincode.dsl.model.uri.SsmUri {}
+export interface SsmUriObj {
+    readonly channelId: string;
+    readonly chaincodeId: string;
+    readonly ssmName: string;
+}
+
+// export type SsmUriDto = ssm.chaincode.dsl.model.uri.SsmUriDTO;
+export const burst = (ssmUri: SsmUriDTO): SsmUriObj => {
+    const values = ssmUri.uri.replace("ssm:", "").split(":")
+    return {
+        channelId: values[0],
+        chaincodeId: values[1],
+        ssmName: values[2]
+    }
+}
+
+// export type SsmUriDto = ssm.chaincode.dsl.model.uri.SsmUriDTO;
+export const toUrlPath = (ssmUri: SsmUriDTO): String => {
+    const values = burst(ssmUri)
+    return `${values.channelId}/${values.chaincodeId}/${values.ssmName}`
+}
+
+export type SsmName = string;
+export type SessionName = string;
+export type ChannelId = string;
+export type ChaincodeId = string;
+
 
 
 export type DataSsmListQueryDTO = ssm.data.dsl.features.query.DataSsmListQueryDTO;

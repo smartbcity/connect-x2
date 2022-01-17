@@ -19,7 +19,7 @@ import {
     GenerateCertificateFromSessionStateQuery,
     GenerateCertificateFromSessionStateResult,
     CanGenerateCertificateQuery,
-    CanGenerateCertificateResult, SsmUri
+    CanGenerateCertificateResult, SsmUriDTO, defaultProtocols
 } from "./models";
 
 import {requestCoop, requestCoops} from "utils";
@@ -32,22 +32,22 @@ const fetchSSMs = async (): Promise<SSM[]> => {
     )
 };
 
-const fetchSSM = async (ssmUri: SsmUri): Promise<SSM | undefined> => {
-    return requestCoop<DataSsmGetQueryDTO, DataSsmGetQueryResultDTO>("getSsm", {ssmUri: {uri:ssmUri} } as DataSsmGetQueryDTO).then(
+const fetchSSM = async (ssmUri: SsmUriDTO): Promise<SSM | undefined> => {
+    return requestCoop<DataSsmGetQueryDTO, DataSsmGetQueryResultDTO>("getSsm", {ssmUri: ssmUri } as DataSsmGetQueryDTO).then(
         it => it.item ?? undefined
     )
 };
 
-const fetchSessions = async (ssmUri: SsmUri): Promise<Session[]> => {
-    return requestCoop<DataSsmSessionListQueryDTO, DataSsmSessionListQueryResultDTO>("getAllSessions", {ssmUri: {uri:ssmUri} } as DataSsmSessionListQueryDTO).then(
+const fetchSessions = async (ssmUri: SsmUriDTO): Promise<Session[]> => {
+    return requestCoop<DataSsmSessionListQueryDTO, DataSsmSessionListQueryResultDTO>("getAllSessions", {ssmUri: ssmUri } as DataSsmSessionListQueryDTO).then(
         it => it.items ?? []
     )
 };
 
-const fetchSession = async (ssmUri: SsmUri, sessionId: string): Promise<Session | undefined> => {
+const fetchSession = async (ssmUri: SsmUriDTO, sessionId: string): Promise<Session | undefined> => {
     return requestCoop<DataSsmSessionGetQueryDTO, DataSsmSessionGetQueryResultDTO>("getSession", {
         sessionName: sessionId,
-        ssmUri: {uri:ssmUri}
+        ssmUri: ssmUri
     } as DataSsmSessionGetQueryDTO).then(
         it => it.item  ?? undefined
     )
@@ -55,26 +55,26 @@ const fetchSession = async (ssmUri: SsmUri, sessionId: string): Promise<Session 
 
 
 const fetchSessionStates = async (
-    ssmUri: SsmUri,
+    ssmUri: SsmUriDTO,
     sessionId: string
 ): Promise<SessionState[]> => {
     return requestCoop<DataSsmSessionLogListQueryDTO, DataSsmSessionLogListQueryResultDTO>("getSessionLogs", {
         sessionName: sessionId,
-        ssmUri: {uri:ssmUri}
+        ssmUri: ssmUri
     } as DataSsmSessionLogListQueryDTO).then(
         it => it.items ?? []
     )
 };
 
 const fetchSessionState = async (
-    ssmUri: SsmUri,
+    ssmUri: SsmUriDTO,
     sessionId: string,
     transactionId: string
 ): Promise<SessionState | undefined> => {
     return requestCoop<DataSsmSessionLogGetQueryDTO, DataSsmSessionLogGetQueryResultDTO>("getOneSessionLog", {
         txId: transactionId,
         sessionName: sessionId,
-        ssmUri: {uri:ssmUri}
+        ssmUri: ssmUri
     } as DataSsmSessionLogGetQueryDTO).then(
         it => {
             return it.item ?? undefined
@@ -118,9 +118,27 @@ const CanGenerateCertificates = async (
     return requestCoops<CanGenerateCertificateQuery[], CanGenerateCertificateResult>("canGenerateCertificate", queries)
 }
 
+const fetchSSMsAsync = async (setSsmList: (ssmList: Map<SsmUriDTO, SSM>) => void) => {
+    const ssmMap = new Map<SsmUriDTO, SSM>()
+    const ssms = await SSMRequester.fetchSSMs()
+    if (defaultProtocols && defaultProtocols.length > 0) {
+        ssms.forEach((ssm) => {
+            if (defaultProtocols.includes(ssm.ssm.name)) {
+                ssmMap.set(ssm.uri, ssm)
+            }
+        })
+    } else {
+        ssms.forEach((ssm) => {
+            ssmMap.set(ssm.uri, ssm)
+        })
+    }
+    setSsmList(ssmMap)
+}
+
 
 export const SSMRequester = {
     fetchSSMs: fetchSSMs,
+    fetchSSMsAsync: fetchSSMsAsync,
     fetchSSM: fetchSSM,
     fetchSessions: fetchSessions,
     fetchSession: fetchSession,

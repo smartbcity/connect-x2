@@ -6,7 +6,7 @@ import { CertificatPopUp, LoadingPage, toTimeLineCells } from "components";
 import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import { SessionState, useFetchTransactions } from "ssm";
+import {SessionState, useFetchTransactions, useParamsSsmUri} from "ssm";
 
 const useStyles = highLevelStyles()({
   viewer: {
@@ -46,7 +46,8 @@ export const TransactionHistory = (props: TransactionHistoryProps) => {
   const { } = props
   const { t } = useTranslation()
   const classes = useStyles()
-  const { ssmName, sessionName } = useParams<{ ssmName: string, sessionName: string }>();
+  const ssmUri = useParamsSsmUri()
+  const { sessionName } = useParams<{ sessionName: string }>();
 
   const [sessionStatePdf, setSessionStatePdf] = useState<SessionState | undefined>(undefined)
   const onGenerate = useCallback(
@@ -58,7 +59,7 @@ export const TransactionHistory = (props: TransactionHistoryProps) => {
     [],
   )
 
-  const { result, status } = useFetchTransactions({uri: ssmName}, sessionName)
+  const { result, status } = useFetchTransactions(ssmUri, sessionName)
 
   const timeLineCells = useMemo(() => result ? toTimeLineCells(result.sessionStates, result.canGenerateCertificates, onGenerate, true) : undefined, [result])
 

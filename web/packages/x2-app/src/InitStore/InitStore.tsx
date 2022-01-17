@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { SSM, defaultProtocols } from "ssm";
+import {SSM, SsmPath, SsmUriDTO} from "ssm";
 import { LoadingPage } from "components";
 import { SSMRequester } from "ssm";
 import { useExtendedAuth } from "OptionnalKeycloakProvider";
 import App from "App";
 
 interface InitStoreProps {
-  ssmList: Map<string, SSM>
-  setSsmList: (ssmList: Map<string, SSM>) => void
+  ssmList: Map<SsmPath, SSM>
+  setSsmList: (ssmList: Map<SsmUriDTO, SSM>) => void
 }
 
 export const InitStore = (props: InitStoreProps) => {
@@ -22,7 +22,7 @@ export const InitStore = (props: InitStoreProps) => {
       //@ts-ignore
       window._env_.COOP_URL = service.getSSMInfo().url
     }
-    fetchSSMs(setSsmList)
+    SSMRequester.fetchSSMsAsync(setSsmList)
   }, [auth?.keycloak.authenticated, auth?.service.getSSMInfo, setSsmList])
 
 
@@ -40,19 +40,3 @@ export const InitStore = (props: InitStoreProps) => {
   );
 };
 
-const fetchSSMs = async (setSsmList: (ssmList: Map<string, SSM>) => void) => {
-  const ssmMap = new Map<string, SSM>()
-  const ssms = await SSMRequester.fetchSSMs()
-  if (defaultProtocols && defaultProtocols.length > 0) {
-    ssms.forEach((ssm) => {
-      if (defaultProtocols.includes(ssm.ssm.name)) {
-        ssmMap.set(ssm.ssm.name, ssm)
-      }
-    })
-  } else {
-    ssms.forEach((ssm) => {
-      ssmMap.set(ssm.ssm.name, ssm)
-    })
-  }
-  setSsmList(ssmMap)
-}

@@ -1,5 +1,5 @@
 import {useCallback} from "react";
-import {SessionState, SSM, SsmName, SSMRequester} from "ssm";
+import {SessionName, SessionState, SSMRequester, SsmUriDTO} from "ssm";
 import {AsyncStatus, useAsyncResponse} from "utils";
 
 export interface FetchSsmSessionTransactionResponse {
@@ -7,13 +7,13 @@ export interface FetchSsmSessionTransactionResponse {
     result?: SessionState;
 }
 
-export const useFetchSsmSessionState = (ssmList: Map<SsmName, SSM>, ssmName: SsmName, sessionName: string, transactionId: string): FetchSsmSessionTransactionResponse => {
+export const useFetchSsmSessionState = (ssmUri: SsmUriDTO, sessionName: SessionName, transactionId: string): FetchSsmSessionTransactionResponse => {
     const fetchSession = useCallback(
         async () => {
-            const ssmUri = ssmList.get(ssmName)?.uri?.uri ?? ""
+            // const ssmUri = ssmList.get(ssmUri)?.uri?.uri ?? ""
             return SSMRequester.fetchSessionState(ssmUri, sessionName, transactionId)
         },
-        [ssmList, ssmName, sessionName, transactionId],
+        [ssmUri.uri, sessionName, transactionId],
     )
     return useAsyncResponse(fetchSession)
 }
