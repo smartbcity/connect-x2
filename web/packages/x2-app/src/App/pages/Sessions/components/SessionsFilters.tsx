@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { Filters, useFilters, FiltersAction, FiltersField } from "@smartb/g2-forms"
 import { parse } from "qs"
+import { SsmUriDTO } from "ssm";
 
 type SessionsFiltersValues = {
     from?: Date
@@ -11,12 +12,12 @@ type SessionsFiltersValues = {
 }
 
 interface SessionsFiltersProps {
-    gotoSessions: (ssmName: string, params: Object) => void
-    ssmName: string
+    gotoSessions: (ssmUri: SsmUriDTO, params: Object) => void
+    ssmUri: SsmUriDTO
 }
 
 export const SessionsFilters = (props: SessionsFiltersProps) => {
-    const { gotoSessions, ssmName } = props
+    const { gotoSessions, ssmUri } = props
 
     const fields = useMemo((): FiltersField[] => {
         const params = parse(window.location.search, { ignoreQueryPrefix: true })
@@ -77,7 +78,7 @@ export const SessionsFilters = (props: SessionsFiltersProps) => {
             const params: {from?: number, to?: number} = {}
             if (values.from) params.from = values.from.getTime()
             if (values.to) params.to = values.to.getTime()
-            gotoSessions(ssmName, {...values, ...params})
+            gotoSessions(ssmUri, {...values, ...params})
         }
     })
 

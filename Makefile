@@ -6,7 +6,7 @@ FRONT_X2_LATEST		:= ${FRONT_X2_NAME}:latest
 X2_APP_NAME	   	 	:= smartbcity/x2-gateway
 X2_APP_IMG	    	:= ${X2_APP_NAME}:${VERSION}
 X2_APP_LATEST		:= ${X2_APP_NAME}:latest
-X2_APP_PACKAGE	   	:= :api:api-gateway:bootBuildImage
+X2_APP_PACKAGE	   	:= :x2-api:api-gateway:bootBuildImage
 
 X2_SSM_CERTIFICATE_PROVIDER_NAME	   	:= smartbcity/x2-ssm-certificate-provider
 X2_SSM_CERTIFICATE_PROVIDER_IMG	    	:= ${X2_SSM_CERTIFICATE_PROVIDER_NAME}:${VERSION}
@@ -22,7 +22,7 @@ push-latest: push-latest-x2-front push-latest-x2-api push-latest-x2-ssm-certific
 
 
 package-x2-api:
-	VERSION=${VERSION} ./gradlew build ${X2_APP_PACKAGE}
+	VERSION=${VERSION} ./gradlew build ${X2_APP_PACKAGE} -x test
 
 push-x2-api:
 	@docker push ${X2_APP_IMG}

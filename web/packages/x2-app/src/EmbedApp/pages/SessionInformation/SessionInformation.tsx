@@ -4,7 +4,7 @@ import {highLevelStyles} from "@smartb/g2-themes";
 import {LoadingPage, SessionInformations} from "components";
 import {useTranslation} from "react-i18next";
 import {useParams} from "react-router";
-import {useFetchSsmSession} from "ssm";
+import {useFetchSsmSession, useParamsSsmUri} from "ssm";
 
 const useStyles = highLevelStyles()({
   viewer: {
@@ -24,9 +24,10 @@ export const SessionInformation = (props: SessionInformationProps) => {
   const { } = props;
   const { t } = useTranslation()
   const classes = useStyles()
-  const { sessionName, ssmName } = useParams<{ ssmName: string, sessionName: string }>();
+  const { sessionName } = useParams<{ sessionName: string }>();
+  const ssmUri  = useParamsSsmUri()
 
-  const {result, status} = useFetchSsmSession(ssmName, sessionName);
+  const {result, status} = useFetchSsmSession(ssmUri, sessionName);
 
   if (status === "PENDING") return <LoadingPage />
 
@@ -34,7 +35,7 @@ export const SessionInformation = (props: SessionInformationProps) => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" position="relative" width="100vw" height="100vh">
-      <Typography align="center" className={classes.title} variant="body1">{t("detailsPage.sessionInformationsOf", { sessionName: result.id })}</Typography>
+      <Typography align="center" className={classes.title} variant="body1">{t("detailsPage.sessionInformationsOf", { sessionName: result.sessionName })}</Typography>
       <SessionInformations currentSession={result} minified />
     </Box>
   );

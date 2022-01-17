@@ -8,15 +8,7 @@ import x2.api.certificate.domain.model.Lang
 import x2.api.certificate.domain.model.StringI18n
 import java.util.UUID
 
-/**
- * Merge with domain-api.test
- */
-
-class DataTest {
-    companion object
-}
-
-fun DataTest.Companion.certificateCredentials(
+fun DataTest.certificateCredentials(
      id: String = UUID.randomUUID().toString(),
      title: CertificateData = certificateData(),
      holder: CertificateSigner = certificateSigner(),
@@ -34,7 +26,7 @@ fun DataTest.Companion.certificateCredentials(
     payload = payload
 )
 
-fun DataTest.Companion.certificateProtocol(
+fun DataTest.certificateProtocol(
     validationProtocol: CertificateData = certificateData(),
     protocolEngineVersion: CertificateData = certificateData(),
     channel: CertificateData = certificateData(),
@@ -50,7 +42,7 @@ fun DataTest.Companion.certificateProtocol(
     url = url
 )
 
-fun DataTest.Companion.certificateSigner(
+fun DataTest.certificateSigner(
     name: CertificateData = certificateData(),
     organization: String = "",
     roles: String? = null,
@@ -62,7 +54,39 @@ fun DataTest.Companion.certificateSigner(
     signature = signature
 )
 
-fun DataTest.Companion.certificateData(
+fun DataTest.certificateCredentials(
+
+) = CertificateCredentials(
+    id = UUID.randomUUID().toString(),
+    issuer = CertificateSigner(
+        name = certificateData(),
+        organization = "L'organisation issuer",
+        roles = null,
+        signature = "La signature de l'organisation issuer"
+    ),
+    holder = CertificateSigner(
+        name = certificateData(),
+        organization = "L'organisation holder",
+        roles = null,
+        signature = "La signature de l'organisation holder"
+    ),
+    payload = listOf(
+        certificateData()
+    ).toTypedArray(),
+    protocol = CertificateProtocol(
+        validationProtocol = certificateData(),
+        protocolEngineVersion = certificateData(),
+        channel = certificateData(),
+        session = certificateData(),
+        additionals = emptyArray(),
+        url = "http://www.smartb.city"
+    ),
+    title = certificateData(value = stringI18n("Le titre!!!!")),
+    type = emptyArray(),
+    context = emptyArray()
+)
+
+fun DataTest.certificateData(
     label: StringI18n = stringI18n(),
     value: StringI18n = stringI18n(),
     unit: StringI18n = stringI18n(),
@@ -72,7 +96,51 @@ fun DataTest.Companion.certificateData(
     unit = unit
 )
 
-fun DataTest.Companion.stringI18n(
-    value: String = "",
+fun DataTest.stringI18n(
+    value: String = "Voila du text",
     lang: Lang = Lang.EN
 ) = mapOf(lang to value)
+
+
+fun DataTest.certificate2() = DataTest.certificateCredentials(
+    id = "bl-bl-bl-bl",
+    title = DataTest.certificateData(value = DataTest.stringI18n("Certificate of Credit Insurance")),
+    holder = DataTest.certificateSigner(
+        name = DataTest.certificateData(value = DataTest.stringI18n("Elie Jible")),
+        organization = "Colisactiv",
+        roles = "CEO",
+        signature = "CA"
+    ),
+    issuer = DataTest.certificateSigner(
+        name = DataTest.certificateData(value = DataTest.stringI18n("Jeanne Alyztou")),
+        organization = "SmartB",
+        roles = "CEO",
+        signature = "SB"
+    ),
+    protocol = DataTest.certificateProtocol(
+        validationProtocol = DataTest.certificateData(
+            label = DataTest.stringI18n("Validation Protocol"),
+            value = DataTest.stringI18n("Delivery")
+        ),
+        protocolEngineVersion = DataTest.certificateData(
+            label = DataTest.stringI18n("Protocol Engine Version"),
+            value = DataTest.stringI18n("ssm-yper")
+        ),
+        channel = DataTest.certificateData(
+            label = DataTest.stringI18n("Channel"),
+            value = DataTest.stringI18n("territoire-angers"),
+        ),
+        session = DataTest.certificateData(
+            label = DataTest.stringI18n("Session"),
+            value = DataTest.stringI18n("delivery-U-U-I-D")
+        ),
+        url = "http://app.colisactiv.fr"
+    ),
+    payload = arrayOf(
+        DataTest.certificateData(
+            label = DataTest.stringI18n("Amount of CO2 saved"),
+            value = DataTest.stringI18n("666"),
+            unit = DataTest.stringI18n("g")
+        )
+    )
+)

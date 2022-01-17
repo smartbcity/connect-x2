@@ -3,7 +3,7 @@ import { Box, Typography } from '@material-ui/core'
 import { useTranslation, TFunction } from 'react-i18next'
 import { useCallback, useMemo, useState } from 'react'
 import { highLevelStyles } from '@smartb/g2-themes'
-import { Session } from 'ssm'
+import {Session, SsmUriDTO} from 'ssm'
 import { LoadingComponent } from 'components'
 
 const useStyles = highLevelStyles()({
@@ -44,20 +44,21 @@ interface SessionColumn {
 }
 
 interface SessionTableProps {
+    ssmUri: SsmUriDTO
     sessions?: Session[]
     isLoading?: boolean
-    gotoSessionDetails: (ssmName: string, sessionName: any) => void
+    gotoSessionDetails: (ssmUri: SsmUriDTO, sessionName: any) => void
 }
 
 export const SessionTable = (props: SessionTableProps) => {
-    const { sessions, gotoSessionDetails, isLoading = false } = props
+    const { ssmUri, sessions, gotoSessionDetails, isLoading = false } = props
     const { t } = useTranslation()
     const [page, setPage] = useState(1)
     const classes = useStyles()
     const data: SessionColumn[] = useMemo(() => {
         if (!sessions) return []
         return sessions.map((session): SessionColumn => ({
-            id: session.id,
+            id: session.sessionName,
             creationDate: new Date(session.transaction?.timestamp).toLocaleDateString(),
             channel: session.channel.id,
             protocolEngine: session.state.details.ssm as string,
@@ -83,7 +84,7 @@ export const SessionTable = (props: SessionTableProps) => {
     )
 
     const onRowClicked = useCallback(
-        (row: SessionColumn) => gotoSessionDetails(row.protocolEngine, row.id),
+        (row: SessionColumn) => gotoSessionDetails(ssmUri, row.id),
         [gotoSessionDetails],
     )
 

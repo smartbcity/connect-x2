@@ -2,9 +2,8 @@ import { Timeline, TimeLineCell } from "@smartb/g2-components"
 import { LoadingComponent, Panel, toTimeLineCells, CertificatPopUp } from "components"
 import { useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Session, SessionState, useFetchTransactions } from "ssm"
+import {Session, SessionState, SsmUriDTO, toUrlPath, useFetchTransactions} from "ssm"
 import { highLevelStyles } from "@smartb/g2-themes"
-
 
 const useStyles = highLevelStyles()({
     panel: {
@@ -24,13 +23,13 @@ const useStyles = highLevelStyles()({
 })
 
 interface HistoryCardProps {
-    ssmName: string
+    ssmUri: SsmUriDTO
     currentSession: Session
     onChangeTransaction: (log?: SessionState) => void
 }
 
 export const HistoryCard = (props: HistoryCardProps) => {
-    const { ssmName, currentSession, onChangeTransaction } = props
+    const { ssmUri, currentSession, onChangeTransaction } = props
     const { t } = useTranslation()
     const classes = useStyles()
     const [selectedCellId, setSelectedCellId] = useState<string | undefined>(undefined)
@@ -40,6 +39,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
         (sessionState: SessionState) => setSessionStatePdf(sessionState),
         [],
     )
+    const urlPath = toUrlPath(ssmUri)
     const onClosePopUp = useCallback(
         () => setSessionStatePdf(undefined),
         [],
@@ -47,7 +47,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
 
     // TODO If possible We should not request all transactions here here, just fetch transaction with id,
     //  and we should probably not do http request in a sub components
-    const { result } = useFetchTransactions(ssmName, currentSession.id)
+    const { result } = useFetchTransactions(ssmUri, currentSession.sessionName)
 
     const timeLineCells = useMemo(() => result ? toTimeLineCells(result.sessionStates, result.canGenerateCertificates, onGenerate) : undefined, [result])
 
@@ -74,7 +74,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
             className={classes.panel}
             header={t("detailsPage.transactionsHistory")}
             bodyClassName={classes.panelBody}
-            embedUrl={`${window.location.origin}/embed/${currentSession.state.details.ssm}/${currentSession.id}/history`}
+            embedUrl={`${window.location.origin}/embed/${urlPath}/${currentSession.sessionName}/history`}
         >
             {!timeLineCells ?
                 <LoadingComponent />

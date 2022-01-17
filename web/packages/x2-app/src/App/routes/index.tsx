@@ -10,10 +10,10 @@ export const AppRouter = () => {
       <Route exact path="/" >
         <Dashboard />
       </Route>
-      <Route exact path="/:ssmName/sessions" >
+      <Route exact path="/:channelId/:chaincodeId/:ssmName/sessions" >
         <Sessions />
       </Route>
-      <Route exact path="/:ssmName/:sessionName/details" >
+      <Route exact path="/:channelId/:chaincodeId/:ssmName/:sessionName/details" >
         <Details />
       </Route>
     </Router>

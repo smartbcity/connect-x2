@@ -1,0 +1,60 @@
+server:
+  port: 8082
+
+spring:
+  cloud:
+    function:
+      web:
+        path: /api
+
+x2:
+  ssm:
+    chaincodes:
+      - chaincode:sandbox:ssm
+
+ssm:
+  couchdb:
+    url: http://localhost:5984
+    username: couchdb
+    password: couchdb
+    serviceName: ssm-couchdb-unit
+  chaincode:
+    url: http://localhost:9090
+
+---
+spring:
+  config:
+    activate:
+      on-profile: impactmate
+
+ssm:
+  couchdb:
+    url: http://peer0.pr-commune.smartb.network:5984
+    username: 1111
+    password: 2222
+    serviceName: ssm-couchdb-unit
+  chaincode:
+    url: "http://peer0.pr-commune.smartb.network"
+    filter:
+      - ssm:peer0:proudhon:ssm:Request
+      - ssm:peer0:proudhon:ssm:Certificates
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+x2:
+  ssm:
+    chaincodes:
+      - chaincode:proudhon:ssm
+
+ssm:
+  couchdb:
+    url: "http://peer0.pr-commune.smartb.network:5984"
+    username: 1111
+    password: 2222
+    serviceName: ssm-couchdb-unit
+  chaincode:
+    url: "http://peer0.pr-commune.smartb.network"

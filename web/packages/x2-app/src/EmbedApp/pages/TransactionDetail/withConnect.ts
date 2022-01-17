@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
+import {State} from "../../../store";
 
-const mapStateToProps = () => ({
+const mapStateToProps = (_: State) => ({
 });
 
 const mapDispatchToProps = {

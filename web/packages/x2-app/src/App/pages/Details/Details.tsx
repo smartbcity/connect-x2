@@ -4,7 +4,7 @@ import { LoadingComponent, Page } from "components";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import { SSM, Session, SessionState } from "ssm";
+import {SSM, Session, SessionState, useParamsSsmUri, SsmUriDTO, SsmPath} from "ssm";
 import { AsyncObject } from "utils";
 import { DetailsCard } from "./components/DetailsCard";
 import { HistoryCard } from "./components/HistoryCard";
@@ -13,32 +13,33 @@ import { ProtocolCard } from "./components/ProtocolCard";
 
 interface DetailsProps {
   setTitle: (title: string) => void
-  ssmList: Map<string, SSM>
-  sessionsList: Map<string, AsyncObject<{ sessions?: Session[] }>>
-  fetchSessions: (ssmName: string) => void
+  ssmList: Map<SsmPath, SSM>
+  sessionsList: Map<SsmPath, AsyncObject<{ sessions?: Session[] }>>
+  fetchSessions: (uri: SsmUriDTO) => void
 }
 
 export const Details = (props: DetailsProps) => {
   const { setTitle, ssmList, fetchSessions, sessionsList } = props;
   const { t } = useTranslation()
-  const { ssmName, sessionName } = useParams<{ ssmName: string, sessionName: string }>();
+  const ssmUri = useParamsSsmUri()
+  const { sessionName } = useParams<{ sessionName: string }>();
   const [transaction, setTransaction] = useState<SessionState | undefined>(undefined)
 
   const currentSSM = useMemo(() => {
-    return ssmList.get(ssmName)
-  }, [ssmName, sessionName, ssmList])
+    return ssmList.get(ssmUri.uri)
+  }, [ssmUri.uri, sessionName, ssmList])
 
   const currentSessions = useMemo(() => {
-    return sessionsList.get(ssmName)
-  }, [ssmName, sessionsList])
+    return sessionsList.get(ssmUri.uri)
+  }, [sessionName, sessionsList])
 
   const currentSession = useMemo(() => {
-    return currentSessions?.sessions?.find((session) => session.id === sessionName)
+    return currentSessions?.sessions?.find((session) => session.sessionName === sessionName)
   }, [currentSessions, sessionName])
 
   useEffect(() => {
-    fetchSessions(ssmName)
-  }, [ssmName, fetchSessions])
+    fetchSessions(ssmUri)
+  }, [currentSSM, fetchSessions])
 
 
   const onChangeTransaction = useCallback(
@@ -54,12 +55,12 @@ export const Details = (props: DetailsProps) => {
       title={t("sessionsDetails")}
     >
       <CardContainer>
-        <ProtocolCard currentSSM={currentSSM} />
-        <InformationCard currentSession={currentSession} />
+        <ProtocolCard ssmUri={currentSSM.uri} currentSSM={currentSSM} />
+        <InformationCard ssmUri={currentSSM.uri} currentSession={currentSession} />
       </CardContainer>
       <CardContainer>
-        <HistoryCard ssmName={ssmName} currentSession={currentSession} onChangeTransaction={onChangeTransaction} />
-        <DetailsCard transaction={transaction} />
+        <HistoryCard ssmUri={currentSSM.uri} currentSession={currentSession} onChangeTransaction={onChangeTransaction} />
+        <DetailsCard ssmUri={currentSSM.uri} transaction={transaction} />
       </CardContainer>
     </Page>
   );

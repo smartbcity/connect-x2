@@ -1,14 +1,18 @@
 import { push } from "connected-react-router";
 import {stringify} from "qs"
-
+import {burst, SsmUriDTO} from "ssm";
 
 const pushUrl = (url: string) => push(url);
 
-const sessionDetails = (ssmName: string, sessionName: string) => push(`/${ssmName}/${sessionName}/details`)
+const sessionDetails = (ssmUri: SsmUriDTO, sessionName: string) => {
+  const values = burst(ssmUri)
+  return push(`/${values.channelId}/${values.chaincodeId}/${values.ssmName}/${sessionName}/details`)
+}
 
-
-const sessions = (ssmName: string, params: Object) => push(`/${ssmName}/sessions${stringify(params, { addQueryPrefix: true, arrayFormat: 'repeat' })}`)
-
+const sessions = (ssmUri: SsmUriDTO, params: Object) => {
+  const values = burst(ssmUri)
+  return push(`/${values.channelId}/${values.chaincodeId}/${values.ssmName}/sessions${stringify(params, {addQueryPrefix: true, arrayFormat: 'repeat'})}`)
+}
 export const goto = {
   push: pushUrl,
   sessionDetails: sessionDetails,

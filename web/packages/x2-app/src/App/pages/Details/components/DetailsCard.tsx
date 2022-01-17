@@ -1,6 +1,6 @@
 import { Panel, TransactionDetails } from "components"
 import { useTranslation } from "react-i18next"
-import { SessionState } from "ssm";
+import {SessionState, SsmUriDTO, toUrlPath} from "ssm";
 import { highLevelStyles } from "@smartb/g2-themes";
 import { Box, Typography } from "@material-ui/core";
 
@@ -19,14 +19,17 @@ const useStyles = highLevelStyles()({
 })
 
 interface DetailsCardProps {
+    ssmUri: SsmUriDTO
     transaction?: SessionState
 }
 
 export const DetailsCard = (props: DetailsCardProps) => {
-    const { transaction } = props
+    const { transaction, ssmUri } = props
     const { t } = useTranslation()
     const classes = useStyles()
-    const embed = transaction ? `${window.location.origin}/embed/${transaction?.details.ssm}/${transaction?.details.session}/${transaction?.transaction?.transactionId}/details` : undefined
+    const urlPath = toUrlPath(ssmUri)
+
+    const embed = transaction ? `${window.location.origin}/embed/${urlPath}/${transaction?.details.session}/${transaction?.transaction?.transactionId}/details` : undefined
     return (
         <Panel 
         className={classes.panel} 

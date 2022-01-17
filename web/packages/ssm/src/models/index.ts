@@ -1,33 +1,68 @@
-import {ssm} from "x2-ssm-domain";
-import {x2} from "x2-certificate-domain";
+// import {ssm} from "x2-ssm-domain";
+import {ssm, x2} from "x2-certificate-domain";
 
 export type TransactionDTO = ssm.chaincode.dsl.blockchain.TransactionDTO;
-export type Transition = ssm.chaincode.dsl.SsmTransition;
-export type Session = ssm.tx.dsl.model.TxSsmSessionDTO;
-export type SSM = ssm.tx.dsl.model.TxSsmDTO;
-export type SessionState = ssm.tx.dsl.model.TxSsmSessionStateDTO;
-export type User = ssm.tx.dsl.model.TxSsmUser;
+export type Transition = ssm.chaincode.dsl.model.SsmTransition;
+export type SsmTransitionDTO = ssm.chaincode.dsl.model.SsmTransitionDTO;
+export type Session = ssm.data.dsl.model.DataSsmSessionDTO;
+export type SSM = ssm.data.dsl.model.DataSsmDTO;
+export type SessionState = ssm.data.dsl.model.DataSsmSessionStateDTO;
+export type User = ssm.data.dsl.model.DataSsmUser;
+export type SsmUri = ssm.chaincode.dsl.model.uri.SsmUri;
+export type SsmPath = string;
+
+export interface SsmUriDTO {
+    readonly uri: SsmPath
+}
+
+// export class SsmUriObj extends ssm.chaincode.dsl.model.uri.SsmUri {}
+export interface SsmUriObj {
+    readonly channelId: string;
+    readonly chaincodeId: string;
+    readonly ssmName: string;
+}
+
+// export type SsmUriDto = ssm.chaincode.dsl.model.uri.SsmUriDTO;
+export const burst = (ssmUri: SsmUriDTO): SsmUriObj => {
+    const values = ssmUri.uri.replace("ssm:", "").split(":")
+    return {
+        channelId: values[0],
+        chaincodeId: values[1],
+        ssmName: values[2]
+    }
+}
+
+// export type SsmUriDto = ssm.chaincode.dsl.model.uri.SsmUriDTO;
+export const toUrlPath = (ssmUri: SsmUriDTO): String => {
+    const values = burst(ssmUri)
+    return `${values.channelId}/${values.chaincodeId}/${values.ssmName}`
+}
+
+export type SsmName = string;
+export type SessionName = string;
+export type ChannelId = string;
+export type ChaincodeId = string;
 
 
 
-export type TxSsmListQueryDTO = ssm.tx.dsl.features.query.TxSsmListQueryDTO;
-export type TxSsmListQueryResultDTO = ssm.tx.dsl.features.query.TxSsmListQueryResultDTO;
+export type DataSsmListQueryDTO = ssm.data.dsl.features.query.DataSsmListQueryDTO;
+export type DataSsmListQueryResultDTO = ssm.data.dsl.features.query.DataSsmListQueryResultDTO;
 
-export type TxSsmGetQueryDTO = ssm.tx.dsl.features.query.TxSsmGetQueryDTO;
-export type TxSsmGetQueryResultDTO = ssm.tx.dsl.features.query.TxSsmGetQueryResultDTO;
+export type DataSsmGetQueryDTO = ssm.data.dsl.features.query.DataSsmGetQueryDTO;
+export type DataSsmGetQueryResultDTO = ssm.data.dsl.features.query.DataSsmGetQueryResultDTO;
 
 
-export type TxSsmSessionListQueryDTO = ssm.tx.dsl.features.query.TxSsmSessionListQueryDTO;
-export type TxSsmSessionListQueryResultDTO = ssm.tx.dsl.features.query.TxSsmSessionListQueryResultDTO;
+export type DataSsmSessionListQueryDTO = ssm.data.dsl.features.query.DataSsmSessionListQueryDTO;
+export type DataSsmSessionListQueryResultDTO = ssm.data.dsl.features.query.DataSsmSessionListQueryResultDTO;
 
-export type TxSsmSessionGetQueryDTO = ssm.tx.dsl.features.query.TxSsmSessionGetQueryDTO;
-export type TxSsmSessionGetQueryResultDTO = ssm.tx.dsl.features.query.TxSsmSessionGetQueryResultDTO;
+export type DataSsmSessionGetQueryDTO = ssm.data.dsl.features.query.DataSsmSessionGetQueryDTO;
+export type DataSsmSessionGetQueryResultDTO = ssm.data.dsl.features.query.DataSsmSessionGetQueryResultDTO;
 
-export type TxSsmSessionLogListQueryDTO = ssm.tx.dsl.features.query.TxSsmSessionLogListQueryDTO;
-export type TxSsmSessionLogListQueryResultDTO = ssm.tx.dsl.features.query.TxSsmSessionLogListQueryResultDTO;
+export type DataSsmSessionLogListQueryDTO = ssm.data.dsl.features.query.DataSsmSessionLogListQueryDTO;
+export type DataSsmSessionLogListQueryResultDTO = ssm.data.dsl.features.query.DataSsmSessionLogListQueryResultDTO;
 
-export type TxSsmSessionLogGetQueryDTO = ssm.tx.dsl.features.query.TxSsmSessionLogGetQueryDTO;
-export type TxSsmSessionLogGetQueryResultDTO = ssm.tx.dsl.features.query.TxSsmSessionLogGetQueryResultDTO;
+export type DataSsmSessionLogGetQueryDTO = ssm.data.dsl.features.query.DataSsmSessionLogGetQueryDTO;
+export type DataSsmSessionLogGetQueryResultDTO = ssm.data.dsl.features.query.DataSsmSessionLogGetQueryResultDTO;
 
 export type GenerateCertificatePdfQuery = x2.api.certificate.domain.features.GenerateCertificatePdfQueryDTO
 export type GenerateCertificatePdfResult = x2.api.certificate.domain.features.GenerateCertificatePdfResultDTO;

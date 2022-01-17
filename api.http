@@ -1,5 +1,33 @@
-POST http://localhost:8082/api/getAllSsm
+###
+POST http://localhost:8080/dataChaincodeListQueryFunction
 Accept: application/json
 Content-Type: application/json
 
 {}
+
+###
+POST http://localhost:8082/api/getAllSsm
+Accept: application/json
+
+###
+POST http://localhost:8082/api/getAllSessions
+Accept: application/json
+Content-Type: application/json
+
+{"ssmUri":{"uri":"ssm:sandbox:ssm:S2WorksiteState"}}
+
+
+###
+POST http://localhost:8082/dataSsmListQueryFunction
+Accept: application/json
+Content-Type: application/json
+
+{
+    "chaincodes": [{"uri": "chaincode:proudhon:ssm"}]
+}
+
+###
+http://localhost:9090/?args=ssm&cmd=query&fcn=list
+
+###
+http://localhost:9090/?args=session&cmd=query&fcn=list

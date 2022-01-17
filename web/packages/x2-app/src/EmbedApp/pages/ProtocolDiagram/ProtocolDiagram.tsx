@@ -5,8 +5,7 @@ import {highLevelStyles} from "@smartb/g2-themes";
 import {LoadingPage} from "components";
 import {useMemo} from "react";
 import {useTranslation} from "react-i18next";
-import {useParams} from "react-router";
-import {Transition, useFetchSsm} from "ssm";
+import {Transition, useFetchSsm, useParamsSsmUri} from "ssm";
 
 const useStyles = highLevelStyles()({
   viewer: {
@@ -25,13 +24,15 @@ const useStyles = highLevelStyles()({
 interface ProtocolDiagramProps {
 }
 
+
+
 export const ProtocolDiagram = (props: ProtocolDiagramProps) => {
   const { } = props;
   const { t } = useTranslation()
   const classes = useStyles()
-  const { ssmName } = useParams<{ ssmName: string }>();
+  const ssmUri  = useParamsSsmUri()
 
-  const {result, status} = useFetchSsm(ssmName);
+  const {result, status} = useFetchSsm(ssmUri);
 
   const transitions = useMemo(() => result ? result.ssm.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [result])
 

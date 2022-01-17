@@ -4,8 +4,7 @@ import { highLevelStyles } from "@smartb/g2-themes";
 import { Page } from "components";
 import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router";
-import { Session, SSM } from "ssm";
+import {Session, SSM, SsmPath, SsmUriDTO, useParamsSsmUri} from "ssm";
 import { AsyncObject } from "utils";
 import { ProtocolCard } from "./components/ProtocolCard";
 import { SessionNumberCard } from "./components/SessionNumberCard";
@@ -29,26 +28,25 @@ const useStyles = highLevelStyles()({
 
 interface SessionsProps {
   setTitle: (title: string) => void
-  gotoSessionDetails: (ssmName: string, sessionName: any) => void
-  gotoSessions: (ssmName: string, params: Object) => void
-  ssmList: Map<string, SSM>
-  sessionsList: Map<string, AsyncObject<{ sessions?: Session[] }>>
-  fetchSessions: (ssmName: string) => void
+  gotoSessionDetails: (ssmUri: SsmUriDTO, sessionName: any) => void
+  gotoSessions: (ssmUri: SsmUriDTO, params: Object) => void
+  ssmList: Map<SsmPath, SSM>
+  sessionsList: Map<SsmPath, AsyncObject<{ sessions?: Session[] }>>
+  fetchSessions: (ssmUri: SsmUriDTO) => void
 }
 
 export const Sessions = (props: SessionsProps) => {
   const { setTitle, ssmList, gotoSessionDetails, gotoSessions, fetchSessions, sessionsList } = props;
   const { t } = useTranslation()
-  const { ssmName } = useParams<{ ssmName: string }>();
   const classes = useStyles()
+  const ssmUri = useParamsSsmUri()
+  const currentSSM = useMemo(() => ssmList.get(ssmUri.uri), [ssmList, ssmUri.uri])
 
-  const currentSSM = useMemo(() => ssmList.get(ssmName), [ssmList, ssmName])
-
-  const currentSessions = useMemo(() => sessionsList.get(ssmName), [sessionsList, ssmName])
+  const currentSessions = useMemo(() => sessionsList.get(ssmUri.uri), [sessionsList, ssmUri.uri])
 
   useEffect(() => {
-    fetchSessions(ssmName)
-  }, [ssmName, fetchSessions])
+    fetchSessions(ssmUri)
+  }, [ssmUri.uri, fetchSessions])
 
 
   if (!currentSSM) return <NoMatchPage />
@@ -56,14 +54,14 @@ export const Sessions = (props: SessionsProps) => {
     <Page
       setTitle={setTitle}
       title={t("sessions")}
-      headerContent={<SessionsFilters ssmName={ssmName} gotoSessions={gotoSessions} />}
+      headerContent={<SessionsFilters ssmUri={ssmUri} gotoSessions={gotoSessions} />}
     >
       <Box className={classes.container}>
         <StepsCompletedCard />
         <SessionNumberCard />
         <ProtocolCard currentSSM={currentSSM} />
       </Box>
-      <SessionTable isLoading={currentSessions?.status === "PENDING"} sessions={currentSessions?.sessions} gotoSessionDetails={gotoSessionDetails} />
+      <SessionTable ssmUri={ssmUri} isLoading={currentSessions?.status === "PENDING"} sessions={currentSessions?.sessions} gotoSessionDetails={gotoSessionDetails} />
     </Page>
   );
 };

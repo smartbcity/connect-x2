@@ -1,25 +1,45 @@
+ssm:
+  chaincode:
+    url: "http://localhost:9090"
+  signer:
+    admin:
+      name: ssm-admin
+      key: bclan-x2/ssm-admin
+
 x2:
   test:
     ssm:
       certificate:
-        url: https://peer0.pr-commune.smartb.network/
-        channelId: proudhon
+        url: ${ssm.chaincode.url}
+        channelId: sandbox
         chaincodeId: ssm
----
-spring:
-  config:
-    activate:
-      on-profile: local
-x2:
-  test:
-    ssm:
-      certificate:
-        url: http://localhost:9090
-        channel: sandbox
-        chaincode: ssm
       admin:
         name: ssm-admin
         key: bclan-x2/ssm-admin
       agent:
-        name: bob
-        key: bclan-x2/bob
+        name: ssm-admin
+        key: bclan-x2/ssm-admin
+
+---
+spring:
+  config:
+    activate:
+      on-profile: distant
+
+ssm:
+  chaincode:
+    url: "http://peer0.pr-commune.smartb.network:9090"
+
+x2:
+  test:
+    ssm:
+      certificate:
+        url: ${ssm.chaincode.url}
+        channel: sandbox
+        chaincode: ssm
+      admin:
+        name: adrien@smartb.city
+        key: file:/home/adrien/.ssm/adrien@smartb.city
+      agent:
+        name: ssm-agent-1
+        key: file:/home/adrien/.ssm/ssm-agent-1
