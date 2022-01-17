@@ -302,11 +302,6 @@ export namespace ssm.data.dsl.features.query {
         readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUriDTO;
     }
 }
-export namespace ssm.chaincode.dsl.model.uri {
-    interface SsmUriDTO {
-        readonly uri: string;
-    }
-}
 export namespace ssm.data.dsl.features.query {
     interface DataSsmGetQueryDTO extends ssm.data.dsl.features.query.DataQueryDTO {
         readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUriDTO;

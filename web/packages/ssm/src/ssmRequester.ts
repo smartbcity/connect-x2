@@ -131,4 +131,3 @@ export const SSMRequester = {
     CanGenerateCertificate: CanGenerateCertificate,
     CanGenerateCertificates: CanGenerateCertificates
 };
-

@@ -11,6 +11,7 @@ dependencies {
     api("city.smartb.ssm:ssm-tx-create-ssm-spring-boot-starter:${Versions.ssm}")
     api("city.smartb.ssm:ssm-tx-session-start-spring-boot-starter:${Versions.ssm}")
     api("city.smartb.ssm:ssm-tx-session-perform-action-spring-boot-starter:${Versions.ssm}")
+    api("city.smartb.ssm:ssm-tx-init-ssm-spring-boot-starter:${Versions.ssm}")
 
     implementation(project(":x2-f2:certificate:certificate-domain"))
     implementation(project(":x2-f2:ssm:ssm-domain"))

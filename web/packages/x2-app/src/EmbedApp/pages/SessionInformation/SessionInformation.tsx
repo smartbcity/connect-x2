@@ -26,7 +26,7 @@ export const SessionInformation = (props: SessionInformationProps) => {
   const classes = useStyles()
   const { sessionName, ssmName } = useParams<{ ssmName: string, sessionName: string }>();
 
-  const {result, status} = useFetchSsmSession(ssmName, sessionName);
+  const {result, status} = useFetchSsmSession({uri: ssmName}, sessionName);
 
   if (status === "PENDING") return <LoadingPage />
 

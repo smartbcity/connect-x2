@@ -10,17 +10,16 @@ spring:
 x2:
   ssm:
     chaincodes:
-      - chaincode:proudhon:ssm
+      - chaincode:sandbox:ssm
 
 ssm:
   couchdb:
-    url: http://peer0.pr-commune.smartb.network:5984
-    username: 1111
-    password: 2222
+    url: http://localhost:5984
+    username: couchdb
+    password: couchdb
     serviceName: ssm-couchdb-unit
   chaincode:
-    url: http://peer0.pr-commune.smartb.network
-
+    url: http://localhost:9090
 
 ---
 spring:
@@ -35,7 +34,7 @@ ssm:
     password: 2222
     serviceName: ssm-couchdb-unit
   chaincode:
-    url: http://peer0.pr-commune.smartb.network
+    url: "http://peer0.pr-commune.smartb.network"
     filter:
       - ssm:peer0:proudhon:ssm:Request
       - ssm:peer0:proudhon:ssm:Certificates
@@ -49,13 +48,13 @@ spring:
 x2:
   ssm:
     chaincodes:
-      - chaincode:sandbox:ssm
+      - chaincode:proudhon:ssm
 
 ssm:
   couchdb:
-    url: http://localhost:5984
-    username: couchdb
-    password: couchdb
+    url: "http://peer0.pr-commune.smartb.network:5984"
+    username: 1111
+    password: 2222
     serviceName: ssm-couchdb-unit
   chaincode:
-    url: http://localhost:9090
+    url: "http://peer0.pr-commune.smartb.network"

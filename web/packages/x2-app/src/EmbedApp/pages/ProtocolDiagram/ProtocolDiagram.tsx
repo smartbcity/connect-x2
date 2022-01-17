@@ -31,7 +31,7 @@ export const ProtocolDiagram = (props: ProtocolDiagramProps) => {
   const classes = useStyles()
   const { ssmName } = useParams<{ ssmName: string }>();
 
-  const {result, status} = useFetchSsm(ssmName);
+  const {result, status} = useFetchSsm({uri:ssmName});
 
   const transitions = useMemo(() => result ? result.ssm.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [result])
 

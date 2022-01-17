@@ -1,19 +1,34 @@
+ssm:
+  chaincode:
+    url: "http://localhost:9090"
+  signer:
+    admin:
+      name: ssm-admin
+      key: bclan-x2/ssm-admin
+
 x2:
   test:
     ssm:
       certificate:
-        url: https://peer1.pr-commune.smartb.network/
-        channelId: proudhon
+        url: ${ssm.chaincode.url}
+        channelId: sandbox
         chaincodeId: ssm
+      admin:
+        name: ssm-admin
+        key: bclan-x2/ssm-admin
+      agent:
+        name: ssm-admin
+        key: bclan-x2/ssm-admin
+
 ---
 spring:
   config:
     activate:
-      on-profile:
+      on-profile: distant
 
 ssm:
   chaincode:
-    url: http://peer0.pr-commune.smartb.network:9090
+    url: "http://peer0.pr-commune.smartb.network:9090"
 
 x2:
   test:

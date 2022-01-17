@@ -58,7 +58,7 @@ export const TransactionHistory = (props: TransactionHistoryProps) => {
     [],
   )
 
-  const { result, status } = useFetchTransactions(ssmName, sessionName)
+  const { result, status } = useFetchTransactions({uri: ssmName}, sessionName)
 
   const timeLineCells = useMemo(() => result ? toTimeLineCells(result.sessionStates, result.canGenerateCertificates, onGenerate, true) : undefined, [result])
 

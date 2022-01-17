@@ -12,43 +12,36 @@ import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import ssm.chaincode.dsl.model.Agent
+import ssm.chaincode.dsl.model.SessionName
 import ssm.chaincode.dsl.model.Ssm
 import ssm.chaincode.dsl.model.SsmContext
+import ssm.chaincode.dsl.model.SsmName
 import ssm.chaincode.dsl.model.SsmSession
 import ssm.chaincode.dsl.model.SsmTransition
-import ssm.sdk.sign.crypto.KeyPairReader
 import ssm.sdk.sign.extention.loadFromFile
-import ssm.sdk.sign.model.Signer
-import ssm.sdk.sign.model.SignerAdmin
 import ssm.sdk.sign.model.SignerUser
-import ssm.tx.dsl.features.ssm.SsmCreateCommand
+import ssm.tx.dsl.features.ssm.SsmInitCommand
 import ssm.tx.dsl.features.ssm.SsmSessionPerformActionCommand
 import ssm.tx.dsl.features.ssm.SsmSessionPerformActionResult
 import ssm.tx.dsl.features.ssm.SsmSessionStartCommand
 import ssm.tx.dsl.features.ssm.SsmSessionStartResult
 import ssm.tx.dsl.features.ssm.SsmTxCreateFunction
+import ssm.tx.dsl.features.ssm.SsmTxInitFunction
 import ssm.tx.dsl.features.ssm.SsmTxSessionPerformActionFunction
 import ssm.tx.dsl.features.ssm.SsmTxSessionStartFunction
 import java.util.UUID
 
-
 @Configuration
 class AppRunnerConfiguration {
 
-	@Value("\${x2.test.ssm.certificate.url}")
-	var url: String = ""
+	companion object {
+		const val TRANSACTION_NAME = "transaction"
+		const val ROLE = "agent"
+		const val CERTIFICATES = "certificates"
+	}
 
 	@Value("\${x2.test.ssm.certificate.chaincodeId}")
 	var chaincode: String = ""
-
-	@Value("\${x2.test.ssm.certificate.channelId}")
-	var channel: String = ""
-
-	@Value("\${x2.test.ssm.admin.name}")
-	var adminName: String = ""
-
-	@Value("\${x2.test.ssm.admin.key}")
-	var adminKey: String = ""
 
 	@Value("\${x2.test.ssm.agent.name}")
 	var agentName: String = ""
@@ -60,40 +53,37 @@ class AppRunnerConfiguration {
 	fun dataGenerator(
 		ssmCreateFunction: SsmTxCreateFunction,
 		ssmSessionPerformActionFunction: SsmTxSessionPerformActionFunction,
-		ssmSessionStartFunction: SsmTxSessionStartFunction
+		ssmSessionStartFunction: SsmTxSessionStartFunction,
+		ssmTxInitFunction: SsmTxInitFunction
 	) = ApplicationRunner {
 		runBlocking {
-			val adminSigner = SignerAdmin.loadFromFile(adminName, adminKey)
 			val agent = Agent.loadFromFile(agentName, agentKey)
 			val agentSigner = SignerUser.loadFromFile(agentName, agentKey)
-
 			(0..5).asFlow().map { iteration ->
-				val ssmName = "Certificates"
-				val sessionName = "certificates-session-${iteration}-${UUID.randomUUID()}"
-				createSsm(ssmCreateFunction, signerName = agent, ssmName = ssmName)
-				startSession(ssmSessionStartFunction, signerName = agent, ssmName, sessionName)
-				performTransaction(ssmSessionPerformActionFunction, agentSigner, sessionName)
+				val ssmName = CERTIFICATES
+				val sessionName = "certificates-session-$iteration-${UUID.randomUUID()}"
+				ssmTxInitFunction.init(signerName = agent, ssmName= ssmName)
+				ssmSessionStartFunction.startSession(signerName = agent, ssmName = ssmName, sessionName = sessionName)
+				ssmSessionPerformActionFunction.performTransaction(signerName = agent, sessionName = sessionName)
 			}.collect()
 		}
-
 	}
 
-	private suspend fun performTransaction(
-		ssmSessionPerformActionFunction: F2Function<SsmSessionPerformActionCommand, SsmSessionPerformActionResult>,
-		agentSigner: Signer,
-		sessionName: String,
+	private suspend fun F2Function<SsmSessionPerformActionCommand, SsmSessionPerformActionResult>.performTransaction(
+		signerName: Agent,
+		sessionName: SessionName,
 	) {
 		(0..5).map { iteration ->
 			val cmd = SsmSessionPerformActionCommand(
-				action = "transaction",
+				action = TRANSACTION_NAME,
 				context = SsmContext(
 					session = sessionName,
 					public = getPublic(),
 					iteration = iteration,
 				),
-				signerName = agentSigner.name
+				signerName = signerName.name
 			)
-			ssmSessionPerformActionFunction.invoke(cmd)
+			invoke(cmd)
 		}
 	}
 
@@ -113,37 +103,40 @@ class AppRunnerConfiguration {
 
 	}
 
-	private suspend fun startSession(
-		ssmSessionStartFunction: F2Function<SsmSessionStartCommand, SsmSessionStartResult>,
+	private suspend fun F2Function<SsmSessionStartCommand, SsmSessionStartResult>.startSession(
 		signerName: Agent,
-		ssmName: String,
-		sessionName: String
+		ssmName: SsmName,
+		sessionName: SessionName
 	) {
 		val session = SsmSession(
 			ssm = ssmName,
 			session = sessionName,
-			roles = mapOf(signerName.name to "Agent"),
+			roles = mapOf(signerName.name to ROLE),
 			public = "This is not a Certificate",
 		)
 		val cmd = SsmSessionStartCommand(
 			session = session,
 			signerName = signerName.name
 		)
-		ssmSessionStartFunction(cmd)
+		invoke(cmd)
 	}
 
-	private suspend fun createSsm(
-		ssmCreateFunction: SsmTxCreateFunction,
-		signerName: Agent,
-		ssmName: String
-	) {
-		val first = SsmTransition(0, 0, "Agent", "transaction")
+	private fun getSsm(ssmName: SsmName): Ssm {
+		val first = SsmTransition(0, 0, ROLE, TRANSACTION_NAME)
 		val ssm = Ssm(ssmName, listOf(first))
+		return ssm
+	}
 
-		ssmCreateFunction.invoke(
-			SsmCreateCommand(
-				ssm = ssm,
-				signerName = signerName.name
+	private suspend fun SsmTxInitFunction.init(
+		signerName: Agent,
+		ssmName: SsmName
+	) {
+		val ssm = getSsm(ssmName)
+		invoke(
+			SsmInitCommand(
+				signerName = signerName.name,
+				agent = signerName,
+				ssm = ssm
 			)
 		)
 	}

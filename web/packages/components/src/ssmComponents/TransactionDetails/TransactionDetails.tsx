@@ -125,7 +125,7 @@ export const TransactionDetails = (props: TransactionDetailsProps) => {
                         <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.transactionId}</Typography>
                         <CopyToClipboard className={classes.iconButton} value={transaction.transaction?.transactionId ?? ""} />
                     </Box>
-                    <Typography variant={typovariant} className={classes.rightTypo}>{new Date(transaction.transaction?.timestamp).toLocaleDateString()}</Typography>
+                    <Typography variant={typovariant} className={classes.rightTypo}>{new Date(transaction.transaction?.timestamp).toLocaleString()}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>{transaction.transaction?.creator.mspid}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>{transaction.details?.origin?.from ?? ""}</Typography>
                     <Typography variant={typovariant} className={classes.rightTypo}>{transaction.details?.current ?? ""}</Typography>

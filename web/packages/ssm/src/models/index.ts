@@ -8,7 +8,9 @@ export type Session = ssm.data.dsl.model.DataSsmSessionDTO;
 export type SSM = ssm.data.dsl.model.DataSsmDTO;
 export type SessionState = ssm.data.dsl.model.DataSsmSessionStateDTO;
 export type User = ssm.data.dsl.model.DataSsmUser;
-export type SsmUri = string;
+export interface SsmUri {
+    readonly uri: string
+}
 export type SsmName = string;
 
 export type SsmUriObj = ssm.chaincode.dsl.model.uri.SsmUri;
