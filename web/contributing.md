@@ -83,24 +83,7 @@ const getObject = () => ([{
 ```
 
 ## Styles
-In order to maintain the overridability of the style through the component three you should make your useStyles as following:
-
-in the package `component` you should use `midLevelStyles`:
-```TYPESCRIPT
-const useStyles = midLevelStyles()({
-    myClasse: {
-        width: "100%"
-    }
-})
-```
-in the package `x2-app` you should use `highLevelStyles`:
-```TYPESCRIPT
-const useStyles = highLevelStyles()({
-    myClasse: {
-        width: "100%"
-    }
-})
-```
+To redifine
 
 ## Maintainability
 Every file component should be less than 200 lines long. Try to destructure it as much as possible to avoid exceeding 150 lines.
