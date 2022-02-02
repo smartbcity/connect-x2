@@ -1,4 +1,4 @@
-import { Box, InputLabel } from '@material-ui/core'
+import { Box, InputLabel } from '@mui/material'
 import { Button } from '@smartb/g2-components'
 import { midLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
 import { ChangeEvent, useCallback } from 'react'

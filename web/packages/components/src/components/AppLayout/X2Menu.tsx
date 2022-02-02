@@ -1,4 +1,4 @@
-import {  ListItem, ListItemIcon } from '@material-ui/core'
+import {  ListItem, ListItemIcon } from '@mui/material'
 import { X2Icon } from '../../icons'
 import { Menu, MenuItems } from '@smartb/g2-components'
 import { midLevelStyles } from "@smartb/g2-themes"

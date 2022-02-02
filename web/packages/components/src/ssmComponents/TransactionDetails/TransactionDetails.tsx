@@ -1,4 +1,4 @@
-import { Box, InputLabel, Typography } from '@material-ui/core'
+import { Box, InputLabel, Typography } from '@mui/material'
 import { CodeHighlighter } from '@smartb/g2-documentation'
 import { midLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
 import clsx from 'clsx'

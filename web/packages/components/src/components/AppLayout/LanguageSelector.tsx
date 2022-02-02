@@ -1,4 +1,4 @@
-import { Box, InputLabel, Select } from '@material-ui/core'
+import { Box, InputLabel, Select, SelectChangeEvent } from '@mui/material'
 import { midLevelStyles } from '@smartb/g2-themes'
 import React, { useCallback } from 'react'
 import { useExtendedI18n, Languages } from '../..'
@@ -21,10 +21,7 @@ export const LanguageSelector = () => {
     const classes = useStyles()
 
     const onLanguageChange = useCallback(
-        (event: React.ChangeEvent<{
-            name?: string | undefined;
-            value: unknown;
-        }>) => i18n.changeLanguage(event.target.value as keyof Languages),
+        (event: SelectChangeEvent<"fr" | "en">) => i18n.changeLanguage(event.target.value as keyof Languages),
         [i18n.changeLanguage],
     )
 

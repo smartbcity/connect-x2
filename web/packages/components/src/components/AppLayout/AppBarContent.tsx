@@ -1,4 +1,4 @@
-import { Box, Typography } from "@material-ui/core"
+import { Box, Typography } from "@mui/material"
 import { Theme, useTheme, midLevelStyles } from "@smartb/g2-themes"
 import { LanguageSelector } from "./LanguageSelector"
 

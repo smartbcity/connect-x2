@@ -1,5 +1,5 @@
-import { Box, IconButton, Typography } from '@material-ui/core'
-import { CodeRounded } from '@material-ui/icons'
+import { Box, IconButton, Typography } from '@mui/material'
+import { CodeRounded } from '@mui/icons-material'
 import { Tooltip, Popover } from '@smartb/g2-notifications'
 import { CodeHighlighter } from '@smartb/g2-documentation'
 import { midLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
@@ -65,24 +65,25 @@ export const EmbedCodeViewer = (props: EmbedCodeViewerProps) => {
 
     const embedString = useMemo(() => getEmbedString(embedUrl), [embedUrl])
 
-    return (
-        <>
-            <Tooltip helperText={t("panelComponent.viewEmbedCode")}>
-                <IconButton className={clsx(className, classes.button)} onClick={onClick}>
-                    <CodeRounded className={classes.icon} />
-                </IconButton>
-            </Tooltip>
-            <Popover className={classes.popover} open={!!anchor} anchorEl={anchor} closeOnClickAway onClose={onClose}>
-                <Box display="flex" width="100%" height="100%" flexDirection="column">
-                    <CodeHighlighter language="html" code={embedString} />
-                    <Typography variant="body2">{t("preview")}:</Typography>
-                    <iframe
-                        className={classes.ifram}
-                        src={embedUrl}
-                        title="X2 embed content">
-                    </iframe>
-                </Box>
-            </Popover>
-        </>
-    )
+    return <>
+        <Tooltip helperText={t("panelComponent.viewEmbedCode")}>
+            <IconButton
+                className={clsx(className, classes.button)}
+                onClick={onClick}
+                size="large">
+                <CodeRounded className={classes.icon} />
+            </IconButton>
+        </Tooltip>
+        <Popover className={classes.popover} open={!!anchor} anchorEl={anchor} closeOnClickAway onClose={onClose}>
+            <Box display="flex" width="100%" height="100%" flexDirection="column">
+                <CodeHighlighter language="html" code={embedString} />
+                <Typography variant="body2">{t("preview")}:</Typography>
+                <iframe
+                    className={classes.ifram}
+                    src={embedUrl}
+                    title="X2 embed content">
+                </iframe>
+            </Box>
+        </Popover>
+    </>;
 }

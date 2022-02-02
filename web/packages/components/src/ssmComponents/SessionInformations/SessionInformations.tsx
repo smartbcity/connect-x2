@@ -1,4 +1,4 @@
-import { Box, InputLabel, Typography } from '@material-ui/core'
+import { Box, InputLabel, Typography } from '@mui/material'
 import { midLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
 import clsx from 'clsx'
 import { useMemo } from 'react'
