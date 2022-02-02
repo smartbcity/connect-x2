@@ -1,4 +1,4 @@
-import {Box, Typography} from "@material-ui/core";
+import {Box, Typography} from "@mui/material";
 import {NoMatchPage} from "@smartb/g2-providers";
 import {AutomateViewer} from "@smartb/g2-s2";
 import {highLevelStyles} from "@smartb/g2-themes";

@@ -1,5 +1,5 @@
-import { Box } from '@material-ui/core'
-import { CheckCircleRounded } from '@material-ui/icons'
+import { Box } from '@mui/material'
+import { CheckCircleRounded } from '@mui/icons-material'
 import { Ticket } from "@smartb/g2-components"
 import { highLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
 import clsx from 'clsx'

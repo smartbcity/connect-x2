@@ -1,5 +1,5 @@
 import { Table, Column } from '@smartb/g2-components'
-import { Box, Typography } from '@material-ui/core'
+import { Box, Typography } from '@mui/material'
 import { useTranslation, TFunction } from 'react-i18next'
 import { useCallback, useMemo, useState } from 'react'
 import { highLevelStyles } from '@smartb/g2-themes'

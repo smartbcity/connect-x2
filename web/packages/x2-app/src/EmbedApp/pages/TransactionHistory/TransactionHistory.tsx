@@ -1,4 +1,4 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography } from "@mui/material";
 import { Timeline } from "@smartb/g2-components";
 import { NoMatchPage } from "@smartb/g2-providers";
 import { highLevelStyles } from "@smartb/g2-themes";

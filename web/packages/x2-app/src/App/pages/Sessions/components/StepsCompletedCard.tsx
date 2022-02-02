@@ -3,7 +3,7 @@ import { LineChart, Panel, useExtendedI18n } from "components"
 import { useTranslation } from "react-i18next"
 import { addMonths } from 'date-fns'
 import { useCallback, useMemo, useState } from "react";
-import { Box, Slider } from "@material-ui/core";
+import { Box, Slider } from "@mui/material";
 
 function rand() {
     return Math.round(Math.random() * (100 - 1) + 1);
