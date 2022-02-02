@@ -11,7 +11,7 @@ type ClipboardProps = MergeReactElementProps<'svg', ClipboardBasicProps>
 
 export const Clipboard = React.forwardRef(
   (props: ClipboardProps, ref: React.Ref<SVGSVGElement>) => {
-    
+    const theme = useTheme()
     const { color = theme.colors.secondary, ...other } = props
     return <ReactComponent fill={color} ref={ref} {...other} />
   }

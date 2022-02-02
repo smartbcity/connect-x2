@@ -1,5 +1,6 @@
 
 import {  makeG2STyles} from '@smartb/g2-themes'
+//@ts-ignore
 import {Card} from "@smartb/g2-components"
 import React from 'react'
 import { EmbedCodeViewer } from '../EmbedCodeViewer'

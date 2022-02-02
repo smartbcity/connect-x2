@@ -100,6 +100,7 @@ export const LineChart = (props: LineChartProps) => {
 
 
     return (
+        //@ts-ignore
         <Line data={chartData} type='line' height={height} width={width} options={options} />
     )
 }

@@ -1,6 +1,6 @@
 import { Box, InputLabel, Select, SelectChangeEvent } from '@mui/material'
 import { makeG2STyles} from '@smartb/g2-themes'
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { useExtendedI18n, Languages } from '../..'
 
 const useStyles = makeG2STyles()({

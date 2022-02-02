@@ -72,7 +72,7 @@ const useStyles = makeG2STyles()(
             background: theme.colors.secondary,
         }
     }
-})
+}))
 
 interface TransactionDetailsProps {
     transaction: SessionState
@@ -84,7 +84,7 @@ interface TransactionDetailsProps {
 export const TransactionDetails = (props: TransactionDetailsProps) => {
     const { className, minified = false, transaction, shortVersion = false } = props
     
-    const { classes } = useStyles(theme)
+    const { classes } = useStyles()
     const { t } = useTranslation()
     const typovariant = useMemo(() => minified ? "body2" : "body1", [minified])
 
