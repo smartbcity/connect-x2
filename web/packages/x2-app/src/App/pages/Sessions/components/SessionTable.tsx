@@ -2,11 +2,11 @@ import { Table, Column } from '@smartb/g2-components'
 import { Box, Typography } from '@mui/material'
 import { useTranslation, TFunction } from 'react-i18next'
 import { useCallback, useMemo, useState } from 'react'
-import { highLevelStyles } from '@smartb/g2-themes'
+import { makeG2STyles} from '@smartb/g2-themes'
 import {Session, SsmUriDTO} from 'ssm'
 import { LoadingComponent } from 'components'
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
     container: {
         '& .rdt_TableRow .rdt_TableCell:last-child': {
             minWidth: '450px',
@@ -54,7 +54,7 @@ export const SessionTable = (props: SessionTableProps) => {
     const { ssmUri, sessions, gotoSessionDetails, isLoading = false } = props
     const { t } = useTranslation()
     const [page, setPage] = useState(1)
-    const classes = useStyles()
+    const { classes } = useStyles()
     const data: SessionColumn[] = useMemo(() => {
         if (!sessions) return []
         return sessions.map((session): SessionColumn => ({

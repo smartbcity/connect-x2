@@ -1,13 +1,13 @@
 import {Box, Typography} from "@mui/material";
 import {NoMatchPage} from "@smartb/g2-providers";
 import {AutomateViewer} from "@smartb/g2-s2";
-import {highLevelStyles} from "@smartb/g2-themes";
+import {makeG2STyles} from "@smartb/g2-themes";
 import {LoadingPage} from "components";
 import {useMemo} from "react";
 import {useTranslation} from "react-i18next";
 import {Transition, useFetchSsm, useParamsSsmUri} from "ssm";
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
   viewer: {
     width: "100%",
     height: "100%"
@@ -29,7 +29,7 @@ interface ProtocolDiagramProps {
 export const ProtocolDiagram = (props: ProtocolDiagramProps) => {
   const { } = props;
   const { t } = useTranslation()
-  const classes = useStyles()
+  const { classes } = useStyles()
   const ssmUri  = useParamsSsmUri()
 
   const {result, status} = useFetchSsm(ssmUri);

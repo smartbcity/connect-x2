@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material"
-import { Theme, useTheme, midLevelStyles } from "@smartb/g2-themes"
+import {  makeG2STyles } from "@smartb/g2-themes"
 import { LanguageSelector } from "./LanguageSelector"
 
-const useStyles = midLevelStyles<Theme>()({
+const useStyles = makeG2STyles()((theme) => ({
     underline: {
         width: "80%",
-        background: theme => theme.colors.primary,
+        background: theme.colors.primary,
         height: "2px"
     },
     title: {
@@ -16,7 +16,7 @@ const useStyles = midLevelStyles<Theme>()({
         top: "15px",
         right: "15px"
     }
-})
+}))
 
 interface AppBarContentProps {
     title: string
@@ -24,8 +24,7 @@ interface AppBarContentProps {
 
 export const AppBarContent = (props: AppBarContentProps) => {
     const {title} = props 
-    const theme = useTheme()
-    const classes = useStyles(theme)
+    const { classes } = useStyles()
     return (
         <Box display="flex" flexDirection="column">
             <Typography color="textPrimary" variant="h5" className={classes.title}>{title}</Typography>

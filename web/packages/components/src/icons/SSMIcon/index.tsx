@@ -11,7 +11,7 @@ type SSMIconProps = MergeReactElementProps<'svg', SSMIconBasicProps>
 
 export const SSMIcon = React.forwardRef(
   (props: SSMIconProps, ref: React.Ref<SVGSVGElement>) => {
-    const theme = useTheme()
+    
     const { color = theme.colors.secondary, ...other } = props
     return <ReactComponent fill={color} ref={ref} {...other} />
   }

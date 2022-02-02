@@ -2,7 +2,7 @@ import { Box, IconButton, Typography } from '@mui/material'
 import { CodeRounded } from '@mui/icons-material'
 import { Tooltip, Popover } from '@smartb/g2-notifications'
 import { CodeHighlighter } from '@smartb/g2-documentation'
-import { midLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
+import { makeG2STyles } from '@smartb/g2-themes'
 import clsx from 'clsx'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -17,7 +17,8 @@ frameborder="0"
 allowfullscreen>
 </iframe>`
 
-const useStyles = midLevelStyles<Theme>()({
+const useStyles = makeG2STyles()(
+  (theme) => ({
     popover: {
         width: "500px",
         height: "400px"
@@ -28,16 +29,16 @@ const useStyles = midLevelStyles<Theme>()({
         border: "1px solid #676879"
     },
     button: {
-        background: theme => theme.colors.primary,
+        background: theme.colors.primary,
         padding: "5px",
         "&:hover": {
-            background: theme => theme.colors.primary,
+            background: theme.colors.primary,
         }
     },
     icon: {
         color: "#676879",
     }
-})
+}))
 
 interface EmbedCodeViewerProps {
     embedUrl: string
@@ -48,8 +49,8 @@ export const EmbedCodeViewer = (props: EmbedCodeViewerProps) => {
     const { embedUrl, className } = props
     const {t} = useTranslation()
     const [anchor, setanchor] = useState<HTMLElement | undefined>(undefined)
-    const theme = useTheme()
-    const classes = useStyles(theme)
+    
+    const { classes } = useStyles()
     const onClick = useCallback(
         (event: React.MouseEvent<HTMLElement>) => {
             setanchor(event.currentTarget)

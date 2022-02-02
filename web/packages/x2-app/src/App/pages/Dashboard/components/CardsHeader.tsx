@@ -1,30 +1,31 @@
 import { Box } from '@mui/material'
 import { CheckCircleRounded } from '@mui/icons-material'
 import { Ticket } from "@smartb/g2-components"
-import { highLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
+import { makeG2STyles, useTheme } from '@smartb/g2-themes'
 import clsx from 'clsx'
 import { Channel, SSMIcon, User, TransactionIcon } from 'components'
 import { useTranslation } from "react-i18next"
 
-const useStyles = highLevelStyles<Theme>()({
+const useStyles = makeG2STyles()(
+  (theme) => ({
     ticket: {
         margin: "10px"
     },
     icon: {
         width: "40px",
         height: "40px",
-        color: theme => theme.colors.primary
+        color: theme.colors.primary
     },
     checkIcon: {
         fill: "none",
-        stroke: theme => theme.colors.primary
+        stroke: theme.colors.primary
     }
-})
+}))
 
 export const CardsHeader = () => {
     const theme = useTheme()
     const {t} = useTranslation()
-    const classes = useStyles(theme)
+    const { classes } = useStyles()
     return (
         <Box display="flex" flexWrap="wrap" justifyContent="space-around" >
             <Ticket

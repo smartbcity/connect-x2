@@ -1,9 +1,9 @@
 
 import {X2Icon} from "../../icons"
 import {Loading} from '@smartb/g2-components'
-import { midLevelStyles } from "@smartb/g2-themes"
+import { makeG2STyles } from "@smartb/g2-themes"
 
-const useStyles = midLevelStyles()({
+const useStyles = makeG2STyles()({
     icon: {
         width: "80vw",
         maxWidth: "250px",
@@ -13,7 +13,7 @@ const useStyles = midLevelStyles()({
 })
 
 export const LoadingPage = () => {
-    const classes = useStyles()
+    const { classes } = useStyles()
     return (
         <Loading icon={<X2Icon className={classes.icon}/>} />
     )

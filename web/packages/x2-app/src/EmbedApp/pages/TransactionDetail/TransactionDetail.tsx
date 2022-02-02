@@ -1,12 +1,12 @@
 import {Box, Typography} from "@mui/material";
 import {NoMatchPage} from "@smartb/g2-providers";
-import {highLevelStyles} from "@smartb/g2-themes";
+import {makeG2STyles} from "@smartb/g2-themes";
 import {LoadingPage, TransactionDetails} from "components";
 import {useTranslation} from "react-i18next";
 import {useParams} from "react-router";
 import {useFetchSsmSessionState, useParamsSsmUri} from "ssm";
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
   viewer: {
     width: "100%",
     height: "100%"
@@ -22,7 +22,7 @@ interface TransactionDetailProps {
 
 export const TransactionDetail = (_: TransactionDetailProps) => {
   const { t } = useTranslation()
-  const classes = useStyles()
+  const { classes } = useStyles()
   const { sessionName, transactionId } = useParams<{ sessionName: string, transactionId: string }>();
   const ssmUri = useParamsSsmUri()
   const {result, status} = useFetchSsmSessionState(ssmUri, sessionName, transactionId);

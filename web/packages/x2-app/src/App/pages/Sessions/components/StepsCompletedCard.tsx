@@ -1,4 +1,4 @@
-import { highLevelStyles } from "@smartb/g2-themes";
+import { makeG2STyles } from "@smartb/g2-themes";
 import { LineChart, Panel, useExtendedI18n } from "components"
 import { useTranslation } from "react-i18next"
 import { addMonths } from 'date-fns'
@@ -11,7 +11,7 @@ function rand() {
 
 const date = addMonths(new Date(), -8)
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
     body: {
         height: "350px",
         overflow: "auto",
@@ -36,7 +36,7 @@ const useStyles = highLevelStyles()({
 
 export const StepsCompletedCard = () => {
     const { t } = useTranslation()
-    const classes = useStyles()
+    const { classes } = useStyles()
 
     const [periodRange, setPeriodRange] = useState<number[]>([(100 / 7) * 5, 100]);
 

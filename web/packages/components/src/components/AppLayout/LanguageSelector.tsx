@@ -1,9 +1,9 @@
 import { Box, InputLabel, Select, SelectChangeEvent } from '@mui/material'
-import { midLevelStyles } from '@smartb/g2-themes'
+import { makeG2STyles} from '@smartb/g2-themes'
 import React, { useCallback } from 'react'
 import { useExtendedI18n, Languages } from '../..'
 
-const useStyles = midLevelStyles()({
+const useStyles = makeG2STyles()({
     label: {
         marginRight: "5px"
     },
@@ -18,7 +18,7 @@ const useStyles = midLevelStyles()({
 
 export const LanguageSelector = () => {
     const {i18n} = useExtendedI18n()
-    const classes = useStyles()
+    const { classes } = useStyles()
 
     const onLanguageChange = useCallback(
         (event: SelectChangeEvent<"fr" | "en">) => i18n.changeLanguage(event.target.value as keyof Languages),

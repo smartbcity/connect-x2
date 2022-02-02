@@ -1,20 +1,21 @@
 import React, { useCallback, useState } from 'react'
 import { AppLayout as AruiAppLayout } from '@smartb/g2-layout'
 import { MenuItem } from '@smartb/g2-components'
-import { Theme, useTheme, midLevelStyles } from '@smartb/g2-themes'
+import {  makeG2STyles } from '@smartb/g2-themes'
 import { appLayoutStyleProps } from '../../theme'
 import {X2Menu} from './X2Menu'
 import { AppBarContent } from './AppBarContent'
 
-const useStyles = midLevelStyles<Theme>()({
+const useStyles = makeG2STyles()(
+  (theme) => ({
     drawer: {
         "& .MuiDrawer-paper": {
-            background: theme => theme.colors.secondary,
+            background: theme.colors.secondary,
             border: "none"
         }
     },
     main: {
-        background: theme => theme.colors.tertiary,
+        background: theme.colors.tertiary,
         minHeight: "100vh",
         boxSizing: "border-box"
     },
@@ -24,7 +25,7 @@ const useStyles = midLevelStyles<Theme>()({
     toolBar: {
         minHeight: "100%"
     }
-})
+}))
 
 interface AppLayoutProps {
     children?: React.ReactNode
@@ -35,8 +36,8 @@ interface AppLayoutProps {
 export const AppLayout = (props: AppLayoutProps) => {
     const { children, title, menu } = props
     const [open, setOpen] = useState(window.innerWidth > 750)
-    const theme = useTheme()
-    const classes = useStyles(theme)
+    
+    const { classes } = useStyles()
     const onToggle = useCallback(
         () => setOpen(prevOpen => !prevOpen),
         [],

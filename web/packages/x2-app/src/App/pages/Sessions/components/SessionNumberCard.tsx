@@ -1,9 +1,9 @@
-import { highLevelStyles } from "@smartb/g2-themes"
+import { makeG2STyles } from "@smartb/g2-themes"
 import { BarChart, Panel } from "components"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
     body: {
         height: "350px",
         overflow: "auto",
@@ -48,7 +48,7 @@ export const SessionNumberCard = () => {
         value: 4689
     }]), [])
 
-    const classes = useStyles()
+    const { classes } = useStyles()
 
     return (
         <Panel className={classes.root} bodyClassName={classes.body} header={t("sessionsPage.sessionNumber")} >

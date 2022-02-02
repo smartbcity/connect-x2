@@ -1,5 +1,5 @@
 import { PopUp, PopUpAction } from '@smartb/g2-layout'
-import { midLevelStyles } from '@smartb/g2-themes'
+import { makeG2STyles} from '@smartb/g2-themes'
 import { useCallback, useEffect, /* useEffect, */ useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Document, Page, pdfjs } from "react-pdf";
@@ -12,7 +12,7 @@ import { useExtendedI18n } from "../../i18n"
 // import { toJpeg } from "html-to-image"
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const useStyles = midLevelStyles()({
+const useStyles = makeG2STyles()({
     popUpRoot: {
         "& .MuiPaper-root": {
             maxWidth: "unset",
@@ -48,7 +48,7 @@ export const CertificatPopUp = (props: CertificatPopUp) => {
     const { onClose, open, currentSessionState } = props
     const { t } = useTranslation()
     const [pageNumber] = useState<number>(1);
-    const classes = useStyles()
+    const { classes } = useStyles()
     const { i18n } = useExtendedI18n()
 
     // const [state, setstate] = useState<HTMLDivElement | null>(null)

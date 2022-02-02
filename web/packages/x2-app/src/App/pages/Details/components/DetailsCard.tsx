@@ -1,10 +1,10 @@
 import { Panel, TransactionDetails } from "components"
 import { useTranslation } from "react-i18next"
 import {SessionState, SsmUriDTO, toUrlPath} from "ssm";
-import { highLevelStyles } from "@smartb/g2-themes";
+import { makeG2STyles } from "@smartb/g2-themes";
 import { Box, Typography } from "@mui/material";
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
     panel: {
         width: "40%"
     },
@@ -26,7 +26,7 @@ interface DetailsCardProps {
 export const DetailsCard = (props: DetailsCardProps) => {
     const { transaction, ssmUri } = props
     const { t } = useTranslation()
-    const classes = useStyles()
+    const { classes } = useStyles()
     const urlPath = toUrlPath(ssmUri)
 
     const embed = transaction ? `${window.location.origin}/embed/${urlPath}/${transaction?.details.session}/${transaction?.transaction?.transactionId}/details` : undefined

@@ -1,14 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import { Timeline } from "@smartb/g2-components";
 import { NoMatchPage } from "@smartb/g2-providers";
-import { highLevelStyles } from "@smartb/g2-themes";
+import { makeG2STyles } from "@smartb/g2-themes";
 import { CertificatPopUp, LoadingPage, toTimeLineCells } from "components";
 import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
 import {SessionState, useFetchTransactions, useParamsSsmUri} from "ssm";
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
   viewer: {
     width: "100%",
     height: "100%"
@@ -45,7 +45,7 @@ interface TransactionHistoryProps {
 export const TransactionHistory = (props: TransactionHistoryProps) => {
   const { } = props
   const { t } = useTranslation()
-  const classes = useStyles()
+  const { classes } = useStyles()
   const ssmUri = useParamsSsmUri()
   const { sessionName } = useParams<{ sessionName: string }>();
 

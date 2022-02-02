@@ -1,22 +1,23 @@
 
-import { Theme, useTheme, midLevelStyles} from '@smartb/g2-themes'
+import {  makeG2STyles} from '@smartb/g2-themes'
 import {Card} from "@smartb/g2-components"
 import React from 'react'
 import { EmbedCodeViewer } from '../EmbedCodeViewer'
 
-const useStyles = midLevelStyles<Theme>()({
+const useStyles = makeG2STyles()(
+  (theme) => ({
     root: {
         margin: "20px 10px",
         flexGrow: 1,
         maxWidth: "1200px",
         minWidth: "400px",
         overflow: "hidden",
-        boxShadow: theme => theme.shadows[3]
+        boxShadow: theme.shadows[3]
     },
     divider: {
         height: "1px",
         width: "100%",
-        background: theme => theme.colors.tertiary,
+        background: theme.colors.tertiary,
         left: "0%"
     },
     header: {
@@ -43,7 +44,7 @@ const useStyles = midLevelStyles<Theme>()({
         zIndex: 5,
         right: "10px"
     }
-})
+}))
 
 interface PanelProps {
     children?: React.ReactNode
@@ -56,8 +57,8 @@ interface PanelProps {
 
 export const Panel = (props: PanelProps) => {
     const { children, header, noPadding = true, bodyClassName, className, embedUrl } = props
-    const theme = useTheme()
-    const classes = useStyles(theme)
+    
+    const { classes } = useStyles()
     return (
         <Card className={`${classes.root} ${className ?? ""}`} classes={{dividerBar: classes.divider, header: classes.header, body: noPadding ? `${classes.bodyWithNoPadding} ${bodyClassName ?? ""}` : `${classes.body} ${bodyClassName ?? ""}`}} header={header} logo="none">
             {embedUrl && <EmbedCodeViewer className={classes.embedViewer} embedUrl={embedUrl}/>}

@@ -1,9 +1,9 @@
 import { Panel, SessionInformations } from "components"
 import { useTranslation } from "react-i18next"
-import { highLevelStyles } from "@smartb/g2-themes"
+import { makeG2STyles } from "@smartb/g2-themes"
 import {Session, SsmUriDTO, toUrlPath} from "ssm";
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
     panel: {
         width: "40%"
     },
@@ -24,7 +24,7 @@ interface InformationCardProps {
 
 export const InformationCard = (props: InformationCardProps) => {
     const { currentSession, ssmUri } = props
-    const classes = useStyles()
+    const { classes } = useStyles()
     const { t } = useTranslation()
     const urlPath = toUrlPath(ssmUri)
 
