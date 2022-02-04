@@ -116,6 +116,7 @@ export const BarChart = (props: BarChartProps) => {
 
    
     return (
+        //@ts-ignore
         <Bar plugins={[ChartDataLabels]} data={chartData} type='bar' height={height} options={options} />
     )
 }

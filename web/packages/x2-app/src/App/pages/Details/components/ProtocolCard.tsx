@@ -3,9 +3,9 @@ import {Panel} from "components"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import {SSM, SsmTransitionDTO, SsmUriDTO, toUrlPath} from "ssm"
-import { highLevelStyles } from "@smartb/g2-themes"
+import { makeG2STyles } from "@smartb/g2-themes"
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
     panel: {
         width: "40%",
     },
@@ -28,7 +28,7 @@ export const ProtocolCard = (props: ProtocolCardProps) => {
     const urlPath = toUrlPath(ssmUri)
 
     const transitions = useAutomateTransition(currentSSM)
-    const classes = useStyles()
+    const { classes } = useStyles()
     return (
         <Panel className={classes.panel} bodyClassName={classes.body} header={t("protocolDiagram")} embedUrl={`${window.location.origin}/embed/${urlPath}/diagram`}>
             <AutomateViewer transitions={transitions} className={classes.viewer}/>

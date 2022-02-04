@@ -1,9 +1,9 @@
-import { highLevelStyles } from "@smartb/g2-themes";
+import { makeG2STyles } from "@smartb/g2-themes";
 import { LineChart, Panel, useExtendedI18n } from "components"
 import { useTranslation } from "react-i18next"
 import { addMonths } from 'date-fns'
 import { useCallback, useMemo, useState } from "react";
-import { Box, Slider } from "@material-ui/core";
+import { Box, Slider } from "@mui/material";
 
 function rand() {
     return Math.round(Math.random() * (100 - 1) + 1);
@@ -11,7 +11,7 @@ function rand() {
 
 const date = addMonths(new Date(), -8)
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
     body: {
         height: "350px",
         overflow: "auto",
@@ -36,7 +36,7 @@ const useStyles = highLevelStyles()({
 
 export const StepsCompletedCard = () => {
     const { t } = useTranslation()
-    const classes = useStyles()
+    const { classes } = useStyles()
 
     const [periodRange, setPeriodRange] = useState<number[]>([(100 / 7) * 5, 100]);
 
@@ -115,6 +115,7 @@ export const StepsCompletedCard = () => {
     return (
         <Panel className={classes.root} bodyClassName={classes.body} header={t("sessionsPage.completedStepsDuringPeriod")}>
             <Slider
+                size="small"
                 defaultValue={periodRange}
                 onChange={handleChange}
                 color="secondary"

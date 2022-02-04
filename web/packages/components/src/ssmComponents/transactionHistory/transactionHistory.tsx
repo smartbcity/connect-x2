@@ -1,4 +1,4 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography } from "@mui/material";
 import { TimeLineCell } from "@smartb/g2-components";
 import { SessionState } from "ssm";
 import { GenerateButton } from "../generateCertificate";

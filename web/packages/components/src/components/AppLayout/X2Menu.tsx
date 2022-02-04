@@ -1,10 +1,10 @@
-import {  ListItem, ListItemIcon } from '@material-ui/core'
+import {  ListItem, ListItemIcon } from '@mui/material'
 import { X2Icon } from '../../icons'
 import { Menu, MenuItems } from '@smartb/g2-components'
-import { midLevelStyles } from "@smartb/g2-themes"
+import { makeG2STyles } from "@smartb/g2-themes"
 import { Link } from "react-router-dom";
 
-const useStyles = midLevelStyles()({
+const useStyles = makeG2STyles()({
     icon: {
         width: "140px"
     },
@@ -25,7 +25,7 @@ interface X2MenuProps {
 
 export const X2Menu = (props: X2MenuProps) => {
     const { menu } = props
-    const classes = useStyles()
+    const { classes } = useStyles()
     return (
         <>
             <ListItem

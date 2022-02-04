@@ -1,6 +1,6 @@
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 import { NoMatchPage } from "@smartb/g2-providers";
-import { highLevelStyles } from "@smartb/g2-themes";
+import { makeG2STyles } from "@smartb/g2-themes";
 import { Page } from "components";
 import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -12,7 +12,7 @@ import { SessionsFilters } from "./components/SessionsFilters";
 import { SessionTable } from "./components/SessionTable";
 import { StepsCompletedCard } from "./components/StepsCompletedCard";
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
   container: {
     display: "flex",
     alignItems: "flex-start",
@@ -38,7 +38,7 @@ interface SessionsProps {
 export const Sessions = (props: SessionsProps) => {
   const { setTitle, ssmList, gotoSessionDetails, gotoSessions, fetchSessions, sessionsList } = props;
   const { t } = useTranslation()
-  const classes = useStyles()
+  const { classes } = useStyles()
   const ssmUri = useParamsSsmUri()
   const currentSSM = useMemo(() => ssmList.get(ssmUri.uri), [ssmList, ssmUri.uri])
 

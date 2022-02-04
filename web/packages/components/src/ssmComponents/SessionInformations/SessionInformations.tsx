@@ -1,12 +1,12 @@
-import { Box, InputLabel, Typography } from '@material-ui/core'
-import { midLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
+import { Box, InputLabel, Typography } from '@mui/material'
+import { makeG2STyles } from '@smartb/g2-themes'
 import clsx from 'clsx'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Session } from "ssm"
 import { CopyToClipboard } from '../../components/CopyToClipboard'
 
-const useStyles = midLevelStyles<Theme>()({
+const useStyles = makeG2STyles()({
     box: {
         display: "flex",
         flexDirection: "column",
@@ -47,8 +47,8 @@ interface SessionInformationsProps {
 
 export const SessionInformations = (props: SessionInformationsProps) => {
     const { currentSession, className, minified = false } = props
-    const theme = useTheme()
-    const classes = useStyles(theme)
+    
+    const { classes } = useStyles()
     const { t } = useTranslation()
     const typovariant = useMemo(() => minified ? "body2" : "body1", [minified])
     const init = currentSession.state.details?.origin?.role === undefined && currentSession.state.details?.origin?.action === undefined

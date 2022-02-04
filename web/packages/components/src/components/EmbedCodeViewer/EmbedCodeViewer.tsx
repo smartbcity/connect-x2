@@ -1,8 +1,8 @@
-import { Box, IconButton, Typography } from '@material-ui/core'
-import { CodeRounded } from '@material-ui/icons'
+import { Box, IconButton, Typography } from '@mui/material'
+import { CodeRounded } from '@mui/icons-material'
 import { Tooltip, Popover } from '@smartb/g2-notifications'
 import { CodeHighlighter } from '@smartb/g2-documentation'
-import { midLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
+import { makeG2STyles } from '@smartb/g2-themes'
 import clsx from 'clsx'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -17,7 +17,8 @@ frameborder="0"
 allowfullscreen>
 </iframe>`
 
-const useStyles = midLevelStyles<Theme>()({
+const useStyles = makeG2STyles()(
+  (theme) => ({
     popover: {
         width: "500px",
         height: "400px"
@@ -28,16 +29,16 @@ const useStyles = midLevelStyles<Theme>()({
         border: "1px solid #676879"
     },
     button: {
-        background: theme => theme.colors.primary,
+        background: theme.colors.primary,
         padding: "5px",
         "&:hover": {
-            background: theme => theme.colors.primary,
+            background: theme.colors.primary,
         }
     },
     icon: {
         color: "#676879",
     }
-})
+}))
 
 interface EmbedCodeViewerProps {
     embedUrl: string
@@ -48,8 +49,8 @@ export const EmbedCodeViewer = (props: EmbedCodeViewerProps) => {
     const { embedUrl, className } = props
     const {t} = useTranslation()
     const [anchor, setanchor] = useState<HTMLElement | undefined>(undefined)
-    const theme = useTheme()
-    const classes = useStyles(theme)
+    
+    const { classes } = useStyles()
     const onClick = useCallback(
         (event: React.MouseEvent<HTMLElement>) => {
             setanchor(event.currentTarget)
@@ -65,24 +66,25 @@ export const EmbedCodeViewer = (props: EmbedCodeViewerProps) => {
 
     const embedString = useMemo(() => getEmbedString(embedUrl), [embedUrl])
 
-    return (
-        <>
-            <Tooltip helperText={t("panelComponent.viewEmbedCode")}>
-                <IconButton className={clsx(className, classes.button)} onClick={onClick}>
-                    <CodeRounded className={classes.icon} />
-                </IconButton>
-            </Tooltip>
-            <Popover className={classes.popover} open={!!anchor} anchorEl={anchor} closeOnClickAway onClose={onClose}>
-                <Box display="flex" width="100%" height="100%" flexDirection="column">
-                    <CodeHighlighter language="html" code={embedString} />
-                    <Typography variant="body2">{t("preview")}:</Typography>
-                    <iframe
-                        className={classes.ifram}
-                        src={embedUrl}
-                        title="X2 embed content">
-                    </iframe>
-                </Box>
-            </Popover>
-        </>
-    )
+    return <>
+        <Tooltip helperText={t("panelComponent.viewEmbedCode")}>
+            <IconButton
+                className={clsx(className, classes.button)}
+                onClick={onClick}
+                size="large">
+                <CodeRounded className={classes.icon} />
+            </IconButton>
+        </Tooltip>
+        <Popover className={classes.popover} open={!!anchor} anchorEl={anchor} closeOnClickAway onClose={onClose}>
+            <Box display="flex" width="100%" height="100%" flexDirection="column">
+                <CodeHighlighter language="html" code={embedString} />
+                <Typography variant="body2">{t("preview")}:</Typography>
+                <iframe
+                    className={classes.ifram}
+                    src={embedUrl}
+                    title="X2 embed content">
+                </iframe>
+            </Box>
+        </Popover>
+    </>;
 }

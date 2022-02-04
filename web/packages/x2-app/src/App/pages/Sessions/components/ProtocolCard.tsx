@@ -1,11 +1,11 @@
 import { AutomateViewer } from "@smartb/g2-s2"
 import {Panel} from "components"
 import { useTranslation } from "react-i18next"
-import { highLevelStyles } from "@smartb/g2-themes"
+import { makeG2STyles } from "@smartb/g2-themes"
 import { SSM, Transition } from "ssm"
 import { useMemo } from "react"
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
     viewer: {
         height: "100%"
     },
@@ -30,7 +30,7 @@ interface ProtocolCardProps {
 export const ProtocolCard = (props: ProtocolCardProps) => {
     const {currentSSM} = props
     const {t} = useTranslation()
-    const classes = useStyles()
+    const { classes } = useStyles()
     const transitions = useMemo(() => currentSSM ? currentSSM.ssm.transitions.map((transition: Transition) => ({...transition, label: `${transition.role}: ${transition.action}`})) : [], [currentSSM])
     return (
         <Panel className={classes.root} bodyClassName={classes.body} noPadding header={t("protocolDiagram")} embedUrl={`${window.location.origin}/embed/${currentSSM?.ssm.name}/diagram`}>

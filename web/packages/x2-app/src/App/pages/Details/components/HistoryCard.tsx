@@ -3,9 +3,9 @@ import { LoadingComponent, Panel, toTimeLineCells, CertificatPopUp } from "compo
 import { useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import {Session, SessionState, SsmUriDTO, toUrlPath, useFetchTransactions} from "ssm"
-import { highLevelStyles } from "@smartb/g2-themes"
+import { makeG2STyles } from "@smartb/g2-themes"
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
     panel: {
         width: "40%",
     },
@@ -31,7 +31,7 @@ interface HistoryCardProps {
 export const HistoryCard = (props: HistoryCardProps) => {
     const { ssmUri, currentSession, onChangeTransaction } = props
     const { t } = useTranslation()
-    const classes = useStyles()
+    const { classes } = useStyles()
     const [selectedCellId, setSelectedCellId] = useState<string | undefined>(undefined)
 
     const [sessionStatePdf, setSessionStatePdf] = useState<SessionState | undefined>(undefined)

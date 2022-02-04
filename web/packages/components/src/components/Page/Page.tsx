@@ -2,9 +2,9 @@ import {Page as AruiPage} from "@smartb/g2-layout"
 import React, { useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useHistory } from "react-router-dom"
-import { midLevelStyles } from "@smartb/g2-themes"
+import { makeG2STyles } from "@smartb/g2-themes"
 
-const useStyles = midLevelStyles()({
+const useStyles = makeG2STyles()({
     header: {
         top: "5px",
         zIndex: 0,
@@ -29,7 +29,7 @@ export const Page = (props: PageProps) => {
     const {children, setTitle, title, headerContent} = props
     const {t} = useTranslation()
     const history = useHistory()
-    const classes = useStyles()
+    const { classes } = useStyles()
     useEffect(() => {
         setTitle(title)
     }, [title, setTitle])

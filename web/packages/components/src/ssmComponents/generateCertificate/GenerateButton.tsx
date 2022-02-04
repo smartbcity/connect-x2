@@ -1,23 +1,24 @@
-import { Box, InputLabel } from '@material-ui/core'
+import { Box, InputLabel } from '@mui/material'
 import { Button } from '@smartb/g2-components'
-import { midLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
+import { makeG2STyles } from '@smartb/g2-themes'
 import { ChangeEvent, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
-const useStyles = midLevelStyles<Theme>()({
+const useStyles = makeG2STyles()(
+  (theme) => ({
     descriptionContainer: {
         display: "inline-flex",
         margin: "10px 0px"
     },
     generateButton: {
         marginLeft: "5px",
-        background: theme => theme.colors.secondary,
+        background: theme.colors.secondary,
         padding: "4px 7px",
         "&:hover": {
-            background: theme => theme.colors.secondary,
+            background: theme.colors.secondary,
         }
     }
-})
+}))
 
 interface GenerateButtonProps {
     canGenerate?: boolean
@@ -27,8 +28,8 @@ interface GenerateButtonProps {
 export const GenerateButton = (props: GenerateButtonProps) => {
     const {onClickGenerate, canGenerate = false} = props
     const {t} = useTranslation()
-    const theme = useTheme()
-    const classes = useStyles(theme)
+    
+    const { classes } = useStyles()
     const onGenerateMemoized = useCallback(
         (event: ChangeEvent<{}>) => {
             event.stopPropagation()

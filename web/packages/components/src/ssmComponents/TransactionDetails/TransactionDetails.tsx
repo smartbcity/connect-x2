@@ -1,13 +1,14 @@
-import { Box, InputLabel, Typography } from '@material-ui/core'
+import { Box, InputLabel, Typography } from '@mui/material'
 import { CodeHighlighter } from '@smartb/g2-documentation'
-import { midLevelStyles, Theme, useTheme } from '@smartb/g2-themes'
+import { makeG2STyles } from '@smartb/g2-themes'
 import clsx from 'clsx'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SessionState } from 'ssm'
 import { CopyToClipboard } from '../../components/CopyToClipboard'
 
-const useStyles = midLevelStyles<Theme>()({
+const useStyles = makeG2STyles()(
+  (theme) => ({
     preContainer: {
         padding: "20px",
         paddingTop: "0px",
@@ -65,13 +66,13 @@ const useStyles = midLevelStyles<Theme>()({
         top: "-14px"
     },
     generateButton: {
-        background: theme => theme.colors.secondary,
+        background: theme.colors.secondary,
         padding: "4px 7px",
         "&:hover": {
-            background: theme => theme.colors.secondary,
+            background: theme.colors.secondary,
         }
     }
-})
+}))
 
 interface TransactionDetailsProps {
     transaction: SessionState
@@ -82,8 +83,8 @@ interface TransactionDetailsProps {
 
 export const TransactionDetails = (props: TransactionDetailsProps) => {
     const { className, minified = false, transaction, shortVersion = false } = props
-    const theme = useTheme()
-    const classes = useStyles(theme)
+    
+    const { classes } = useStyles()
     const { t } = useTranslation()
     const typovariant = useMemo(() => minified ? "body2" : "body1", [minified])
 

@@ -1,12 +1,12 @@
-import {Box, Typography} from "@material-ui/core";
+import {Box, Typography} from "@mui/material";
 import {NoMatchPage} from "@smartb/g2-providers";
-import {highLevelStyles} from "@smartb/g2-themes";
+import {makeG2STyles} from "@smartb/g2-themes";
 import {LoadingPage, SessionInformations} from "components";
 import {useTranslation} from "react-i18next";
 import {useParams} from "react-router";
 import {useFetchSsmSession, useParamsSsmUri} from "ssm";
 
-const useStyles = highLevelStyles()({
+const useStyles = makeG2STyles()({
   viewer: {
     width: "100%",
     height: "100%"
@@ -23,7 +23,7 @@ interface SessionInformationProps {
 export const SessionInformation = (props: SessionInformationProps) => {
   const { } = props;
   const { t } = useTranslation()
-  const classes = useStyles()
+  const { classes } = useStyles()
   const { sessionName } = useParams<{ sessionName: string }>();
   const ssmUri  = useParamsSsmUri()
 
