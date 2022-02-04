@@ -43,7 +43,7 @@ const getMenu = (t: TFunction, ssmList: Map<SsmPath, SSM>, path: string): MenuIt
   const protocolsList: MenuItem<LinkProps>[] = Array.from(ssmList.values()).map((ssm) => {
       const uri = burst(ssm.uri)
       return ({
-        key: `appLayout-protocols-${ssm.ssm.name}`,
+        key: `appLayout-protocols-${uri.channelId}/${uri.chaincodeId}/${uri.ssmName}`,
         label: ssm.ssm.name,
         component: Link,
         componentProps: {

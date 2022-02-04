@@ -1,5 +1,5 @@
-import { Box, InputLabel, Select, SelectChangeEvent } from '@mui/material'
-import { makeG2STyles} from '@smartb/g2-themes'
+import { InputLabel, Select, SelectChangeEvent, Box } from '@mui/material'
+import { makeG2STyles } from '@smartb/g2-themes'
 import { useCallback } from 'react'
 import { useExtendedI18n, Languages } from '../..'
 
@@ -9,7 +9,7 @@ const useStyles = makeG2STyles()({
     },
     select: {
         padding: "2px 0px !important",
-        paddingRight: "12px !important"
+        paddingRight: "15px !important"
     },
     selectIcon: {
         marginRight: "-8px"
@@ -17,7 +17,7 @@ const useStyles = makeG2STyles()({
 })
 
 export const LanguageSelector = () => {
-    const {i18n} = useExtendedI18n()
+    const { i18n } = useExtendedI18n()
     const { classes } = useStyles()
 
     const onLanguageChange = useCallback(
@@ -26,12 +26,12 @@ export const LanguageSelector = () => {
     )
 
     return (
-        <Box display="flex" alignItems="center">
+        <Box sx={{ display: "flex", alignItems: "center" }}>
             <InputLabel className={classes.label} htmlFor="X2-languageSelector">lng:</InputLabel>
-            <Select color="secondary" classes={{select: classes.select, icon: classes.selectIcon}} native defaultValue={i18n.language} onChange={onLanguageChange} id="X2-languageSelector">
+            <Select variant="standard" color="secondary" classes={{ select: classes.select, icon: classes.selectIcon }} native defaultValue={i18n.language} onChange={onLanguageChange} id="X2-languageSelector">
                 <option value="en">en</option>
                 <option value="fr">fr</option>
             </Select>
-        </Box>
+        </Box >
     )
 }

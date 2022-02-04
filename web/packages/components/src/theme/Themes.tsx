@@ -1,5 +1,6 @@
 import { Theme as AruiTheme } from '@smartb/g2-themes'
 import { StyleProps } from '@smartb/g2-layout'
+import {ThemeOptions} from "@mui/material"
 
 
 export const appLayoutStyleProps: StyleProps = {
@@ -36,14 +37,8 @@ export const theme: AruiTheme = {
   ]
 }
 
-export const Muitheme = {
+export const Muitheme: ThemeOptions = {
   palette: {
-    primary: {
-      main: theme.colors.primary
-    },
-    secondary: {
-      main: theme.colors.secondary
-    },
     text: {
       primary: "#353945",
       secondary: "rgba(53, 57, 69, 0.7)"

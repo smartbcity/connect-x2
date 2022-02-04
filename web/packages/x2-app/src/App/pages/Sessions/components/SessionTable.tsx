@@ -8,11 +8,11 @@ import { LoadingComponent } from 'components'
 
 const useStyles = makeG2STyles()({
     container: {
-        '& .rdt_TableRow .rdt_TableCell:last-child': {
+        '& .rdt_TableRow .rdt_TableCell:last-of-type': {
             minWidth: '450px',
             maxWidth: '450px'
         },
-        '& .rdt_TableCol:last-child': {
+        '& .rdt_TableCol:last-of-type': {
             minWidth: '450px',
             maxWidth: '450px',
             "& > div": {
@@ -22,10 +22,10 @@ const useStyles = makeG2STyles()({
                 }
             }
         },
-        '& .rdt_TableRow .rdt_TableCell:first-child': {
+        '& .rdt_TableRow .rdt_TableCell:first-of-type': {
             minWidth: '200px'
         },
-        '& .rdt_TableCol:first-child': {
+        '& .rdt_TableCol:first-of-type': {
             minWidth: '200px'
         }
     }

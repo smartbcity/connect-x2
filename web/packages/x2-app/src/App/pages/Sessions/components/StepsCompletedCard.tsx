@@ -115,6 +115,7 @@ export const StepsCompletedCard = () => {
     return (
         <Panel className={classes.root} bodyClassName={classes.body} header={t("sessionsPage.completedStepsDuringPeriod")}>
             <Slider
+                size="small"
                 defaultValue={periodRange}
                 onChange={handleChange}
                 color="secondary"

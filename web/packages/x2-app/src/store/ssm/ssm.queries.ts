@@ -10,7 +10,6 @@ const fetchSessions = (
   return async (dispatch: Dispatch, getState: () => State) => {
     const state = getState();
     const session = selectors.sessionsList(state).get(ssmUri.uri)
-    console.log(selectors.ssmList(state))
     const status = session?.status ?? "IDLE"
 
     if (status === "IDLE") {
