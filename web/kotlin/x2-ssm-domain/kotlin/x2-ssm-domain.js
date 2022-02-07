@@ -6284,7 +6284,7 @@
   SsmUri_0.$metadata$ = {
     simpleName: 'SsmUri',
     kind: 'class',
-    interfaces: [SsmUriDTO]
+    interfaces: []
   };
   Object.defineProperty(SsmUri_0.prototype, 'uri', {
     configurable: true,
@@ -6306,13 +6306,6 @@
     configurable: true,
     get: SsmUri_0.prototype._get_ssmVersion__0_k$
   });
-  function SsmUriDTO() {
-  }
-  SsmUriDTO.$metadata$ = {
-    simpleName: 'SsmUriDTO',
-    kind: 'interface',
-    interfaces: []
-  };
   function SsmGetAdminQuery_0(name) {
     this._name_1 = name;
   }
@@ -7627,6 +7620,7 @@
   var $ssm$chaincode$dsl$blockchain = $ssm$chaincode$dsl.blockchain || ($ssm$chaincode$dsl.blockchain = {});
   var $ssm$chaincode$dsl$config = $ssm$chaincode$dsl.config || ($ssm$chaincode$dsl.config = {});
   var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
+  var $ssm$chaincode$dsl$model$uri = $ssm$chaincode$dsl$model.uri || ($ssm$chaincode$dsl$model.uri = {});
   var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
   var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
   var $ssm$couchdb$dsl$model = $ssm$couchdb$dsl.model || ($ssm$couchdb$dsl.model = {});
@@ -7665,8 +7659,7 @@
   $ssm$chaincode$dsl$model.SsmSessionState = SsmSessionState_0;
   $ssm$chaincode$dsl$model.SsmSessionStateLog = SsmSessionStateLog_0;
   $ssm$chaincode$dsl$model.SsmTransition = SsmTransition_0;
-  var $ssm$chaincode$dsl$model$uri = $ssm$chaincode$dsl$model.uri || ($ssm$chaincode$dsl$model.uri = {});
-  $ssm$chaincode$dsl$model$uri.SsmUriDTO = SsmUri_0;
+  $ssm$chaincode$dsl$model$uri.SsmUri = SsmUri_0;
   var $ssm$chaincode$dsl$query = $ssm$chaincode$dsl.query || ($ssm$chaincode$dsl.query = {});
   $ssm$chaincode$dsl$query.SsmGetAdminQuery = SsmGetAdminQuery_0;
   $ssm$chaincode$dsl$query.SsmGetAdminResult = SsmGetAdminResult_0;

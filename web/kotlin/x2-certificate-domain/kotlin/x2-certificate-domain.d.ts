@@ -1,14 +1,18 @@
 type Nullable<T> = T | null | undefined
 export namespace f2.dsl.cqrs {
-    interface Command {
+    interface Command extends f2.dsl.cqrs.Message {
     }
 }
 export namespace f2.dsl.cqrs {
-    interface Event {
+    interface Event extends f2.dsl.cqrs.Message {
     }
 }
 export namespace f2.dsl.cqrs {
-    interface Query {
+    interface Message {
+    }
+}
+export namespace f2.dsl.cqrs {
+    interface Query extends f2.dsl.cqrs.Message {
     }
 }
 export namespace f2.dsl.cqrs.error {
@@ -174,6 +178,16 @@ export namespace ssm.chaincode.dsl.model {
         readonly private: Nullable<kotlin.collections.Map<string, string>>;
     }
 }
+export namespace ssm.chaincode.dsl.model.uri {
+    interface ChaincodeUriDTO {
+        readonly uri: string;
+    }
+}
+export namespace ssm.chaincode.dsl.model.uri {
+    interface SsmUriDTO {
+        readonly uri: string;
+    }
+}
 export namespace ssm.couchdb.dsl.model {
     interface DatabaseChangesDTO {
         readonly changeEventId: string;
@@ -188,7 +202,7 @@ export namespace ssm.couchdb.dsl.model {
 }
 export namespace ssm.couchdb.dsl.query {
     interface CouchdbAdminListQueryDTO extends f2.dsl.cqrs.Query {
-        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUriDTO;
     }
     interface CouchdbAdminListQueryResultDTO extends f2.dsl.cqrs.Event {
         readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.SsmAgentDTO>;
@@ -198,7 +212,7 @@ export namespace ssm.couchdb.dsl.query {
     interface CouchdbChaincodeListQueryDTO extends f2.dsl.cqrs.Query {
     }
     interface CouchdbChaincodeListQueryResultDTO extends f2.dsl.cqrs.Event {
-        readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.uri.ChaincodeUri>;
+        readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.uri.ChaincodeUriDTO>;
     }
 }
 export namespace ssm.couchdb.dsl.query {
@@ -254,7 +268,7 @@ export namespace ssm.couchdb.dsl.query {
 }
 export namespace ssm.couchdb.dsl.query {
     interface CouchdbSsmSessionStateGetQueryDTO extends f2.dsl.cqrs.Query {
-        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUriDTO;
         readonly ssmName: Nullable<string>;
         readonly sessionName: string;
     }
@@ -264,7 +278,7 @@ export namespace ssm.couchdb.dsl.query {
 }
 export namespace ssm.couchdb.dsl.query {
     interface CouchdbSsmSessionStateListQueryDTO extends f2.dsl.cqrs.page.PageQueryDTO {
-        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUriDTO;
         readonly ssm: Nullable<string>;
     }
     interface CouchdbSsmSessionStateListQueryResultDTO extends f2.dsl.cqrs.page.PageQueryResultDTO<ssm.chaincode.dsl.model.SsmSessionStateDTO> {
@@ -273,7 +287,7 @@ export namespace ssm.couchdb.dsl.query {
 }
 export namespace ssm.couchdb.dsl.query {
     interface CouchdbUserListQueryDTO extends f2.dsl.cqrs.Query {
-        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUri;
+        readonly chaincodeUri: ssm.chaincode.dsl.model.uri.ChaincodeUriDTO;
     }
     interface CouchdbUserListQueryResultDTO extends f2.dsl.cqrs.Event {
         readonly items: kotlin.collections.List<ssm.chaincode.dsl.model.SsmAgentDTO>;
