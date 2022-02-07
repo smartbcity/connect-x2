@@ -5,6 +5,7 @@ import f2.dsl.fnc.F2Supplier
 import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.f2Supplier
 import f2.dsl.fnc.invoke
+import f2.dsl.fnc.invokeWith
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import ssm.data.dsl.features.query.DataSsmGetQuery
@@ -43,13 +44,8 @@ open class SsmApiFinderService(
 
 	@Bean
 	fun getAllSsm(): F2Supplier<DataSsmListQueryResultDTO> = f2Supplier {
-		val tt = dataSsmProperties.chaincode
-		println(tt)
-		dataSsmListQueryFunction(
-			DataSsmListQuery(
-				x2SsmProperties.chaincodes
-			)
-		)
+		DataSsmListQuery(x2SsmProperties.chaincodes)
+			.invokeWith(dataSsmListQueryFunction)
 	}
 
 	@Bean

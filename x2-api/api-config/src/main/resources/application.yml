@@ -6,6 +6,20 @@ spring:
     function:
       web:
         path: /api
+#  r2dbc:
+#    url: r2dbc:postgresql://localhost:5432/postgres?schema=techwriting
+#    username: postgres
+#    password: postgrespassword
+  jpa:
+    database: POSTGRESQL
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgrespassword
+
 
 x2:
   ssm:

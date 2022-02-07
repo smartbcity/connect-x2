@@ -21,8 +21,14 @@ include(
 
 include(
 	"x2-f2:ssm:ssm-api",
-	"x2-f2:ssm:ssm-domain"
+	"x2-f2:ssm:ssm-domain",
 )
+
+include(
+	"x2-f2:ssm:ssm-sync-api",
+	"x2-f2:ssm:ssm-sync-postgres",
+)
+
 include(
 	"x2-test:ssm-certificate-provider"
 )

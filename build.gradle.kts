@@ -1,4 +1,5 @@
 plugins {
+	kotlin("plugin.jpa") version PluginVersions.kotlin apply false
 	kotlin("plugin.spring") version PluginVersions.kotlin apply false
 	kotlin("plugin.serialization") version PluginVersions.kotlin apply false
 	kotlin("kapt") version PluginVersions.kotlin apply false

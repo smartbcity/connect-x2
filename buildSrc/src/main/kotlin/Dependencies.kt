@@ -1,7 +1,7 @@
 import city.smartb.gradle.dependencies.FixersPluginVersions
 
 object PluginVersions {
-	const val fixers = "0.3.2"
+	const val fixers = "experimental-SNAPSHOT"
 	const val d2 = "0.3.1"
 	const val kotlin = FixersPluginVersions.kotlin
 	const val springBoot = FixersPluginVersions.springBoot
@@ -9,9 +9,11 @@ object PluginVersions {
 
 object Versions {
 	const val springBoot = PluginVersions.springBoot
+	const val postgres = "42.3.2"
+	const val r2dbcPostgres = "0.8.11.RELEASE"
 
-	const val f2 = "0.3.1"
-	const val ssm = "experimental-SNAPSHOT"
+	const val f2 = PluginVersions.fixers
+	const val ssm = "experimental-x-SNAPSHOT"
 }
 
 object Repo {

@@ -10,7 +10,7 @@ dependencies {
     implementation(project(":x2-api:api-config"))
     implementation(project(":x2-api:api-auth"))
     implementation(project(":x2-f2:certificate:certificate-api"))
-    implementation(project(":x2-f2:ssm:ssm-api"))
+    implementation(project(":x2-f2:ssm:ssm-sync-api"))
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {
