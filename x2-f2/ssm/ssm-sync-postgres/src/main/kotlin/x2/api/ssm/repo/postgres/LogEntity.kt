@@ -34,6 +34,7 @@ data class LogEntity(
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
 	val roles: Map<String, String>?,
+	@Column(name = "LONG_TEXT", columnDefinition="TEXT")
 	val public: String,
 	val iteration: Int,
 	@OneToOne

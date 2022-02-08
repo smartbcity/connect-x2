@@ -7,7 +7,6 @@ import org.hibernate.annotations.TypeDef
 import org.hibernate.annotations.TypeDefs
 import ssm.chaincode.dsl.blockchain.EnvelopeType
 import ssm.chaincode.dsl.blockchain.IdentitiesInfo
-import ssm.chaincode.dsl.blockchain.IdentitiesInfoDTO
 import ssm.chaincode.dsl.blockchain.Transaction
 import ssm.chaincode.dsl.blockchain.TransactionDTO
 import ssm.chaincode.dsl.blockchain.TransactionId

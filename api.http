@@ -31,3 +31,33 @@ http://localhost:9090/?args=ssm&cmd=query&fcn=list
 
 ###
 http://localhost:9090/?args=session&cmd=query&fcn=list
+
+
+###
+POST http://localhost:8082/api/sessionPerStateStats
+Accept: application/json
+Content-Type: application/json
+
+{
+  "ssmUri": "ssm:sandbox:ssm:certificates"
+}
+
+###
+POST http://localhost:8082/api/sessionStatePerInterval
+Accept: application/json
+Content-Type: application/json
+
+{
+  "ssmUri": "ssm:sandbox:ssm:certificates"
+}
+
+###
+POST http://localhost:8082/api/sessionPage
+Accept: application/json
+Content-Type: application/json
+
+{
+  "ssmUri": "ssm:sandbox:ssm:certificates"
+}
+
+

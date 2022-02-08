@@ -1,16 +1,18 @@
 package x2.api.ssm.domain.query
 
 import f2.dsl.fnc.F2Function
+import ssm.chaincode.dsl.model.ChannelId
 import ssm.data.dsl.model.DataSsmSessionDTO
 
-interface X2SessionPageQueryFunction: F2Function<X2SessionPageQueryDTO, X2SessionPageQueryResultDTO>
+typealias X2SessionPageQueryFunction = F2Function<X2SessionPageQuery, X2SessionPageQueryResultDTO>
 
 interface X2SessionPageQueryDTO {
+	val ssmUri: String
 	val from: Int?
 	val to: Int?
-	val channel: List<String>?
+	val channel: List<ChannelId>?
 	val engine: List<String>?
-	val currentStep: List<String>?
+	val currentStep: List<Int>?
 }
 
 data class X2SessionPageQuery(
@@ -18,7 +20,8 @@ data class X2SessionPageQuery(
 	override val to: Int?,
 	override val channel: List<String>?,
 	override val engine: List<String>?,
-	override val currentStep: List<String>?
+	override val currentStep: List<Int>?,
+	override val ssmUri: String
 ): X2SessionPageQueryDTO
 
 interface X2SessionPageQueryResultDTO {

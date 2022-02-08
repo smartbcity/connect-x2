@@ -36,6 +36,7 @@ class AppRunnerConfiguration {
 
 	companion object {
 		const val TRANSACTION_NAME = "transaction"
+		const val TRANSACTION_BURN_NAME = "burn"
 		const val ROLE = "agent"
 		const val CERTIFICATES = "certificates"
 	}
@@ -73,7 +74,7 @@ class AppRunnerConfiguration {
 		signerName: Agent,
 		sessionName: SessionName,
 	) {
-		(0..5).map { iteration ->
+		val lastIndex = (0..5).map { iteration ->
 			val cmd = SsmSessionPerformActionCommand(
 				action = TRANSACTION_NAME,
 				context = SsmContext(
@@ -84,6 +85,21 @@ class AppRunnerConfiguration {
 				signerName = signerName.name
 			)
 			invoke(cmd)
+			iteration
+		}.last()
+		(0..1).random().let { value ->
+			if(value == 0) {
+				val cmd = SsmSessionPerformActionCommand(
+					action = TRANSACTION_BURN_NAME,
+					context = SsmContext(
+						session = sessionName,
+						public = getPublic(),
+						iteration = lastIndex + 1,
+					),
+					signerName = signerName.name
+				)
+				invoke(cmd)
+			}
 		}
 	}
 
@@ -100,7 +116,6 @@ class AppRunnerConfiguration {
 		} else {
 			"This is not a certificate"
 		}
-
 	}
 
 	private suspend fun F2Function<SsmSessionStartCommand, SsmSessionStartResult>.startSession(
@@ -123,8 +138,8 @@ class AppRunnerConfiguration {
 
 	private fun getSsm(ssmName: SsmName): Ssm {
 		val first = SsmTransition(0, 0, ROLE, TRANSACTION_NAME)
-		val ssm = Ssm(ssmName, listOf(first))
-		return ssm
+		val second = SsmTransition(0, 1, ROLE, TRANSACTION_BURN_NAME)
+		return Ssm(ssmName, listOf(first, second))
 	}
 
 	private suspend fun SsmTxInitFunction.init(
