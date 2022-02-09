@@ -23,6 +23,7 @@ import javax.persistence.Id
 class TransactionEntity(
 	@Id
 	val transactionId: TransactionId,
+	@Column(columnDefinition="TEXT")
 	val sessionName: SessionName,
 	val blockId: Long,
 	val timestamp: Long,

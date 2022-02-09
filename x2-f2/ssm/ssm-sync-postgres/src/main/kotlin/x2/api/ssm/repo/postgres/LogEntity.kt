@@ -23,6 +23,7 @@ data class LogEntity(
 	@Id
 	val txId: String,
 	val ssmUri: String,
+	@Column(columnDefinition="TEXT")
 	val sessionName: SessionName,
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
@@ -34,7 +35,7 @@ data class LogEntity(
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
 	val roles: Map<String, String>?,
-	@Column(name = "LONG_TEXT", columnDefinition="TEXT")
+	@Column(columnDefinition="TEXT")
 	val public: String,
 	val iteration: Int,
 	@OneToOne

@@ -2,12 +2,15 @@ package x2.api.ssm.sync.api
 
 import f2.dsl.fnc.invoke
 import f2.dsl.fnc.invokeWith
+import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Component
 import ssm.chaincode.dsl.model.SessionName
+import ssm.chaincode.dsl.model.SsmName
 import ssm.chaincode.dsl.model.uri.ChaincodeUri
+import ssm.chaincode.dsl.model.uri.from
 import ssm.data.dsl.features.query.DataSsmGetQuery
 import ssm.data.dsl.features.query.DataSsmGetQueryFunction
 import ssm.data.dsl.features.query.DataSsmSessionGetQuery
@@ -16,6 +19,7 @@ import ssm.data.dsl.model.DataSsmSessionState
 import ssm.sync.sdk.SsmSessionSyncResult
 import ssm.sync.sdk.SsmSyncEventBus
 import ssm.sync.sdk.SyncSsmCommandFunction
+import x2.api.ssm.domain.config.X2SsmProperties
 import x2.api.ssm.repo.postgres.ChaincodeSyncEntity
 import x2.api.ssm.repo.postgres.LogEntity
 import x2.api.ssm.repo.postgres.SessionEntity
@@ -29,6 +33,7 @@ import x2.api.ssm.repo.postgres.toSessionEntity
 
 @Component
 class SyncSsm(
+	private val x2SsmProperties: X2SsmProperties,
 	private val syncSsmCommandFunction: SyncSsmCommandFunction,
 	private val dataSsmGetQueryFunction: DataSsmGetQueryFunction,
 	private val dataSsmSessionGetQueryFunction: DataSsmSessionGetQueryFunction,
@@ -41,15 +46,25 @@ class SyncSsm(
 	private val logger = LoggerFactory.getLogger(SyncSsm::class.java)
 
 	override fun run(vararg args: String?) = runBlocking {
-		syncChaincode("chaincode:sandbox:ssm")
+		x2SsmProperties.ssm.forEach { ssm ->
+			async {
+				val chaincpdeUri = ChaincodeUri.from(ssm.channelId, chaincodeId = ssm.chaincodeId)
+				syncChaincode(chaincpdeUri.uri, ssm.ssmName)
+			}
+		}
+//		x2SsmProperties.chaincodes.forEach { chainCode ->
+//			syncChaincode(chainCode.uri, )
+//		}
 	}
 
-	private suspend fun syncChaincode(chainCodeUri: String) {
+	private suspend fun syncChaincode(chainCodeUri: String, ssmName: SsmName) {
 		logger.info("${SyncSsm::syncChaincode.name}[$chainCodeUri]")
+		val chaincodeEntity = chaincodeRepository.findById(chainCodeUri).orElse(null)
 		SsmSyncEventBus(
 			chaincodeUri = ChaincodeUri(chainCodeUri),
-			syncSsmF2Impl = syncSsmCommandFunction,
-		).sync().collect { result ->
+			syncSsmCommandFunction = syncSsmCommandFunction,
+			ssmName = ssmName
+		).sync(lastEventId = chaincodeEntity?.lastEventId).collect { result ->
 			logger.info("SsmSyncEventBus.sync [$chainCodeUri] -  items[${result.items.size} - lastEventId[$result.lastEventId]]")
 			result.items.map {
 				it.ssm

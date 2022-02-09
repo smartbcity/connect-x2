@@ -6,10 +6,6 @@ spring:
     function:
       web:
         path: /api
-#  r2dbc:
-#    url: r2dbc:postgresql://localhost:5432/postgres?schema=techwriting
-#    username: postgres
-#    password: postgrespassword
   jpa:
     database: POSTGRESQL
     generate-ddl: true
@@ -39,7 +35,10 @@ spring:
   config:
     activate:
       on-profile: impactmate
-
+x2:
+  ssm:
+    chaincodes:
+      - chaincode:proudhon:ssm
 ssm:
   couchdb:
     url: http://peer0.pr-commune.smartb.network:5984
@@ -56,12 +55,42 @@ ssm:
 spring:
   config:
     activate:
+      on-profile: x2smartb
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgrespassword
+
+x2:
+  ssm:
+    chaincodes:
+      - chaincode:proudhon:ssm
+    ssm:
+      - ssm:proudhon:ssm:Request
+      - ssm:proudhon:ssm:Certificates
+
+ssm:
+  couchdb:
+    url: http://peer0.pr-commune.smartb.network:5984
+    username: 1111
+    password: 2222
+    serviceName: ssm-couchdb-unit
+  chaincode:
+    url: "http://peer0.pr-commune.smartb.network"
+
+---
+spring:
+  config:
+    activate:
       on-profile: local
 
 x2:
   ssm:
     chaincodes:
       - chaincode:proudhon:ssm
+    ssm:
+      - ssm:proudhon:ssm:Request
+      - ssm:proudhon:ssm:Certificates
 
 ssm:
   couchdb:

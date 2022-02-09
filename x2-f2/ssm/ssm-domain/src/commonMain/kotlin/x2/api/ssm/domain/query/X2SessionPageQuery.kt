@@ -6,7 +6,7 @@ import ssm.data.dsl.model.DataSsmSessionDTO
 
 typealias X2SessionPageQueryFunction = F2Function<X2SessionPageQuery, X2SessionPageQueryResultDTO>
 
-interface X2SessionPageQueryDTO {
+expect interface X2SessionPageQueryDTO {
 	val ssmUri: String
 	val from: Int?
 	val to: Int?

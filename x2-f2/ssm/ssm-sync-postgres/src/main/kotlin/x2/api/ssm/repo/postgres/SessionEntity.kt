@@ -29,6 +29,7 @@ import javax.persistence.OneToMany
 @Entity
 data class SessionEntity(
 	@Id
+	@Column(columnDefinition="TEXT")
 	val sessionName: SessionName,
 	val ssmUri: String,
 //	@Type(type = "jsonb")
@@ -49,7 +50,7 @@ data class SessionEntity(
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
 	val roles: Map<String, String>?,
-	@Column(name = "LONG_TEXT", columnDefinition="TEXT")
+	@Column(columnDefinition="TEXT")
 	val public: String,
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")

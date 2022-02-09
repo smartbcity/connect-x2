@@ -1,12 +1,21 @@
 version: "3.7"
 
 services:
-#  x2-web:
-#    image: smartbcity/x2-web-app:experimental
-#    container_name: x2-web
-#    ports:
-#      - 80:80
-
+  postgres:
+    image: postgres:12
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgrespassword}
+    networks:
+      - bclannet-it
+  x2-web:
+    image: smartbcity/x2-web-app:experimental
+    container_name: x2-web
+    ports:
+      - 80:80
   x2-gateway:
     image: smartbcity/x2-gateway:experimental
     container_name: x2-gateway
@@ -14,8 +23,6 @@ services:
       - "8082:8082"
     networks:
       - bclannet-it
-
-
 networks:
   bclannet-it:
     name: bclannet-it
