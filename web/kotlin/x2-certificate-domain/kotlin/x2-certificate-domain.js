@@ -6777,13 +6777,14 @@
     configurable: true,
     get: CouchdbChaincodeListQueryResult_0.prototype._get_items__0_k$
   });
-  function CouchdbDatabaseGetChangesQuery_0(channelId, chaincodeId, docType, lastEventId, ssmName, sessionName) {
+  function CouchdbDatabaseGetChangesQuery_0(channelId, chaincodeId, docType, lastEventId, ssmName, sessionName, limit) {
     this._channelId_1 = channelId;
     this._chaincodeId = chaincodeId;
     this._docType_0 = docType;
     this._lastEventId = lastEventId;
     this._ssmName = ssmName;
     this._sessionName_2 = sessionName;
+    this._limit_1 = limit;
   }
   CouchdbDatabaseGetChangesQuery_0.prototype._get_channelId__0_k$ = function () {
     return this._channelId_1;
@@ -6802,6 +6803,9 @@
   };
   CouchdbDatabaseGetChangesQuery_0.prototype._get_sessionName__0_k$ = function () {
     return this._sessionName_2;
+  };
+  CouchdbDatabaseGetChangesQuery_0.prototype._get_limit__0_k$ = function () {
+    return this._limit_1;
   };
   CouchdbDatabaseGetChangesQuery_0.$metadata$ = {
     simpleName: 'CouchdbDatabaseGetChangesQuery',
@@ -6831,6 +6835,10 @@
   Object.defineProperty(CouchdbDatabaseGetChangesQuery_0.prototype, 'sessionName', {
     configurable: true,
     get: CouchdbDatabaseGetChangesQuery_0.prototype._get_sessionName__0_k$
+  });
+  Object.defineProperty(CouchdbDatabaseGetChangesQuery_0.prototype, 'limit', {
+    configurable: true,
+    get: CouchdbDatabaseGetChangesQuery_0.prototype._get_limit__0_k$
   });
   function CouchdbDatabaseGetChangesQueryResult_0(items, lastEventId) {
     this._items_5 = items;

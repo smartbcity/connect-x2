@@ -223,6 +223,7 @@ export namespace ssm.couchdb.dsl.query {
         readonly sessionName: Nullable<string>;
         readonly docType: Nullable<ssm.couchdb.dsl.model.DocType<any /*UnknownType **/>>;
         readonly lastEventId: Nullable<string>;
+        readonly limit: Nullable<kotlin.Long>;
     }
     interface CouchdbDatabaseGetChangesQueryResultDTO extends f2.dsl.cqrs.Event {
         readonly items: kotlin.collections.List<ssm.couchdb.dsl.model.DatabaseChangesDTO>;
@@ -393,6 +394,33 @@ export namespace ssm.data.dsl.model {
 export namespace ssm.data.dsl.model {
     interface DataSsmUserDTO {
         readonly agent: ssm.chaincode.dsl.model.SsmAgentDTO;
+    }
+}
+export namespace x2.api.ssm.domain.query {
+    interface X2SessionPageQueryDTO {
+        readonly ssmUri: string;
+        readonly from: Nullable<number>;
+        readonly to: Nullable<number>;
+        readonly channel: Nullable<kotlin.collections.List<string>>;
+        readonly engine: Nullable<kotlin.collections.List<string>>;
+        readonly currentStep: Nullable<kotlin.collections.List<number>>;
+    }
+}
+export namespace x2.api.ssm.domain.query {
+    interface X2SessionPerStateStatsResultDTO extends x2.api.ssm.domain.stats.StatsResultDTO {
+    }
+}
+export namespace x2.api.ssm.domain.query {
+    interface X2SessionPerStateStatsResultDTO extends x2.api.ssm.domain.stats.StatsResultDTO {
+    }
+}
+export namespace x2.api.ssm.domain.stats {
+    interface StatsResultDTO {
+        readonly data: kotlin.collections.List<x2.api.ssm.domain.stats.CellDTO>;
+    }
+    interface CellDTO {
+        readonly label: string;
+        readonly value: number;
     }
 }
 export namespace kotlinx.atomicfu {
@@ -794,13 +822,14 @@ export namespace ssm.couchdb.dsl.query {
 }
 export namespace ssm.couchdb.dsl.query {
     class CouchdbDatabaseGetChangesQuery implements ssm.couchdb.dsl.query.CouchdbDatabaseGetChangesQueryDTO {
-        constructor(channelId: string, chaincodeId: string, docType: Nullable<ssm.couchdb.dsl.model.DocType<any /*UnknownType **/>>, lastEventId: Nullable<string>, ssmName: Nullable<string>, sessionName: Nullable<string>);
+        constructor(channelId: string, chaincodeId: string, docType: Nullable<ssm.couchdb.dsl.model.DocType<any /*UnknownType **/>>, lastEventId: Nullable<string>, ssmName: Nullable<string>, sessionName: Nullable<string>, limit: Nullable<kotlin.Long>);
         readonly channelId: string;
         readonly chaincodeId: string;
         readonly docType: Nullable<ssm.couchdb.dsl.model.DocType<any /*UnknownType **/>>;
         readonly lastEventId: Nullable<string>;
         readonly ssmName: Nullable<string>;
         readonly sessionName: Nullable<string>;
+        readonly limit: Nullable<kotlin.Long>;
     }
     class CouchdbDatabaseGetChangesQueryResult implements ssm.couchdb.dsl.query.CouchdbDatabaseGetChangesQueryResultDTO {
         constructor(items: kotlin.collections.List<ssm.couchdb.dsl.model.DatabaseChanges>, lastEventId: Nullable<string>);
