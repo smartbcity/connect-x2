@@ -16,7 +16,9 @@ import kotlin.js.JsName
  */
 typealias CanGenerateCertificateFunction = F2Function<CanGenerateCertificateQuery, CanGenerateCertificateResult>
 
-expect interface CanGenerateCertificateQueryDTO {
+@JsExport
+@JsName("CanGenerateCertificateQueryDTO")
+interface CanGenerateCertificateQueryDTO {
     /**
      * Session state to check
      * @example {
@@ -55,7 +57,9 @@ class CanGenerateCertificateQuery(
     override val sessionState: SsmSessionState
 ): CanGenerateCertificateQueryDTO
 
-expect interface CanGenerateCertificateResultDTO {
+@JsExport
+@JsName("CanGenerateCertificateResultDTO")
+interface CanGenerateCertificateResultDTO {
     /**
      * The checked session state
      * @example [CanGenerateCertificateQuery.sessionState]

@@ -25,6 +25,41 @@
   'use strict';
   //region block: pre-declaration
   //endregion
+  function X2SessionPageQueryDTO() {
+  }
+  X2SessionPageQueryDTO.$metadata$ = {
+    simpleName: 'X2SessionPageQueryDTO',
+    kind: 'interface',
+    interfaces: []
+  };
+  function X2SessionPerStateStatsResultDTO() {
+  }
+  X2SessionPerStateStatsResultDTO.$metadata$ = {
+    simpleName: 'X2SessionPerStateStatsResultDTO',
+    kind: 'interface',
+    interfaces: [StatsResultDTO]
+  };
+  function X2SessionStatePerIntervalStatsResultDTO() {
+  }
+  X2SessionStatePerIntervalStatsResultDTO.$metadata$ = {
+    simpleName: 'X2SessionStatePerIntervalStatsResultDTO',
+    kind: 'interface',
+    interfaces: [StatsResultDTO]
+  };
+  function StatsResultDTO() {
+  }
+  StatsResultDTO.$metadata$ = {
+    simpleName: 'StatsResultDTO',
+    kind: 'interface',
+    interfaces: []
+  };
+  function CellDTO() {
+  }
+  CellDTO.$metadata$ = {
+    simpleName: 'CellDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   //region block: exports
   function $jsExportAll$(_) {
     var $x2 = _.x2 || (_.x2 = {});

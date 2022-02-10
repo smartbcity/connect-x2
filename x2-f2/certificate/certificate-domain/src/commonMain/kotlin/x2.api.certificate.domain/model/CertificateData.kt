@@ -1,6 +1,11 @@
 package x2.api.certificate.domain.model
 
-expect interface CertificateDataDTO {
+import kotlin.js.JsExport
+import kotlin.js.JsName
+
+@JsExport
+@JsName("CertificateDataDTO")
+interface CertificateDataDTO {
     val label: StringI18n
     val value: StringI18n
     val unit: StringI18n

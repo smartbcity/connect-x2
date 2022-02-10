@@ -19,7 +19,9 @@ import kotlin.js.JsName
 typealias GenerateCertificateFromSessionStateFunction =
         F2Function<GenerateCertificateFromSessionStateQuery, GenerateCertificateFromSessionStateResult>
 
-expect interface GenerateCertificateFromSessionStateQueryDTO {
+@JsExport
+@JsName("GenerateCertificateFromSessionStateQueryDTO")
+interface GenerateCertificateFromSessionStateQueryDTO {
     /**
      * Session state containing the certificate data
      * @example [CanGenerateCertificateQuery.sessionState]
@@ -45,7 +47,9 @@ class GenerateCertificateFromSessionStateQuery(
     override val lang: Lang
 ): GenerateCertificateFromSessionStateQueryDTO
 
-expect interface GenerateCertificateFromSessionStateResultDTO {
+@JsExport
+@JsName("GenerateCertificateFromSessionStateResultDTO")
+interface GenerateCertificateFromSessionStateResultDTO {
     /**
      * Generated PDF file as a Base64 String
      * @example "b64string"

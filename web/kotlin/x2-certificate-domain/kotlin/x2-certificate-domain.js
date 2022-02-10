@@ -25,6 +25,13 @@
   'use strict';
   //region block: pre-declaration
   //endregion
+  function CanGenerateCertificateQueryDTO() {
+  }
+  CanGenerateCertificateQueryDTO.$metadata$ = {
+    simpleName: 'CanGenerateCertificateQueryDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function CanGenerateCertificateQuery(sessionState) {
     this.sessionState_1 = sessionState;
   }
@@ -34,7 +41,7 @@
   CanGenerateCertificateQuery.$metadata$ = {
     simpleName: 'CanGenerateCertificateQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [CanGenerateCertificateQueryDTO]
   };
   Object.defineProperty(CanGenerateCertificateQuery.prototype, 'sessionState', {
     configurable: true,
@@ -42,6 +49,13 @@
       return this._get_sessionState__3892241680_6nrt2o_k$();
     }
   });
+  function CanGenerateCertificateResultDTO() {
+  }
+  CanGenerateCertificateResultDTO.$metadata$ = {
+    simpleName: 'CanGenerateCertificateResultDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function CanGenerateCertificateResult(sessionState, canGenerateCertificate) {
     this.sessionState_1 = sessionState;
     this.canGenerateCertificate_1 = canGenerateCertificate;
@@ -55,7 +69,7 @@
   CanGenerateCertificateResult.$metadata$ = {
     simpleName: 'CanGenerateCertificateResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [CanGenerateCertificateResultDTO]
   };
   Object.defineProperty(CanGenerateCertificateResult.prototype, 'sessionState', {
     configurable: true,
@@ -69,6 +83,13 @@
       return this._get_canGenerateCertificate__1065469017_hmcp5l_k$();
     }
   });
+  function GenerateCertificateFromSessionStateQueryDTO() {
+  }
+  GenerateCertificateFromSessionStateQueryDTO.$metadata$ = {
+    simpleName: 'GenerateCertificateFromSessionStateQueryDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function GenerateCertificateFromSessionStateQuery(sessionState, lang) {
     this.sessionState_1 = sessionState;
     this.lang_1 = lang;
@@ -82,7 +103,7 @@
   GenerateCertificateFromSessionStateQuery.$metadata$ = {
     simpleName: 'GenerateCertificateFromSessionStateQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [GenerateCertificateFromSessionStateQueryDTO]
   };
   Object.defineProperty(GenerateCertificateFromSessionStateQuery.prototype, 'sessionState', {
     configurable: true,
@@ -96,6 +117,13 @@
       return this._get_lang__802322973_d9okd9_k$();
     }
   });
+  function GenerateCertificateFromSessionStateResultDTO() {
+  }
+  GenerateCertificateFromSessionStateResultDTO.$metadata$ = {
+    simpleName: 'GenerateCertificateFromSessionStateResultDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function GenerateCertificateFromSessionStateResult(base64Document) {
     this.base64Document_1 = base64Document;
   }
@@ -105,7 +133,7 @@
   GenerateCertificateFromSessionStateResult.$metadata$ = {
     simpleName: 'GenerateCertificateFromSessionStateResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [GenerateCertificateFromSessionStateResultDTO]
   };
   Object.defineProperty(GenerateCertificateFromSessionStateResult.prototype, 'base64Document', {
     configurable: true,
@@ -113,6 +141,13 @@
       return this._get_base64Document__2860040129_nqbgvz_k$();
     }
   });
+  function GenerateCertificatePdfQueryDTO() {
+  }
+  GenerateCertificatePdfQueryDTO.$metadata$ = {
+    simpleName: 'GenerateCertificatePdfQueryDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function GenerateCertificatePdfQuery(certificate, lang) {
     this.certificate_1 = certificate;
     this.lang_1 = lang;
@@ -126,7 +161,7 @@
   GenerateCertificatePdfQuery.$metadata$ = {
     simpleName: 'GenerateCertificatePdfQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [GenerateCertificatePdfQueryDTO]
   };
   Object.defineProperty(GenerateCertificatePdfQuery.prototype, 'certificate', {
     configurable: true,
@@ -149,14 +184,43 @@
   GenerateCertificatePdfResult.$metadata$ = {
     simpleName: 'GenerateCertificatePdfResult',
     kind: 'class',
+    interfaces: [GenerateCertificatePdfResultDTO]
+  };
+  function GenerateCertificatePdfResultDTO() {
+  }
+  GenerateCertificatePdfResultDTO.$metadata$ = {
+    simpleName: 'GenerateCertificatePdfResultDTO',
+    kind: 'interface',
     interfaces: []
   };
-  Object.defineProperty(GenerateCertificatePdfResult.prototype, 'base64Document', {
-    configurable: true,
-    get: function () {
-      return this._get_base64Document__2860040129_nqbgvz_k$();
-    }
-  });
+  function CertificateCredentialsDTO() {
+  }
+  CertificateCredentialsDTO.$metadata$ = {
+    simpleName: 'CertificateCredentialsDTO',
+    kind: 'interface',
+    interfaces: []
+  };
+  function CertificateDataDTO() {
+  }
+  CertificateDataDTO.$metadata$ = {
+    simpleName: 'CertificateDataDTO',
+    kind: 'interface',
+    interfaces: []
+  };
+  function CertificateProtocolDTO() {
+  }
+  CertificateProtocolDTO.$metadata$ = {
+    simpleName: 'CertificateProtocolDTO',
+    kind: 'interface',
+    interfaces: []
+  };
+  function CertificateSignerDTO() {
+  }
+  CertificateSignerDTO.$metadata$ = {
+    simpleName: 'CertificateSignerDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   //region block: exports
   function $jsExportAll$(_) {
     var $x2 = _.x2 || (_.x2 = {});
@@ -180,21 +244,6 @@
     var $x2$api$certificate$domain$features = $x2$api$certificate$domain.features || ($x2$api$certificate$domain.features = {});
     $x2$api$certificate$domain$features.GenerateCertificatePdfQuery = GenerateCertificatePdfQuery;
     $x2$api$certificate$domain$features.GenerateCertificatePdfResult = GenerateCertificatePdfResult;
-    var $x2 = _.x2 || (_.x2 = {});
-    var $x2$api = $x2.api || ($x2.api = {});
-    var $x2$api$certificate = $x2$api.certificate || ($x2$api.certificate = {});
-    var $x2$api$certificate$domain = $x2$api$certificate.domain || ($x2$api$certificate.domain = {});
-    var $x2$api$certificate$domain$features = $x2$api$certificate$domain.features || ($x2$api$certificate$domain.features = {});
-    var $x2 = _.x2 || (_.x2 = {});
-    var $x2$api = $x2.api || ($x2.api = {});
-    var $x2$api$certificate = $x2$api.certificate || ($x2$api.certificate = {});
-    var $x2$api$certificate$domain = $x2$api$certificate.domain || ($x2$api$certificate.domain = {});
-    var $x2$api$certificate$domain$features = $x2$api$certificate$domain.features || ($x2$api$certificate$domain.features = {});
-    var $x2 = _.x2 || (_.x2 = {});
-    var $x2$api = $x2.api || ($x2.api = {});
-    var $x2$api$certificate = $x2$api.certificate || ($x2$api.certificate = {});
-    var $x2$api$certificate$domain = $x2$api$certificate.domain || ($x2$api$certificate.domain = {});
-    var $x2$api$certificate$domain$features = $x2$api$certificate$domain.features || ($x2$api$certificate$domain.features = {});
     var $x2 = _.x2 || (_.x2 = {});
     var $x2$api = $x2.api || ($x2.api = {});
     var $x2$api$certificate = $x2$api.certificate || ($x2$api.certificate = {});

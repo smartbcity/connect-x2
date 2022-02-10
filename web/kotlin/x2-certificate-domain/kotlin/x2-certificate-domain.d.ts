@@ -1009,63 +1009,63 @@ export namespace ssm.data.dsl.model {
     }
 }
 export namespace x2.api.certificate.domain.features {
+    interface CanGenerateCertificateQueryDTO {
+        readonly sessionState: ssm.chaincode.dsl.model.SsmSessionStateDTO;
+        readonly __doNotUseIt: __doNotImplementIt;
+    }
     class CanGenerateCertificateQuery implements x2.api.certificate.domain.features.CanGenerateCertificateQueryDTO {
         constructor(sessionState: ssm.chaincode.dsl.model.SsmSessionState);
         get sessionState(): ssm.chaincode.dsl.model.SsmSessionState;
+        readonly __doNotUseIt: __doNotImplementIt;
+    }
+    interface CanGenerateCertificateResultDTO {
+        readonly sessionState: ssm.chaincode.dsl.model.SsmSessionStateDTO;
+        readonly canGenerateCertificate: boolean;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
     class CanGenerateCertificateResult implements x2.api.certificate.domain.features.CanGenerateCertificateResultDTO {
         constructor(sessionState: ssm.chaincode.dsl.model.SsmSessionState, canGenerateCertificate: boolean);
         get sessionState(): ssm.chaincode.dsl.model.SsmSessionState;
         get canGenerateCertificate(): boolean;
-    }
-}
-export namespace x2.api.certificate.domain.features {
-    class GenerateCertificateFromSessionStateQuery implements x2.api.certificate.domain.features.GenerateCertificateFromSessionStateQueryDTO {
-        constructor(sessionState: ssm.chaincode.dsl.model.SsmSessionState, lang: any/* x2.api.certificate.domain.model.Lang */);
-        get sessionState(): ssm.chaincode.dsl.model.SsmSessionState;
-        get lang(): any/* x2.api.certificate.domain.model.Lang */;
-    }
-    class GenerateCertificateFromSessionStateResult implements x2.api.certificate.domain.features.GenerateCertificateFromSessionStateResultDTO {
-        constructor(base64Document: Nullable<string>);
-        get base64Document(): Nullable<string>;
-    }
-}
-export namespace x2.api.certificate.domain.features {
-    class GenerateCertificatePdfQuery implements x2.api.certificate.domain.features.GenerateCertificatePdfQueryDTO {
-        constructor(certificate: any/* x2.api.certificate.domain.model.CertificateCredentials */, lang: any/* x2.api.certificate.domain.model.Lang */);
-        get certificate(): any/* x2.api.certificate.domain.model.CertificateCredentials */;
-        get lang(): any/* x2.api.certificate.domain.model.Lang */;
-    }
-    class GenerateCertificatePdfResult implements x2.api.certificate.domain.features.GenerateCertificatePdfResultDTO {
-        constructor(base64Document: string);
-        get base64Document(): string;
-    }
-}
-export namespace x2.api.certificate.domain.features {
-    interface CanGenerateCertificateQueryDTO {
-        readonly sessionState: ssm.chaincode.dsl.model.SsmSessionStateDTO;
-    }
-    interface CanGenerateCertificateResultDTO {
-        readonly sessionState: ssm.chaincode.dsl.model.SsmSessionStateDTO;
-        readonly canGenerateCertificate: boolean;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
 }
 export namespace x2.api.certificate.domain.features {
     interface GenerateCertificateFromSessionStateQueryDTO {
         readonly sessionState: ssm.chaincode.dsl.model.SsmSessionStateDTO;
         readonly lang: any/* x2.api.certificate.domain.model.Lang */;
+        readonly __doNotUseIt: __doNotImplementIt;
+    }
+    class GenerateCertificateFromSessionStateQuery implements x2.api.certificate.domain.features.GenerateCertificateFromSessionStateQueryDTO {
+        constructor(sessionState: ssm.chaincode.dsl.model.SsmSessionState, lang: any/* x2.api.certificate.domain.model.Lang */);
+        get sessionState(): ssm.chaincode.dsl.model.SsmSessionState;
+        get lang(): any/* x2.api.certificate.domain.model.Lang */;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
     interface GenerateCertificateFromSessionStateResultDTO {
         readonly base64Document: Nullable<string>;
+        readonly __doNotUseIt: __doNotImplementIt;
+    }
+    class GenerateCertificateFromSessionStateResult implements x2.api.certificate.domain.features.GenerateCertificateFromSessionStateResultDTO {
+        constructor(base64Document: Nullable<string>);
+        get base64Document(): Nullable<string>;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
 }
 export namespace x2.api.certificate.domain.features {
     interface GenerateCertificatePdfQueryDTO {
         readonly certificate: x2.api.certificate.domain.model.CertificateCredentialsDTO;
         readonly lang: any/* x2.api.certificate.domain.model.Lang */;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
-    interface GenerateCertificatePdfResultDTO {
-        readonly base64Document: string;
+    class GenerateCertificatePdfQuery implements x2.api.certificate.domain.features.GenerateCertificatePdfQueryDTO {
+        constructor(certificate: any/* x2.api.certificate.domain.model.CertificateCredentials */, lang: any/* x2.api.certificate.domain.model.Lang */);
+        get certificate(): any/* x2.api.certificate.domain.model.CertificateCredentials */;
+        get lang(): any/* x2.api.certificate.domain.model.Lang */;
+        readonly __doNotUseIt: __doNotImplementIt;
+    }
+    class GenerateCertificatePdfResult /* implements x2.api.certificate.domain.features.GenerateCertificatePdfResultDTO */ {
+        constructor(base64Document: string);
     }
 }
 export namespace x2.api.certificate.domain.model {
@@ -1078,6 +1078,7 @@ export namespace x2.api.certificate.domain.model {
         readonly issuer: x2.api.certificate.domain.model.CertificateSignerDTO;
         readonly protocol: x2.api.certificate.domain.model.CertificateProtocolDTO;
         readonly payload: Array<x2.api.certificate.domain.model.CertificateDataDTO>;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
 }
 export namespace x2.api.certificate.domain.model {
@@ -1085,6 +1086,7 @@ export namespace x2.api.certificate.domain.model {
         readonly label: any/* kotlin.collections.Map<any/* x2.api.certificate.domain.model.Lang */, string> */;
         readonly value: any/* kotlin.collections.Map<any/* x2.api.certificate.domain.model.Lang */, string> */;
         readonly unit: any/* kotlin.collections.Map<any/* x2.api.certificate.domain.model.Lang */, string> */;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
 }
 export namespace x2.api.certificate.domain.model {
@@ -1095,6 +1097,7 @@ export namespace x2.api.certificate.domain.model {
         readonly session: x2.api.certificate.domain.model.CertificateDataDTO;
         readonly additionals: Array<x2.api.certificate.domain.model.CertificateDataDTO>;
         readonly url: string;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
 }
 export namespace x2.api.certificate.domain.model {
@@ -1103,6 +1106,7 @@ export namespace x2.api.certificate.domain.model {
         readonly organization: string;
         readonly roles: Nullable<string>;
         readonly signature: string;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
 }
 export as namespace x2_certificate_domain;

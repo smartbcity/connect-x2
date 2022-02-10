@@ -1,6 +1,11 @@
 package x2.api.certificate.domain.model
 
-expect interface CertificateSignerDTO {
+import kotlin.js.JsExport
+import kotlin.js.JsName
+
+@JsExport
+@JsName("CertificateSignerDTO")
+interface CertificateSignerDTO {
     /**
      * Name of the signer
      * @example {

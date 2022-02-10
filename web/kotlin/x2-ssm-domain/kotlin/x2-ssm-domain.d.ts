@@ -1016,25 +1016,30 @@ export namespace x2.api.ssm.domain.query {
         readonly channel: any/* Nullable<kotlin.collections.List<string>> */;
         readonly engine: any/* Nullable<kotlin.collections.List<string>> */;
         readonly currentStep: any/* Nullable<kotlin.collections.List<number>> */;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
 }
 export namespace x2.api.ssm.domain.query {
     interface X2SessionPerStateStatsResultDTO extends x2.api.ssm.domain.stats.StatsResultDTO {
         readonly data: any/* kotlin.collections.List<x2.api.ssm.domain.stats.CellDTO> */;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
 }
 export namespace x2.api.ssm.domain.query {
-    interface X2SessionPerStateStatsResultDTO extends x2.api.ssm.domain.stats.StatsResultDTO {
+    interface X2SessionStatePerIntervalStatsResultDTO extends x2.api.ssm.domain.stats.StatsResultDTO {
         readonly data: any/* kotlin.collections.List<x2.api.ssm.domain.stats.CellDTO> */;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
 }
 export namespace x2.api.ssm.domain.stats {
     interface StatsResultDTO {
         readonly data: any/* kotlin.collections.List<x2.api.ssm.domain.stats.CellDTO> */;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
     interface CellDTO {
         readonly label: string;
         readonly value: number;
+        readonly __doNotUseIt: __doNotImplementIt;
     }
 }
 export as namespace x2_ssm_domain;

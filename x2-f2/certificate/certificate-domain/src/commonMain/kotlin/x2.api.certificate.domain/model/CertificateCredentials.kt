@@ -1,6 +1,17 @@
 package x2.api.certificate.domain.model
 
-expect interface CertificateCredentialsDTO {
+import kotlin.js.JsExport
+import kotlin.js.JsName
+
+
+/**
+ * @d2 query
+ * @parent [GenerateCertificatePdfFunction]
+ * @title Generate Certificate PDF: Parameters
+ */
+@JsExport
+@JsName("CertificateCredentialsDTO")
+interface CertificateCredentialsDTO {
     /**
      * Definition of the ontology
      * @example ["https://www.smartb.city/credentials/certificate/v1"]

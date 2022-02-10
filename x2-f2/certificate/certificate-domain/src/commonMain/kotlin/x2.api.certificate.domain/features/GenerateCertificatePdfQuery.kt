@@ -16,7 +16,9 @@ import kotlin.js.JsName
  */
 typealias GenerateCertificatePdfFunction = F2Function<GenerateCertificatePdfQuery, GenerateCertificatePdfResult>
 
-expect interface GenerateCertificatePdfQueryDTO {
+@JsExport
+@JsName("GenerateCertificatePdfQueryDTO")
+interface GenerateCertificatePdfQueryDTO {
     /**
      * I18n data of the certificate
      */
@@ -41,7 +43,7 @@ class GenerateCertificatePdfQuery(
     override val lang: Lang
 ): GenerateCertificatePdfQueryDTO
 
-expect interface GenerateCertificatePdfResultDTO {
+interface GenerateCertificatePdfResultDTO {
     /**
      * Generated PDF file as a Base64 String
      * @example "b64string"

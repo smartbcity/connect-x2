@@ -3,10 +3,15 @@ package x2.api.ssm.domain.query
 import f2.dsl.fnc.F2Function
 import ssm.chaincode.dsl.model.ChannelId
 import ssm.data.dsl.model.DataSsmSessionDTO
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
 typealias X2SessionPageQueryFunction = F2Function<X2SessionPageQuery, X2SessionPageQueryResultDTO>
 
-expect interface X2SessionPageQueryDTO {
+
+@JsExport
+@JsName("X2SessionPageQueryDTO")
+interface X2SessionPageQueryDTO {
 	val ssmUri: String
 	val from: Int?
 	val to: Int?

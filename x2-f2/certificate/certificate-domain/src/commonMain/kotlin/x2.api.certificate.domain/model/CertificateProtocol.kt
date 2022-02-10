@@ -1,6 +1,11 @@
 package x2.api.certificate.domain.model
 
-expect interface CertificateProtocolDTO {
+import kotlin.js.JsExport
+import kotlin.js.JsName
+
+@JsExport
+@JsName("CertificateProtocolDTO")
+interface CertificateProtocolDTO {
     /**
      * Name of the protocol that validated the certificate
      * @example {

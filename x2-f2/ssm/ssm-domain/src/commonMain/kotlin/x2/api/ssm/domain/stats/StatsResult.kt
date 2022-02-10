@@ -1,6 +1,11 @@
 package x2.api.ssm.domain.stats
 
-expect interface StatsResultDTO {
+import kotlin.js.JsExport
+import kotlin.js.JsName
+
+@JsExport
+@JsName("StatsResultDTO")
+interface StatsResultDTO {
 	val data: List<CellDTO>
 }
 
@@ -8,7 +13,9 @@ class StatsResult(
 	override val data: List<CellDTO>
 ) : StatsResultDTO
 
-expect interface CellDTO {
+@JsExport
+@JsName("CellDTO")
+interface CellDTO {
 	val label: String
 	val value: Int
 }
