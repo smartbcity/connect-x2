@@ -30,6 +30,7 @@ data class SsmEntity(
 	val channelId: ChannelId,
 	val chaincodeId: ChaincodeId,
 	val version: SsmVersion?,
+	val lastEventId: String?,
 
 )
 
@@ -40,10 +41,11 @@ fun SsmEntity.toSsmEntity() = DataSsm(
 	version = this.version
 )
 
-fun DataSsm.toDataSsm() = SsmEntity(
+fun DataSsm.toDataSsm(lastEventId: String?) = SsmEntity(
 	uri = this.uri.uri,
 	ssm = this.ssm,
 	version = this.version,
 	chaincodeId = this.uri.chaincodeId,
-	channelId = this.uri.channelId
+	channelId = this.uri.channelId,
+	lastEventId = lastEventId
 )

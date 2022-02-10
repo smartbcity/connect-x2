@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Component
 import ssm.chaincode.dsl.model.SessionName
-import ssm.chaincode.dsl.model.SsmName
 import ssm.chaincode.dsl.model.uri.ChaincodeUri
+import ssm.chaincode.dsl.model.uri.SsmUri
 import ssm.chaincode.dsl.model.uri.from
 import ssm.data.dsl.features.query.DataSsmGetQuery
 import ssm.data.dsl.features.query.DataSsmGetQueryFunction
@@ -20,10 +20,8 @@ import ssm.sync.sdk.SsmSessionSyncResult
 import ssm.sync.sdk.SsmSyncEventBus
 import ssm.sync.sdk.SyncSsmCommandFunction
 import x2.api.ssm.domain.config.X2SsmProperties
-import x2.api.ssm.repo.postgres.ChaincodeSyncEntity
 import x2.api.ssm.repo.postgres.LogEntity
 import x2.api.ssm.repo.postgres.SessionEntity
-import x2.api.ssm.repo.postgres.repository.ChaincodeRepository
 import x2.api.ssm.repo.postgres.repository.LogRepository
 import x2.api.ssm.repo.postgres.repository.SessionRepository
 import x2.api.ssm.repo.postgres.repository.SsmRepository
@@ -37,7 +35,6 @@ class SyncSsm(
 	private val syncSsmCommandFunction: SyncSsmCommandFunction,
 	private val dataSsmGetQueryFunction: DataSsmGetQueryFunction,
 	private val dataSsmSessionGetQueryFunction: DataSsmSessionGetQueryFunction,
-	private val chaincodeRepository: ChaincodeRepository,
 	private val logRepository: LogRepository,
 	private val sessionRepository: SessionRepository,
 	private val ssmRepository: SsmRepository
@@ -48,43 +45,32 @@ class SyncSsm(
 	override fun run(vararg args: String?) = runBlocking {
 		x2SsmProperties.ssm.forEach { ssm ->
 			async {
-				val chaincpdeUri = ChaincodeUri.from(ssm.channelId, chaincodeId = ssm.chaincodeId)
-				syncChaincode(chaincpdeUri.uri, ssm.ssmName)
+				val uri = SsmUri.from(ssm.channelId, chaincodeId = ssm.chaincodeId, ssmName = ssm.ssmName)
+				syncChaincode(uri)
 			}
 		}
-//		x2SsmProperties.chaincodes.forEach { chainCode ->
-//			syncChaincode(chainCode.uri, )
-//		}
 	}
 
-	private suspend fun syncChaincode(chainCodeUri: String, ssmName: SsmName) {
-		logger.info("${SyncSsm::syncChaincode.name}[$chainCodeUri]")
-		val chaincodeEntity = chaincodeRepository.findById(chainCodeUri).orElse(null)
+	private suspend fun syncChaincode(ssmUri: SsmUri) {
+		val chaincodeUri = ChaincodeUri.from(ssmUri.channelId, ssmUri.chaincodeId)
+		val chaincodeEntity = ssmRepository.findById(ssmUri.uri).orElse(null)
 		SsmSyncEventBus(
-			chaincodeUri = ChaincodeUri(chainCodeUri),
+			chaincodeUri = chaincodeUri,
 			syncSsmCommandFunction = syncSsmCommandFunction,
-			ssmName = ssmName
+			ssmName = ssmUri.ssmName
 		).sync(lastEventId = chaincodeEntity?.lastEventId).collect { result ->
-			logger.info("SsmSyncEventBus.sync [$chainCodeUri] -  items[${result.items.size} - lastEventId[$result.lastEventId]]")
+			logger.info("SsmSyncEventBus.sync [${chaincodeUri.uri}] -  items[${result.items.size} - lastEventId[$result.lastEventId]]")
 			result.items.map {
 				it.ssm
 			}.distinctBy { it.uri }.mapNotNull { uri ->
 				val ssm = dataSsmGetQueryFunction.invoke(
 					DataSsmGetQuery(uri)
 				)
-				ssm.item?.toDataSsm()
+				ssm.item?.toDataSsm(result.lastEventId)
 			}.let {
 				ssmRepository.saveAll(it)
 			}
-
 			result.items.map { it.syncSession() }.toList()
-
-			chaincodeRepository.save(
-				ChaincodeSyncEntity(
-					id = chainCodeUri,
-					lastEventId = result.lastEventId
-				)
-			)
 		}
 	}
 

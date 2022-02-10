@@ -3,7 +3,8 @@ import city.smartb.gradle.dependencies.FixersPluginVersions
 object PluginVersions {
 	const val fixers = "experimental-SNAPSHOT"
 	const val d2 = "0.3.1"
-	const val kotlin = FixersPluginVersions.kotlin
+//	const val kotlin = FixersPluginVersions.kotlin
+	const val kotlin = "1.6.20-M1"
 	const val springBoot = FixersPluginVersions.springBoot
 }
 
