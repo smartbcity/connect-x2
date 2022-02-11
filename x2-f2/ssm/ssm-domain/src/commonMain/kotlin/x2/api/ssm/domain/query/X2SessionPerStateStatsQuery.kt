@@ -10,8 +10,8 @@ typealias X2SessionPerStateStatsQueryFunction = F2Function<X2SessionPageQuery, X
 
 @JsExport
 @JsName("X2SessionPerStateStatsResultDTO")
-interface X2SessionPerStateStatsResultDTO: StatsResultDTO
+interface X2SessionPerStateStatsResultDTO: StatsResultDTO<Int>
 
 data class X2SessionPerStateStatsResult(
-	override val data: List<CellDTO>
+	override val data: List<CellDTO<Int>>
 ): X2SessionPerStateStatsResultDTO

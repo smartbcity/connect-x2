@@ -21,7 +21,13 @@ class X2SessionPerStateStatsQueryFunctionImpl(
 	}
 
 	suspend fun invoke(msg: X2SessionPageQuery): X2SessionPerStateStatsResult {
-		return sessionRepository.getSessionStats(msg.ssmUri).map { sessionStats ->
+		return sessionRepository.getSessionStats(
+			ssmUri = msg.ssmUri,
+			from = msg.from,
+			to = msg.to,
+			channelIds = msg.channel,
+			currentSteps = msg.currentStep
+		).map { sessionStats ->
 			Cell(label = sessionStats.getCurrent().toString(), sessionStats.getCount())
 		}.let { data ->
 			X2SessionPerStateStatsResult(

@@ -10,7 +10,7 @@ spring:
     database: POSTGRESQL
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -62,8 +62,6 @@ spring:
     password: postgrespassword
 x2:
   ssm:
-    chaincodes:
-      - chaincode:proudhon:ssm
     ssm:
       - ssm:proudhon:ssm:Request
       - ssm:proudhon:ssm:Certificates
@@ -99,3 +97,46 @@ ssm:
     serviceName: ssm-couchdb-unit
   chaincode:
     url: "http://peer0.pr-commune.smartb.network"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: colisactiv
+
+i2:
+  jwt-issuer-uri: $keycloak.auth-server-url}/realms/${keycloak.realm}
+
+keycloak:
+  auth-server-url: https://pre-prod.colisactiv.fr/auth
+  realm: server
+
+x2:
+  ssm:
+#    chaincodes:
+#      - chaincode:colisactiv-angers:ssm-kliveo
+#      - chaincode:colisactiv-angers:ssm-rouelibrenmaine
+#      - chaincode:colisactiv-angers:ssm-alterntransport
+#      - chaincode:colisactiv-angers:ssm-tousfacteurs
+#      - chaincode:colisactiv-grenoble:ssm-toutenvelo
+#      - chaincode:colisactiv-grenoble:ssm-yper
+#      - chaincode:colisactiv-lyon:ssm-tousfacteurs
+#      - chaincode:colisactiv-reims:ssm-yper
+    ssm:
+      - ssm:colisactiv-angers:ssm-kliveo:Delivery-1.0
+#      - ssm:colisactiv-angers:ssm-rouelibrenmaine:Delivery-1.0
+#      - ssm:colisactiv-angers:ssm-alterntransport:Delivery-1.0
+#      - ssm:colisactiv-angers:ssm-tousfacteurs:Delivery-1.0
+#      - ssm:colisactiv-grenoble:ssm-toutenvelo:Delivery-1.0
+#      - ssm:colisactiv-grenoble:ssm-yper:Delivery-1.0
+#      - ssm:colisactiv-lyon:ssm-tousfacteurs:Delivery-1.0
+#      - ssm:colisactiv-reims:ssm-yper:Delivery-1.0
+
+ssm:
+  couchdb:
+    url: "http://peer0.pr-commune.sofub.fr:5984"
+    username: 1111
+    password: 2222
+    serviceName: couchdb
+  chaincode:
+    url: "http://peer0.pr-commune.sofub.fr:9090"

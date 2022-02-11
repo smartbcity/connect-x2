@@ -40,7 +40,7 @@ open class SsmApiFinderLocalService(
 
 	@Bean
 	fun getAllSsm(): F2Supplier<DataSsmListQueryResultDTO> = f2Supplier {
-		x2SsmProperties.chaincodes.flatMap {
+		x2SsmProperties.ssm.flatMap {
 			ssmRepository.findAllByChannelIdAndChaincodeId(it.channelId, it.chaincodeId)
 		}.map {
 			it.toSsmEntity()

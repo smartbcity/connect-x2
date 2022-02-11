@@ -32,7 +32,6 @@ import x2.api.ssm.domain.config.X2SsmProperties
 @Configuration
 open class SsmApiFinderService(
 	private val x2SsmProperties: X2SsmProperties,
-	private val dataSsmProperties: DataSsmProperties,
 	private val dataSsmListQueryFunction: DataSsmListQueryFunction,
 	private val dataSsmGetQueryFunction: DataSsmGetQueryFunction,
 	private val dataSsmSessionListQueryFunction: DataSsmSessionListQueryFunction,
@@ -41,10 +40,9 @@ open class SsmApiFinderService(
 	private val dataSsmSessionLogListQueryFunction: DataSsmSessionLogListQueryFunction,
 ) {
 
-
 	@Bean
 	fun getAllSsm(): F2Supplier<DataSsmListQueryResultDTO> = f2Supplier {
-		DataSsmListQuery(x2SsmProperties.chaincodes)
+		DataSsmListQuery(x2SsmProperties.ssm.map { it.chaincodeUri })
 			.invokeWith(dataSsmListQueryFunction)
 	}
 

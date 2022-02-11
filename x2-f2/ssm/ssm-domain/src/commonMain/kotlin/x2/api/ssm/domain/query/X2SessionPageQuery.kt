@@ -13,16 +13,16 @@ typealias X2SessionPageQueryFunction = F2Function<X2SessionPageQuery, X2SessionP
 @JsName("X2SessionPageQueryDTO")
 interface X2SessionPageQueryDTO {
 	val ssmUri: String
-	val from: Int?
-	val to: Int?
+	val from: Long?
+	val to: Long?
 	val channel: List<ChannelId>?
 	val engine: List<String>?
 	val currentStep: List<Int>?
 }
 
 data class X2SessionPageQuery(
-	override val from: Int?,
-	override val to: Int?,
+	override val from: Long?,
+	override val to: Long?,
 	override val channel: List<String>?,
 	override val engine: List<String>?,
 	override val currentStep: List<Int>?,

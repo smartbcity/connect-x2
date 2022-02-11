@@ -24,14 +24,17 @@ class X2SessionStatePerIntervalStatsFunctionImpl(
 
 	suspend fun invoke(msg: X2SessionPageQueryDTO): X2SessionStatePerIntervalStatsResult {
 		return logRepository.getLogStats(msg.ssmUri).groupBy {
-			@Suppress("MagicNumber")
-			Instant.ofEpochSecond( 1510500494)
-				.atZone(ZoneId.systemDefault())
-				.toLocalDate()
-		}.mapValues { (_, values) ->
-			values.count()
-		}.map { (day, count) ->
-			Cell(label = day.toString(), count)
+			it.getCurrent()
+		}.map { (step, values) ->
+			values.groupBy {
+				Instant.ofEpochSecond( it.getTimestamp())
+					.atZone(ZoneId.systemDefault())
+					.toLocalDate()
+			}.mapValues { (_, values) ->
+				values.count()
+			}.values.let { values ->
+				Cell(label = step.toString(), values.toList())
+			}
 		}.let { data ->
 			X2SessionStatePerIntervalStatsResult(
 				data = data

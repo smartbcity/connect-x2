@@ -6,6 +6,7 @@ import org.hibernate.annotations.Type
 import org.hibernate.annotations.TypeDef
 import org.hibernate.annotations.TypeDefs
 import ssm.chaincode.dsl.blockchain.Transaction
+import ssm.chaincode.dsl.model.ChannelId
 import ssm.chaincode.dsl.model.SessionName
 import ssm.chaincode.dsl.model.SsmSessionState
 import ssm.chaincode.dsl.model.SsmTransition
@@ -19,7 +20,6 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.Id
-import javax.persistence.Lob
 import javax.persistence.OneToMany
 
 @TypeDefs(
@@ -32,12 +32,10 @@ data class SessionEntity(
 	@Column(columnDefinition="TEXT")
 	val sessionName: SessionName,
 	val ssmUri: String,
+	val channelId: ChannelId,
 //	@Type(type = "jsonb")
 //	@Column(columnDefinition = "jsonb")
 //	val state: DataSsmSessionState,
-	@Type(type = "jsonb")
-	@Column(columnDefinition = "jsonb")
-	val channel: DataChannel,
 //	val transactionId: TransactionId?,
 	@OneToMany(
 		targetEntity = TransactionEntity::class,
@@ -63,6 +61,8 @@ data class SessionEntity(
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
 	val transaction: Transaction?,
+	@Column
+	val time: Long
 )
 
 fun SessionEntity.toSsmEntity() = DataSsmSession(
@@ -80,7 +80,7 @@ fun SessionEntity.toSsmEntity() = DataSsmSession(
 		),
 		transaction = this.transaction
 	),
-	channel = this.channel,
+	channel = DataChannel(this.channelId),
 	ssmUri = SsmUri(this.ssmUri),
 	transactions = this.transactions.map {
 		it.toTransactionEntity()
@@ -92,7 +92,7 @@ fun SessionEntity.toSsmEntity() = DataSsmSession(
 
 fun DataSsmSessionDTO.toSessionEntity() = SessionEntity(
 	sessionName = this.sessionName,
-	channel = this.channel as DataChannel,
+	channelId = this.channel.id,
 	ssmUri = this.ssmUri.uri,
 	transactions = this.transactions.map { it.toTransactionEntity(this.sessionName) },
 	transaction = this.transaction as Transaction,
@@ -101,5 +101,6 @@ fun DataSsmSessionDTO.toSessionEntity() = SessionEntity(
 	origin = this.state.details.origin as SsmTransition?,
 	current = this.state.details.current,
 	iteration = this.state.details.iteration,
-	public = this.state.details.public.toString()
+	public = this.state.details.public.toString(),
+	time = this.transaction!!.timestamp
 )

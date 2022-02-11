@@ -5,22 +5,22 @@ import kotlin.js.JsName
 
 @JsExport
 @JsName("StatsResultDTO")
-interface StatsResultDTO {
-	val data: List<CellDTO>
+interface StatsResultDTO<CELL> {
+	val data: List<CellDTO<CELL>>
 }
 
-class StatsResult(
-	override val data: List<CellDTO>
-) : StatsResultDTO
+class StatsResult<CELL>(
+	override val data: List<CellDTO<CELL>>
+) : StatsResultDTO<CELL>
 
 @JsExport
 @JsName("CellDTO")
-interface CellDTO {
+interface CellDTO<VALUE> {
 	val label: String
-	val value: Int
+	val value: VALUE
 }
 
-class Cell(
+class Cell<VALUE>(
 	override val label: String,
-	override val value: Int
-) : CellDTO
+	override val value: VALUE
+) : CellDTO<VALUE>

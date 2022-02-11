@@ -18,6 +18,6 @@ interface LogRepository: CrudRepository<LogEntity, String> {
 }
 
 interface LogStats{
-	fun getCurrent(): Int
-	fun getTimestamp(): Int
+	fun getCurrent(): Long
+	fun getTimestamp(): Long
 }

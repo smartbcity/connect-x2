@@ -44,7 +44,8 @@ Content-Type: application/json
 }
 
 ###
-POST https://x2.smartb.city/api/sessionStatePerInterval
+POST http://localhost:8082/api/sessionStatePerInterval
+#POST https://x2.smartb.city/api/sessionStatePerInterval
 Accept: application/json
 Content-Type: application/json
 
