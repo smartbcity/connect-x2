@@ -12,12 +12,13 @@ import java.sql.Timestamp
 interface LogRepository: CrudRepository<LogEntity, String> {
 	fun findAllBySsmUriAndSessionName(ssmUri: String, sessionName: String): List<LogEntity>
 
-	@Query("select le.current as current, te.timestamp as timestamp from LogEntity le INNER JOIN le.transaction te where le.ssmUri = ?1")
-	fun getLogStats(ssmUri: String): List<LogStats>
+//	@Query("""
+//		select log.current as current, te.timestamp as timestamp
+//		from LogEntity log
+//		INNER JOIN SessionEntity session on log.sessionName = session.sessionName
+//		INNER JOIN log.transaction te
+//		where log.ssmUri = ?1
+//		""")
+//	fun getLogStats(ssmUri: String): List<LogStats>
 
-}
-
-interface LogStats{
-	fun getCurrent(): Long
-	fun getTimestamp(): Long
 }

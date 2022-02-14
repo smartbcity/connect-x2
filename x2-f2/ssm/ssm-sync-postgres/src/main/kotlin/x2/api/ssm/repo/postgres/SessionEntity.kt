@@ -33,10 +33,6 @@ data class SessionEntity(
 	val sessionName: SessionName,
 	val ssmUri: String,
 	val channelId: ChannelId,
-//	@Type(type = "jsonb")
-//	@Column(columnDefinition = "jsonb")
-//	val state: DataSsmSessionState,
-//	val transactionId: TransactionId?,
 	@OneToMany(
 		targetEntity = TransactionEntity::class,
 		mappedBy = "sessionName",

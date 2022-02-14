@@ -21,11 +21,11 @@ interface X2SessionPageQueryDTO {
 }
 
 data class X2SessionPageQuery(
-	override val from: Long?,
-	override val to: Long?,
-	override val channel: List<String>?,
-	override val engine: List<String>?,
-	override val currentStep: List<Int>?,
+	override val from: Long? = null,
+	override val to: Long? = null,
+	override val channel: List<String>? = null,
+	override val engine: List<String>? = null,
+	override val currentStep: List<Int>? = null,
 	override val ssmUri: String
 ): X2SessionPageQueryDTO
 
