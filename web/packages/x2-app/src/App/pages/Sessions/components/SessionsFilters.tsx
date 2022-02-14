@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
-import { Filters, useFilters, FiltersAction, FiltersField } from "@smartb/g2-forms"
+import { Filters, useFilters, FiltersAction, FiltersField, Option } from "@smartb/g2-forms"
 import { parse } from "qs"
-import { SsmUriDTO } from "ssm";
+import { burst, SSM, SsmPath, Transition } from 'ssm'
+import { distinct } from 'utils'
 
 type SessionsFiltersValues = {
     from?: Date
@@ -11,16 +12,52 @@ type SessionsFiltersValues = {
     currentStep?: string[]
 }
 
+export type SessionsFilters = {
+    from?: number
+    to?: number
+    channel?: string[]
+    engine?: string[]
+    currentStep?: string[]
+}
+
 interface SessionsFiltersProps {
-    gotoSessions: (ssmUri: SsmUriDTO, params: Object) => void
-    ssmUri: SsmUriDTO
+    onSubmit: (values: SessionsFilters) => void
+    currentSSM: SSM
+    ssmList: Map<SsmPath, SSM>
 }
 
 export const SessionsFilters = (props: SessionsFiltersProps) => {
-    const { gotoSessions, ssmUri } = props
-
+    const { onSubmit,  currentSSM, ssmList} = props
+    
     const fields = useMemo((): FiltersField[] => {
         const params = parse(window.location.search, { ignoreQueryPrefix: true })
+        let stepOptions: Option[] = []
+        currentSSM.ssm.transitions.forEach((transition: Transition) => {
+            stepOptions.push({
+                key: transition.from,
+                label: transition.from,
+            })
+            stepOptions.push({
+                key: transition.to,
+                label: transition.to,
+            })
+        })
+        stepOptions = distinct<Option>(stepOptions, (it) => it.key)
+        let chaincodes: Option[] = []
+        let channels: Option[] = []
+        Array.from(ssmList.keys()).forEach((uri) => {
+            const parsed = burst({uri: uri})
+            chaincodes.push({
+                key: parsed.chaincodeId,
+                label: parsed.chaincodeId
+            })
+            channels.push({
+                key: parsed.channelId,
+                label: parsed.channelId
+            })
+        })
+        chaincodes = distinct<Option>(chaincodes, (it) => it.key)
+        channels = distinct<Option>(channels, (it) => it.key)
         return [
             {
                 key: "x2_sessions_filters_from",
@@ -43,7 +80,7 @@ export const SessionsFilters = (props: SessionsFiltersProps) => {
                 defaultValue: Array.isArray(params.channel) ? params.channel : typeof params.channel === "string" ? [params.channel] : undefined,
                 type: "select",
                 selectProps: {
-                    options: [{ key: "example1", label: 'example1' }, { key: "example2", label: 'example2' }, { key: "example3", label: 'example3' }],
+                    options: channels,
                     multiple: true
                 }
             },
@@ -54,7 +91,7 @@ export const SessionsFilters = (props: SessionsFiltersProps) => {
                 defaultValue: Array.isArray(params.engine) ? params.engine : typeof params.engine === "string" ? [params.engine] : undefined,
                 type: "select",
                 selectProps: {
-                    options: [{ key: "example1", label: 'example1' }, { key: "example2", label: 'example2' }, { key: "example3", label: 'example3' }],
+                    options: chaincodes,
                     multiple: true
                 }
             },
@@ -65,12 +102,12 @@ export const SessionsFilters = (props: SessionsFiltersProps) => {
                 defaultValue: Array.isArray(params.currentStep) ? params.currentStep : typeof params.currentStep === "string" ? [params.currentStep] : undefined,
                 type: "select",
                 selectProps: {
-                    options: [{ key: "example1", label: 'example1' }, { key: "example2", label: 'example2' }, { key: "example3", label: 'example3' }],
+                    options: stepOptions,
                     multiple: true
                 }
             }
         ]
-    }, [])
+    }, [currentSSM, ssmList])
 
     const formState = useFilters({
         fields: fields,
@@ -78,7 +115,7 @@ export const SessionsFilters = (props: SessionsFiltersProps) => {
             const params: {from?: number, to?: number} = {}
             if (values.from) params.from = values.from.getTime()
             if (values.to) params.to = values.to.getTime()
-            gotoSessions(ssmUri, {...values, ...params})
+            onSubmit({...values, ...params} as SessionsFilters)
         }
     })
 

@@ -1,7 +1,7 @@
 import { Panel, SessionInformations } from "components"
 import { useTranslation } from "react-i18next"
 import { makeG2STyles } from "@smartb/g2-themes"
-import {Session, SsmUriDTO, toUrlPath} from "ssm";
+import {Session, SsmUriDTO, useSsmUri} from "ssm";
 
 const useStyles = makeG2STyles()({
     panel: {
@@ -26,7 +26,7 @@ export const InformationCard = (props: InformationCardProps) => {
     const { currentSession, ssmUri } = props
     const { classes } = useStyles()
     const { t } = useTranslation()
-    const urlPath = toUrlPath(ssmUri)
+    const {path} = useSsmUri(ssmUri)
 
     return (
         <Panel 
@@ -34,7 +34,7 @@ export const InformationCard = (props: InformationCardProps) => {
         noPadding 
         bodyClassName={classes.body} 
         header={t("detailsPage.sessionInformations")}
-        embedUrl={`${window.location.origin}/embed/${urlPath}/${currentSession.sessionName}/informations`}
+        embedUrl={`${window.location.origin}/embed/${path}/${currentSession.sessionName}/informations`}
         >
             <SessionInformations currentSession={currentSession}  />
         </Panel>

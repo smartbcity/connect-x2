@@ -19,7 +19,9 @@ import {
     GenerateCertificateFromSessionStateQuery,
     GenerateCertificateFromSessionStateResult,
     CanGenerateCertificateQuery,
-    CanGenerateCertificateResult, SsmUriDTO, defaultProtocols
+    CanGenerateCertificateResult, SsmUriDTO, defaultProtocols, X2SessionPageQueryDTO, X2SessionPerStateStatsResultDTO,
+    X2SessionStatePerIntervalStatsResultDTO,
+    CellDTO
 } from "./models";
 
 import {requestCoop, requestCoops} from "utils";
@@ -63,6 +65,50 @@ const fetchSessionStates = async (
         ssmUri: ssmUri
     } as DataSsmSessionLogListQueryDTO).then(
         it => it.items ?? []
+    )
+};
+
+const fetchSessionStatesPerStates = async (
+    ssmUri: SsmUriDTO,
+    channel: string[] = [],
+    currentStep: string[] = [],
+    engine: string[] = [],
+    from?: number,
+    to?: number
+): Promise<CellDTO[]> => {
+    return requestCoop<X2SessionPageQueryDTO, X2SessionPerStateStatsResultDTO>("sessionPerStateStats", 
+    //@ts-ignore
+    {
+        ssmUri: ssmUri.uri, 
+        channel: channel,
+        currentStep: currentStep,
+        engine: engine,
+        from: from,
+        to: to,
+    } as X2SessionPageQueryDTO).then(
+        it => it.data ?? []
+    )
+};
+
+const fetchSessionStatePerInterval = async (
+    ssmUri: SsmUriDTO,
+    channel: string[] = [],
+    currentStep: string[] = [],
+    engine: string[] = [],
+    from?: number,
+    to?: number
+): Promise<CellDTO[]> => {
+    return requestCoop<X2SessionPageQueryDTO, X2SessionStatePerIntervalStatsResultDTO>("sessionStatePerInterval", 
+    //@ts-ignore
+    {
+        ssmUri: ssmUri.uri, 
+        channel: channel,
+        currentStep: currentStep,
+        engine: engine,
+        from: from,
+        to: to,
+    } as X2SessionPageQueryDTO).then(
+        it => it.data ?? []
     )
 };
 
@@ -144,6 +190,8 @@ export const SSMRequester = {
     fetchSession: fetchSession,
     fetchSessionStates: fetchSessionStates,
     fetchSessionState: fetchSessionState,
+    fetchSessionStatesPerStates: fetchSessionStatesPerStates,
+    fetchSessionStatePerInterval: fetchSessionStatePerInterval,
     generateCertificatePdf: generateCertificatePdf,
     generateCertificateFromSessionState: generateCertificateFromSessionState,
     CanGenerateCertificate: CanGenerateCertificate,

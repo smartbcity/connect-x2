@@ -2,7 +2,7 @@ import { Timeline, TimeLineCell } from "@smartb/g2-components"
 import { LoadingComponent, Panel, toTimeLineCells, CertificatPopUp } from "components"
 import { useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import {Session, SessionState, SsmUriDTO, toUrlPath, useFetchTransactions} from "ssm"
+import {Session, SessionState, SsmUriDTO, useSsmUri, useFetchTransactions} from "ssm"
 import { makeG2STyles } from "@smartb/g2-themes"
 
 const useStyles = makeG2STyles()({
@@ -39,7 +39,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
         (sessionState: SessionState) => setSessionStatePdf(sessionState),
         [],
     )
-    const urlPath = toUrlPath(ssmUri)
+    const {path} = useSsmUri(ssmUri)
     const onClosePopUp = useCallback(
         () => setSessionStatePdf(undefined),
         [],
@@ -74,7 +74,7 @@ export const HistoryCard = (props: HistoryCardProps) => {
             className={classes.panel}
             header={t("detailsPage.transactionsHistory")}
             bodyClassName={classes.panelBody}
-            embedUrl={`${window.location.origin}/embed/${urlPath}/${currentSession.sessionName}/history`}
+            embedUrl={`${window.location.origin}/embed/${path}/${currentSession.sessionName}/history`}
         >
             {!timeLineCells ?
                 <LoadingComponent />

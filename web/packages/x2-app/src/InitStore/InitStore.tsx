@@ -20,7 +20,7 @@ export const InitStore = (props: InitStoreProps) => {
       //@ts-ignore
       window.token = keycloak.token
       //@ts-ignore
-      window._env_.COOP_URL = service.getSSMInfo().url
+      window._env_.COOP_URL = auth?.service.getSSMInfo().url
     }
     SSMRequester.fetchSSMsAsync(setSsmList)
   }, [auth?.keycloak.authenticated, auth?.service.getSSMInfo, setSsmList])

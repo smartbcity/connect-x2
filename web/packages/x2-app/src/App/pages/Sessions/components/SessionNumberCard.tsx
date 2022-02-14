@@ -1,7 +1,7 @@
 import { makeG2STyles } from "@smartb/g2-themes"
-import { BarChart, Panel } from "components"
-import { useMemo } from "react"
+import { BarChart, LoadingComponent, Panel } from "components"
 import { useTranslation } from "react-i18next"
+import { CellDTO } from "ssm"
 
 const useStyles = makeG2STyles()({
     body: {
@@ -18,41 +18,24 @@ const useStyles = makeG2STyles()({
     }
 })
 
+interface SessionNumberCardProps {
+    stats: CellDTO[]
+    isLoading?: boolean
+}
 
-export const SessionNumberCard = () => {
+export const SessionNumberCard = (props: SessionNumberCardProps) => {
+    const { stats, isLoading = false} = props
     const { t } = useTranslation()
-
-    const data = useMemo(() => ([{
-        label: 'Step 1',
-        value: 1550
-    },{
-        label: 'Step 2',
-        value: 9563
-    },{
-        label: 'Step 3',
-        value: 2786
-    },{
-        label: 'Step 4',
-        value: 8212
-    },{
-        label: 'Step 5',
-        value: 5746
-    },{
-        label: 'Step 6',
-        value: 7426
-    },{
-        label: 'Step 7',
-        value: 3241
-    },{
-        label: 'Step 8',
-        value: 4689
-    }]), [])
 
     const { classes } = useStyles()
 
     return (
         <Panel className={classes.root} bodyClassName={classes.body} header={t("sessionsPage.sessionNumber")} >
-            <BarChart data={data} />
+            {isLoading ? 
+            <LoadingComponent />
+            :
+            <BarChart data={stats} />
+            }
         </Panel >
     )
 }

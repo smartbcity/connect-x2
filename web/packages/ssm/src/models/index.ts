@@ -1,5 +1,6 @@
-// import {ssm} from "x2-ssm-domain";
+import {x2 as x2Ssm} from "x2-ssm-domain";
 import {ssm, x2} from "x2-certificate-domain";
+import { useMemo } from "react";
 
 export type TransactionDTO = ssm.chaincode.dsl.blockchain.TransactionDTO;
 export type Transition = ssm.chaincode.dsl.model.SsmTransition;
@@ -33,9 +34,19 @@ export const burst = (ssmUri: SsmUriDTO): SsmUriObj => {
 }
 
 // export type SsmUriDto = ssm.chaincode.dsl.model.uri.SsmUriDTO;
-export const toUrlPath = (ssmUri: SsmUriDTO): String => {
+export const toUrlPath = (ssmUri: SsmUriDTO): string => {
     const values = burst(ssmUri)
     return `${values.channelId}/${values.chaincodeId}/${values.ssmName}`
+}
+
+export const useSsmUri = (ssmUri: SsmUriDTO): {uri: SsmUriObj, path: string} => {
+    return useMemo(() => {
+        const values = burst(ssmUri)
+        return {
+            uri: values,
+            path: `${values.channelId}/${values.chaincodeId}/${values.ssmName}`
+        }
+    }, [ssmUri])
 }
 
 export type SsmName = string;
@@ -71,6 +82,10 @@ export type GenerateCertificateFromSessionStateResult = x2.api.certificate.domai
 export type CanGenerateCertificateQuery = x2.api.certificate.domain.features.CanGenerateCertificateQueryDTO;
 export type CanGenerateCertificateResult = x2.api.certificate.domain.features.CanGenerateCertificateResultDTO;
 
+export type X2SessionPageQueryDTO = x2Ssm.api.ssm.domain.query.X2SessionPageQueryDTO;
+export type X2SessionPerStateStatsResultDTO = x2Ssm.api.ssm.domain.query.X2SessionPerStateStatsResultDTO;
+export type X2SessionStatePerIntervalStatsResultDTO = x2Ssm.api.ssm.domain.query.X2SessionStatePerIntervalStatsResultDTO;
+export type CellDTO = x2Ssm.api.ssm.domain.stats.CellDTO;
 
 //@ts-ignore
 export const defaultProtocols: string[] = window._env_.PROTOCOLS
