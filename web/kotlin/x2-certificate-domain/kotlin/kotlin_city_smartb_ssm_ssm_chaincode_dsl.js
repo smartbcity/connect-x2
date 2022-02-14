@@ -1134,35 +1134,21 @@
   });
   function Companion_0() {
     Companion_instance_0 = this;
-    this.PARTS_1 = 4;
-    this.PREFIX_1 = 'ssm';
+    this.PARTS_1 = 3;
+    this.PREFIX_1 = 'chaincode';
   }
-  Companion_0.prototype._get_PARTS__2565155089_slvvn3_k$ = function () {
-    return this.PARTS_1;
-  };
-  Companion_0.prototype._get_PREFIX__2684660409_qmqgqv_k$ = function () {
-    return this.PREFIX_1;
-  };
   Companion_0.$metadata$ = {
     simpleName: 'Companion',
     kind: 'object',
     interfaces: []
   };
-  Object.defineProperty(Companion_0.prototype, 'PARTS', {
-    configurable: true,
-    get: Companion_0.prototype._get_PARTS__2565155089_slvvn3_k$
-  });
-  Object.defineProperty(Companion_0.prototype, 'PREFIX', {
-    configurable: true,
-    get: Companion_0.prototype._get_PREFIX__2684660409_qmqgqv_k$
-  });
   var Companion_instance_0;
   function Companion_getInstance_0() {
     if (Companion_instance_0 == null)
       new Companion_0();
     return Companion_instance_0;
   }
-  function SsmUri(uri) {
+  function ChaincodeUri(uri) {
     Companion_getInstance_0();
     this.uri_1 = uri;
     var tmp = this;
@@ -1170,7 +1156,7 @@
     {
       var tmp_0 = this.burst_1._get_size__809037418_ddoh9m_k$();
       Companion_getInstance_0();
-      var tmp0_require_0 = tmp_0 === 4;
+      var tmp0_require_0 = tmp_0 === 3;
       {
       }
       {
@@ -1190,6 +1176,99 @@
     {
       var tmp_1 = first(this.burst_1);
       Companion_getInstance_0();
+      var tmp1_require_0 = tmp_1 === 'chaincode';
+      {
+      }
+      {
+        {
+        }
+        if (!tmp1_require_0) {
+          var tmp$ret$1;
+          $l$block_0: {
+            tmp$ret$1 = 'Failed requirement.';
+            break $l$block_0;
+          }
+          var message_1_1_0 = tmp$ret$1;
+          throw IllegalArgumentException_init_$Create$(toString(message_1_1_0));
+        }
+      }
+    }
+  }
+  ChaincodeUri.prototype._get_uri__857449637_e6i4dh_k$ = function () {
+    return this.uri_1;
+  };
+  ChaincodeUri.$metadata$ = {
+    simpleName: 'ChaincodeUri',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(ChaincodeUri.prototype, 'uri', {
+    configurable: true,
+    get: function () {
+      return this._get_uri__857449637_e6i4dh_k$();
+    }
+  });
+  function from(_this__1828080292, channelId, chaincodeId) {
+    return new ChaincodeUri('chaincode:' + channelId + ':' + chaincodeId);
+  }
+  function Companion_1() {
+    Companion_instance_1 = this;
+    this.PARTS_1 = 4;
+    this.PREFIX_1 = 'ssm';
+  }
+  Companion_1.prototype._get_PARTS__2565155089_slvvn3_k$ = function () {
+    return this.PARTS_1;
+  };
+  Companion_1.prototype._get_PREFIX__2684660409_qmqgqv_k$ = function () {
+    return this.PREFIX_1;
+  };
+  Companion_1.$metadata$ = {
+    simpleName: 'Companion',
+    kind: 'object',
+    interfaces: []
+  };
+  Object.defineProperty(Companion_1.prototype, 'PARTS', {
+    configurable: true,
+    get: Companion_1.prototype._get_PARTS__2565155089_slvvn3_k$
+  });
+  Object.defineProperty(Companion_1.prototype, 'PREFIX', {
+    configurable: true,
+    get: Companion_1.prototype._get_PREFIX__2684660409_qmqgqv_k$
+  });
+  var Companion_instance_1;
+  function Companion_getInstance_1() {
+    if (Companion_instance_1 == null)
+      new Companion_1();
+    return Companion_instance_1;
+  }
+  function SsmUri(uri) {
+    Companion_getInstance_1();
+    this.uri_1 = uri;
+    var tmp = this;
+    tmp.burst_1 = split$default(this.uri_1, [':'], false, 0, 6, null);
+    {
+      var tmp_0 = this.burst_1._get_size__809037418_ddoh9m_k$();
+      Companion_getInstance_1();
+      var tmp0_require_0 = tmp_0 === 4;
+      {
+      }
+      {
+        {
+        }
+        if (!tmp0_require_0) {
+          var tmp$ret$0;
+          $l$block: {
+            tmp$ret$0 = 'Failed requirement.';
+            break $l$block;
+          }
+          var message_1_1 = tmp$ret$0;
+          throw IllegalArgumentException_init_$Create$(toString(message_1_1));
+        }
+      }
+    }
+    {
+      var tmp_1 = first(this.burst_1);
+      Companion_getInstance_1();
       var tmp1_require_0 = tmp_1 === 'ssm';
       {
       }
@@ -1222,6 +1301,9 @@
   };
   SsmUri.prototype._get_ssmVersion__3723989984_9fy0ww_k$ = function () {
     return '1.0.0';
+  };
+  SsmUri.prototype._get_chaincodeUri__1808286381_twlup9_k$ = function () {
+    return from(Companion_getInstance_0(), this.channelId, this.chaincodeId);
   };
   SsmUri.prototype.component1 = function () {
     return this.uri_1;
@@ -1282,9 +1364,17 @@
     configurable: true,
     get: SsmUri.prototype._get_ssmVersion__3723989984_9fy0ww_k$
   });
-  function SsmGetAdminQuery(name) {
+  Object.defineProperty(SsmUri.prototype, 'chaincodeUri', {
+    configurable: true,
+    get: SsmUri.prototype._get_chaincodeUri__1808286381_twlup9_k$
+  });
+  function SsmGetAdminQuery(chaincodeUri, name) {
+    this.chaincodeUri_1 = chaincodeUri;
     this.name_1 = name;
   }
+  SsmGetAdminQuery.prototype._get_chaincodeUri__1808286381_twlup9_k$ = function () {
+    return this.chaincodeUri_1;
+  };
   SsmGetAdminQuery.prototype._get_name__804168992_das4rk_k$ = function () {
     return this.name_1;
   };
@@ -1293,6 +1383,12 @@
     kind: 'class',
     interfaces: []
   };
+  Object.defineProperty(SsmGetAdminQuery.prototype, 'chaincodeUri', {
+    configurable: true,
+    get: function () {
+      return this._get_chaincodeUri__1808286381_twlup9_k$();
+    }
+  });
   Object.defineProperty(SsmGetAdminQuery.prototype, 'name', {
     configurable: true,
     get: SsmGetAdminQuery.prototype._get_name__804168992_das4rk_k$
@@ -1314,9 +1410,13 @@
       return this._get_item__800109976_d8d4t4_k$();
     }
   });
-  function SsmGetQuery(name) {
+  function SsmGetQuery(chaincodeUri, name) {
+    this.chaincodeUri_1 = chaincodeUri;
     this.name_1 = name;
   }
+  SsmGetQuery.prototype._get_chaincodeUri__1808286381_twlup9_k$ = function () {
+    return this.chaincodeUri_1;
+  };
   SsmGetQuery.prototype._get_name__804168992_das4rk_k$ = function () {
     return this.name_1;
   };
@@ -1325,6 +1425,12 @@
     kind: 'class',
     interfaces: []
   };
+  Object.defineProperty(SsmGetQuery.prototype, 'chaincodeUri', {
+    configurable: true,
+    get: function () {
+      return this._get_chaincodeUri__1808286381_twlup9_k$();
+    }
+  });
   Object.defineProperty(SsmGetQuery.prototype, 'name', {
     configurable: true,
     get: SsmGetQuery.prototype._get_name__804168992_das4rk_k$
@@ -1346,12 +1452,16 @@
       return this._get_item__800109976_d8d4t4_k$();
     }
   });
-  function SsmGetSessionLogsQuery(ssmUri, sessionName) {
-    this.ssmUri_1 = ssmUri;
+  function SsmGetSessionLogsQuery(chaincodeUri, ssmName, sessionName) {
+    this.chaincodeUri_1 = chaincodeUri;
+    this.ssmName_1 = ssmName;
     this.sessionName_1 = sessionName;
   }
-  SsmGetSessionLogsQuery.prototype._get_ssmUri__369740492_644tl8_k$ = function () {
-    return this.ssmUri_1;
+  SsmGetSessionLogsQuery.prototype._get_chaincodeUri__1808286381_twlup9_k$ = function () {
+    return this.chaincodeUri_1;
+  };
+  SsmGetSessionLogsQuery.prototype._get_ssmName__2865054681_nnbzmv_k$ = function () {
+    return this.ssmName_1;
   };
   SsmGetSessionLogsQuery.prototype._get_sessionName__951667568_fqlje8_k$ = function () {
     return this.sessionName_1;
@@ -1361,21 +1471,27 @@
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmGetSessionLogsQuery.prototype, 'ssmUri', {
+  Object.defineProperty(SsmGetSessionLogsQuery.prototype, 'chaincodeUri', {
     configurable: true,
-    get: SsmGetSessionLogsQuery.prototype._get_ssmUri__369740492_644tl8_k$
+    get: function () {
+      return this._get_chaincodeUri__1808286381_twlup9_k$();
+    }
+  });
+  Object.defineProperty(SsmGetSessionLogsQuery.prototype, 'ssmName', {
+    configurable: true,
+    get: SsmGetSessionLogsQuery.prototype._get_ssmName__2865054681_nnbzmv_k$
   });
   Object.defineProperty(SsmGetSessionLogsQuery.prototype, 'sessionName', {
     configurable: true,
     get: SsmGetSessionLogsQuery.prototype._get_sessionName__951667568_fqlje8_k$
   });
-  function SsmGetSessionLogsQueryResult(ssmUri, sessionName, logs) {
-    this.ssmUri_1 = ssmUri;
+  function SsmGetSessionLogsQueryResult(ssmName, sessionName, logs) {
+    this.ssmName_1 = ssmName;
     this.sessionName_1 = sessionName;
     this.logs_1 = logs;
   }
-  SsmGetSessionLogsQueryResult.prototype._get_ssmUri__369740492_644tl8_k$ = function () {
-    return this.ssmUri_1;
+  SsmGetSessionLogsQueryResult.prototype._get_ssmName__2865054681_nnbzmv_k$ = function () {
+    return this.ssmName_1;
   };
   SsmGetSessionLogsQueryResult.prototype._get_sessionName__951667568_fqlje8_k$ = function () {
     return this.sessionName_1;
@@ -1384,7 +1500,7 @@
     return this.logs_1;
   };
   SsmGetSessionLogsQueryResult.prototype.component1 = function () {
-    return this.ssmUri_1;
+    return this.ssmName_1;
   };
   SsmGetSessionLogsQueryResult.prototype.component2 = function () {
     return this.sessionName_1;
@@ -1392,26 +1508,26 @@
   SsmGetSessionLogsQueryResult.prototype.component3 = function () {
     return this.logs_1;
   };
-  SsmGetSessionLogsQueryResult.prototype.copy = function (ssmUri, sessionName, logs) {
-    return this.copy_q7tg27_k$(ssmUri === void 1 ? this.ssmUri_1 : ssmUri, sessionName === void 1 ? this.sessionName_1 : sessionName, logs === void 1 ? this.logs_1 : logs);
+  SsmGetSessionLogsQueryResult.prototype.copy = function (ssmName, sessionName, logs) {
+    return this.copy_50bbx9_k$(ssmName === void 1 ? this.ssmName_1 : ssmName, sessionName === void 1 ? this.sessionName_1 : sessionName, logs === void 1 ? this.logs_1 : logs);
   };
-  SsmGetSessionLogsQueryResult.prototype.copy_q7tg27_k$ = function (ssmUri, sessionName, logs) {
-    return new SsmGetSessionLogsQueryResult(ssmUri, sessionName, logs);
+  SsmGetSessionLogsQueryResult.prototype.copy_50bbx9_k$ = function (ssmName, sessionName, logs) {
+    return new SsmGetSessionLogsQueryResult(ssmName, sessionName, logs);
   };
-  SsmGetSessionLogsQueryResult.prototype.copy$default_eztv4x_k$ = function (ssmUri, sessionName, logs, $mask0, $handler) {
+  SsmGetSessionLogsQueryResult.prototype.copy$default_gv1y51_k$ = function (ssmName, sessionName, logs, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
-      ssmUri = this.ssmUri_1;
+      ssmName = this.ssmName_1;
     if (!(($mask0 & 2) === 0))
       sessionName = this.sessionName_1;
     if (!(($mask0 & 4) === 0))
       logs = this.logs_1;
-    return this.copy_q7tg27_k$(ssmUri, sessionName, logs);
+    return this.copy_50bbx9_k$(ssmName, sessionName, logs);
   };
   SsmGetSessionLogsQueryResult.prototype.toString = function () {
-    return 'SsmGetSessionLogsQueryResult(ssmUri=' + this.ssmUri_1 + ', sessionName=' + this.sessionName_1 + ', logs=' + this.logs_1 + ')';
+    return 'SsmGetSessionLogsQueryResult(ssmName=' + this.ssmName_1 + ', sessionName=' + this.sessionName_1 + ', logs=' + this.logs_1 + ')';
   };
   SsmGetSessionLogsQueryResult.prototype.hashCode = function () {
-    var result = this.ssmUri_1.hashCode();
+    var result = getStringHashCode(this.ssmName_1);
     result = imul(result, 31) + getStringHashCode(this.sessionName_1) | 0;
     result = imul(result, 31) + hashCode(this.logs_1) | 0;
     return result;
@@ -1424,7 +1540,7 @@
     else {
     }
     var tmp0_other_with_cast = other instanceof SsmGetSessionLogsQueryResult ? other : THROW_CCE();
-    if (!this.ssmUri_1.equals(tmp0_other_with_cast.ssmUri_1))
+    if (!(this.ssmName_1 === tmp0_other_with_cast.ssmName_1))
       return false;
     if (!(this.sessionName_1 === tmp0_other_with_cast.sessionName_1))
       return false;
@@ -1437,9 +1553,9 @@
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(SsmGetSessionLogsQueryResult.prototype, 'ssmUri', {
+  Object.defineProperty(SsmGetSessionLogsQueryResult.prototype, 'ssmName', {
     configurable: true,
-    get: SsmGetSessionLogsQueryResult.prototype._get_ssmUri__369740492_644tl8_k$
+    get: SsmGetSessionLogsQueryResult.prototype._get_ssmName__2865054681_nnbzmv_k$
   });
   Object.defineProperty(SsmGetSessionLogsQueryResult.prototype, 'sessionName', {
     configurable: true,
@@ -1449,9 +1565,13 @@
     configurable: true,
     get: SsmGetSessionLogsQueryResult.prototype._get_logs__802733692_d9xda4_k$
   });
-  function SsmGetSessionQuery(sessionName) {
+  function SsmGetSessionQuery(chaincodeUri, sessionName) {
+    this.chaincodeUri_1 = chaincodeUri;
     this.sessionName_1 = sessionName;
   }
+  SsmGetSessionQuery.prototype._get_chaincodeUri__1808286381_twlup9_k$ = function () {
+    return this.chaincodeUri_1;
+  };
   SsmGetSessionQuery.prototype._get_sessionName__951667568_fqlje8_k$ = function () {
     return this.sessionName_1;
   };
@@ -1460,6 +1580,12 @@
     kind: 'class',
     interfaces: []
   };
+  Object.defineProperty(SsmGetSessionQuery.prototype, 'chaincodeUri', {
+    configurable: true,
+    get: function () {
+      return this._get_chaincodeUri__1808286381_twlup9_k$();
+    }
+  });
   Object.defineProperty(SsmGetSessionQuery.prototype, 'sessionName', {
     configurable: true,
     get: SsmGetSessionQuery.prototype._get_sessionName__951667568_fqlje8_k$
@@ -1481,31 +1607,42 @@
       return this._get_item__800109976_d8d4t4_k$();
     }
   });
-  function SsmGetTransactionQuery(id) {
+  function SsmGetTransactionQuery(chaincodeUri, id) {
+    this.chaincodeUri_1 = chaincodeUri;
     this.id_1 = id;
   }
+  SsmGetTransactionQuery.prototype._get_chaincodeUri__1808286381_twlup9_k$ = function () {
+    return this.chaincodeUri_1;
+  };
   SsmGetTransactionQuery.prototype._get_id__1413120976_ndc34g_k$ = function () {
     return this.id_1;
   };
   SsmGetTransactionQuery.prototype.component1 = function () {
+    return this.chaincodeUri_1;
+  };
+  SsmGetTransactionQuery.prototype.component2 = function () {
     return this.id_1;
   };
-  SsmGetTransactionQuery.prototype.copy = function (id) {
-    return this.copy_3t26ic_k$(id === void 1 ? this.id_1 : id);
+  SsmGetTransactionQuery.prototype.copy = function (chaincodeUri, id) {
+    return this.copy_w5098g_k$(chaincodeUri === void 1 ? this.chaincodeUri_1 : chaincodeUri, id === void 1 ? this.id_1 : id);
   };
-  SsmGetTransactionQuery.prototype.copy_3t26ic_k$ = function (id) {
-    return new SsmGetTransactionQuery(id);
+  SsmGetTransactionQuery.prototype.copy_w5098g_k$ = function (chaincodeUri, id) {
+    return new SsmGetTransactionQuery(chaincodeUri, id);
   };
-  SsmGetTransactionQuery.prototype.copy$default_q3pzg4_k$ = function (id, $mask0, $handler) {
+  SsmGetTransactionQuery.prototype.copy$default_xgrf37_k$ = function (chaincodeUri, id, $mask0, $handler) {
     if (!(($mask0 & 1) === 0))
+      chaincodeUri = this.chaincodeUri_1;
+    if (!(($mask0 & 2) === 0))
       id = this.id_1;
-    return this.copy_3t26ic_k$(id);
+    return this.copy_w5098g_k$(chaincodeUri, id);
   };
   SsmGetTransactionQuery.prototype.toString = function () {
-    return 'SsmGetTransactionQuery(id=' + this.id_1 + ')';
+    return 'SsmGetTransactionQuery(chaincodeUri=' + this.chaincodeUri_1 + ', id=' + this.id_1 + ')';
   };
   SsmGetTransactionQuery.prototype.hashCode = function () {
-    return getStringHashCode(this.id_1);
+    var result = hashCode(this.chaincodeUri_1);
+    result = imul(result, 31) + getStringHashCode(this.id_1) | 0;
+    return result;
   };
   SsmGetTransactionQuery.prototype.equals = function (other) {
     if (this === other)
@@ -1515,6 +1652,8 @@
     else {
     }
     var tmp0_other_with_cast = other instanceof SsmGetTransactionQuery ? other : THROW_CCE();
+    if (!equals(this.chaincodeUri_1, tmp0_other_with_cast.chaincodeUri_1))
+      return false;
     if (!(this.id_1 === tmp0_other_with_cast.id_1))
       return false;
     return true;
@@ -1524,6 +1663,12 @@
     kind: 'class',
     interfaces: []
   };
+  Object.defineProperty(SsmGetTransactionQuery.prototype, 'chaincodeUri', {
+    configurable: true,
+    get: function () {
+      return this._get_chaincodeUri__1808286381_twlup9_k$();
+    }
+  });
   Object.defineProperty(SsmGetTransactionQuery.prototype, 'id', {
     configurable: true,
     get: SsmGetTransactionQuery.prototype._get_id__1413120976_ndc34g_k$
@@ -1545,9 +1690,13 @@
       return this._get_item__800109976_d8d4t4_k$();
     }
   });
-  function SsmGetUserQuery(name) {
+  function SsmGetUserQuery(chaincodeUri, name) {
+    this.chaincodeUri_1 = chaincodeUri;
     this.name_1 = name;
   }
+  SsmGetUserQuery.prototype._get_chaincodeUri__1808286381_twlup9_k$ = function () {
+    return this.chaincodeUri_1;
+  };
   SsmGetUserQuery.prototype._get_name__804168992_das4rk_k$ = function () {
     return this.name_1;
   };
@@ -1556,6 +1705,12 @@
     kind: 'class',
     interfaces: []
   };
+  Object.defineProperty(SsmGetUserQuery.prototype, 'chaincodeUri', {
+    configurable: true,
+    get: function () {
+      return this._get_chaincodeUri__1808286381_twlup9_k$();
+    }
+  });
   Object.defineProperty(SsmGetUserQuery.prototype, 'name', {
     configurable: true,
     get: SsmGetUserQuery.prototype._get_name__804168992_das4rk_k$
@@ -1577,13 +1732,23 @@
       return this._get_item__800109976_d8d4t4_k$();
     }
   });
-  function SsmListAdminQuery() {
+  function SsmListAdminQuery(chaincodeUri) {
+    this.chaincodeUri_1 = chaincodeUri;
   }
+  SsmListAdminQuery.prototype._get_chaincodeUri__1808286381_twlup9_k$ = function () {
+    return this.chaincodeUri_1;
+  };
   SsmListAdminQuery.$metadata$ = {
     simpleName: 'SsmListAdminQuery',
     kind: 'class',
     interfaces: []
   };
+  Object.defineProperty(SsmListAdminQuery.prototype, 'chaincodeUri', {
+    configurable: true,
+    get: function () {
+      return this._get_chaincodeUri__1808286381_twlup9_k$();
+    }
+  });
   function SsmListAdminResult(items) {
     this.items_1 = items;
   }
@@ -1601,13 +1766,23 @@
       return this._get_items__3328574481_fzd5gv_k$();
     }
   });
-  function SsmListSessionQuery() {
+  function SsmListSessionQuery(chaincodeUri) {
+    this.chaincodeUri_1 = chaincodeUri;
   }
+  SsmListSessionQuery.prototype._get_chaincodeUri__1808286381_twlup9_k$ = function () {
+    return this.chaincodeUri_1;
+  };
   SsmListSessionQuery.$metadata$ = {
     simpleName: 'SsmListSessionQuery',
     kind: 'class',
     interfaces: []
   };
+  Object.defineProperty(SsmListSessionQuery.prototype, 'chaincodeUri', {
+    configurable: true,
+    get: function () {
+      return this._get_chaincodeUri__1808286381_twlup9_k$();
+    }
+  });
   function SsmListSessionResult(items) {
     this.items_1 = items;
   }
@@ -1625,13 +1800,23 @@
       return this._get_items__3328574481_fzd5gv_k$();
     }
   });
-  function SsmListSsmQuery() {
+  function SsmListSsmQuery(chaincodeUri) {
+    this.chaincodeUri_1 = chaincodeUri;
   }
+  SsmListSsmQuery.prototype._get_chaincodeUri__1808286381_twlup9_k$ = function () {
+    return this.chaincodeUri_1;
+  };
   SsmListSsmQuery.$metadata$ = {
     simpleName: 'SsmListSsmQuery',
     kind: 'class',
     interfaces: []
   };
+  Object.defineProperty(SsmListSsmQuery.prototype, 'chaincodeUri', {
+    configurable: true,
+    get: function () {
+      return this._get_chaincodeUri__1808286381_twlup9_k$();
+    }
+  });
   function SsmListSsmResult(items) {
     this.items_1 = items;
   }
@@ -1649,13 +1834,23 @@
       return this._get_items__3328574481_fzd5gv_k$();
     }
   });
-  function SsmListUserQuery() {
+  function SsmListUserQuery(chaincodeUri) {
+    this.chaincodeUri_1 = chaincodeUri;
   }
+  SsmListUserQuery.prototype._get_chaincodeUri__1808286381_twlup9_k$ = function () {
+    return this.chaincodeUri_1;
+  };
   SsmListUserQuery.$metadata$ = {
     simpleName: 'SsmListUserQuery',
     kind: 'class',
     interfaces: []
   };
+  Object.defineProperty(SsmListUserQuery.prototype, 'chaincodeUri', {
+    configurable: true,
+    get: function () {
+      return this._get_chaincodeUri__1808286381_twlup9_k$();
+    }
+  });
   function SsmListUserResult(items) {
     this.items_1 = items;
   }
@@ -1748,7 +1943,7 @@
     $ssm$chaincode$dsl$model$uri.SsmUri = SsmUri;
     Object.defineProperty($ssm$chaincode$dsl$model$uri.SsmUri, 'Companion', {
       configurable: true,
-      get: Companion_getInstance_0
+      get: Companion_getInstance_1
     });
     var $ssm = _.ssm || (_.ssm = {});
     var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
