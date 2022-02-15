@@ -10,7 +10,7 @@ import x2.api.ssm.domain.stats.Cell
 import x2.api.ssm.repo.postgres.repository.SessionCriteriaQuery
 
 @Component
-class X2SessionPerStateStatsQueryFunctionImpl(
+class X2SessionPerStateStatsQueryFunctionPostgres(
 	private val sessionCriteriaQuery: SessionCriteriaQuery
 ): X2SessionPerStateStatsQueryFunction {
 

@@ -12,7 +12,7 @@ import x2.api.ssm.repo.postgres.repository.SessionCriteriaQuery
 import x2.api.ssm.repo.postgres.toSsmEntity
 
 @Component
-class X2SessionPageQueryFunctionImpl(
+class X2SessionPageQueryFunctionPostgres(
 	private val sessionCriteriaQuery: SessionCriteriaQuery
 ): X2SessionPageQueryFunction {
 	override suspend fun invoke(msg: Flow<X2SessionPageQuery>) = msg.map { query ->

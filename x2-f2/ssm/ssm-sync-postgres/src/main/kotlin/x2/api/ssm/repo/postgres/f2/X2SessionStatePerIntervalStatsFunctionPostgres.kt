@@ -13,7 +13,7 @@ import java.time.Instant
 import java.time.ZoneId
 
 @Component
-class X2SessionStatePerIntervalStatsFunctionImpl(
+class X2SessionStatePerIntervalStatsFunctionPostgres(
 	private val sessionCriteriaQuery: SessionCriteriaQuery
 ): X2SessionStatePerIntervalStatsFunction {
 

@@ -8,16 +8,19 @@ import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.runApplication
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
+import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
 import org.springframework.test.context.junit.jupiter.SpringExtension
+import org.testcontainers.containers.PostgreSQLContainer
+import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 import x2.api.ssm.repo.postgres.core.PostgresDataTest
-
 
 @EntityScan(basePackages = ["x2.api.ssm.repo.postgres"])
 @EnableJpaRepositories(basePackages = ["x2.api.ssm.repo.postgres"])
 @SpringBootApplication(scanBasePackages = ["x2.api.ssm.repo.postgres"])
+@DirtiesContext
 class SpringTestApp
 
 fun main(args: Array<String>) {
@@ -29,28 +32,26 @@ fun main(args: Array<String>) {
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(classes = [SpringTestApp::class])
-//@ContextConfiguration(initializers = [SpringTestBase.Companion.Initializer::class])
 abstract class SpringTestBase {
 
 	companion object {
-//		@JvmStatic
-//		@Container
-//		var postgreSQLContainer: PostgreSQLContainer<*> = PostgreSQLContainer("postgres:12")
-//			.withDatabaseName("integration-tests-db")
-//			.withUsername("postgres")
-//			.withPassword("postgrespassword").apply {
-//				start()
-//			}
+		@JvmStatic
+		@Container
+		var postgreSQLContainer: PostgreSQLContainer<*> = PostgreSQLContainer("postgres:12")
+			.withDatabaseName("integration-tests-db")
+			.withUsername("postgres")
+			.withPassword("postgrespassword").apply {
+				start()
+			}
 
 		@JvmStatic
 		@DynamicPropertySource
 		fun setProperties(registry: DynamicPropertyRegistry) {
-//			registry.add("spring.jpa.show-sql") { true }
-//			registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl)
+			registry.add("spring.jpa.show-sql") { true }
+			registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl)
 		}
 	}
 
 	@Autowired
 	lateinit var dataTest: PostgresDataTest
-
 }

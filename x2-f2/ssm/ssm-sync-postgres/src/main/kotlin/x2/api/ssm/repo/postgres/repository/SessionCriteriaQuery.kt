@@ -117,14 +117,20 @@ class SessionCriteriaQuery(var entityManager: EntityManager) {
 			cb.lessThan(root.get(SessionEntity::time.name), to)
 		}?.let(predicates::add)
 
-		channelIds?.let {
+		channelIds?.emptyToNull()?.let {
 			root.get<String>(SessionEntity::channelId.name).`in`(channelIds)
 		}?.let(predicates::add)
 
-		currentSteps?.let {
+		currentSteps?.emptyToNull()?.let {
 			root.get<String>(SessionEntity::current.name).`in`(currentSteps)
 		}?.let(predicates::add)
 
 		where(*predicates.toTypedArray())
+	}
+
+	fun <T> List<T>.emptyToNull() =  if (isEmpty()) {
+		null
+	} else {
+		this
 	}
 }

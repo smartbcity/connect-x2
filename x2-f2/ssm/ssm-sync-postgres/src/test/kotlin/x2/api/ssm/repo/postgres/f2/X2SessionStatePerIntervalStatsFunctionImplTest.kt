@@ -13,7 +13,7 @@ import java.util.UUID
 class X2SessionStatePerIntervalStatsFunctionImplTest: SpringTestBase() {
 
 	@Autowired
-	private lateinit var x2SessionStatePerIntervalStatsFunctionImpl: X2SessionStatePerIntervalStatsFunctionImpl
+	private lateinit var x2SessionStatePerIntervalStatsFunctionImpl: X2SessionStatePerIntervalStatsFunctionPostgres
 
 	@Test
 	operator fun invoke() = runTest {

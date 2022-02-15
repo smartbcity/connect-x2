@@ -19,10 +19,10 @@ package-x2-api:
 	@docker push ${X2_APP_IMG}
 
 package-x2-front:
-	@docker build -f ${FRONT_X2_DOCKERFILE} -t ${FRONT_X2_IMG} .
+	@docker build --no-cache=true -f ${FRONT_X2_DOCKERFILE} -t ${FRONT_X2_IMG} .
     @docker push ${FRONT_X2_IMG}
 
 package-x2-ssm-certificate-provider:
-	VERSION=${VERSION} ./gradlew build ${X2_SSM_CERTIFICATE_PROVIDER_PACKAGE}
+	VERSION=${VERSION} ./gradlew build ${X2_SSM_CERTIFICATE_PROVIDER_PACKAGE} -x test
 	@docker push ${X2_SSM_CERTIFICATE_PROVIDER_IMG}
 
