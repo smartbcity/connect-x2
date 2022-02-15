@@ -23,11 +23,8 @@ class X2SessionStatePerIntervalStatsFunctionPostgres(
 
 	suspend fun invoke(msg: X2SessionPageQueryDTO): X2SessionStatePerIntervalStatsResult {
 		return sessionCriteriaQuery.findLogStats(
-			ssmUri = msg.ssmUri,
-			from = msg.from,
-			to = msg.to,
-			channelIds = msg.channel,
-			currentSteps = msg.currentStep
+			msg.filter
+
 		).groupBy {
 			it.current
 		}.map { (step, values) ->

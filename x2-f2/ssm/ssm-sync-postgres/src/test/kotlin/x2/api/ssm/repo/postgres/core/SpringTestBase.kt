@@ -15,12 +15,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
+import x2.api.ssm.repo.postgres.core.PostgreSQLExtension
 import x2.api.ssm.repo.postgres.core.PostgresDataTest
 
 @EntityScan(basePackages = ["x2.api.ssm.repo.postgres"])
 @EnableJpaRepositories(basePackages = ["x2.api.ssm.repo.postgres"])
 @SpringBootApplication(scanBasePackages = ["x2.api.ssm.repo.postgres"])
-@DirtiesContext
 class SpringTestApp
 
 fun main(args: Array<String>) {
@@ -28,10 +28,10 @@ fun main(args: Array<String>) {
 }
 
 
-@Testcontainers
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@ExtendWith(SpringExtension::class)
+
 @SpringBootTest(classes = [SpringTestApp::class])
+@DirtiesContext
+@Testcontainers
 abstract class SpringTestBase {
 
 	companion object {
@@ -47,8 +47,8 @@ abstract class SpringTestBase {
 		@JvmStatic
 		@DynamicPropertySource
 		fun setProperties(registry: DynamicPropertyRegistry) {
-			registry.add("spring.jpa.show-sql") { true }
 			registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl)
+			registry.add("spring.jpa.show-sql") { true }
 		}
 	}
 

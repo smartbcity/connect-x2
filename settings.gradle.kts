@@ -20,7 +20,6 @@ include(
 )
 
 include(
-	"x2-f2:ssm:ssm-api",
 	"x2-f2:ssm:ssm-domain",
 )
 

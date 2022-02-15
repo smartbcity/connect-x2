@@ -1,5 +1,7 @@
 package x2.api.ssm.repo.postgres.f2
 
+import f2.dsl.cqrs.page.Page
+import f2.dsl.cqrs.page.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.springframework.stereotype.Component
@@ -14,24 +16,23 @@ import x2.api.ssm.repo.postgres.toSsmEntity
 @Component
 class X2SessionPageQueryFunctionPostgres(
 	private val sessionCriteriaQuery: SessionCriteriaQuery
-): X2SessionPageQueryFunction {
+) : X2SessionPageQueryFunction {
 	override suspend fun invoke(msg: Flow<X2SessionPageQuery>) = msg.map { query ->
 		invoke(query)
 	}
 
 	suspend fun invoke(msg: X2SessionPageQueryDTO): X2SessionPageQueryResultDTO {
 		return sessionCriteriaQuery.findEntity(
-			ssmUri = msg.ssmUri,
-			from = msg.from,
-			to = msg.to,
-			channelIds = msg.channel,
-			currentSteps = msg.currentStep
+			msg.filter,
+			msg.pagination
 		).map {
 			it.toSsmEntity()
-		}.let {
+		}.let { page ->
 			X2SessionPageQueryResult(
-				items = it
+				page = page,
+				pagination = msg.pagination
 			)
 		}
 	}
+
 }

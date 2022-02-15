@@ -1,38 +1,37 @@
 package x2.api.ssm.domain.query
 
+import f2.dsl.cqrs.page.OffsetPagination
+import f2.dsl.cqrs.page.OffsetPaginationDTO
+import f2.dsl.cqrs.page.Page
+import f2.dsl.cqrs.page.PageDTO
+import f2.dsl.cqrs.page.PageQueryDTO
+import f2.dsl.cqrs.page.PageQueryResultDTO
 import f2.dsl.fnc.F2Function
-import ssm.chaincode.dsl.model.ChannelId
+import ssm.data.dsl.model.DataSsmSession
 import ssm.data.dsl.model.DataSsmSessionDTO
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
 typealias X2SessionPageQueryFunction = F2Function<X2SessionPageQuery, X2SessionPageQueryResultDTO>
 
-
 @JsExport
 @JsName("X2SessionPageQueryDTO")
-interface X2SessionPageQueryDTO {
-	val ssmUri: String
-	val from: Long?
-	val to: Long?
-	val channel: List<ChannelId>?
-	val engine: List<String>?
-	val currentStep: List<Int>?
+interface X2SessionPageQueryDTO : PageQueryDTO {
+	val filter: ProtocoleFilterDTO?
+	override val pagination: OffsetPagination?
 }
 
 data class X2SessionPageQuery(
-	override val from: Long? = null,
-	override val to: Long? = null,
-	override val channel: List<String>? = null,
-	override val engine: List<String>? = null,
-	override val currentStep: List<Int>? = null,
-	override val ssmUri: String
-): X2SessionPageQueryDTO
+	override val filter: ProtocoleFilterDTO?,
+	override val pagination: OffsetPagination?
+) : X2SessionPageQueryDTO
 
-interface X2SessionPageQueryResultDTO {
-	val items: List<DataSsmSessionDTO>
+interface X2SessionPageQueryResultDTO : PageQueryResultDTO<DataSsmSessionDTO> {
+	override val pagination: OffsetPaginationDTO?
+	override val page: PageDTO<DataSsmSessionDTO>
 }
 
 data class X2SessionPageQueryResult(
-	override val items: List<DataSsmSessionDTO>
-	): X2SessionPageQueryResultDTO
+	override val pagination: OffsetPagination?,
+	override val page: Page<DataSsmSession>
+) : X2SessionPageQueryResultDTO
