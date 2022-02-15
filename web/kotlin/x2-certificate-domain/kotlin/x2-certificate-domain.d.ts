@@ -35,9 +35,9 @@ export namespace f2.dsl.cqrs.exception {
 }
 export namespace f2.dsl.cqrs.page {
     class Page<OBJECT> implements f2.dsl.cqrs.page.PageDTO<OBJECT> {
-        constructor(total: number, list: any/* kotlin.collections.List<OBJECT> */);
+        constructor(total: number, items: any/* kotlin.collections.List<OBJECT> */);
         get total(): number;
-        get list(): any/* kotlin.collections.List<OBJECT> */;
+        get items(): any/* kotlin.collections.List<OBJECT> */;
     }
 }
 export namespace f2.dsl.cqrs.page {
@@ -90,7 +90,7 @@ export namespace f2.dsl.cqrs.page {
 export namespace f2.dsl.cqrs.page {
     interface PageDTO<OBJECT> {
         readonly total: number;
-        readonly list: any/* kotlin.collections.List<OBJECT> */;
+        readonly items: any/* kotlin.collections.List<OBJECT> */;
     }
 }
 export namespace f2.dsl.cqrs.page {

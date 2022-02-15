@@ -35,9 +35,9 @@ export namespace f2.dsl.cqrs.exception {
 }
 export namespace f2.dsl.cqrs.page {
     class Page<OBJECT> implements f2.dsl.cqrs.page.PageDTO<OBJECT> {
-        constructor(total: number, list: any/* kotlin.collections.List<OBJECT> */);
+        constructor(total: number, items: any/* kotlin.collections.List<OBJECT> */);
         get total(): number;
-        get list(): any/* kotlin.collections.List<OBJECT> */;
+        get items(): any/* kotlin.collections.List<OBJECT> */;
     }
 }
 export namespace f2.dsl.cqrs.page {
@@ -90,7 +90,7 @@ export namespace f2.dsl.cqrs.page {
 export namespace f2.dsl.cqrs.page {
     interface PageDTO<OBJECT> {
         readonly total: number;
-        readonly list: any/* kotlin.collections.List<OBJECT> */;
+        readonly items: any/* kotlin.collections.List<OBJECT> */;
     }
 }
 export namespace f2.dsl.cqrs.page {
@@ -1028,13 +1028,20 @@ export namespace ssm.data.dsl.model {
     }
 }
 export namespace x2.api.ssm.domain.query {
-    interface X2SessionPageQueryDTO {
-        readonly ssmUri: string;
+    interface ProtocoleFilterDTO {
+        readonly ssmUri: Nullable<string>;
         readonly from: any/* Nullable<kotlin.Long> */;
         readonly to: any/* Nullable<kotlin.Long> */;
-        readonly channel: any/* Nullable<kotlin.collections.List<string>> */;
-        readonly engine: any/* Nullable<kotlin.collections.List<string>> */;
-        readonly currentStep: any/* Nullable<kotlin.collections.List<number>> */;
+        readonly channels: Nullable<Array<string>>;
+        readonly engines: Nullable<Array<string>>;
+        readonly steps: Nullable<Int32Array>;
+        readonly __doNotUseIt: __doNotImplementIt;
+    }
+}
+export namespace x2.api.ssm.domain.query {
+    interface X2SessionPageQueryDTO extends f2.dsl.cqrs.page.PageQueryDTO {
+        readonly filter: Nullable<x2.api.ssm.domain.query.ProtocoleFilterDTO>;
+        readonly pagination: Nullable<f2.dsl.cqrs.page.OffsetPagination>;
         readonly __doNotUseIt: __doNotImplementIt;
     }
 }
