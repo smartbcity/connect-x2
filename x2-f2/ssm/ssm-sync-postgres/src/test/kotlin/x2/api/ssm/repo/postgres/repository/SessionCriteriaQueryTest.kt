@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import ssm.chaincode.dsl.model.uri.SsmUri
+import x2.api.ssm.domain.query.ProtocoleFilter
 import java.time.LocalDate
 import java.time.ZoneOffset
 import java.util.UUID
@@ -22,13 +23,14 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			val ssmUri = SsmUri("ssm:sandbox:thessm-${UUID.randomUUID()}:certificates")
 			dataTest.generateSessions(ssmUri, 6)
 			val test = sessionCriteriaQuery.findEntity(
-				ssmUri = ssmUri.uri,
-				from = null,
-				to = null,
-				channelIds = null,
-				currentSteps = null
+				filter = ProtocoleFilter(
+					ssmUri = ssmUri.uri
+				),
+				pagination = null
 			)
-			Assertions.assertThat(test).hasSize(6)
+
+			Assertions.assertThat(test.items).hasSize(6)
+			Assertions.assertThat(test.total).isEqualTo(6)
 		}
 
 		@Test
@@ -36,13 +38,14 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			val ssmUri = SsmUri("ssm:sandbox:thessm-${UUID.randomUUID()}:certificates")
 			dataTest.generateSessions(ssmUri, 6)
 			val test = sessionCriteriaQuery.findEntity(
-				ssmUri = ssmUri.uri,
-				from = LocalDate.now().minusDays(2).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000,
-				to = null,
-				channelIds = null,
-				currentSteps = null
+				filter = ProtocoleFilter(
+					ssmUri = ssmUri.uri,
+					from = LocalDate.now().minusDays(2).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000
+				),
+				pagination = null
 			)
-			Assertions.assertThat(test).hasSize(2)
+			Assertions.assertThat(test.items).hasSize(2)
+			Assertions.assertThat(test.total).isEqualTo(2)
 		}
 
 		@Test
@@ -50,13 +53,14 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			val ssmUri = SsmUri("ssm:sandbox:thessm-${UUID.randomUUID()}:certificates")
 			dataTest.generateSessions(ssmUri, 6)
 			val test = sessionCriteriaQuery.findEntity(
-				ssmUri = ssmUri.uri,
-				from = null,
-				to = LocalDate.now().minusDays(2).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000,
-				channelIds = null,
-				currentSteps = null
+				ProtocoleFilter(
+					ssmUri = ssmUri.uri,
+					to = LocalDate.now().minusDays(2).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000
+				),
+				pagination = null
 			)
-			Assertions.assertThat(test).hasSize(4)
+			Assertions.assertThat(test.items).hasSize(4)
+			Assertions.assertThat(test.total).isEqualTo(4)
 		}
 
 		@Test
@@ -64,13 +68,15 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			val ssmUri = SsmUri("ssm:sandbox:thessm-${UUID.randomUUID()}:certificates")
 			dataTest.generateSessions(ssmUri, 6)
 			val test = sessionCriteriaQuery.findEntity(
-				ssmUri = ssmUri.uri,
-				from = LocalDate.now().minusDays(3).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000,
-				to = LocalDate.now().minusDays(2).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000,
-				channelIds = null,
-				currentSteps = null
+				ProtocoleFilter(
+					ssmUri = ssmUri.uri,
+					from = LocalDate.now().minusDays(3).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000,
+					to = LocalDate.now().minusDays(2).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000,
+				),
+				pagination = null
 			)
-			Assertions.assertThat(test).hasSize(1)
+			Assertions.assertThat(test.items).hasSize(1)
+			Assertions.assertThat(test.total).isEqualTo(1)
 		}
 
 		@Test
@@ -81,13 +87,13 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			val ssmUriSecond = SsmUri("ssm:sandbox_second:thessm:certificates")
 			dataTest.generateSessions(ssmUriSecond, 6)
 			val test = sessionCriteriaQuery.findEntity(
-				ssmUri = null,
-				from = null,
-				to = null,
-				channelIds = listOf(channel),
-				currentSteps = null
+				ProtocoleFilter(
+					channels = arrayOf(channel),
+				),
+				pagination = null
 			)
-			Assertions.assertThat(test).hasSize(6)
+			Assertions.assertThat(test.items).hasSize(6)
+			Assertions.assertThat(test.total).isEqualTo(6)
 		}
 
 		@Test
@@ -99,13 +105,13 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			val ssmUriSecond = SsmUri("ssm:$channelSecond:thessm-${UUID.randomUUID()}:certificates")
 			dataTest.generateSessions(ssmUriSecond, 6)
 			val test = sessionCriteriaQuery.findEntity(
-				ssmUri = null,
-				from = null,
-				to = null,
-				channelIds = listOf(channel, channelSecond),
-				currentSteps = null
+				ProtocoleFilter(
+					channels = arrayOf(channel,channelSecond),
+				),
+				pagination = null
 			)
-			Assertions.assertThat(test).hasSize(12)
+			Assertions.assertThat(test.items).hasSize(10)
+			Assertions.assertThat(test.total).isEqualTo(12)
 		}
 
 		@Test
@@ -113,14 +119,16 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			val ssmUri = SsmUri("ssm:sandbox:thessm-${UUID.randomUUID()}:certificates")
 			val data = dataTest.generateSessions(ssmUri, 6, (1..1))
 			val test = sessionCriteriaQuery.findEntity(
-				ssmUri = ssmUri.uri,
-				from = null,
-				to = null,
-				channelIds = null,
-				currentSteps = listOf(1, 2)
+				ProtocoleFilter(
+					ssmUri = ssmUri.uri,
+					steps = intArrayOf(1, 2)
+				),
+				pagination = null
 			)
 			val count = data.filter { listOf(1, 2).contains(it.current) }.count()
-			Assertions.assertThat(test).hasSize(count)
+
+			Assertions.assertThat(test.items).hasSize(count)
+			Assertions.assertThat(test.total).isEqualTo(count)
 		}
 	}
 
@@ -129,11 +137,9 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 		val ssmUri = SsmUri("ssm:sandbox:thessm-${UUID.randomUUID()}:certificates")
 		val value = dataTest.generateSessions(ssmUri, 6)
 		val test = sessionCriteriaQuery.findStats(
-			ssmUri = ssmUri.uri,
-			from = null,
-			to = null,
-			channelIds = null,
-			currentSteps = null
+			ProtocoleFilter(
+				ssmUri = ssmUri.uri,
+			),
 		)
 		val nbSize = value.groupBy { it.current }.keys.size
 		Assertions.assertThat(test).hasSize(nbSize)
@@ -144,11 +150,10 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 		val ssmUri = SsmUri("ssm:sandbox:thessm-${UUID.randomUUID()}:certificates")
 		val value = dataTest.generateSessions(ssmUri, 6)
 		val test = sessionCriteriaQuery.findStats(
-			ssmUri = ssmUri.uri,
-			from = null,
-			to = null,
-			channelIds = null,
-			currentSteps = listOf(1, 2)
+			ProtocoleFilter(
+				ssmUri = ssmUri.uri,
+				steps = intArrayOf(1, 2)
+			),
 		)
 		val nbSize = value.filter { listOf(1, 2).contains(it.current) }.size
 		val fetched = test.sumOf { it.count }

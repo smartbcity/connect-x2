@@ -20,11 +20,7 @@ class X2SessionPerStateStatsQueryFunctionPostgres(
 
 	suspend fun invoke(msg: X2SessionPageQuery): X2SessionPerStateStatsResult {
 		return sessionCriteriaQuery.findStats(
-			ssmUri = msg.ssmUri,
-			from = msg.from,
-			to = msg.to,
-			channelIds = msg.channel,
-			currentSteps = msg.currentStep
+			filter = msg.filter
 		).map { sessionStats ->
 			Cell(label = sessionStats.current.toString(), sessionStats.count)
 		}.let { data ->
