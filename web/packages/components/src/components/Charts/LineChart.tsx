@@ -9,7 +9,7 @@ interface Data {
     titles: string[]
     sets: {
         label: string,
-        data: number[]
+        value: number[]
     }[]
 }
 
@@ -85,7 +85,7 @@ export const LineChart = (props: LineChartProps) => {
         labels: data.titles,
         datasets: data.sets.map((set, index) => ({
             label: set.label,
-            data: set.data,
+            data: set.value,
             strokeColor: chartColors[index],
             borderColor: chartColors[index],
             pointBorderColor: "#fff",
@@ -94,7 +94,6 @@ export const LineChart = (props: LineChartProps) => {
             pointHoverBackgroundColor: "#fff",
             fill: false,
             cubicInterpolationMode: "monotone",
-            hidden: index > 0,
         })),
     }), [data])
 

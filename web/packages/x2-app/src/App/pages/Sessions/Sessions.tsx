@@ -58,7 +58,23 @@ export const Sessions = (props: SessionsProps) => {
     [ssmUri.uri],
   )
 
+  const getSessionStatePerInterval = useCallback(
+    (params?: SessionsFilters) => {
+      return SSMRequester.fetchSessionStatePerInterval(
+        ssmUri,
+        params?.channel,
+        params?.currentStep,
+        params?.engine,
+        params?.from,
+        params?.to,
+      )
+    },
+    [ssmUri.uri],
+  )
+
   const sessionsPerStateStats = useAsyncResponse(getSessionsPerStateStats)
+
+  const stepsPerIntervalStats = useAsyncResponse(getSessionStatePerInterval)
   
   useEffect(() => {
     fetchSessions(ssmUri)
@@ -68,9 +84,10 @@ export const Sessions = (props: SessionsProps) => {
   const onSubmitFilters = useCallback(
     (values: SessionsFilters) => {
       sessionsPerStateStats.execute(values)
+      stepsPerIntervalStats.execute(values)
       gotoSessions(ssmUri, values)
     },
-    [ssmUri.uri, sessionsPerStateStats.execute],
+    [ssmUri.uri, sessionsPerStateStats.execute, stepsPerIntervalStats.execute],
   )
   
   if (!currentSSM) return <NoMatchPage />
@@ -81,7 +98,7 @@ export const Sessions = (props: SessionsProps) => {
       headerContent={<SessionsFilters ssmList={ssmList} onSubmit={onSubmitFilters} currentSSM={currentSSM} />}
     >
       <Box className={classes.container}>
-        <StepsCompletedCard />
+        <StepsCompletedCard stats={stepsPerIntervalStats.result ?? []} isLoading={stepsPerIntervalStats.status !== "SUCCESS"} />
         <SessionNumberCard stats={sessionsPerStateStats.result ?? []} isLoading={sessionsPerStateStats.status !== "SUCCESS"} />
         <ProtocolCard ssmUri={ssmUri} currentSSM={currentSSM} />
       </Box>

@@ -19,7 +19,7 @@ const useStyles = makeG2STyles()({
 })
 
 interface SessionNumberCardProps {
-    stats: CellDTO[]
+    stats: CellDTO<number>[]
     isLoading?: boolean
 }
 

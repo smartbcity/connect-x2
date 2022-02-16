@@ -75,9 +75,8 @@ const fetchSessionStatesPerStates = async (
     engine: string[] = [],
     from?: number,
     to?: number
-): Promise<CellDTO[]> => {
+): Promise<CellDTO<number>[]> => {
     return requestCoop<X2SessionPageQueryDTO, X2SessionPerStateStatsResultDTO>("sessionPerStateStats", 
-    //@ts-ignore
     {
         ssmUri: ssmUri.uri, 
         channel: channel,
@@ -92,14 +91,13 @@ const fetchSessionStatesPerStates = async (
 
 const fetchSessionStatePerInterval = async (
     ssmUri: SsmUriDTO,
-    channel: string[] = [],
-    currentStep: string[] = [],
-    engine: string[] = [],
+    channel?: string[],
+    currentStep?: string[],
+    engine?: string[],
     from?: number,
     to?: number
-): Promise<CellDTO[]> => {
+): Promise<CellDTO<number[]>[]> => {
     return requestCoop<X2SessionPageQueryDTO, X2SessionStatePerIntervalStatsResultDTO>("sessionStatePerInterval", 
-    //@ts-ignore
     {
         ssmUri: ssmUri.uri, 
         channel: channel,

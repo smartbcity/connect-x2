@@ -85,7 +85,7 @@ export type CanGenerateCertificateResult = x2.api.certificate.domain.features.Ca
 export type X2SessionPageQueryDTO = x2Ssm.api.ssm.domain.query.X2SessionPageQueryDTO;
 export type X2SessionPerStateStatsResultDTO = x2Ssm.api.ssm.domain.query.X2SessionPerStateStatsResultDTO;
 export type X2SessionStatePerIntervalStatsResultDTO = x2Ssm.api.ssm.domain.query.X2SessionStatePerIntervalStatsResultDTO;
-export type CellDTO = x2Ssm.api.ssm.domain.stats.CellDTO;
+export type CellDTO<CELL> = x2Ssm.api.ssm.domain.stats.CellDTO<CELL>;
 
 //@ts-ignore
 export const defaultProtocols: string[] = window._env_.PROTOCOLS
