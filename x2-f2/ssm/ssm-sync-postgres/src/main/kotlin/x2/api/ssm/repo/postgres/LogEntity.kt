@@ -10,6 +10,7 @@ import ssm.chaincode.dsl.model.SsmSessionState
 import ssm.chaincode.dsl.model.SsmTransition
 import ssm.chaincode.dsl.model.uri.SsmUri
 import ssm.data.dsl.model.DataSsmSessionState
+import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
@@ -38,7 +39,7 @@ data class LogEntity(
 	@Column(columnDefinition="TEXT")
 	val public: String,
 	val iteration: Int,
-	@OneToOne
+	@OneToOne(cascade = [CascadeType.PERSIST])
 	val transaction: TransactionEntity?
 )
 

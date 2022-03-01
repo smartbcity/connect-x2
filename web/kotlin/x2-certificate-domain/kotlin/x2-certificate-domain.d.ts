@@ -35,9 +35,9 @@ export namespace f2.dsl.cqrs.exception {
 }
 export namespace f2.dsl.cqrs.page {
     class Page<OBJECT> implements f2.dsl.cqrs.page.PageDTO<OBJECT> {
-        constructor(total: number, list: any/* kotlin.collections.List<OBJECT> */);
+        constructor(total: number, items: any/* kotlin.collections.List<OBJECT> */);
         get total(): number;
-        get list(): any/* kotlin.collections.List<OBJECT> */;
+        get items(): any/* kotlin.collections.List<OBJECT> */;
     }
 }
 export namespace f2.dsl.cqrs.page {
@@ -90,7 +90,7 @@ export namespace f2.dsl.cqrs.page {
 export namespace f2.dsl.cqrs.page {
     interface PageDTO<OBJECT> {
         readonly total: number;
-        readonly list: any/* kotlin.collections.List<OBJECT> */;
+        readonly items: any/* kotlin.collections.List<OBJECT> */;
     }
 }
 export namespace f2.dsl.cqrs.page {
@@ -302,6 +302,7 @@ export namespace ssm.chaincode.dsl.model.uri {
         get chaincodeId(): string;
         get ssmName(): string;
         get ssmVersion(): string;
+        get chaincodeUri(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
         component1(): string;
         copy(uri: string): ssm.chaincode.dsl.model.uri.SsmUri;
         toString(): string;
@@ -311,7 +312,8 @@ export namespace ssm.chaincode.dsl.model.uri {
 }
 export namespace ssm.chaincode.dsl.query {
     class SsmGetAdminQuery implements ssm.chaincode.dsl.SsmQueryDTO {
-        constructor(name: string);
+        constructor(chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */, name: string);
+        get chaincodeUri(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
         get name(): string;
     }
     class SsmGetAdminResult implements ssm.chaincode.dsl.SsmItemResultDTO<ssm.chaincode.dsl.model.Agent> {
@@ -321,7 +323,8 @@ export namespace ssm.chaincode.dsl.query {
 }
 export namespace ssm.chaincode.dsl.query {
     class SsmGetQuery implements ssm.chaincode.dsl.SsmQueryDTO {
-        constructor(name: string);
+        constructor(chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */, name: string);
+        get chaincodeUri(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
         get name(): string;
     }
     class SsmGetResult implements ssm.chaincode.dsl.SsmItemResultDTO<ssm.chaincode.dsl.model.Ssm> {
@@ -331,19 +334,20 @@ export namespace ssm.chaincode.dsl.query {
 }
 export namespace ssm.chaincode.dsl.query {
     class SsmGetSessionLogsQuery implements ssm.chaincode.dsl.SsmQueryDTO {
-        constructor(ssmUri: ssm.chaincode.dsl.model.uri.SsmUri, sessionName: string);
-        get ssmUri(): ssm.chaincode.dsl.model.uri.SsmUri;
+        constructor(chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */, ssmName: string, sessionName: string);
+        get chaincodeUri(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
+        get ssmName(): string;
         get sessionName(): string;
     }
     class SsmGetSessionLogsQueryResult {
-        constructor(ssmUri: ssm.chaincode.dsl.model.uri.SsmUri, sessionName: string, logs: any/* kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog> */);
-        get ssmUri(): ssm.chaincode.dsl.model.uri.SsmUri;
+        constructor(ssmName: string, sessionName: string, logs: any/* kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog> */);
+        get ssmName(): string;
         get sessionName(): string;
         get logs(): any/* kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog> */;
-        component1(): ssm.chaincode.dsl.model.uri.SsmUri;
+        component1(): string;
         component2(): string;
         component3(): any/* kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog> */;
-        copy(ssmUri: ssm.chaincode.dsl.model.uri.SsmUri, sessionName: string, logs: any/* kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog> */): ssm.chaincode.dsl.query.SsmGetSessionLogsQueryResult;
+        copy(ssmName: string, sessionName: string, logs: any/* kotlin.collections.List<ssm.chaincode.dsl.model.SsmSessionStateLog> */): ssm.chaincode.dsl.query.SsmGetSessionLogsQueryResult;
         toString(): string;
         hashCode(): number;
         equals(other: Nullable<any>): boolean;
@@ -351,7 +355,8 @@ export namespace ssm.chaincode.dsl.query {
 }
 export namespace ssm.chaincode.dsl.query {
     class SsmGetSessionQuery implements ssm.chaincode.dsl.SsmQueryDTO {
-        constructor(sessionName: string);
+        constructor(chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */, sessionName: string);
+        get chaincodeUri(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
         get sessionName(): string;
     }
     class SsmGetSessionResult implements ssm.chaincode.dsl.SsmItemResultDTO<ssm.chaincode.dsl.model.SsmSessionState> {
@@ -361,10 +366,12 @@ export namespace ssm.chaincode.dsl.query {
 }
 export namespace ssm.chaincode.dsl.query {
     class SsmGetTransactionQuery implements ssm.chaincode.dsl.SsmQueryDTO {
-        constructor(id: string);
+        constructor(chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */, id: string);
+        get chaincodeUri(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
         get id(): string;
-        component1(): string;
-        copy(id: string): ssm.chaincode.dsl.query.SsmGetTransactionQuery;
+        component1(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
+        component2(): string;
+        copy(chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */, id: string): ssm.chaincode.dsl.query.SsmGetTransactionQuery;
         toString(): string;
         hashCode(): number;
         equals(other: Nullable<any>): boolean;
@@ -376,7 +383,8 @@ export namespace ssm.chaincode.dsl.query {
 }
 export namespace ssm.chaincode.dsl.query {
     class SsmGetUserQuery implements ssm.chaincode.dsl.SsmQueryDTO {
-        constructor(name: string);
+        constructor(chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */, name: string);
+        get chaincodeUri(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
         get name(): string;
     }
     class SsmGetUserResult implements ssm.chaincode.dsl.SsmItemResultDTO<ssm.chaincode.dsl.model.Agent> {
@@ -386,7 +394,8 @@ export namespace ssm.chaincode.dsl.query {
 }
 export namespace ssm.chaincode.dsl.query {
     class SsmListAdminQuery implements ssm.chaincode.dsl.SsmQueryDTO {
-        constructor();
+        constructor(chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */);
+        get chaincodeUri(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
     }
     class SsmListAdminResult implements ssm.chaincode.dsl.SsmItemsResultDTO<string> {
         constructor(items: Array<string>);
@@ -395,7 +404,8 @@ export namespace ssm.chaincode.dsl.query {
 }
 export namespace ssm.chaincode.dsl.query {
     class SsmListSessionQuery implements ssm.chaincode.dsl.SsmQueryDTO {
-        constructor();
+        constructor(chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */);
+        get chaincodeUri(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
     }
     class SsmListSessionResult implements ssm.chaincode.dsl.SsmItemsResultDTO<string> {
         constructor(items: Array<string>);
@@ -404,7 +414,8 @@ export namespace ssm.chaincode.dsl.query {
 }
 export namespace ssm.chaincode.dsl.query {
     class SsmListSsmQuery implements ssm.chaincode.dsl.SsmQueryDTO {
-        constructor();
+        constructor(chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */);
+        get chaincodeUri(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
     }
     class SsmListSsmResult implements ssm.chaincode.dsl.SsmItemsResultDTO<string> {
         constructor(items: Array<string>);
@@ -413,7 +424,8 @@ export namespace ssm.chaincode.dsl.query {
 }
 export namespace ssm.chaincode.dsl.query {
     class SsmListUserQuery implements ssm.chaincode.dsl.SsmQueryDTO {
-        constructor();
+        constructor(chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */);
+        get chaincodeUri(): any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
     }
     class SsmListUserResult implements ssm.chaincode.dsl.SsmItemsResultDTO<string> {
         constructor(items: Array<string>);
@@ -422,6 +434,7 @@ export namespace ssm.chaincode.dsl.query {
 }
 export namespace ssm.chaincode.dsl {
     interface SsmQueryDTO extends f2.dsl.cqrs.Query {
+        readonly chaincodeUri: any/* ssm.chaincode.dsl.model.uri.ChaincodeUri */;
     }
     interface SsmItemResultDTO<T> extends f2.dsl.cqrs.Event {
         readonly item: Nullable<T>;
@@ -868,8 +881,9 @@ export namespace ssm.data.dsl.features.query {
     }
 }
 export namespace ssm.data.dsl.model {
-    class DataChannel /* implements ssm.data.dsl.model.DataChannelDTO */ {
+    class DataChannel implements ssm.data.dsl.model.DataChannelDTO {
         constructor(id: string);
+        get id(): string;
     }
 }
 export namespace ssm.data.dsl.model {
@@ -980,10 +994,15 @@ export namespace ssm.data.dsl.features.query {
     }
 }
 export namespace ssm.data.dsl.model {
+    interface DataChannelDTO {
+        readonly id: string;
+    }
+}
+export namespace ssm.data.dsl.model {
     interface DataSsmDTO {
         readonly uri: ssm.chaincode.dsl.model.uri.SsmUriDTO;
         readonly ssm: ssm.chaincode.dsl.model.SsmDTO;
-        readonly channel: any/* ssm.data.dsl.model.DataChannelDTO */;
+        readonly channel: ssm.data.dsl.model.DataChannelDTO;
         readonly version: Nullable<string>;
     }
 }
@@ -992,7 +1011,7 @@ export namespace ssm.data.dsl.model {
         readonly ssmUri: ssm.chaincode.dsl.model.uri.SsmUri;
         readonly sessionName: string;
         readonly state: ssm.data.dsl.model.DataSsmSessionStateDTO;
-        readonly channel: any/* ssm.data.dsl.model.DataChannelDTO */;
+        readonly channel: ssm.data.dsl.model.DataChannelDTO;
         readonly transaction: Nullable<ssm.chaincode.dsl.blockchain.TransactionDTO>;
         readonly transactions: any/* kotlin.collections.List<ssm.chaincode.dsl.blockchain.TransactionDTO> */;
     }

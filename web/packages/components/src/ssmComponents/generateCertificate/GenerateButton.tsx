@@ -13,8 +13,10 @@ const useStyles = makeG2STyles()(
     generateButton: {
         marginLeft: "5px",
         background: theme.colors.secondary,
+        color: "white",
         padding: "4px 7px",
         "&:hover": {
+            color: "white",
             background: theme.colors.secondary,
         }
     }

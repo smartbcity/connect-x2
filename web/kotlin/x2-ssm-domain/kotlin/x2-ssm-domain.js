@@ -25,6 +25,13 @@
   'use strict';
   //region block: pre-declaration
   //endregion
+  function ProtocoleFilterDTO() {
+  }
+  ProtocoleFilterDTO.$metadata$ = {
+    simpleName: 'ProtocoleFilterDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function X2SessionPageQueryDTO() {
   }
   X2SessionPageQueryDTO.$metadata$ = {
@@ -62,6 +69,11 @@
   };
   //region block: exports
   function $jsExportAll$(_) {
+    var $x2 = _.x2 || (_.x2 = {});
+    var $x2$api = $x2.api || ($x2.api = {});
+    var $x2$api$ssm = $x2$api.ssm || ($x2$api.ssm = {});
+    var $x2$api$ssm$domain = $x2$api$ssm.domain || ($x2$api$ssm.domain = {});
+    var $x2$api$ssm$domain$query = $x2$api$ssm$domain.query || ($x2$api$ssm$domain.query = {});
     var $x2 = _.x2 || (_.x2 = {});
     var $x2$api = $x2.api || ($x2.api = {});
     var $x2$api$ssm = $x2$api.ssm || ($x2$api.ssm = {});

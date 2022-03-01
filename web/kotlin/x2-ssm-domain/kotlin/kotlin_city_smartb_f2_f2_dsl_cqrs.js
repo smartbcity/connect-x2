@@ -148,15 +148,15 @@
     kind: 'class',
     interfaces: []
   };
-  function Page(total, list) {
+  function Page(total, items) {
     this.total_1 = total;
-    this.list_1 = list;
+    this.items_1 = items;
   }
   Page.prototype._get_total__3639312653_aucycz_k$ = function () {
     return this.total_1;
   };
-  Page.prototype._get_list__802566509_d9tsa5_k$ = function () {
-    return this.list_1;
+  Page.prototype._get_items__3328574481_fzd5gv_k$ = function () {
+    return this.items_1;
   };
   Page.$metadata$ = {
     simpleName: 'Page',
@@ -169,10 +169,10 @@
       return this._get_total__3639312653_aucycz_k$();
     }
   });
-  Object.defineProperty(Page.prototype, 'list', {
+  Object.defineProperty(Page.prototype, 'items', {
     configurable: true,
     get: function () {
-      return this._get_list__802566509_d9tsa5_k$();
+      return this._get_items__3328574481_fzd5gv_k$();
     }
   });
   function OffsetRequest(offset, limit) {

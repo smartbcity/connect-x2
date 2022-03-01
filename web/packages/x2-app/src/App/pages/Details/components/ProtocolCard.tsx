@@ -2,7 +2,7 @@ import { AutomateViewer } from "@smartb/g2-s2"
 import {Panel} from "components"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
-import {SSM, SsmTransitionDTO, SsmUriDTO, toUrlPath} from "ssm"
+import {SSM, SsmTransitionDTO, SsmUriDTO, useSsmUri} from "ssm"
 import { makeG2STyles } from "@smartb/g2-themes"
 
 const useStyles = makeG2STyles()({
@@ -25,12 +25,12 @@ interface ProtocolCardProps {
 export const ProtocolCard = (props: ProtocolCardProps) => {
     const {currentSSM, ssmUri} = props
     const {t} = useTranslation()
-    const urlPath = toUrlPath(ssmUri)
+    const {path} = useSsmUri(ssmUri)
 
     const transitions = useAutomateTransition(currentSSM)
     const { classes } = useStyles()
     return (
-        <Panel className={classes.panel} bodyClassName={classes.body} header={t("protocolDiagram")} embedUrl={`${window.location.origin}/embed/${urlPath}/diagram`}>
+        <Panel className={classes.panel} bodyClassName={classes.body} header={t("protocolDiagram")} embedUrl={`${window.location.origin}/embed/${path}/diagram`}>
             <AutomateViewer transitions={transitions} className={classes.viewer}/>
         </Panel>
     )

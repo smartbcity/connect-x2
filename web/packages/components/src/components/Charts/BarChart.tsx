@@ -109,7 +109,8 @@ export const BarChart = (props: BarChartProps) => {
                 borderColor: chartColors,
                 backgroundColor: chartColors,
                 borderWidth: 0,
-                borderRadius: 3
+                borderRadius: 3,
+                maxBarThickness: 50
             }
         ],
     }), [labels, values])

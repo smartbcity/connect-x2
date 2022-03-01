@@ -11,6 +11,7 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
+    show-sql: true
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres

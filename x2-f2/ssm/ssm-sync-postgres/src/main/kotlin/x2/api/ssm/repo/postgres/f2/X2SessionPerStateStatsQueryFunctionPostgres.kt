@@ -1,19 +1,17 @@
-package x2.api.ssm.sync.api.session
+package x2.api.ssm.repo.postgres.f2
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.springframework.stereotype.Component
 import x2.api.ssm.domain.query.X2SessionPageQuery
-import x2.api.ssm.domain.query.X2SessionPageQueryDTO
 import x2.api.ssm.domain.query.X2SessionPerStateStatsQueryFunction
 import x2.api.ssm.domain.query.X2SessionPerStateStatsResult
-import x2.api.ssm.domain.query.X2SessionStatePerIntervalStatsResult
 import x2.api.ssm.domain.stats.Cell
-import x2.api.ssm.repo.postgres.repository.SessionRepository
+import x2.api.ssm.repo.postgres.repository.SessionCriteriaQuery
 
 @Component
-class X2SessionPerStateStatsQueryFunctionImpl(
-	private val sessionRepository: SessionRepository
+class X2SessionPerStateStatsQueryFunctionPostgres(
+	private val sessionCriteriaQuery: SessionCriteriaQuery
 ): X2SessionPerStateStatsQueryFunction {
 
 	override suspend fun invoke(msgs: Flow<X2SessionPageQuery>) = msgs.map { msg ->
@@ -21,14 +19,10 @@ class X2SessionPerStateStatsQueryFunctionImpl(
 	}
 
 	suspend fun invoke(msg: X2SessionPageQuery): X2SessionPerStateStatsResult {
-		return sessionRepository.getSessionStats(
-			ssmUri = msg.ssmUri,
-			from = msg.from,
-			to = msg.to,
-			channelIds = msg.channel,
-			currentSteps = msg.currentStep
+		return sessionCriteriaQuery.findStats(
+			filter = msg.filter
 		).map { sessionStats ->
-			Cell(label = sessionStats.getCurrent().toString(), sessionStats.getCount())
+			Cell(label = sessionStats.current.toString(), sessionStats.count)
 		}.let { data ->
 			X2SessionPerStateStatsResult(
 				data = data

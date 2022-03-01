@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { AsyncStatus } from ".";
 
-export const useAsyncFunction = (asyncFunction: () => Promise<void>, immediate: boolean = true): { execute: () => void, status: AsyncStatus } => {
+export const useAsyncFunction = (asyncFunction: (params?: any) => Promise<void>, immediate: boolean = true): { execute: (params?: any) => Promise<void>, status: AsyncStatus } => {
     const [status, setStatus] = useState<AsyncStatus>('IDLE');
 
-    const execute = useCallback(async () => {
+    const execute = useCallback(async (params?: any) => {
         setStatus('PENDING');
-        await asyncFunction()
+        await asyncFunction(params)
         setStatus('SUCCESS');
     }, [asyncFunction]);
 
@@ -20,18 +20,18 @@ export const useAsyncFunction = (asyncFunction: () => Promise<void>, immediate: 
 };
 
 interface AsyncResponse<T = any> {
-    execute: () => void,
+    execute: (params?: any) => Promise<void>,
     status: AsyncStatus,
     result?: T;
 }
 
-export const useAsyncResponse = <T = any>(asyncResponse: () => Promise<T>, immediate: boolean = true): AsyncResponse<T> => {
+export const useAsyncResponse = <T = any>(asyncResponse: (params?: any) => Promise<T>, immediate: boolean = true): AsyncResponse<T> => {
     const [status, setStatus] = useState<AsyncStatus>('IDLE');
     const [result, setResult] = useState<T | undefined>(undefined);
 
-    const execute = useCallback(async () => {
+    const execute = useCallback(async (params?: any) => {
         setStatus('PENDING');
-        asyncResponse()
+        asyncResponse(params)
             .then(response => {
                 setResult(response)
                 setStatus('SUCCESS');

@@ -585,6 +585,10 @@
     var $ssm$data = $ssm.data || ($ssm.data = {});
     var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
     var $ssm$data$dsl$model = $ssm$data$dsl.model || ($ssm$data$dsl.model = {});
+    var $ssm = _.ssm || (_.ssm = {});
+    var $ssm$data = $ssm.data || ($ssm.data = {});
+    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
+    var $ssm$data$dsl$model = $ssm$data$dsl.model || ($ssm$data$dsl.model = {});
   }
   $jsExportAll$(_);
   _.$jsExportAll$ = $jsExportAll$;
