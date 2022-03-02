@@ -34,6 +34,8 @@ fun main(args: Array<String>) {
 @Testcontainers
 abstract class SpringTestBase {
 
+	val protocol = "Protocol1"
+
 	companion object {
 		@JvmStatic
 		@Container

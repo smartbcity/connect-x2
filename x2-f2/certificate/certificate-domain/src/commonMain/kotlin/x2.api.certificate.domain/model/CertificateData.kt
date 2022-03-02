@@ -1,5 +1,6 @@
 package x2.api.certificate.domain.model
 
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -17,6 +18,9 @@ interface CertificateDataDTO {
  * @parent [CertificateCredentials]
  * @order 40
  */
+@JsExport
+@Serializable
+@JsName("CertificateData")
 class CertificateData (
     /**
      * Displayed name of the data

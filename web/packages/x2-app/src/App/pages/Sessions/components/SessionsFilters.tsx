@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Filters, useFilters, FiltersAction, FiltersField, Option } from "@smartb/g2-forms"
 import { parse } from "qs"
-import { burst, SSM, SsmPath, Transition } from 'ssm'
+import {burst, Protocol, Transition} from 'ssm'
 import { distinct } from 'utils'
 
 type SessionsFiltersValues = {
@@ -13,26 +13,27 @@ type SessionsFiltersValues = {
 }
 
 export type SessionsFilters = {
+    ssmUri?: string
     from?: number
     to?: number
     channel?: string[]
     engine?: string[]
-    currentStep?: string[]
+    currentStep?: number[]
 }
 
 interface SessionsFiltersProps {
     onSubmit: (values: SessionsFilters) => void
-    currentSSM: SSM
-    ssmList: Map<SsmPath, SSM>
+    protocol: Protocol
+    // ssmList: Map<SsmPath, SSM>
 }
 
 export const SessionsFilters = (props: SessionsFiltersProps) => {
-    const { onSubmit,  currentSSM, ssmList} = props
+    const { onSubmit, protocol} = props
     
     const fields = useMemo((): FiltersField[] => {
         const params = parse(window.location.search, { ignoreQueryPrefix: true })
         let stepOptions: Option[] = []
-        currentSSM.ssm.transitions.forEach((transition: Transition) => {
+        protocol.ssm.transitions.forEach((transition: Transition) => {
             stepOptions.push({
                 key: transition.from,
                 label: transition.from,
@@ -45,8 +46,8 @@ export const SessionsFilters = (props: SessionsFiltersProps) => {
         stepOptions = distinct<Option>(stepOptions, (it) => it.key)
         let chaincodes: Option[] = []
         let channels: Option[] = []
-        Array.from(ssmList.keys()).forEach((uri) => {
-            const parsed = burst({uri: uri})
+        protocol.ssms.forEach((uri) => {
+            const parsed = burst(uri)
             chaincodes.push({
                 key: parsed.chaincodeId,
                 label: parsed.chaincodeId
@@ -107,7 +108,7 @@ export const SessionsFilters = (props: SessionsFiltersProps) => {
                 }
             }
         ]
-    }, [currentSSM, ssmList])
+    }, [protocol])
 
     const formState = useFilters({
         fields: fields,

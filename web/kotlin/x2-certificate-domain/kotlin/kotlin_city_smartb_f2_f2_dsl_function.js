@@ -9,6 +9,27 @@
   'use strict';
   //region block: pre-declaration
   //endregion
+  function F2Function() {
+  }
+  F2Function.$metadata$ = {
+    simpleName: 'F2Function',
+    kind: 'interface',
+    interfaces: []
+  };
+  function F2Supplier() {
+  }
+  F2Supplier.$metadata$ = {
+    simpleName: 'F2Supplier',
+    kind: 'interface',
+    interfaces: []
+  };
+  function F2Consumer() {
+  }
+  F2Consumer.$metadata$ = {
+    simpleName: 'F2Consumer',
+    kind: 'interface',
+    interfaces: []
+  };
   //region block: exports
   function $jsExportAll$(_) {
     var $f2 = _.f2 || (_.f2 = {});

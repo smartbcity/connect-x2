@@ -1,45 +1,33 @@
-import { Box } from "@mui/material";
-import { NoMatchPage } from "@smartb/g2-providers";
-import { LoadingComponent, Page } from "components";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useParams } from "react-router";
-import {SSM, Session, SessionState, useParamsSsmUri, SsmUriDTO, SsmPath} from "ssm";
-import { AsyncObject } from "utils";
-import { DetailsCard } from "./components/DetailsCard";
-import { HistoryCard } from "./components/HistoryCard";
-import { InformationCard } from "./components/InformationCard";
-import { ProtocolCard } from "./components/ProtocolCard";
+import {Box} from "@mui/material";
+import {LoadingComponent, Page} from "components";
+import React, {useCallback, useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
+import {Session, SessionName, SessionState, SSM, SsmUriDTO, useParamsSessionName, useParamsSsmUri} from "ssm";
+import {AsyncObject} from "utils";
+import {DetailsCard} from "./components/DetailsCard";
+import {HistoryCard} from "./components/HistoryCard";
+import {InformationCard} from "./components/InformationCard";
+import {ProtocolCard} from "./components/ProtocolCard";
 
 interface DetailsProps {
   setTitle: (title: string) => void
-  ssmList: Map<SsmPath, SSM>
-  sessionsList: Map<SsmPath, AsyncObject<{ sessions?: Session[] }>>
-  fetchSessions: (uri: SsmUriDTO) => void
+  ssm?: AsyncObject<{ ssm?: SSM }>
+  session?: AsyncObject<{ session?: Session }>
+  fetchSsm: (ssmUri: SsmUriDTO) => void
+  fetchSession: (ssmUri: SsmUriDTO, sessionName: SessionName) => void
 }
 
 export const Details = (props: DetailsProps) => {
-  const { setTitle, ssmList, fetchSessions, sessionsList } = props;
+  const { setTitle, ssm, session, fetchSsm, fetchSession } = props;
   const { t } = useTranslation()
   const ssmUri = useParamsSsmUri()
-  const { sessionName } = useParams<{ sessionName: string }>();
+  const sessionName = useParamsSessionName()
   const [transaction, setTransaction] = useState<SessionState | undefined>(undefined)
 
-  const currentSSM = useMemo(() => {
-    return ssmList.get(ssmUri.uri)
-  }, [ssmUri.uri, sessionName, ssmList])
-
-  const currentSessions = useMemo(() => {
-    return sessionsList.get(ssmUri.uri)
-  }, [sessionName, sessionsList])
-
-  const currentSession = useMemo(() => {
-    return currentSessions?.sessions?.find((session) => session.sessionName === sessionName)
-  }, [currentSessions, sessionName])
-
   useEffect(() => {
-    fetchSessions(ssmUri)
-  }, [currentSSM, fetchSessions])
+    fetchSsm(ssmUri)
+    fetchSession(ssmUri, sessionName)
+  }, [ssmUri.uri, sessionName])
 
 
   const onChangeTransaction = useCallback(
@@ -47,20 +35,23 @@ export const Details = (props: DetailsProps) => {
     [],
   )
 
-  if (currentSessions?.status === "PENDING") return <Box marginTop="50px"><LoadingComponent /></Box>
-  if (!currentSession || !currentSSM) return <NoMatchPage />
+  if (session?.status !== "SUCCESS") return <Box marginTop="50px"><LoadingComponent /></Box>
+  if (ssm?.status !== "SUCCESS") return <Box marginTop="50px"><LoadingComponent /></Box>
+
+  const currentSession = session?.session!!
+  const currentSsm = ssm?.ssm!!
   return (
     <Page
       setTitle={setTitle}
       title={t("sessionsDetails")}
     >
       <CardContainer>
-        <ProtocolCard ssmUri={currentSSM.uri} currentSSM={currentSSM} />
-        <InformationCard ssmUri={currentSSM.uri} currentSession={currentSession} />
+        <ProtocolCard ssmUri={ssmUri} currentSSM={currentSsm} />
+        <InformationCard ssmUri={ssmUri} currentSession={currentSession} />
       </CardContainer>
       <CardContainer>
-        <HistoryCard ssmUri={currentSSM.uri} currentSession={currentSession} onChangeTransaction={onChangeTransaction} />
-        <DetailsCard ssmUri={currentSSM.uri} transaction={transaction} />
+        <HistoryCard ssmUri={ssmUri} currentSession={currentSession} onChangeTransaction={onChangeTransaction} />
+        <DetailsCard ssmUri={ssmUri} transaction={transaction} />
       </CardContainer>
     </Page>
   );

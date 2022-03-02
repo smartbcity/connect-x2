@@ -15,7 +15,7 @@ class SsmSessionApiService(
 ): SsmSessionApiFinder {
 
 	@Bean
-	override fun sessionPage(): X2SessionPageQueryFunction = x2SessionPageQueryFunction
+	override fun sessionsPage(): X2SessionPageQueryFunction = x2SessionPageQueryFunction
 	@Bean
 	override fun sessionPerStateStats(): X2SessionPerStateStatsQueryFunction = x2SessionPerStateStatsQueryFunction
 	@Bean

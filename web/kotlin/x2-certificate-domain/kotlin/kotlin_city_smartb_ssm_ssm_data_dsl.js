@@ -1,19 +1,47 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd)
-    define(['exports'], factory);
+    define(['exports', './kotlin_city_smartb_f2_f2_dsl_cqrs.js'], factory);
   else if (typeof exports === 'object')
-    factory(module.exports);
-  else
-    root.kotlin_city_smartb_ssm_ssm_data_dsl = factory(typeof kotlin_city_smartb_ssm_ssm_data_dsl === 'undefined' ? {} : kotlin_city_smartb_ssm_ssm_data_dsl);
-}(this, function (_) {
+    factory(module.exports, require('./kotlin_city_smartb_f2_f2_dsl_cqrs.js'));
+  else {
+    if (typeof kotlin_city_smartb_f2_f2_dsl_cqrs === 'undefined') {
+      throw new Error("Error loading module 'kotlin_city_smartb_ssm_ssm_data_dsl'. Its dependency 'kotlin_city_smartb_f2_f2_dsl_cqrs' was not found. Please, check whether 'kotlin_city_smartb_f2_f2_dsl_cqrs' is loaded prior to 'kotlin_city_smartb_ssm_ssm_data_dsl'.");
+    }
+    root.kotlin_city_smartb_ssm_ssm_data_dsl = factory(typeof kotlin_city_smartb_ssm_ssm_data_dsl === 'undefined' ? {} : kotlin_city_smartb_ssm_ssm_data_dsl, kotlin_city_smartb_f2_f2_dsl_cqrs);
+  }
+}(this, function (_, kotlin_city_smartb_f2_f2_dsl_cqrs) {
+  //region block: imports
+  var Event = kotlin_city_smartb_f2_f2_dsl_cqrs.$crossModule$.Event;
+  //endregion
   'use strict';
   //region block: pre-declaration
   //endregion
+  function SsmApiQueryFunctions() {
+  }
+  SsmApiQueryFunctions.$metadata$ = {
+    simpleName: 'SsmApiQueryFunctions',
+    kind: 'interface',
+    interfaces: []
+  };
+  function DataChaincodeListQueryDTO() {
+  }
+  DataChaincodeListQueryDTO.$metadata$ = {
+    simpleName: 'DataChaincodeListQueryDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DataChaincodeListQuery() {
   }
   DataChaincodeListQuery.$metadata$ = {
     simpleName: 'DataChaincodeListQuery',
     kind: 'class',
+    interfaces: [DataChaincodeListQueryDTO]
+  };
+  function DataChaincodeListQueryResultDTO() {
+  }
+  DataChaincodeListQueryResultDTO.$metadata$ = {
+    simpleName: 'DataChaincodeListQueryResultDTO',
+    kind: 'interface',
     interfaces: []
   };
   function DataChaincodeListQueryResult(items) {
@@ -25,7 +53,7 @@
   DataChaincodeListQueryResult.$metadata$ = {
     simpleName: 'DataChaincodeListQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataChaincodeListQueryResultDTO]
   };
   Object.defineProperty(DataChaincodeListQueryResult.prototype, 'items', {
     configurable: true,
@@ -33,6 +61,20 @@
       return this._get_items__3328574481_fzd5gv_k$();
     }
   });
+  function DataQueryDTO() {
+  }
+  DataQueryDTO.$metadata$ = {
+    simpleName: 'DataQueryDTO',
+    kind: 'interface',
+    interfaces: []
+  };
+  function DataSsmGetQueryDTO() {
+  }
+  DataSsmGetQueryDTO.$metadata$ = {
+    simpleName: 'DataSsmGetQueryDTO',
+    kind: 'interface',
+    interfaces: [DataQueryDTO]
+  };
   function DataSsmGetQuery(ssmUri) {
     this.ssmUri_1 = ssmUri;
   }
@@ -42,7 +84,7 @@
   DataSsmGetQuery.$metadata$ = {
     simpleName: 'DataSsmGetQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmGetQueryDTO]
   };
   Object.defineProperty(DataSsmGetQuery.prototype, 'ssmUri', {
     configurable: true,
@@ -50,6 +92,13 @@
       return this._get_ssmUri__369740492_644tl8_k$();
     }
   });
+  function DataSsmGetQueryResultDTO() {
+  }
+  DataSsmGetQueryResultDTO.$metadata$ = {
+    simpleName: 'DataSsmGetQueryResultDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DataSsmGetQueryResult(item) {
     this.item_1 = item;
   }
@@ -59,7 +108,7 @@
   DataSsmGetQueryResult.$metadata$ = {
     simpleName: 'DataSsmGetQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmGetQueryResultDTO]
   };
   Object.defineProperty(DataSsmGetQueryResult.prototype, 'item', {
     configurable: true,
@@ -67,6 +116,13 @@
       return this._get_item__800109976_d8d4t4_k$();
     }
   });
+  function DataSsmListQueryDTO() {
+  }
+  DataSsmListQueryDTO.$metadata$ = {
+    simpleName: 'DataSsmListQueryDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DataSsmListQuery(chaincodes) {
     this.chaincodes_1 = chaincodes;
   }
@@ -76,12 +132,19 @@
   DataSsmListQuery.$metadata$ = {
     simpleName: 'DataSsmListQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmListQueryDTO]
   };
   Object.defineProperty(DataSsmListQuery.prototype, 'chaincodes', {
     configurable: true,
     get: DataSsmListQuery.prototype._get_chaincodes__2504673062_tlw7ve_k$
   });
+  function DataSsmListQueryResultDTO() {
+  }
+  DataSsmListQueryResultDTO.$metadata$ = {
+    simpleName: 'DataSsmListQueryResultDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DataSsmListQueryResult(items) {
     this.items_1 = items;
   }
@@ -91,7 +154,7 @@
   DataSsmListQueryResult.$metadata$ = {
     simpleName: 'DataSsmListQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmListQueryResultDTO]
   };
   Object.defineProperty(DataSsmListQueryResult.prototype, 'items', {
     configurable: true,
@@ -99,6 +162,13 @@
       return this._get_items__3328574481_fzd5gv_k$();
     }
   });
+  function DataSsmSessionGetQueryDTO() {
+  }
+  DataSsmSessionGetQueryDTO.$metadata$ = {
+    simpleName: 'DataSsmSessionGetQueryDTO',
+    kind: 'interface',
+    interfaces: [DataQueryDTO]
+  };
   function DataSsmSessionGetQuery(sessionName, ssmUri) {
     this.sessionName_1 = sessionName;
     this.ssmUri_1 = ssmUri;
@@ -112,7 +182,7 @@
   DataSsmSessionGetQuery.$metadata$ = {
     simpleName: 'DataSsmSessionGetQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmSessionGetQueryDTO]
   };
   Object.defineProperty(DataSsmSessionGetQuery.prototype, 'sessionName', {
     configurable: true,
@@ -126,6 +196,13 @@
       return this._get_ssmUri__369740492_644tl8_k$();
     }
   });
+  function DataSsmSessionGetQueryResultDTO() {
+  }
+  DataSsmSessionGetQueryResultDTO.$metadata$ = {
+    simpleName: 'DataSsmSessionGetQueryResultDTO',
+    kind: 'interface',
+    interfaces: [Event]
+  };
   function DataSsmSessionGetQueryResult(item) {
     this.item_1 = item;
   }
@@ -135,7 +212,7 @@
   DataSsmSessionGetQueryResult.$metadata$ = {
     simpleName: 'DataSsmSessionGetQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmSessionGetQueryResultDTO]
   };
   Object.defineProperty(DataSsmSessionGetQueryResult.prototype, 'item', {
     configurable: true,
@@ -143,6 +220,13 @@
       return this._get_item__800109976_d8d4t4_k$();
     }
   });
+  function DataSsmSessionListQueryDTO() {
+  }
+  DataSsmSessionListQueryDTO.$metadata$ = {
+    simpleName: 'DataSsmSessionListQueryDTO',
+    kind: 'interface',
+    interfaces: [DataQueryDTO]
+  };
   function DataSsmSessionListQuery(ssmUri) {
     this.ssmUri_1 = ssmUri;
   }
@@ -152,7 +236,7 @@
   DataSsmSessionListQuery.$metadata$ = {
     simpleName: 'DataSsmSessionListQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmSessionListQueryDTO]
   };
   Object.defineProperty(DataSsmSessionListQuery.prototype, 'ssmUri', {
     configurable: true,
@@ -160,6 +244,13 @@
       return this._get_ssmUri__369740492_644tl8_k$();
     }
   });
+  function DataSsmSessionListQueryResultDTO() {
+  }
+  DataSsmSessionListQueryResultDTO.$metadata$ = {
+    simpleName: 'DataSsmSessionListQueryResultDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DataSsmSessionListQueryResult(items) {
     this.items_1 = items;
   }
@@ -169,7 +260,7 @@
   DataSsmSessionListQueryResult.$metadata$ = {
     simpleName: 'DataSsmSessionListQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmSessionListQueryResultDTO]
   };
   Object.defineProperty(DataSsmSessionListQueryResult.prototype, 'items', {
     configurable: true,
@@ -177,6 +268,13 @@
       return this._get_items__3328574481_fzd5gv_k$();
     }
   });
+  function DataSsmSessionLogGetQueryDTO() {
+  }
+  DataSsmSessionLogGetQueryDTO.$metadata$ = {
+    simpleName: 'DataSsmSessionLogGetQueryDTO',
+    kind: 'interface',
+    interfaces: [DataQueryDTO]
+  };
   function DataSsmSessionLogGetQuery(sessionName, txId, ssmUri) {
     this.sessionName_1 = sessionName;
     this.txId_1 = txId;
@@ -194,7 +292,7 @@
   DataSsmSessionLogGetQuery.$metadata$ = {
     simpleName: 'DataSsmSessionLogGetQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmSessionLogGetQueryDTO]
   };
   Object.defineProperty(DataSsmSessionLogGetQuery.prototype, 'sessionName', {
     configurable: true,
@@ -214,6 +312,13 @@
       return this._get_ssmUri__369740492_644tl8_k$();
     }
   });
+  function DataSsmSessionLogGetQueryResultDTO() {
+  }
+  DataSsmSessionLogGetQueryResultDTO.$metadata$ = {
+    simpleName: 'DataSsmSessionLogGetQueryResultDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DataSsmSessionLogGetQueryResult(item) {
     this.item_1 = item;
   }
@@ -223,7 +328,7 @@
   DataSsmSessionLogGetQueryResult.$metadata$ = {
     simpleName: 'DataSsmSessionLogGetQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmSessionLogGetQueryResultDTO]
   };
   Object.defineProperty(DataSsmSessionLogGetQueryResult.prototype, 'item', {
     configurable: true,
@@ -231,6 +336,13 @@
       return this._get_item__800109976_d8d4t4_k$();
     }
   });
+  function DataSsmSessionLogListQueryDTO() {
+  }
+  DataSsmSessionLogListQueryDTO.$metadata$ = {
+    simpleName: 'DataSsmSessionLogListQueryDTO',
+    kind: 'interface',
+    interfaces: [DataQueryDTO]
+  };
   function DataSsmSessionLogListQuery(sessionName, ssmUri) {
     this.sessionName_1 = sessionName;
     this.ssmUri_1 = ssmUri;
@@ -244,7 +356,7 @@
   DataSsmSessionLogListQuery.$metadata$ = {
     simpleName: 'DataSsmSessionLogListQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmSessionLogListQueryDTO]
   };
   Object.defineProperty(DataSsmSessionLogListQuery.prototype, 'sessionName', {
     configurable: true,
@@ -258,6 +370,13 @@
       return this._get_ssmUri__369740492_644tl8_k$();
     }
   });
+  function DataSsmSessionLogListQueryResultDTO() {
+  }
+  DataSsmSessionLogListQueryResultDTO.$metadata$ = {
+    simpleName: 'DataSsmSessionLogListQueryResultDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function SsmSessionLogListQueryResult(items) {
     this.items_1 = items;
   }
@@ -267,7 +386,7 @@
   SsmSessionLogListQueryResult.$metadata$ = {
     simpleName: 'DataSsmSessionLogListQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmSessionLogListQueryResultDTO]
   };
   Object.defineProperty(SsmSessionLogListQueryResult.prototype, 'items', {
     configurable: true,
@@ -275,6 +394,13 @@
       return this._get_items__3328574481_fzd5gv_k$();
     }
   });
+  function DataChannelDTO() {
+  }
+  DataChannelDTO.$metadata$ = {
+    simpleName: 'DataChannelDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DataChannel(id) {
     this.id_1 = id;
   }
@@ -284,7 +410,7 @@
   DataChannel.$metadata$ = {
     simpleName: 'DataChannel',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataChannelDTO]
   };
   Object.defineProperty(DataChannel.prototype, 'id', {
     configurable: true,
@@ -292,6 +418,13 @@
       return this._get_id__1413120976_ndc34g_k$();
     }
   });
+  function DataSsmDTO() {
+  }
+  DataSsmDTO.$metadata$ = {
+    simpleName: 'DataSsmDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DataSsm(uri, ssm, channel, version) {
     this.uri_1 = uri;
     this.ssm_1 = ssm;
@@ -313,7 +446,7 @@
   DataSsm.$metadata$ = {
     simpleName: 'DataSsm',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmDTO]
   };
   Object.defineProperty(DataSsm.prototype, 'uri', {
     configurable: true,
@@ -339,6 +472,13 @@
       return this._get_version__140958009_2bx7w9_k$();
     }
   });
+  function DataSsmSessionDTO() {
+  }
+  DataSsmSessionDTO.$metadata$ = {
+    simpleName: 'DataSsmSessionDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DataSsmSession(sessionName, state, channel, transaction, ssmUri, transactions) {
     this.sessionName_1 = sessionName;
     this.state_1 = state;
@@ -368,7 +508,7 @@
   DataSsmSession.$metadata$ = {
     simpleName: 'DataSsmSession',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmSessionDTO]
   };
   Object.defineProperty(DataSsmSession.prototype, 'sessionName', {
     configurable: true,
@@ -406,6 +546,13 @@
       return this._get_transactions__188093078_33zhjq_k$();
     }
   });
+  function DataSsmSessionStateDTO() {
+  }
+  DataSsmSessionStateDTO.$metadata$ = {
+    simpleName: 'DataSsmSessionStateDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DataSsmSessionState(details, transaction) {
     this.details_1 = details;
     this.transaction_1 = transaction;
@@ -419,7 +566,7 @@
   DataSsmSessionState.$metadata$ = {
     simpleName: 'DataSsmSessionState',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmSessionStateDTO]
   };
   Object.defineProperty(DataSsmSessionState.prototype, 'details', {
     configurable: true,
@@ -433,6 +580,13 @@
       return this._get_transaction__3608298099_bctpcd_k$();
     }
   });
+  function DataSsmUserDTO() {
+  }
+  DataSsmUserDTO.$metadata$ = {
+    simpleName: 'DataSsmUserDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DataSsmUser(agent) {
     this.agent_1 = agent;
   }
@@ -442,7 +596,7 @@
   DataSsmUser.$metadata$ = {
     simpleName: 'DataSsmUser',
     kind: 'class',
-    interfaces: []
+    interfaces: [DataSsmUserDTO]
   };
   Object.defineProperty(DataSsmUser.prototype, 'agent', {
     configurable: true,
@@ -455,10 +609,18 @@
     var $ssm = _.ssm || (_.ssm = {});
     var $ssm$data = $ssm.data || ($ssm.data = {});
     var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
+    var $ssm = _.ssm || (_.ssm = {});
+    var $ssm$data = $ssm.data || ($ssm.data = {});
+    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
     var $ssm$data$dsl$features = $ssm$data$dsl.features || ($ssm$data$dsl.features = {});
     var $ssm$data$dsl$features$query = $ssm$data$dsl$features.query || ($ssm$data$dsl$features.query = {});
     $ssm$data$dsl$features$query.DataChaincodeListQuery = DataChaincodeListQuery;
     $ssm$data$dsl$features$query.DataChaincodeListQueryResult = DataChaincodeListQueryResult;
+    var $ssm = _.ssm || (_.ssm = {});
+    var $ssm$data = $ssm.data || ($ssm.data = {});
+    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
+    var $ssm$data$dsl$features = $ssm$data$dsl.features || ($ssm$data$dsl.features = {});
+    var $ssm$data$dsl$features$query = $ssm$data$dsl$features.query || ($ssm$data$dsl$features.query = {});
     var $ssm = _.ssm || (_.ssm = {});
     var $ssm$data = $ssm.data || ($ssm.data = {});
     var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
@@ -526,69 +688,6 @@
     var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
     var $ssm$data$dsl$model = $ssm$data$dsl.model || ($ssm$data$dsl.model = {});
     $ssm$data$dsl$model.DataSsmUser = DataSsmUser;
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$features = $ssm$data$dsl.features || ($ssm$data$dsl.features = {});
-    var $ssm$data$dsl$features$query = $ssm$data$dsl$features.query || ($ssm$data$dsl$features.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$features = $ssm$data$dsl.features || ($ssm$data$dsl.features = {});
-    var $ssm$data$dsl$features$query = $ssm$data$dsl$features.query || ($ssm$data$dsl$features.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$features = $ssm$data$dsl.features || ($ssm$data$dsl.features = {});
-    var $ssm$data$dsl$features$query = $ssm$data$dsl$features.query || ($ssm$data$dsl$features.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$features = $ssm$data$dsl.features || ($ssm$data$dsl.features = {});
-    var $ssm$data$dsl$features$query = $ssm$data$dsl$features.query || ($ssm$data$dsl$features.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$features = $ssm$data$dsl.features || ($ssm$data$dsl.features = {});
-    var $ssm$data$dsl$features$query = $ssm$data$dsl$features.query || ($ssm$data$dsl$features.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$features = $ssm$data$dsl.features || ($ssm$data$dsl.features = {});
-    var $ssm$data$dsl$features$query = $ssm$data$dsl$features.query || ($ssm$data$dsl$features.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$features = $ssm$data$dsl.features || ($ssm$data$dsl.features = {});
-    var $ssm$data$dsl$features$query = $ssm$data$dsl$features.query || ($ssm$data$dsl$features.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$features = $ssm$data$dsl.features || ($ssm$data$dsl.features = {});
-    var $ssm$data$dsl$features$query = $ssm$data$dsl$features.query || ($ssm$data$dsl$features.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$model = $ssm$data$dsl.model || ($ssm$data$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$model = $ssm$data$dsl.model || ($ssm$data$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$model = $ssm$data$dsl.model || ($ssm$data$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$model = $ssm$data$dsl.model || ($ssm$data$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$data = $ssm.data || ($ssm.data = {});
-    var $ssm$data$dsl = $ssm$data.dsl || ($ssm$data.dsl = {});
-    var $ssm$data$dsl$model = $ssm$data$dsl.model || ($ssm$data$dsl.model = {});
   }
   $jsExportAll$(_);
   _.$jsExportAll$ = $jsExportAll$;

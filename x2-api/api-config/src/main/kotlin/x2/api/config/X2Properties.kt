@@ -2,10 +2,24 @@ package x2.api.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
-import x2.api.ssm.domain.config.X2SsmProperties
+import ssm.chaincode.dsl.model.uri.SsmUri
+import x2.api.ssm.domain.domain.ProtocolName
 
 @ConfigurationProperties(prefix = "x2")
 @ConstructorBinding
 data class X2Properties (
-	val ssm: X2SsmProperties
-)
+	private val protocols: Map<ProtocolName,  List<String>>
+) {
+
+	fun getProtocolSsmUri(protocolName: ProtocolName): List<SsmUri> {
+		return protocols[protocolName]?.toSsmUri() ?: emptyList()
+	}
+	fun getProtocolsSsmUri(): Map<ProtocolName, List<SsmUri>> {
+		return protocols.mapValues { it.value.toSsmUri() }
+	}
+
+
+	private fun List<String>.toSsmUri(): List<SsmUri> = flatMap { value ->
+		value.split(",")
+	}?.map { SsmUri(it) }
+}

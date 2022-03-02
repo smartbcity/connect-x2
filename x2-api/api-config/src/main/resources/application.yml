@@ -17,13 +17,6 @@ spring:
     username: postgres
     password: postgrespassword
 
-x2:
-  ssm:
-    chaincodes:
-      - chaincode:sandbox:ssm
-    ssm:
-      - ssm:sandbox:ssm:default
-
 ssm:
   couchdb:
     url: http://localhost:5984
@@ -32,6 +25,14 @@ ssm:
     serviceName: ssm-couchdb-unit
   chaincode:
     url: http://localhost:9090
+
+
+x2:
+  protocols:
+    Certificates: ssm:sandbox:ssm:certificates, ssm:sandbox:ssm:certificate2
+    CertificatesList:
+      - ssm:sandbox:ssm:certificates
+      - ssm:sandbox:ssm:certificate2
 
 ---
 spring:
@@ -63,10 +64,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgrespassword
+
 x2:
-  ssm:
-    ssm:
-      - ssm:proudhon:ssm:Request
+  protocols:
+    Certificates1:
+      - ssm:proudhon:ssm:Certificates
+    Certificates2:
       - ssm:proudhon:ssm:Certificates
 
 ssm:
@@ -106,19 +109,23 @@ spring:
   config:
     activate:
       on-profile: handprint-poc
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgrespassword
+
 x2:
-  ssm:
-    chaincodes:
-      - chaincode:sandbox:ssm
-    ssm:
+  protocols:
+    FundReceipt:
       - ssm:sandbox:ssm:FundReceipt
+    ProjectFundReceipt:
       - ssm:sandbox:ssm:ProjectFundReceipt
 
 ssm:
   couchdb:
-    url: "http://localhost:5984"
+    url: http://localhost:5984
     username: couchdb
     password: couchdb
-    serviceName: x2-handprint-poc
+    serviceName: ssm-couchdb-unit
   chaincode:
-    url: "http://localhost:9090"
+    url: http://localhost:9090

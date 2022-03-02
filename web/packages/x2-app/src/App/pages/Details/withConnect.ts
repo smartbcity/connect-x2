@@ -4,13 +4,14 @@ import { ssm } from "store/ssm";
 import { title } from "store/title";
 
 const mapStateToProps = (state: State) => ({
-    ssmList: ssm.selectors.ssmList(state),
-    sessionsList: ssm.selectors.sessionsList(state)
+    ssm: ssm.selectors.currentSsm(state),
+    session: ssm.selectors.currentSession(state)
 });
 
 const mapDispatchToProps = {
     setTitle: title.actions.setTitle,
-    fetchSessions: ssm.queries.fetchSessions
+    fetchSsm: ssm.queries.fetchSsm,
+    fetchSession: ssm.queries.fetchSession
 };
 
 export default connect(mapStateToProps, mapDispatchToProps);

@@ -19,8 +19,8 @@ import ssm.chaincode.dsl.model.SsmName
 import ssm.chaincode.dsl.model.SsmSession
 import ssm.chaincode.dsl.model.SsmTransition
 import ssm.chaincode.dsl.model.uri.ChaincodeUri
+import ssm.chaincode.dsl.model.uri.SsmUri
 import ssm.sdk.sign.extention.loadFromFile
-import ssm.sdk.sign.model.SignerUser
 import ssm.tx.dsl.features.ssm.SsmInitCommand
 import ssm.tx.dsl.features.ssm.SsmSessionPerformActionCommand
 import ssm.tx.dsl.features.ssm.SsmSessionPerformActionResult
@@ -39,11 +39,10 @@ class AppRunnerConfiguration {
 		const val TRANSACTION_NAME = "transaction"
 		const val TRANSACTION_BURN_NAME = "burn"
 		const val ROLE = "agent"
-		const val CERTIFICATES = "certificates"
 	}
 
-	@Value("\${x2.test.ssm.certificate.chaincodeUri}")
-	var chaincodeUri: String = ""
+	@Value("\${x2.test.ssm.certificate.ssmUri}")
+	var ssmUri: String = ""
 
 	@Value("\${x2.test.ssm.agent.name}")
 	var agentName: String = ""
@@ -60,13 +59,13 @@ class AppRunnerConfiguration {
 	) = ApplicationRunner {
 		runBlocking {
 			val agent = Agent.loadFromFile(agentName, agentKey)
+			val ssmUri = SsmUri(ssmUri)
 			(0..5).asFlow().map { iteration ->
-				val ssmName = CERTIFICATES
 				val sessionName = "certificates-session-$iteration-${UUID.randomUUID()}"
-				ssmTxInitFunction.init(signerName = agent, ssmName= ssmName)
-				ssmSessionStartFunction.startSession(signerName = agent, ssmName = ssmName, sessionName = sessionName)
+				ssmTxInitFunction.init(signerName = agent, ssmName= ssmUri.ssmName)
+				ssmSessionStartFunction.startSession(signerName = agent, ssmName = ssmUri.ssmName, sessionName = sessionName)
 				ssmSessionPerformActionFunction.performTransaction(signerName = agent,
-					chaincodeUri = ChaincodeUri(chaincodeUri), sessionName = sessionName
+					chaincodeUri = ssmUri.chaincodeUri, sessionName = sessionName
 				)
 			}.collect()
 		}
@@ -128,6 +127,7 @@ class AppRunnerConfiguration {
 		ssmName: SsmName,
 		sessionName: SessionName
 	) {
+		val ssmUri = SsmUri(ssmUri)
 		val session = SsmSession(
 			ssm = ssmName,
 			session = sessionName,
@@ -137,7 +137,7 @@ class AppRunnerConfiguration {
 		val cmd = SsmSessionStartCommand(
 			session = session,
 			signerName = signerName.name,
-			chaincodeUri = ChaincodeUri(chaincodeUri),
+			chaincodeUri = ssmUri.chaincodeUri,
 		)
 		invoke(cmd)
 	}
@@ -152,10 +152,11 @@ class AppRunnerConfiguration {
 		signerName: Agent,
 		ssmName: SsmName
 	) {
+		val ssmUri = SsmUri(ssmUri)
 		val ssm = getSsm(ssmName)
 		invoke(
 			SsmInitCommand(
-				chaincodeUri = ChaincodeUri(chaincodeUri),
+				chaincodeUri = ssmUri.chaincodeUri,
 				signerName = signerName.name,
 				agent = signerName,
 				ssm = ssm

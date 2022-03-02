@@ -1,3 +1,4 @@
+export * from "./useFetchProtocols"
 export * from "./useFetchSsm"
 export * from "./useFetchSsmSession"
 export * from "./useFetchTransactions"

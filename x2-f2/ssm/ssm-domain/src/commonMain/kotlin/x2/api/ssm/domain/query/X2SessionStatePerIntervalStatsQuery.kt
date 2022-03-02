@@ -1,6 +1,7 @@
 package x2.api.ssm.domain.query
 
 import f2.dsl.fnc.F2Function
+import x2.api.ssm.domain.stats.Cell
 import x2.api.ssm.domain.stats.CellDTO
 import x2.api.ssm.domain.stats.StatsResultDTO
 import kotlin.js.JsExport
@@ -13,5 +14,5 @@ typealias X2SessionStatePerIntervalStatsFunction = F2Function<X2SessionPageQuery
 interface X2SessionStatePerIntervalStatsResultDTO: StatsResultDTO<List<Int>>
 
 data class X2SessionStatePerIntervalStatsResult(
-	override val data: List<CellDTO<List<Int>>>
+	override val data: List<Cell<List<Int>>>
 ): X2SessionStatePerIntervalStatsResultDTO

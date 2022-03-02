@@ -1,22 +1,22 @@
-import { MenuItems, MenuItem } from "@smartb/g2-components";
-import { AppLayout } from "components";
-import { useEffect, useMemo } from "react";
-import { useTranslation, TFunction } from "react-i18next";
-import { LinkProps, Link, useLocation } from "react-router-dom";
-import {burst, SSM, SsmPath} from "ssm";
-import { AppRouter } from "./routes";
+import {MenuItem, MenuItems} from "@smartb/g2-components";
+import {AppLayout} from "components";
+import {useEffect, useMemo} from "react";
+import {TFunction, useTranslation} from "react-i18next";
+import {Link, LinkProps, useLocation} from "react-router-dom";
+import {Protocol, ProtocolName} from "ssm";
+import {AppRouter} from "./routes";
 import withConnect from "./withConnect";
 
 interface AppProps {
   title: string
-  ssmList: Map<SsmPath, SSM>
+  protocols: Map<ProtocolName, Protocol>
 }
 
 const App = (props: AppProps) => {
-  const { title, ssmList } = props
+  const { title, protocols } = props
   const { t } = useTranslation()
   const location = useLocation()
-  const menu = useMenu(t, ssmList, location.pathname)
+  const menu = useMenu(t, protocols, location.pathname)
 
   useEffect(() => {
     if (title !== "X2") {
@@ -34,22 +34,21 @@ const App = (props: AppProps) => {
 export default withConnect(App);
 
 
-const useMenu = (t: TFunction, ssmList: Map<SsmPath, SSM>, path: string) => {
-  return useMemo(() => getMenu(t, ssmList, path), [ssmList, path])
+const useMenu = (t: TFunction, protocols: Map<ProtocolName, Protocol>, path: string) => {
+  return useMemo(() => getMenu(t, protocols, path), [protocols, path])
 }
 
-const getMenu = (t: TFunction, ssmList: Map<SsmPath, SSM>, path: string): MenuItems<LinkProps>[] => {
-  const ssmName = path.split("/")[1]
-  const protocolsList: MenuItem<LinkProps>[] = Array.from(ssmList.values()).map((ssm) => {
-      const uri = burst(ssm.uri)
+const getMenu = (t: TFunction, protocols: Map<ProtocolName, Protocol>, path: string): MenuItems<LinkProps>[] => {
+  const protocolName = path.split("/")[1]
+  const protocolsList: MenuItem<LinkProps>[] = Array.from(protocols.values()).map((protocol) => {
       return ({
-        key: `appLayout-protocols-${uri.channelId}/${uri.chaincodeId}/${uri.ssmName}`,
-        label: ssm.ssm.name,
+        key: `appLayout-protocols-${protocol.name}`,
+        label: protocol.name,
         component: Link,
         componentProps: {
-          to: `/${uri.channelId}/${uri.chaincodeId}/${uri.ssmName}/sessions`
+          to: `/${protocol.name}/sessions`
         },
-        isSelected: ssm.ssm.name === ssmName
+        isSelected: protocol.name === protocolName
       })
   })
   const menu: MenuItems<LinkProps>[] = [{
@@ -65,7 +64,7 @@ const getMenu = (t: TFunction, ssmList: Map<SsmPath, SSM>, path: string): MenuIt
     key: "appLayout-protocols",
     label: t("protocols") + ":",
     items: protocolsList,
-    isSelected: ssmName.trim() !== "" && ssmName !== undefined
+    isSelected: protocolName.trim() !== "" && protocolName !== undefined
   }]
   return menu
 }

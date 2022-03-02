@@ -19,7 +19,7 @@ import ssm.data.dsl.model.DataSsmSessionState
 import ssm.sync.sdk.SsmSessionSyncResult
 import ssm.sync.sdk.SsmSyncEventBus
 import ssm.sync.sdk.SyncSsmCommandFunction
-import x2.api.ssm.domain.config.X2SsmProperties
+import x2.api.config.X2Properties
 import x2.api.ssm.repo.postgres.LogEntity
 import x2.api.ssm.repo.postgres.SessionEntity
 import x2.api.ssm.repo.postgres.repository.LogRepository
@@ -31,7 +31,7 @@ import x2.api.ssm.repo.postgres.toSessionEntity
 
 @Component
 class SyncSsm(
-	private val x2SsmProperties: X2SsmProperties,
+	private val x2Properties: X2Properties,
 	private val syncSsmCommandFunction: SyncSsmCommandFunction,
 	private val dataSsmGetQueryFunction: DataSsmGetQueryFunction,
 	private val dataSsmSessionGetQueryFunction: DataSsmSessionGetQueryFunction,
@@ -42,8 +42,8 @@ class SyncSsm(
 
 	private val logger = LoggerFactory.getLogger(SyncSsm::class.java)
 
-	override fun run(vararg args: String?) = runBlocking {
-		x2SsmProperties.ssm.forEach { ssm ->
+	override fun run(vararg args: String?): Unit = runBlocking {
+		x2Properties.getProtocolsSsmUri().flatMap { it.value }.toSet().forEach { ssm ->
 			async {
 				val uri = SsmUri.from(ssm.channelId, chaincodeId = ssm.chaincodeId, ssmName = ssm.ssmName)
 				syncChaincode(uri)

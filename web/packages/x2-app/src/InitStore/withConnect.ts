@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
 import { State } from "store";
-import { ssm } from "store/ssm";
+import { protocols } from "store/protocols";
 
 const mapStateToProps = (state: State) => ({
-    ssmList: ssm.selectors.ssmList(state)
+    protocols: protocols.selectors.protocols(state)
 });
 
 const mapDispatchToProps = {
-    setSsmList: ssm.actions.setSsmList
+    setProtocols: protocols.actions.setProtocols
 };
 
 export default connect(mapStateToProps, mapDispatchToProps);

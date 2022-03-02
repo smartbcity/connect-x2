@@ -22,6 +22,7 @@ class X2SessionStatePerIntervalStatsFunctionImplTest: SpringTestBase() {
 		dataTest.generateSessions(ssmUri, 12)
 		val result = X2SessionPageQuery(
 			filter = ProtocoleFilter(
+				protocol = protocol,
 				ssmUri = ssmUri.uri
 			),
 			pagination = null

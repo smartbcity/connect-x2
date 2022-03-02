@@ -1,5 +1,7 @@
 package x2.api.ssm.repo.postgres.f2
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import f2.dsl.fnc.invokeWith
 import kotlinx.coroutines.test.runTest
 import org.assertj.core.api.Assertions
@@ -17,11 +19,19 @@ class X2SessionPerStateStatsQueryFunctionImplTest: SpringTestBase() {
 	private lateinit var x2SessionPerStateStatsQueryFunctionImpl: X2SessionPerStateStatsQueryFunctionPostgres
 
 	@Test
-	operator fun invoke() = runTest {
+	fun dd() = runTest {
+		val tt = "{\"filter\": {\"protocol\": \"Certificates1\"},\"pagination\": null}"
+		val obj: X2SessionPageQuery = jacksonObjectMapper().readValue(tt)
+		Assertions.assertThat(obj).isNotNull
+	}
+
+	@Test
+	fun invoke() = runTest {
 		val ssmUri = SsmUri("ssm:sandbox:thessm-${UUID.randomUUID()}:certificates")
 		dataTest.generateSessions(ssmUri, 12)
 		val result = X2SessionPageQuery(
 			filter = ProtocoleFilter(
+				protocol = protocol,
 				ssmUri = ssmUri.uri
 			),
 			pagination = null

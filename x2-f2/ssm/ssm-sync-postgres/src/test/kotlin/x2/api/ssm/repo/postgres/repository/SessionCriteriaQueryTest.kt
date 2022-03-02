@@ -24,6 +24,7 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			dataTest.generateSessions(ssmUri, 6)
 			val test = sessionCriteriaQuery.findEntity(
 				filter = ProtocoleFilter(
+					protocol = protocol,
 					ssmUri = ssmUri.uri
 				),
 				pagination = null
@@ -39,6 +40,7 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			dataTest.generateSessions(ssmUri, 6)
 			val test = sessionCriteriaQuery.findEntity(
 				filter = ProtocoleFilter(
+					protocol = protocol,
 					ssmUri = ssmUri.uri,
 					from = LocalDate.now().minusDays(2).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000
 				),
@@ -54,6 +56,7 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			dataTest.generateSessions(ssmUri, 6)
 			val test = sessionCriteriaQuery.findEntity(
 				ProtocoleFilter(
+					protocol = protocol,
 					ssmUri = ssmUri.uri,
 					to = LocalDate.now().minusDays(2).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000
 				),
@@ -69,6 +72,7 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			dataTest.generateSessions(ssmUri, 6)
 			val test = sessionCriteriaQuery.findEntity(
 				ProtocoleFilter(
+					protocol = protocol,
 					ssmUri = ssmUri.uri,
 					from = LocalDate.now().minusDays(3).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000,
 					to = LocalDate.now().minusDays(2).atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000,
@@ -88,6 +92,7 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			dataTest.generateSessions(ssmUriSecond, 6)
 			val test = sessionCriteriaQuery.findEntity(
 				ProtocoleFilter(
+					protocol = protocol,
 					channels = arrayOf(channel),
 				),
 				pagination = null
@@ -106,6 +111,7 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			dataTest.generateSessions(ssmUriSecond, 6)
 			val test = sessionCriteriaQuery.findEntity(
 				ProtocoleFilter(
+					protocol = protocol,
 					channels = arrayOf(channel,channelSecond),
 				),
 				pagination = null
@@ -120,6 +126,7 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 			val data = dataTest.generateSessions(ssmUri, 6, (1..1))
 			val test = sessionCriteriaQuery.findEntity(
 				ProtocoleFilter(
+					protocol = protocol,
 					ssmUri = ssmUri.uri,
 					steps = intArrayOf(1, 2)
 				),
@@ -138,6 +145,7 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 		val value = dataTest.generateSessions(ssmUri, 6)
 		val test = sessionCriteriaQuery.findStats(
 			ProtocoleFilter(
+				protocol = protocol,
 				ssmUri = ssmUri.uri,
 			),
 		)
@@ -151,6 +159,7 @@ class SessionCriteriaQueryTest : SpringTestBase() {
 		val value = dataTest.generateSessions(ssmUri, 6)
 		val test = sessionCriteriaQuery.findStats(
 			ProtocoleFilter(
+				protocol = protocol,
 				ssmUri = ssmUri.uri,
 				steps = intArrayOf(1, 2)
 			),
