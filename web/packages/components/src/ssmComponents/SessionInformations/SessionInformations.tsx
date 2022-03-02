@@ -75,7 +75,7 @@ export const SessionInformations = (props: SessionInformationsProps) => {
                 <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.state.details.current}</Typography>
                 <Typography variant={typovariant} className={classes.rightTypo}>{init ? "initialization" : `${currentSession.state.details.origin?.role}: ${currentSession.state.details.origin?.action}`}</Typography>
                 <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.channel.id}</Typography>
-                <Typography variant={typovariant} className={classes.rightTypo}>Not implemented</Typography>
+                <Typography variant={typovariant} className={classes.rightTypo}>0.1.0</Typography>
                 <Typography variant={typovariant} className={classes.rightTypo}>{currentSession.state.details.ssm}</Typography>
             </Box>
         </Box>

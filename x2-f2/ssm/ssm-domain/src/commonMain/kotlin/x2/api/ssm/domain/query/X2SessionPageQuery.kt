@@ -28,10 +28,15 @@ data class X2SessionPageQuery(
 
 interface X2SessionPageQueryResultDTO : PageQueryResultDTO<DataSsmSessionDTO> {
 	override val pagination: OffsetPaginationDTO?
-	override val page: PageDTO<DataSsmSessionDTO>
+	@Deprecated("Make sure it's not use in the front")
+	val page: Page<DataSsmSessionDTO>
+	override val items: List<DataSsmSessionDTO>
+	override val total: Int
 }
 
 data class X2SessionPageQueryResult(
 	override val pagination: OffsetPagination?,
-	override val page: Page<DataSsmSession>
+	override val page: Page<DataSsmSessionDTO>,
+	override val items: List<DataSsmSessionDTO>,
+	override val total: Int
 ) : X2SessionPageQueryResultDTO

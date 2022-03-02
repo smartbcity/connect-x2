@@ -28,7 +28,7 @@ class X2SessionPageQueryFunctionImplTest: SpringTestBase() {
 			pagination = null
 		).invokeWith(x2SessionPageQueryFunctionImpl)
 
-		Assertions.assertThat(result.page.items).hasSize(10)
-		Assertions.assertThat(result.page.total).isEqualTo(12)
+		Assertions.assertThat(result.items).hasSize(10)
+		Assertions.assertThat(result.total).isEqualTo(12)
 	}
 }

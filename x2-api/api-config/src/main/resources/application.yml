@@ -103,41 +103,20 @@ ssm:
 spring:
   config:
     activate:
-      on-profile: colisactiv
-
-i2:
-  jwt-issuer-uri: $keycloak.auth-server-url}/realms/${keycloak.realm}
-
-keycloak:
-  auth-server-url: https://pre-prod.colisactiv.fr/auth
-  realm: server
-
+      on-profile: handprint-poc
 x2:
   ssm:
-#    chaincodes:
-#      - chaincode:colisactiv-angers:ssm-kliveo
-#      - chaincode:colisactiv-angers:ssm-rouelibrenmaine
-#      - chaincode:colisactiv-angers:ssm-alterntransport
-#      - chaincode:colisactiv-angers:ssm-tousfacteurs
-#      - chaincode:colisactiv-grenoble:ssm-toutenvelo
-#      - chaincode:colisactiv-grenoble:ssm-yper
-#      - chaincode:colisactiv-lyon:ssm-tousfacteurs
-#      - chaincode:colisactiv-reims:ssm-yper
+    chaincodes:
+      - chaincode:sandbox:ssm
     ssm:
-      - ssm:colisactiv-angers:ssm-kliveo:Delivery-1.0
-#      - ssm:colisactiv-angers:ssm-rouelibrenmaine:Delivery-1.0
-#      - ssm:colisactiv-angers:ssm-alterntransport:Delivery-1.0
-#      - ssm:colisactiv-angers:ssm-tousfacteurs:Delivery-1.0
-#      - ssm:colisactiv-grenoble:ssm-toutenvelo:Delivery-1.0
-#      - ssm:colisactiv-grenoble:ssm-yper:Delivery-1.0
-#      - ssm:colisactiv-lyon:ssm-tousfacteurs:Delivery-1.0
-#      - ssm:colisactiv-reims:ssm-yper:Delivery-1.0
+      - ssm:sandbox:ssm:FundReceipt
+      - ssm:sandbox:ssm:ProjectFundReceipt
 
 ssm:
   couchdb:
-    url: "http://peer0.pr-commune.sofub.fr:5984"
-    username: 1111
-    password: 2222
-    serviceName: couchdb
+    url: "http://localhost:5984"
+    username: couchdb
+    password: couchdb
+    serviceName: x2-handprint-poc
   chaincode:
-    url: "http://peer0.pr-commune.sofub.fr:9090"
+    url: "http://localhost:9090"

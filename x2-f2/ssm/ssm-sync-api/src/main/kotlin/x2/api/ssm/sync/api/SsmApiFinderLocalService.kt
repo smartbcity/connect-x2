@@ -4,6 +4,7 @@ import f2.dsl.fnc.F2Function
 import f2.dsl.fnc.F2Supplier
 import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.f2Supplier
+import kotlinx.coroutines.flow.flowOf
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import ssm.data.dsl.features.query.DataSsmGetQuery
@@ -45,7 +46,7 @@ open class SsmApiFinderLocalService(
 		}.map {
 			it.toSsmEntity()
 		}.let { items ->
-			DataSsmListQueryResult(items)
+			flowOf(DataSsmListQueryResult(items))
 		}
 	}
 

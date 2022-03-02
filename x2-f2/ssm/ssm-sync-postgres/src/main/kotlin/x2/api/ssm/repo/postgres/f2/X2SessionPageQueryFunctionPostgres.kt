@@ -30,6 +30,8 @@ class X2SessionPageQueryFunctionPostgres(
 		}.let { page ->
 			X2SessionPageQueryResult(
 				page = page,
+				items = page.items,
+				total = page.total,
 				pagination = msg.pagination
 			)
 		}

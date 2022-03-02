@@ -39,7 +39,7 @@ class TransactionEntity(
 
 fun TransactionDTO.toTransactionEntity(sessionName: SessionName) = TransactionEntity(
 	transactionId = this.transactionId,
-	blockId = this.blockId,
+	blockId = this.blockId.toLong(),
 	timestamp = this.timestamp,
 	isValid = this.isValid,
 	channelId = this.channelId,
@@ -52,7 +52,7 @@ fun TransactionDTO.toTransactionEntity(sessionName: SessionName) = TransactionEn
 
 fun TransactionEntity.toTransactionEntity() = Transaction(
 	transactionId = this.transactionId,
-	blockId = this.blockId,
+	blockId = this.blockId.toString(),
 	timestamp = this.timestamp,
 	isValid = this.isValid,
 	channelId = this.channelId,
