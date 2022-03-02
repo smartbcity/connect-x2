@@ -13,6 +13,7 @@ X2_SSM_CERTIFICATE_PROVIDER_IMG	    	:= ${X2_SSM_CERTIFICATE_PROVIDER_NAME}:${VE
 X2_SSM_CERTIFICATE_PROVIDER_LATEST		:= ${X2_SSM_CERTIFICATE_PROVIDER_NAME}:latest
 X2_SSM_CERTIFICATE_PROVIDER_PACKAGE	   	:= :x2-test:ssm-certificate-provider:bootBuildImage
 
+package: package-x2-api package-x2-front package-x2-ssm-certificate-provider
 
 package-x2-api:
 	VERSION=${VERSION} ./gradlew build ${X2_APP_PACKAGE} -x test
