@@ -21,6 +21,8 @@ x2:
   ssm:
     chaincodes:
       - chaincode:sandbox:ssm
+    ssm:
+      - ssm:sandbox:ssm:default
 
 ssm:
   couchdb:
