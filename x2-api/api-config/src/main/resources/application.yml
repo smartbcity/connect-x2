@@ -27,6 +27,12 @@ ssm:
     url: http://localhost:9090
 
 
+---
+spring:
+  config:
+    activate:
+      on-profile: withProtocols
+
 x2:
   protocols:
     Certificates: ssm:sandbox:ssm:certificates, ssm:sandbox:ssm:certificate2
@@ -39,10 +45,7 @@ spring:
   config:
     activate:
       on-profile: impactmate
-x2:
-  ssm:
-    chaincodes:
-      - chaincode:proudhon:ssm
+
 ssm:
   couchdb:
     url: http://peer0.pr-commune.smartb.network:5984
@@ -75,29 +78,6 @@ x2:
 ssm:
   couchdb:
     url: http://peer0.pr-commune.smartb.network:5984
-    username: 1111
-    password: 2222
-    serviceName: ssm-couchdb-unit
-  chaincode:
-    url: "http://peer0.pr-commune.smartb.network"
-
----
-spring:
-  config:
-    activate:
-      on-profile: local
-
-x2:
-  ssm:
-    chaincodes:
-      - chaincode:proudhon:ssm
-    ssm:
-      - ssm:proudhon:ssm:Request
-      - ssm:proudhon:ssm:Certificates
-
-ssm:
-  couchdb:
-    url: "http://peer0.pr-commune.smartb.network:5984"
     username: 1111
     password: 2222
     serviceName: ssm-couchdb-unit

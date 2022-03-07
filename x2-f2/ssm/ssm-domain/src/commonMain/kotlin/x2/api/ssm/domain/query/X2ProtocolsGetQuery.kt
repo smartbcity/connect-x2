@@ -2,7 +2,7 @@ package x2.api.ssm.domain.query
 
 import f2.dsl.cqrs.Query
 import f2.dsl.fnc.F2Function
-import x2.api.ssm.domain.domain.SsmProtocolDTO
+import x2.api.ssm.domain.domain.ProtocolDTO
 import x2.api.ssm.domain.domain.ProtocolName
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -21,9 +21,9 @@ data class X2ProtocolGetQuery(
 
 @JsExport
 interface X2ProtocolGetQueryResultDTO {
-	val item: SsmProtocolDTO?
+	val item: ProtocolDTO?
 }
 
 data class X2ProtocolGetQueryResult(
-	override val item: SsmProtocolDTO?
+	override val item: ProtocolDTO?
 ) : X2ProtocolGetQueryResultDTO

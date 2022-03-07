@@ -12,7 +12,7 @@ typealias ProtocolName = String
 @Serializable
 @JsExport
 @JsName("SsmProtocolDTO")
-interface SsmProtocolDTO {
+interface ProtocolDTO {
 	val name: ProtocolName
 	val ssm: Ssm
 	val ssms: Array<out SsmUriDTO>
@@ -21,8 +21,8 @@ interface SsmProtocolDTO {
 @Serializable
 @JsExport
 @JsName("SsmProtocol")
-class SsmProtocol(
+class Protocol(
 	override val name: ProtocolName,
 	override val ssms: Array<SsmUri>,
 	override val ssm: Ssm
-) : SsmProtocolDTO
+) : ProtocolDTO

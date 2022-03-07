@@ -2,8 +2,7 @@ package x2.api.ssm.sync.api
 
 import f2.dsl.fnc.F2Function
 import f2.dsl.fnc.f2Function
-import f2.dsl.fnc.f2Supplier
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.toList
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import ssm.data.dsl.features.query.DataSsmGetQuery
@@ -23,11 +22,10 @@ import ssm.data.dsl.features.query.DataSsmSessionLogListQueryResult
 import ssm.data.dsl.features.query.DataSsmSessionLogListQueryResultDTO
 import x2.api.config.X2Properties
 import x2.api.ssm.domain.SsmApiFinder
-import x2.api.ssm.domain.domain.SsmProtocol
 import x2.api.ssm.domain.query.X2ProtocolGetQueryFunction
 import x2.api.ssm.domain.query.X2ProtocolGetQueryResult
-import x2.api.ssm.domain.query.X2ProtocolsListQueryFunction
-import x2.api.ssm.domain.query.X2ProtocolsListQueryResult
+import x2.api.ssm.domain.query.X2ProtocolsListQuerySupplier
+import x2.api.ssm.repo.postgres.f2.X2ProtocolsListFunctionImpl
 import x2.api.ssm.repo.postgres.repository.LogRepository
 import x2.api.ssm.repo.postgres.repository.SessionRepository
 import x2.api.ssm.repo.postgres.repository.SsmRepository
@@ -40,36 +38,21 @@ class SsmApiFinderLocalService(
 	private val logRepository: LogRepository,
 	private val sessionRepository: SessionRepository,
 	private val ssmRepository: SsmRepository,
+	private val x2ProtocolsListFunction: X2ProtocolsListFunctionImpl,
 ) : SsmApiFinder {
 
 	@Bean
-	override fun getAllProtocols(): X2ProtocolsListQueryFunction = f2Supplier {
-		x2Properties.getProtocolsSsmUri().map { (name, ssms) ->
-			ssmRepository.findById(ssms.first().uri).orElseGet { null }?.let { entity ->
-				SsmProtocol(
-					name = name,
-					ssms = ssms.toTypedArray(),
-					ssm = entity.ssm
+	override fun getAllProtocols(): X2ProtocolsListQuerySupplier = x2ProtocolsListFunction
+
+	override fun getProtocol(): X2ProtocolGetQueryFunction = f2Function { query ->
+		getAllProtocols().invoke().toList()
+			.flatMap { it.items }
+			.find { it.name == query.protocol }
+			.let {
+				X2ProtocolGetQueryResult(
+					item = it
 				)
 			}
-		}.let { items ->
-			flowOf(X2ProtocolsListQueryResult(items.filterNotNull()))
-		}
-	}
-
-	override fun getAllProtocol(): X2ProtocolGetQueryFunction = f2Function { query ->
-		x2Properties.getProtocolSsmUri(query.protocol).let { ssmUris ->
-			val ssm = ssmRepository.findById(ssmUris.first().ssmName).get().ssm
-			SsmProtocol(
-				name = query.protocol,
-				ssms = ssmUris.toTypedArray(),
-				ssm = ssm
-			)
-		}.let {
-			X2ProtocolGetQueryResult(
-				item = it
-			)
-		}
 	}
 
 	@Bean
