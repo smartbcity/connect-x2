@@ -21,11 +21,44 @@
   ErrorSeverityWarning.prototype.constructor = ErrorSeverityWarning;
   AlertSeverityError.prototype = Object.create(ErrorSeverity.prototype);
   AlertSeverityError.prototype.constructor = AlertSeverityError;
-  R2Exception.prototype = Object.create(Exception.prototype);
-  R2Exception.prototype.constructor = R2Exception;
-  R2NotFoundException.prototype = Object.create(Exception.prototype);
-  R2NotFoundException.prototype.constructor = R2NotFoundException;
+  F2Exception.prototype = Object.create(Exception.prototype);
+  F2Exception.prototype.constructor = F2Exception;
   //endregion
+  function Command() {
+  }
+  Command.$metadata$ = {
+    simpleName: 'Command',
+    kind: 'interface',
+    interfaces: [Message]
+  };
+  function Event() {
+  }
+  Event.$metadata$ = {
+    simpleName: 'Event',
+    kind: 'interface',
+    interfaces: [Message]
+  };
+  function Message() {
+  }
+  Message.$metadata$ = {
+    simpleName: 'Message',
+    kind: 'interface',
+    interfaces: []
+  };
+  function Query() {
+  }
+  Query.$metadata$ = {
+    simpleName: 'Query',
+    kind: 'interface',
+    interfaces: [Message]
+  };
+  function ErrorDTO() {
+  }
+  ErrorDTO.$metadata$ = {
+    simpleName: 'ErrorDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function Error_0(type, description, date, payload, severity) {
     this.type_1 = type;
     this.description_1 = description;
@@ -51,7 +84,7 @@
   Error_0.$metadata$ = {
     simpleName: 'Error',
     kind: 'class',
-    interfaces: []
+    interfaces: [ErrorDTO]
   };
   Object.defineProperty(Error_0.prototype, 'type', {
     configurable: true,
@@ -114,38 +147,36 @@
     kind: 'class',
     interfaces: []
   };
-  function R2Exception(id, error) {
+  function F2Exception(id, error) {
     Exception_init_$Init$(error.description, this);
     this.id_1 = id;
     this.error_1 = error;
-    captureStack(this, R2Exception);
+    captureStack(this, F2Exception);
   }
-  R2Exception.prototype._get_id__1413120976_ndc34g_k$ = function () {
+  F2Exception.prototype._get_id__1413120976_ndc34g_k$ = function () {
     return this.id_1;
   };
-  R2Exception.prototype._get_error__3212600009_hwevxz_k$ = function () {
+  F2Exception.prototype._get_error__3212600009_hwevxz_k$ = function () {
     return this.error_1;
   };
-  R2Exception.$metadata$ = {
-    simpleName: 'S2Exception',
+  F2Exception.$metadata$ = {
+    simpleName: 'F2Exception',
     kind: 'class',
     interfaces: []
   };
-  Object.defineProperty(R2Exception.prototype, 'id', {
+  Object.defineProperty(F2Exception.prototype, 'id', {
     configurable: true,
-    get: R2Exception.prototype._get_id__1413120976_ndc34g_k$
+    get: F2Exception.prototype._get_id__1413120976_ndc34g_k$
   });
-  Object.defineProperty(R2Exception.prototype, 'error', {
+  Object.defineProperty(F2Exception.prototype, 'error', {
     configurable: true,
-    get: R2Exception.prototype._get_error__3212600009_hwevxz_k$
+    get: F2Exception.prototype._get_error__3212600009_hwevxz_k$
   });
-  function R2NotFoundException(message) {
-    Exception_init_$Init$(message, this);
-    captureStack(this, R2NotFoundException);
+  function PageDTO() {
   }
-  R2NotFoundException.$metadata$ = {
-    simpleName: 'S2NotFoundException',
-    kind: 'class',
+  PageDTO.$metadata$ = {
+    simpleName: 'PageDTO',
+    kind: 'interface',
     interfaces: []
   };
   function Page(total, items) {
@@ -161,7 +192,7 @@
   Page.$metadata$ = {
     simpleName: 'Page',
     kind: 'class',
-    interfaces: []
+    interfaces: [PageDTO]
   };
   Object.defineProperty(Page.prototype, 'total', {
     configurable: true,
@@ -175,33 +206,122 @@
       return this._get_items__3328574481_fzd5gv_k$();
     }
   });
-  function OffsetRequest(offset, limit) {
+  function PageQueryDTO() {
+  }
+  PageQueryDTO.$metadata$ = {
+    simpleName: 'PageQueryDTO',
+    kind: 'interface',
+    interfaces: [Query]
+  };
+  function PageQueryResultDTO() {
+  }
+  PageQueryResultDTO.$metadata$ = {
+    simpleName: 'PageQueryResultDTO',
+    kind: 'interface',
+    interfaces: [Event, PageDTO]
+  };
+  function PageQuery(pagination) {
+    this.pagination_1 = pagination;
+  }
+  PageQuery.prototype._get_pagination__3982429233_562rwv_k$ = function () {
+    return this.pagination_1;
+  };
+  PageQuery.$metadata$ = {
+    simpleName: 'PageQuery',
+    kind: 'class',
+    interfaces: [PageQueryDTO]
+  };
+  Object.defineProperty(PageQuery.prototype, 'pagination', {
+    configurable: true,
+    get: function () {
+      return this._get_pagination__3982429233_562rwv_k$();
+    }
+  });
+  function PageQueryResult(pagination, total, items) {
+    this.pagination_1 = pagination;
+    this.total_1 = total;
+    this.items_1 = items;
+  }
+  PageQueryResult.prototype._get_pagination__3982429233_562rwv_k$ = function () {
+    return this.pagination_1;
+  };
+  PageQueryResult.prototype._get_total__3639312653_aucycz_k$ = function () {
+    return this.total_1;
+  };
+  PageQueryResult.prototype._get_items__3328574481_fzd5gv_k$ = function () {
+    return this.items_1;
+  };
+  PageQueryResult.$metadata$ = {
+    simpleName: 'PageQueryResult',
+    kind: 'class',
+    interfaces: [PageQueryResultDTO]
+  };
+  Object.defineProperty(PageQueryResult.prototype, 'pagination', {
+    configurable: true,
+    get: function () {
+      return this._get_pagination__3982429233_562rwv_k$();
+    }
+  });
+  Object.defineProperty(PageQueryResult.prototype, 'total', {
+    configurable: true,
+    get: function () {
+      return this._get_total__3639312653_aucycz_k$();
+    }
+  });
+  Object.defineProperty(PageQueryResult.prototype, 'items', {
+    configurable: true,
+    get: function () {
+      return this._get_items__3328574481_fzd5gv_k$();
+    }
+  });
+  function Pagination() {
+  }
+  Pagination.$metadata$ = {
+    simpleName: 'Pagination',
+    kind: 'interface',
+    interfaces: []
+  };
+  function OffsetPaginationDTO() {
+  }
+  OffsetPaginationDTO.$metadata$ = {
+    simpleName: 'OffsetPaginationDTO',
+    kind: 'interface',
+    interfaces: []
+  };
+  function OffsetPagination(offset, limit) {
     this.offset_1 = offset;
     this.limit_1 = limit;
   }
-  OffsetRequest.prototype._get_offset__736931032_c6qzmg_k$ = function () {
+  OffsetPagination.prototype._get_offset__736931032_c6qzmg_k$ = function () {
     return this.offset_1;
   };
-  OffsetRequest.prototype._get_limit__3404537718_eq4zuy_k$ = function () {
+  OffsetPagination.prototype._get_limit__3404537718_eq4zuy_k$ = function () {
     return this.limit_1;
   };
-  OffsetRequest.$metadata$ = {
+  OffsetPagination.$metadata$ = {
     simpleName: 'OffsetPagination',
     kind: 'class',
-    interfaces: [Pagination]
+    interfaces: [OffsetPaginationDTO, Pagination]
   };
-  Object.defineProperty(OffsetRequest.prototype, 'offset', {
+  Object.defineProperty(OffsetPagination.prototype, 'offset', {
     configurable: true,
     get: function () {
       return this._get_offset__736931032_c6qzmg_k$();
     }
   });
-  Object.defineProperty(OffsetRequest.prototype, 'limit', {
+  Object.defineProperty(OffsetPagination.prototype, 'limit', {
     configurable: true,
     get: function () {
       return this._get_limit__3404537718_eq4zuy_k$();
     }
   });
+  function PagePaginationDTO() {
+  }
+  PagePaginationDTO.$metadata$ = {
+    simpleName: 'PagePaginationDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function PagePagination(page, size) {
     this.page_1 = page;
     this.size_1 = size;
@@ -215,7 +335,7 @@
   PagePagination.$metadata$ = {
     simpleName: 'PagePagination',
     kind: 'class',
-    interfaces: [Pagination]
+    interfaces: [PagePaginationDTO, Pagination]
   };
   Object.defineProperty(PagePagination.prototype, 'page', {
     configurable: true,
@@ -229,15 +349,20 @@
       return this._get_size__809037418_ddoh9m_k$();
     }
   });
-  function Pagination() {
-  }
-  Pagination.$metadata$ = {
-    simpleName: 'Pagination',
-    kind: 'interface',
-    interfaces: []
-  };
   //region block: exports
   function $jsExportAll$(_) {
+    var $f2 = _.f2 || (_.f2 = {});
+    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
+    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
+    var $f2 = _.f2 || (_.f2 = {});
+    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
+    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
+    var $f2 = _.f2 || (_.f2 = {});
+    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
+    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
+    var $f2 = _.f2 || (_.f2 = {});
+    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
+    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
     var $f2 = _.f2 || (_.f2 = {});
     var $f2$dsl = $f2.dsl || ($f2.dsl = {});
     var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
@@ -250,12 +375,7 @@
     var $f2$dsl = $f2.dsl || ($f2.dsl = {});
     var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
     var $f2$dsl$cqrs$exception = $f2$dsl$cqrs.exception || ($f2$dsl$cqrs.exception = {});
-    $f2$dsl$cqrs$exception.R2Exception = R2Exception;
-    var $f2 = _.f2 || (_.f2 = {});
-    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
-    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
-    var $f2$dsl$cqrs$exception = $f2$dsl$cqrs.exception || ($f2$dsl$cqrs.exception = {});
-    $f2$dsl$cqrs$exception.R2NotFoundException = R2NotFoundException;
+    $f2$dsl$cqrs$exception.F2Exception = F2Exception;
     var $f2 = _.f2 || (_.f2 = {});
     var $f2$dsl = $f2.dsl || ($f2.dsl = {});
     var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
@@ -265,39 +385,22 @@
     var $f2$dsl = $f2.dsl || ($f2.dsl = {});
     var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
     var $f2$dsl$cqrs$page = $f2$dsl$cqrs.page || ($f2$dsl$cqrs.page = {});
-    $f2$dsl$cqrs$page.OffsetRequest = OffsetRequest;
+    $f2$dsl$cqrs$page.PageQuery = PageQuery;
+    $f2$dsl$cqrs$page.PageQueryResult = PageQueryResult;
+    var $f2 = _.f2 || (_.f2 = {});
+    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
+    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
+    var $f2$dsl$cqrs$page = $f2$dsl$cqrs.page || ($f2$dsl$cqrs.page = {});
+    $f2$dsl$cqrs$page.OffsetPagination = OffsetPagination;
     $f2$dsl$cqrs$page.PagePagination = PagePagination;
-    var $f2 = _.f2 || (_.f2 = {});
-    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
-    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
-    var $f2 = _.f2 || (_.f2 = {});
-    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
-    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
-    var $f2 = _.f2 || (_.f2 = {});
-    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
-    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
-    var $f2 = _.f2 || (_.f2 = {});
-    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
-    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
-    var $f2 = _.f2 || (_.f2 = {});
-    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
-    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
-    var $f2$dsl$cqrs$error = $f2$dsl$cqrs.error || ($f2$dsl$cqrs.error = {});
-    var $f2 = _.f2 || (_.f2 = {});
-    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
-    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
-    var $f2$dsl$cqrs$page = $f2$dsl$cqrs.page || ($f2$dsl$cqrs.page = {});
-    var $f2 = _.f2 || (_.f2 = {});
-    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
-    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
-    var $f2$dsl$cqrs$page = $f2$dsl$cqrs.page || ($f2$dsl$cqrs.page = {});
-    var $f2 = _.f2 || (_.f2 = {});
-    var $f2$dsl = $f2.dsl || ($f2.dsl = {});
-    var $f2$dsl$cqrs = $f2$dsl.cqrs || ($f2$dsl.cqrs = {});
-    var $f2$dsl$cqrs$page = $f2$dsl$cqrs.page || ($f2$dsl$cqrs.page = {});
   }
   $jsExportAll$(_);
   _.$jsExportAll$ = $jsExportAll$;
+  _.$crossModule$ = _.$crossModule$ || {};
+  _.$crossModule$.PageQueryDTO = PageQueryDTO;
+  _.$crossModule$.PageQueryResultDTO = PageQueryResultDTO;
+  _.$crossModule$.Event = Event;
+  _.$crossModule$.Query = Query;
   //endregion
   return _;
 }));

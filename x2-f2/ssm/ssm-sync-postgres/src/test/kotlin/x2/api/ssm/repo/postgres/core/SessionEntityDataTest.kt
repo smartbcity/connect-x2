@@ -88,7 +88,7 @@ fun PostgresDataTest.transactionEntity(sessionName: String, ssmUri: SsmUri, stat
 	channelId = ssmUri.channelId,
 	transactionId = UUID.randomUUID().toString(),
 	type = EnvelopeType.ENVELOPE,
-	blockId = 1,
+	blockId = "1",
 	creator = IdentitiesInfo(UUID.randomUUID().toString(), UUID.randomUUID().toString()),
 	isValid = true,
 	nonce = UUID.randomUUID().toString().toByteArray(),

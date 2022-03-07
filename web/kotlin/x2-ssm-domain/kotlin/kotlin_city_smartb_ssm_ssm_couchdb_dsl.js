@@ -1,14 +1,61 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd)
-    define(['exports'], factory);
+    define(['exports', './kotlin_city_smartb_ssm_ssm_chaincode_dsl.js', './kotlin_kotlin.js', './kotlin_city_smartb_f2_f2_dsl_cqrs.js'], factory);
   else if (typeof exports === 'object')
-    factory(module.exports);
-  else
-    root.kotlin_city_smartb_ssm_ssm_couchdb_dsl = factory(typeof kotlin_city_smartb_ssm_ssm_couchdb_dsl === 'undefined' ? {} : kotlin_city_smartb_ssm_ssm_couchdb_dsl);
-}(this, function (_) {
+    factory(module.exports, require('./kotlin_city_smartb_ssm_ssm_chaincode_dsl.js'), require('./kotlin_kotlin.js'), require('./kotlin_city_smartb_f2_f2_dsl_cqrs.js'));
+  else {
+    if (typeof kotlin_city_smartb_ssm_ssm_chaincode_dsl === 'undefined') {
+      throw new Error("Error loading module 'kotlin_city_smartb_ssm_ssm_couchdb_dsl'. Its dependency 'kotlin_city_smartb_ssm_ssm_chaincode_dsl' was not found. Please, check whether 'kotlin_city_smartb_ssm_ssm_chaincode_dsl' is loaded prior to 'kotlin_city_smartb_ssm_ssm_couchdb_dsl'.");
+    }
+    if (typeof kotlin_kotlin === 'undefined') {
+      throw new Error("Error loading module 'kotlin_city_smartb_ssm_ssm_couchdb_dsl'. Its dependency 'kotlin_kotlin' was not found. Please, check whether 'kotlin_kotlin' is loaded prior to 'kotlin_city_smartb_ssm_ssm_couchdb_dsl'.");
+    }
+    if (typeof kotlin_city_smartb_f2_f2_dsl_cqrs === 'undefined') {
+      throw new Error("Error loading module 'kotlin_city_smartb_ssm_ssm_couchdb_dsl'. Its dependency 'kotlin_city_smartb_f2_f2_dsl_cqrs' was not found. Please, check whether 'kotlin_city_smartb_f2_f2_dsl_cqrs' is loaded prior to 'kotlin_city_smartb_ssm_ssm_couchdb_dsl'.");
+    }
+    root.kotlin_city_smartb_ssm_ssm_couchdb_dsl = factory(typeof kotlin_city_smartb_ssm_ssm_couchdb_dsl === 'undefined' ? {} : kotlin_city_smartb_ssm_ssm_couchdb_dsl, kotlin_city_smartb_ssm_ssm_chaincode_dsl, kotlin_kotlin, kotlin_city_smartb_f2_f2_dsl_cqrs);
+  }
+}(this, function (_, kotlin_city_smartb_ssm_ssm_chaincode_dsl, kotlin_kotlin, kotlin_city_smartb_f2_f2_dsl_cqrs) {
+  //region block: imports
+  var SsmAgent = kotlin_city_smartb_ssm_ssm_chaincode_dsl.$crossModule$.SsmAgent;
+  var getKClass = kotlin_kotlin.$crossModule$.getKClass;
+  var SsmGrant = kotlin_city_smartb_ssm_ssm_chaincode_dsl.$crossModule$.SsmGrant;
+  var Ssm = kotlin_city_smartb_ssm_ssm_chaincode_dsl.$crossModule$.Ssm;
+  var SsmSessionState = kotlin_city_smartb_ssm_ssm_chaincode_dsl.$crossModule$.SsmSessionState;
+  var Query = kotlin_city_smartb_f2_f2_dsl_cqrs.$crossModule$.Query;
+  var Event = kotlin_city_smartb_f2_f2_dsl_cqrs.$crossModule$.Event;
+  var PageQueryDTO = kotlin_city_smartb_f2_f2_dsl_cqrs.$crossModule$.PageQueryDTO;
+  var PageQueryResultDTO = kotlin_city_smartb_f2_f2_dsl_cqrs.$crossModule$.PageQueryResultDTO;
+  //endregion
   'use strict';
   //region block: pre-declaration
+  Admin.prototype = Object.create(DocType.prototype);
+  Admin.prototype.constructor = Admin;
+  User.prototype = Object.create(DocType.prototype);
+  User.prototype.constructor = User;
+  Grant.prototype = Object.create(DocType.prototype);
+  Grant.prototype.constructor = Grant;
+  Ssm_0.prototype = Object.create(DocType.prototype);
+  Ssm_0.prototype.constructor = Ssm_0;
+  State.prototype = Object.create(DocType.prototype);
+  State.prototype.constructor = State;
+  Chaincode.prototype = Object.create(DocType.prototype);
+  Chaincode.prototype.constructor = Chaincode;
   //endregion
+  function SsmCouchDbQueries() {
+  }
+  SsmCouchDbQueries.$metadata$ = {
+    simpleName: 'SsmCouchDbQueries',
+    kind: 'interface',
+    interfaces: []
+  };
+  function DatabaseDTO() {
+  }
+  DatabaseDTO.$metadata$ = {
+    simpleName: 'DatabaseDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function Database(name) {
     this.name_1 = name;
   }
@@ -18,7 +65,7 @@
   Database.$metadata$ = {
     simpleName: 'Database',
     kind: 'class',
-    interfaces: []
+    interfaces: [DatabaseDTO]
   };
   Object.defineProperty(Database.prototype, 'name', {
     configurable: true,
@@ -26,6 +73,13 @@
       return this._get_name__804168992_das4rk_k$();
     }
   });
+  function DatabaseChangesDTO() {
+  }
+  DatabaseChangesDTO.$metadata$ = {
+    simpleName: 'DatabaseChangesDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function DatabaseChanges(changeEventId, docType, objectId) {
     this.changeEventId_1 = changeEventId;
     this.docType_1 = docType;
@@ -43,7 +97,7 @@
   DatabaseChanges.$metadata$ = {
     simpleName: 'DatabaseChanges',
     kind: 'class',
-    interfaces: []
+    interfaces: [DatabaseChangesDTO]
   };
   Object.defineProperty(DatabaseChanges.prototype, 'changeEventId', {
     configurable: true,
@@ -63,6 +117,156 @@
       return this._get_objectId__4287184465_4mt9r_k$();
     }
   });
+  function Admin() {
+    Admin_instance = this;
+    DocType.call(this, 'admin', getKClass(SsmAgent));
+  }
+  Admin.$metadata$ = {
+    simpleName: 'Admin',
+    kind: 'object',
+    interfaces: []
+  };
+  var Admin_instance;
+  function Admin_getInstance() {
+    if (Admin_instance == null)
+      new Admin();
+    return Admin_instance;
+  }
+  function User() {
+    User_instance = this;
+    DocType.call(this, 'user', getKClass(SsmAgent));
+  }
+  User.$metadata$ = {
+    simpleName: 'User',
+    kind: 'object',
+    interfaces: []
+  };
+  var User_instance;
+  function User_getInstance() {
+    if (User_instance == null)
+      new User();
+    return User_instance;
+  }
+  function Grant() {
+    Grant_instance = this;
+    DocType.call(this, 'grant', getKClass(SsmGrant));
+  }
+  Grant.$metadata$ = {
+    simpleName: 'Grant',
+    kind: 'object',
+    interfaces: []
+  };
+  var Grant_instance;
+  function Grant_getInstance() {
+    if (Grant_instance == null)
+      new Grant();
+    return Grant_instance;
+  }
+  function Ssm_0() {
+    Ssm_instance = this;
+    DocType.call(this, 'ssm', getKClass(Ssm));
+  }
+  Ssm_0.$metadata$ = {
+    simpleName: 'Ssm',
+    kind: 'object',
+    interfaces: []
+  };
+  var Ssm_instance;
+  function Ssm_getInstance() {
+    if (Ssm_instance == null)
+      new Ssm_0();
+    return Ssm_instance;
+  }
+  function State() {
+    State_instance = this;
+    DocType.call(this, 'state', getKClass(SsmSessionState));
+  }
+  State.$metadata$ = {
+    simpleName: 'State',
+    kind: 'object',
+    interfaces: []
+  };
+  var State_instance;
+  function State_getInstance() {
+    if (State_instance == null)
+      new State();
+    return State_instance;
+  }
+  function Chaincode() {
+    Chaincode_instance = this;
+    DocType.call(this, 'state', getKClass(ChaincodeLscc));
+  }
+  Chaincode.$metadata$ = {
+    simpleName: 'Chaincode',
+    kind: 'object',
+    interfaces: []
+  };
+  var Chaincode_instance;
+  function Chaincode_getInstance() {
+    if (Chaincode_instance == null)
+      new Chaincode();
+    return Chaincode_instance;
+  }
+  function DocType(name, clazz) {
+    this.name_1 = name;
+    this.clazz_1 = clazz;
+  }
+  DocType.prototype._get_name__804168992_das4rk_k$ = function () {
+    return this.name_1;
+  };
+  DocType.prototype._get_clazz__3149304953_iy3ipz_k$ = function () {
+    return this.clazz_1;
+  };
+  DocType.$metadata$ = {
+    simpleName: 'DocType',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(DocType.prototype, 'name', {
+    configurable: true,
+    get: DocType.prototype._get_name__804168992_das4rk_k$
+  });
+  Object.defineProperty(DocType.prototype, 'clazz', {
+    configurable: true,
+    get: DocType.prototype._get_clazz__3149304953_iy3ipz_k$
+  });
+  function ChaincodeLscc(_id, _rev) {
+    this._id_1 = _id;
+    this._rev_1 = _rev;
+  }
+  ChaincodeLscc.prototype._get__id__856785431_e63vvb_k$ = function () {
+    return this._id_1;
+  };
+  ChaincodeLscc.prototype._get__rev__790815463_d2tx47_k$ = function () {
+    return this._rev_1;
+  };
+  ChaincodeLscc.$metadata$ = {
+    simpleName: 'ChaincodeLscc',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(ChaincodeLscc.prototype, '_id', {
+    configurable: true,
+    get: ChaincodeLscc.prototype._get__id__856785431_e63vvb_k$
+  });
+  Object.defineProperty(ChaincodeLscc.prototype, '_rev', {
+    configurable: true,
+    get: ChaincodeLscc.prototype._get__rev__790815463_d2tx47_k$
+  });
+  function CouchdbAdminListQueryDTO() {
+  }
+  CouchdbAdminListQueryDTO.$metadata$ = {
+    simpleName: 'CouchdbAdminListQueryDTO',
+    kind: 'interface',
+    interfaces: [Query]
+  };
+  function CouchdbAdminListQueryResultDTO() {
+  }
+  CouchdbAdminListQueryResultDTO.$metadata$ = {
+    simpleName: 'CouchdbAdminListQueryResultDTO',
+    kind: 'interface',
+    interfaces: [Event]
+  };
   function CouchdbAdminListQuery(chaincodeUri) {
     this.chaincodeUri_1 = chaincodeUri;
   }
@@ -72,7 +276,7 @@
   CouchdbAdminListQuery.$metadata$ = {
     simpleName: 'CouchdbAdminListQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbAdminListQueryDTO]
   };
   Object.defineProperty(CouchdbAdminListQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -89,7 +293,7 @@
   CouchdbAdminListQueryResult.$metadata$ = {
     simpleName: 'CouchdbAdminListQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbAdminListQueryResultDTO]
   };
   Object.defineProperty(CouchdbAdminListQueryResult.prototype, 'items', {
     configurable: true,
@@ -97,12 +301,26 @@
       return this._get_items__3328574481_fzd5gv_k$();
     }
   });
+  function CouchdbChaincodeListQueryDTO() {
+  }
+  CouchdbChaincodeListQueryDTO.$metadata$ = {
+    simpleName: 'CouchdbChaincodeListQueryDTO',
+    kind: 'interface',
+    interfaces: [Query]
+  };
+  function CouchdbChaincodeListQueryResultDTO() {
+  }
+  CouchdbChaincodeListQueryResultDTO.$metadata$ = {
+    simpleName: 'CouchdbChaincodeListQueryResultDTO',
+    kind: 'interface',
+    interfaces: [Event]
+  };
   function CouchdbChaincodeListQuery() {
   }
   CouchdbChaincodeListQuery.$metadata$ = {
     simpleName: 'CouchdbChaincodeListQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbChaincodeListQueryDTO]
   };
   function CouchdbChaincodeListQueryResult(items) {
     this.items_1 = items;
@@ -113,7 +331,7 @@
   CouchdbChaincodeListQueryResult.$metadata$ = {
     simpleName: 'CouchdbChaincodeListQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbChaincodeListQueryResultDTO]
   };
   Object.defineProperty(CouchdbChaincodeListQueryResult.prototype, 'items', {
     configurable: true,
@@ -121,6 +339,20 @@
       return this._get_items__3328574481_fzd5gv_k$();
     }
   });
+  function CouchdbDatabaseGetChangesQueryDTO() {
+  }
+  CouchdbDatabaseGetChangesQueryDTO.$metadata$ = {
+    simpleName: 'CouchdbDatabaseGetChangesQueryDTO',
+    kind: 'interface',
+    interfaces: [Query]
+  };
+  function CouchdbDatabaseGetChangesQueryResultDTO() {
+  }
+  CouchdbDatabaseGetChangesQueryResultDTO.$metadata$ = {
+    simpleName: 'CouchdbDatabaseGetChangesQueryResultDTO',
+    kind: 'interface',
+    interfaces: [Event]
+  };
   function CouchdbDatabaseGetChangesQuery(channelId, chaincodeId, lastEventId, ssmName, sessionName, limit) {
     this.channelId_1 = channelId;
     this.chaincodeId_1 = chaincodeId;
@@ -150,7 +382,7 @@
   CouchdbDatabaseGetChangesQuery.$metadata$ = {
     simpleName: 'CouchdbDatabaseGetChangesQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbDatabaseGetChangesQueryDTO]
   };
   Object.defineProperty(CouchdbDatabaseGetChangesQuery.prototype, 'channelId', {
     configurable: true,
@@ -201,7 +433,7 @@
   CouchdbDatabaseGetChangesQueryResult.$metadata$ = {
     simpleName: 'CouchdbDatabaseGetChangesQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbDatabaseGetChangesQueryResultDTO]
   };
   Object.defineProperty(CouchdbDatabaseGetChangesQueryResult.prototype, 'items', {
     configurable: true,
@@ -215,6 +447,20 @@
       return this._get_lastEventId__211822482_3i439u_k$();
     }
   });
+  function CouchdbDatabaseGetQueryDTO() {
+  }
+  CouchdbDatabaseGetQueryDTO.$metadata$ = {
+    simpleName: 'CouchdbDatabaseGetQueryDTO',
+    kind: 'interface',
+    interfaces: [Query]
+  };
+  function CouchdbDatabaseGetQueryResultDTO() {
+  }
+  CouchdbDatabaseGetQueryResultDTO.$metadata$ = {
+    simpleName: 'CouchdbDatabaseGetQueryResultDTO',
+    kind: 'interface',
+    interfaces: [Event]
+  };
   function CouchdbDatabaseGetQuery(channelId, chaincodeId) {
     this.channelId_1 = channelId;
     this.chaincodeId_1 = chaincodeId;
@@ -228,7 +474,7 @@
   CouchdbDatabaseGetQuery.$metadata$ = {
     simpleName: 'CouchdbDatabaseGetQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbDatabaseGetQueryDTO]
   };
   Object.defineProperty(CouchdbDatabaseGetQuery.prototype, 'channelId', {
     configurable: true,
@@ -251,7 +497,7 @@
   CouchdbDatabaseGetQueryResult.$metadata$ = {
     simpleName: 'CouchdbDatabaseGetQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbDatabaseGetQueryResultDTO]
   };
   Object.defineProperty(CouchdbDatabaseGetQueryResult.prototype, 'item', {
     configurable: true,
@@ -259,6 +505,20 @@
       return this._get_item__800109976_d8d4t4_k$();
     }
   });
+  function CouchdbDatabaseListQueryDTO() {
+  }
+  CouchdbDatabaseListQueryDTO.$metadata$ = {
+    simpleName: 'CouchdbDatabaseListQueryDTO',
+    kind: 'interface',
+    interfaces: [PageQueryDTO]
+  };
+  function CouchdbDatabaseListQueryResultDTO() {
+  }
+  CouchdbDatabaseListQueryResultDTO.$metadata$ = {
+    simpleName: 'CouchdbDatabaseListQueryResultDTO',
+    kind: 'interface',
+    interfaces: [PageQueryResultDTO]
+  };
   function CouchdbDatabaseListQuery_init_$Init$(pagination, channelId, chaincodeId, $mask0, $marker, $this) {
     if (!(($mask0 & 1) === 0))
       pagination = null;
@@ -292,7 +552,7 @@
   CouchdbDatabaseListQuery.$metadata$ = {
     simpleName: 'CouchdbDatabaseListQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbDatabaseListQueryDTO]
   };
   Object.defineProperty(CouchdbDatabaseListQuery.prototype, 'pagination', {
     configurable: true,
@@ -312,33 +572,57 @@
       return this._get_chaincodeId__335414472_5jp3go_k$();
     }
   });
-  function CouchdbDatabaseListQueryResult(page, pagination) {
-    this.page_1 = page;
+  function CouchdbDatabaseListQueryResult(pagination, items, total) {
     this.pagination_1 = pagination;
+    this.items_1 = items;
+    this.total_1 = total;
   }
-  CouchdbDatabaseListQueryResult.prototype._get_page__806010268_dbvli4_k$ = function () {
-    return this.page_1;
-  };
   CouchdbDatabaseListQueryResult.prototype._get_pagination__3982429233_562rwv_k$ = function () {
     return this.pagination_1;
+  };
+  CouchdbDatabaseListQueryResult.prototype._get_items__3328574481_fzd5gv_k$ = function () {
+    return this.items_1;
+  };
+  CouchdbDatabaseListQueryResult.prototype._get_total__3639312653_aucycz_k$ = function () {
+    return this.total_1;
   };
   CouchdbDatabaseListQueryResult.$metadata$ = {
     simpleName: 'CouchdbDatabaseListQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbDatabaseListQueryResultDTO]
   };
-  Object.defineProperty(CouchdbDatabaseListQueryResult.prototype, 'page', {
-    configurable: true,
-    get: function () {
-      return this._get_page__806010268_dbvli4_k$();
-    }
-  });
   Object.defineProperty(CouchdbDatabaseListQueryResult.prototype, 'pagination', {
     configurable: true,
     get: function () {
       return this._get_pagination__3982429233_562rwv_k$();
     }
   });
+  Object.defineProperty(CouchdbDatabaseListQueryResult.prototype, 'items', {
+    configurable: true,
+    get: function () {
+      return this._get_items__3328574481_fzd5gv_k$();
+    }
+  });
+  Object.defineProperty(CouchdbDatabaseListQueryResult.prototype, 'total', {
+    configurable: true,
+    get: function () {
+      return this._get_total__3639312653_aucycz_k$();
+    }
+  });
+  function CouchdbSsmGetQueryDTO() {
+  }
+  CouchdbSsmGetQueryDTO.$metadata$ = {
+    simpleName: 'CouchdbSsmGetQueryDTO',
+    kind: 'interface',
+    interfaces: [Query]
+  };
+  function CouchdbSsmGetQueryResultDTO() {
+  }
+  CouchdbSsmGetQueryResultDTO.$metadata$ = {
+    simpleName: 'CouchdbSsmGetQueryResultDTO',
+    kind: 'interface',
+    interfaces: [Event]
+  };
   function CouchdbSsmGetQuery(channelId, chaincodeId, ssmName) {
     this.channelId_1 = channelId;
     this.chaincodeId_1 = chaincodeId;
@@ -356,7 +640,7 @@
   CouchdbSsmGetQuery.$metadata$ = {
     simpleName: 'CouchdbSsmGetQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbSsmGetQueryDTO]
   };
   Object.defineProperty(CouchdbSsmGetQuery.prototype, 'channelId', {
     configurable: true,
@@ -389,7 +673,7 @@
   CouchdbSsmGetQueryResult.$metadata$ = {
     simpleName: 'CouchdbSsmGetQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbSsmGetQueryResultDTO]
   };
   Object.defineProperty(CouchdbSsmGetQueryResult.prototype, 'uri', {
     configurable: true,
@@ -403,6 +687,20 @@
       return this._get_item__800109976_d8d4t4_k$();
     }
   });
+  function CouchdbSsmListQueryDTO() {
+  }
+  CouchdbSsmListQueryDTO.$metadata$ = {
+    simpleName: 'CouchdbSsmListQueryDTO',
+    kind: 'interface',
+    interfaces: [PageQueryDTO]
+  };
+  function CouchdbSsmListQueryResultDTO() {
+  }
+  CouchdbSsmListQueryResultDTO.$metadata$ = {
+    simpleName: 'CouchdbSsmListQueryResultDTO',
+    kind: 'interface',
+    interfaces: [PageQueryResultDTO]
+  };
   function CouchdbSsmListQuery(pagination, channelId, chaincodeId) {
     this.pagination_1 = pagination;
     this.channelId_1 = channelId;
@@ -420,7 +718,7 @@
   CouchdbSsmListQuery.$metadata$ = {
     simpleName: 'CouchdbSsmListQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbSsmListQueryDTO]
   };
   Object.defineProperty(CouchdbSsmListQuery.prototype, 'pagination', {
     configurable: true,
@@ -440,33 +738,57 @@
       return this._get_chaincodeId__335414472_5jp3go_k$();
     }
   });
-  function CouchdbSsmListQueryResult(page, pagination) {
-    this.page_1 = page;
+  function CouchdbSsmListQueryResult(pagination, items, total) {
     this.pagination_1 = pagination;
+    this.items_1 = items;
+    this.total_1 = total;
   }
-  CouchdbSsmListQueryResult.prototype._get_page__806010268_dbvli4_k$ = function () {
-    return this.page_1;
-  };
   CouchdbSsmListQueryResult.prototype._get_pagination__3982429233_562rwv_k$ = function () {
     return this.pagination_1;
+  };
+  CouchdbSsmListQueryResult.prototype._get_items__3328574481_fzd5gv_k$ = function () {
+    return this.items_1;
+  };
+  CouchdbSsmListQueryResult.prototype._get_total__3639312653_aucycz_k$ = function () {
+    return this.total_1;
   };
   CouchdbSsmListQueryResult.$metadata$ = {
     simpleName: 'CouchdbSsmListQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbSsmListQueryResultDTO]
   };
-  Object.defineProperty(CouchdbSsmListQueryResult.prototype, 'page', {
-    configurable: true,
-    get: function () {
-      return this._get_page__806010268_dbvli4_k$();
-    }
-  });
   Object.defineProperty(CouchdbSsmListQueryResult.prototype, 'pagination', {
     configurable: true,
     get: function () {
       return this._get_pagination__3982429233_562rwv_k$();
     }
   });
+  Object.defineProperty(CouchdbSsmListQueryResult.prototype, 'items', {
+    configurable: true,
+    get: function () {
+      return this._get_items__3328574481_fzd5gv_k$();
+    }
+  });
+  Object.defineProperty(CouchdbSsmListQueryResult.prototype, 'total', {
+    configurable: true,
+    get: function () {
+      return this._get_total__3639312653_aucycz_k$();
+    }
+  });
+  function CouchdbSsmSessionStateGetQueryDTO() {
+  }
+  CouchdbSsmSessionStateGetQueryDTO.$metadata$ = {
+    simpleName: 'CouchdbSsmSessionStateGetQueryDTO',
+    kind: 'interface',
+    interfaces: [Query]
+  };
+  function CouchdbSsmSessionStateGetQueryResultDTO() {
+  }
+  CouchdbSsmSessionStateGetQueryResultDTO.$metadata$ = {
+    simpleName: 'CouchdbSsmSessionStateGetQueryResultDTO',
+    kind: 'interface',
+    interfaces: [Event]
+  };
   function CouchdbSsmSessionStateGetQuery(chaincodeUri, ssmName, sessionName) {
     this.chaincodeUri_1 = chaincodeUri;
     this.ssmName_1 = ssmName;
@@ -484,7 +806,7 @@
   CouchdbSsmSessionStateGetQuery.$metadata$ = {
     simpleName: 'CouchdbSsmSessionStateGetQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbSsmSessionStateGetQueryDTO]
   };
   Object.defineProperty(CouchdbSsmSessionStateGetQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -513,7 +835,7 @@
   CouchdbSsmSessionStateGetQueryResult.$metadata$ = {
     simpleName: 'CouchdbSsmSessionStateGetQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbSsmSessionStateGetQueryResultDTO]
   };
   Object.defineProperty(CouchdbSsmSessionStateGetQueryResult.prototype, 'item', {
     configurable: true,
@@ -521,6 +843,20 @@
       return this._get_item__800109976_d8d4t4_k$();
     }
   });
+  function CouchdbSsmSessionStateListQueryDTO() {
+  }
+  CouchdbSsmSessionStateListQueryDTO.$metadata$ = {
+    simpleName: 'CouchdbSsmSessionStateListQueryDTO',
+    kind: 'interface',
+    interfaces: [PageQueryDTO]
+  };
+  function CouchdbSsmSessionStateListQueryResultDTO() {
+  }
+  CouchdbSsmSessionStateListQueryResultDTO.$metadata$ = {
+    simpleName: 'CouchdbSsmSessionStateListQueryResultDTO',
+    kind: 'interface',
+    interfaces: [PageQueryResultDTO]
+  };
   function CouchdbSsmSessionStateListQuery_init_$Init$(pagination, chaincodeUri, ssm, $mask0, $marker, $this) {
     if (!(($mask0 & 1) === 0))
       pagination = null;
@@ -551,7 +887,7 @@
   CouchdbSsmSessionStateListQuery.$metadata$ = {
     simpleName: 'CouchdbSsmSessionStateListQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbSsmSessionStateListQueryDTO]
   };
   Object.defineProperty(CouchdbSsmSessionStateListQuery.prototype, 'pagination', {
     configurable: true,
@@ -571,33 +907,57 @@
       return this._get_ssm__857391140_e6gv8k_k$();
     }
   });
-  function CouchdbSsmSessionStateListQueryResult(page, pagination) {
-    this.page_1 = page;
+  function CouchdbSsmSessionStateListQueryResult(pagination, total, items) {
     this.pagination_1 = pagination;
+    this.total_1 = total;
+    this.items_1 = items;
   }
-  CouchdbSsmSessionStateListQueryResult.prototype._get_page__806010268_dbvli4_k$ = function () {
-    return this.page_1;
-  };
   CouchdbSsmSessionStateListQueryResult.prototype._get_pagination__3982429233_562rwv_k$ = function () {
     return this.pagination_1;
+  };
+  CouchdbSsmSessionStateListQueryResult.prototype._get_total__3639312653_aucycz_k$ = function () {
+    return this.total_1;
+  };
+  CouchdbSsmSessionStateListQueryResult.prototype._get_items__3328574481_fzd5gv_k$ = function () {
+    return this.items_1;
   };
   CouchdbSsmSessionStateListQueryResult.$metadata$ = {
     simpleName: 'CouchdbSsmSessionStateListQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbSsmSessionStateListQueryResultDTO]
   };
-  Object.defineProperty(CouchdbSsmSessionStateListQueryResult.prototype, 'page', {
-    configurable: true,
-    get: function () {
-      return this._get_page__806010268_dbvli4_k$();
-    }
-  });
   Object.defineProperty(CouchdbSsmSessionStateListQueryResult.prototype, 'pagination', {
     configurable: true,
     get: function () {
       return this._get_pagination__3982429233_562rwv_k$();
     }
   });
+  Object.defineProperty(CouchdbSsmSessionStateListQueryResult.prototype, 'total', {
+    configurable: true,
+    get: function () {
+      return this._get_total__3639312653_aucycz_k$();
+    }
+  });
+  Object.defineProperty(CouchdbSsmSessionStateListQueryResult.prototype, 'items', {
+    configurable: true,
+    get: function () {
+      return this._get_items__3328574481_fzd5gv_k$();
+    }
+  });
+  function CouchdbUserListQueryDTO() {
+  }
+  CouchdbUserListQueryDTO.$metadata$ = {
+    simpleName: 'CouchdbUserListQueryDTO',
+    kind: 'interface',
+    interfaces: [Query]
+  };
+  function CouchdbUserListQueryResultDTO() {
+  }
+  CouchdbUserListQueryResultDTO.$metadata$ = {
+    simpleName: 'CouchdbUserListQueryResultDTO',
+    kind: 'interface',
+    interfaces: [Event]
+  };
   function CouchdbUserListQuery(chaincodeUri) {
     this.chaincodeUri_1 = chaincodeUri;
   }
@@ -607,7 +967,7 @@
   CouchdbUserListQuery.$metadata$ = {
     simpleName: 'CouchdbUserListQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbUserListQueryDTO]
   };
   Object.defineProperty(CouchdbUserListQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -624,7 +984,7 @@
   CouchdbUserListQueryResult.$metadata$ = {
     simpleName: 'CouchdbUserListQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [CouchdbUserListQueryResultDTO]
   };
   Object.defineProperty(CouchdbUserListQueryResult.prototype, 'items', {
     configurable: true,
@@ -637,6 +997,9 @@
     var $ssm = _.ssm || (_.ssm = {});
     var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
     var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
+    var $ssm = _.ssm || (_.ssm = {});
+    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
+    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
     var $ssm$couchdb$dsl$model = $ssm$couchdb$dsl.model || ($ssm$couchdb$dsl.model = {});
     $ssm$couchdb$dsl$model.Database = Database;
     var $ssm = _.ssm || (_.ssm = {});
@@ -644,6 +1007,36 @@
     var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
     var $ssm$couchdb$dsl$model = $ssm$couchdb$dsl.model || ($ssm$couchdb$dsl.model = {});
     $ssm$couchdb$dsl$model.DatabaseChanges = DatabaseChanges;
+    var $ssm = _.ssm || (_.ssm = {});
+    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
+    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
+    var $ssm$couchdb$dsl$model = $ssm$couchdb$dsl.model || ($ssm$couchdb$dsl.model = {});
+    $ssm$couchdb$dsl$model.DocType = DocType;
+    Object.defineProperty($ssm$couchdb$dsl$model.DocType, 'Admin', {
+      configurable: true,
+      get: Admin_getInstance
+    });
+    Object.defineProperty($ssm$couchdb$dsl$model.DocType, 'User', {
+      configurable: true,
+      get: User_getInstance
+    });
+    Object.defineProperty($ssm$couchdb$dsl$model.DocType, 'Grant', {
+      configurable: true,
+      get: Grant_getInstance
+    });
+    Object.defineProperty($ssm$couchdb$dsl$model.DocType, 'Ssm', {
+      configurable: true,
+      get: Ssm_getInstance
+    });
+    Object.defineProperty($ssm$couchdb$dsl$model.DocType, 'State', {
+      configurable: true,
+      get: State_getInstance
+    });
+    Object.defineProperty($ssm$couchdb$dsl$model.DocType, 'Chaincode', {
+      configurable: true,
+      get: Chaincode_getInstance
+    });
+    $ssm$couchdb$dsl$model.ChaincodeLscc = ChaincodeLscc;
     var $ssm = _.ssm || (_.ssm = {});
     var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
     var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
@@ -704,54 +1097,6 @@
     var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
     $ssm$couchdb$dsl$query.CouchdbUserListQuery = CouchdbUserListQuery;
     $ssm$couchdb$dsl$query.CouchdbUserListQueryResult = CouchdbUserListQueryResult;
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$model = $ssm$couchdb$dsl.model || ($ssm$couchdb$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$model = $ssm$couchdb$dsl.model || ($ssm$couchdb$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$couchdb = $ssm.couchdb || ($ssm.couchdb = {});
-    var $ssm$couchdb$dsl = $ssm$couchdb.dsl || ($ssm$couchdb.dsl = {});
-    var $ssm$couchdb$dsl$query = $ssm$couchdb$dsl.query || ($ssm$couchdb$dsl.query = {});
   }
   $jsExportAll$(_);
   _.$jsExportAll$ = $jsExportAll$;

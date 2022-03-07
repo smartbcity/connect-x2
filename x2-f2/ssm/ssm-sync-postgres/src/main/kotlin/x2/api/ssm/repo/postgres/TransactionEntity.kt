@@ -5,6 +5,7 @@ import com.vladmihalcea.hibernate.type.json.JsonStringType
 import org.hibernate.annotations.Type
 import org.hibernate.annotations.TypeDef
 import org.hibernate.annotations.TypeDefs
+import ssm.chaincode.dsl.blockchain.BlockId
 import ssm.chaincode.dsl.blockchain.EnvelopeType
 import ssm.chaincode.dsl.blockchain.IdentitiesInfo
 import ssm.chaincode.dsl.blockchain.Transaction
@@ -25,7 +26,7 @@ class TransactionEntity(
 	val transactionId: TransactionId,
 	@Column(columnDefinition="TEXT")
 	val sessionName: SessionName,
-	val blockId: Long,
+	val blockId: BlockId,
 	val timestamp: Long,
 	val isValid: Boolean,
 	val channelId: String,
@@ -39,7 +40,7 @@ class TransactionEntity(
 
 fun TransactionDTO.toTransactionEntity(sessionName: SessionName) = TransactionEntity(
 	transactionId = this.transactionId,
-	blockId = this.blockId.toLong(),
+	blockId = this.blockId,
 	timestamp = this.timestamp,
 	isValid = this.isValid,
 	channelId = this.channelId,

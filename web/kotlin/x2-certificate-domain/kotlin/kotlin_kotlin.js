@@ -2129,6 +2129,9 @@
     kind: 'interface',
     interfaces: []
   };
+  function isNaN_0(_this__1828080292) {
+    return !(_this__1828080292 === _this__1828080292);
+  }
   function _get_js__1413122402(_this__1828080292) {
     return (_this__1828080292 instanceof KClassImpl ? _this__1828080292 : THROW_CCE())._get_jClass__3892345245_6npl5v_k$();
   }
@@ -3076,6 +3079,13 @@
     var tmp = _Char___init__impl__380027157(tmp$ret$0);
     return tmp;
   }
+  function Char__compareTo_impl_2098686179(this_0, other) {
+    return _get_value__3683422336(this_0) - _get_value__3683422336(other) | 0;
+  }
+  function Char__compareTo_impl_2098686179_0(this_0, other) {
+    var tmp = this_0.value_1;
+    return Char__compareTo_impl_2098686179(tmp, other instanceof Char ? other.value_1 : THROW_CCE());
+  }
   function Char__toInt_impl_2402388783(this_0) {
     return _get_value__3683422336(this_0);
   }
@@ -3132,6 +3142,12 @@
     Companion_getInstance_4();
     this.value_1 = value;
   }
+  Char.prototype.compareTo_n49u4k_k$ = function (other) {
+    return Char__compareTo_impl_2098686179(this.value_1, other);
+  };
+  Char.prototype.compareTo_n48p4x_k$ = function (other) {
+    return Char__compareTo_impl_2098686179_0(this, other);
+  };
   Char.prototype.equals = function (other) {
     return Char__equals_impl_2289177560(this.value_1, other);
   };
@@ -3229,6 +3245,51 @@
     simpleName: 'MutableIterable',
     kind: 'interface',
     interfaces: [Iterable]
+  };
+  function Companion_5() {
+    Companion_instance_5 = this;
+  }
+  Companion_5.$metadata$ = {
+    simpleName: 'Companion',
+    kind: 'object',
+    interfaces: []
+  };
+  var Companion_instance_5;
+  function Companion_getInstance_5() {
+    if (Companion_instance_5 == null)
+      new Companion_5();
+    return Companion_instance_5;
+  }
+  function Enum(name, ordinal) {
+    Companion_getInstance_5();
+    this.name_1 = name;
+    this.ordinal_1 = ordinal;
+  }
+  Enum.prototype._get_name__804168992_das4rk_k$ = function () {
+    return this.name_1;
+  };
+  Enum.prototype._get_ordinal__3363892928_fec5kw_k$ = function () {
+    return this.ordinal_1;
+  };
+  Enum.prototype.compareTo_oyy8sa_k$ = function (other) {
+    return compareTo(this.ordinal_1, other.ordinal_1);
+  };
+  Enum.prototype.compareTo_n48p4x_k$ = function (other) {
+    return this.compareTo_oyy8sa_k$(other instanceof Enum ? other : THROW_CCE());
+  };
+  Enum.prototype.equals = function (other) {
+    return this === other;
+  };
+  Enum.prototype.hashCode = function () {
+    return identityHashCode(this);
+  };
+  Enum.prototype.toString = function () {
+    return this.name_1;
+  };
+  Enum.$metadata$ = {
+    simpleName: 'Enum',
+    kind: 'class',
+    interfaces: [Comparable]
   };
   function toString_1(_this__1828080292) {
     var tmp0_safe_receiver = _this__1828080292;
@@ -3529,6 +3590,89 @@
       return toString_2(it);
     };
   }
+  function compareTo(a, b) {
+    var tmp0_subject = typeof a;
+    var tmp;
+    switch (tmp0_subject) {
+      case 'number':
+        var tmp_0;
+        if (typeof b === 'number') {
+          tmp_0 = doubleCompareTo(a, b);
+        } else {
+          if (b instanceof Long) {
+            tmp_0 = doubleCompareTo(a, b.toDouble_ygsx0s_k$());
+          } else {
+            {
+              tmp_0 = primitiveCompareTo(a, b);
+            }
+          }
+        }
+
+        tmp = tmp_0;
+        break;
+      case 'string':
+      case 'boolean':
+        tmp = primitiveCompareTo(a, b);
+        break;
+      default:
+        tmp = compareToDoNotIntrinsicify(a, b);
+        break;
+    }
+    return tmp;
+  }
+  function doubleCompareTo(a, b) {
+    var tmp;
+    if (a < b) {
+      tmp = -1;
+    } else if (a > b) {
+      tmp = 1;
+    } else if (a === b) {
+      var tmp_0;
+      if (a !== 0) {
+        tmp_0 = 0;
+      } else {
+        var tmp$ret$0;
+        $l$block: {
+          tmp$ret$0 = 1;
+          break $l$block;
+        }
+        var ia = tmp$ret$0 / a;
+        var tmp_1;
+        var tmp$ret$1;
+        $l$block_0: {
+          tmp$ret$1 = 1;
+          break $l$block_0;
+        }
+        if (ia === tmp$ret$1 / b) {
+          tmp_1 = 0;
+        } else {
+          if (ia < 0) {
+            tmp_1 = -1;
+          } else {
+            {
+              tmp_1 = 1;
+            }
+          }
+        }
+        tmp_0 = tmp_1;
+      }
+      tmp = tmp_0;
+    } else if (a !== a) {
+      tmp = b !== b ? 0 : 1;
+    } else {
+      tmp = -1;
+    }
+    return tmp;
+  }
+  function primitiveCompareTo(a, b) {
+    return a < b ? -1 : a > b ? 1 : 0;
+  }
+  function compareToDoNotIntrinsicify(a, b) {
+    return a.compareTo_n48p4x_k$(b);
+  }
+  function identityHashCode(obj) {
+    return getObjectHashCode(obj);
+  }
   function getObjectHashCode(obj) {
     if (!jsIn('kotlinHashCodeValue$', obj)) {
       var hash = jsBitwiseOr(Math.random() * 4.294967296E9, 0);
@@ -3663,10 +3807,10 @@
     return hash;
   }
   function boxIntrinsic(x) {
-    throw IllegalStateException_init_$Create$('Should be lowered');
+    throw IllegalStateException_init_$Create$_0('Should be lowered');
   }
   function unboxIntrinsic(x) {
-    throw IllegalStateException_init_$Create$('Should be lowered');
+    throw IllegalStateException_init_$Create$_0('Should be lowered');
   }
   function captureStack(instance, constructorFunction) {
     if (Error.captureStackTrace != null) {
@@ -3731,16 +3875,436 @@
   function THROW_CCE() {
     throw ClassCastException_init_$Create$();
   }
-  function Long() {
+  function THROW_ISE() {
+    throw IllegalStateException_init_$Create$();
   }
+  function Companion_6() {
+    Companion_instance_6 = this;
+    this.MIN_VALUE_1 = new Long(0, -2147483648);
+    this.MAX_VALUE_1 = new Long(-1, 2147483647);
+    this.SIZE_BYTES_1 = 8;
+    this.SIZE_BITS_1 = 64;
+  }
+  Companion_6.$metadata$ = {
+    simpleName: 'Companion',
+    kind: 'object',
+    interfaces: []
+  };
+  var Companion_instance_6;
+  function Companion_getInstance_6() {
+    if (Companion_instance_6 == null)
+      new Companion_6();
+    return Companion_instance_6;
+  }
+  function Long(low, high) {
+    Companion_getInstance_6();
+    Number_0.call(this);
+    this.low_1 = low;
+    this.high_1 = high;
+  }
+  Long.prototype._get_low__857179069_e6cblp_k$ = function () {
+    return this.low_1;
+  };
+  Long.prototype._get_high__798860521_d7mcq1_k$ = function () {
+    return this.high_1;
+  };
+  Long.prototype.compareTo_n4fqi2_k$ = function (other) {
+    return compare(this, other);
+  };
+  Long.prototype.compareTo_n48p4x_k$ = function (other) {
+    return this.compareTo_n4fqi2_k$(other instanceof Long ? other : THROW_CCE());
+  };
+  Long.prototype.plus_u6jwas_k$ = function (other) {
+    return add(this, other);
+  };
+  Long.prototype.div_9s1fi3_k$ = function (other) {
+    return divide(this, other);
+  };
+  Long.prototype.unaryMinus_6uz0qp_k$ = function () {
+    return this.inv_28kx_k$().plus_u6jwas_k$(new Long(1, 0));
+  };
+  Long.prototype.inv_28kx_k$ = function () {
+    return new Long(~this.low_1, ~this.high_1);
+  };
   Long.prototype.toInt_1tsl84_k$ = function () {
     return this.low_1;
+  };
+  Long.prototype.toDouble_ygsx0s_k$ = function () {
+    return toNumber(this);
+  };
+  Long.prototype.valueOf = function () {
+    return this.toDouble_ygsx0s_k$();
+  };
+  Long.prototype.equals = function (other) {
+    var tmp;
+    if (other instanceof Long) {
+      tmp = equalsLong(this, other);
+    } else {
+      {
+        tmp = false;
+      }
+    }
+    return tmp;
+  };
+  Long.prototype.hashCode = function () {
+    return hashCode_0(this);
+  };
+  Long.prototype.toString = function () {
+    return toStringImpl(this, 10);
   };
   Long.$metadata$ = {
     simpleName: 'Long',
     kind: 'class',
     interfaces: [Comparable]
   };
+  function _get_ZERO__784837795() {
+    init_properties_longjs_kt_2491794837();
+    return ZERO;
+  }
+  var ZERO;
+  function _get_ONE__856281867() {
+    init_properties_longjs_kt_2491794837();
+    return ONE;
+  }
+  var ONE;
+  function _get_NEG_ONE__3857310458() {
+    init_properties_longjs_kt_2491794837();
+    return NEG_ONE;
+  }
+  var NEG_ONE;
+  function _get_MAX_VALUE__3201573499() {
+    init_properties_longjs_kt_2491794837();
+    return MAX_VALUE;
+  }
+  var MAX_VALUE;
+  function _get_MIN_VALUE__1378605517() {
+    init_properties_longjs_kt_2491794837();
+    return MIN_VALUE;
+  }
+  var MIN_VALUE;
+  function _get_TWO_PWR_24___3968246811() {
+    init_properties_longjs_kt_2491794837();
+    return TWO_PWR_24_;
+  }
+  var TWO_PWR_24_;
+  function compare(_this__1828080292, other) {
+    init_properties_longjs_kt_2491794837();
+    if (equalsLong(_this__1828080292, other)) {
+      return 0;
+    }
+    var thisNeg = isNegative(_this__1828080292);
+    var otherNeg = isNegative(other);
+    return (thisNeg ? !otherNeg : false) ? -1 : (!thisNeg ? otherNeg : false) ? 1 : isNegative(subtract(_this__1828080292, other)) ? -1 : 1;
+  }
+  function add(_this__1828080292, other) {
+    init_properties_longjs_kt_2491794837();
+    var a48 = _this__1828080292._get_high__798860521_d7mcq1_k$() >>> 16 | 0;
+    var a32 = _this__1828080292._get_high__798860521_d7mcq1_k$() & 65535;
+    var a16 = _this__1828080292._get_low__857179069_e6cblp_k$() >>> 16 | 0;
+    var a00 = _this__1828080292._get_low__857179069_e6cblp_k$() & 65535;
+    var b48 = other._get_high__798860521_d7mcq1_k$() >>> 16 | 0;
+    var b32 = other._get_high__798860521_d7mcq1_k$() & 65535;
+    var b16 = other._get_low__857179069_e6cblp_k$() >>> 16 | 0;
+    var b00 = other._get_low__857179069_e6cblp_k$() & 65535;
+    var c48 = 0;
+    var c32 = 0;
+    var c16 = 0;
+    var c00 = 0;
+    c00 = c00 + (a00 + b00 | 0) | 0;
+    c16 = c16 + (c00 >>> 16 | 0) | 0;
+    c00 = c00 & 65535;
+    c16 = c16 + (a16 + b16 | 0) | 0;
+    c32 = c32 + (c16 >>> 16 | 0) | 0;
+    c16 = c16 & 65535;
+    c32 = c32 + (a32 + b32 | 0) | 0;
+    c48 = c48 + (c32 >>> 16 | 0) | 0;
+    c32 = c32 & 65535;
+    c48 = c48 + (a48 + b48 | 0) | 0;
+    c48 = c48 & 65535;
+    return new Long(c16 << 16 | c00, c48 << 16 | c32);
+  }
+  function subtract(_this__1828080292, other) {
+    init_properties_longjs_kt_2491794837();
+    return add(_this__1828080292, other.unaryMinus_6uz0qp_k$());
+  }
+  function multiply(_this__1828080292, other) {
+    init_properties_longjs_kt_2491794837();
+    if (isZero(_this__1828080292)) {
+      return _get_ZERO__784837795();
+    } else if (isZero(other)) {
+      return _get_ZERO__784837795();
+    }
+    if (equalsLong(_this__1828080292, _get_MIN_VALUE__1378605517())) {
+      return isOdd(other) ? _get_MIN_VALUE__1378605517() : _get_ZERO__784837795();
+    } else if (equalsLong(other, _get_MIN_VALUE__1378605517())) {
+      return isOdd(_this__1828080292) ? _get_MIN_VALUE__1378605517() : _get_ZERO__784837795();
+    }
+    if (isNegative(_this__1828080292)) {
+      var tmp;
+      if (isNegative(other)) {
+        tmp = multiply(negate(_this__1828080292), negate(other));
+      } else {
+        tmp = negate(multiply(negate(_this__1828080292), other));
+      }
+      return tmp;
+    } else if (isNegative(other)) {
+      return negate(multiply(_this__1828080292, negate(other)));
+    }
+    if (lessThan(_this__1828080292, _get_TWO_PWR_24___3968246811()) ? lessThan(other, _get_TWO_PWR_24___3968246811()) : false) {
+      return fromNumber(toNumber(_this__1828080292) * toNumber(other));
+    }
+    var a48 = _this__1828080292._get_high__798860521_d7mcq1_k$() >>> 16 | 0;
+    var a32 = _this__1828080292._get_high__798860521_d7mcq1_k$() & 65535;
+    var a16 = _this__1828080292._get_low__857179069_e6cblp_k$() >>> 16 | 0;
+    var a00 = _this__1828080292._get_low__857179069_e6cblp_k$() & 65535;
+    var b48 = other._get_high__798860521_d7mcq1_k$() >>> 16 | 0;
+    var b32 = other._get_high__798860521_d7mcq1_k$() & 65535;
+    var b16 = other._get_low__857179069_e6cblp_k$() >>> 16 | 0;
+    var b00 = other._get_low__857179069_e6cblp_k$() & 65535;
+    var c48 = 0;
+    var c32 = 0;
+    var c16 = 0;
+    var c00 = 0;
+    c00 = c00 + imul(a00, b00) | 0;
+    c16 = c16 + (c00 >>> 16 | 0) | 0;
+    c00 = c00 & 65535;
+    c16 = c16 + imul(a16, b00) | 0;
+    c32 = c32 + (c16 >>> 16 | 0) | 0;
+    c16 = c16 & 65535;
+    c16 = c16 + imul(a00, b16) | 0;
+    c32 = c32 + (c16 >>> 16 | 0) | 0;
+    c16 = c16 & 65535;
+    c32 = c32 + imul(a32, b00) | 0;
+    c48 = c48 + (c32 >>> 16 | 0) | 0;
+    c32 = c32 & 65535;
+    c32 = c32 + imul(a16, b16) | 0;
+    c48 = c48 + (c32 >>> 16 | 0) | 0;
+    c32 = c32 & 65535;
+    c32 = c32 + imul(a00, b32) | 0;
+    c48 = c48 + (c32 >>> 16 | 0) | 0;
+    c32 = c32 & 65535;
+    c48 = c48 + (((imul(a48, b00) + imul(a32, b16) | 0) + imul(a16, b32) | 0) + imul(a00, b48) | 0) | 0;
+    c48 = c48 & 65535;
+    return new Long(c16 << 16 | c00, c48 << 16 | c32);
+  }
+  function divide(_this__1828080292, other) {
+    init_properties_longjs_kt_2491794837();
+    if (isZero(other)) {
+      throw Exception_init_$Create$('division by zero');
+    } else if (isZero(_this__1828080292)) {
+      return _get_ZERO__784837795();
+    }
+    if (equalsLong(_this__1828080292, _get_MIN_VALUE__1378605517())) {
+      if (equalsLong(other, _get_ONE__856281867()) ? true : equalsLong(other, _get_NEG_ONE__3857310458())) {
+        return _get_MIN_VALUE__1378605517();
+      } else if (equalsLong(other, _get_MIN_VALUE__1378605517())) {
+        return _get_ONE__856281867();
+      } else {
+        var halfThis = shiftRight(_this__1828080292, 1);
+        var approx = shiftLeft(halfThis.div_9s1fi3_k$(other), 1);
+        if (equalsLong(approx, _get_ZERO__784837795())) {
+          return isNegative(other) ? _get_ONE__856281867() : _get_NEG_ONE__3857310458();
+        } else {
+          var rem = subtract(_this__1828080292, multiply(other, approx));
+          return add(approx, rem.div_9s1fi3_k$(other));
+        }
+      }
+    } else if (equalsLong(other, _get_MIN_VALUE__1378605517())) {
+      return _get_ZERO__784837795();
+    }
+    if (isNegative(_this__1828080292)) {
+      var tmp;
+      if (isNegative(other)) {
+        tmp = negate(_this__1828080292).div_9s1fi3_k$(negate(other));
+      } else {
+        tmp = negate(negate(_this__1828080292).div_9s1fi3_k$(other));
+      }
+      return tmp;
+    } else if (isNegative(other)) {
+      return negate(_this__1828080292.div_9s1fi3_k$(negate(other)));
+    }
+    var res = _get_ZERO__784837795();
+    var rem_0 = _this__1828080292;
+    while (greaterThanOrEqual(rem_0, other)) {
+      var approxDouble = toNumber(rem_0) / toNumber(other);
+      var approx2 = Math.max(1.0, Math.floor(approxDouble));
+      var log2 = Math.ceil(Math.log(approx2) / Math.LN2);
+      var delta = log2 <= 48.0 ? 1.0 : Math.pow(2.0, log2 - 48);
+      var approxRes = fromNumber(approx2);
+      var approxRem = multiply(approxRes, other);
+      while (isNegative(approxRem) ? true : greaterThan(approxRem, rem_0)) {
+        approx2 = approx2 - delta;
+        approxRes = fromNumber(approx2);
+        approxRem = multiply(approxRes, other);
+      }
+      if (isZero(approxRes)) {
+        approxRes = _get_ONE__856281867();
+      }
+      res = add(res, approxRes);
+      rem_0 = subtract(rem_0, approxRem);
+    }
+    return res;
+  }
+  function shiftLeft(_this__1828080292, numBits) {
+    init_properties_longjs_kt_2491794837();
+    var numBits_0 = numBits & 63;
+    if (numBits_0 === 0) {
+      return _this__1828080292;
+    } else {
+      if (numBits_0 < 32) {
+        return new Long(_this__1828080292._get_low__857179069_e6cblp_k$() << numBits_0, _this__1828080292._get_high__798860521_d7mcq1_k$() << numBits_0 | (_this__1828080292._get_low__857179069_e6cblp_k$() >>> (32 - numBits_0 | 0) | 0));
+      } else {
+        return new Long(0, _this__1828080292._get_low__857179069_e6cblp_k$() << (numBits_0 - 32 | 0));
+      }
+    }
+  }
+  function shiftRight(_this__1828080292, numBits) {
+    init_properties_longjs_kt_2491794837();
+    var numBits_0 = numBits & 63;
+    if (numBits_0 === 0) {
+      return _this__1828080292;
+    } else {
+      if (numBits_0 < 32) {
+        return new Long(_this__1828080292._get_low__857179069_e6cblp_k$() >>> numBits_0 | 0 | _this__1828080292._get_high__798860521_d7mcq1_k$() << (32 - numBits_0 | 0), _this__1828080292._get_high__798860521_d7mcq1_k$() >> numBits_0);
+      } else {
+        return new Long(_this__1828080292._get_high__798860521_d7mcq1_k$() >> (numBits_0 - 32 | 0), _this__1828080292._get_high__798860521_d7mcq1_k$() >= 0 ? 0 : -1);
+      }
+    }
+  }
+  function toNumber(_this__1828080292) {
+    init_properties_longjs_kt_2491794837();
+    return _this__1828080292._get_high__798860521_d7mcq1_k$() * 4.294967296E9 + getLowBitsUnsigned(_this__1828080292);
+  }
+  function equalsLong(_this__1828080292, other) {
+    init_properties_longjs_kt_2491794837();
+    return _this__1828080292._get_high__798860521_d7mcq1_k$() === other._get_high__798860521_d7mcq1_k$() ? _this__1828080292._get_low__857179069_e6cblp_k$() === other._get_low__857179069_e6cblp_k$() : false;
+  }
+  function hashCode_0(l) {
+    init_properties_longjs_kt_2491794837();
+    return l._get_low__857179069_e6cblp_k$() ^ l._get_high__798860521_d7mcq1_k$();
+  }
+  function toStringImpl(_this__1828080292, radix) {
+    init_properties_longjs_kt_2491794837();
+    if (radix < 2 ? true : 36 < radix) {
+      throw Exception_init_$Create$('radix out of range: ' + radix);
+    }
+    if (isZero(_this__1828080292)) {
+      return '0';
+    }
+    if (isNegative(_this__1828080292)) {
+      if (equalsLong(_this__1828080292, _get_MIN_VALUE__1378605517())) {
+        var radixLong = fromInt(radix);
+        var div = _this__1828080292.div_9s1fi3_k$(radixLong);
+        var rem = subtract(multiply(div, radixLong), _this__1828080292).toInt_1tsl84_k$();
+        var tmp = toStringImpl(div, radix);
+        var tmp$ret$1;
+        $l$block_0: {
+          var tmp$ret$0;
+          $l$block: {
+            tmp$ret$0 = rem;
+            break $l$block;
+          }
+          var tmp0_unsafeCast_0 = tmp$ret$0.toString(radix);
+          tmp$ret$1 = tmp0_unsafeCast_0;
+          break $l$block_0;
+        }
+        return tmp + tmp$ret$1;
+      } else {
+        return '-' + toStringImpl(negate(_this__1828080292), radix);
+      }
+    }
+    var radixToPower = fromNumber(Math.pow(radix, 6.0));
+    var rem_0 = _this__1828080292;
+    var result = '';
+    while (true) {
+      var remDiv = rem_0.div_9s1fi3_k$(radixToPower);
+      var intval = subtract(rem_0, multiply(remDiv, radixToPower)).toInt_1tsl84_k$();
+      var tmp$ret$3;
+      $l$block_2: {
+        var tmp$ret$2;
+        $l$block_1: {
+          tmp$ret$2 = intval;
+          break $l$block_1;
+        }
+        var tmp1_unsafeCast_0 = tmp$ret$2.toString(radix);
+        tmp$ret$3 = tmp1_unsafeCast_0;
+        break $l$block_2;
+      }
+      var digits = tmp$ret$3;
+      rem_0 = remDiv;
+      if (isZero(rem_0)) {
+        return digits + result;
+      } else {
+        while (digits.length < 6) {
+          digits = '0' + digits;
+        }
+        result = digits + result;
+      }
+    }
+  }
+  function fromInt(value) {
+    init_properties_longjs_kt_2491794837();
+    return new Long(value, value < 0 ? -1 : 0);
+  }
+  function isNegative(_this__1828080292) {
+    init_properties_longjs_kt_2491794837();
+    return _this__1828080292._get_high__798860521_d7mcq1_k$() < 0;
+  }
+  function isZero(_this__1828080292) {
+    init_properties_longjs_kt_2491794837();
+    return _this__1828080292._get_high__798860521_d7mcq1_k$() === 0 ? _this__1828080292._get_low__857179069_e6cblp_k$() === 0 : false;
+  }
+  function isOdd(_this__1828080292) {
+    init_properties_longjs_kt_2491794837();
+    return (_this__1828080292._get_low__857179069_e6cblp_k$() & 1) === 1;
+  }
+  function negate(_this__1828080292) {
+    init_properties_longjs_kt_2491794837();
+    return _this__1828080292.unaryMinus_6uz0qp_k$();
+  }
+  function lessThan(_this__1828080292, other) {
+    init_properties_longjs_kt_2491794837();
+    return compare(_this__1828080292, other) < 0;
+  }
+  function fromNumber(value) {
+    init_properties_longjs_kt_2491794837();
+    if (isNaN_0(value)) {
+      return _get_ZERO__784837795();
+    } else if (value <= -9.223372036854776E18) {
+      return _get_MIN_VALUE__1378605517();
+    } else if (value + 1 >= 9.223372036854776E18) {
+      return _get_MAX_VALUE__3201573499();
+    } else if (value < 0.0) {
+      return negate(fromNumber(-value));
+    } else {
+      var twoPwr32 = 4.294967296E9;
+      return new Long(jsBitwiseOr(value % twoPwr32, 0), jsBitwiseOr(value / twoPwr32, 0));
+    }
+  }
+  function greaterThan(_this__1828080292, other) {
+    init_properties_longjs_kt_2491794837();
+    return compare(_this__1828080292, other) > 0;
+  }
+  function greaterThanOrEqual(_this__1828080292, other) {
+    init_properties_longjs_kt_2491794837();
+    return compare(_this__1828080292, other) >= 0;
+  }
+  function getLowBitsUnsigned(_this__1828080292) {
+    init_properties_longjs_kt_2491794837();
+    return _this__1828080292._get_low__857179069_e6cblp_k$() >= 0 ? _this__1828080292._get_low__857179069_e6cblp_k$() : 4.294967296E9 + _this__1828080292._get_low__857179069_e6cblp_k$();
+  }
+  var properties_initialized_longjs_kt_320052665;
+  function init_properties_longjs_kt_2491794837() {
+    if (!properties_initialized_longjs_kt_320052665) {
+      properties_initialized_longjs_kt_320052665 = true;
+      ZERO = fromInt(0);
+      ONE = fromInt(1);
+      NEG_ONE = fromInt(-1);
+      MAX_VALUE = new Long(-1, 2147483647);
+      MIN_VALUE = new Long(0, -2147483648);
+      TWO_PWR_24_ = fromInt(16777216);
+    }
+  }
   function numberToInt(a) {
     var tmp;
     if (a instanceof Long) {
@@ -3930,6 +4494,11 @@
     Exception.call($this);
     return $this;
   }
+  function Exception_init_$Create$(message) {
+    var tmp = Exception_init_$Init$_0(message, Object.create(Exception.prototype));
+    captureStack(tmp, Exception_init_$Create$);
+    return tmp;
+  }
   function Exception() {
     captureStack(this, Exception);
   }
@@ -4002,14 +4571,24 @@
     kind: 'class',
     interfaces: []
   };
-  function IllegalStateException_init_$Init$(message, $this) {
+  function IllegalStateException_init_$Init$($this) {
+    RuntimeException_init_$Init$($this);
+    IllegalStateException.call($this);
+    return $this;
+  }
+  function IllegalStateException_init_$Create$() {
+    var tmp = IllegalStateException_init_$Init$(Object.create(IllegalStateException.prototype));
+    captureStack(tmp, IllegalStateException_init_$Create$);
+    return tmp;
+  }
+  function IllegalStateException_init_$Init$_0(message, $this) {
     RuntimeException_init_$Init$_0(message, $this);
     IllegalStateException.call($this);
     return $this;
   }
-  function IllegalStateException_init_$Create$(message) {
-    var tmp = IllegalStateException_init_$Init$(message, Object.create(IllegalStateException.prototype));
-    captureStack(tmp, IllegalStateException_init_$Create$);
+  function IllegalStateException_init_$Create$_0(message) {
+    var tmp = IllegalStateException_init_$Init$_0(message, Object.create(IllegalStateException.prototype));
+    captureStack(tmp, IllegalStateException_init_$Create$_0);
     return tmp;
   }
   function IllegalStateException() {
@@ -4162,6 +4741,7 @@
   //region block: exports
   _.$crossModule$ = _.$crossModule$ || {};
   _.$crossModule$.getKClassFromExpression = getKClassFromExpression;
+  _.$crossModule$.getKClass = getKClass;
   _.$crossModule$.split$default = split$default;
   _.$crossModule$.HashMap_init_$Create$ = HashMap_init_$Create$;
   _.$crossModule$.Exception_init_$Init$ = Exception_init_$Init$_0;
@@ -4175,8 +4755,10 @@
   _.$crossModule$.getStringHashCode = getStringHashCode;
   _.$crossModule$.hashCode = hashCode;
   _.$crossModule$.toString = toString_2;
+  _.$crossModule$.Enum = Enum;
   _.$crossModule$.Exception = Exception;
   _.$crossModule$.THROW_CCE = THROW_CCE;
+  _.$crossModule$.THROW_ISE = THROW_ISE;
   _.$crossModule$.toString_1 = toString_1;
   //endregion
   return _;

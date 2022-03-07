@@ -3,6 +3,9 @@ package x2.api.ssm.sync.api
 import f2.dsl.fnc.invoke
 import f2.dsl.fnc.invokeWith
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.toSet
 import kotlinx.coroutines.runBlocking
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Component
 import ssm.chaincode.dsl.model.SessionName
 import ssm.chaincode.dsl.model.uri.ChaincodeUri
 import ssm.chaincode.dsl.model.uri.SsmUri
+import ssm.chaincode.dsl.model.uri.burst
 import ssm.chaincode.dsl.model.uri.from
 import ssm.data.dsl.features.query.DataSsmGetQuery
 import ssm.data.dsl.features.query.DataSsmGetQueryFunction
@@ -19,9 +23,9 @@ import ssm.data.dsl.model.DataSsmSessionState
 import ssm.sync.sdk.SsmSessionSyncResult
 import ssm.sync.sdk.SsmSyncEventBus
 import ssm.sync.sdk.SyncSsmCommandFunction
-import x2.api.ssm.domain.config.X2SsmProperties
 import x2.api.ssm.repo.postgres.LogEntity
 import x2.api.ssm.repo.postgres.SessionEntity
+import x2.api.ssm.repo.postgres.f2.X2ProtocolsListFunctionImpl
 import x2.api.ssm.repo.postgres.repository.LogRepository
 import x2.api.ssm.repo.postgres.repository.SessionRepository
 import x2.api.ssm.repo.postgres.repository.SsmRepository
@@ -31,8 +35,9 @@ import x2.api.ssm.repo.postgres.toSessionEntity
 
 @Component
 class SyncSsm(
-	private val x2SsmProperties: X2SsmProperties,
+
 	private val syncSsmCommandFunction: SyncSsmCommandFunction,
+	private val x2ProtocolsListFunctionBlockchain: X2ProtocolsListFunctionImpl,
 	private val dataSsmGetQueryFunction: DataSsmGetQueryFunction,
 	private val dataSsmSessionGetQueryFunction: DataSsmSessionGetQueryFunction,
 	private val logRepository: LogRepository,
@@ -42,11 +47,12 @@ class SyncSsm(
 
 	private val logger = LoggerFactory.getLogger(SyncSsm::class.java)
 
-	override fun run(vararg args: String?) = runBlocking {
-		x2SsmProperties.ssm.forEach { ssm ->
+	override fun run(vararg args: String?): Unit = runBlocking {
+		x2ProtocolsListFunctionBlockchain.invoke().flatMapConcat {
+			it.items.flatMap { it.ssms.toList() }.asFlow()
+		}.toSet().forEach { ssmUri ->
 			async {
-				val uri = SsmUri.from(ssm.channelId, chaincodeId = ssm.chaincodeId, ssmName = ssm.ssmName)
-				syncChaincode(uri)
+				syncChaincode(ssmUri.burst())
 			}
 		}
 	}

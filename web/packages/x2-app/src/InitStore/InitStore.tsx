@@ -1,17 +1,17 @@
 import { useEffect } from "react";
-import {SSM, SsmPath, SsmUriDTO} from "ssm";
+import {Protocol, ProtocolName} from "ssm";
 import { LoadingPage } from "components";
 import { SSMRequester } from "ssm";
 import { useExtendedAuth } from "OptionnalKeycloakProvider";
 import App from "App";
 
 interface InitStoreProps {
-  ssmList: Map<SsmPath, SSM>
-  setSsmList: (ssmList: Map<SsmUriDTO, SSM>) => void
+  protocols: Map<ProtocolName, Protocol>
+  setProtocols: (protocols: Map<ProtocolName, Protocol>) => void
 }
 
 export const InitStore = (props: InitStoreProps) => {
-  const { ssmList, setSsmList } = props;
+  const { protocols, setProtocols } = props;
 
   const auth = useExtendedAuth()
 
@@ -22,13 +22,13 @@ export const InitStore = (props: InitStoreProps) => {
       //@ts-ignore
       window._env_.COOP_URL = auth?.service.getSSMInfo().url
     }
-    SSMRequester.fetchSSMsAsync(setSsmList)
-  }, [auth?.keycloak.authenticated, auth?.service.getSSMInfo, setSsmList])
+    SSMRequester.fetchProtocolsAsync(setProtocols)
+  }, [auth?.keycloak.authenticated, auth?.service.getSSMInfo, setProtocols])
 
 
   const isLoading = () => {
-    if (ssmList.size === 0) return true
-    return false
+    return protocols.size === 0;
+
   }
 
   if (isLoading()) return (

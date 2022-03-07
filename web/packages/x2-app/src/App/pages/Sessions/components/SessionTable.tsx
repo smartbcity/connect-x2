@@ -3,8 +3,9 @@ import { Box, Typography } from '@mui/material'
 import { useTranslation, TFunction } from 'react-i18next'
 import { useCallback, useMemo, useState } from 'react'
 import { makeG2STyles} from '@smartb/g2-themes'
-import {Session, SsmUriDTO} from 'ssm'
+import {ProtocolName, Session, SsmUriDTO} from 'ssm'
 import { LoadingComponent } from 'components'
+import {GotoSessionDetails} from "../../../../store/router/router.goto";
 
 const useStyles = makeG2STyles()({
     container: {
@@ -33,6 +34,7 @@ const useStyles = makeG2STyles()({
 
 interface SessionColumn {
     id: string
+    ssmUri: string
     creationDate: string
     channel: string
     protocolEngine: string
@@ -44,14 +46,14 @@ interface SessionColumn {
 }
 
 interface SessionTableProps {
-    ssmUri: SsmUriDTO
+    protocolName: ProtocolName,
     sessions?: Session[]
     isLoading?: boolean
-    gotoSessionDetails: (ssmUri: SsmUriDTO, sessionName: any) => void
+    gotoSessionDetails: GotoSessionDetails
 }
 
 export const SessionTable = (props: SessionTableProps) => {
-    const { ssmUri, sessions, gotoSessionDetails, isLoading = false } = props
+    const { protocolName, sessions, gotoSessionDetails, isLoading = false } = props
     const { t } = useTranslation()
     const [page, setPage] = useState(1)
     const { classes } = useStyles()
@@ -59,6 +61,7 @@ export const SessionTable = (props: SessionTableProps) => {
         if (!sessions) return []
         return sessions.map((session): SessionColumn => ({
             id: session.sessionName,
+            ssmUri : session.ssmUri.uri,
             creationDate: new Date(session.transaction?.timestamp).toLocaleDateString(),
             channel: session.channel.id,
             protocolEngine: session.state.details.ssm as string,
@@ -84,7 +87,7 @@ export const SessionTable = (props: SessionTableProps) => {
     )
 
     const onRowClicked = useCallback(
-        (row: SessionColumn) => gotoSessionDetails(ssmUri, row.id),
+        (row: SessionColumn) => gotoSessionDetails({uri: row.ssmUri}, row.id),
         [gotoSessionDetails],
     )
 

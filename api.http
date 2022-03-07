@@ -14,7 +14,11 @@ POST http://localhost:8082/api/getAllSessions
 Accept: application/json
 Content-Type: application/json
 
-{"ssmUri":{"uri":"ssm:sandbox:ssm:S2WorksiteState"}}
+{
+  "ssmUri": {
+    "uri": "ssm:sandbox:ssm:S2WorksiteState"
+  }
+}
 
 
 ###
@@ -23,7 +27,11 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "chaincodes": [{"uri": "chaincode:proudhon:ssm"}]
+  "chaincodes": [
+    {
+      "uri": "chaincode:proudhon:ssm"
+    }
+  ]
 }
 
 ###
@@ -63,3 +71,23 @@ Content-Type: application/json
 }
 
 
+###
+POST http://localhost:8082/api/sessionPerStateStats
+Accept: application/json
+Content-Type: application/json
+
+{
+  "filter": {
+    "protocol": "Certificates1"
+  },
+  "pagination": null
+}
+
+###
+POST http://localhost:8082/api/getSession
+Content-Type: application/json
+
+[{
+  "sessionName":"certificates-session-5-d7bdbb57-b193-4ae5-86f4-9711fac46a8a",
+  "ssmUri":{"uri":"ssm:sandbox:ssm:certificates"}
+}]

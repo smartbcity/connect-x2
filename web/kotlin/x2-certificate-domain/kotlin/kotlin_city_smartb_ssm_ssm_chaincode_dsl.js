@@ -1,20 +1,27 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd)
-    define(['exports', './kotlin_kotlin.js'], factory);
+    define(['exports', './kotlin_city_smartb_f2_f2_dsl_cqrs.js', './kotlin_kotlin.js'], factory);
   else if (typeof exports === 'object')
-    factory(module.exports, require('./kotlin_kotlin.js'));
+    factory(module.exports, require('./kotlin_city_smartb_f2_f2_dsl_cqrs.js'), require('./kotlin_kotlin.js'));
   else {
+    if (typeof kotlin_city_smartb_f2_f2_dsl_cqrs === 'undefined') {
+      throw new Error("Error loading module 'kotlin_city_smartb_ssm_ssm_chaincode_dsl'. Its dependency 'kotlin_city_smartb_f2_f2_dsl_cqrs' was not found. Please, check whether 'kotlin_city_smartb_f2_f2_dsl_cqrs' is loaded prior to 'kotlin_city_smartb_ssm_ssm_chaincode_dsl'.");
+    }
     if (typeof kotlin_kotlin === 'undefined') {
       throw new Error("Error loading module 'kotlin_city_smartb_ssm_ssm_chaincode_dsl'. Its dependency 'kotlin_kotlin' was not found. Please, check whether 'kotlin_kotlin' is loaded prior to 'kotlin_city_smartb_ssm_ssm_chaincode_dsl'.");
     }
-    root.kotlin_city_smartb_ssm_ssm_chaincode_dsl = factory(typeof kotlin_city_smartb_ssm_ssm_chaincode_dsl === 'undefined' ? {} : kotlin_city_smartb_ssm_ssm_chaincode_dsl, kotlin_kotlin);
+    root.kotlin_city_smartb_ssm_ssm_chaincode_dsl = factory(typeof kotlin_city_smartb_ssm_ssm_chaincode_dsl === 'undefined' ? {} : kotlin_city_smartb_ssm_ssm_chaincode_dsl, kotlin_city_smartb_f2_f2_dsl_cqrs, kotlin_kotlin);
   }
-}(this, function (_, kotlin_kotlin) {
+}(this, function (_, kotlin_city_smartb_f2_f2_dsl_cqrs, kotlin_kotlin) {
   //region block: imports
   var imul = Math.imul;
+  var Query = kotlin_city_smartb_f2_f2_dsl_cqrs.$crossModule$.Query;
+  var Event = kotlin_city_smartb_f2_f2_dsl_cqrs.$crossModule$.Event;
+  var THROW_ISE = kotlin_kotlin.$crossModule$.THROW_ISE;
+  var Unit_getInstance = kotlin_kotlin.$crossModule$.Unit_getInstance;
+  var Enum = kotlin_kotlin.$crossModule$.Enum;
   var getKClassFromExpression = kotlin_kotlin.$crossModule$.getKClassFromExpression;
   var THROW_CCE = kotlin_kotlin.$crossModule$.THROW_CCE;
-  var Unit_getInstance = kotlin_kotlin.$crossModule$.Unit_getInstance;
   var contentEquals = kotlin_kotlin.$crossModule$.contentEquals;
   var getStringHashCode = kotlin_kotlin.$crossModule$.getStringHashCode;
   var contentHashCode = kotlin_kotlin.$crossModule$.contentHashCode;
@@ -29,7 +36,44 @@
   //endregion
   'use strict';
   //region block: pre-declaration
+  EnvelopeType.prototype = Object.create(Enum.prototype);
+  EnvelopeType.prototype.constructor = EnvelopeType;
   //endregion
+  function SsmChaincodeQueries() {
+  }
+  SsmChaincodeQueries.$metadata$ = {
+    simpleName: 'SsmChaincodeQueries',
+    kind: 'interface',
+    interfaces: []
+  };
+  function SsmQueryDTO() {
+  }
+  SsmQueryDTO.$metadata$ = {
+    simpleName: 'SsmQueryDTO',
+    kind: 'interface',
+    interfaces: [Query]
+  };
+  function SsmItemResultDTO() {
+  }
+  SsmItemResultDTO.$metadata$ = {
+    simpleName: 'SsmItemResultDTO',
+    kind: 'interface',
+    interfaces: [Event]
+  };
+  function SsmItemsResultDTO() {
+  }
+  SsmItemsResultDTO.$metadata$ = {
+    simpleName: 'SsmItemsResultDTO',
+    kind: 'interface',
+    interfaces: [Event]
+  };
+  function BlockDTO() {
+  }
+  BlockDTO.$metadata$ = {
+    simpleName: 'BlockDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function Block(blockId, previousHash, dataHash, transactions) {
     this.blockId_1 = blockId;
     this.previousHash_1 = previousHash;
@@ -51,7 +95,7 @@
   Block.$metadata$ = {
     simpleName: 'Block',
     kind: 'class',
-    interfaces: []
+    interfaces: [BlockDTO]
   };
   Object.defineProperty(Block.prototype, 'blockId', {
     configurable: true,
@@ -77,6 +121,62 @@
       return this._get_transactions__188093078_33zhjq_k$();
     }
   });
+  var EnvelopeType_TRANSACTION_ENVELOPE_instance;
+  var EnvelopeType_ENVELOPE_instance;
+  function values() {
+    return [EnvelopeType_TRANSACTION_ENVELOPE_getInstance(), EnvelopeType_ENVELOPE_getInstance()];
+  }
+  function valueOf(value) {
+    switch (value) {
+      case 'TRANSACTION_ENVELOPE':
+        return EnvelopeType_TRANSACTION_ENVELOPE_getInstance();
+      case 'ENVELOPE':
+        return EnvelopeType_ENVELOPE_getInstance();
+      default:
+        EnvelopeType_initEntries();
+        THROW_ISE();
+        break;
+    }
+  }
+  var EnvelopeType_entriesInitialized;
+  function EnvelopeType_initEntries() {
+    if (EnvelopeType_entriesInitialized)
+      return Unit_getInstance();
+    EnvelopeType_entriesInitialized = true;
+    EnvelopeType_TRANSACTION_ENVELOPE_instance = new EnvelopeType('TRANSACTION_ENVELOPE', 0);
+    EnvelopeType_ENVELOPE_instance = new EnvelopeType('ENVELOPE', 1);
+  }
+  function EnvelopeType(name, ordinal) {
+    Enum.call(this, name, ordinal);
+  }
+  EnvelopeType.$metadata$ = {
+    simpleName: 'EnvelopeType',
+    kind: 'class',
+    interfaces: []
+  };
+  Object.defineProperty(EnvelopeType.prototype, 'name', {
+    configurable: true,
+    get: EnvelopeType.prototype._get_name__804168992_das4rk_k$
+  });
+  Object.defineProperty(EnvelopeType.prototype, 'ordinal', {
+    configurable: true,
+    get: EnvelopeType.prototype._get_ordinal__3363892928_fec5kw_k$
+  });
+  function EnvelopeType_TRANSACTION_ENVELOPE_getInstance() {
+    EnvelopeType_initEntries();
+    return EnvelopeType_TRANSACTION_ENVELOPE_instance;
+  }
+  function EnvelopeType_ENVELOPE_getInstance() {
+    EnvelopeType_initEntries();
+    return EnvelopeType_ENVELOPE_instance;
+  }
+  function IdentitiesInfoDTO() {
+  }
+  IdentitiesInfoDTO.$metadata$ = {
+    simpleName: 'IdentitiesInfoDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function IdentitiesInfo(id, mspid) {
     this.id_1 = id;
     this.mspid_1 = mspid;
@@ -90,7 +190,7 @@
   IdentitiesInfo.$metadata$ = {
     simpleName: 'IdentitiesInfo',
     kind: 'class',
-    interfaces: []
+    interfaces: [IdentitiesInfoDTO]
   };
   Object.defineProperty(IdentitiesInfo.prototype, 'id', {
     configurable: true,
@@ -104,6 +204,13 @@
       return this._get_mspid__3442490956_e3jiyc_k$();
     }
   });
+  function TransactionDTO() {
+  }
+  TransactionDTO.$metadata$ = {
+    simpleName: 'TransactionDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function Transaction(transactionId, blockId, timestamp, isValid, channelId, creator, nonce, type, validationCode) {
     this.transactionId_1 = transactionId;
     this.blockId_1 = blockId;
@@ -145,7 +252,7 @@
   Transaction.$metadata$ = {
     simpleName: 'Transaction',
     kind: 'class',
-    interfaces: []
+    interfaces: [TransactionDTO]
   };
   Object.defineProperty(Transaction.prototype, 'transactionId', {
     configurable: true,
@@ -201,6 +308,37 @@
       return this._get_validationCode__3303709893_ge633v_k$();
     }
   });
+  function SsmChaincodePropertiesDTO() {
+  }
+  SsmChaincodePropertiesDTO.$metadata$ = {
+    simpleName: 'SsmChaincodePropertiesDTO',
+    kind: 'interface',
+    interfaces: []
+  };
+  function ChaincodeSsmConfig(url) {
+    this.url_1 = url;
+  }
+  ChaincodeSsmConfig.prototype._get_url__857449730_e6i4g2_k$ = function () {
+    return this.url_1;
+  };
+  ChaincodeSsmConfig.$metadata$ = {
+    simpleName: 'ChaincodeSsmConfig',
+    kind: 'class',
+    interfaces: [SsmChaincodePropertiesDTO]
+  };
+  Object.defineProperty(ChaincodeSsmConfig.prototype, 'url', {
+    configurable: true,
+    get: function () {
+      return this._get_url__857449730_e6i4g2_k$();
+    }
+  });
+  function SsmAgentDTO() {
+  }
+  SsmAgentDTO.$metadata$ = {
+    simpleName: 'SsmAgentDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function Companion() {
     Companion_instance = this;
   }
@@ -272,7 +410,7 @@
   SsmAgent.$metadata$ = {
     simpleName: 'Agent',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmAgentDTO]
   };
   Object.defineProperty(SsmAgent.prototype, 'name', {
     configurable: true,
@@ -286,6 +424,13 @@
       return this._get_pub__857303348_e6ezhw_k$();
     }
   });
+  function ChaincodeDTO() {
+  }
+  ChaincodeDTO.$metadata$ = {
+    simpleName: 'ChaincodeDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function Chaincode(id, channelId) {
     this.id_1 = id;
     this.channelId_1 = channelId;
@@ -340,7 +485,7 @@
   Chaincode.$metadata$ = {
     simpleName: 'Chaincode',
     kind: 'class',
-    interfaces: []
+    interfaces: [ChaincodeDTO]
   };
   Object.defineProperty(Chaincode.prototype, 'id', {
     configurable: true,
@@ -354,6 +499,13 @@
       return this._get_channelId__1056362643_hgximr_k$();
     }
   });
+  function SsmDTO() {
+  }
+  SsmDTO.$metadata$ = {
+    simpleName: 'SsmDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function Ssm(name, transitions) {
     this.name_1 = name;
     this.transitions_1 = transitions;
@@ -408,7 +560,7 @@
   Ssm.$metadata$ = {
     simpleName: 'Ssm',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmDTO]
   };
   Object.defineProperty(Ssm.prototype, 'name', {
     configurable: true,
@@ -422,6 +574,13 @@
       return this._get_transitions__2595107731_s41w19_k$();
     }
   });
+  function SsmContextDTO() {
+  }
+  SsmContextDTO.$metadata$ = {
+    simpleName: 'SsmContextDTO',
+    kind: 'interface',
+    interfaces: [WithPrivate]
+  };
   function SsmContext_init_$Init$(session, public_0, iteration, private_0, $mask0, $marker, $this) {
     if (!(($mask0 & 8) === 0))
       private_0 = null;
@@ -510,7 +669,7 @@
   SsmContext.$metadata$ = {
     simpleName: 'SsmContext',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmContextDTO]
   };
   Object.defineProperty(SsmContext.prototype, 'session', {
     configurable: true,
@@ -536,6 +695,13 @@
       return this._get_private__966518254_fzfu9a_k$();
     }
   });
+  function SsmGrantDTO() {
+  }
+  SsmGrantDTO.$metadata$ = {
+    simpleName: 'SsmGrantDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function SsmGrant(user, iteration, credits) {
     this.user_1 = user;
     this.iteration_1 = iteration;
@@ -616,6 +782,13 @@
     configurable: true,
     get: SsmGrant.prototype._get_credits__3948886455_5q1pop_k$
   });
+  function CreditDTO() {
+  }
+  CreditDTO.$metadata$ = {
+    simpleName: 'CreditDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function Credit(amount) {
     this.amount_1 = amount;
   }
@@ -657,7 +830,7 @@
   Credit.$metadata$ = {
     simpleName: 'Credit',
     kind: 'class',
-    interfaces: []
+    interfaces: [CreditDTO]
   };
   Object.defineProperty(Credit.prototype, 'amount', {
     configurable: true,
@@ -665,6 +838,13 @@
       return this._get_amount__1405565363_n8u56b_k$();
     }
   });
+  function SsmSessionDTO() {
+  }
+  SsmSessionDTO.$metadata$ = {
+    simpleName: 'SsmSessionDTO',
+    kind: 'interface',
+    interfaces: [WithPrivate]
+  };
   function SsmSession_init_$Init$(ssm, session, roles, public_0, private_0, $mask0, $marker, $this) {
     if (!(($mask0 & 16) === 0)) {
       var tmp$ret$0;
@@ -721,7 +901,7 @@
   SsmSession.$metadata$ = {
     simpleName: 'SsmSession',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmSessionDTO]
   };
   Object.defineProperty(SsmSession.prototype, 'ssm', {
     configurable: true,
@@ -753,6 +933,13 @@
       return this._get_private__966518254_fzfu9a_k$();
     }
   });
+  function SsmSessionStateDTO() {
+  }
+  SsmSessionStateDTO.$metadata$ = {
+    simpleName: 'SsmSessionStateDTO',
+    kind: 'interface',
+    interfaces: [SsmSessionDTO, WithPrivate]
+  };
   function SsmSessionState_init_$Init$(ssm, session, roles, public_0, private_0, origin, current, iteration, $mask0, $marker, $this) {
     if (!(($mask0 & 16) === 0)) {
       var tmp$ret$0;
@@ -910,7 +1097,7 @@
   SsmSessionState.$metadata$ = {
     simpleName: 'SsmSessionState',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmSessionStateDTO]
   };
   Object.defineProperty(SsmSessionState.prototype, 'ssm', {
     configurable: true,
@@ -960,6 +1147,13 @@
       return this._get_iteration__1235607316_kfncpg_k$();
     }
   });
+  function SsmSessionStateLogDTO() {
+  }
+  SsmSessionStateLogDTO.$metadata$ = {
+    simpleName: 'SsmSessionStateLogDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function SsmSessionStateLog(txId, state) {
     this.txId_1 = txId;
     this.state_1 = state;
@@ -1014,7 +1208,7 @@
   SsmSessionStateLog.$metadata$ = {
     simpleName: 'SsmSessionStateLog',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmSessionStateLogDTO]
   };
   Object.defineProperty(SsmSessionStateLog.prototype, 'txId', {
     configurable: true,
@@ -1028,6 +1222,13 @@
       return this._get_state__3614753120_b8zcm8_k$();
     }
   });
+  function SsmTransitionDTO() {
+  }
+  SsmTransitionDTO.$metadata$ = {
+    simpleName: 'SsmTransitionDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function SsmTransition(from, to, role, action) {
     this.from_1 = from;
     this.to_1 = to;
@@ -1106,7 +1307,7 @@
   SsmTransition.$metadata$ = {
     simpleName: 'SsmTransition',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmTransitionDTO]
   };
   Object.defineProperty(SsmTransition.prototype, 'from', {
     configurable: true,
@@ -1132,16 +1333,44 @@
       return this._get_action__1123534741_ikx8yd_k$();
     }
   });
+  function WithPrivate() {
+  }
+  WithPrivate.$metadata$ = {
+    simpleName: 'WithPrivate',
+    kind: 'interface',
+    interfaces: []
+  };
+  function ChaincodeUriDTO() {
+  }
+  ChaincodeUriDTO.$metadata$ = {
+    simpleName: 'ChaincodeUriDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function Companion_0() {
     Companion_instance_0 = this;
     this.PARTS_1 = 3;
     this.PREFIX_1 = 'chaincode';
   }
+  Companion_0.prototype._get_PARTS__2565155089_slvvn3_k$ = function () {
+    return this.PARTS_1;
+  };
+  Companion_0.prototype._get_PREFIX__2684660409_qmqgqv_k$ = function () {
+    return this.PREFIX_1;
+  };
   Companion_0.$metadata$ = {
     simpleName: 'Companion',
     kind: 'object',
     interfaces: []
   };
+  Object.defineProperty(Companion_0.prototype, 'PARTS', {
+    configurable: true,
+    get: Companion_0.prototype._get_PARTS__2565155089_slvvn3_k$
+  });
+  Object.defineProperty(Companion_0.prototype, 'PREFIX', {
+    configurable: true,
+    get: Companion_0.prototype._get_PREFIX__2684660409_qmqgqv_k$
+  });
   var Companion_instance_0;
   function Companion_getInstance_0() {
     if (Companion_instance_0 == null)
@@ -1197,10 +1426,16 @@
   ChaincodeUri.prototype._get_uri__857449637_e6i4dh_k$ = function () {
     return this.uri_1;
   };
+  ChaincodeUri.prototype._get_channelId__1056362643_hgximr_k$ = function () {
+    return this.burst_1.get_fkrdnv_k$(1);
+  };
+  ChaincodeUri.prototype._get_chaincodeId__335414472_5jp3go_k$ = function () {
+    return this.burst_1.get_fkrdnv_k$(2);
+  };
   ChaincodeUri.$metadata$ = {
     simpleName: 'ChaincodeUri',
     kind: 'class',
-    interfaces: []
+    interfaces: [ChaincodeUriDTO]
   };
   Object.defineProperty(ChaincodeUri.prototype, 'uri', {
     configurable: true,
@@ -1208,9 +1443,24 @@
       return this._get_uri__857449637_e6i4dh_k$();
     }
   });
+  Object.defineProperty(ChaincodeUri.prototype, 'channelId', {
+    configurable: true,
+    get: ChaincodeUri.prototype._get_channelId__1056362643_hgximr_k$
+  });
+  Object.defineProperty(ChaincodeUri.prototype, 'chaincodeId', {
+    configurable: true,
+    get: ChaincodeUri.prototype._get_chaincodeId__335414472_5jp3go_k$
+  });
   function from(_this__1828080292, channelId, chaincodeId) {
     return new ChaincodeUri('chaincode:' + channelId + ':' + chaincodeId);
   }
+  function SsmUriDTO() {
+  }
+  SsmUriDTO.$metadata$ = {
+    simpleName: 'SsmUriDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   function Companion_1() {
     Companion_instance_1 = this;
     this.PARTS_1 = 4;
@@ -1340,7 +1590,7 @@
   SsmUri.$metadata$ = {
     simpleName: 'SsmUri',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmUriDTO]
   };
   Object.defineProperty(SsmUri.prototype, 'uri', {
     configurable: true,
@@ -1381,7 +1631,7 @@
   SsmGetAdminQuery.$metadata$ = {
     simpleName: 'SsmGetAdminQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmQueryDTO]
   };
   Object.defineProperty(SsmGetAdminQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -1402,7 +1652,7 @@
   SsmGetAdminResult.$metadata$ = {
     simpleName: 'SsmGetAdminResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmItemResultDTO]
   };
   Object.defineProperty(SsmGetAdminResult.prototype, 'item', {
     configurable: true,
@@ -1423,7 +1673,7 @@
   SsmGetQuery.$metadata$ = {
     simpleName: 'SsmGetQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmQueryDTO]
   };
   Object.defineProperty(SsmGetQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -1444,7 +1694,7 @@
   SsmGetResult.$metadata$ = {
     simpleName: 'SsmGetResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmItemResultDTO]
   };
   Object.defineProperty(SsmGetResult.prototype, 'item', {
     configurable: true,
@@ -1469,7 +1719,7 @@
   SsmGetSessionLogsQuery.$metadata$ = {
     simpleName: 'SsmGetSessionLogsQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmQueryDTO]
   };
   Object.defineProperty(SsmGetSessionLogsQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -1578,7 +1828,7 @@
   SsmGetSessionQuery.$metadata$ = {
     simpleName: 'SsmGetSessionQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmQueryDTO]
   };
   Object.defineProperty(SsmGetSessionQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -1599,7 +1849,7 @@
   SsmGetSessionResult.$metadata$ = {
     simpleName: 'SsmGetSessionResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmItemResultDTO]
   };
   Object.defineProperty(SsmGetSessionResult.prototype, 'item', {
     configurable: true,
@@ -1661,7 +1911,7 @@
   SsmGetTransactionQuery.$metadata$ = {
     simpleName: 'SsmGetTransactionQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmQueryDTO]
   };
   Object.defineProperty(SsmGetTransactionQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -1682,7 +1932,7 @@
   SsmGetTransactionQueryResult.$metadata$ = {
     simpleName: 'SsmGetTransactionQueryResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmItemResultDTO]
   };
   Object.defineProperty(SsmGetTransactionQueryResult.prototype, 'item', {
     configurable: true,
@@ -1703,7 +1953,7 @@
   SsmGetUserQuery.$metadata$ = {
     simpleName: 'SsmGetUserQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmQueryDTO]
   };
   Object.defineProperty(SsmGetUserQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -1724,7 +1974,7 @@
   SsmGetUserResult.$metadata$ = {
     simpleName: 'SsmGetUserResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmItemResultDTO]
   };
   Object.defineProperty(SsmGetUserResult.prototype, 'item', {
     configurable: true,
@@ -1741,7 +1991,7 @@
   SsmListAdminQuery.$metadata$ = {
     simpleName: 'SsmListAdminQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmQueryDTO]
   };
   Object.defineProperty(SsmListAdminQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -1758,7 +2008,7 @@
   SsmListAdminResult.$metadata$ = {
     simpleName: 'SsmListAdminResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmItemsResultDTO]
   };
   Object.defineProperty(SsmListAdminResult.prototype, 'items', {
     configurable: true,
@@ -1775,7 +2025,7 @@
   SsmListSessionQuery.$metadata$ = {
     simpleName: 'SsmListSessionQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmQueryDTO]
   };
   Object.defineProperty(SsmListSessionQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -1792,7 +2042,7 @@
   SsmListSessionResult.$metadata$ = {
     simpleName: 'SsmListSessionResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmItemsResultDTO]
   };
   Object.defineProperty(SsmListSessionResult.prototype, 'items', {
     configurable: true,
@@ -1809,7 +2059,7 @@
   SsmListSsmQuery.$metadata$ = {
     simpleName: 'SsmListSsmQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmQueryDTO]
   };
   Object.defineProperty(SsmListSsmQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -1826,7 +2076,7 @@
   SsmListSsmResult.$metadata$ = {
     simpleName: 'SsmListSsmResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmItemsResultDTO]
   };
   Object.defineProperty(SsmListSsmResult.prototype, 'items', {
     configurable: true,
@@ -1843,7 +2093,7 @@
   SsmListUserQuery.$metadata$ = {
     simpleName: 'SsmListUserQuery',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmQueryDTO]
   };
   Object.defineProperty(SsmListUserQuery.prototype, 'chaincodeUri', {
     configurable: true,
@@ -1860,7 +2110,7 @@
   SsmListUserResult.$metadata$ = {
     simpleName: 'SsmListUserResult',
     kind: 'class',
-    interfaces: []
+    interfaces: [SsmItemsResultDTO]
   };
   Object.defineProperty(SsmListUserResult.prototype, 'items', {
     configurable: true,
@@ -1873,8 +2123,29 @@
     var $ssm = _.ssm || (_.ssm = {});
     var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
     var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
+    var $ssm = _.ssm || (_.ssm = {});
+    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
+    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
+    var $ssm = _.ssm || (_.ssm = {});
+    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
+    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
     var $ssm$chaincode$dsl$blockchain = $ssm$chaincode$dsl.blockchain || ($ssm$chaincode$dsl.blockchain = {});
     $ssm$chaincode$dsl$blockchain.Block = Block;
+    var $ssm = _.ssm || (_.ssm = {});
+    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
+    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
+    var $ssm$chaincode$dsl$blockchain = $ssm$chaincode$dsl.blockchain || ($ssm$chaincode$dsl.blockchain = {});
+    $ssm$chaincode$dsl$blockchain.EnvelopeType = EnvelopeType;
+    $ssm$chaincode$dsl$blockchain.EnvelopeType.values = values;
+    $ssm$chaincode$dsl$blockchain.EnvelopeType.valueOf = valueOf;
+    Object.defineProperty($ssm$chaincode$dsl$blockchain.EnvelopeType, 'TRANSACTION_ENVELOPE', {
+      configurable: true,
+      get: EnvelopeType_TRANSACTION_ENVELOPE_getInstance
+    });
+    Object.defineProperty($ssm$chaincode$dsl$blockchain.EnvelopeType, 'ENVELOPE', {
+      configurable: true,
+      get: EnvelopeType_ENVELOPE_getInstance
+    });
     var $ssm = _.ssm || (_.ssm = {});
     var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
     var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
@@ -1885,6 +2156,11 @@
     var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
     var $ssm$chaincode$dsl$blockchain = $ssm$chaincode$dsl.blockchain || ($ssm$chaincode$dsl.blockchain = {});
     $ssm$chaincode$dsl$blockchain.Transaction = Transaction;
+    var $ssm = _.ssm || (_.ssm = {});
+    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
+    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
+    var $ssm$chaincode$dsl$config = $ssm$chaincode$dsl.config || ($ssm$chaincode$dsl.config = {});
+    $ssm$chaincode$dsl$config.ChaincodeSsmConfig = ChaincodeSsmConfig;
     var $ssm = _.ssm || (_.ssm = {});
     var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
     var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
@@ -1935,6 +2211,20 @@
     var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
     var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
     $ssm$chaincode$dsl$model.SsmTransition = SsmTransition;
+    var $ssm = _.ssm || (_.ssm = {});
+    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
+    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
+    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
+    var $ssm = _.ssm || (_.ssm = {});
+    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
+    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
+    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
+    var $ssm$chaincode$dsl$model$uri = $ssm$chaincode$dsl$model.uri || ($ssm$chaincode$dsl$model.uri = {});
+    $ssm$chaincode$dsl$model$uri.ChaincodeUri = ChaincodeUri;
+    Object.defineProperty($ssm$chaincode$dsl$model$uri.ChaincodeUri, 'Companion', {
+      configurable: true,
+      get: Companion_getInstance_0
+    });
     var $ssm = _.ssm || (_.ssm = {});
     var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
     var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
@@ -2005,78 +2295,14 @@
     var $ssm$chaincode$dsl$query = $ssm$chaincode$dsl.query || ($ssm$chaincode$dsl.query = {});
     $ssm$chaincode$dsl$query.SsmListUserQuery = SsmListUserQuery;
     $ssm$chaincode$dsl$query.SsmListUserResult = SsmListUserResult;
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$blockchain = $ssm$chaincode$dsl.blockchain || ($ssm$chaincode$dsl.blockchain = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$blockchain = $ssm$chaincode$dsl.blockchain || ($ssm$chaincode$dsl.blockchain = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$blockchain = $ssm$chaincode$dsl.blockchain || ($ssm$chaincode$dsl.blockchain = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$config = $ssm$chaincode$dsl.config || ($ssm$chaincode$dsl.config = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm$chaincode$dsl$model$uri = $ssm$chaincode$dsl$model.uri || ($ssm$chaincode$dsl$model.uri = {});
-    var $ssm = _.ssm || (_.ssm = {});
-    var $ssm$chaincode = $ssm.chaincode || ($ssm.chaincode = {});
-    var $ssm$chaincode$dsl = $ssm$chaincode.dsl || ($ssm$chaincode.dsl = {});
-    var $ssm$chaincode$dsl$model = $ssm$chaincode$dsl.model || ($ssm$chaincode$dsl.model = {});
-    var $ssm$chaincode$dsl$model$uri = $ssm$chaincode$dsl$model.uri || ($ssm$chaincode$dsl$model.uri = {});
   }
   $jsExportAll$(_);
   _.$jsExportAll$ = $jsExportAll$;
+  _.$crossModule$ = _.$crossModule$ || {};
+  _.$crossModule$.SsmAgent = SsmAgent;
+  _.$crossModule$.SsmGrant = SsmGrant;
+  _.$crossModule$.SsmSessionState = SsmSessionState;
+  _.$crossModule$.Ssm = Ssm;
   //endregion
   return _;
 }));

@@ -7,11 +7,4 @@ import x2.api.ssm.domain.config.X2SsmProperties
 
 @EnableConfigurationProperties(X2Properties::class)
 @Configuration(proxyBeanMethods = false)
-class X2Configuration {
-
-	@Bean
-	fun couchdbConfig(
-		ssmCouchdbProperties: X2Properties,
-	): X2SsmProperties = ssmCouchdbProperties.ssm
-
-}
+class X2Configuration

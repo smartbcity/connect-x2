@@ -1,24 +1,45 @@
-import { createActionCreator } from "deox";
-import {Session, SSM, SsmUriDTO} from "ssm";
-
-const setSsmList = createActionCreator(
-  "SSMLIST_SET",
-  (resolve) => (ssmList: Map<SsmUriDTO, SSM>) => resolve({ ssmList: ssmList })
-);
+import {createActionCreator} from "deox";
+import {ProtocolName, Session, SessionName, SSM, SsmUriDTO} from "ssm";
 
 const fetchSessions = createActionCreator(
-  "FETCHSESSIONS",
-  (resolve) => (ssmUri: SsmUriDTO) => resolve({ ssmUri: ssmUri })
+  "FETCHS_SESSIONS",
+  (resolve) => (protocolName: ProtocolName) => resolve({ protocolName: protocolName })
 );
 
 const fetchedSessions = createActionCreator(
-  "FETCHEDSESSIONS",
-  (resolve) => (sessions: Session[], ssmUri: SsmUriDTO) => resolve({ sessions: sessions, ssmUri: ssmUri })
+  "FETCHED_SESSIONS",
+  (resolve) => (sessions: Session[], protocolName: ProtocolName) => resolve({ sessions: sessions, protocolName: protocolName })
 );
 
+export type FetchSsmAction = (protocolName: ProtocolName) => void
+
+const fetchSsm: FetchSsmAction = createActionCreator(
+  "FETCHS_SSM",
+  (resolve) => (ssmUri: SsmUriDTO) => resolve({ ssmUri })
+);
+
+const fetchedSsm = createActionCreator(
+  "FETCHED_SSM",
+  (resolve) => (ssm?: SSM) => resolve({ ssm })
+);
+
+export type FetchSessionAction = (protocolName: ProtocolName) => void
+
+const fetchSession: FetchSessionAction = createActionCreator(
+  "FETCHS_SESSION",
+  (resolve) => (ssmUri: SsmUriDTO, sessionName: SessionName) => resolve({ ssmUri, sessionName })
+);
+
+const fetchedSession = createActionCreator(
+  "FETCHED_SESSION",
+  (resolve) => (session?: Session) => resolve({ session: session })
+);
 
 export const actions = {
-  setSsmList: setSsmList,
   fetchSessions: fetchSessions,
-  fetchedSessions: fetchedSessions
+  fetchedSessions: fetchedSessions,
+  fetchSsm: fetchSsm,
+  fetchedSsm: fetchedSsm,
+  fetchSession: fetchSession,
+  fetchedSession: fetchedSession,
 };

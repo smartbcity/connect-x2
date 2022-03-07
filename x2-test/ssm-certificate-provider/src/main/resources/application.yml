@@ -10,9 +10,8 @@ x2:
   test:
     ssm:
       certificate:
+        ssmUri: ssm:sandbox:ssm:certificate2
         url: ${ssm.chaincode.url}
-        channelId: sandbox
-        chaincodeId: ssm
       admin:
         name: ssm-admin
         key: bclan-x2/ssm-admin

@@ -43,6 +43,8 @@ class GenerateCertificatePdfQuery(
     override val lang: Lang
 ): GenerateCertificatePdfQueryDTO
 
+@JsExport
+@JsName("GenerateCertificatePdfResultDTO")
 interface GenerateCertificatePdfResultDTO {
     /**
      * Generated PDF file as a Base64 String

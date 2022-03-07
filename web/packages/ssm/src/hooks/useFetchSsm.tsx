@@ -10,7 +10,7 @@ export interface FetchSSMResponse {
 export const useFetchSsm = (ssmUri: SsmUriDTO): FetchSSMResponse => {
     const fetchSSM = useCallback(
         async () => {
-            return SSMRequester.fetchSSM(ssmUri)
+            return SSMRequester.fetchSsm(ssmUri)
         },
         [ssmUri.uri],
     )

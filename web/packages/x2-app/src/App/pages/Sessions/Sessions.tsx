@@ -4,13 +4,23 @@ import { makeG2STyles } from "@smartb/g2-themes";
 import { Page } from "components";
 import { useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import {Session, SSM, SsmPath, SsmUriDTO, useParamsSsmUri, SSMRequester} from "ssm";
+import {
+  Session,
+  SsmPath,
+  SsmUriDTO,
+  SSMRequester,
+  ProtocolName,
+  Protocol,
+  useParamsProtocols
+} from "ssm";
 import { AsyncObject, useAsyncResponse } from "utils";
 import { ProtocolCard } from "./components/ProtocolCard";
 import { SessionNumberCard } from "./components/SessionNumberCard";
 import { SessionsFilters } from "./components/SessionsFilters";
 import { SessionTable } from "./components/SessionTable";
 import { StepsCompletedCard } from "./components/StepsCompletedCard";
+import {GotoSessionDetails, GotoSessions} from "../../../store/router/router.goto";
+import {FetchSessionAction, FetchSsmAction} from "../../../store/ssm/ssm.actions";
 
 const useStyles = makeG2STyles()({
   container: {
@@ -28,26 +38,27 @@ const useStyles = makeG2STyles()({
 
 interface SessionsProps {
   setTitle: (title: string) => void
-  gotoSessionDetails: (ssmUri: SsmUriDTO, sessionName: any) => void
-  gotoSessions: (ssmUri: SsmUriDTO, params: Object) => void
-  ssmList: Map<SsmPath, SSM>
+  gotoSessionDetails: GotoSessionDetails
+  gotoSessions: GotoSessions
+  protocols: Map<ProtocolName, Protocol>
   sessionsList: Map<SsmPath, AsyncObject<{ sessions?: Session[] }>>
-  fetchSessions: (ssmUri: SsmUriDTO) => void
+  fetchSessions: FetchSessionAction
 }
 
 export const Sessions = (props: SessionsProps) => {
-  const { setTitle, ssmList, gotoSessionDetails, gotoSessions, fetchSessions, sessionsList } = props;
+  const { setTitle, protocols, gotoSessionDetails, gotoSessions, fetchSessions, sessionsList } = props;
   const { t } = useTranslation()
   const { classes } = useStyles()
-  const ssmUri = useParamsSsmUri()
-  const currentSSM = useMemo(() => ssmList.get(ssmUri.uri), [ssmList, ssmUri.uri])
+  const protocolName = useParamsProtocols()
+  const currentProtocol = useMemo(() => protocols.get(protocolName), [protocols, protocolName])
 
-  const currentSessions = useMemo(() => sessionsList.get(ssmUri.uri), [sessionsList, ssmUri.uri])
+  const currentSessions = useMemo(() => sessionsList.get(protocolName), [sessionsList, protocolName])
 
   const getSessionsPerStateStats = useCallback(
     (params?: SessionsFilters) => {
       return SSMRequester.fetchSessionStatesPerStates(
-        ssmUri,
+          protocolName,
+        params?.ssmUri,
         params?.channel,
         params?.currentStep,
         params?.engine,
@@ -55,13 +66,14 @@ export const Sessions = (props: SessionsProps) => {
         params?.to,
       )
     },
-    [ssmUri.uri],
+    [protocolName],
   )
 
   const getSessionStatePerInterval = useCallback(
     (params?: SessionsFilters) => {
       return SSMRequester.fetchSessionStatePerInterval(
-        ssmUri,
+          protocolName,
+          params?.ssmUri,
         params?.channel,
         params?.currentStep,
         params?.engine,
@@ -69,7 +81,7 @@ export const Sessions = (props: SessionsProps) => {
         params?.to,
       )
     },
-    [ssmUri.uri],
+    [],
   )
 
   const sessionsPerStateStats = useAsyncResponse(getSessionsPerStateStats)
@@ -77,32 +89,36 @@ export const Sessions = (props: SessionsProps) => {
   const stepsPerIntervalStats = useAsyncResponse(getSessionStatePerInterval)
   
   useEffect(() => {
-    fetchSessions(ssmUri)
+    fetchSessions(protocolName)
     sessionsPerStateStats.execute()
-  }, [ssmUri.uri, fetchSessions])
+  }, [protocolName, fetchSessions])
 
   const onSubmitFilters = useCallback(
     (values: SessionsFilters) => {
       sessionsPerStateStats.execute(values)
       stepsPerIntervalStats.execute(values)
-      gotoSessions(ssmUri, values)
+      gotoSessions(protocolName, values)
     },
-    [ssmUri.uri, sessionsPerStateStats.execute, stepsPerIntervalStats.execute],
+    [protocolName, sessionsPerStateStats.execute, stepsPerIntervalStats.execute],
   )
   
-  if (!currentSSM) return <NoMatchPage />
+  if (!currentProtocol) return <NoMatchPage />
   return (
     <Page
       setTitle={setTitle}
       title={t("sessions")}
-      headerContent={<SessionsFilters ssmList={ssmList} onSubmit={onSubmitFilters} currentSSM={currentSSM} />}
+      headerContent={<SessionsFilters protocol={currentProtocol} onSubmit={onSubmitFilters} />}
     >
       <Box className={classes.container}>
         <StepsCompletedCard stats={stepsPerIntervalStats.result ?? []} isLoading={stepsPerIntervalStats.status !== "SUCCESS"} />
         <SessionNumberCard stats={sessionsPerStateStats.result ?? []} isLoading={sessionsPerStateStats.status !== "SUCCESS"} />
-        <ProtocolCard ssmUri={ssmUri} currentSSM={currentSSM} />
+        <ProtocolCard protocol={currentProtocol} />
       </Box>
-      <SessionTable ssmUri={ssmUri} isLoading={currentSessions?.status === "PENDING"} sessions={currentSessions?.sessions} gotoSessionDetails={gotoSessionDetails} />
+      <SessionTable
+          isLoading={currentSessions?.status === "PENDING"}
+          protocolName={protocolName}
+          sessions={currentSessions?.sessions}
+          gotoSessionDetails={gotoSessionDetails} />
     </Page>
   );
 };

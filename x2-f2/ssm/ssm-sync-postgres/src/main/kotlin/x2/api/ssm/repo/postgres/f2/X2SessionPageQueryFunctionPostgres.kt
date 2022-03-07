@@ -1,6 +1,6 @@
 package x2.api.ssm.repo.postgres.f2
 
-import f2.dsl.cqrs.page.Page
+import f2.dsl.cqrs.page.OffsetPagination
 import f2.dsl.cqrs.page.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -29,10 +29,14 @@ class X2SessionPageQueryFunctionPostgres(
 			it.toSsmEntity()
 		}.let { page ->
 			X2SessionPageQueryResult(
-				page = page,
 				items = page.items,
 				total = page.total,
-				pagination = msg.pagination
+				pagination = msg.pagination?.let { pagination ->
+					OffsetPagination(
+						offset = pagination.offset,
+						limit = pagination?.limit
+					)
+				}
 			)
 		}
 	}

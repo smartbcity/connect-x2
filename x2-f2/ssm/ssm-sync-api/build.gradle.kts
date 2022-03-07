@@ -13,5 +13,4 @@ dependencies {
     api("city.smartb.ssm:ssm-data-sync:${Versions.ssm}") {
         isChanging = true
     }
-//    implementation("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
 }

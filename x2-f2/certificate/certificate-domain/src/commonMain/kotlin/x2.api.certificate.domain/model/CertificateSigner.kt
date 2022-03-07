@@ -1,5 +1,6 @@
 package x2.api.certificate.domain.model
 
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -41,6 +42,9 @@ interface CertificateSignerDTO {
  * @parent [CertificateCredentials]
  * @order 20
  */
+@JsExport
+@Serializable
+@JsName("CertificateSigner")
 class CertificateSigner(
     override val name: CertificateData,
     override val organization: String,

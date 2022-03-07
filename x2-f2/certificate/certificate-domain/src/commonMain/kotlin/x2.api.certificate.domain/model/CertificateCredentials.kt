@@ -1,5 +1,6 @@
 package x2.api.certificate.domain.model
 
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -81,6 +82,9 @@ interface CertificateCredentialsDTO {
  * @page
  * @@title Certificate
  */
+@JsExport
+@Serializable
+@JsName("CertificateCredentials")
 class CertificateCredentials(
     override val context: Array<String>,
     override val type: Array<String>,

@@ -1,9 +1,11 @@
 package x2.api.ssm.domain.query
 
+import x2.api.ssm.domain.domain.ProtocolName
 import kotlin.js.JsExport
 
 @JsExport
 interface ProtocoleFilterDTO {
+	val protocol: ProtocolName
 	val ssmUri: String?
 	val from: Long?
 	val to: Long?
@@ -13,6 +15,7 @@ interface ProtocoleFilterDTO {
 }
 
 class ProtocoleFilter(
+	override val protocol: ProtocolName,
 	override val from: Long? = null,
 	override val to: Long? = null,
 	override val channels: Array<String>? = null,

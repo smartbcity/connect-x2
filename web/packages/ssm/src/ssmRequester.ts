@@ -1,57 +1,59 @@
 import {
-    GenerateCertificatePdfQuery,
-    GenerateCertificatePdfResult,
-    Session,
-    SessionState,
-    SSM,
-    DataSsmGetQueryDTO,
-    DataSsmGetQueryResultDTO,
-    DataSsmListQueryDTO,
-    DataSsmListQueryResultDTO,
+    CanGenerateCertificateQuery,
+    CanGenerateCertificateResult,
+    CellDTO, DataSsmGetQueryDTO, DataSsmGetQueryResultDTO,
     DataSsmSessionGetQueryDTO,
     DataSsmSessionGetQueryResultDTO,
-    DataSsmSessionListQueryDTO,
-    DataSsmSessionListQueryResultDTO,
     DataSsmSessionLogGetQueryDTO,
     DataSsmSessionLogGetQueryResultDTO,
     DataSsmSessionLogListQueryDTO,
     DataSsmSessionLogListQueryResultDTO,
     GenerateCertificateFromSessionStateQuery,
     GenerateCertificateFromSessionStateResult,
-    CanGenerateCertificateQuery,
-    CanGenerateCertificateResult, SsmUriDTO, defaultProtocols, X2SessionPageQueryDTO, X2SessionPerStateStatsResultDTO,
+    GenerateCertificatePdfQuery,
+    GenerateCertificatePdfResult,
+    Protocol,
+    ProtocoleFilterDTO,
+    ProtocolName,
+    Session, SessionName,
+    SessionState, SSM,
+    SsmUriDTO,
+    X2ProtocolsListQueryResultDTO,
+    X2SessionPageQueryDTO,
+    X2SessionPageQueryResultDTO,
+    X2SessionPerStateStatsResultDTO,
     X2SessionStatePerIntervalStatsResultDTO,
-    CellDTO
 } from "./models";
 
 import {requestCoop, requestCoops} from "utils";
 
-const fetchSSMs = async (): Promise<SSM[]> => {
-    return requestCoop<DataSsmListQueryDTO, DataSsmListQueryResultDTO>("getAllSsm", {} as DataSsmListQueryResultDTO).then(
+const getAllProtocols = async (): Promise<Protocol[]> => {
+    return requestCoop<{}, X2ProtocolsListQueryResultDTO>("getAllProtocols", {}).then(
         it => {
             return it.items
         }
     )
 };
 
-const fetchSSM = async (ssmUri: SsmUriDTO): Promise<SSM | undefined> => {
+const fetchSsm = async (ssmUri: SsmUriDTO): Promise<SSM | undefined> => {
     return requestCoop<DataSsmGetQueryDTO, DataSsmGetQueryResultDTO>("getSsm", {ssmUri: ssmUri } as DataSsmGetQueryDTO).then(
         it => it.item ?? undefined
     )
 };
 
-const fetchSessions = async (ssmUri: SsmUriDTO): Promise<Session[]> => {
-    return requestCoop<DataSsmSessionListQueryDTO, DataSsmSessionListQueryResultDTO>("getAllSessions", {ssmUri: ssmUri } as DataSsmSessionListQueryDTO).then(
+const fetchSessions = async (protocolName: ProtocolName): Promise<Session[]> => {
+    const filter = buildFilter(protocolName)
+    return requestCoop<X2SessionPageQueryDTO, X2SessionPageQueryResultDTO>("sessionsPage", {filter: filter, pagination: null} as X2SessionPageQueryDTO).then(
         it => it.items ?? []
     )
 };
 
-const fetchSession = async (ssmUri: SsmUriDTO, sessionId: string): Promise<Session | undefined> => {
+const fetchSession = async (ssmUri: SsmUriDTO, sessionName: SessionName): Promise<Session | undefined> => {
     return requestCoop<DataSsmSessionGetQueryDTO, DataSsmSessionGetQueryResultDTO>("getSession", {
-        sessionName: sessionId,
+        sessionName: sessionName,
         ssmUri: ssmUri
     } as DataSsmSessionGetQueryDTO).then(
-        it => it.item  ?? undefined
+        it => it.item ?? undefined
     )
 };
 
@@ -69,46 +71,86 @@ const fetchSessionStates = async (
 };
 
 const fetchSessionStatesPerStates = async (
-    ssmUri: SsmUriDTO,
-    channel: string[] = [],
-    currentStep: string[] = [],
-    engine: string[] = [],
+    protocol: string,
+    ssmUri?: string,
+    channels?: string[],
+    steps?: number[],
+    engine?: string[],
     from?: number,
     to?: number
 ): Promise<CellDTO<number>[]> => {
-    return requestCoop<X2SessionPageQueryDTO, X2SessionPerStateStatsResultDTO>("sessionPerStateStats", 
-    {
-        ssmUri: ssmUri.uri, 
-        channel: channel,
-        currentStep: currentStep,
-        engine: engine,
-        from: from,
-        to: to,
+    const filter = buildFilter(
+        protocol,
+        ssmUri,
+        channels,
+        steps,
+        engine,
+        from,
+        to,
+    )
+    return requestCoop<X2SessionPageQueryDTO, X2SessionPerStateStatsResultDTO>("sessionPerStateStats", {
+        filter: filter,
+        pagination: null
     } as X2SessionPageQueryDTO).then(
         it => it.data ?? []
     )
 };
 
 const fetchSessionStatePerInterval = async (
-    ssmUri: SsmUriDTO,
-    channel?: string[],
-    currentStep?: string[],
+    protocol: string,
+    ssmUri?: string,
+    channels?: string[],
+    steps?: number[],
     engine?: string[],
     from?: number,
     to?: number
 ): Promise<CellDTO<number[]>[]> => {
-    return requestCoop<X2SessionPageQueryDTO, X2SessionStatePerIntervalStatsResultDTO>("sessionStatePerInterval", 
-    {
-        ssmUri: ssmUri.uri, 
-        channel: channel,
-        currentStep: currentStep,
-        engine: engine,
-        from: from,
-        to: to,
+    const filter = buildFilter(
+        protocol,
+        ssmUri,
+        channels,
+        steps,
+        engine,
+        from,
+        to,
+    )
+    return requestCoop<X2SessionPageQueryDTO, X2SessionStatePerIntervalStatsResultDTO>("sessionStatePerInterval", {
+        filter: filter,
+        pagination: null,
     } as X2SessionPageQueryDTO).then(
         it => it.data ?? []
     )
 };
+
+const buildFilter = (
+    protocol: string,
+    ssmUri?: string,
+    channels?: string[],
+    steps?: number[],
+    engine?: string[],
+    from?: number,
+    to?: number
+): ProtocoleFilterDTO => {
+    // @ts-ignore
+    return {
+        protocol: protocol,
+        ssmUri: ssmUri,
+        to: to,
+        from: from,
+        channels: !!channels ? emptyToNull(channels) : null,
+        engines: !!engine ? emptyToNull(engine) : null,
+        steps: !!emptyToNull(steps || []) ? new Int32Array(steps!!) : null,
+    }
+}
+
+const emptyToNull = <T> (t: T[]): T[] | null => {
+    if(t.length == 0){
+        return null
+    } else {
+        return t
+    }
+}
+
 
 const fetchSessionState = async (
     ssmUri: SsmUriDTO,
@@ -162,28 +204,22 @@ const CanGenerateCertificates = async (
     return requestCoops<CanGenerateCertificateQuery[], CanGenerateCertificateResult>("canGenerateCertificate", queries)
 }
 
-const fetchSSMsAsync = async (setSsmList: (ssmList: Map<SsmUriDTO, SSM>) => void) => {
-    const ssmMap = new Map<SsmUriDTO, SSM>()
-    const ssms = await SSMRequester.fetchSSMs()
-    if (defaultProtocols && defaultProtocols.length > 0) {
-        ssms.forEach((ssm) => {
-            if (defaultProtocols.includes(ssm.ssm.name)) {
-                ssmMap.set(ssm.uri, ssm)
-            }
-        })
-    } else {
-        ssms.forEach((ssm) => {
-            ssmMap.set(ssm.uri, ssm)
-        })
-    }
-    setSsmList(ssmMap)
+const fetchProtocolsAsync = async (setProtocol: (protocols: Map<ProtocolName, Protocol>) => void) => {
+    const ssmMap = new Map<ProtocolName, Protocol>()
+    const protocols = await SSMRequester.getAllProtocols()
+    protocols.forEach((protocol) => {
+        ssmMap.set(protocol.name, protocol)
+    })
+    setProtocol(ssmMap)
 }
 
 
 export const SSMRequester = {
-    fetchSSMs: fetchSSMs,
-    fetchSSMsAsync: fetchSSMsAsync,
-    fetchSSM: fetchSSM,
+    getAllProtocols: getAllProtocols,
+    fetchProtocolsAsync: fetchProtocolsAsync,
+    // fetchSSMs: fetchSSMs,
+    // fetchSSMsAsync: fetchSSMsAsync,
+    fetchSsm: fetchSsm,
     fetchSessions: fetchSessions,
     fetchSession: fetchSession,
     fetchSessionStates: fetchSessionStates,

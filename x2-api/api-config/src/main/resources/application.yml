@@ -17,13 +17,6 @@ spring:
     username: postgres
     password: postgrespassword
 
-x2:
-  ssm:
-    chaincodes:
-      - chaincode:sandbox:ssm
-    ssm:
-      - ssm:sandbox:ssm:default
-
 ssm:
   couchdb:
     url: http://localhost:5984
@@ -33,15 +26,26 @@ ssm:
   chaincode:
     url: http://localhost:9090
 
+
+---
+spring:
+  config:
+    activate:
+      on-profile: withProtocols
+
+x2:
+  protocols:
+    Certificates: ssm:sandbox:ssm:certificates, ssm:sandbox:ssm:certificate2
+    CertificatesList:
+      - ssm:sandbox:ssm:certificates
+      - ssm:sandbox:ssm:certificate2
+
 ---
 spring:
   config:
     activate:
       on-profile: impactmate
-x2:
-  ssm:
-    chaincodes:
-      - chaincode:proudhon:ssm
+
 ssm:
   couchdb:
     url: http://peer0.pr-commune.smartb.network:5984
@@ -63,10 +67,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgrespassword
+
 x2:
-  ssm:
-    ssm:
-      - ssm:proudhon:ssm:Request
+  protocols:
+    Certificates1:
+      - ssm:proudhon:ssm:Certificates
+    Certificates2:
       - ssm:proudhon:ssm:Certificates
 
 ssm:
@@ -82,43 +88,24 @@ ssm:
 spring:
   config:
     activate:
-      on-profile: local
-
-x2:
-  ssm:
-    chaincodes:
-      - chaincode:proudhon:ssm
-    ssm:
-      - ssm:proudhon:ssm:Request
-      - ssm:proudhon:ssm:Certificates
-
-ssm:
-  couchdb:
-    url: "http://peer0.pr-commune.smartb.network:5984"
-    username: 1111
-    password: 2222
-    serviceName: ssm-couchdb-unit
-  chaincode:
-    url: "http://peer0.pr-commune.smartb.network"
-
----
-spring:
-  config:
-    activate:
       on-profile: handprint-poc
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgrespassword
+
 x2:
-  ssm:
-    chaincodes:
-      - chaincode:sandbox:ssm
-    ssm:
+  protocols:
+    FundReceipt:
       - ssm:sandbox:ssm:FundReceipt
+    ProjectFundReceipt:
       - ssm:sandbox:ssm:ProjectFundReceipt
 
 ssm:
   couchdb:
-    url: "http://localhost:5984"
+    url: http://localhost:5984
     username: couchdb
     password: couchdb
-    serviceName: x2-handprint-poc
+    serviceName: ssm-couchdb-unit
   chaincode:
-    url: "http://localhost:9090"
+    url: http://localhost:9090
