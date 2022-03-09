@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react'
 import { AppLayout as AruiAppLayout } from '@smartb/g2-layout'
 import { MenuItem } from '@smartb/g2-components'
 import {  makeG2STyles } from '@smartb/g2-themes'
-import { appLayoutStyleProps } from '../../theme'
 import {X2Menu} from './X2Menu'
 import { AppBarContent } from './AppBarContent'
 
@@ -46,7 +45,6 @@ export const AppLayout = (props: AppLayoutProps) => {
         <AruiAppLayout
             open={open}
             onToggle={onToggle}
-            styleProps={appLayoutStyleProps}
             drawerProps={{
                 className: classes.drawer
             }}
@@ -62,4 +60,3 @@ export const AppLayout = (props: AppLayoutProps) => {
         </AruiAppLayout>
     )
 }
-

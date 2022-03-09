@@ -1,10 +1,9 @@
-import { Table, Column } from '@smartb/g2-components'
-import { Box, Typography } from '@mui/material'
-import { useTranslation, TFunction } from 'react-i18next'
-import { useCallback, useMemo, useState } from 'react'
-import { makeG2STyles} from '@smartb/g2-themes'
-import {ProtocolName, Session, SsmUriDTO} from 'ssm'
-import { LoadingComponent } from 'components'
+import {CellProps, Column, Row, Table} from '@smartb/g2-layout'
+import {Box, Typography} from '@mui/material'
+import {TFunction, useTranslation} from 'react-i18next'
+import {useCallback, useMemo, useState} from 'react'
+import {makeG2STyles} from '@smartb/g2-themes'
+import {ProtocolName, Session} from 'ssm'
 import {GotoSessionDetails} from "../../../../store/router/router.goto";
 
 const useStyles = makeG2STyles()({
@@ -53,15 +52,15 @@ interface SessionTableProps {
 }
 
 export const SessionTable = (props: SessionTableProps) => {
-    const { protocolName, sessions, gotoSessionDetails, isLoading = false } = props
-    const { t } = useTranslation()
+    const {_, sessions, gotoSessionDetails, isLoading = false} = props
+    const {t} = useTranslation()
     const [page, setPage] = useState(1)
-    const { classes } = useStyles()
+    const {classes} = useStyles()
     const data: SessionColumn[] = useMemo(() => {
         if (!sessions) return []
         return sessions.map((session): SessionColumn => ({
             id: session.sessionName,
-            ssmUri : session.ssmUri.uri,
+            ssmUri: session.ssmUri.uri,
             creationDate: new Date(session.transaction?.timestamp).toLocaleDateString(),
             channel: session.channel.id,
             protocolEngine: session.state.details.ssm as string,
@@ -80,14 +79,14 @@ export const SessionTable = (props: SessionTableProps) => {
             totalPage: Math.floor(data.length / 10)
         }
     }, [page, data])
-    
+
     const handlePageChange = useCallback(
         (page: number) => setPage(page),
         [],
     )
 
     const onRowClicked = useCallback(
-        (row: SessionColumn) => gotoSessionDetails({uri: row.ssmUri}, row.id),
+        (row: Row<SessionColumn>) => gotoSessionDetails({uri: row.original.ssmUri}, row.id),
         [gotoSessionDetails],
     )
 
@@ -101,49 +100,57 @@ export const SessionTable = (props: SessionTableProps) => {
             page={page}
             totalPages={pagination.totalPage}
             handlePageChange={handlePageChange}
-            loadingComponent={<Box marginTop="30px"><LoadingComponent /></Box>}
+            // loadingComponent={<Box marginTop="30px"><LoadingComponent /></Box>}
             className={classes.container}
             onRowClicked={onRowClicked}
+
         />
     )
 }
 
 const getColumns = (t: TFunction): Column<SessionColumn>[] => ([{
-    name: <Typography variant="body1">{t("sessionId")}</Typography>,
-    cell: (row: SessionColumn) => (
-        <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.id}</Typography>
+    Header: `${t("sessionId")}`,
+    Cell: ({row}: CellProps<SessionColumn>) => (
+        <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.original.id}</Typography>
     )
 }, {
-    name: <Typography variant="body1">{t("creationDate")}</Typography>,
-    cell: (row: SessionColumn) => (
-        <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.creationDate}</Typography>
+    Header: `${t("creationDate")}`,
+    Cell: ({row}: CellProps<SessionColumn>) => (
+        <Typography variant="body2"
+                    data-tag='___react-data-table-allow-propagation___'>{row.original.creationDate}</Typography>
     )
 }, {
-    name: <Typography variant="body1">{t("channel")}</Typography>,
-    cell: (row: SessionColumn) => (
-        <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.channel}</Typography>
+    Header: `${t("channel")}`,
+    Cell: ({row}: CellProps<SessionColumn>) => (
+        <Typography variant="body2"
+                    data-tag='___react-data-table-allow-propagation___'>{row.original.channel}</Typography>
     )
 }, {
-    name: <Typography variant="body1">{t("protocolEngine")}</Typography>,
-    cell: (row: SessionColumn) => (
-        <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.protocolEngine}</Typography>
+    Header: `${t("protocolEngine")}`,
+    Cell: ({row}: CellProps<SessionColumn>) => (
+        <Typography variant="body2"
+                    data-tag='___react-data-table-allow-propagation___'>{row.original.protocolEngine}</Typography>
     )
 }, {
-    name: (
-        <Box display="flex" flexDirection="column" width="100%">
-            <Typography variant="body1" align="center">{t("sessionsPage.completedStep")}</Typography>
-            <Box display="flex" justifyContent="space-between" width="100%" >
-                <Typography variant="body2" >{t("date")}</Typography>
-                <Typography variant="body2">{t("status")}</Typography>
-                <Typography variant="body2">{t("user")}</Typography>
-            </Box>
+    id: "completedStep",
+    Header: (<Box display="flex" flexDirection="column" width="100%">
+        <Typography variant="body1" align="center">{t("sessionsPage.completedStep")}</Typography>
+        <Box display="flex" justifyContent="space-between" width="100%" >
+            <Typography variant="body2" >{t("date")}</Typography>
+            <Typography variant="body2">{t("status")}</Typography>
+            <Typography variant="body2">{t("user")}</Typography>
         </Box>
-    ),
-    cell: (row: SessionColumn) => (
-        <Box display="flex" justifyContent="space-between" width="100%" data-tag='___react-data-table-allow-propagation___'>
-            <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.completedStep.date}</Typography>
-            <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.completedStep.status}</Typography>
-            <Typography variant="body2" data-tag='___react-data-table-allow-propagation___'>{row.completedStep.user}</Typography>
+    </Box>),
+    Cell: ({row}: CellProps<SessionColumn>) => (
+        <Box display="flex" justifyContent="space-between" width="100%"
+             data-tag='___react-data-table-allow-propagation___'>
+            <Typography variant="body2"
+                        data-tag='___react-data-table-allow-propagation___'>{row.original.completedStep.date}</Typography>
+            <Typography variant="body2"
+                        data-tag='___react-data-table-allow-propagation___'>{row.original.completedStep.status}</Typography>
+            <Typography variant="body2"
+                        data-tag='___react-data-table-allow-propagation___'>{row.original.completedStep.user}</Typography>
         </Box>
     )
 }])
+
