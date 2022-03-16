@@ -26,4 +26,3 @@ package-x2-front:
 package-x2-ssm-certificate-provider:
 	VERSION=${VERSION} ./gradlew build ${X2_SSM_CERTIFICATE_PROVIDER_PACKAGE} -x test
 	@docker push ${X2_SSM_CERTIFICATE_PROVIDER_IMG}
-

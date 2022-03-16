@@ -1,12 +1,13 @@
 import city.smartb.gradle.dependencies.FixersDependencies
+import city.smartb.gradle.dependencies.FixersVersions
 import city.smartb.gradle.dependencies.FixersPluginVersions
 import city.smartb.gradle.dependencies.Scope
 import city.smartb.gradle.dependencies.add
+
 object PluginVersions {
-	const val fixers = "experimental-SNAPSHOT"
+	val fixers = FixersPluginVersions.fixers
 	const val d2 = "0.3.1"
 	const val kotlin = FixersPluginVersions.kotlin
-//	const val kotlin = "1.6.20-M1"
 	const val springBoot = FixersPluginVersions.springBoot
 }
 
@@ -14,9 +15,11 @@ object Versions {
 	const val springBoot = PluginVersions.springBoot
 	const val postgres = "42.3.2"
 	const val hibernateTypes = "2.14.0"
-	const val testcontainers =	"1.16.3"
-	const val f2 = "experimental-SNAPSHOT"
-	const val ssm = "experimental-x-SNAPSHOT"
+
+	const val testcontainers =	FixersVersions.Test.testcontainers
+
+	val f2 = PluginVersions.fixers
+	val ssm = PluginVersions.fixers
 }
 
 object Repo {
